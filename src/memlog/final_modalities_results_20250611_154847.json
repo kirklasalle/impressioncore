@@ -1,0 +1,19 @@
+{
+  "network_data": true,
+  "sensor_data": false,
+  "created_files": [
+    "src\\data\\real_datasets\\network_data\\metadata.json",
+    "src\\data\\real_datasets\\network_data\\network_capture_1.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_2.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_3.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_4.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_5.pcap",
+    "src\\data\\real_datasets\\network_data\\network_trace_1.cap",
+    "src\\data\\real_datasets\\network_data\\network_trace_2.cap",
+    "src\\data\\real_datasets\\network_data\\network_trace_3.cap"
+  ],
+  "download_attempts": [
+    "network_data: FALLBACK_USED",
+    "sensor_data: ERROR - sequence item 0: expected a bytes-like object, int found"
+  ]
+}

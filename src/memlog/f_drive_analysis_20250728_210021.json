@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-07-28T21:00:21.285583",
+  "total_files": 1138398,
+  "total_size_gb": 158.89477753825486,
+  "file_counts": {
+    "text": 42510,
+    "other": 586797,
+    "audio": 6385,
+    "embedding": 324046,
+    "video": 14716,
+    "image": 163941,
+    "archive": 3
+  }
+}

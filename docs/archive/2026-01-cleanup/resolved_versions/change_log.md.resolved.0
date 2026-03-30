@@ -1,0 +1,19 @@
+# ImpressionCore: Change Log Ledger (24h Audit)
+
+### [2025-12-27 22:40 -> 23:05] Hardware Sync & Lifecycle
+- **[sensory_intelligence.py]**: Implemented `trace_log` buffer and forced discovery logic.
+- **[orbcloud_vision.py]**: Added [refresh_hardware()](file:///D:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py#990-1023), standardized PS Eye indices to 99+, and implemented stale frame clearing.
+- **[triad_api.py]**: Updated `/v1/system/status` to support `?refresh=true` and include discovery traces. Improved MJPEG stream fallback.
+- **[App.jsx]**: Enhanced Audit UI with "Hardware Trace Route" and automated device re-syncing.
+- **[orbos_ready.bat]**: Reduced timeouts, added instance checking (in-progress).
+
+### [2025-12-27 20:50 -> 22:30] Performance & Audit Optimization
+- **[orbos_ready.bat]**: Reduced timeouts from 5s to 2s/3s.
+- **[sensory_intelligence.py]**: Optimized WMI queries with `CoInitialize` and results caching (120s).
+- **[triad_api.py]**: Implemented hardware family deduplication for audio devices (Fixing overcount).
+- **[App.jsx]**: Increased polling frequency to 2s for responsive audit feedback.
+
+### Bug Fixes
+- **Audio Overcount**: 33 -> 17 microphones via keyword deduplication.
+- **Audit Hang**: Sync'd `loading_phase` between backend and frontend to prevent "Initializing Modules" stall.
+- **Missing Feeds**: Standardized Virtual IDs to 99 and cleared visual buffer on refresh.

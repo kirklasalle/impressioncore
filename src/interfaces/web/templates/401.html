@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Unauthorized - ImpressionCore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="text-align: center; padding: 3rem;">
+        <h1 class="section-title" style="color: var(--danger-color);">401 - Unauthorized</h1>
+        <p style="font-size: 1.2rem; color: var(--text-secondary);">Sorry, you need to be logged in to access this page.</p>
+        <p>Please log in to continue.</p>
+        <a href="{{ url_for('login') }}" class="btn btn-primary" style="margin-top: 1.5rem;">
+            <i class="fas fa-sign-in-alt"></i> Go to Login Page
+        </a>
+    </div>
+</div>
+{% endblock %}

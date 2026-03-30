@@ -1,0 +1,11 @@
+# Core dependencies
+markdown>=3.3.0
+
+# GUI dependencies - comment out if disk space is limited
+PyQt5>=5.15.0
+PyQtWebEngine>=5.15.0
+
+# Alternative lightweight GUI options (uncomment one if PyQt5 installation fails)
+# PySide2>=5.15.0
+# PyQt5-stubs>=5.15.0  # Much smaller package for development
+# Note: tkinter is included with Python standard library and can be used as fallback

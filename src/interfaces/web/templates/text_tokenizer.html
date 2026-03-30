@@ -1,0 +1,527 @@
+{% extends "base.html" %}
+
+{% block title %}Text Tokenizer{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h1><i class="fas fa-font"></i> Text Tokenizer</h1>
+    <p class="lead">Configure and test your text tokenization pipeline 🔤</p>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-vial"></i> Tokenizer Playground</h2>
+    <div class="tokenizer-playground">
+        <div class="form-group">
+            <label><i class="fas fa-keyboard"></i> Input Text</label>
+            <textarea class="form-control" id="input-text" rows="4" placeholder="Enter text to tokenize..."></textarea>
+        </div>
+
+        <div class="tokenization-result" style="display: none;">
+            <h3><i class="fas fa-list-ol"></i> Tokenization Result</h3>
+            <div class="token-visualization">
+                <!-- Tokens will be displayed here -->
+            </div>
+            <div class="token-stats">
+                <div class="stat-card">
+                    <i class="fas fa-hashtag"></i>
+                    <span class="stat-label">Token Count</span>
+                    <span class="stat-value">0</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-percentage"></i>
+                    <span class="stat-label">Compression</span>
+                    <span class="stat-value">0%</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <span class="stat-label">Processing Time</span>
+                    <span class="stat-value">0ms</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-cog"></i> Tokenizer Settings</h2>
+    
+    <div class="settings-tabs">
+        <button class="tab-btn active" data-tab="basic">
+            <i class="fas fa-sliders-h"></i> Basic
+        </button>
+        <button class="tab-btn" data-tab="advanced">
+            <i class="fas fa-tools"></i> Advanced
+        </button>
+        <button class="tab-btn" data-tab="preprocessing">
+            <i class="fas fa-filter"></i> Preprocessing
+        </button>
+    </div>
+
+    <div class="tab-content" id="basic-tab">
+        <div class="form-group">
+            <label>
+                <i class="fas fa-text-width"></i> Maximum Sequence Length
+                <span class="badge badge-primary">Memory Usage</span>
+            </label>
+            <div class="slider-container">
+                <input type="range" class="form-range" id="seq-length-range" min="64" max="2048" step="64" value="512">
+                <input type="number" class="form-control" id="seq-length" value="512">
+            </div>
+            <small class="text-muted">Longer sequences require more memory</small>
+        </div>
+
+        <div class="form-group mt-3">
+            <label>
+                <i class="fas fa-language"></i> Tokenization Method
+            </label>
+            <div class="method-selector">
+                <div class="method-card" data-method="bpe">
+                    <div class="method-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="method-content">
+                        <h4>BPE</h4>
+                        <p>Byte-Pair Encoding</p>
+                    </div>
+                    <div class="method-check">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <div class="method-card" data-method="wordpiece">
+                    <div class="method-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="method-content">
+                        <h4>WordPiece</h4>
+                        <p>Sub-word tokenization</p>
+                    </div>
+                    <div class="method-check">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <div class="method-card" data-method="unigram">
+                    <div class="method-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="method-content">
+                        <h4>Unigram</h4>
+                        <p>Statistical modeling</p>
+                    </div>
+                    <div class="method-check">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="advanced-tab" style="display: none;">
+        <div class="settings-grid">
+            <label class="switch">
+                <input type="checkbox" id="use-special-tokens" checked>
+                <span class="switch-slider"></span>
+                <span class="switch-label">Special Tokens</span>
+            </label>
+
+            <label class="switch">
+                <input type="checkbox" id="lowercase" checked>
+                <span class="switch-slider"></span>
+                <span class="switch-label">Lowercase</span>
+            </label>
+
+            <label class="switch">
+                <input type="checkbox" id="strip-accents">
+                <span class="switch-slider"></span>
+                <span class="switch-label">Strip Accents</span>
+            </label>
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Character Coverage (%)</label>
+            <div class="slider-container">
+                <input type="range" class="form-range" id="char-coverage-range" min="90" max="100" step="0.1" value="99.9">
+                <input type="number" class="form-control" id="char-coverage" value="99.9" step="0.1">
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="preprocessing-tab" style="display: none;">
+        <div class="preprocessing-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Text Cleaning</h4>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Normalization</h4>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Split Words</h4>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-code"></i> Sample Output</h2>
+    <div class="sample-output">
+        <div class="output-tabs">
+            <button class="output-tab active" data-output="tokens">Tokens</button>
+            <button class="output-tab" data-output="ids">Token IDs</button>
+            <button class="output-tab" data-output="attention">Attention Mask</button>
+        </div>
+        <pre class="output-display"><code>Loading...</code></pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Update active tab button
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show selected tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(this.dataset.tab + '-tab').style.display = 'block';
+        });
+    });
+    
+    // Method selection
+    document.querySelectorAll('.method-card').forEach(card => {
+        card.addEventListener('click', function() {
+            document.querySelectorAll('.method-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
+    });
+    
+    // Sync range inputs
+    const rangeInputs = document.querySelectorAll('input[type="range"]');
+    rangeInputs.forEach(range => {
+        const numberInput = document.getElementById(range.id.replace('-range', ''));
+        
+        range.addEventListener('input', function() {
+            numberInput.value = this.value;
+        });
+        
+        numberInput.addEventListener('change', function() {
+            range.value = this.value;
+        });
+    });
+    
+    // Output tab switching
+    document.querySelectorAll('.output-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update output display based on selected tab
+            const outputType = this.dataset.output;
+            const outputDisplay = document.querySelector('.output-display code');
+            
+            switch(outputType) {
+                case 'tokens':
+                    outputDisplay.textContent = '["[CLS]", "Hello", "world", "!", "[SEP]"]';
+                    break;
+                case 'ids':
+                    outputDisplay.textContent = '[101, 7592, 2088, 999, 102]';
+                    break;
+                case 'attention':
+                    outputDisplay.textContent = '[1, 1, 1, 1, 1, 0, 0, ...]';
+                    break;
+            }
+        });
+    });
+    
+    // Sample text tokenization
+    const inputText = document.getElementById('input-text');
+    const tokenizationResult = document.querySelector('.tokenization-result');
+    
+    inputText.addEventListener('input', function() {
+        if (this.value.trim()) {
+            tokenizationResult.style.display = 'block';
+            simulateTokenization(this.value);
+        } else {
+            tokenizationResult.style.display = 'none';
+        }
+    });
+    
+    function simulateTokenization(text) {
+        const tokenVisualization = document.querySelector('.token-visualization');
+        const tokens = text.split(/\s+/);
+        
+        tokenVisualization.innerHTML = tokens.map(token => `
+            <span class="token">
+                <span class="token-text">${token}</span>
+                <span class="token-id">#${Math.floor(Math.random() * 1000)}</span>
+            </span>
+        `).join('');
+        
+        // Update stats
+        document.querySelector('.stat-value:nth-child(3)').textContent = tokens.length;
+        document.querySelector('.stat-value:nth-child(6)').textContent = 
+            Math.round((1 - tokens.length / text.length) * 100) + '%';
+        document.querySelector('.stat-value:nth-child(9)').textContent = 
+            Math.round(Math.random() * 50) + 'ms';
+    }
+});
+</script>
+
+<style>
+.tokenizer-playground {
+    padding: 1rem 0;
+}
+
+.token-visualization {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.token {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.token-text {
+    font-weight: 500;
+}
+
+.token-id {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.token-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-card i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.settings-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.method-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.method-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.method-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.method-card.selected {
+    border-color: var(--accent-color);
+    background: rgba(74, 144, 226, 0.05);
+}
+
+.method-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--accent-color), #67b7dc);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.method-content {
+    flex: 1;
+}
+
+.method-content h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.method-content p {
+    margin: 0.25rem 0 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.method-check {
+    color: var(--accent-color);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.method-card.selected .method-check {
+    opacity: 1;
+}
+
+.preprocessing-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.step-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.step-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step-content h4 {
+    margin: 0;
+}
+
+.output-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.output-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.output-tab.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.output-display {
+    background: var(--primary-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 0;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.875rem;
+}
+</style>
+{% endblock %}

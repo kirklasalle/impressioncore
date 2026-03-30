@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-06-21T09:56:46.792705",
+    "input_text": "hello.",
+    "input_image": null,
+    "response": "I encountered an issue while processing your request: ImpressionCoreBMultimodal.forward() got an unexpected keyword argument 'text_input_ids'",
+    "quality_score": 8.5,
+    "inference_time": 0.024321,
+    "device": "cuda",
+    "model_path": "F:\\impressioncore_training_data\\production_model\\impressioncore_b1_production.pth"
+  }
+]

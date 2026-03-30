@@ -1,0 +1,14 @@
+{
+  "checkpoint": "F:\\models\\management\\training_sessions\\colossus\\20251024_152458_colossus_distilled.pt",
+  "num_prompts": 82,
+  "avg_l2": 0.5146896515677615,
+  "max_l2": 0.5656352043151855,
+  "max_prompt": "How do interdisciplinary approaches enhance understanding?",
+  "max_conf_checkpoint": 0.7163117477948129,
+  "max_conf_baseline": 0.673258722787565,
+  "avg_confidence_delta": 0.0326868539903222,
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251020_120039_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251024_followup.json"
+  ]
+}

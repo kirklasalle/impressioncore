@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}ImpressionCore - Model Definition{% endblock %}
+
+{% block config_data %}
+<script type="text/javascript">
+    // Safely initialize MODEL_TEMPLATES with server data
+    var MODEL_TEMPLATES = {};
+    try {
+        MODEL_TEMPLATES = JSON.parse('{{ templates|tojson|safe }}');
+    } catch (e) {
+        console.error('Error parsing model templates:', e);
+        // Provide default template if parsing fails
+        MODEL_TEMPLATES = {
+            'basic-transformer': {
+                name: 'Basic Transformer',
+                numLayers: 12,
+                hiddenSize: 768,
+                numHeads: 12,
+                ffnDim: 3072,
+                dropoutRate: 0.1,
+                maxSeqLength: 1024,
+                enableLoRA: false
+            }
+        };
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container model-definition-container">
+    <div class="row">
+        <!-- Template Selection -->
+        <div class="col-md-12 mb-4">
+            <h2>Select Model Template</h2>
+            <div class="row template-panel">
+                {% for template_id, template in templates.items() %}
+                <div class="col-md-4 mb-3">
+                    <div class="card template-card" data-template-id="{{ template_id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ template.name }}</h5>
+                            <p class="card-text">
+                                Layers: {{ template.numLayers }}<br>
+                                Hidden Size: {{ template.hiddenSize }}<br>
+                                Heads: {{ template.numHeads }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- Configuration Form -->
+            <h2>Model Configuration</h2>
+            <form id="modelConfigForm" class="config-form">
+                <div class="param-group">
+                    <h4>Architecture Parameters</h4>
+                    <div class="mb-3">
+                        <label for="numLayers" class="form-label">Number of Layers</label>
+                        <input type="number" class="form-control" id="numLayers" name="numLayers" min="1" max="48">
+                        <div class="param-help">Valid range: 1-48 layers</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hiddenSize" class="form-label">Hidden Size</label>
+                        <input type="number" class="form-control" id="hiddenSize" name="hiddenSize" step="64">
+                        <div class="param-help">Must be a multiple of 64</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numHeads" class="form-label">Attention Heads</label>
+                        <input type="number" class="form-control" id="numHeads" name="numHeads" min="1" max="32">
+                        <div class="param-help">Valid range: 1-32 heads</div>
+                    </div>
+                </div>
+
+                <div class="param-group">
+                    <h4>Training Parameters</h4>
+                    <div class="mb-3">
+                        <label for="ffnDim" class="form-label">FFN Dimension</label>
+                        <input type="number" class="form-control" id="ffnDim" name="ffnDim" step="128">
+                        <div class="param-help">Must be a multiple of 128</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dropoutRate" class="form-label">Dropout Rate</label>
+                        <input type="number" class="form-control" id="dropoutRate" name="dropoutRate" min="0" max="1" step="0.1">
+                        <div class="param-help">Valid range: 0.0-1.0</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="maxSeqLength" class="form-label">Maximum Sequence Length</label>
+                        <input type="number" class="form-control" id="maxSeqLength" name="maxSeqLength" step="128">
+                        <div class="param-help">Must be a multiple of 128</div>
+                    </div>
+                </div>
+
+                <div class="param-group">
+                    <h4>Additional Options</h4>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="enableLoRA" name="enableLoRA">
+                        <label class="form-check-label" for="enableLoRA">Enable LoRA</label>
+                        <div class="param-help">Enables Low-Rank Adaptation for efficient fine-tuning</div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="memory-estimate mt-3">
+                Estimated Memory Usage: <span id="memoryEstimate">calculating...</span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- Architecture Visualization -->
+            <h2>Architecture Visualization</h2>
+            <div class="visualization-container" id="architectureVisualization">
+                <div class="visualization-controls">
+                    <button class="btn btn-outline-primary btn-sm" id="zoomIn">+</button>
+                    <button class="btn btn-outline-primary btn-sm" id="zoomOut">-</button>
+                    <button class="btn btn-outline-primary btn-sm" id="resetView">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

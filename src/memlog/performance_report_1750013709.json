@@ -1,0 +1,15 @@
+{
+  "sampling_period": 40,
+  "average_cpu_percent": 66.52499999999999,
+  "average_memory_percent": 47.875,
+  "peak_gpu_memory": 0.0,
+  "total_samples": 4,
+  "metrics_summary": {
+    "start_time": 1750013670.8758278,
+    "backups_created": 3,
+    "errors_handled": 0,
+    "performance_samples": 4,
+    "embedding_operations": 1,
+    "training_checkpoints": 0
+  }
+}

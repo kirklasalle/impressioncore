@@ -1,0 +1,4 @@
+# This file was moved from the project root to src/tests/docx/ for proper organization.
+# Do not place test files in the project root.
+
+# ...existing content from test.docx...

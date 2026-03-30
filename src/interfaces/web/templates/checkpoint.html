@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Checkpoint Management</h1>
+
+    <!-- Checkpoint List -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Available Checkpoints</h2>
+            <div class="header-actions">
+                <button id="refresh-list" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="checkpoint-filters">
+                <div class="form-group">
+                    <label for="checkpoint-type">Type:</label>
+                    <select id="checkpoint-type" class="form-control">
+                        <option value="all">All Types</option>
+                        <option value="training">Training</option>
+                        <option value="finetuning">Fine-tuning</option>
+                        <option value="snapshot">Snapshot</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by" class="form-control">
+                        <option value="date-desc">Latest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="size-desc">Size (Large to Small)</option>
+                        <option value="size-asc">Size (Small to Large)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkpoint-list">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="checkpoint-tbody">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading checkpoints...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkpoint Details -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Checkpoint Details</h2>
+        </div>
+        <div class="card-body">
+            <div id="checkpoint-details">
+                <p class="text-center">Select a checkpoint to view details</p>
+            </div>
+            
+            <!-- Metrics and Info -->
+            <div id="checkpoint-metrics" style="display: none;">
+                <h3>Training Metrics</h3>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="label">Epoch:</span>
+                        <span class="value" id="checkpoint-epoch">-</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Loss:</span>
+                        <span class="value" id="checkpoint-loss">-</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Accuracy:</span>
+                        <span class="value" id="checkpoint-accuracy">-</span>
+                    </div>
+                </div>
+                
+                <h3>Model Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Architecture:</span>
+                        <span class="value" id="model-architecture">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Parameters:</span>
+                        <span class="value" id="model-parameters">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Training Duration:</span>
+                        <span class="value" id="training-duration">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkpoint Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Actions</h2>
+        </div>
+        <div class="card-body">
+            <div class="action-buttons">
+                <button id="restore-checkpoint" class="btn btn-primary" disabled>
+                    <i class="fas fa-undo"></i> Restore Checkpoint
+                </button>
+                <button id="download-checkpoint" class="btn btn-info" disabled>
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button id="delete-checkpoint" class="btn btn-danger" disabled>
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+            
+            <!-- Restore Options -->
+            <div id="restore-options" class="restore-panel" style="display: none;">
+                <h3>Restore Options</h3>
+                <div class="form-group">
+                    <label for="restore-type">Restore Type:</label>
+                    <select id="restore-type" class="form-control">
+                        <option value="full">Full Restore</option>
+                        <option value="weights">Weights Only</option>
+                        <option value="optimizer">Include Optimizer State</option>
+                    </select>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="backup-current" class="form-check-input">
+                    <label for="backup-current" class="form-check-label">
+                        Backup Current State
+                    </label>
+                </div>
+                <button id="confirm-restore" class="btn btn-success">
+                    Confirm Restore
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/checkpoint.js') }}"></script>
+{% endblock %}

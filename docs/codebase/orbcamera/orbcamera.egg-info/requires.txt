@@ -1,0 +1,10 @@
+opencv-contrib-python>=4.7.0
+numpy
+wmi
+pywin32
+
+[dev]
+black
+ruff
+mypy
+pytest

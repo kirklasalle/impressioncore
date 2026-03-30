@@ -1,0 +1,79 @@
+{
+  "mode": "dry-run",
+  "ok": true,
+  "profile": "full",
+  "contracts": {
+    "architecture": {
+      "ok": true,
+      "errors": []
+    },
+    "data": {
+      "ok": true,
+      "errors": []
+    },
+    "embeddings": {
+      "ok": true,
+      "errors": []
+    },
+    "training": {
+      "ok": true,
+      "errors": []
+    }
+  },
+  "stages": [
+    {
+      "stage": "architecture",
+      "ok": true,
+      "violations": [],
+      "contract": {
+        "ok": true,
+        "errors": []
+      }
+    },
+    {
+      "stage": "data",
+      "ok": true,
+      "datasets_root": "F:/data/datasets",
+      "datasets_root_exists": true,
+      "dpo_dataset_path": "src/training/data/datasets/dpo_phase3_dataset_with_logprobs.jsonl",
+      "dpo_dataset_exists": true,
+      "contract": {
+        "ok": true,
+        "errors": []
+      }
+    },
+    {
+      "stage": "embeddings",
+      "ok": true,
+      "embeddings_root": "F:/data/embeddings",
+      "embeddings_root_exists": true,
+      "contract": {
+        "ok": true,
+        "errors": []
+      }
+    },
+    {
+      "stage": "training",
+      "ok": true,
+      "checkpoints_root": "F:/models/checkpoints",
+      "checkpoints_root_exists": true,
+      "quickstart_exists": true,
+      "dpo_pipeline_exists": true,
+      "contract": {
+        "ok": true,
+        "errors": []
+      }
+    }
+  ],
+  "execution_plan": {
+    "embeddings": "D:\\Projects\\impressioncore\\.venv310\\Scripts\\python.exe src/data/pipelines/embed_f_drive_full.py --modalities text,image,audio --max-vram-gb 3.0 --max-samples 500",
+    "training": "D:\\Projects\\impressioncore\\.venv310\\Scripts\\python.exe src/training/b3/b3_training_quickstart.py --phase single_modal --modality text --epochs 3",
+    "dpo": "D:\\Projects\\impressioncore\\.venv310\\Scripts\\python.exe src/training/pipelines/dpo_alignment.py"
+  },
+  "execution_results": {},
+  "guardrails": {
+    "timeout_seconds": 10800,
+    "retries": 1,
+    "fail_fast": false
+  }
+}

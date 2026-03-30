@@ -1,0 +1,53 @@
+<div class="section-card">
+    <h4>Model Evaluation</h4>
+    <p>Evaluate your trained model's performance.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-speedometer2"></i> Performance Metrics</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Accuracy Metrics</h6>
+                        <canvas id="accuracy-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Loss Metrics</h6>
+                        <canvas id="loss-metrics-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-arrow-repeat"></i> Cross Validation</h5>
+        <div class="mb-3">
+            <label for="cv-folds" class="form-label">Number of Folds:</label>
+            <input type="number" class="form-control" id="cv-folds" value="5" min="3" max="10">
+        </div>
+        <button class="btn btn-primary" id="run-cv-btn">
+            <i class="bi bi-play"></i> Run Cross Validation
+        </button>
+        <div id="cv-results" class="mt-3" style="display: none;"></div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-table"></i> Confusion Matrix</h5>
+        <div id="confusion-matrix" class="text-center">
+            <!-- Matrix will be inserted here -->
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-file-earmark-text"></i> Evaluation Report</h5>
+        <button class="btn btn-primary mb-3" id="generate-report-btn">
+            <i class="bi bi-file-earmark-pdf"></i> Generate Report
+        </button>
+        <div id="evaluation-report" style="display: none;"></div>
+    </div>
+</div>

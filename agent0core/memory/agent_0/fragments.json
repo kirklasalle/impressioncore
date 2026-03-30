@@ -1,0 +1,86 @@
+[
+  {
+    "id": "8a2257f9e6be426e",
+    "content": "PROBLEM: Missing imports (deque, random) in src/training/utils.py causing NameError.\nSOLUTION: Added 'import random' and 'from collections import deque' to the file header.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T10:57:23.470267",
+    "metadata": {
+      "problem": "Missing imports (deque, random) in src/training/utils.py causing NameError.",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "79fedb863350c84e",
+    "content": "PROBLEM: Missing imports (deque, random) in src/training/utils.py causing NameError.\nSOLUTION: Added 'import random' and 'from collections import deque' to the file header.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T10:57:41.925771",
+    "metadata": {
+      "problem": "Missing imports (deque, random) in src/training/utils.py causing NameError.",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "5d4c695261342132",
+    "content": "PROBLEM: Missing imports (deque, random) in src/training/utils.py causing NameError.\nSOLUTION: Added 'import random' and 'from collections import deque' to the file header.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T10:59:16.748903",
+    "metadata": {
+      "problem": "Missing imports (deque, random) in src/training/utils.py causing NameError.",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "4ec508dcec9ebffc",
+    "content": "PROBLEM: Missing imports (deque, random) in src/training/utils.py causing NameError.\nSOLUTION: Added 'import random' and 'from collections import deque' to the file header.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T11:00:01.406860",
+    "metadata": {
+      "problem": "Missing imports (deque, random) in src/training/utils.py causing NameError.",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "59721d0b059b333a",
+    "content": "PROBLEM: Missing imports (deque, random) in src/training/utils.py causing NameError.\nSOLUTION: Added 'import random' and 'from collections import deque' to the file header.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T11:00:48.768324",
+    "metadata": {
+      "problem": "Missing imports (deque, random) in src/training/utils.py causing NameError.",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "dbd17238c292a8d0",
+    "content": "PROBLEM: What port is the Kinect on?\nSOLUTION: The Kinect is connected to MJPEG Stream ID 98 for the Color stream.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T11:08:08.147995",
+    "metadata": {
+      "problem": "What port is the Kinect on?",
+      "success": true
+    },
+    "embedding": null
+  },
+  {
+    "id": "3c600b0cbc4de5eb",
+    "content": "PROBLEM: What port is the Kinect on?\nSOLUTION: The Kinect is connected to MJPEG Stream ID 98 for the Color stream.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-01-18T11:10:42.229258",
+    "metadata": {
+      "problem": "What port is the Kinect on?",
+      "success": true
+    },
+    "embedding": null
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-06-15T14:55:07.990885",
+  "system_info": {
+    "timestamp": 1750013707.9908853,
+    "cpu_count": 4,
+    "memory_total": 34288791552,
+    "gpu_available": true,
+    "gpu_count": 1,
+    "python_version": "3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]",
+    "torch_version": "2.5.1+cu121"
+  },
+  "project_state": {
+    "timestamp": 1750013707.9917893,
+    "project_root": "d:\\Projects\\impressioncore",
+    "total_files": 60569,
+    "src_files": 1013,
+    "backup_count": 9
+  },
+  "metrics": {
+    "start_time": 1750013670.8758278,
+    "backups_created": 3,
+    "errors_handled": 0,
+    "performance_samples": 4,
+    "embedding_operations": 1,
+    "training_checkpoints": 0
+  },
+  "performance_report": {
+    "sampling_period": 40,
+    "average_cpu_percent": 66.52499999999999,
+    "average_memory_percent": 47.875,
+    "peak_gpu_memory": 0.0,
+    "total_samples": 4,
+    "metrics_summary": {
+      "start_time": 1750013670.8758278,
+      "backups_created": 3,
+      "errors_handled": 0,
+      "performance_samples": 4,
+      "embedding_operations": 1,
+      "training_checkpoints": 0
+    }
+  },
+  "embedding_analysis": {
+    "total_operations": 2,
+    "operation_breakdown": {
+      "full_integration": 2
+    },
+    "analysis_date": "20250615",
+    "recommendations": []
+  }
+}

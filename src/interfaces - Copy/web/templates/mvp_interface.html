@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImpressionCore - Privacy-First AI Platform</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-bg: #1f2937;
+            --darker-bg: #111827;
+            --text-light: #f9fafb;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--success-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+
+        .card-header {
+            background: rgba(37, 99, 235, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, var(--success-color), #059669);
+            border: none;
+        }
+
+        .form-control, .form-select {
+            background: rgba(55, 65, 81, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(55, 65, 81, 0.9);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+            color: var(--text-light);
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-healthy { background-color: var(--success-color); }
+        .status-warning { background-color: var(--warning-color); }
+        .status-error { background-color: var(--danger-color); }
+
+        .metric-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .generation-output {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+
+        .spinner-border {
+            color: var(--primary-color);
+        }
+
+        .progress {
+            background: rgba(55, 65, 81, 0.5);
+            height: 8px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, var(--primary-color), var(--success-color));
+        }
+
+        .alert {
+            border: none;
+            border-radius: 8px;
+        }
+
+        .alert-info {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--text-light);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--text-light);
+            border-left: 4px solid var(--success-color);
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--text-light);
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--text-light);
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse { animation: pulse 2s infinite; }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--success-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain me-2"></i>
+                ImpressionCore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#generation">Text Generation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#monitoring">Monitoring</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">ImpressionCore B1</h1>
+            <p class="hero-subtitle">Privacy-First AI Platform Optimized for GTX 1050 Ti</p>
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="status-indicator" id="serviceStatus"></span>
+                <span id="serviceStatusText">Initializing...</span>
+            </div>
+        </div>
+
+        <!-- Service Status Alert -->
+        <div id="statusAlert" class="alert alert-info" role="alert" style="display: none;">
+            <i class="fas fa-info-circle me-2"></i>
+            <span id="statusMessage">Service is initializing...</span>
+        </div>
+
+        <!-- System Metrics -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-value" id="generationsCount">0</div>
+                    <div class="metric-label">Total Generations</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-value" id="avgSpeed">0.0</div>
+                    <div class="metric-label">Avg Speed (tokens/sec)</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-value" id="memoryUsage">0.0</div>
+                    <div class="metric-label">VRAM Usage (GB)</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-value" id="deviceStatus">Unknown</div>
+                    <div class="metric-label">Device</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Text Generation Panel -->
+            <div class="col-lg-8">
+                <div class="card mb-4" id="generation">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-pen-fancy me-2"></i>
+                            Text Generation
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Generation Form -->
+                        <form id="generationForm">
+                            <div class="mb-3">
+                                <label for="promptInput" class="form-label">Enter your prompt:</label>
+                                <textarea class="form-control" id="promptInput" rows="3" 
+                                    placeholder="Type your prompt here... (e.g., 'The future of AI is')"></textarea>
+                            </div>
+                            
+                            <!-- Advanced Settings (Collapsible) -->
+                            <div class="mb-3">
+                                <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#advancedSettings">
+                                    <i class="fas fa-cog me-1"></i>
+                                    Advanced Settings
+                                </button>
+                            </div>
+                            
+                            <div class="collapse" id="advancedSettings">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="maxLength" class="form-label">Max Length</label>
+                                        <input type="range" class="form-range" id="maxLength" min="50" max="1024" value="512">
+                                        <small class="text-muted">Value: <span id="maxLengthValue">512</span></small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="temperature" class="form-label">Temperature</label>
+                                        <input type="range" class="form-range" id="temperature" min="0.1" max="2.0" step="0.1" value="0.8">
+                                        <small class="text-muted">Value: <span id="temperatureValue">0.8</span></small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="topP" class="form-label">Top P</label>
+                                        <input type="range" class="form-range" id="topP" min="0.1" max="1.0" step="0.1" value="0.9">
+                                        <small class="text-muted">Value: <span id="topPValue">0.9</span></small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="topK" class="form-label">Top K</label>
+                                        <input type="range" class="form-range" id="topK" min="1" max="100" value="50">
+                                        <small class="text-muted">Value: <span id="topKValue">50</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-outline-light me-md-2" id="clearBtn">
+                                    <i class="fas fa-trash me-1"></i>Clear
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="generateBtn">
+                                    <i class="fas fa-magic me-1"></i>Generate Text
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Generation Progress -->
+                        <div id="generationProgress" style="display: none;" class="mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border spinner-border-sm me-2" role="status">
+                                    <span class="visually-hidden">Generating...</span>
+                                </div>
+                                <span>Generating text...</span>
+                            </div>
+                            <div class="progress mt-2">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Generation Output -->
+                        <div class="mt-3">
+                            <label class="form-label">Generated Text:</label>
+                            <div class="generation-output" id="generationOutput">
+                                Click "Generate Text" to see results here...
+                            </div>
+                            
+                            <!-- Generation Stats -->
+                            <div id="generationStats" class="mt-2" style="display: none;">
+                                <small class="text-muted">
+                                    Generated in <span id="genTime">0</span>s 
+                                    | <span id="genSpeed">0</span> tokens/sec 
+                                    | <span id="genMemory">0</span> GB VRAM
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monitoring Panel -->
+            <div class="col-lg-4">
+                <div class="card mb-4" id="monitoring">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-line me-2"></i>
+                            System Monitoring
+                        </h5>
+                        <button class="btn btn-sm btn-success" id="monitoringToggle">
+                            <i class="fas fa-play me-1"></i>Start
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Real-time Charts -->
+                        <div class="chart-container">
+                            <canvas id="memoryChart"></canvas>
+                        </div>
+                        
+                        <!-- System Information -->
+                        <div class="mt-3">
+                            <h6>System Information</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <small class="text-muted">GPU:</small><br>
+                                    <span id="gpuName">Detecting...</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">CUDA:</small><br>
+                                    <span id="cudaStatus">Checking...</span>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <small class="text-muted">CPU:</small><br>
+                                    <span id="cpuUsage">0%</span>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <small class="text-muted">RAM:</small><br>
+                                    <span id="ramUsage">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Status -->
+                        <div class="mt-3">
+                            <h6>Service Status</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Text Generation Service</span>
+                                <span class="badge bg-secondary" id="serviceStatusBadge">Not Initialized</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                                <span>Model Loaded</span>
+                                <span class="badge bg-secondary" id="modelStatusBadge">No</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="mt-3">
+                            <h6>Quick Actions</h6>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-sm btn-primary" id="initServiceBtn">
+                                    <i class="fas fa-power-off me-1"></i>Initialize Service
+                                </button>
+                                <button class="btn btn-sm btn-warning" id="cleanupBtn">
+                                    <i class="fas fa-broom me-1"></i>Cleanup Memory
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Global variables
+        let socket;
+        let memoryChart;
+        let isMonitoring = false;
+        let isServiceInitialized = false;
+        
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSocket();
+            initializeCharts();
+            initializeEventListeners();
+            checkHealth();
+            updateRangeValues();
+        });
+
+        // Socket.IO initialization
+        function initializeSocket() {
+            socket = io();
+            
+            socket.on('connect', function() {
+                console.log('Connected to server');
+                updateStatus('Connected to server', 'success');
+            });
+
+            socket.on('service_initialized', function(data) {
+                isServiceInitialized = data.success;
+                if (data.success) {
+                    updateStatus('Service initialized successfully!', 'success');
+                    updateServiceStatus('Initialized', 'success');
+                } else {
+                    updateStatus('Service initialization failed', 'danger');
+                    updateServiceStatus('Failed', 'danger');
+                }
+            });
+
+            socket.on('generation_complete', function(data) {
+                hideGenerationProgress();
+                displayGenerationResult(data);
+                updateGenerationStats(data);
+            });
+
+            socket.on('generation_error', function(data) {
+                hideGenerationProgress();
+                updateStatus('Generation failed: ' + data.error, 'danger');
+            });
+
+            socket.on('monitoring_update', function(data) {
+                updateMonitoringData(data);
+                updateCharts(data);
+            });
+        }
+
+        // Initialize charts
+        function initializeCharts() {
+            const ctx = document.getElementById('memoryChart').getContext('2d');
+            memoryChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'VRAM Usage (GB)',
+                        data: [],
+                        borderColor: 'rgb(37, 99, 235)',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#f9fafb'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 4,
+                            ticks: {
+                                color: '#9ca3af'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#9ca3af'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // Generation form
+            document.getElementById('generationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                generateText();
+            });
+
+            // Clear button
+            document.getElementById('clearBtn').addEventListener('click', function() {
+                document.getElementById('promptInput').value = '';
+                document.getElementById('generationOutput').textContent = 'Click "Generate Text" to see results here...';
+                document.getElementById('generationStats').style.display = 'none';
+            });
+
+            // Service initialization
+            document.getElementById('initServiceBtn').addEventListener('click', function() {
+                initializeService();
+            });
+
+            // Monitoring toggle
+            document.getElementById('monitoringToggle').addEventListener('click', function() {
+                toggleMonitoring();
+            });
+
+            // Range value updates
+            ['maxLength', 'temperature', 'topP', 'topK'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateRangeValues);
+            });
+        }
+
+        // Update range slider values
+        function updateRangeValues() {
+            document.getElementById('maxLengthValue').textContent = document.getElementById('maxLength').value;
+            document.getElementById('temperatureValue').textContent = document.getElementById('temperature').value;
+            document.getElementById('topPValue').textContent = document.getElementById('topP').value;
+            document.getElementById('topKValue').textContent = document.getElementById('topK').value;
+        }
+
+        // Check health
+        function checkHealth() {
+            fetch('/api/health')
+                .then(response => response.json())
+                .then(data => {
+                    updateHealthStatus(data);
+                })
+                .catch(error => {
+                    console.error('Health check failed:', error);
+                    updateStatus('Unable to connect to service', 'danger');
+                });
+        }
+
+        // Update health status
+        function updateHealthStatus(data) {
+            const statusElement = document.getElementById('serviceStatus');
+            const textElement = document.getElementById('serviceStatusText');
+            
+            if (data.service_initialized) {
+                statusElement.className = 'status-indicator status-healthy';
+                textElement.textContent = 'Service Ready';
+                isServiceInitialized = true;
+            } else {
+                statusElement.className = 'status-indicator status-warning';
+                textElement.textContent = 'Service Not Initialized';
+            }
+
+            // Update device info
+            if (data.gpu_info && data.gpu_info.name) {
+                document.getElementById('deviceStatus').textContent = data.gpu_info.name.split(' ').slice(-2).join(' ');
+                document.getElementById('gpuName').textContent = data.gpu_info.name;
+            }
+            
+            document.getElementById('cudaStatus').textContent = data.cuda_available ? 'Available' : 'Not Available';
+        }
+
+        // Initialize service
+        function initializeService() {
+            updateStatus('Initializing service...', 'info');
+            fetch('/api/initialize', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'initializing') {
+                        updateStatus('Service initialization started...', 'info');
+                    } else if (data.error) {
+                        updateStatus('Initialization failed: ' + data.error, 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Initialization failed:', error);
+                    updateStatus('Initialization request failed', 'danger');
+                });
+        }
+
+        // Generate text
+        function generateText() {
+            if (!isServiceInitialized) {
+                updateStatus('Please initialize the service first', 'warning');
+                return;
+            }
+
+            const prompt = document.getElementById('promptInput').value.trim();
+            if (!prompt) {
+                updateStatus('Please enter a prompt', 'warning');
+                return;
+            }
+
+            const config = {
+                prompt: prompt,
+                max_length: parseInt(document.getElementById('maxLength').value),
+                temperature: parseFloat(document.getElementById('temperature').value),
+                top_p: parseFloat(document.getElementById('topP').value),
+                top_k: parseInt(document.getElementById('topK').value),
+                repetition_penalty: 1.1,
+                do_sample: true,
+                num_return_sequences: 1
+            };
+
+            showGenerationProgress();
+            
+            fetch('/api/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(config)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'generating') {
+                    updateStatus('Text generation started...', 'info');
+                } else if (data.error) {
+                    hideGenerationProgress();
+                    updateStatus('Generation failed: ' + data.error, 'danger');
+                }
+            })
+            .catch(error => {
+                hideGenerationProgress();
+                console.error('Generation failed:', error);
+                updateStatus('Generation request failed', 'danger');
+            });
+        }
+
+        // Show generation progress
+        function showGenerationProgress() {
+            document.getElementById('generationProgress').style.display = 'block';
+            document.getElementById('generateBtn').disabled = true;
+        }
+
+        // Hide generation progress
+        function hideGenerationProgress() {
+            document.getElementById('generationProgress').style.display = 'none';
+            document.getElementById('generateBtn').disabled = false;
+        }
+
+        // Display generation result
+        function displayGenerationResult(data) {
+            document.getElementById('generationOutput').textContent = data.generated_text;
+            
+            // Update stats
+            document.getElementById('genTime').textContent = data.generation_time.toFixed(2);
+            document.getElementById('genSpeed').textContent = data.tokens_per_second.toFixed(1);
+            document.getElementById('genMemory').textContent = data.memory_used.toFixed(2);
+            document.getElementById('generationStats').style.display = 'block';
+            
+            updateStatus('Text generated successfully!', 'success');
+        }
+
+        // Update generation stats
+        function updateGenerationStats(data) {
+            // This would be called with service stats
+            // Implementation depends on the data structure
+        }
+
+        // Toggle monitoring
+        function toggleMonitoring() {
+            const button = document.getElementById('monitoringToggle');
+            const icon = button.querySelector('i');
+            
+            if (isMonitoring) {
+                socket.emit('stop_monitoring');
+                button.innerHTML = '<i class="fas fa-play me-1"></i>Start';
+                button.className = 'btn btn-sm btn-success';
+                isMonitoring = false;
+            } else {
+                socket.emit('start_monitoring');
+                button.innerHTML = '<i class="fas fa-pause me-1"></i>Stop';
+                button.className = 'btn btn-sm btn-warning';
+                isMonitoring = true;
+            }
+        }
+
+        // Update monitoring data
+        function updateMonitoringData(data) {
+            if (data.hardware) {
+                if (data.hardware.cpu_percent !== undefined) {
+                    document.getElementById('cpuUsage').textContent = data.hardware.cpu_percent.toFixed(1) + '%';
+                }
+                if (data.hardware.memory_percent !== undefined) {
+                    document.getElementById('ramUsage').textContent = data.hardware.memory_percent.toFixed(1) + '%';
+                }
+            }
+
+            if (data.service && data.service.service_stats) {
+                const stats = data.service.service_stats;
+                document.getElementById('generationsCount').textContent = stats.total_generations || 0;
+                document.getElementById('avgSpeed').textContent = (stats.average_speed || 0).toFixed(1);
+            }
+
+            if (data.service && data.service.memory_info) {
+                const memInfo = data.service.memory_info;
+                if (memInfo.cuda_memory_allocated_gb !== undefined) {
+                    document.getElementById('memoryUsage').textContent = memInfo.cuda_memory_allocated_gb.toFixed(2);
+                }
+            }
+        }
+
+        // Update charts
+        function updateCharts(data) {
+            if (data.service && data.service.memory_info && memoryChart) {
+                const memInfo = data.service.memory_info;
+                const currentTime = new Date().toLocaleTimeString();
+                
+                if (memInfo.cuda_memory_allocated_gb !== undefined) {
+                    memoryChart.data.labels.push(currentTime);
+                    memoryChart.data.datasets[0].data.push(memInfo.cuda_memory_allocated_gb);
+                    
+                    // Keep only last 20 data points
+                    if (memoryChart.data.labels.length > 20) {
+                        memoryChart.data.labels.shift();
+                        memoryChart.data.datasets[0].data.shift();
+                    }
+                    
+                    memoryChart.update();
+                }
+            }
+        }
+
+        // Update status message
+        function updateStatus(message, type) {
+            const alert = document.getElementById('statusAlert');
+            const messageElement = document.getElementById('statusMessage');
+            
+            alert.className = `alert alert-${type}`;
+            messageElement.textContent = message;
+            alert.style.display = 'block';
+            
+            // Auto-hide after 5 seconds for non-error messages
+            if (type !== 'danger') {
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Update service status
+        function updateServiceStatus(status, type) {
+            const badge = document.getElementById('serviceStatusBadge');
+            badge.textContent = status;
+            badge.className = `badge bg-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : 'secondary'}`;
+            
+            const modelBadge = document.getElementById('modelStatusBadge');
+            if (status === 'Initialized') {
+                modelBadge.textContent = 'Yes';
+                modelBadge.className = 'badge bg-success';
+            }
+        }
+    </script>
+</body>
+</html>

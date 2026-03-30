@@ -1,0 +1,222 @@
+<!-- ImpressionCore Tools User Guide (HTML Version) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ImpressionCore Tools User Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; color: #222; }
+    h1, h2, h3 { color: #2a4d7c; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
+    th, td { border: 1px solid #bbb; padding: 8px 12px; text-align: left; }
+    th { background: #e3eaf6; }
+    tr:nth-child(even) { background: #f4f7fb; }
+    code, pre { background: #f3f3f3; color: #1a1a1a; padding: 2px 4px; border-radius: 3px; }
+    pre { padding: 1em; overflow-x: auto; }
+    hr { margin: 2em 0; }
+    .section { margin-bottom: 2em; }
+  </style>
+</head>
+<body>
+  <h1>ImpressionCore Tools User Guide</h1>
+
+  <h2>Cheat Sheet: Tool List &amp; Usage</h2>
+  <div style="overflow-x:auto;">
+  <table>
+    <thead>
+      <tr>
+        <th>Tool Name</th>
+        <th>How to Initiate / Use</th>
+        <th>Example Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>dbcode-get-connections</td><td>Retrieve all available DB connections</td><td><code>dbcode-get-connections()</code></td></tr>
+      <tr><td>dbcode-get-databases</td><td>Get databases for a connection</td><td><code>dbcode-get-databases({connectionId, connectionName})</code></td></tr>
+      <tr><td>dbcode-get-schemas</td><td>Get schema names for a database</td><td><code>dbcode-get-schemas({connectionId, connectionName, databaseName})</code></td></tr>
+      <tr><td>dbcode-get-tables</td><td>Get tables, columns, keys for a database</td><td><code>dbcode-get-tables({connectionId, connectionName, databaseName, schemaName})</code></td></tr>
+      <tr><td>dbcode-execute-query</td><td>Execute a SQL query</td><td><code>dbcode-execute-query({connectionId, connectionName, databaseName, query, schemaName})</code></td></tr>
+      <tr><td>search_codebase</td><td>Search codebase for relevant code</td><td><code>search_codebase()</code></td></tr>
+      <tr><td>semantic_search</td><td>Semantic search for code or comments</td><td><code>semantic_search({query: 'tokenizer'})</code></td></tr>
+      <tr><td>list_code_usages</td><td>List all usages of a symbol</td><td><code>list_code_usages({symbolName: 'generate_diagram'})</code></td></tr>
+      <tr><td>get_vscode_api</td><td>Get VS Code API references</td><td><code>get_vscode_api({query: 'webview'})</code></td></tr>
+      <tr><td>file_search</td><td>Search for files by glob pattern</td><td><code>file_search({query: '**/*.py'})</code></td></tr>
+      <tr><td>grep_search</td><td>Text search in workspace</td><td><code>grep_search({query: 'def ', includePattern: '**/*.py'})</code></td></tr>
+      <tr><td>read_file</td><td>Read file contents by line range</td><td><code>read_file({filePath, startLineNumberBaseZero: 0, endLineNumberBaseZero: 20})</code></td></tr>
+      <tr><td>list_dir</td><td>List directory contents</td><td><code>list_dir({path: '/src'})</code></td></tr>
+      <tr><td>run_in_terminal</td><td>Run shell commands in terminal</td><td><code>run_in_terminal({command: 'ls -l', explanation: 'List files', isBackground: false})</code></td></tr>
+      <tr><td>get_terminal_output</td><td>Get output of a previous terminal command</td><td><code>get_terminal_output({id: 'terminal-1'})</code></td></tr>
+      <tr><td>get_errors</td><td>Get compile/lint errors in a file</td><td><code>get_errors({filePaths: ['/src/main.py']})</code></td></tr>
+      <tr><td>get_changed_files</td><td>Get git diffs of current file changes</td><td><code>get_changed_files({repositoryPath: '.', sourceControlState: ['unstaged']})</code></td></tr>
+      <tr><td>test_failure</td><td>Get test failure information</td><td><code>test_failure()</code></td></tr>
+      <tr><td>get_terminal_selection</td><td>Get current selection in terminal</td><td><code>get_terminal_selection()</code></td></tr>
+      <tr><td>get_terminal_last_command</td><td>Get last command in terminal</td><td><code>get_terminal_last_command()</code></td></tr>
+      <tr><td>create_new_workspace</td><td>Steps to create a new project</td><td><code>create_new_workspace({query: 'Create a Next.js app'})</code></td></tr>
+      <tr><td>get_project_setup_info</td><td>Get setup info for a project type</td><td><code>get_project_setup_info({language: 'python', projectType: 'basic'})</code></td></tr>
+      <tr><td>install_extension</td><td>Install a VS Code extension</td><td><code>install_extension({id: 'ms-python.python', name: 'Python'})</code></td></tr>
+      <tr><td>create_new_jupyter_notebook</td><td>Create a new Jupyter Notebook</td><td><code>create_new_jupyter_notebook({query: 'Data analysis'})</code></td></tr>
+      <tr><td>insert_edit_into_file</td><td>Edit an existing file</td><td><code>insert_edit_into_file({code, explanation, filePath})</code></td></tr>
+      <tr><td>create_file</td><td>Create a new file</td><td><code>create_file({content, filePath})</code></td></tr>
+      <tr><td>fetch_webpage</td><td>Fetch content from a web page</td><td><code>fetch_webpage({query: 'API docs', urls: ['https://example.com']})</code></td></tr>
+      <tr><td>test_search</td><td>Find test file for a source file or vice versa</td><td><code>test_search({filePaths: ['/src/foo.py']})</code></td></tr>
+      <tr><td>get_doc_info</td><td>Get documentation info for a symbol</td><td><code>get_doc_info({filePaths: ['/src/foo.py']})</code></td></tr>
+      <tr><td>github_repo</td><td>Search a GitHub repo for code snippets</td><td><code>github_repo({query: 'tokenizer', repo: 'owner/repo'})</code></td></tr>
+      <tr><td>python_environment_tool</td><td>Get Python environment info</td><td><code>python_environment_tool({resourcePath: '/src'})</code></td></tr>
+      <tr><td>python_install_package_tool</td><td>Install Python packages</td><td><code>python_install_package_tool({packageList: ['torch'], workspacePath: '/src'})</code></td></tr>
+      <tr><td>vscode-websearchforcopilot_webSearch</td><td>Search the web for info</td><td><code>vscode-websearchforcopilot_webSearch({query: 'PyTorch memory optimization'})</code></td></tr>
+      <tr><td>vscode_searchExtensions_internal</td><td>Search for VS Code extensions</td><td><code>vscode_searchExtensions_internal({category: 'AI', keywords: ['chat']})</code></td></tr>
+      <tr><td>bb7_click_element</td><td>Click an element in browser automation</td><td><code>bb7_click_element({index: 2})</code></td></tr>
+      <tr><td>bb7_close_browser</td><td>Close the current browser instance</td><td><code>bb7_close_browser()</code></td></tr>
+      <tr><td>bb7_done</td><td>Complete a browser automation task</td><td><code>bb7_done({success: true, text: 'Done'})</code></td></tr>
+      <tr><td>bb7_get_dropdown_options</td><td>Get dropdown options from a browser element</td><td><code>bb7_get_dropdown_options({index: 1})</code></td></tr>
+      <tr><td>bb7_go_back</td><td>Go back to previous page in browser</td><td><code>bb7_go_back()</code></td></tr>
+      <tr><td>bb7_go_to_url</td><td>Navigate to a URL in browser</td><td><code>bb7_go_to_url({url: 'https://example.com'})</code></td></tr>
+      <tr><td>bb7_initialize_browser</td><td>Start a new browser instance</td><td><code>bb7_initialize_browser({headless: true, task: 'Scrape data'})</code></td></tr>
+      <tr><td>bb7_input_text</td><td>Input text into a browser element</td><td><code>bb7_input_text({index: 0, text: 'hello'})</code></td></tr>
+      <tr><td>bb7_inspect_page</td><td>List interactive elements and extract content from page</td><td><code>bb7_inspect_page()</code></td></tr>
+      <tr><td>bb7_open_tab</td><td>Open a URL in a new browser tab</td><td><code>bb7_open_tab({url: 'https://example.com'})</code></td></tr>
+      <tr><td>bb7_scroll_down</td><td>Scroll down the page</td><td><code>bb7_scroll_down({amount: 200})</code></td></tr>
+      <tr><td>bb7_scroll_to_text</td><td>Scroll to an element containing specified text</td><td><code>bb7_scroll_to_text({text: 'Submit'})</code></td></tr>
+      <tr><td>bb7_scroll_up</td><td>Scroll up the page</td><td><code>bb7_scroll_up({amount: 100})</code></td></tr>
+      <tr><td>bb7_search_google</td><td>Search Google in the current tab</td><td><code>bb7_search_google({query: 'ImpressionCore'})</code></td></tr>
+      <tr><td>bb7_select_dropdown_option</td><td>Select an option from a dropdown by text</td><td><code>bb7_select_dropdown_option({index: 1, text: 'Option 2'})</code></td></tr>
+      <tr><td>bb7_send_keys</td><td>Send keyboard keys/shortcuts to the page</td><td><code>bb7_send_keys({keys: 'Enter'})</code></td></tr>
+      <tr><td>bb7_switch_tab</td><td>Switch to a browser tab by page ID</td><td><code>bb7_switch_tab({page_id: 2})</code></td></tr>
+      <tr><td>bb7_validate_page</td><td>Validate page state or check for expected text</td><td><code>bb7_validate_page({expected_text: 'Welcome'})</code></td></tr>
+      <tr><td>bb7_wait</td><td>Wait for a number of seconds in browser automation</td><td><code>bb7_wait({seconds: 5})</code></td></tr>
+      <tr><td>bb7_fetch</td><td>Fetch a URL and extract content as markdown</td><td><code>bb7_fetch({url: 'https://example.com', max_length: 1000})</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <hr>
+
+  <h2>Tool Usage Guide</h2>
+  <div class="section">
+    <h3>1. Database Tools</h3>
+    <ul>
+      <li><b>dbcode-get-connections</b>: List all available database connections.</li>
+      <li><b>dbcode-get-databases</b>: List all databases for a connection.</li>
+      <li><b>dbcode-get-schemas</b>: List all schemas for a database.</li>
+      <li><b>dbcode-get-tables</b>: List all tables, columns, and keys for a database.</li>
+      <li><b>dbcode-execute-query</b>: Run a SQL query on a database.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>2. Codebase &amp; Search Tools</h3>
+    <ul>
+      <li><b>search_codebase</b>: Search for code or comments in the workspace.</li>
+      <li><b>semantic_search</b>: Semantic search for code, comments, or documentation.</li>
+      <li><b>list_code_usages</b>: Find all usages of a function, class, or variable.</li>
+      <li><b>get_vscode_api</b>: Get VS Code API documentation for extension development.</li>
+      <li><b>file_search</b>: Find files by glob pattern.</li>
+      <li><b>grep_search</b>: Search for text in files.</li>
+      <li><b>read_file</b>: Read a file by line range.</li>
+      <li><b>list_dir</b>: List files and folders in a directory.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>3. Terminal &amp; Git Tools</h3>
+    <ul>
+      <li><b>run_in_terminal</b>: Run shell commands.</li>
+      <li><b>get_terminal_output</b>: Get output from a previous terminal command.</li>
+      <li><b>get_errors</b>: Get compile or lint errors in a file.</li>
+      <li><b>get_changed_files</b>: Get git diffs for files.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>4. Project &amp; Extension Tools</h3>
+    <ul>
+      <li><b>create_new_workspace</b>: Steps to create a new project.</li>
+      <li><b>get_project_setup_info</b>: Get setup info for a project type.</li>
+      <li><b>install_extension</b>: Install a VS Code extension.</li>
+      <li><b>create_new_jupyter_notebook</b>: Create a new Jupyter Notebook.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>5. File &amp; Documentation Tools</h3>
+    <ul>
+      <li><b>insert_edit_into_file</b>: Edit an existing file.</li>
+      <li><b>create_file</b>: Create a new file.</li>
+      <li><b>fetch_webpage</b>: Fetch and extract content from a web page.</li>
+      <li><b>test_search</b>: Find test file for a source file or vice versa.</li>
+      <li><b>get_doc_info</b>: Get documentation info for a symbol.</li>
+      <li><b>github_repo</b>: Search a GitHub repo for code snippets.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>6. Python Environment Tools</h3>
+    <ul>
+      <li><b>python_environment_tool</b>: Get Python environment info.</li>
+      <li><b>python_install_package_tool</b>: Install Python packages.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>7. Web &amp; Extension Search Tools</h3>
+    <ul>
+      <li><b>vscode-websearchforcopilot_webSearch</b>: Search the web for info.</li>
+      <li><b>vscode_searchExtensions_internal</b>: Search for VS Code extensions.</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>8. Browser Automation Tools (bb7_*)</h3>
+    <ul>
+      <li><b>bb7_click_element</b>: Click an element in browser automation.</li>
+      <li><b>bb7_close_browser</b>: Close the current browser instance.</li>
+      <li><b>bb7_done</b>: Complete a browser automation task.</li>
+      <li><b>bb7_get_dropdown_options</b>: Get dropdown options from a browser element.</li>
+      <li><b>bb7_go_back</b>: Go back to previous page in browser.</li>
+      <li><b>bb7_go_to_url</b>: Navigate to a URL in browser.</li>
+      <li><b>bb7_initialize_browser</b>: Start a new browser instance.</li>
+      <li><b>bb7_input_text</b>: Input text into a browser element.</li>
+      <li><b>bb7_inspect_page</b>: List interactive elements and extract content from page.</li>
+      <li><b>bb7_open_tab</b>: Open a URL in a new browser tab.</li>
+      <li><b>bb7_scroll_down</b>: Scroll down the page.</li>
+      <li><b>bb7_scroll_to_text</b>: Scroll to an element containing specified text.</li>
+      <li><b>bb7_scroll_up</b>: Scroll up the page.</li>
+      <li><b>bb7_search_google</b>: Search Google in the current tab.</li>
+      <li><b>bb7_select_dropdown_option</b>: Select an option from a dropdown by text.</li>
+      <li><b>bb7_send_keys</b>: Send keyboard keys/shortcuts to the page.</li>
+      <li><b>bb7_switch_tab</b>: Switch to a browser tab by page ID.</li>
+      <li><b>bb7_validate_page</b>: Validate page state or check for expected text.</li>
+      <li><b>bb7_wait</b>: Wait for a number of seconds in browser automation.</li>
+      <li><b>bb7_fetch</b>: Fetch a URL and extract content as markdown.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2>Example Scenarios</h2>
+  <div class="section">
+    <h3>Example 1: Search for a Python function in the codebase</h3>
+    <pre><code>semantic_search({"query": "def generate_diagram"})</code></pre>
+  </div>
+  <div class="section">
+    <h3>Example 2: Run a SQL query on a database</h3>
+    <pre><code>dbcode-execute-query({
+    "connectionId": "abc123",
+    "connectionName": "main-db",
+    "databaseName": "users",
+    "query": "SELECT * FROM users;"
+})</code></pre>
+  </div>
+  <div class="section">
+    <h3>Example 3: Edit a file</h3>
+    <pre><code>insert_edit_into_file({
+    "code": "# ...existing code...\nnew_code_here\n# ...existing code...",
+    "explanation": "Add new function",
+    "filePath": "/src/core/utils/file.py"
+})</code></pre>
+  </div>
+  <div class="section">
+    <h3>Example 4: Automate browser to fill a form</h3>
+    <pre><code>bb7_initialize_browser({"headless": true, "task": "Fill form"})
+bb7_go_to_url({"url": "https://example.com/form"})
+bb7_input_text({"index": 0, "text": "John Doe"})
+bb7_click_element({"index": 1})</code></pre>
+  </div>
+
+  <hr>
+  <p>For more details on each tool, see the full API documentation or use the cheat sheet above for quick reference.</p>
+</body>
+</html>

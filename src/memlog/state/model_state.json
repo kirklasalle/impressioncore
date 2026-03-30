@@ -1,0 +1,71 @@
+{
+    "model_id": "diffusion_nano_001",
+    "timestamp": "2025-03-23T09:13:40-04:00",
+    "status": "initialized",
+    "architecture": {
+        "model_type": "diffusion_transformer",
+        "num_layers": 4,
+        "hidden_size": 256,
+        "num_attention_heads": 8,
+        "intermediate_size": 1024,
+        "max_position_embeddings": 512,
+        "layer_norm_eps": 1e-12,
+        "dropout": 0.1
+    },
+    "diffusion": {
+        "num_steps": 100,
+        "beta_schedule": "cosine",
+        "beta_start": 0.0001,
+        "beta_end": 0.02
+    },
+    "latent": {
+        "latent_size": 128,
+        "use_time_embedding": true
+    },
+    "moe_config": {
+        "num_experts": 2,
+        "expert_capacity": 64,
+        "expert_dropout": 0.1,
+        "aux_loss_weight": 0.01
+    },
+    "uks_config": {
+        "knowledge_size": 256,
+        "key_size": 64,
+        "temperature": 0.1,
+        "top_k": 8
+    },
+    "optimization": {
+        "mixed_precision": true,
+        "dtype": "fp16",
+        "gradient_checkpointing": true,
+        "memory_efficient_attention": true,
+        "cpu_offload": false
+    },
+    "training": {
+        "batch_size": 16,
+        "learning_rate": 1e-4,
+        "warmup_steps": 1000,
+        "max_steps": 50000,
+        "save_steps": 5000,
+        "eval_steps": 1000,
+        "gradient_accumulation_steps": 4
+    },
+    "hardware_config": {
+        "device": "cuda",
+        "gpu_type": "GTX 1050 Ti",
+        "vram_gb": 4,
+        "precision": "fp16"
+    },
+    "features": {
+        "moe_enabled": true,
+        "uks_enabled": true,
+        "diffusion_enabled": true,
+        "latent_head_enabled": true
+    },
+    "memory_estimate": {
+        "model_size_gb": 0.8,
+        "buffer_size_gb": 0.7,
+        "total_required_gb": 1.5,
+        "safety_margin_gb": 0.5
+    }
+}

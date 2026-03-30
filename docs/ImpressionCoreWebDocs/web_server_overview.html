@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpressionCore Web Server Documentation</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; color: #222; margin: 0; padding: 0; }
+    header { background: #2d3e50; color: #fff; padding: 2rem 1rem 1rem 1rem; text-align: center; }
+    h1 { margin: 0 0 0.5rem 0; font-size: 2.5rem; }
+    h2 { color: #2d3e50; border-bottom: 2px solid #e0e0e0; padding-bottom: 0.2em; margin-top: 2em; }
+    h3 { color: #3a4a5d; margin-top: 1.5em; }
+    nav { background: #e0e0e0; padding: 1em; }
+    nav a { color: #2d3e50; margin-right: 1.5em; text-decoration: none; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    section { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 2em; }
+    .img-row { display: flex; flex-wrap: wrap; gap: 1.5em; justify-content: center; margin: 2em 0; }
+    .img-row img { max-width: 350px; border-radius: 6px; box-shadow: 0 2px 8px #0002; background: #fff; }
+    .mermaid { background: #f4f7fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 1em; margin: 2em 0; overflow-x: auto; }
+    code, pre { background: #f4f7fa; color: #2d3e50; border-radius: 4px; padding: 0.2em 0.4em; }
+    pre { padding: 1em; overflow-x: auto; }
+    .caption { text-align: center; font-size: 0.95em; color: #555; margin-top: 0.5em; }
+    footer { background: #2d3e50; color: #fff; text-align: center; padding: 1em 0; margin-top: 3em; }
+    /* Modal styles for image/diagram magnification */
+    .modal {
+      display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
+    }
+    .modal-content {
+      max-width: 90vw; max-height: 90vh; background: #fff; border-radius: 10px; box-shadow: 0 4px 32px #0008; padding: 1.5em; position: relative;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .modal-content img, .modal-content .mermaid { max-width: 80vw; max-height: 70vh; margin-bottom: 1em; }
+    .modal-close {
+      position: absolute; top: 0.5em; right: 1em; font-size: 2em; color: #333; background: none; border: none; cursor: pointer;
+    }
+    .modal-caption { color: #222; font-size: 1.1em; margin-top: 0.5em; text-align: center; }
+    .img-row img, .mermaid { cursor: zoom-in; transition: box-shadow 0.2s; }
+    .img-row img:hover, .mermaid:hover { box-shadow: 0 0 0 4px #2d3e50aa; }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+    // Modal logic for images and diagrams
+    window.addEventListener('DOMContentLoaded', () => {
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <button class="modal-close" title="Close">&times;</button>
+          <div class="modal-body"></div>
+          <div class="modal-caption"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      const closeModal = () => { modal.style.display = 'none'; modal.querySelector('.modal-body').innerHTML = ''; };
+      modal.querySelector('.modal-close').onclick = closeModal;
+      modal.onclick = e => { if (e.target === modal) closeModal(); };
+      // Image click
+      document.querySelectorAll('.img-row img').forEach(img => {
+        img.onclick = () => {
+          modal.querySelector('.modal-body').innerHTML = `<img src='${img.src}' alt='${img.alt}' style='max-width:100%;max-height:70vh;'>`;
+          modal.querySelector('.modal-caption').textContent = img.nextElementSibling?.textContent || img.alt;
+          modal.style.display = 'flex';
+        };
+      });
+      // Mermaid diagram click
+      document.querySelectorAll('.mermaid').forEach((diagram, idx) => {
+        diagram.onclick = () => {
+          // Use diagram.innerHTML instead of innerText to avoid Mermaid parsing errors
+          const mermaidCode = diagram.innerHTML;
+          modal.querySelector('.modal-body').innerHTML = `<div class='mermaid' style='min-width:60vw;min-height:40vh;'>${mermaidCode}</div>`;
+          modal.querySelector('.modal-caption').textContent = diagram.parentElement.querySelector('.caption')?.textContent || `Diagram ${idx+1}`;
+          modal.style.display = 'flex';
+          // Re-render mermaid in modal
+          setTimeout(() => mermaid.run({nodes: [modal.querySelector('.modal-body .mermaid')]}), 10);
+        };
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>ImpressionCore Web Server Documentation</h1>
+    <p>Architecture, Routing, and System Overview</p>
+  </header>
+  <nav>
+    <a href="#architecture">Architecture</a>
+    <a href="#routing">Routing</a>
+    <a href="#api">API & Endpoints</a>
+    <a href="#images">System Images</a>
+    <a href="#mermaid">Mermaid Diagrams</a>
+    <a href="#usage">Usage & Running</a>
+  </nav>
+  <section id="architecture">
+    <h2>System Architecture</h2>
+    <div class="mermaid" title="Click to magnify and view details">
+      flowchart TD
+        A[User Browser] -->|HTTP/WS| B(Flask App)
+        B --> C[Blueprint: web]
+        B --> D[API Endpoints]
+        B --> E[WebSocket Handlers]
+        C --> F[Templates]
+        D --> G[Model Management]
+        D --> H[GPU/Memory Profiling]
+        D --> I[Tokenizer Training]
+        D --> J[Inference]
+        E --> K[Training Progress WS]
+        E --> L[Tokenizer Progress WS]
+        B --> M[Static Files]
+        B --> N[Session/Auth]
+        B --> O[Logging]
+        B --> P[Error Handlers]
+        B --> Q[Uploads]
+        B --> R[Model Cache]
+        B --> S[Config/Env Checks]
+        B --> T[Route Config]
+        B --> U[User Management]
+        B --> V[Settings]
+        B --> W[Walkthrough]
+        B --> X[Activity Log]
+        B --> Y[Dashboard]
+        B --> Z[Docs]
+    </div>
+    <div class="caption"><b>Figure 1: ImpressionCore Web Server High-Level Architecture (Mermaid)</b><br>
+      <span>This interactive diagram shows the main components and data flow in the ImpressionCore web server. Click to magnify and explore the relationships between the user interface, Flask app, blueprints, API endpoints, WebSocket handlers, and supporting modules such as logging, session management, and configuration checks.</span>
+    </div>
+  </section>
+  <section id="routing">
+    <h2>Routing & Blueprints</h2>
+    <p>
+      ImpressionCore uses Flask <code>Blueprints</code> for modular route management. The <b>web</b> blueprint encapsulates all user-facing routes, while API endpoints and WebSocket handlers are defined in the main server module.
+    </p>
+    <pre><code>from src.web.routes import web
+app.register_blueprint(web)
+</code></pre>
+    <h3>Route Configuration</h3>
+    <ul>
+      <li>Blueprint routes: <code>/data_prep</code>, <code>/evaluation</code>, <code>/inference</code>, etc.</li>
+      <li>API endpoints: <code>/api/check_gpu</code>, <code>/api/v1/model/create</code>, <code>/api/v1/tokenizer/start_training</code>, etc.</li>
+      <li>WebSocket endpoints: <code>/ws/training</code>, <code>/ws/tokenizer/progress/&lt;job_id&gt;</code></li>
+    </ul>
+    <h3>Route Map Example (Mermaid)</h3>
+    <div class="mermaid" title="Click to magnify and view details">
+      graph TD
+        Home["/"] --> Login["/login"]
+        Login --> Dashboard["/home"]
+        Dashboard --> DataPrep["/data_prep"]
+        Dashboard --> Evaluation["/evaluation"]
+        Dashboard --> Inference["/inference"]
+        Dashboard --> Training["/training"]
+        Dashboard --> Tokenizer["/tokenizer"]
+        Dashboard --> ModelDef["/define_model"]
+        Dashboard --> Embedding["/embedding"]
+        Dashboard --> Checkpoint["/checkpoint"]
+        Dashboard --> Monitoring["/monitoring"]
+        Dashboard --> Serving["/serving"]
+        Dashboard --> UnifiedBuilder["/unified_builder"]
+        Dashboard --> Docs["/documentation"]
+    </div>
+    <div class="caption"><b>Figure 2: Route Map (Mermaid)</b><br>
+      <span>This diagram visualizes the main navigation and routing structure of the ImpressionCore web interface. Each node represents a major page or feature, and the arrows show navigation flow. Click to magnify for a detailed view of the route relationships.</span>
+    </div>
+  </section>
+  <section id="api">
+    <h2>API & Endpoints</h2>
+    <ul>
+      <li><b>Model Management:</b> <code>/api/v1/model/create</code>, <code>/api/v1/model/validate</code>, <code>/api/v1/model/memory_profile</code></li>
+      <li><b>GPU/Memory:</b> <code>/api/check_gpu</code>, <code>/api/v1/system/gpu_info</code>, <code>/api/v1/system/clear_gpu_memory</code></li>
+      <li><b>Tokenizer:</b> <code>/api/v1/tokenizer/upload_data</code>, <code>/api/v1/tokenizer/start_training</code>, <code>/api/v1/tokenizer/stop_training/&lt;job_id&gt;</code></li>
+      <li><b>Inference:</b> <code>/api/inference</code>, <code>/api/models</code></li>
+      <li><b>User Management:</b> <code>/api/v1/user/api-keys</code>, <code>/api/v1/user/api-key</code>, <code>/api/v1/user/sessions</code></li>
+      <li><b>Settings:</b> <code>/api/v1/settings</code></li>
+      <li><b>Walkthrough:</b> <code>/walkthrough</code>, <code>/api/v1/walkthrough/action/&lt;action_type&gt;</code></li>
+    </ul>
+    <h3>API Flow (Mermaid)</h3>
+    <div class="mermaid" title="Click to magnify and view details">
+      sequenceDiagram
+        participant User
+        participant Browser
+        participant Flask
+        participant Model
+        User->>Browser: Request (e.g. Inference)
+        Browser->>Flask: HTTP POST /api/inference
+        Flask->>Model: Load & Run
+        Model-->>Flask: Output
+        Flask-->>Browser: JSON Response
+        Browser-->>User: Display Result
+    </div>
+    <div class="caption"><b>Figure 3: API Request Flow (Mermaid)</b><br>
+      <span>This sequence diagram details the flow of an API request from the user through the browser, to the Flask backend, and back. It highlights the steps involved in model inference, including request handling, model execution, and response delivery. Click to magnify for a step-by-step breakdown.</span>
+    </div>
+  </section>
+  <section id="images">
+    <h2>System Images</h2>
+    <div class="img-row">
+      <figure>
+        <img src="../architecture_flow_image_1743107720059.png" alt="Architecture Flow">
+        <figcaption class="caption"><b>Architecture Flow:</b> This diagram illustrates the high-level flow of data and control in the ImpressionCore web server, showing how user requests are routed through the Flask app, blueprints, and supporting modules. It highlights the modular separation between user interface, API endpoints, and backend logic.</figcaption>
+      </figure>
+      <figure>
+        <img src="../architecture_validation_image_1743107951910.png" alt="Architecture Validation">
+        <figcaption class="caption"><b>Architecture Validation:</b> This image details the validation steps and checks performed by the system to ensure correct environment setup, dependency management, and runtime integrity before serving user requests.</figcaption>
+      </figure>
+      <figure>
+        <img src="../arcitectural_patterns_image_1743115342716.png" alt="Architectural Patterns">
+        <figcaption class="caption"><b>Architectural Patterns:</b> This diagram presents the architectural patterns used in ImpressionCore, such as blueprint modularity, separation of concerns, and extensibility for future features.</figcaption>
+      </figure>
+      <figure>
+        <img src="../attention_benchmark_results.png" alt="Attention Benchmark Results">
+        <figcaption class="caption"><b>Attention Benchmark Results:</b> This chart visualizes the performance of various attention mechanisms and their impact on model efficiency, memory usage, and inference speed.</figcaption>
+      </figure>
+      <figure>
+        <img src="../attention_integration_results.png" alt="Attention Integration Results">
+        <figcaption class="caption"><b>Attention Integration Results:</b> This image shows the integration results of advanced attention modules within the ImpressionCore architecture, highlighting improvements in accuracy and resource utilization.</figcaption>
+      </figure>
+      <figure>
+        <img src="../solar_system_knowledge_graph.png" alt="Solar System Knowledge Graph">
+        <figcaption class="caption"><b>Solar System Knowledge Graph:</b> This knowledge graph demonstrates the system's ability to represent and reason about complex, multimodal relationships, using the solar system as an example domain.</figcaption>
+      </figure>
+      <figure>
+        <img src="../Memory-Efficient Attention Plan (Focus on xFormers).png" alt="Memory-Efficient Attention Plan">
+        <figcaption class="caption"><b>Memory-Efficient Attention Plan:</b> This diagram outlines the strategies for implementing memory-efficient attention mechanisms, focusing on the use of xFormers and related optimizations for low-VRAM hardware.</figcaption>
+      </figure>
+      <figure>
+        <img src="../multimodal_processing_results.png" alt="Multimodal Processing Results">
+        <figcaption class="caption"><b>Multimodal Processing Results:</b> This image presents the results of processing and integrating multiple data modalities (text, image, etc.) within the ImpressionCore framework, demonstrating the system's versatility.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section id="mermaid">
+    <h2>Additional Mermaid Diagrams</h2>
+    <div class="mermaid" title="Click to magnify and view details">
+      graph LR
+        A[User] -->|Login| B[Flask Auth]
+        B -->|Session| C[Dashboard]
+        C --> D[Data Prep]
+        C --> E[Training]
+        C --> F[Evaluation]
+        C --> G[Inference]
+        C --> H[Monitoring]
+        C --> I[Settings]
+        C --> J[Docs]
+    </div>
+    <div class="caption"><b>Figure 4: User Flow (Mermaid)</b><br>
+      <span>This diagram shows the typical user journey through the ImpressionCore web interface, from login to dashboard and through various features. Click to magnify for a clearer view of the user flow.</span>
+    </div>
+    <div class="mermaid" title="Click to magnify and view details">
+      graph TD
+        subgraph Tokenizer Training
+          U1[Upload Data] --> U2[Start Training]
+          U2 --> U3[Progress WS]
+          U3 --> U4[Download Results]
+        end
+        subgraph Model Management
+          M1[Create Model] --> M2[Validate Model]
+          M2 --> M3[Memory Profile]
+          M3 --> M4[Architecture]
+        end
+        U4 --> M1
+    </div>
+    <div class="caption"><b>Figure 5: Tokenizer & Model Management Flow (Mermaid)</b><br>
+      <span>This diagram illustrates the workflow for tokenizer training and model management, including data upload, training progress, validation, and architecture review. Click to magnify for a detailed breakdown of each step.</span>
+    </div>
+  </section>
+  <section id="usage">
+    <h2>Usage & Running</h2>
+    <h3>Running the Server</h3>
+    <pre><code>python run_server.py
+# or
+python src/web/server.py
+</code></pre>
+    <h3>Environment & Requirements</h3>
+    <ul>
+      <li>Python 3.10+ (recommended: use a virtual environment)</li>
+      <li>Install dependencies: <code>pip install -r requirements.txt</code></li>
+      <li>Activate your virtual environment before running the server</li>
+    </ul>
+    <h3>Documentation & Support</h3>
+    <ul>
+      <li><a href="../user_guide.md">User Guide (Markdown)</a></li>
+      <li><a href="../user_guide_tools.html">User Guide Tools (HTML)</a></li>
+      <li><a href="../architecture_flow_image_1743107720059.png">Architecture Flow Image</a></li>
+      <li><a href="../model_architecture.md">Model Architecture (Markdown)</a></li>
+      <li><a href="../docs/">More Documentation</a></li>
+    </ul>
+  </section>
+  <footer>
+    &copy; 2025 ImpressionCore. All rights reserved.
+  </footer>
+</body>
+</html>

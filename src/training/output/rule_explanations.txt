@@ -1,0 +1,121 @@
+# Solar System Analysis: Rule-Based Reasoning Explanations
+
+## Mercury
+
+### hot_planet (confidence: 0.95)
+Mercury is classified as HOT because its temperature is 430°C, which exceeds 100°C. Such high temperatures make it uninhabitable.
+
+### asteroid_impact_risk (confidence: 0.75)
+Mercury has higher risk of asteroid impacts because it has 0 moon(s). Has no moons to capture potential impactors
+
+## Venus
+
+### hot_planet (confidence: 0.95)
+Venus is classified as HOT because its temperature is 465°C, which exceeds 100°C. Such high temperatures make it uninhabitable.
+
+### asteroid_impact_risk (confidence: 0.75)
+Venus has higher risk of asteroid impacts because it has 0 moon(s). Has no moons to capture potential impactors
+
+## Earth
+
+### temperate_planet (confidence: 0.95)
+Earth is classified as TEMPERATE because its temperature is 15°C, which is between -50°C and 50°C. This moderate temperature range makes it potentially habitable.
+
+### habitable_zone (confidence: 0.85)
+Earth is in the HABITABLE ZONE because its distance from the Sun is 1.0 AU, which falls within the range of 0.9-1.7 AU where liquid water could potentially exist.
+
+### life_potential (confidence: 0.70)
+Earth has high potential for life because it:
+1. Has a temperature of 15°C (within habitable range)
+2. Has water present
+3. Has an atmosphere
+These factors are essential prerequisites for life as we know it.
+
+### magnetic_field_life (confidence: 0.75)
+Earth has very high potential for life because it:
+1. Has a temperature of 15°C (within habitable range)
+2. Has water present
+3. Has an atmosphere
+4. Has a magnetic field to protect from harmful radiation
+These factors create ideal conditions for life as we know it.
+
+### colonization_candidate (confidence: 0.80)
+Earth is rated as suitable for colonization because:
+1. Its temperature of 15°C is within manageable range
+2. Its gravity of 1.0g is within adaptation range for humans
+3. Magnetic field is present
+
+### alternative_colonization (confidence: 0.60)
+Earth is conditionally suitable for colonization because:
+1. While its temperature of 15°C is extreme, it's manageable with specialized habitats
+2. Its gravity of 1.0g requires minimal adaptation
+These conditions would require specialized habitat required.
+
+### asteroid_impact_risk (confidence: 0.75)
+Earth has moderate risk of asteroid impacts because it has 1 moon(s). Has 1 moon providing limited protection
+
+### Conflicts
+* Conflict on property 'life_potential'
+  - Between rules: life_potential, magnetic_field_life
+  - Values: high potential for life, very high potential for life
+  - Resolved to: very high potential for life using confidence strategy
+
+* Conflict on property 'potential_reason'
+  - Between rules: life_potential, magnetic_field_life
+  - Values: Has temperate climate, water, and atmosphere, Has temperate climate, water, atmosphere, and magnetic field protection
+  - Resolved to: Has temperate climate, water, atmosphere, and magnetic field protection using confidence strategy
+
+* Conflict on property 'colonization_suitability'
+  - Between rules: colonization_candidate, alternative_colonization
+  - Values: suitable for colonization, conditionally suitable for colonization
+  - Resolved to: suitable for colonization using confidence strategy
+
+## Mars
+
+### cold_planet (confidence: 0.95)
+Mars is classified as COLD because its temperature is -65°C, which is below -50°C. Such cold temperatures make it challenging.
+
+### habitable_zone (confidence: 0.85)
+Mars is in the HABITABLE ZONE because its distance from the Sun is 1.52 AU, which falls within the range of 0.9-1.7 AU where liquid water could potentially exist.
+
+### colonization_candidate (confidence: 0.80)
+Mars is rated as requires additional radiation protection because:
+1. Its temperature of -65°C is within manageable range
+2. Its gravity of 0.38g is within adaptation range for humans
+3. Magnetic field is absent
+
+### asteroid_impact_risk (confidence: 0.75)
+Mars has lower risk of asteroid impacts because it has 2 moon(s). Has 2 moons that can capture potential impactors
+
+## Jupiter
+
+### cold_planet (confidence: 0.95)
+Jupiter is classified as COLD because its temperature is -145°C, which is below -50°C. Such cold temperatures make it challenging.
+
+### asteroid_impact_risk (confidence: 0.75)
+Jupiter has lower risk of asteroid impacts because it has 79 moon(s). Has 79 moons that can capture potential impactors
+
+## Saturn
+
+### cold_planet (confidence: 0.95)
+Saturn is classified as COLD because its temperature is -178°C, which is below -50°C. Such cold temperatures make it challenging.
+
+### asteroid_impact_risk (confidence: 0.75)
+Saturn has lower risk of asteroid impacts because it has 82 moon(s). Has 82 moons that can capture potential impactors
+
+## Uranus
+
+### cold_planet (confidence: 0.95)
+Uranus is classified as COLD because its temperature is -224°C, which is below -50°C. Such cold temperatures make it challenging.
+
+### asteroid_impact_risk (confidence: 0.75)
+Uranus has lower risk of asteroid impacts because it has 27 moon(s). Has 27 moons that can capture potential impactors
+
+## Neptune
+
+### cold_planet (confidence: 0.95)
+Neptune is classified as COLD because its temperature is -214°C, which is below -50°C. Such cold temperatures make it challenging.
+
+### asteroid_impact_risk (confidence: 0.75)
+Neptune has lower risk of asteroid impacts because it has 14 moon(s). Has 14 moons that can capture potential impactors
+

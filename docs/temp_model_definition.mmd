@@ -1,0 +1,7 @@
+graph LR
+    A[Start] --> B{Select Model Template};
+    B -- Existing Template --> C[Configure Parameters];
+    B -- Custom Model --> D[Define Model Architecture MoE LoRA];
+    C --> E[Review Configuration];
+    D --> E;
+    E --> F[End Model Definition];

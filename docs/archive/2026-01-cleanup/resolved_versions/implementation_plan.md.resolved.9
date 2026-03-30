@@ -1,0 +1,49 @@
+# Startup & Shutdown Graceful Lifecycle
+
+This plan outlines the implementation of a robust process management system to prevent multiple instances of the ImpressionCore backend and frontend from running simultaneously, which causes hardware locks and resource contention.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The startup script will now attempt to terminate existing `python.exe` and `node.exe` processes that carry the "ImpressionCore" window title. This ensures a clean slate but will close any hung sessions.
+
+## Proposed Changes
+
+---
+
+### [Component] Global Process Management
+
+#### [MODIFY] [orbos_ready.bat](file:///d:/Projects/impressioncore/orbos_ready.bat)
+- Add `taskkill` commands to clear existing backend/frontend windows before starting new ones.
+- Use window title filtering to avoid killing unrelated processes.
+
+#### [MODIFY] [triad_api.py](file:///d:/Projects/impressioncore/src/interfaces/triad_api.py)
+- Implement `@app.post("/v1/system/shutdown")` endpoint.
+- Trigger `triad_instance.shutdown()` which ensures `vision.close()` and `sensory.release()`.
+
+#### [MODIFY] [App.jsx](file:///d:/Projects/impressioncore/src/interfaces/web_client/src/App.jsx)
+- Add a "SHUTDOWN SYSTEM" button to the sidebar or status panel.
+- Implement an overlay that confirms shutdown and stops the browser-level polling.
+
+### [Component] API & Monitoring
+
+#### [MODIFY] [triad_api.py](file:///d:/Projects/impressioncore/src/interfaces/triad_api.py)
+- Implement `ConsoleLogger` class to redirect `sys.stdout` and `sys.stderr`.
+- Ensure logs are written to `logs/triad_api_console.log` with unbuffered flushing.
+
+## Documentation Ledger (24h Audit)
+
+#### [NEW] [change_log.md](file:///C:/Users/kirkl/.gemini/antigravity/brain/2902aaa3-379c-4c29-9bc9-e2194680c099/change_log.md)
+- Complete chronological ledger of all file modifications, bug fixes, and feature additions.
+
+#### [NEW] [memlog.md](file:///C:/Users/kirkl/.gemini/antigravity/brain/2902aaa3-379c-4c29-9bc9-e2194680c099/memlog.md)
+- High-level project state, current focus, and "Neural Memory" for future sessions.
+
+## Verification Plan
+
+### Automated Tests
+- Run [orbos_ready.bat](file:///d:/Projects/impressioncore/orbos_ready.bat) twice and verify that the first instance is terminated.
+- Call `/v1/system/shutdown` via `curl` and verify `python.exe` exits.
+
+### Manual Verification
+- Click "SHUTDOWN" in the UI and observe hardware (camera LEDs) turning off.

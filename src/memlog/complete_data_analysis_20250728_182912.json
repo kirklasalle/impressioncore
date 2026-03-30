@@ -1,0 +1,29 @@
+{
+  "analysis_date": "2025-07-28T18:29:12.363890",
+  "total_files": 3,
+  "total_size_gb": 2.6969239115715027e-05,
+  "directory_stats": {
+    ".": {
+      "files": 2,
+      "size_mb": 0.02385425567626953
+    },
+    "tokenization": {
+      "files": 1,
+      "size_mb": 0.0037622451782226562
+    }
+  },
+  "extension_counts": {
+    ".py": 3
+  },
+  "modality_counts": {
+    "code": 3
+  },
+  "modality_files": {
+    "code": [
+      "src\\data\\reorganize_media_to_raw_pipeline.py",
+      "src\\data\\verify_pipeline_readiness.py",
+      "src\\data\\tokenization\\tokenizer.py"
+    ]
+  },
+  "modalities_detected": 1
+}

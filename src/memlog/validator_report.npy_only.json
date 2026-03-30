@@ -1,0 +1,13 @@
+{
+  "manifest": "src/memlog/dataset_to_embedding_training_manifest.npy_only.ndjson",
+  "validated_out": "src/memlog/dataset_to_embedding_training_manifest.npy_only.validated.ndjson",
+  "counts": {
+    "total": 2334,
+    "passed": 2334,
+    "warn": 0,
+    "failed": 0
+  },
+  "errors": [],
+  "warnings": [],
+  "sample_failures": []
+}

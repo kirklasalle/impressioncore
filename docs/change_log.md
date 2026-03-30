@@ -1,0 +1,40 @@
+# ImpressionCore: Change Log Ledger (24h Audit)
+
+**Created:** December 27, 2025  
+**Updated:** December 29, 2025  
+**Author:** ImpressionCore Team  
+**Tags:** #docs\change_log.md #documentation  
+**Category:** Documentation  
+**Status:** Active
+**IDS Integration:** This document is indexed and searchable via the ImpressionCore Documentation System (IDS).
+
+---
+
+### [2025-12-27 22:40 -> 23:05] Hardware Sync & Lifecycle
+
+- **[sensory_intelligence.py]**: Implemented `trace_log` buffer and forced discovery logic.
+- **[orbcloud_vision.py]**: Added `refresh_hardware()`, standardized PS Eye indices to 99+, and implemented stale frame clearing.
+- **[triad_api.py]**: Updated `/v1/system/status` to support `?refresh=true` and include discovery traces. Improved MJPEG stream fallback.
+- **[App.jsx]**: Enhanced Audit UI with "Hardware Trace Route" and automated device re-syncing.
+- **[orbos_ready.bat]**: Reduced timeouts, added instance checking (in-progress).
+
+### [2025-12-27 20:50 -> 22:30] Performance & Audit Optimization
+
+- **[orbos_ready.bat]**: Reduced timeouts from 5s to 2s/3s.
+- **[sensory_intelligence.py]**: Optimized WMI queries with `CoInitialize` and results caching (120s).
+- **[triad_api.py]**: Implemented hardware family deduplication for audio devices (Fixing overcount).
+- **[App.jsx]**: Increased polling frequency to 2s for responsive audit feedback.
+
+### Bug Fixes
+
+- **Audio Overcount**: 33 -> 17 microphones via keyword deduplication.
+- **Audit Hang**: Sync'd `loading_phase` between backend and frontend to prevent "Initializing Modules" stall.
+- **Missing Feeds**: Standardized Virtual IDs to 99 and cleared visual buffer on refresh.
+- **Python Bugfix**: Fixed `IndentationError` in `orbcloud_vision.py`'s `_scan_pseyepy`.
+- **RAG Integration**: Established `docs/` and `memlog/` project directories for systematic RAG embedding.
+- **Media SSoT**: Consolidated walkthroughs into a continuous chronological document with persistent media links.
+- **System Monitor Dashboard**: Implemented standalone `system_monitor.html` and `/v1/system/logs` endpoint for live pre-launch tracking.
+- **Audio Health Probing**: Integrated `AudioEngine` with `SensoryIntelligence` to verify real-time data flow for microphones via split-second RMS probing.
+- **Lattice VAD Trace**: Implemented adaptive noise floor tracking and speech detection diagnostics in the `AudioEngine` and system trace.
+- **Hardware Audit Refresh**: Added "Force Sync Hardware" capability to the UI for manual deep-probing of vision and audio layers.
+- **Spatial Fusion (SpatialSense v1)**: Implemented geometric correlation between face coordinates and GCC-PHAT DoA angles, including "Audio-Guided Swivel" for blind tracking.

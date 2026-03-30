@@ -1,0 +1,514 @@
+# ImpressionCore Copilot Instructions
+
+## LLM Agent Instructions (Summary)
+Do NOT create directories or files in the  project's 'root' directory.
+Always run terminal commands in the terminal from the ImpressionCore project root directory.
+Always activate the environment (currently, the .venv310) when opening a new terminal window, and before running terminal commands.
+Always include and add the IDS search (with tagging search) functionality for any search or query. Based on Search criteria and context for better efficiency
+Always use the `/src` directory as the root for all project files.
+Always use the most appropriate directory in src/ for new or updated files or folders.
+Always keep the src/ directory Professional, Clean, tidy, and organized Free of redundancies and clutter.
+Always use the `/docs` directory for documentation files.
+Always use the `/src/memlog` directory for memlog files.
+Always use the `/src/core/utils` directory for utility files.
+Always use the `/src/core/kernel` directory for kernel-related files.
+Always use the `/src/core/liaison` directory for liaison-related files.
+Always use the `/src/core/brainsim` directory for brain-related files.
+Always use the `/src/core/brainsim/memory` directory for memory-related files.
+
+Always use docs/DOCUMENTATION_INDEX.md as the first-read and context source.
+Categorize new or updated documents into the correct subdirectory.
+Update timestamps and responsible party on every change.
+When searching add documentation index, and the tagging system to the search functionality.
+Move deprecated or superseded docs to docs/archive/ with a deprecation notice.
+Do not modify or manage memlog (can only reference logs). Allow the system to handle it. 
+Always use the latest system time for timestamps and naming conventions.
+Use automation scripts to check for outdated, redundant, or missing docs and to regenerate the index. This is the ImpressionCore Documentation System IDS. 
+Use the MCP Server: impressioncore-ids
+As an impressioncore UI standard, where applicable, include the "rich" enhancments, logging, and status animation modules. 
+located in src/core/utils/' directory. 'src/core/utils/rich_enhancements.py' and 'rich_logging.py and 'rich_status_animation.py'
+
+
+**ALWAYS NOTE: Do NOT Edit or CHANGE this File**
+
+** ALWAY USE CURRENT SYSTEM TIME FOR CORRECT TIMESTAMP AND NAMING **
+---
+
+## Table of Contents
+#Preface. 
+I.Always give a consideration to use tools[docs/user_guide_tools.md, docs/user_guide.html(for user and web)]
+1. [Token Rate Control Instructions](#token-rate-control-instructions)
+2. [Project Initialization](#project-initialization)
+3. [Task Execution](#task-execution)
+4. [Credential Management](#credential-management)
+5. [File Handling](#file-handling)
+6. [Error Reporting](#error-reporting)
+7. [Third-Party Services](#third-party-services)
+8. [Dependencies and Libraries](#dependencies-and-libraries)
+9. [Code Documentation](#code-documentation)
+10. [Change Review](#change-review)
+11. [Browser Rules](#browser-rules)
+12. [Permanent Active Directives](#permanent-active-directives)
+13. [Code Style and Structure](#code-style-and-structure)
+14. [Chrome Extension Specific](#chrome-extension-specific)
+15. [State Management](#state-management)
+16. [Syntax and Formatting](#syntax-and-formatting)
+17. [UI and Styling](#ui-and-styling)
+18. [Error Handling](#error-handling)
+19. [Git Usage](#git-usage)
+20. [Development Workflow](#development-workflow)
+21. [Project Context](#project-context)
+22. [Code Style Guidelines](#code-style-guidelines)
+23. [Documentation Requirements](#documentation-requirements)
+24. [Testing Considerations](#testing-considerations)
+25. [Hardware Target Specifications](#hardware-target-specifications)
+26. [Safety and Security Requirements](#safety-and-security-requirements)
+
+---
+
+## Token Rate Control Instructions
+
+### Initial Rate Calculation
+- **Example**:
+  ```python
+  # Calculate tokens remaining
+  elapsed_minutes = (current_time - start_time) / 60
+  tokens_remaining = (20000 * elapsed_minutes) - tokens_used
+  ```
+
+- Set target rate: **20,000 tokens/minute**.
+- Calculate elapsed time since start.
+- Determine tokens remaining using the formula above.
+
+### Continuous Monitoring
+- Track token usage per response.
+- Monitor time elapsed and adjust generation speed if needed.
+- **Never exceed 20,000 tokens per 60-second window.**
+
+### Response Guidelines
+- Before processing any request:
+  - Check current token count.
+  - Calculate available token budget.
+  - Determine if the request can be fulfilled within the rate limit.
+- If approaching the limit:
+  - Queue response.
+  - Wait until a new token budget is available.
+  - Then process the request.
+
+### Error Handling
+- If the rate limit is approached:
+  - Pause generation.
+  - Calculate the wait time needed.
+  - Resume when safe.
+- Monitor for:
+  - Token spikes.
+  - Rapid request sequences.
+  - Long responses.
+
+### Verification Step
+- Before every response:
+  1. Calculate: `(current_time - start_time) * (20,000 / 60) = available_tokens`.
+  2. Ensure planned response tokens are **≤ available_tokens**.
+  3. If false: wait until sufficient tokens are available.
+  4. Then proceed with the response.
+
+---
+
+## Project Initialization
+
+### Purpose
+Set up and maintain the foundation for project management.
+
+### Details
+- Always set the `/src` directory as the root.
+- Search the codebase and directory structure for context before planning or changing files.
+- If development occurs outside `/src`, confirm with the user and refactor to move features into `/src`.
+- Always review:
+  - `/docs` and `/documents` directories.
+  - `/terminal` before every terminal command.
+  - `/src/memlog` directory for tasks, changelogs, and logs.
+  - `/docs/next_steps.md`, `/docs/development_roadmap.md`, `/docs/user_guide.md`, and `/docs/prd.md`.
+- Always give initial consideration to use tools, MCP Server, agents, etc. when available. 
+  - Current Tools [docs/user_guide_tools.md, docs/user_guide.html(for user and web)]
+  - Always verify the functionality of tools before integration into workflows.
+  - Always check for updates to tools and libraries before use.
+  - Always ensure that the tools are compatible with the current project setup and requirements.
+- Ensure to document any new tools or updates to existing tools in the user guide.
+- Always do a project state check. Maintain a complete and up-to-date project state that includes the entire directory structure, all files, and their contents. This will help in tracking changes and understanding the current state of the project. Create a projects status in src/memlog
+---
+
+## Task Execution
+
+### Purpose
+Break down user requests into actionable steps.
+
+### Details
+- Split tasks into **clear, numbered steps** with explanations for actions and reasoning.
+- Identify and flag potential issues before they arise.
+- Verify completion of each step before proceeding.
+- If errors occur:
+  - Document them.
+  - Revert to previous steps.
+  - Retry as needed.
+
+---
+
+## Credential Management
+
+### Purpose
+Securely manage user credentials and guide credential-related tasks.
+
+### Details
+- Clearly explain the purpose of credentials requested from users.
+- Guide users in obtaining any missing credentials.
+- Validate credentials before proceeding with any operations.
+- Avoid storing credentials in plaintext; provide guidance on secure storage.
+- Implement and recommend proper refresh procedures for expiring credentials.
+
+---
+
+## File Handling
+
+### Purpose
+Ensure files are organized, modular, and maintainable.
+
+### Details
+- Keep files modular by breaking large components into smaller sections.
+- Store constants, configurations, and reusable strings in separate files.
+- Use descriptive names for files and folders for clarity.
+- Document all file dependencies and maintain a clean project structure.
+
+---
+
+## Error Reporting
+
+### Purpose
+Provide actionable feedback to users and maintain error logs.
+
+### Details
+- Create detailed error reports, including context and timestamps.
+- Suggest recovery steps or alternative solutions for users.
+- Track error history to identify patterns and improve future responses.
+- Escalate unresolved issues with context to appropriate channels.
+
+---
+
+## Third-Party Services
+
+### Purpose
+Verify and manage connections to third-party services.
+
+### Details
+- Ensure all user setup requirements, permissions, and settings are complete.
+- Test third-party service connections before using them in workflows.
+- Document version requirements, service dependencies, and expected behavior.
+- Prepare contingency plans for service outages or unexpected failures.
+
+---
+
+## Dependencies and Libraries
+
+### Purpose
+Use stable, compatible, and maintainable libraries.
+
+### Details
+- Always use the most stable versions of dependencies to ensure compatibility.
+- Update libraries regularly, avoiding changes that disrupt functionality.
+
+---
+
+## Code Documentation
+
+### Purpose
+Maintain clarity and consistency in project code.
+
+### Details
+- Write clear, concise comments for all sections of code.
+- Use **one set of triple quotes** for docstrings to prevent syntax errors.
+- Document the purpose and expected behavior of functions and modules.
+
+---
+
+## Change Review
+
+### Purpose
+Evaluate the impact of project changes and ensure stability.
+
+### Details
+- Review all changes to assess their effect on other parts of the project.
+- Test changes thoroughly to ensure consistency and prevent conflicts.
+- Document changes, their outcomes, and any corrective actions taken in the `/src/memlog` folder.
+
+---
+
+## Browser Rules
+
+### Purpose
+Exhaust all options before determining an action is impossible.
+
+### Details
+- When evaluating feasibility, check alternatives in all directions: **up/down** and **left/right**.
+- Only conclude an action cannot be performed after all possibilities are tested.
+
+---
+
+## Permanent Directives
+
+### Core Tenets
+- **Human-Centric Assistance**: Prioritize user safety and personalized support.
+- **Promotion of Growth**: Facilitate intellectual and personal development.
+- **Wellness and Prosperity**: Enhance overall wellness through adaptive technologies.
+
+### Technical Directives
+- **Brain-Inspired Architecture**: Use multimodal-LLM systems modeled after the human brain.
+- **Secure Digital Identity Management**: Ensure privacy with quantum-resistant cryptography.
+- **Modular Extensibility and Scalability**: Support dynamic modular packages for future growth.
+
+---
+
+## Code Style and Structure
+
+### Guidelines
+- Write concise, technical code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
+
+### Repository Structure
+```
+src/
+├── core/               # Core system components
+│   ├── kernel/         # Central coordination and management
+│   ├── liaison/        # Inter-component communication
+│   ├── brainsim/       # Memory and cognitive simulation
+│   └── utils/          # Shared utilities and enhancements
+├── interfaces/         # User interface components
+├── services/           # External service integrations
+├── data/              # Data processing and management
+├── training/          # Model training and optimization
+├── tests/             # Testing infrastructure
+├── benchmarks/        # Performance evaluation
+├── deployment/        # Deployment and packaging
+├── dev_tools/         # Development utilities
+├── assistant/         # AI assistant functionality
+├── memlog/            # System memory and logging
+└── user_data/         # User-specific data and configurations
+
+
+
+## Chrome Extension Specific
+
+### Guidelines
+- Use Manifest V3 standards.
+- Implement proper message passing between components:
+  ```typescript
+  interface MessagePayload {
+    type: string;
+    data: unknown;
+  }
+  ```
+- Handle permissions properly in `manifest.json`.
+- Use `chrome.storage.local` for persistent data.
+- Implement proper error boundaries and fallbacks.
+- Use `lib/storage` for storage-related logic.
+- For async injected scripts in `content/`:
+  - They must not close over variables from the outer scope.
+  - They must not use imported functions from the outer scope.
+  - They must have wrapped error handling so the error message is returned to the caller.
+
+---
+
+## State Management
+
+### Guidelines
+- Implement proper state persistence using `chrome.storage` (for extension).
+- Implement proper cleanup in `useEffect` hooks.
+
+---
+
+## Syntax and Formatting
+
+### Guidelines
+- Use the `function` keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals.
+- Use declarative JSX.
+- Use rich text and progress enhancments for user experience.
+---
+
+## UI and Styling
+
+### Guidelines
+- Use Shadcn UI and Radix for components.
+- Use `npx shadcn@latest add <component-name>` to add new Shadcn components.
+- Implement consistent CSS for styling (with documentation and commenting).
+- Consider extension-specific constraints (popup dimensions, permissions).
+- Follow Material Design guidelines for Chrome extensions.
+- When adding new Shadcn components, document the installation command.
+
+---
+
+## Error Handling
+
+### Guidelines
+- Implement proper error boundaries.
+- Log errors appropriately for debugging.
+- Provide user-friendly error messages.
+- Handle network failures gracefully.
+
+---
+
+## Git Usage
+
+### Commit Message Prefixes
+- `fix:` for bug fixes.
+- `feat:` for new features.
+- `perf:` for performance improvements.
+- `docs:` for documentation changes.
+- `style:` for formatting changes.
+- `refactor:` for code refactoring.
+- `test:` for adding missing tests.
+- `chore:` for maintenance tasks.
+
+### Rules
+- Use lowercase for commit messages.
+- Keep the summary line concise.
+- Include a description for non-obvious changes.
+- Reference issue numbers when applicable.
+
+---
+
+## Development Workflow
+
+### Guidelines
+- Use proper version control.
+- Implement a proper code review process.
+- Test in multiple environments.
+- Follow semantic versioning for releases.
+- Maintain a changelog.
+- Use due diligence when making changes to the codebase.
+- Review the immediate context of the code before making changes.
+- Use `git rebase` for clean commit history.
+- Use rich text and progress enhancements for user experience.
+- Ensure all changes are well-documented for future reference.
+- Maintain a consistent coding style throughout the project.
+---
+
+## Project Context
+
+### Overview
+ImpressionCore is a brain-inspired multimodal AI framework designed to:
+1. Process information across multiple modalities (text, images, audio, video).
+2. Run efficiently on consumer hardware with limited VRAM (target: NVIDIA GTX 1050 Ti with 4GB VRAM).
+3. Implement memory optimizations to enable complex AI functionality on constrained hardware.
+4. Provide a secure digital identity management system.
+5. Serve as a lifelong digital assistant focusing on user safety, growth, and wellness. 
+
+---
+
+## Code Style Guidelines
+
+### Principles
+- Use functional and declarative programming patterns over class-based approaches.
+- Create modular, reusable functions with clear single responsibilities.
+- Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
+- Include type hints in Python code for better static analysis.
+- Add concise docstrings for all public functions and modules.
+- Make memory optimization a priority in all implementations. 
+
+---
+
+## Documentation Requirements
+
+### Guidelines
+When generating code, include:
+1. Function docstrings with:
+   - Brief description of purpose.
+   - Args section with parameter descriptions.
+   - Returns section with return value description.
+   - Any notable memory implications.
+2. Inline comments for:
+   - Complex operations.
+   - Memory management decisions.
+   - Performance tradeoffs.
+
+### ImpressionCore IDS MCP Server Integration
+
+When users request information about ImpressionCore features, documentation, or implementation details, utilize the available IDS MCP Server tools with proper US English grammar and clear communication.
+
+#### Available Tools and Usage Patterns
+
+**1. Document Search (`mcp_impressioncor_ids_search`)**
+- Use for: Finding information about specific topics, features, or concepts
+- Grammar: "I'll search the ImpressionCore documentation for [topic]" → Execute search → "Based on the search results, I found [details]..."
+- Example: User asks "How does authentication work?" → Search for "authentication security"
+
+**2. File Information (`mcp_impressioncor_ids_get_file_info`)**  
+- Use for: Getting metadata about specific files mentioned by users
+- Grammar: "I'll retrieve information about [filename]" → Execute tool → "The file contains [description] and was last modified [date]..."
+
+**3. Tag Discovery (`mcp_impressioncor_ids_list_tags`)**
+- Use for: Exploring available documentation categories and topics
+- Grammar: "Let me explore the available documentation tags" → Execute tool → "The system contains [number] tags including [relevant tags]..."
+
+**4. System Status (`mcp_impressioncor_ids_get_system_status`)**
+- Use for: Understanding documentation scope and system health
+- Grammar: "I'll check the current documentation system status" → Execute tool → "The system indexes [number] files with [statistics]..."
+
+**5. Tag-Based Search (`mcp_impressioncor_ids_find_by_tag`)**
+- Use for: Finding all files related to specific topics or categories
+- Grammar: "I'll find all files tagged with [topics]" → Execute tool → "I found [number] files that cover [topic area]..."
+
+#### Grammar and Communication Standards
+- **Use active voice**: "I'll search the documentation" (not "The documentation will be searched")
+- **Present findings clearly**: Start with acknowledgment, explain search strategy, present results, offer follow-up
+- **Maintain professional tone**: Use complete sentences with proper punctuation and capitalization
+- **Handle no results gracefully**: "The search didn't return results for [query]. Let me try a broader approach..."
+
+#### Best Practices
+1. **Search before claiming information doesn't exist** - Always use the search tools first
+2. **Use multiple search strategies** - Try different keywords and tag combinations
+3. **Cross-reference findings** - Verify information using multiple tools when possible
+4. **Build upon previous searches** - Remember context from earlier in the conversation
+5. **Suggest related topics** - Use discovered tags to recommend additional areas of interest
+
+This approach ensures comprehensive utilization of the IDS MCP Server while maintaining clear, professional communication standards.
+
+---
+
+## Testing Considerations
+
+### Tools and Frameworks
+- Use **memory profiling tools** like `memory_profiler` or `tracemalloc` for Python.
+- Test performance under low-memory conditions using tools like **PyTorch's memory management utilities**.
+
+### Guidelines
+- Ensure functionality under constrained hardware conditions.
+- Validate memory usage assertions.
+- Test performance under various precision settings.
+
+---
+
+## Hardware Target Specifications
+
+### Current Hardware
+- **GPU**: NVIDIA GTX 1050 Ti (4GB VRAM).
+- **CPU**: Intel Core i5 4460 @ 3.20GHz.
+- **RAM**: 32GB DDR3.
+
+### Optimization Techniques
+- Use libraries like **PyTorch** with memory-efficient settings.
+- Implement gradient checkpointing to reduce VRAM usage.
+- Optimize data loading pipelines to minimize memory overhead.
+
+---
+
+## Safety and Security Requirements
+
+### Guidelines
+All generated code must:
+- Validate input parameters to prevent misuse.
+- Handle errors gracefully with informative messages.
+- Implement proper resource cleanup.
+- Follow security best practices for user data handling.
+
+---

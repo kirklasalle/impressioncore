@@ -1,0 +1,67 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 2,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\step_2.pt",
+    "filename": "step_2.pt",
+    "size_mb": 306.39,
+    "probe_loss": null,
+    "timestamp": 1755208396.408323
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 5,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\step_5.pt",
+    "filename": "step_5.pt",
+    "size_mb": 612.78,
+    "probe_loss": null,
+    "timestamp": 1755253172.1311457
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 6,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\step_6.pt",
+    "filename": "step_6.pt",
+    "size_mb": 612.78,
+    "probe_loss": null,
+    "timestamp": 1755253043.1162236
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 35,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\heel_stop_step_35.pt",
+    "filename": "heel_stop_step_35.pt",
+    "size_mb": 612.79,
+    "probe_loss": null,
+    "timestamp": 1755212217.4863822
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 52,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\heel_stop_step_52.pt",
+    "filename": "heel_stop_step_52.pt",
+    "size_mb": 612.79,
+    "probe_loss": null,
+    "timestamp": 1755210360.870332
+  }
+]

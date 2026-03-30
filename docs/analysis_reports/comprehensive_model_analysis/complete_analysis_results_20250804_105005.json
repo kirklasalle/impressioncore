@@ -1,0 +1,33 @@
+{
+  "analysis_timestamp": "20250804_105005",
+  "infrastructure_summary": {
+    "structure_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\f_drive_structure_20250804_105005.txt",
+    "sizes_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\f_drive_sizes_20250804_105005.txt",
+    "analysis_complete": true
+  },
+  "model_inventory": {
+    "models_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\model_inventory_20250804_105005.txt",
+    "checkpoints_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\model_checkpoints_20250804_105005.txt",
+    "analysis_complete": true
+  },
+  "embedding_analysis": {
+    "overview_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\embeddings_overview_20250804_105005.txt",
+    "detail_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\embeddings_detailed_20250804_105005.txt",
+    "analysis_complete": true
+  },
+  "training_progression": {
+    "logs_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\training_logs_analysis_20250804_105005.txt",
+    "metrics_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\training_metrics_20250804_105005.txt",
+    "analysis_complete": true
+  },
+  "distillation_results": {
+    "distillation_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\distillation_analysis_20250804_105005.txt",
+    "analysis_complete": true
+  },
+  "performance_metrics": {},
+  "recommendations": {},
+  "dataset_infrastructure": {
+    "datasets_file": "F:\\data\\analysis_reports\\comprehensive_model_analysis\\datasets_analysis_20250804_105005.txt",
+    "analysis_complete": true
+  }
+}

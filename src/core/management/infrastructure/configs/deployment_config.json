@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "updated": "2025-08-04T11:17:20.242312",
+  "production_model": {
+    "current": "F:/models/checkpoints/best_quality/b3_best_quality_model_20250802_124801.pth",
+    "deployment_location": "F:/models/deployment/production",
+    "backup_location": "F:/models/deployment/backup"
+  },
+  "testing_models": {
+    "directory": "F:/models/deployment/testing",
+    "config_location": "F:/models/deployment/configs"
+  },
+  "quality_requirements": {
+    "minimum_conversation_quality": 9.5,
+    "maximum_memory_usage_gb": 4.0,
+    "target_hardware": "GTX 1050 Ti 4GB VRAM"
+  }
+}

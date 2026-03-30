@@ -1,0 +1,15 @@
+# NEXUS Plan: Diagnostics
+# Called via: (EXECUTE-PLAN "diagnostics")
+
+(LOG "=== NEXUS DIAGNOSTICS ===")
+
+# Hardware Status
+(SYS-STAT)
+
+# Memory State
+(LET ((mem-status (MEMORY-SUMMARY)))
+  (IF (= mem-status "")
+      (LOG "Memory: Empty")
+      (LOG "Memory: Loaded")))
+
+(LOG "=== DIAGNOSTICS COMPLETE ===")

@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Model Architecture{% endblock %}
+
+{% block content %}
+<h1>ImpressionCore Model Architecture</h1>
+
+<div class="card mb-4">
+    <h2>Overall Architecture</h2>
+    <p>ImpressionCore is designed as a brain-inspired cognitive architecture that combines:</p>
+    <ol>
+        <li><strong>Transformer-based language processing</strong></li>
+        <li><strong>Latent diffusion for image generation</strong></li>
+        <li><strong>Universal Knowledge Store (UKS) for knowledge representation</strong></li>
+        <li><strong>Brain-inspired cognitive processing modules</strong></li>
+        <li><strong>Multimodal integration capabilities</strong></li>
+    </ol>
+    
+    <div class="architecture-diagram">
+        <!-- Placeholder for architecture diagram -->
+        <img src="/static/img/architecture_overview.png" alt="Architecture Overview" class="img-fluid" onerror="this.style.display='none'">
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2>Core Components</h2>
+    <h3>1. Brain-Inspired Cognitive Architecture (BrainSim)</h3>
+    
+    <p>The BrainSim module is modeled after human cognitive processes, consisting of specialized modules that work together to create a more human-like approach to information processing.</p>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Description</th>
+                    <th>Inspiration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Attention Module</strong></td>
+                    <td>Focuses computation on relevant information</td>
+                    <td>Human selective attention</td>
+                </tr>
+                <tr>
+                    <td><strong>Memory Module</strong></td>
+                    <td>Stores and retrieves information by type</td>
+                    <td>Human memory systems</td>
+                </tr>
+                <tr>
+                    <td><strong>Reasoning Module</strong></td>
+                    <td>Makes inferences and decisions</td>
+                    <td>Logical reasoning, problem-solving</td>
+                </tr>
+                <tr>
+                    <td><strong>Creativity Module</strong></td>
+                    <td>Generates variations and novel combinations</td>
+                    <td>Creative thought processes</td>
+                </tr>
+                <tr>
+                    <td><strong>Language Module</strong></td>
+                    <td>Processes and generates natural language</td>
+                    <td>Language comprehension and production</td>
+                </tr>
+                <tr>
+                    <td><strong>Emotion Module</strong></td>
+                    <td>Processes affective information</td>
+                    <td>Emotional intelligence</td>
+                </tr>
+                <tr>
+                    <td><strong>Metacognition Module</strong></td>
+                    <td>Reflects on system's own thoughts</td>
+                    <td>Self-awareness</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <h4>Memory Types</h4>
+    <p>The memory system is structured hierarchically, similar to human memory:</p>
+    <ul>
+        <li><strong>Sensory Memory:</strong> Brief storage of perceptual information</li>
+        <li><strong>Working Memory:</strong> Temporary, limited-capacity active processing</li>
+        <li><strong>Short-Term Memory:</strong> Information held for a limited period</li>
+        <li><strong>Long-Term Memory:</strong> Persistent storage, with subtypes:
+            <ul>
+                <li><strong>Episodic Memory:</strong> Context-bound experiences</li>
+                <li><strong>Semantic Memory:</strong> Facts and concepts</li>
+                <li><strong>Procedural Memory:</strong> Skills and procedures</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h4>Cognitive State</h4>
+    <p>The system maintains a cognitive state that includes:</p>
+    <ul>
+        <li>Current focus of attention</li>
+        <li>Active working memory contents</li>
+        <li>Ongoing thought processes</li>
+        <li>Emotional valence, arousal, and dominance</li>
+    </ul>
+</div>
+
+<div class="card mb-4">
+    <h2>Universal Knowledge Store (UKS)</h2>
+    <p>The UKS provides a flexible knowledge representation system based on a graph structure:</p>
+    <ul>
+        <li>Hierarchical concept organization with inheritance</li>
+        <li>Associative memory structures</li>
+        <li>Graph-based knowledge representation</li>
+        <li>Attribute-value pairs for concept properties</li>
+        <li>Persistent storage and retrieval</li>
+    </ul>
+    
+    <p><strong>Implementation:</strong> The UKS is implemented as a directed graph where nodes represent concepts and edges represent relationships. Each node contains attributes and can inherit from parent nodes.</p>
+    
+    <div class="uks-diagram">
+        <!-- Placeholder for UKS diagram -->
+        <img src="/static/img/uks_diagram.png" alt="Universal Knowledge Store Diagram" class="img-fluid" onerror="this.style.display='none'">
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2>Tokenization Pipeline</h2>
+    <p>The tokenization pipeline is a critical component that bridges raw inputs (text, images) with the neural processing components.</p>
+    
+    <h3>Text Tokenization</h3>
+    <p>The text tokenization system is based on a BPE (Byte-Pair Encoding) approach similar to that used in GPT models:</p>
+    <ul>
+        <li><strong>Tokenizer Components:</strong>
+            <ul>
+                <li><code>BPETokenizer</code>: Performs Byte-Pair Encoding tokenization</li>
+                <li>Special tokens: <code>&lt;unk&gt;</code>, <code>&lt;pad&gt;</code>, <code>&lt;bos&gt;</code>, <code>&lt;eos&gt;</code>, <code>&lt;mask&gt;</code></li>
+                <li>Vocabulary size: 50,257 tokens (configurable)</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h3>Image Tokenization</h3>
+    <p>Images are tokenized using a patch-based Vector Quantization (VQ) approach:</p>
+    <ul>
+        <li>Images are divided into patches (e.g., 16x16 pixels)</li>
+        <li>Each patch is encoded into a latent vector</li>
+        <li>Vectors are quantized to the nearest codebook entry</li>
+        <li>The index of the codebook entry becomes the token ID</li>
+    </ul>
+</div>
+
+<div class="card mb-4">
+    <h2>Next Steps</h2>
+    <p>Now that you understand the model architecture, you can explore how to work with Embeddings.</p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary mr-2" onclick="window.location.href='/embedding'">
+            <i class="fas fa-arrow-right"></i> Explore Embeddings 
+    </div>
+</div>
+{% endblock %}

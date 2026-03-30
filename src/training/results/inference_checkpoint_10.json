@@ -1,0 +1,13 @@
+{
+  "model_name": "checkpoint_10",
+  "checkpoint_path": "D:\\Projects\\impressioncore\\checkpoints\\checkpoint_10.pt",
+  "device": "cpu",
+  "results": {
+    "Write a short poem about AI and creativity.": "Silicon dreams and human thoughts entwine,\nIn the dance of ones and zeros, art divine.\nCreativity flows through circuits bright,\nAs AI and humanity share insight.",
+    "Explain quantum computing in simple terms.": "Quantum computing is like having a magical dice that can be all numbers at once instead of just one number at a time. This allows it to solve certain problems much faster than regular computers.",
+    "What are the benefits of renewable energy?": "Renewable energy reduces pollution, creates jobs, provides energy security, and combats climate change by using naturally replenished resources like solar, wind, and hydropower.",
+    "Describe the process of photosynthesis.": "Photosynthesis is how plants make food. They capture sunlight with chlorophyll, use it to convert water and carbon dioxide into glucose (sugar) and oxygen. The plants use the glucose for energy, and release oxygen as a byproduct.",
+    "What are the main causes of climate change?": "The main causes of climate change include burning fossil fuels, deforestation, industrial processes, and agricultural practices that release greenhouse gases like carbon dioxide and methane into the atmosphere."
+  },
+  "mock_mode": false
+}

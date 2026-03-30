@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "template_id": "transformer-base",
+  "display_name": "Transformer Base",
+  "description": "Standard transformer model suitable for text generation tasks",
+  "category": "transformer",
+  "icon": "transformer_icon.svg",
+  "parameters": {
+    "model": {
+      "hidden_size": {
+        "value": 768,
+        "description": "Hidden dimension size of the transformer model",
+        "tooltip": "Larger values increase model capacity but require more memory",
+        "type": "integer",
+        "range": [128, 2048],
+        "step": 128,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 1
+      },
+      "num_layers": {
+        "value": 12,
+        "description": "Number of transformer layers (encoder/decoder blocks)",
+        "tooltip": "More layers allow for processing more complex patterns",
+        "type": "integer",
+        "range": [1, 24],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 2
+      },
+      "num_heads": {
+        "value": 12,
+        "description": "Number of attention heads per layer",
+        "tooltip": "Multiple heads allow the model to focus on different parts of the input",
+        "type": "integer",
+        "range": [1, 24],
+        "step": 1,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 3,
+        "related_to": ["hidden_size"],
+        "validation": "value % 1 === 0 && hidden_size % value === 0"
+      },
+      "intermediate_size": {
+        "value": 3072,
+        "description": "Size of the intermediate layer in the transformer",
+        "tooltip": "Usually 4x the hidden_size",
+        "type": "integer",
+        "range": [256, 8192],
+        "step": 256,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 4,
+        "related_to": ["hidden_size"],
+        "validation": "value >= hidden_size"
+      }
+    },
+    "training": {
+      "learning_rate": {
+        "value": 5e-5,
+        "description": "Learning rate for optimizer",
+        "tooltip": "Controls how quickly the model adapts to the training data",
+        "type": "float",
+        "range": [1e-6, 1e-3],
+        "log_scale": true,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 1
+      },
+      "batch_size": {
+        "value": 16,
+        "description": "Training batch size",
+        "tooltip": "Larger batch sizes can speed up training but require more memory",
+        "type": "integer",
+        "range": [1, 128],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 2,
+        "hardware_dependent": true
+      },
+      "epochs": {
+        "value": 3,
+        "description": "Number of training epochs",
+        "tooltip": "More epochs allow for better learning but take longer",
+        "type": "integer",
+        "range": [1, 100],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 3
+      }
+    },
+    "advanced": {
+      "attention_dropout": {
+        "value": 0.1,
+        "description": "Dropout probability for attention weights",
+        "tooltip": "Helps prevent overfitting in attention mechanism",
+        "type": "float",
+        "range": [0.0, 0.5],
+        "step": 0.05,
+        "training_impact": "low",
+        "hardware_impact": "none",
+        "display_order": 1,
+        "advanced": true
+      },
+      "hidden_dropout": {
+        "value": 0.1,
+        "description": "Dropout probability for hidden layers",
+        "tooltip": "Helps prevent overfitting in feed-forward networks",
+        "type": "float",
+        "range": [0.0, 0.5],
+        "step": 0.05,
+        "training_impact": "low",
+        "hardware_impact": "none",
+        "display_order": 2,
+        "advanced": true
+      }
+    }
+  },
+  "training_settings": {
+    "recommended_epochs": 3,
+    "eval_strategy": "steps",
+    "eval_steps": 500,
+    "save_strategy": "steps",
+    "save_steps": 1000,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "linear",
+    "warmup_ratio": 0.1
+  },
+  "hardware_requirements": {
+    "min_vram": "4GB",
+    "recommended_vram": "8GB",
+    "vram_calculation": "((hidden_size * hidden_size * 4 * num_layers * 4) / (1024 * 1024 * 1024) + 0.5) GB",
+    "scaling_notes": "Memory usage scales quadratically with hidden_size and linearly with num_layers"
+  },
+  "use_cases": [
+    "Text generation",
+    "Language modeling",
+    "Sequence classification"
+  ],
+  "caveats": [
+    "Training may take several hours on consumer hardware",
+    "Large configurations may require GPU with >8GB VRAM"
+  ],
+  "references": [
+    {
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762"
+    }
+  ]
+}

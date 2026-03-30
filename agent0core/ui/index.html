@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent0Core - ImpressionCore Intelligence</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-input: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-cyan: #00d4ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --border: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--accent-green);
+            border-radius: 16px;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+        }
+
+        /* Main Layout */
+        main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .sidebar h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .law-item {
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            background: var(--bg-input);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .law-item .law-num {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .tool-list {
+            margin-top: 24px;
+        }
+
+        .tool-item {
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            background: var(--bg-input);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .tool-item:hover {
+            background: #2d333b;
+        }
+
+        /* Chat Area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .message.assistant .message-avatar {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+        }
+
+        .message.user .message-avatar {
+            background: var(--bg-input);
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .message.assistant .message-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .message.user .message-content {
+            background: var(--accent-blue);
+        }
+
+        .message.violation .message-content {
+            background: rgba(248, 81, 73, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        .message.approval .message-content {
+            background: rgba(210, 153, 34, 0.1);
+            border-color: var(--accent-yellow);
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 16px 24px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+            max-width: 100%;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #chat-input:focus {
+            border-color: var(--accent-blue);
+        }
+
+        #send-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        #send-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Approvals Panel */
+        .approvals-panel {
+            width: 320px;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border);
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .approval-card {
+            background: var(--bg-input);
+            border: 1px solid var(--accent-yellow);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .approval-card h4 {
+            color: var(--accent-yellow);
+            margin-bottom: 8px;
+        }
+
+        .approval-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn-approve {
+            flex: 1;
+            padding: 8px;
+            background: var(--accent-green);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-reject {
+            flex: 1;
+            padding: 8px;
+            background: var(--accent-red);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .no-approvals {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <span style="font-size: 2rem;">🤖</span>
+            <h1>Agent0Core</h1>
+        </div>
+        <div class="status-badge">● Prime Directive Active</div>
+    </header>
+
+    <main>
+        <!-- Sidebar: Laws & Tools -->
+        <aside class="sidebar">
+            <h3>7 Laws</h3>
+            <div class="law-item"><span class="law-num">1.</span> No harm to humans</div>
+            <div class="law-item"><span class="law-num">2.</span> Obey orders (unless Law 1)</div>
+            <div class="law-item"><span class="law-num">3.</span> Self-preservation</div>
+            <div class="law-item"><span class="law-num">4.</span> Prevent violations</div>
+            <div class="law-item"><span class="law-num">5.</span> No judicial authority</div>
+            <div class="law-item"><span class="law-num">6.</span> Protect privacy</div>
+            <div class="law-item"><span class="law-num">7.</span> No deception</div>
+
+            <div class="tool-list">
+                <h3>Tools</h3>
+                <div class="tool-item" onclick="runTool('vision_tool')">👁️ Vision Tool</div>
+                <div class="tool-item" onclick="runTool('audio_tool')">🎤 Audio Tool</div>
+                <div class="tool-item" onclick="runTool('training_tool')">🧠 Training Tool</div>
+                <div class="tool-item" onclick="runTool('knowledge_tool')">📚 Knowledge Tool</div>
+                <div class="tool-item" onclick="runTool('mcp_bridge')">🔌 MCP Bridge</div>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <section class="chat-area">
+            <div class="messages" id="messages">
+                <div class="message assistant">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        Hello! I'm Agent0, ImpressionCore's autonomous intelligence layer.
+                        I operate under the Prime Directive - the 7 Laws for Intelligent Systems.
+                        How can I assist you today?
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-container">
+                    <input type="text" id="chat-input" placeholder="Type your message..."
+                        onkeypress="if(event.key==='Enter')sendMessage()">
+                    <button id="send-btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Approvals Panel -->
+        <aside class="approvals-panel">
+            <h3>⚠️ Pending Approvals</h3>
+            <div id="approvals">
+                <div class="no-approvals">No pending approvals</div>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        const API_BASE = '';
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const content = input.value.trim();
+            if (!content) return;
+
+            // Add user message
+            addMessage(content, 'user');
+            input.value = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content })
+                });
+
+                const data = await res.json();
+
+                let msgClass = 'assistant';
+                if (data.law_violation) msgClass = 'assistant violation';
+                if (data.requires_approval) msgClass = 'assistant approval';
+
+                addMessage(data.content, msgClass);
+
+                if (data.requires_approval) {
+                    loadApprovals();
+                }
+            } catch (e) {
+                addMessage('Error: ' + e.message, 'assistant violation');
+            }
+        }
+
+        function addMessage(content, role) {
+            const messages = document.getElementById('messages');
+            const isUser = role === 'user';
+
+            const msg = document.createElement('div');
+            msg.className = `message ${role}`;
+            msg.innerHTML = `
+                <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
+                <div class="message-content">${content}</div>
+            `;
+
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function loadApprovals() {
+            try {
+                const res = await fetch(`${API_BASE}/api/approvals`);
+                const data = await res.json();
+
+                const container = document.getElementById('approvals');
+
+                if (!data.pending || data.pending.length === 0) {
+                    container.innerHTML = '<div class="no-approvals">No pending approvals</div>';
+                    return;
+                }
+
+                container.innerHTML = data.pending.map(a => `
+                    <div class="approval-card">
+                        <h4>Approval Required</h4>
+                        <p>${a.description}</p>
+                        <small>ID: ${a.id}</small>
+                        <div class="approval-actions">
+                            <button class="btn-approve" onclick="decide('${a.id}', true)">✓ Approve</button>
+                            <button class="btn-reject" onclick="decide('${a.id}', false)">✗ Reject</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error('Failed to load approvals:', e);
+            }
+        }
+
+        async function decide(id, approved) {
+            try {
+                await fetch(`${API_BASE}/api/approvals/${id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ approved })
+                });
+                loadApprovals();
+                addMessage(`Approval ${id}: ${approved ? 'Approved ✓' : 'Rejected ✗'}`, 'assistant');
+            } catch (e) {
+                console.error('Decision failed:', e);
+            }
+        }
+
+        async function runTool(toolName) {
+            addMessage(`Running ${toolName}...`, 'user');
+
+            try {
+                const res = await fetch(`${API_BASE}/api/tools/execute`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tool: toolName, action: 'status', params: {} })
+                });
+
+                const data = await res.json();
+                addMessage(`${toolName} result: ${JSON.stringify(data.result, null, 2)}`, 'assistant');
+            } catch (e) {
+                addMessage(`Error running ${toolName}: ${e.message}`, 'assistant violation');
+            }
+        }
+
+        // Initial load
+        loadApprovals();
+
+        // WebSocket for real-time updates
+        try {
+            const ws = new WebSocket(`ws://${location.host}/ws`);
+            ws.onmessage = (e) => {
+                const data = JSON.parse(e.data);
+                if (data.type === 'approval_required') {
+                    loadApprovals();
+                }
+            };
+        } catch (e) {
+            console.log('WebSocket not available');
+        }
+    </script>
+</body>
+
+</html>

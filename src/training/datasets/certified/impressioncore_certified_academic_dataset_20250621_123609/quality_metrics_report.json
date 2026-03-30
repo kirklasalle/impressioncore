@@ -1,0 +1,25 @@
+{
+  "total_items": 45,
+  "total_words": 49591,
+  "average_words_per_item": 1102.0222222222221,
+  "average_educational_value": 8.66,
+  "domain_distribution": {
+    "mathematics": 9,
+    "science": 9,
+    "language_arts": 9,
+    "STEM": 9,
+    "liberal_arts": 9
+  },
+  "grade_level_distribution": {
+    "K-12": 27,
+    "college_freshman": 18
+  },
+  "source_distribution": {
+    "Khan Academy": 9,
+    "MIT OpenCourseWare K-12": 9,
+    "Educational Resources": 9,
+    "MIT OpenCourseWare": 9,
+    "Academic Consortium": 9
+  },
+  "quality_score": 86.6
+}

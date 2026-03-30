@@ -1,0 +1,121 @@
+{
+  "training_completed": true,
+  "configuration": "test",
+  "total_epochs": 3,
+  "total_time_seconds": 414.628963,
+  "best_loss": 0.0,
+  "final_loss": 0.0,
+  "loss_improvement": 0.0,
+  "samples_per_second": 0.0,
+  "embedding_utilization": 0,
+  "embedding_batches_processed": 24,
+  "modality_distribution": {},
+  "memory_efficiency": {
+    "max_memory_mb": 1438.13525390625,
+    "avg_memory_mb": 1438.13525390625
+  },
+  "embedding_system_stats": {
+    "system_info": {
+      "f_drive_path": "F:\\embeddings",
+      "cache_dir": "F:\\cache\\embedding_integration",
+      "device": "cuda",
+      "max_memory_gb": 3.0,
+      "max_cache_entries": 500
+    },
+    "processing_stats": {
+      "files_discovered": 7806,
+      "files_loaded": 8,
+      "files_cached": 11,
+      "files_error": 0,
+      "total_embeddings": 5784544,
+      "memory_efficiency": 0.1593385696918845,
+      "processing_time": 184.8680534362793
+    },
+    "modality_stats": {
+      "3d": {
+        "count": 6,
+        "total_size": 6115662,
+        "avg_dimension": 511
+      },
+      "audio": {
+        "count": 2,
+        "total_size": 843740,
+        "avg_dimension": 391
+      },
+      "text": {
+        "count": 4,
+        "total_size": 371856741,
+        "avg_dimension": 543
+      },
+      "mixed": {
+        "count": 7492,
+        "total_size": 2763507477,
+        "avg_dimension": 768
+      },
+      "unknown": {
+        "count": 287,
+        "total_size": 16989419463,
+        "avg_dimension": 752
+      },
+      "comprehensive": {
+        "count": 3,
+        "total_size": 23283677,
+        "avg_dimension": 640
+      },
+      "image": {
+        "count": 2,
+        "total_size": 42449267,
+        "avg_dimension": 884
+      },
+      "tabular": {
+        "count": 6,
+        "total_size": 68358,
+        "avg_dimension": 414
+      },
+      "sensor": {
+        "count": 2,
+        "total_size": 2002793,
+        "avg_dimension": 512
+      },
+      "video": {
+        "count": 2,
+        "total_size": 16684700,
+        "avg_dimension": 512
+      }
+    },
+    "cache_stats": {
+      "cached_files": 11,
+      "cache_hit_rate": 0.0,
+      "memory_usage_mb": 808.7693891525269,
+      "memory_efficiency": 0.2632712855314215
+    },
+    "integration_batches": 7492,
+    "priority_files": 7806
+  },
+  "epoch_results": [
+    {
+      "epoch": 0,
+      "avg_loss": 0.0,
+      "batch_count": 0,
+      "embedding_batches_used": 0,
+      "modality_counts": {},
+      "memory_usage": 1507994112
+    },
+    {
+      "epoch": 1,
+      "avg_loss": 0.0,
+      "batch_count": 0,
+      "embedding_batches_used": 0,
+      "modality_counts": {},
+      "memory_usage": 1507994112
+    },
+    {
+      "epoch": 2,
+      "avg_loss": 0.0,
+      "batch_count": 0,
+      "embedding_batches_used": 0,
+      "modality_counts": {},
+      "memory_usage": 1507994112
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "processing_statistics": {
+    "images_processed": 1000,
+    "audio_processed": 500,
+    "texts_processed": 2000,
+    "total_files_processed": 3500,
+    "processing_time_seconds": 128.378374,
+    "errors_count": 0
+  },
+  "output_locations": {
+    "images": "F:\\data\\datasets\\processed\\images_resized",
+    "audio": "F:\\data\\datasets\\processed\\audio_melspec",
+    "text": "F:\\data\\datasets\\processed\\text_tokenized"
+  },
+  "processing_config": {
+    "image_target_size": [
+      224,
+      224
+    ],
+    "audio_mel_bins": 80,
+    "text_max_length": 1024,
+    "tokenizer_model": "microsoft/DialoGPT-small"
+  },
+  "errors": [],
+  "timestamp": "2025-08-04T20:35:04.511904"
+}

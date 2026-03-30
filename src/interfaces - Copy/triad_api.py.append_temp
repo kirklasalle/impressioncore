@@ -1,0 +1,56 @@
+
+# ============================================================================
+# Audio Intelligence Endpoints
+# ============================================================================
+import json
+
+class SpeakRequest(BaseModel):
+    text: str
+    emotion: Optional[str] = "neutral"
+
+@app.post("/v1/audio/speak")
+async def speak_text(req: SpeakRequest):
+    """Generates speech from text."""
+    if not tts_service:
+        raise HTTPException(status_code=503, detail="TTS Service not available")
+    
+    try:
+        # Generate audio file
+        audio_url = tts_service.speak(req.text, req.emotion)
+        return {"status": "OK", "audio_url": audio_url}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/v1/audio/stt_stream")
+async def stream_stt(request: Request):
+    """Server-Sent Events (SSE) stream for real-time STT."""
+    async def event_generator():
+        while True:
+            if await request.is_disconnected():
+                break
+            
+            if msg_queue:
+                msg = msg_queue.pop(0)
+                # Ensure structure matches what frontend expects
+                data = {"text": msg["text"], "timestamp": msg["timestamp"]}
+                yield f"data: {json.dumps(data)}\n\n"
+            
+            await asyncio.sleep(0.1)
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+@app.post("/v1/audio/listen")
+async def toggle_listening(enabled: bool):
+    """Toggle the STT listener."""
+    if not stt_service:
+        raise HTTPException(status_code=503, detail="STT Service not available")
+    
+    if enabled:
+        if not stt_service.running:
+            # Lambda correction: msg_queue stores dicts
+            stt_service.start_listening(callback=lambda text: msg_queue.append({"text": text, "timestamp": time.time()}))
+            return {"status": "OK", "state": "LISTENING"}
+    else:
+        stt_service.stop()
+        return {"status": "OK", "state": "STOPPED"}
+    return {"status": "OK", "state": "UNCHANGED"}

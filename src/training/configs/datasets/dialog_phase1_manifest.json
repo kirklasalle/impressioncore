@@ -1,0 +1,97 @@
+{
+    "name": "impressioncore_dialog_phase1",
+    "description": "Curated dialog-first curriculum with aligned voice and face tracks for Phase 1 warm start.",
+    "splits": {
+        "train": [
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_core.jsonl",
+                "modalities": [
+                    "text"
+                ],
+                "weight": 0.38
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_supportive.jsonl",
+                "modalities": [
+                    "text",
+                    "audio"
+                ],
+                "weight": 0.20
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_strategic.jsonl",
+                "modalities": [
+                    "text"
+                ],
+                "weight": 0.12
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_empathy.jsonl",
+                "modalities": [
+                    "text",
+                    "audio"
+                ],
+                "weight": 0.10
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_regulator_remediation.jsonl",
+                "modalities": [
+                    "text"
+                ],
+                "weight": 0.10
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/train/train_conflict_resolution.jsonl",
+                "modalities": [
+                    "text",
+                    "audio",
+                    "face"
+                ],
+                "weight": 0.10
+            }
+        ],
+        "validation": [
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/validation/validation_core.jsonl",
+                "modalities": [
+                    "text"
+                ],
+                "weight": 0.60
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/validation/validation_regulator.jsonl",
+                "modalities": [
+                    "text"
+                ],
+                "weight": 0.20
+            },
+            {
+                "type": "conversation",
+                "path": "F:/data/datasets/dialog/phase1/validation/validation_conflict.jsonl",
+                "modalities": [
+                    "text",
+                    "audio"
+                ],
+                "weight": 0.20
+            }
+        ]
+    },
+    "feature_maps": {
+        "audio": {
+            "phoneme_sequence": "audio.phonemes",
+            "waveform": "audio.wav_path"
+        },
+        "face": {
+            "landmarks": "face.landmarks_path",
+            "expression": "face.expression_tags"
+        }
+    }
+}

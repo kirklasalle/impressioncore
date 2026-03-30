@@ -1,0 +1,15 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 4,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase_smoke\\step_4.pt",
+    "filename": "step_4.pt",
+    "size_mb": 3861.35,
+    "probe_loss": null,
+    "timestamp": 1755183801.1517878
+  }
+]

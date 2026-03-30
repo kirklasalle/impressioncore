@@ -1,0 +1,10 @@
+graph LR
+    A[Start Data Prep] --> B{Data Sources};
+    B --> C{Tokenization};
+    C -- Text Data --> D[Text Tokenizer Training Optional];
+    C -- Image Data --> E[Image Tokenizer Training Optional];
+    D --> F[Tokenize Text Data];
+    E --> G[Tokenize Image Data];
+    F --> H[Data Loading & Preprocessing];
+    G --> H;
+    H --> I[End Data Prep];

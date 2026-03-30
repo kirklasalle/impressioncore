@@ -1,0 +1,36 @@
+# Enhanced Hardware Audit & Trace Route
+
+## Problem Description
+1. **Hardware Lists Stale**: When cameras are plugged/unplugged, the audit and dashboard list don't update automatically because of aggressive caching and lack of a "force refresh" mechanism during the audit.
+2. **Missing Diagnostic Depth**: The user wants a "trace route" for all systems during the audit to debug why certain devices might be missing or conflicting.
+
+## Proposed Changes
+
+### 1. Sensory Intelligence ([src/orchestrator/sensory_intelligence.py](file:///d:/Projects/impressioncore/src/orchestrator/sensory_intelligence.py))
+- **Trace Logging**: Add a `trace_log` buffer to record low-level discovery steps.
+- **Forced Refresh**: Ensure [run_discovery(force=True)](file:///d:/Projects/impressioncore/src/orchestrator/sensory_intelligence.py#37-94) actually ignores the cache and clears the `trace_log`.
+- **Detailed Categorization**: Add more specific trace points for each WMI entry found.
+
+### 2. OrbCloud Vision ([src/orchestrator/orbcloud_vision.py](file:///D:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py))
+- **[NEW] [refresh_hardware()](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py#962-995)**: A method to re-probe camera indices without necessarily stopping the existing streams (hot-swap support).
+- **Probing Logic**: Update index probing to record results in the sensory trace log.
+- **Persistence**: Ensure `hardware_metadata` is updated so the API reflects the latest state.
+
+### 3. Triad API ([src/interfaces/triad_api.py](file:///D:/Projects/impressioncore/src/interfaces/triad_api.py))
+- **Audit Endpoint**: Update [get_system_all_status](file:///d:/Projects/impressioncore/src/interfaces/triad_api.py#282-391) to call `vision.refresh_hardware()` if it's the startup audit.
+- **Debug Logs**: Include the sensory `trace_log` in the JSON returned by the "Generate Debug Logs" feature.
+
+### 4. Web Client ([src/interfaces/web_client/src/App.jsx](file:///d:/Projects/impressioncore/src/interfaces/web_client/src/App.jsx))
+- **Post-Audit Sync**: Ensure that when the audit finishes or the "Initialize" button is clicked, the device list (`videoDevs`, `audioDevs`) is refreshed from the latest backend data.
+
+## Verification Plan
+### Automated Tests
+- Run `python src/orchestrator/sensory_intelligence.py` directly to verify trace log output.
+- Call `/v1/system/status` via `curl` and verify the [trace](file:///D:/Projects/impressioncore/src/interfaces/triad_api.py#573-587) field exists (if added) or that the debug log generation includes it.
+
+### Manual Verification
+1. Unplug a camera.
+2. Run System Audit -> Observe count decreases.
+3. Plug camera back in.
+4. Run System Audit -> Observe count increases and trace log shows the new index discovery.
+5. Click "Initialize" and verify the dropdown lists the new camera.

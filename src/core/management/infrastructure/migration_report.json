@@ -1,0 +1,24 @@
+{
+  "migration_timestamp": "2025-08-04T11:16:06.674287",
+  "migrations": [
+    {
+      "name": "best_quality",
+      "source": "F:\\data\\embeddings\\b3_training\\checkpoints\\b3_best_quality_model_20250802_124801.pth",
+      "destination": "F:\\models\\checkpoints\\best_quality\\b3_best_quality_model_20250802_124801.pth",
+      "size_mb": 199.83,
+      "status": "\u2705 Migrated"
+    },
+    {
+      "name": "latest_training",
+      "source": "F:\\data\\embeddings\\b3_training\\checkpoints\\b3_training_epoch_30_20250801_074634.pth",
+      "destination": "F:\\models\\training\\active\\b3_training_epoch_30_20250801_074634.pth",
+      "size_mb": 336.47,
+      "status": "\u2705 Migrated"
+    }
+  ],
+  "summary": {
+    "total_migrations": 2,
+    "successful": 2,
+    "failed": 0
+  }
+}

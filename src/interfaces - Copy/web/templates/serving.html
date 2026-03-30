@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Model Serving</h1>
+    
+    <!-- Server Status -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Server Status</h2>
+        </div>
+        <div class="card-body">
+            <div class="metric">
+                <span class="label">Status:</span>
+                <span class="value badge" id="server-status">Stopped</span>
+            </div>
+            <div class="metric">
+                <span class="label">Uptime:</span>
+                <span class="value" id="uptime">00:00:00</span>
+            </div>
+            <div class="metric">
+                <span class="label">Active Connections:</span>
+                <span class="value" id="active-connections">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Performance</h2>
+        </div>
+        <div class="card-body">
+            <div class="metric">
+                <span class="label">Requests/sec:</span>
+                <span class="value" id="requests-per-sec">0.0</span>
+            </div>
+            <div class="metric">
+                <span class="label">Average Latency:</span>
+                <span class="value" id="avg-latency">0.0 ms</span>
+            </div>
+            <div class="metric">
+                <span class="label">Memory Usage:</span>
+                <span class="value" id="memory-usage">0 MB</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Server Controls -->
+    <div class="control-panel">
+        <h2>Control Panel</h2>
+        <div class="btn-group">
+            <button id="start-server" class="btn btn-success">Start Server</button>
+            <button id="stop-server" class="btn btn-danger" disabled>Stop Server</button>
+            <button id="restart-server" class="btn btn-warning" disabled>Restart Server</button>
+        </div>
+    </div>
+
+    <!-- Test Interface -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Test Interface</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="test-input">Input Text:</label>
+                <textarea id="test-input" class="form-control" rows="3" placeholder="Enter text to process..."></textarea>
+            </div>
+            <button id="run-test" class="btn btn-primary">Run Test</button>
+            <div class="result-panel">
+                <h3>Results</h3>
+                <pre id="test-output" class="output-panel">Results will appear here...</pre>
+                <div class="metric">
+                    <span class="label">Time Taken:</span>
+                    <span class="value" id="test-time">0.0 ms</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/serving.js') }}"></script>
+{% endblock %}

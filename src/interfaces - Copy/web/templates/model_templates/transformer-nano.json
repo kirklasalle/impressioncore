@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "template_id": "transformer-nano",
+  "display_name": "Transformer Nano",
+  "description": "Memory-optimized transformer model for 4GB VRAM GPUs",
+  "category": "transformer",
+  "icon": "transformer_nano_icon.svg",
+  "parameters": {
+    "model": {
+      "hidden_size": {
+        "value": 256,
+        "description": "Hidden dimension size of the transformer model",
+        "tooltip": "Small hidden size optimized for memory efficiency",
+        "type": "integer",
+        "range": [128, 512],
+        "step": 128,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 1
+      },
+      "num_layers": {
+        "value": 4,
+        "description": "Number of transformer layers",
+        "tooltip": "Reduced number of layers for memory efficiency",
+        "type": "integer",
+        "range": [2, 6],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 2
+      },
+      "num_heads": {
+        "value": 8,
+        "description": "Number of attention heads per layer",
+        "tooltip": "Balanced for performance and memory usage",
+        "type": "integer",
+        "range": [4, 16],
+        "step": 2,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 3,
+        "related_to": ["hidden_size"],
+        "validation": "value % 1 === 0 && hidden_size % value === 0"
+      },
+      "intermediate_size": {
+        "value": 1024,
+        "description": "Size of the intermediate layer",
+        "tooltip": "4x the hidden_size for balanced capacity",
+        "type": "integer",
+        "range": [512, 2048],
+        "step": 256,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 4,
+        "related_to": ["hidden_size"],
+        "validation": "value >= hidden_size"
+      }
+    },
+    "training": {
+      "learning_rate": {
+        "value": 1e-4,
+        "description": "Learning rate for optimizer",
+        "tooltip": "Slightly higher learning rate for smaller model",
+        "type": "float",
+        "range": [1e-5, 1e-3],
+        "log_scale": true,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 1
+      },
+      "batch_size": {
+        "value": 32,
+        "description": "Training batch size",
+        "tooltip": "Optimized for 4GB VRAM with gradient accumulation",
+        "type": "integer",
+        "range": [8, 64],
+        "step": 8,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 2,
+        "hardware_dependent": true
+      },
+      "epochs": {
+        "value": 10,
+        "description": "Number of training epochs",
+        "tooltip": "More epochs for smaller model to ensure convergence",
+        "type": "integer",
+        "range": [5, 20],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 3
+      }
+    }
+  },
+  "training_settings": {
+    "recommended_epochs": 10,
+    "eval_strategy": "steps",
+    "eval_steps": 200,
+    "save_strategy": "steps",
+    "save_steps": 500,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.1,
+    "gradient_accumulation_steps": 2
+  },
+  "hardware_requirements": {
+    "min_vram": "2GB",
+    "recommended_vram": "4GB",
+    "vram_calculation": "((hidden_size * hidden_size * 4 * num_layers * 4) / (1024 * 1024 * 1024) + 0.5) GB",
+    "scaling_notes": "Optimized for consumer GPUs with limited VRAM"
+  },
+  "optimization": {
+    "mixed_precision": true,
+    "gradient_checkpointing": true,
+    "memory_efficient_attention": true,
+    "cpu_offload": false
+  },
+  "use_cases": [
+    "Text generation",
+    "Language modeling",
+    "Small-scale NLP tasks"
+  ],
+  "caveats": [
+    "Reduced model capacity due to memory optimization",
+    "May require more training epochs",
+    "Best suited for smaller-scale tasks"
+  ],
+  "references": [
+    {
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762"
+    }
+  ]
+}

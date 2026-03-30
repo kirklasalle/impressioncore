@@ -1,0 +1,44 @@
+Hardware Report
+Generated: 2025-02-20 17:24:35
+==================================================
+
+Category: Sound devices
+Device: Logitech Mic (Orbit/Sphere MP)
+------------------------------
+Properties:
+  Caption: Logitech Mic (Orbit/Sphere MP)
+  ConfigManagerErrorCode: 0
+  ConfigManagerUserConfig: False
+  CreationClassName: Win32_SoundDevice
+  Description: Logitech Mic (Orbit/Sphere MP)
+  DeviceID: USB\VID_046D&PID_08C2&MI_02\6&16853086&2&0002
+  Manufacturer: Logitech
+  Name: Logitech Mic (Orbit/Sphere MP)
+  PNPDeviceID: USB\VID_046D&PID_08C2&MI_02\6&16853086&2&0002
+  PowerManagementSupported: False
+  ProductName: Logitech Mic (Orbit/Sphere MP)
+  Status: OK
+  StatusInfo: 3
+  SystemCreationClassName: Win32_ComputerSystem
+  SystemName: LENOVO
+
+==================================================
+
+Category: USB devices
+Device: Logitech USB Camera (Orbit/Sphere MP)
+------------------------------
+Properties:
+  Caption: Logitech USB Camera (Orbit/Sphere MP)
+  ConfigManagerErrorCode: 0
+  ConfigManagerUserConfig: False
+  CreationClassName: Win32_USBHub
+  Description: Logitech USB Camera (Orbit/Sphere MP)
+  DeviceID: USB\VID_046D&PID_08C2\5&2BF57C82&0&7
+  Name: Logitech USB Camera (Orbit/Sphere MP)
+  PNPDeviceID: USB\VID_046D&PID_08C2\5&2BF57C82&0&7
+  Status: OK
+  SystemCreationClassName: Win32_ComputerSystem
+  SystemName: LENOVO
+
+==================================================
+

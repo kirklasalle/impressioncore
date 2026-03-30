@@ -1,0 +1,704 @@
+[
+  {
+    "dataset": "F:\\data\\datasets\\audio\\raw\\1",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\audio\\spectrograms\\audio_embedding_1.npy",
+        "exists": true,
+        "shape": [
+          768
+        ],
+        "dtype": "float32",
+        "bytes": 3200
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\audio\\raw\\28",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\b3_embeddings\\frame_028_1_1.npy",
+        "exists": true,
+        "shape": [
+          224,
+          224,
+          3
+        ],
+        "dtype": "uint8",
+        "bytes": 150656
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\4thGrade_chunk1_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\5thGrade_chunk1_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk12.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk12.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120_1.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120_1.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120_2.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_2_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk120_3.txt",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_3_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  },
+  {
+    "dataset": "F:\\data\\datasets\\educational\\materials\\educational_text_001_chunk121.npy",
+    "embeddings": [
+      {
+        "path": "F:data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_1_educational.npy",
+        "exists": true,
+        "shape": [
+          384
+        ],
+        "dtype": "float32",
+        "bytes": 1664
+      }
+    ]
+  }
+]

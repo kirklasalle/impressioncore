@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ImpressionCore{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <style>
+        body {
+            background-color: #f5f6fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+        }
+        .sidebar {
+            background: #23272b !important;
+            color: #fff !important;
+            min-height: 100vh;
+            width: 270px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+        .sidebar .sidebar-header {
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            border-bottom: 1px solid #343a40;
+        }
+        .sidebar .nav-section {
+            margin-top: 1.5rem;
+        }
+        .sidebar .nav-link {
+            color: #fff !important;
+            padding: 12px 20px;
+            border-radius: 0;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            background: #2563eb !important;
+            color: #fff !important;
+            padding-left: 32px;
+        }
+        .sidebar .nav-section h4 {
+            color: #b0b8c1;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .content-area {
+            margin-left: 270px;
+            padding: 2rem;
+            width: calc(100vw - 270px);
+            box-sizing: border-box;
+        }
+        .card {
+            background: #fff;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 6px rgba(34,48,74,0.04);
+            margin-bottom: 2rem;
+        }
+        
+        /* Site-wide button standards */
+        .btn, .btn-lg, .btn-sm, button[type="button"], button[type="submit"] {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: fit-content !important;
+            margin-right: 5px !important;
+            margin-bottom: 5px !important;
+            box-sizing: content-box !important;
+        }
+        
+        .btn-block {
+            width: auto !important;
+            display: inline-block !important;
+        }
+        
+        .btn-primary, .btn-primary:focus, .btn-primary:active {
+            background-color: #2563eb !important;
+            border-color: #2563eb !important;
+            color: #fff !important;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8 !important;
+            border-color: #1d4ed8 !important;
+            color: #fff !important;
+        }
+        .btn-success, .btn-success:focus, .btn-success:active {
+            background-color: #10b981 !important;
+            border-color: #10b981 !important;
+            color: #fff !important;
+        }
+        .btn-success:hover {
+            background-color: #059669 !important;
+            border-color: #059669 !important;
+            color: #fff !important;
+        }
+        
+        /* Terminal and Console at bottom */
+        #terminal-popup, #f12-console-popup {
+            position: fixed;
+            left: 270px;
+            right: 20px;
+            bottom: 0;
+            width: auto;
+            max-width: calc(100vw - 290px);
+            z-index: 2000;
+            background: #181c24;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 12px rgba(34,48,74,0.15);
+            display: none;
+        }
+        #terminal-popup.visible, #f12-console-popup.visible {
+            display: block;
+        }
+        #terminal-header, #f12-console-header {
+            background: #23272b;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: move;
+        }
+        #terminal-container, #f12-console-content {
+            padding: 1rem;
+            min-height: 120px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #181c24;
+        }
+        #toggle-terminal-btn, #toggle-f12-console-btn {
+            position: fixed;
+            right: 30px;
+            bottom: 20px;
+            z-index: 2100;
+            margin-left: 10px;
+            font-size: 1.5rem;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.15);
+            transition: background 0.2s, color 0.2s;
+        }
+        #toggle-f12-console-btn {
+            right: 90px;
+            background: #10b981;
+        }
+        #toggle-terminal-btn:hover, #toggle-f12-console-btn:hover {
+            background: #1d4ed8;
+            color: #fff;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="main-container d-flex">
+        <aside class="sidebar bg-dark text-white">
+            <div class="sidebar-header">
+                <h3>ImpressionCore</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>Walkthrough</h4>
+                    <ul class="nav flex-column">                        <li class="nav-item"><a class="nav-link {% if request.path == '/introduction' %}active{% endif %}" href="{{ url_for('introduction') }}"><i class="fas fa-info-circle"></i> Introduction & Overview</a></li>
+<li class="nav-item"><a class="nav-link {% if request.path == '/system_requirements' %}active{% endif %}" href="{{ url_for('system_requirements') }}"><i class="fas fa-cogs"></i> System & Environment Setup</a></li>
+<li class="nav-item"><a class="nav-link {% if request.path == '/data_prep' %}active{% endif %}" href="{{ url_for('data_prep') }}"><i class="fas fa-database"></i> Data Preparation</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/tokenizer' %}active{% endif %}" href="{{ url_for('tokenizer') }}"><i class="fas fa-font"></i> Tokenization</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/define_model' %}active{% endif %}" href="{{ url_for('define_model') }}"><i class="fas fa-project-diagram"></i> Model Definition</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/training' %}active{% endif %}" href="{{ url_for('training') }}"><i class="fas fa-graduation-cap"></i> Training</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/evaluation' %}active{% endif %}" href="{{ url_for('evaluation') }}"><i class="fas fa-chart-line"></i> Evaluation</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/inference' %}active{% endif %}" href="{{ url_for('inference') }}"><i class="fas fa-robot"></i> Inference</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/deployment' %}active{% endif %}" href="{{ url_for('deployment') }}"><i class="fas fa-rocket"></i> Deployment</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/uks_introduction' %}active{% endif %}" href="{{ url_for('uks_introduction') }}"><i class="fas fa-brain"></i> Knowledge Store (UKS)</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/rule_engine' %}active{% endif %}" href="{{ url_for('rule_engine') }}"><i class="fas fa-gavel"></i> Rule Engine</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/inheritance' %}active{% endif %}" href="{{ url_for('inheritance') }}"><i class="fas fa-sitemap"></i> Inheritance</a></li>
+                    </ul>
+                </div>                <div class="nav-section">
+                    <h4>Advanced & Reference</h4>                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/unified_builder' %}active{% endif %}" href="{{ url_for('unified_builder') }}"><i class="fas fa-layer-group"></i> Unified Builder (Beta)</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path.startswith('/configuration') %}active{% endif %}" href="{{ url_for('configuration_interactive') }}"><i class="fas fa-sliders-h"></i> Interactive Configuration</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path.startswith('/metrics') %}active{% endif %}" href="{{ url_for('metrics_dashboard') }}"><i class="fas fa-chart-bar"></i> Metrics Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/api_reference' %}active{% endif %}" href="{{ url_for('api_reference') }}"><i class="fas fa-code"></i> API Reference</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/documentation' %}active{% endif %}" href="{{ url_for('documentation') }}"><i class="fas fa-book"></i> Documentation & Support</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.path == '/development_roadmap' %}active{% endif %}" href="{{ url_for('development_roadmap') }}"><i class="fas fa-road"></i> Development Roadmap</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="content-area flex-grow-1">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Pop-up Terminal -->
+    <div id="terminal-popup">
+        <div id="terminal-header">
+            <span>Site-Wide Terminal</span>
+            <button id="terminal-close-btn">&times;</button>
+        </div>
+        <div id="terminal-container"></div>
+    </div>
+
+    <!-- F12 Console Pop-up -->
+    <div id="f12-console-popup">
+        <div id="f12-console-header">
+            <span>F12 Console</span>
+            <button id="f12-console-close-btn">&times;</button>
+        </div>
+        <div id="f12-console-content"></div>
+    </div>
+
+    <!-- Toggle Button (Terminal) -->
+    <button id="toggle-terminal-btn" title="Toggle Terminal">
+        <i class="fas fa-terminal"></i>
+    </button>
+
+    <!-- Toggle Button (F12 Console) -->
+    <button id="toggle-f12-console-btn" title="Toggle F12 Console">
+        <i class="fas fa-bug"></i>
+    </button>    <!-- xterm.js Terminal Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.1.0/lib/xterm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-search@0.11.0/lib/xterm-addon-search.min.js"></script>
+    
+    <!-- ImpressionCore Debug Terminal and Console Script -->
+    <script src="{{ url_for('static', filename='js/debug-terminal.js') }}"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

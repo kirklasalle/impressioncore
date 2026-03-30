@@ -1,0 +1,10 @@
+opencv-python
+comtypes
+wmi
+sounddevice
+numpy
+flask>=3.0.0
+pyttsx3
+python-dotenv
+openai
+requests

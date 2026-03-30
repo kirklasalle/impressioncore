@@ -1,0 +1,94 @@
+﻿
+# ImpressionCore Phase 3 Production Requirements
+# Created: October 5, 2025
+# Model: ImpressionCore-B3 "39M Parameter Foundation"
+# Python: 3.10.x (Required)
+# Status: Production Ready
+
+# ============================================================
+# CORE DEPENDENCIES - REQUIRED
+# ============================================================
+
+# PyTorch (CUDA 11.8) - Neural Network Framework
+torch==2.7.1+cu118
+torchaudio==2.7.1+cu118
+torchvision==0.22.1+cu118
+
+# Transformers - Hugging Face Models
+transformers==4.49.0
+
+# Sentence Transformers - Embedding Generation
+sentence-transformers==4.1.0
+
+# FAISS - Vector Similarity Search
+faiss-cpu==1.11.0
+# OR for GPU:
+# faiss-gpu==1.11.0
+
+# ============================================================
+# NUMERICAL & SCIENTIFIC COMPUTING
+# ============================================================
+
+# NumPy - Numerical Computing
+numpy==1.26.4
+
+# SciPy - Scientific Computing
+scipy==1.15.2
+
+# Scikit-learn - Machine Learning Utilities
+scikit-learn==1.6.1
+
+# Scikit-image - Image Processing
+scikit-image==0.25.2
+
+# ============================================================
+# UTILITIES
+# ============================================================
+
+# Pillow - Image Processing
+pillow==11.1.0
+
+# Requests - HTTP Library
+requests==2.32.3
+requests-toolbelt==1.0.0
+
+# TQDM - Progress Bars
+tqdm==4.67.1
+
+# PyYAML - YAML Configuration Files
+PyYAML==6.0.2
+
+# Python-dotenv - Environment Variables
+python-dotenv==1.0.1
+
+# ============================================================
+# INSTALLATION INSTRUCTIONS
+# ============================================================
+
+# 1. Create Python 3.10 virtual environment:
+#    python -m venv .venv310
+#
+# 2. Activate environment:
+#    Windows: .venv310\Scripts\Activate.ps1
+#    Linux/Mac: source .venv310/bin/activate
+#
+# 3. Install requirements:
+#    pip install -r requirements-phase3.txt
+#
+# 4. Verify installation:
+#    python -c "import torch; print(torch.__version__)"
+#    python -c "import transformers; print(transformers.__version__)"
+#    python -c "import faiss; print(faiss.__version__)"
+
+# ============================================================
+# NOTES
+# ============================================================
+
+# - CUDA 11.8 or higher required for GPU acceleration
+# - CPU-only mode supported but 10x slower
+# - Total installation size: ~2GB
+# - Installation time: 5-10 minutes
+# - F: drive required for models and embeddings
+# - 4GB VRAM minimum (GTX 1050 Ti validated)
+
+

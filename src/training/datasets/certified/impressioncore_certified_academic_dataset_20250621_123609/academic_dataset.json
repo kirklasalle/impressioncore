@@ -1,0 +1,812 @@
+[
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "arithmetic basics",
+    "title": "Mathematics: Arithmetic Basics",
+    "content": "Comprehensive educational content covering arithmetic basics for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 900,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "algebra fundamentals",
+    "title": "Mathematics: Algebra Fundamentals",
+    "content": "Comprehensive educational content covering algebra fundamentals for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 945,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "geometry introduction",
+    "title": "Mathematics: Geometry Introduction",
+    "content": "Comprehensive educational content covering geometry introduction for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 960,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "statistics basics",
+    "title": "Mathematics: Statistics Basics",
+    "content": "Comprehensive educational content covering statistics basics for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 900,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "probability introduction",
+    "title": "Mathematics: Probability Introduction",
+    "content": "Comprehensive educational content covering probability introduction for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1005,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "calculus preparation",
+    "title": "Mathematics: Calculus Preparation",
+    "content": "Comprehensive educational content covering calculus preparation for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 945,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "number theory",
+    "title": "Mathematics: Number Theory",
+    "content": "Comprehensive educational content covering number theory for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 840,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "mathematical reasoning",
+    "title": "Mathematics: Mathematical Reasoning",
+    "content": "Comprehensive educational content covering mathematical reasoning for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 975,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "Khan Academy",
+    "domain": "mathematics",
+    "grade_level": "K-12",
+    "topic": "problem solving strategies",
+    "title": "Mathematics: Problem Solving Strategies",
+    "content": "Comprehensive educational content covering problem solving strategies for K-12 students. This includes interactive exercises, step-by-step explanations, practice problems, and real-world applications to build mathematical understanding and problem-solving skills.",
+    "educational_value": 8.5,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1035,
+    "metadata": {
+      "common_core_aligned": true,
+      "interactive": true,
+      "grade_range": "K-12",
+      "difficulty": "progressive"
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "physics basics",
+    "title": "Science: Physics Basics",
+    "content": "In-depth educational material covering physics basics designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 954,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "chemistry introduction",
+    "title": "Science: Chemistry Introduction",
+    "content": "In-depth educational material covering chemistry introduction designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1098,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "biology fundamentals",
+    "title": "Science: Biology Fundamentals",
+    "content": "In-depth educational material covering biology fundamentals designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1062,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "earth science",
+    "title": "Science: Earth Science",
+    "content": "In-depth educational material covering earth science designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 936,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "environmental science",
+    "title": "Science: Environmental Science",
+    "content": "In-depth educational material covering environmental science designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1080,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "scientific method",
+    "title": "Science: Scientific Method",
+    "content": "In-depth educational material covering scientific method designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1008,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "laboratory safety",
+    "title": "Science: Laboratory Safety",
+    "content": "In-depth educational material covering laboratory safety designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1008,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "data analysis",
+    "title": "Science: Data Analysis",
+    "content": "In-depth educational material covering data analysis designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 936,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare K-12",
+    "domain": "science",
+    "grade_level": "K-12",
+    "topic": "scientific inquiry",
+    "title": "Science: Scientific Inquiry",
+    "content": "In-depth educational material covering scientific inquiry designed for K-12 students. Includes hands-on experiments, theoretical foundations, practical applications, and connections to real-world phenomena to develop scientific literacy and critical thinking skills.",
+    "educational_value": 8.2,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1026,
+    "metadata": {
+      "ngss_aligned": true,
+      "hands_on": true,
+      "grade_range": "K-12",
+      "laboratory_component": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "reading comprehension",
+    "title": "Language Arts: Reading Comprehension",
+    "content": "Comprehensive language arts curriculum covering reading comprehension for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1104,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "writing fundamentals",
+    "title": "Language Arts: Writing Fundamentals",
+    "content": "Comprehensive language arts curriculum covering writing fundamentals for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1088,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "grammar essentials",
+    "title": "Language Arts: Grammar Essentials",
+    "content": "Comprehensive language arts curriculum covering grammar essentials for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1056,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "vocabulary development",
+    "title": "Language Arts: Vocabulary Development",
+    "content": "Comprehensive language arts curriculum covering vocabulary development for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1120,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "literature analysis",
+    "title": "Language Arts: Literature Analysis",
+    "content": "Comprehensive language arts curriculum covering literature analysis for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1072,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "public speaking",
+    "title": "Language Arts: Public Speaking",
+    "content": "Comprehensive language arts curriculum covering public speaking for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1008,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "research skills",
+    "title": "Language Arts: Research Skills",
+    "content": "Comprehensive language arts curriculum covering research skills for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1008,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "critical reading",
+    "title": "Language Arts: Critical Reading",
+    "content": "Comprehensive language arts curriculum covering critical reading for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1024,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "Educational Resources",
+    "domain": "language_arts",
+    "grade_level": "K-12",
+    "topic": "creative writing",
+    "title": "Language Arts: Creative Writing",
+    "content": "Comprehensive language arts curriculum covering creative writing for K-12 education. Features progressive skill development, authentic texts, multimedia resources, and assessment tools to build strong communication and analytical skills across all grade levels.",
+    "educational_value": 8.7,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1024,
+    "metadata": {
+      "common_core_aligned": true,
+      "multimedia": true,
+      "grade_range": "K-12",
+      "assessment_included": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "calculus I",
+    "title": "College STEM: Calculus I",
+    "content": "University-level educational content for calculus I designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1122,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "general chemistry",
+    "title": "College STEM: General Chemistry",
+    "content": "University-level educational content for general chemistry designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1276,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "introduction to programming",
+    "title": "College STEM: Introduction To Programming",
+    "content": "University-level educational content for introduction to programming designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1496,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "physics mechanics",
+    "title": "College STEM: Physics Mechanics",
+    "content": "University-level educational content for physics mechanics designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1276,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "statistics fundamentals",
+    "title": "College STEM: Statistics Fundamentals",
+    "content": "University-level educational content for statistics fundamentals designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1408,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "linear algebra introduction",
+    "title": "College STEM: Linear Algebra Introduction",
+    "content": "University-level educational content for linear algebra introduction designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1496,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "computer science principles",
+    "title": "College STEM: Computer Science Principles",
+    "content": "University-level educational content for computer science principles designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1496,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "engineering fundamentals",
+    "title": "College STEM: Engineering Fundamentals",
+    "content": "University-level educational content for engineering fundamentals designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1430,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "MIT OpenCourseWare",
+    "domain": "STEM",
+    "grade_level": "college_freshman",
+    "topic": "research methods",
+    "title": "College STEM: Research Methods",
+    "content": "University-level educational content for research methods designed for first-year college students. Includes rigorous mathematical foundations, practical applications, problem-solving strategies, and preparation for advanced coursework in STEM fields.",
+    "educational_value": 9.1,
+    "license_type": "CC BY-NC-SA",
+    "license_compliant": true,
+    "word_count": 1254,
+    "metadata": {
+      "university_level": true,
+      "prerequisite_knowledge": "high_school_completion",
+      "credit_bearing": true,
+      "assessment_rigorous": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "composition and rhetoric",
+    "title": "Liberal Arts: Composition And Rhetoric",
+    "content": "First-year college curriculum for composition and rhetoric emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1160,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "world history survey",
+    "title": "Liberal Arts: World History Survey",
+    "content": "First-year college curriculum for world history survey emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1080,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "introduction to psychology",
+    "title": "Liberal Arts: Introduction To Psychology",
+    "content": "First-year college curriculum for introduction to psychology emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1200,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "sociology fundamentals",
+    "title": "Liberal Arts: Sociology Fundamentals",
+    "content": "First-year college curriculum for sociology fundamentals emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1120,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "philosophy introduction",
+    "title": "Liberal Arts: Philosophy Introduction",
+    "content": "First-year college curriculum for philosophy introduction emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1140,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "art history basics",
+    "title": "Liberal Arts: Art History Basics",
+    "content": "First-year college curriculum for art history basics emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1040,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "foreign language fundamentals",
+    "title": "Liberal Arts: Foreign Language Fundamentals",
+    "content": "First-year college curriculum for foreign language fundamentals emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1260,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "economics principles",
+    "title": "Liberal Arts: Economics Principles",
+    "content": "First-year college curriculum for economics principles emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1080,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  },
+  {
+    "source": "Academic Consortium",
+    "domain": "liberal_arts",
+    "grade_level": "college_freshman",
+    "topic": "political science intro",
+    "title": "Liberal Arts: Political Science Intro",
+    "content": "First-year college curriculum for political science intro emphasizing critical thinking, cultural awareness, and analytical skills. Content includes primary sources, scholarly analysis, discussion frameworks, and writing assignments to develop well-rounded academic capabilities.",
+    "educational_value": 8.8,
+    "license_type": "Educational Use",
+    "license_compliant": true,
+    "word_count": 1140,
+    "metadata": {
+      "university_level": true,
+      "critical_thinking_focus": true,
+      "writing_intensive": true,
+      "cultural_awareness": true
+    }
+  }
+]

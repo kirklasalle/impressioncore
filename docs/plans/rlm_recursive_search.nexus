@@ -1,0 +1,20 @@
+;; rlm_recursive_search.nexus
+;;
+;; Example RLM plan demonstrating recursive search through large documents
+;; 
+;; Usage: (EXECUTE-PLAN "rlm_recursive_search")
+;; Prerequisite: Load context and set search_term variable
+
+;; Define a simple search workflow
+(LOG "RLM Recursive Search Plan")
+
+;; Check recursion depth (safety measure)
+(IF (> (RECURSION-DEPTH) 15)
+    (LOG "WARNING: Approaching max recursion depth")
+    (LOG "Recursion depth OK"))
+
+;; List currently loaded contexts
+(CONTEXT-LIST)
+
+;; Get RLM statistics
+(RLM-STATS)

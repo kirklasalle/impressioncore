@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "created_directories": 29,
+  "populated_directories": 7,
+  "total_critical_directories": 29,
+  "errors": [],
+  "summary": {
+    "processed_data_dirs": 5,
+    "multimodal_dirs": 4,
+    "embedding_dirs": 6,
+    "training_dirs": 5,
+    "system_dirs": 6,
+    "integration_dirs": 3
+  }
+}

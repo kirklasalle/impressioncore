@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Login - ImpressionCore{% endblock %}
+
+{% block content %}
+<style>
+    .blur-bg {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 0;
+        background: url('/static/images/login-bg.jpg') no-repeat center center;
+        background-size: cover;
+        filter: blur(8px);
+        width: 100vw;
+        height: 100vh;
+    }
+    .content-overlay {
+        position: relative;
+        z-index: 1;
+        /* Optional: add some background and padding for the form */
+        background: rgba(255,255,255,0.85);
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 400px;
+        margin: 5vh auto;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.15);
+    }
+    body, html {
+        height: 100%;
+    }
+</style>
+<div class="blur-bg"></div>
+<div class="content-overlay">
+    <div class="section-subtitle text-center mb-4">Login to ImpressionCore</div>
+      <form id="loginForm" method="POST" action="{{ url_for('web.login') }}">
+        {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <div class="form-group mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-sign-in-alt"></i>
+            Login
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    try {        const response = await fetch('{{ url_for("web.login") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: formData.get('username'),
+                password: formData.get('password'),
+                remember: formData.get('remember') === 'on'
+            })
+        });
+        
+        if (response.ok) {            window.location.href = '{{ url_for("web.home") }}';
+        } else {
+            const data = await response.json();
+            // Show error message
+            const error = document.createElement('div');
+            error.className = 'alert alert-danger';
+            error.textContent = data.error || 'Login failed';
+            e.target.insertBefore(error, e.target.firstChild);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+    }
+});
+</script>
+
+<style>
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 2rem);
+    padding: 1rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+</style>
+{% endblock %}

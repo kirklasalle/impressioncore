@@ -1,0 +1,1661 @@
+{
+  "device": {
+    "name": "NVIDIA GeForce GTX 1050 Ti",
+    "type": "cuda",
+    "memory": {
+      "total_gb": 3.999755859375,
+      "name": "NVIDIA GeForce GTX 1050 Ti"
+    }
+  },
+  "timestamp": "2025-04-16 12:45:40",
+  "context_windows": {
+    "1024": {
+      "with_checkpointing": {
+        "seq_len": 1024,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 1.018206278483073,
+          "tokens_per_second": 1005690.1255073368,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 22.18310546875,
+                "reserved_mb": 26.0,
+                "peak_mb": 22.18310546875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 22.18310546875,
+                "reserved_mb": 26.0,
+                "peak_mb": 23.197265625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 22.18310546875,
+            "max_reserved_mb": 26.0,
+            "max_peak_mb": 23.197265625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 5.254983901977539,
+          "tokens_per_second": 194862.63309287236,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 30.30908203125,
+                "reserved_mb": 46.0,
+                "peak_mb": 30.30908203125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 30.30908203125,
+                "reserved_mb": 50.0,
+                "peak_mb": 44.35546875,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 30.30908203125,
+            "max_reserved_mb": 50.0,
+            "max_peak_mb": 44.35546875,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.3235340118408203,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 30.3095703125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3095703125,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3095703125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3095703125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.30803680419921875,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 30.3115234375,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3115234375,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3115234375,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3115234375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.23603439331054688,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 30.3173828125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3173828125,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3173828125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3173828125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.7755756378173828,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 30.32763671875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.32568359375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 30.32763671875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.32568359375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.27179718017578125,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 30.328125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.328125,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 30.328125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.328125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": {
+        "seq_len": 1024,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": false,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 0.8004506429036459,
+          "tokens_per_second": 1279279.3772835582,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 30.30810546875,
+                "reserved_mb": 46.0,
+                "peak_mb": 30.30810546875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 30.30810546875,
+                "reserved_mb": 46.0,
+                "peak_mb": 31.322265625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 30.30810546875,
+            "max_reserved_mb": 46.0,
+            "max_peak_mb": 31.322265625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 3.325780232747396,
+          "tokens_per_second": 307897.6746320015,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 30.30908203125,
+                "reserved_mb": 46.0,
+                "peak_mb": 30.30908203125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 30.30908203125,
+                "reserved_mb": 50.0,
+                "peak_mb": 44.35546875,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 30.30908203125,
+            "max_reserved_mb": 50.0,
+            "max_peak_mb": 44.35546875,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.21719932556152344,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 30.3095703125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3095703125,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3095703125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3095703125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.21266937255859375,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 30.3115234375,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3115234375,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3115234375,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3115234375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.15473365783691406,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 30.3173828125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.3173828125,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 30.3173828125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.3173828125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.6668567657470703,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 30.32763671875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.32568359375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 30.32763671875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.32568359375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.22983551025390625,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 30.328125,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 31.328125,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 30.328125,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 31.328125,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      }
+    },
+    "4096": {
+      "with_checkpointing": {
+        "seq_len": 4096,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 0.8027553558349609,
+          "tokens_per_second": 5102426.25007425,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 36.31982421875,
+                "reserved_mb": 46.0,
+                "peak_mb": 36.31982421875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 36.31982421875,
+                "reserved_mb": 46.0,
+                "peak_mb": 37.333984375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 36.31982421875,
+            "max_reserved_mb": 46.0,
+            "max_peak_mb": 37.333984375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 5.475838979085286,
+          "tokens_per_second": 748013.2296885432,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 36.32080078125,
+                "reserved_mb": 46.0,
+                "peak_mb": 36.32080078125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 36.32080078125,
+                "reserved_mb": 70.0,
+                "peak_mb": 56.3671875,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 36.32080078125,
+            "max_reserved_mb": 70.0,
+            "max_peak_mb": 56.3671875,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.26679039001464844,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 36.3212890625,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3212890625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3212890625,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3212890625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.217437744140625,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 36.3232421875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3232421875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3232421875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3232421875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.18143653869628906,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 36.3291015625,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3291015625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3291015625,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3291015625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.7522106170654297,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 36.33935546875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.33740234375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 36.33935546875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.33740234375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.19979476928710938,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 36.33984375,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.33984375,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 36.33984375,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.33984375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": {
+        "seq_len": 4096,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": false,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 0.7968743642171224,
+          "tokens_per_second": 5140082.53236262,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 36.31982421875,
+                "reserved_mb": 46.0,
+                "peak_mb": 36.31982421875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 36.31982421875,
+                "reserved_mb": 46.0,
+                "peak_mb": 37.333984375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 36.31982421875,
+            "max_reserved_mb": 46.0,
+            "max_peak_mb": 37.333984375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 4.465818405151367,
+          "tokens_per_second": 917189.108109551,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 36.32080078125,
+                "reserved_mb": 46.0,
+                "peak_mb": 36.32080078125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 36.32080078125,
+                "reserved_mb": 70.0,
+                "peak_mb": 56.3671875,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 36.32080078125,
+            "max_reserved_mb": 70.0,
+            "max_peak_mb": 56.3671875,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.3247261047363281,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 36.3212890625,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3212890625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3212890625,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3212890625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.255584716796875,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 36.3232421875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3232421875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3232421875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3232421875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.17309188842773438,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 36.3291015625,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.3291015625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 36.3291015625,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.3291015625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.6761550903320312,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 36.33935546875,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.33740234375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 36.33935546875,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.33740234375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.47206878662109375,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 36.33984375,
+                  "reserved_mb": 46.0,
+                  "peak_mb": 37.33984375,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 36.33984375,
+              "max_reserved_mb": 46.0,
+              "max_peak_mb": 37.33984375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      }
+    },
+    "8192": {
+      "with_checkpointing": {
+        "seq_len": 8192,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 0.7553895314534506,
+          "tokens_per_second": 10844735.939400315,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 44.33544921875,
+                "reserved_mb": 62.0,
+                "peak_mb": 44.33544921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 44.33544921875,
+                "reserved_mb": 62.0,
+                "peak_mb": 45.349609375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 44.33544921875,
+            "max_reserved_mb": 62.0,
+            "max_peak_mb": 45.349609375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 5.0648848215738935,
+          "tokens_per_second": 1617410.9162573942,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 44.33642578125,
+                "reserved_mb": 62.0,
+                "peak_mb": 44.33642578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 44.33642578125,
+                "reserved_mb": 82.0,
+                "peak_mb": 72.3828125,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 44.33642578125,
+            "max_reserved_mb": 82.0,
+            "max_peak_mb": 72.3828125,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.4172325134277344,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 44.3369140625,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3369140625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3369140625,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3369140625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.21839141845703125,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 44.3388671875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3388671875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3388671875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3388671875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.15664100646972656,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 44.3447265625,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3447265625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3447265625,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3447265625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.6623268127441406,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 44.35498046875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.35302734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 44.35498046875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.35302734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.19288063049316406,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 44.35546875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.35546875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 44.35546875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.35546875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": {
+        "seq_len": 8192,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": false,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 0.9570121765136719,
+          "tokens_per_second": 8559974.680617837,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 44.33544921875,
+                "reserved_mb": 62.0,
+                "peak_mb": 44.33544921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 44.33544921875,
+                "reserved_mb": 62.0,
+                "peak_mb": 45.349609375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 44.33544921875,
+            "max_reserved_mb": 62.0,
+            "max_peak_mb": 45.349609375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 3.7932395935058594,
+          "tokens_per_second": 2159631.575612822,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 44.33642578125,
+                "reserved_mb": 62.0,
+                "peak_mb": 44.33642578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 44.33642578125,
+                "reserved_mb": 82.0,
+                "peak_mb": 72.3828125,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 44.33642578125,
+            "max_reserved_mb": 82.0,
+            "max_peak_mb": 72.3828125,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 0.4763603210449219,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 44.3369140625,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3369140625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3369140625,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3369140625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.2810955047607422,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 44.3388671875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3388671875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3388671875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3388671875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.21076202392578125,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 44.3447265625,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.3447265625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 44.3447265625,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.3447265625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.8893013000488281,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 44.35498046875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.35302734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 44.35498046875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.35302734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.17333030700683594,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 44.35546875,
+                  "reserved_mb": 62.0,
+                  "peak_mb": 45.35546875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 44.35546875,
+              "max_reserved_mb": 62.0,
+              "max_peak_mb": 45.35546875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      }
+    },
+    "16384": {
+      "with_checkpointing": {
+        "seq_len": 16384,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 1.1987686157226562,
+          "tokens_per_second": 13667358.141607001,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 60.36669921875,
+                "reserved_mb": 78.0,
+                "peak_mb": 60.36669921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 60.36669921875,
+                "reserved_mb": 78.0,
+                "peak_mb": 61.380859375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 60.36669921875,
+            "max_reserved_mb": 78.0,
+            "max_peak_mb": 61.380859375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 9.60230827331543,
+          "tokens_per_second": 1706256.4056114214,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 60.36767578125,
+                "reserved_mb": 78.0,
+                "peak_mb": 60.36767578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 60.36767578125,
+                "reserved_mb": 114.0,
+                "peak_mb": 104.4140625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 60.36767578125,
+            "max_reserved_mb": 114.0,
+            "max_peak_mb": 104.4140625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 1.7142295837402344,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 60.3681640625,
+                  "reserved_mb": 78.0,
+                  "peak_mb": 61.3681640625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 60.3681640625,
+              "max_reserved_mb": 78.0,
+              "max_peak_mb": 61.3681640625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.3533363342285156,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 60.3701171875,
+                  "reserved_mb": 78.0,
+                  "peak_mb": 61.3701171875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 60.3701171875,
+              "max_reserved_mb": 78.0,
+              "max_peak_mb": 61.3701171875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.6842613220214844,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 60.3759765625,
+                  "reserved_mb": 78.0,
+                  "peak_mb": 61.3759765625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 60.3759765625,
+              "max_reserved_mb": 78.0,
+              "max_peak_mb": 61.3759765625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.7848739624023438,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 60.38623046875,
+                  "reserved_mb": 78.0,
+                  "peak_mb": 61.38427734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 60.38623046875,
+              "max_reserved_mb": 78.0,
+              "max_peak_mb": 61.38427734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.3361701965332031,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 60.38671875,
+                  "reserved_mb": 78.0,
+                  "peak_mb": 61.38671875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 60.38671875,
+              "max_reserved_mb": 78.0,
+              "max_peak_mb": 61.38671875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": null
+    },
+    "32768": {
+      "with_checkpointing": {
+        "seq_len": 32768,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 15.85078239440918,
+          "tokens_per_second": 2067279.6575365132,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 92.42919921875,
+                "reserved_mb": 110.0,
+                "peak_mb": 92.42919921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 92.42919921875,
+                "reserved_mb": 110.0,
+                "peak_mb": 93.443359375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 92.42919921875,
+            "max_reserved_mb": 110.0,
+            "max_peak_mb": 93.443359375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 5.73269526163737,
+          "tokens_per_second": 5715984.978179499,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 92.43017578125,
+                "reserved_mb": 110.0,
+                "peak_mb": 92.43017578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 92.43017578125,
+                "reserved_mb": 178.0,
+                "peak_mb": 168.4765625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 92.43017578125,
+            "max_reserved_mb": 178.0,
+            "max_peak_mb": 168.4765625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 1.0368824005126953,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 92.4306640625,
+                  "reserved_mb": 110.0,
+                  "peak_mb": 93.4306640625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 92.4306640625,
+              "max_reserved_mb": 110.0,
+              "max_peak_mb": 93.4306640625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.2598762512207031,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 92.4326171875,
+                  "reserved_mb": 110.0,
+                  "peak_mb": 93.4326171875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 92.4326171875,
+              "max_reserved_mb": 110.0,
+              "max_peak_mb": 93.4326171875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.1761913299560547,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 92.4384765625,
+                  "reserved_mb": 110.0,
+                  "peak_mb": 93.4384765625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 92.4384765625,
+              "max_reserved_mb": 110.0,
+              "max_peak_mb": 93.4384765625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.6914138793945312,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 92.44873046875,
+                  "reserved_mb": 110.0,
+                  "peak_mb": 93.44677734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 92.44873046875,
+              "max_reserved_mb": 110.0,
+              "max_peak_mb": 93.44677734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.16021728515625,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 92.44921875,
+                  "reserved_mb": 110.0,
+                  "peak_mb": 93.44921875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 92.44921875,
+              "max_reserved_mb": 110.0,
+              "max_peak_mb": 93.44921875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": null
+    },
+    "65536": {
+      "with_checkpointing": {
+        "seq_len": 65536,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 1.8296241760253906,
+          "tokens_per_second": 35819378.02241334,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 156.55419921875,
+                "reserved_mb": 174.0,
+                "peak_mb": 156.55419921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 156.55419921875,
+                "reserved_mb": 174.0,
+                "peak_mb": 157.568359375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 156.55419921875,
+            "max_reserved_mb": 174.0,
+            "max_peak_mb": 157.568359375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 7.4977874755859375,
+          "tokens_per_second": 8740711.871788349,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 156.55517578125,
+                "reserved_mb": 174.0,
+                "peak_mb": 156.55517578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 156.55517578125,
+                "reserved_mb": 306.0,
+                "peak_mb": 296.6015625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 156.55517578125,
+            "max_reserved_mb": 306.0,
+            "max_peak_mb": 296.6015625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 1.641988754272461,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 156.5556640625,
+                  "reserved_mb": 174.0,
+                  "peak_mb": 157.5556640625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 156.5556640625,
+              "max_reserved_mb": 174.0,
+              "max_peak_mb": 157.5556640625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.3960132598876953,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 156.5576171875,
+                  "reserved_mb": 174.0,
+                  "peak_mb": 157.5576171875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 156.5576171875,
+              "max_reserved_mb": 174.0,
+              "max_peak_mb": 157.5576171875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.23031234741210938,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 156.5634765625,
+                  "reserved_mb": 174.0,
+                  "peak_mb": 157.5634765625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 156.5634765625,
+              "max_reserved_mb": 174.0,
+              "max_peak_mb": 157.5634765625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.8654594421386719,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 156.57373046875,
+                  "reserved_mb": 174.0,
+                  "peak_mb": 157.57177734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 156.57373046875,
+              "max_reserved_mb": 174.0,
+              "max_peak_mb": 157.57177734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.18858909606933594,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 156.57421875,
+                  "reserved_mb": 174.0,
+                  "peak_mb": 157.57421875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 156.57421875,
+              "max_reserved_mb": 174.0,
+              "max_peak_mb": 157.57421875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": null
+    },
+    "131072": {
+      "with_checkpointing": {
+        "seq_len": 131072,
+        "batch_size": 1,
+        "device": "cuda",
+        "use_checkpoint": true,
+        "use_flash_attention": true,
+        "forward": {
+          "forward_time_ms": 3.4926732381184897,
+          "tokens_per_second": 37527701.86729772,
+          "output_shape": [
+            1,
+            10
+          ],
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_forward",
+                "allocated_mb": 284.80419921875,
+                "reserved_mb": 302.0,
+                "peak_mb": 284.80419921875,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_forward",
+                "allocated_mb": 284.80419921875,
+                "reserved_mb": 302.0,
+                "peak_mb": 285.818359375,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 284.80419921875,
+            "max_reserved_mb": 302.0,
+            "max_peak_mb": 285.818359375,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "backward": {
+          "backward_time_ms": 11.236031850179037,
+          "tokens_per_second": 11665328.27137825,
+          "memory": {
+            "measurements": [
+              {
+                "label": "pre_backward",
+                "allocated_mb": 284.80517578125,
+                "reserved_mb": 302.0,
+                "peak_mb": 284.80517578125,
+                "used_since_start_mb": 0.0
+              },
+              {
+                "label": "post_backward",
+                "allocated_mb": 284.80517578125,
+                "reserved_mb": 562.0,
+                "peak_mb": 552.8515625,
+                "used_since_start_mb": 0.0
+              }
+            ],
+            "max_allocated_mb": 284.80517578125,
+            "max_reserved_mb": 562.0,
+            "max_peak_mb": 552.8515625,
+            "is_cuda": true,
+            "device": "cuda"
+          }
+        },
+        "components": {
+          "text_encoder": {
+            "time_ms": 3.030538558959961,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "text_encoder",
+                  "allocated_mb": 284.8056640625,
+                  "reserved_mb": 302.0,
+                  "peak_mb": 285.8056640625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 284.8056640625,
+              "max_reserved_mb": 302.0,
+              "max_peak_mb": 285.8056640625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "image_encoder": {
+            "time_ms": 0.22029876708984375,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "image_encoder",
+                  "allocated_mb": 284.8076171875,
+                  "reserved_mb": 302.0,
+                  "peak_mb": 285.8076171875,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 284.8076171875,
+              "max_reserved_mb": 302.0,
+              "max_peak_mb": 285.8076171875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "fusion_layer": {
+            "time_ms": 0.1614093780517578,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "fusion_layer",
+                  "allocated_mb": 284.8134765625,
+                  "reserved_mb": 302.0,
+                  "peak_mb": 285.8134765625,
+                  "used_since_start_mb": 0.001953125
+                }
+              ],
+              "max_allocated_mb": 284.8134765625,
+              "max_reserved_mb": 302.0,
+              "max_peak_mb": 285.8134765625,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "moe": {
+            "time_ms": 0.6351470947265625,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "moe",
+                  "allocated_mb": 284.82373046875,
+                  "reserved_mb": 302.0,
+                  "peak_mb": 285.82177734375,
+                  "used_since_start_mb": 0.01025390625
+                }
+              ],
+              "max_allocated_mb": 284.82373046875,
+              "max_reserved_mb": 302.0,
+              "max_peak_mb": 285.82177734375,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          },
+          "head": {
+            "time_ms": 0.13947486877441406,
+            "memory": {
+              "measurements": [
+                {
+                  "label": "head",
+                  "allocated_mb": 284.82421875,
+                  "reserved_mb": 302.0,
+                  "peak_mb": 285.82421875,
+                  "used_since_start_mb": 0.00048828125
+                }
+              ],
+              "max_allocated_mb": 284.82421875,
+              "max_reserved_mb": 302.0,
+              "max_peak_mb": 285.82421875,
+              "is_cuda": true,
+              "device": "cuda"
+            }
+          }
+        },
+        "success": true
+      },
+      "without_checkpointing": null
+    }
+  }
+}

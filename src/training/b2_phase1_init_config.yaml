@@ -1,0 +1,32 @@
+# B2 Phase 1 Initialization Training Config
+# Save as: b2_phase1_init_config.yaml
+
+embed_dim: 768
+vocab_size: 50257
+img_dim: 256
+audio_dim: 16000
+num_layers: 12
+num_heads: 12
+max_seq_len: 128000
+n_experts: 4
+vision_decoder_layers: 8
+vision_decoder_steps: 50
+audio_decoder_layers: 8
+audio_decoder_steps: 50
+sp_model_path: dummy.model
+vision_patch_dim: 768
+patch_size: 16
+num_sentiment_classes: 3
+num_intent_classes: 10
+audio_feat_dim: 768
+n_mels: 64
+sample_rate: 16000
+video_feat_dim: 768
+num_frames: 8
+video_mean: 0.5
+video_std: 0.5
+# Training
+batch_size: 2
+epochs: 50
+lr: 0.0002
+output_dir: checkpoints/b2_phase1_init

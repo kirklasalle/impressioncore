@@ -1,0 +1,14 @@
+{
+  "checkpoint": "F:\\models\\management\\training_sessions\\colossus\\20251024_192433_colossus_distilled.pt",
+  "num_prompts": 82,
+  "avg_l2": 0.5930980930968028,
+  "max_l2": 0.6347728371620178,
+  "max_prompt": "Summarize the key principles of responsible AI governance for small startups.",
+  "max_conf_checkpoint": 0.8377160635277776,
+  "max_conf_baseline": 0.6896269943997412,
+  "avg_confidence_delta": 0.14389884577291767,
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251020_120039_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251024_followup.json"
+  ]
+}

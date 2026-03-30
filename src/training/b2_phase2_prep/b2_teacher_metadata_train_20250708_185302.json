@@ -1,0 +1,219 @@
+{
+  "metadata": [
+    {
+      "sample_id": "prompt_000",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.494508",
+      "quality_score": 0.8324937224388123
+    },
+    {
+      "sample_id": "prompt_001",
+      "sequence_length": 10,
+      "timestamp": "2025-07-08T18:53:02.511342",
+      "quality_score": 0.8332302570343018
+    },
+    {
+      "sample_id": "prompt_002",
+      "sequence_length": 10,
+      "timestamp": "2025-07-08T18:53:02.522357",
+      "quality_score": 0.8331635594367981
+    },
+    {
+      "sample_id": "prompt_003",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.531873",
+      "quality_score": 0.832423746585846
+    },
+    {
+      "sample_id": "prompt_004",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.539349",
+      "quality_score": 0.8324190974235535
+    },
+    {
+      "sample_id": "prompt_005",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.551066",
+      "quality_score": 0.8324224352836609
+    },
+    {
+      "sample_id": "prompt_006",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.559152",
+      "quality_score": 0.832446813583374
+    },
+    {
+      "sample_id": "prompt_007",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.567937",
+      "quality_score": 0.8324360847473145
+    },
+    {
+      "sample_id": "prompt_008",
+      "sequence_length": 6,
+      "timestamp": "2025-07-08T18:53:02.577019",
+      "quality_score": 0.8338552713394165
+    },
+    {
+      "sample_id": "prompt_009",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.585625",
+      "quality_score": 0.8323633670806885
+    },
+    {
+      "sample_id": "prompt_010",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.594385",
+      "quality_score": 0.8324093818664551
+    },
+    {
+      "sample_id": "prompt_011",
+      "sequence_length": 9,
+      "timestamp": "2025-07-08T18:53:02.603103",
+      "quality_score": 0.8323528170585632
+    },
+    {
+      "sample_id": "prompt_012",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.612222",
+      "quality_score": 0.8323867321014404
+    },
+    {
+      "sample_id": "prompt_013",
+      "sequence_length": 10,
+      "timestamp": "2025-07-08T18:53:02.620163",
+      "quality_score": 0.8332616090774536
+    },
+    {
+      "sample_id": "prompt_014",
+      "sequence_length": 5,
+      "timestamp": "2025-07-08T18:53:02.630046",
+      "quality_score": 0.8353521823883057
+    },
+    {
+      "sample_id": "prompt_015",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.638149",
+      "quality_score": 0.8323944211006165
+    },
+    {
+      "sample_id": "prompt_016",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.647504",
+      "quality_score": 0.8323427438735962
+    },
+    {
+      "sample_id": "prompt_017",
+      "sequence_length": 9,
+      "timestamp": "2025-07-08T18:53:02.650532",
+      "quality_score": 0.8323693871498108
+    },
+    {
+      "sample_id": "prompt_018",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.663473",
+      "quality_score": 0.8323842883110046
+    },
+    {
+      "sample_id": "prompt_019",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.671336",
+      "quality_score": 0.8324048519134521
+    },
+    {
+      "sample_id": "prompt_020",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.681371",
+      "quality_score": 0.8324167132377625
+    },
+    {
+      "sample_id": "prompt_021",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.689001",
+      "quality_score": 0.8324393630027771
+    },
+    {
+      "sample_id": "prompt_022",
+      "sequence_length": 6,
+      "timestamp": "2025-07-08T18:53:02.698016",
+      "quality_score": 0.8337829113006592
+    },
+    {
+      "sample_id": "prompt_023",
+      "sequence_length": 6,
+      "timestamp": "2025-07-08T18:53:02.700706",
+      "quality_score": 0.8337143063545227
+    },
+    {
+      "sample_id": "prompt_024",
+      "sequence_length": 5,
+      "timestamp": "2025-07-08T18:53:02.713339",
+      "quality_score": 0.8353110551834106
+    },
+    {
+      "sample_id": "prompt_025",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.720339",
+      "quality_score": 0.8323704600334167
+    },
+    {
+      "sample_id": "prompt_026",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.729741",
+      "quality_score": 0.832451581954956
+    },
+    {
+      "sample_id": "prompt_027",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.737350",
+      "quality_score": 0.832430362701416
+    },
+    {
+      "sample_id": "prompt_028",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.747493",
+      "quality_score": 0.8324281573295593
+    },
+    {
+      "sample_id": "prompt_029",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.750528",
+      "quality_score": 0.8323623538017273
+    },
+    {
+      "sample_id": "prompt_030",
+      "sequence_length": 8,
+      "timestamp": "2025-07-08T18:53:02.763780",
+      "quality_score": 0.8323926329612732
+    },
+    {
+      "sample_id": "prompt_031",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.771152",
+      "quality_score": 0.8323894143104553
+    },
+    {
+      "sample_id": "prompt_032",
+      "sequence_length": 9,
+      "timestamp": "2025-07-08T18:53:02.781296",
+      "quality_score": 0.8323628902435303
+    },
+    {
+      "sample_id": "prompt_033",
+      "sequence_length": 7,
+      "timestamp": "2025-07-08T18:53:02.788193",
+      "quality_score": 0.8324795961380005
+    },
+    {
+      "sample_id": "prompt_034",
+      "sequence_length": 6,
+      "timestamp": "2025-07-08T18:53:02.798468",
+      "quality_score": 0.8338378667831421
+    }
+  ],
+  "config": {
+    "model_dim": 256,
+    "num_samples": 35,
+    "avg_quality": 0.8328023552894592
+  }
+}

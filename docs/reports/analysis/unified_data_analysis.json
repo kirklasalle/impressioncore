@@ -1,0 +1,50 @@
+{
+  "embeddings": {
+    "total_files": 15441,
+    "total_size_gb": 33.89999697264284,
+    "file_types": {
+      "*.npy": 15337,
+      "*.pt": 2,
+      "*.pth": 102
+    },
+    "available": true
+  },
+  "datasets": {
+    "total_files": 121,
+    "total_size_gb": 0.0011767130345106125,
+    "subdirectories": {
+      "raw": 16,
+      "processed": 102,
+      "splits": 3,
+      "metadata": 0
+    },
+    "available": true
+  },
+  "recommendations": [
+    "PASS: LAUNCH UNIFIED TRAINING: Both resources available",
+    "RECOMMENDED: Use train_unified_sweet_spot.py with full data integration",
+    "EXPECTED: Faster convergence, better quality",
+    "OPTIMIZATION: Implement data streaming for memory efficiency",
+    "OPTIMIZATION: Use batch loading with embedding cache",
+    "BOOST: Estimated performance boost: 2.1x",
+    "EXPECTED: Superior sweet spot validation"
+  ],
+  "constitutional_compliance": {
+    "concentrated_intelligence": {
+      "status": "COMPLIANT",
+      "reason": "Combined data: 33.90GB, 15562 files",
+      "recommendation": "Excellent data density for concentrated learning"
+    },
+    "consumer_hardware": {
+      "status": "COMPLIANT",
+      "reason": "Data size 33.90GB manageable for consumer hardware",
+      "recommendation": "Optimal for GTX 1050 Ti training"
+    },
+    "data_condensation": {
+      "status": "EXCELLENT",
+      "reason": "Pre-computed embeddings enable efficient training",
+      "recommendation": "Unified approach maximizes learning efficiency"
+    }
+  },
+  "timestamp": "2025-08-08T07:27:34.771405"
+}

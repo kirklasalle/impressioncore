@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-06-15T14:52:36.817240",
+  "error_message": "Performance monitoring failed: pynvml does not seem to be installed or it can't be imported.",
+  "exception_type": "Unknown",
+  "traceback": null,
+  "context": {},
+  "system_state": {
+    "timestamp": 1750013556.8172402,
+    "cpu_count": 4,
+    "memory_total": 34288791552,
+    "gpu_available": true,
+    "gpu_count": 1,
+    "python_version": "3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]",
+    "torch_version": "2.5.1+cu121"
+  },
+  "recovery_attempted": true,
+  "recovery_success": false
+}

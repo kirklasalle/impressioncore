@@ -1,0 +1,54 @@
+# ImpressionCore Pre-commit Configuration
+# Install: pip install pre-commit && pre-commit install
+
+repos:
+  # ── Code quality (ruff replaces flake8 + isort + black) ─────────────────
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.0
+    hooks:
+      - id: ruff
+        name: Ruff lint (auto-fix safe rules)
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff
+        name: Ruff gate (zero-tolerance — all rules enforced)
+        args: [--no-fix]
+      - id: ruff-format
+        name: Ruff format
+
+  # ── Standard pre-commit hooks ───────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # ── Project-specific hooks (migrated from src/.pre-commit-config.yaml) ──
+  - repo: local
+    hooks:
+      - id: ic-doc-header-standardize
+        name: ImpressionCore doc header standardization
+        entry: python src/dev_tools/standardize_doc_headers.py
+        language: system
+        files: ^docs/.*\.md$
+
+      - id: ic-doc-lint-fix
+        name: ImpressionCore conservative markdown lint fix
+        entry: python src/dev_tools/markdown_lint_fix.py --path docs --report docs/reports
+        language: system
+        pass_filenames: false
+        files: ^docs/.*\.md$
+
+      - id: ic-no-c-guard
+        name: "Enforce no C: paths and tempfile guard"
+        entry: python src/dev_tools/precommit/no_c_guard.py
+        language: system
+        pass_filenames: true
+        files: ^.*\.(py|ps1|psm1|bat|cmd)$

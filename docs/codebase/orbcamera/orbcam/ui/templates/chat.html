@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbOS - Intelligent Camera System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📷</span>
+                    <span class="logo-text">OrbOS</span>
+                </div>
+            </div>
+
+            <button class="new-chat-btn" onclick="startNewChat()">
+                <span>+</span> New Chat
+            </button>
+
+            <div class="sessions-list" id="sessionsList">
+                <!-- Sessions loaded dynamically -->
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-actions">
+                    <button class="action-btn" onclick="runDiagnostics()" title="Run System Diagnostics">
+                        🔍 Diagnostics
+                    </button>
+                    <button class="action-btn" onclick="downloadLogs()" title="Download Debug Logs">
+                        📋 Debug Logs
+                    </button>
+                    <button class="action-btn danger" onclick="shutdownServer()" title="Shutdown Server">
+                        ⏹️ Shutdown
+                    </button>
+                </div>
+                <div class="status-indicator" id="statusIndicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <h1 id="chatTitle">OrbOS Assistant</h1>
+                <div class="header-controls">
+                    <span class="provider-badge" id="providerBadge">No LLM</span>
+                </div>
+            </header>
+
+            <div class="messages-container" id="messagesContainer">
+                <div class="welcome-message" id="welcomeMessage">
+                    <div class="welcome-icon">🤖</div>
+                    <h2>Welcome to OrbOS</h2>
+                    <p>I am your intelligent camera assistant. Ask me anything about the camera system, or let me help
+                        you with surveillance tasks.</p>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="messageInput" placeholder="Message OrbOS..." rows="1"
+                        onkeydown="handleKeyDown(event)"></textarea>
+                    <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel - Video Feed -->
+        <aside class="video-panel">
+            <div class="panel-header">
+                <h3>📡 Live Feed</h3>
+                <div class="camera-selector">
+                    <button class="camera-tab active" data-type="none" onclick="switchCamera('none')">None</button>
+                    <button class="camera-tab" data-type="orbit" onclick="switchCamera('orbit')">Orbit</button>
+                    <button class="camera-tab" data-type="kinect" onclick="switchCamera('kinect')">Kinect</button>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <img id="videoFeed" src="/video_feed" alt="Live Camera Feed" onerror="handleVideoError()">
+                <div class="video-overlay" id="videoOverlay">
+                    <span>Select a Camera to Begin</span>
+                </div>
+                <button class="full-view-btn" id="fullViewBtn" onclick="toggleFullView()"
+                    title="Toggle Full View (1280x960)">
+                    ⛶ Full View
+                </button>
+            </div>
+
+            <!-- Orbit Controls -->
+            <div id="orbitControls" class="camera-controls" style="display: none;">
+                <div class="control-label">Digital PTZ Controls</div>
+                <div class="control-row">
+                    <button class="control-btn" onclick="moveCamera('up')">↑</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn" onclick="moveCamera('left')">←</button>
+                    <button class="control-btn center" onclick="resetCamera()">⊙</button>
+                    <button class="control-btn" onclick="moveCamera('right')">→</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn" onclick="moveCamera('down')">↓</button>
+                </div>
+            </div>
+
+            <!-- Kinect Controls -->
+            <div id="kinectControls" class="camera-controls" style="display: none;">
+                <div class="control-label">Hardware Tilt & Digital Pan</div>
+                <div class="control-row">
+                    <button class="control-btn hardware" onclick="moveCamera('up')" title="Hardware Tilt Up">↑</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn" onclick="moveCamera('left')" title="Digital Pan Left">←</button>
+                    <button class="control-btn center" onclick="resetCamera()" title="Reset All">⊙</button>
+                    <button class="control-btn" onclick="moveCamera('right')" title="Digital Pan Right">→</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn hardware" onclick="moveCamera('down')"
+                        title="Hardware Tilt Down">↓</button>
+                </div>
+                <div class="hardware-badge">HARDWARE MOTOR ACTIVE</div>
+
+                <div class="control-label" style="margin-top: 16px;">Sensor Modes</div>
+                <div class="control-row">
+                    <button class="mode-btn active" id="mode-color"
+                        onclick="setKinectFeature('mode', 'color')">RGB</button>
+                    <button class="mode-btn" id="mode-ir" onclick="setKinectFeature('mode', 'ir')">IR</button>
+                    <button class="mode-btn" id="mode-depth" onclick="setKinectFeature('mode', 'depth')">Depth</button>
+                </div>
+
+                <div class="control-label" style="margin-top: 16px;">Advanced Features</div>
+                <div class="control-row">
+                    <button class="mode-btn" id="skeleton-toggle" onclick="toggleKinectSkeleton()">Skeleton</button>
+                    <button class="mode-btn" id="near-mode-toggle" onclick="toggleKinectNearMode()">Near Mode</button>
+                </div>
+
+                <div class="kinect-extra-stats">
+                    <div class="stat"><i class="fas fa-microchip"></i> <span id="kinectStatusText">Tracking Ready</span>
+                    </div>
+                    <div class="stat"><i class="fas fa-compass"></i> Accel: <span id="accelValue">0, 0, 0</span></div>
+                </div>
+            </div>
+
+            <div class="video-settings-panel" id="videoSettingsPanel" style="display: none;">
+                <div class="control-label">Video Adjustments</div>
+
+                <div class="setting-item">
+                    <div class="setting-header">
+                        <span>Brightness</span>
+                        <span id="brightnessValue">50%</span>
+                    </div>
+                    <input type="range" id="brightnessSlider" min="0" max="1" step="0.01" value="0.5"
+                        oninput="updateVideoSetting('brightness', this.value)">
+                </div>
+
+                <div class="setting-item" style="margin-top: 12px;">
+                    <div class="setting-header">
+                        <span>Contrast</span>
+                        <span id="contrastValue">50%</span>
+                    </div>
+                    <input type="range" id="contrastSlider" min="0" max="1" step="0.01" value="0.5"
+                        oninput="updateVideoSetting('contrast', this.value)">
+                </div>
+            </div>
+
+            <div class="camera-stats" id="cameraStats">
+                <div class="stat">Pan: <span id="panValue">0</span></div>
+                <div class="stat">Tilt: <span id="tiltValue">0</span></div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>

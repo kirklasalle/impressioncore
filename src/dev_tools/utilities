@@ -1,0 +1,89 @@
+"""
+move_deprecated_and_legacy_files.py
+
+This script scans the ImpressionCore project for files labeled as deprecated, archived, or legacy, and moves them to the appropriate archive folders, preserving structure and ensuring no data loss.
+
+Encoding & Error Handling Policy:
+    - All file I/O uses UTF-8 encoding.
+    - If a UnicodeDecodeError or UnicodeEncodeError occurs, the error is logged with file path and error type.
+    - If errors='ignore' is used, a warning is logged that data loss is possible.
+    - All exceptions during file I/O are logged with full context for traceability.
+
+Usage:
+    python move_deprecated_and_legacy_files.py
+
+Author: GitHub Copilot
+Date: August 9, 2025
+"""
+import os
+import shutil
+import re
+
+# Define root directories
+ROOT = os.path.dirname(os.path.abspath(__file__))
+DOCS = os.path.join(ROOT, 'docs')
+SRC = os.path.join(ROOT, 'src')
+
+# Archive destinations
+DOCS_ARCHIVE = os.path.join(DOCS, 'archive')
+SRC_ARCHIVE = os.path.join(SRC, 'archive')
+
+# Patterns to match
+KEYWORDS = re.compile(r"deprecated|archive|legacy|superseded|obsolete", re.IGNORECASE)
+
+# File extensions to consider
+DOC_EXTS = {'.md', '.yaml', '.yml', '.html', '.css', '.py'}
+
+# Ensure archive folders exist
+os.makedirs(DOCS_ARCHIVE, exist_ok=True)
+os.makedirs(SRC_ARCHIVE, exist_ok=True)
+
+moved_files = []
+
+def should_archive(filepath):
+    # Only consider files with relevant extensions
+    if not any(filepath.endswith(ext) for ext in DOC_EXTS):
+        return False
+    # Check for keywords in filename or path
+    if KEYWORDS.search(os.path.basename(filepath)) or KEYWORDS.search(filepath):
+        return True
+    # Check for keywords in file content (first 2KB)
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            head = f.read(2048)
+            if KEYWORDS.search(head):
+                return True
+    except UnicodeDecodeError as ude:
+        print(f"[UNICODE ERROR] Could not decode file: {filepath} | {ude}")
+    except Exception as e:
+        print(f"[ERROR] Could not read file: {filepath} | {type(e).__name__}: {e}")
+    return False
+
+def archive_file(filepath, base_dir, archive_dir):
+    rel_path = os.path.relpath(filepath, base_dir)
+    dest_path = os.path.join(archive_dir, rel_path)
+    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+    try:
+        shutil.move(filepath, dest_path)
+        moved_files.append((filepath, dest_path))
+    except Exception as e:
+        print(f"[ERROR] Failed to move file: {filepath} -> {dest_path} | {type(e).__name__}: {e}")
+
+def scan_and_archive(base_dir, archive_dir):
+    for root, _, files in os.walk(base_dir):
+        for fname in files:
+            fpath = os.path.join(root, fname)
+            if should_archive(fpath):
+                archive_file(fpath, base_dir, archive_dir)
+
+def main():
+    print("Scanning and archiving deprecated/legacy files...")
+    scan_and_archive(DOCS, DOCS_ARCHIVE)
+    scan_and_archive(SRC, SRC_ARCHIVE)
+    print(f"Moved {len(moved_files)} files:")
+    for src, dst in moved_files:
+        print(f"  {src} -> {dst}")
+    print("Done.")
+
+if __name__ == "__main__":
+    main()

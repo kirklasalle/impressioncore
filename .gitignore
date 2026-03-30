@@ -1,0 +1,124 @@
+# ImpressionCore Git Ignore
+# Large model files and checkpoints
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+src/training/checkpoints/
+src/training/logs/
+src/training/models/
+src/data/embeddings/
+src/data/models/
+src/data/cache/
+src/user_data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.venv310/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.fake
+.env
+.env.*
+!.env.example
+
+# Security — never commit secrets or credentials
+*.pem
+*.key
+secrets/
+credentials/
+
+# Transient root directories (should not be tracked)
+cache/
+temp/
+test_outputs/
+logs/
+checkpoints/
+models/
+static/
+production_packages/
+rag_library/
+data/
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Ghost directories (recreated by VS Code / tooling)
+config/
+history/
+
+# Tool / agent caches
+.agent/
+.cache/
+.goliath_backups/
+.goliath_logs/
+.pytest_cache/
+.ruff_cache/
+
+# Node.js / JavaScript build artifacts
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Git history backups
+.git_old/
+
+# Virtual environments (all variants)
+.venv*/
+
+# Backup directories
+backup/
+backups/
+
+# Binary/compiled
+bin/
+
+# Large data and binary files (GitHub 100MB file limit)
+*.db
+*.zip
+*.exe
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.ndjson
+*.jsonl
+*.pdf
+*.pkl
+
+# Deployment packages (contain full project copies)
+src/deployment/
+
+# Large generated data/analysis files
+src/memlog/dataset_catalog_*.json
+src/memlog/dataset_to_embedding_*.ndjson
+src/memlog/b3_phase1b_analysis_data_*.json
+src/dev_tools/validation/f_drive_*.json
+docs/analysis_reports/comprehensive_model_analysis/f_drive_*
+docs/reports/f_drive_*

@@ -1,0 +1,28 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\impressioncore_b2\\src\\training\\checkpoints\\bulletproof_b1\\best_model.pt",
+    "filename": "best_model.pt",
+    "size_mb": 0.39,
+    "probe_loss": null,
+    "timestamp": 1749663609.080704
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\impressioncore_b2\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_10.pt",
+    "filename": "checkpoint_epoch_10.pt",
+    "size_mb": 0.39,
+    "probe_loss": null,
+    "timestamp": 1749663609.1136906
+  }
+]

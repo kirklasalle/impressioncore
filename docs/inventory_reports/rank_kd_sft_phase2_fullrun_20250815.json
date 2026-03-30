@@ -1,0 +1,54 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 175,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_175.pt",
+    "filename": "step_175.pt",
+    "size_mb": 3861.36,
+    "probe_loss": null,
+    "timestamp": 1755274672.9050305
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 350,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_350.pt",
+    "filename": "step_350.pt",
+    "size_mb": 3861.36,
+    "probe_loss": null,
+    "timestamp": 1755276682.593364
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 525,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_525.pt",
+    "filename": "step_525.pt",
+    "size_mb": 3861.36,
+    "probe_loss": null,
+    "timestamp": 1755278810.0934038
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 605,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_605.pt",
+    "filename": "step_605.pt",
+    "size_mb": 3861.36,
+    "probe_loss": null,
+    "timestamp": 1755279845.4942682
+  }
+]

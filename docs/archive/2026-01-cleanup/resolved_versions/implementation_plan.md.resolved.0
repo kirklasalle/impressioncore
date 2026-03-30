@@ -1,0 +1,58 @@
+# Goal Description
+Migrate the existing React-based User Interface ([App.jsx](file:///d:/Projects/impressioncore/src/interfaces/web_client/src/App.jsx)) to a high-performance, native desktop application using **Dear PyGui**. The new application will replicate the futuristic "Chat Interface", "Vision Controls", and "System Status" panels, while maintaining connection to the existing `triad_api` backend for logic and device control.
+
+# User Review Required
+> [!IMPORTANT]
+> **Architecture Decision**: The Dear PyGui application will act as a **Client**, connecting to the existing `triad_api` (FastAPI) running on `localhost:8000`. This ensures existing backend logic ([OrbCloudVision](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py#84-895), `UnifiedBrainTriad`) remains untouched and stable.
+>
+> **Video Streaming**: Video feeds will be consumed via the existing MJPEG stream (`/v1/vision/stream`) to avoid hardware conflict (as the backend "owns" the camera connection).
+
+# Proposed Changes
+
+## New Directory: `src/interfaces/dpg_client/`
+
+### [NEW] `src/interfaces/dpg_client/main.py`
+Entry point for the application. Sets up the DPG context, viewport, and main loop.
+
+### [NEW] `src/interfaces/dpg_client/ui/style.py`
+Defines the "ImpressionCore" theme:
+- Custom colors (`slate-900` equivalent, `cyan-400` accents).
+- Rounded styling (where supported) and font configuration.
+
+### [NEW] `src/interfaces/dpg_client/components/chat_panel.py`
+Replicates the Chat Interface:
+- Scrolling message history.
+- Input field with "Send" button.
+- Voice toggle button.
+
+### [NEW] `src/interfaces/dpg_client/components/vision_panel.py`
+Replicates Vision Controls & Telemetry:
+- **Video Display**: A DPG Image item updated 30fps from the backend stream.
+- **Controls**: Sliders for Brightness, Contrast, Saturation.
+- **Telemetry**: Real-time text/graphs for X/Y/Z tracking data.
+
+### [NEW] `src/interfaces/dpg_client/components/system_status.py`
+Replicates the System Status Overlay:
+- Health indicators (Green/Yellow/Red) for Vision, Intelligence, Sensory.
+- VRAM usage progress bar.
+
+### [NEW] `src/interfaces/dpg_client/async_utils.py`
+Helper for running async API calls (requests/axios equivalent) without blocking the DPG GUI thread.
+
+# Verification Plan
+
+## Automated Tests
+- None (GUI testing is manual).
+
+## Manual Verification
+1.  **Start Backend**: Run [src/interfaces/triad_api.py](file:///d:/Projects/impressioncore/src/interfaces/triad_api.py).
+2.  **Start Client**: Run `src/interfaces/dpg_client/main.py`.
+3.  **Verify UI**:
+    -   Check if the **Theme** matches the "tech/dark" aesthetic.
+    -   Confirm **System Status** loads and shows "Active"/"Nominal".
+4.  **Verify Chat**:
+    -   Type a message "Hello", ensure it appears in the chat log and receives a response from the backend.
+5.  **Verify Vision**:
+    -   Check if the **Video Feed** is visible and updating.
+    -   Adjust **Sliders** (Brightness) and verify the video feed changes.
+    -   Verify **Telemetry** numbers update when moving in front of the camera.

@@ -1,0 +1,98 @@
+# OrbCamera
+
+**Created:** March 06, 2025  
+**Updated:** December 29, 2025  
+**Author:** ImpressionCore Team  
+**Tags:** #docs\codebase\orbcamera\README.md #documentation  
+**Category:** Documentation  
+**Status:** Active
+**IDS Integration:** This document is indexed and searchable via the ImpressionCore Documentation System (IDS).
+
+---
+
+A modern, robust Python utility for controlling Logitech Orbit/Sphere cameras (and other UVC webcams) on Windows.
+
+## Features
+
+- **Robust Camera Control**: Wraps OpenCV VideoCapture with a clean, pythonic API.
+- **PTZ Support**: Exposes standard Pan, Tilt, and Zoom controls (via OpenCV `CAP_PROP` interfaces).
+- **Auto-Detection**: intelligent hardware detection using WMI to find Logitech cameras.
+- **Modern CLI**: simple command-line interface for listing, previewing, and capturing.
+- **DirectShow Integration**: Optimized for Windows DirectShow backend for better property access.
+
+## Installation
+
+Requires Python 3.8+.
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/orbcamera.git
+cd orbcamera
+
+# Install in editable mode
+pip install -e .
+```
+
+*Note: This package requires `opencv-contrib-python` (installed automatically) for best compatibility with camera properties on Windows.*
+
+## Usage
+
+### Command Line Interface
+
+```bash
+# List all available cameras
+orbcam list
+
+# Start preview with PTZ controls (Arrow keys to move)
+orbcam preview
+
+# Start preview for a specific camera index
+orbcam preview --index 0
+
+# Capture a single frame to a file
+orbcam capture my_photo.jpg
+```
+
+### Python API
+
+```python
+from orbcam import OrbCamera, CameraError
+
+try:
+    # Auto-detects the first Orbit camera, or falls back to index 0
+    with OrbCamera() as cam:
+        
+        # Set resolution
+        cam.set_resolution(1920, 1080)
+        
+        # Control PTZ (Values depend on camera driver, typically relative)
+        cam.pan = 10   # Pan right
+        cam.tilt = -5  # Tilt down
+        cam.zoom = 2   # Zoom in 2x
+        
+        # Image adjustments
+        cam.brightness = 150
+        cam.contrast = 20
+        
+        # Capture frame
+        frame = cam.read()
+        if frame is not None:
+            # Process frame with OpenCV
+            pass
+            
+except CameraError as e:
+    print(f"Camera error: {e}")
+```
+
+## Architecture
+
+The project is structured as a modern Python package:
+
+- `orbcam/camera.py`: Core `OrbCamera` class wrapping OpenCV.
+- `orbcam/cli.py`: Command-line interface logic.
+- `orbcam/logitech/devices.py`: Hardware discovery using Windows WMI.
+
+## Troubleshooting
+
+- **No Camera Found**: Ensure the camera is plugged in and drivers are installed. Run `orbcam list` to see what the system detects.
+- **Pan/Tilt Not Moving**: Some generic UVC drivers do not expose the PTZ properties to OpenCV. Ensure you have the manufacturer drivers installed if possible, though standard UVC drivers often work for basic movement.

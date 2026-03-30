@@ -1,0 +1,4089 @@
+{
+  "audit_timestamp": "2025-06-18T14:30:13.725817",
+  "d_drive_root": "D:\\Projects\\impressioncore",
+  "f_drive_root": "F:",
+  "directory_scans": [
+    {
+      "directory": "D:\\Projects\\impressioncore\\src\\training\\models",
+      "category": "trained_models",
+      "total_files": 226,
+      "real_data_files": 207,
+      "test_data_files": 19,
+      "total_size_bytes": 8182491783,
+      "real_data_size_bytes": 8167142796,
+      "files": [
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 58,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-02-27T13:33:17.489321"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoint_adapter.py",
+          "name": "checkpoint_adapter.py",
+          "size_bytes": 38152,
+          "size_mb": 0.04,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.715624"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion.py",
+          "name": "diffusion.py",
+          "size_bytes": 54418,
+          "size_mb": 0.05,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:19.215362"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion_layer.py",
+          "name": "diffusion_layer.py",
+          "size_bytes": 31247,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.782613"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion_model.py",
+          "name": "diffusion_model.py",
+          "size_bytes": 29241,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:19.561767"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion_transformer.py",
+          "name": "diffusion_transformer.py",
+          "size_bytes": 19264,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.818472"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\dual_shadow.py",
+          "name": "dual_shadow.py",
+          "size_bytes": 17706,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.824501"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\experience_replay.py",
+          "name": "experience_replay.py",
+          "size_bytes": 11971,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.849007"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore_basic.py",
+          "name": "impressioncore_basic.py",
+          "size_bytes": 12659,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-18T10:15:59.648405"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\latent_diffusion_transformer.py",
+          "name": "latent_diffusion_transformer.py",
+          "size_bytes": 31271,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-27T10:29:33.515728"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora.py",
+          "name": "lora.py",
+          "size_bytes": 62579,
+          "size_mb": 0.06,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-09T10:29:14.083284"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\memory_controller.py",
+          "name": "memory_controller.py",
+          "size_bytes": 17574,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-02T09:44:58.296834"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\memory_optimization.py",
+          "name": "memory_optimization.py",
+          "size_bytes": 41335,
+          "size_mb": 0.04,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.927620"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\memory_optimizations.py",
+          "name": "memory_optimizations.py",
+          "size_bytes": 20870,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.932587"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\model-requirements.txt",
+          "name": "model-requirements.txt",
+          "size_bytes": 272,
+          "size_mb": 0.0,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-29T18:06:42.434927"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\model.py",
+          "name": "model.py",
+          "size_bytes": 13376,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.981481"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\model_example.py",
+          "name": "model_example.py",
+          "size_bytes": 8437,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": false,
+          "last_modified": "2025-05-24T13:15:05.982550"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\model_store.py",
+          "name": "model_store.py",
+          "size_bytes": 8180,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T16:58:17.185455"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\moe.py",
+          "name": "moe.py",
+          "size_bytes": 28072,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.009280"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\optimizer.py",
+          "name": "optimizer.py",
+          "size_bytes": 10208,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T14:56:17.196914"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\processors.py",
+          "name": "processors.py",
+          "size_bytes": 16515,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:20.069680"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\safe_loading.py",
+          "name": "safe_loading.py",
+          "size_bytes": 9456,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.035308"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trainer.py",
+          "name": "trainer.py",
+          "size_bytes": 27510,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:08.360566"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\transformer.py",
+          "name": "transformer.py",
+          "size_bytes": 25937,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T11:28:28.713277"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\transformer_layer.py",
+          "name": "transformer_layer.py",
+          "size_bytes": 3768,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.175722"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\vae_encoder.py",
+          "name": "vae_encoder.py",
+          "size_bytes": 9492,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.182920"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 2433,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T16:39:20.289593"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__init__.py.backup",
+          "name": "__init__.py.backup",
+          "size_bytes": 1631,
+          "size_mb": 0.0,
+          "extension": ".backup",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.656961"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 1269,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:37:29.659342"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\avt1_model.py",
+          "name": "avt1_model.py",
+          "size_bytes": 7328,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:34:22.053476"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 879,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:29:29.341709"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\__pycache__\\avt1_model.cpython-310.pyc",
+          "name": "avt1_model.cpython-310.pyc",
+          "size_bytes": 6768,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.403223"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\__pycache__\\avt1_model.cpython-313.pyc",
+          "name": "avt1_model.cpython-313.pyc",
+          "size_bytes": 8220,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.033452"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 830,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.403223"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\avt1\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 844,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.019120"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\b1_model.py",
+          "name": "b1_model.py",
+          "size_bytes": 5112,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:28:34.137369"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\impressioncore_b1.py",
+          "name": "impressioncore_b1.py",
+          "size_bytes": 17934,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T21:48:18.852000"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 955,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:37:29.659342"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\b1_model.cpython-310.pyc",
+          "name": "b1_model.cpython-310.pyc",
+          "size_bytes": 4745,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\b1_model.cpython-313.pyc",
+          "name": "b1_model.cpython-313.pyc",
+          "size_bytes": 6205,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.008351"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\impressioncore_b1.cpython-310.pyc",
+          "name": "impressioncore_b1.cpython-310.pyc",
+          "size_bytes": 15326,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\impressioncore_b1.cpython-313.pyc",
+          "name": "impressioncore_b1.cpython-313.pyc",
+          "size_bytes": 19253,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.009379"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 1003,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\b1\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 1028,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.006352"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\base_model.py",
+          "name": "base_model.py",
+          "size_bytes": 8545,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:34:22.053476"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\multimodal_processor.py",
+          "name": "multimodal_processor.py",
+          "size_bytes": 14946,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:34:22.066755"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\personality_engine.py",
+          "name": "personality_engine.py",
+          "size_bytes": 11882,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:34:22.053476"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 1054,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:34:22.065754"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\base_model.cpython-310.pyc",
+          "name": "base_model.cpython-310.pyc",
+          "size_bytes": 8583,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\base_model.cpython-313.pyc",
+          "name": "base_model.cpython-313.pyc",
+          "size_bytes": 12734,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.018225"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\multimodal_processor.cpython-310.pyc",
+          "name": "multimodal_processor.cpython-310.pyc",
+          "size_bytes": 11593,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.403223"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\multimodal_processor.cpython-313.pyc",
+          "name": "multimodal_processor.cpython-313.pyc",
+          "size_bytes": 19038,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.019120"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\personality_engine.cpython-310.pyc",
+          "name": "personality_engine.cpython-310.pyc",
+          "size_bytes": 9442,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\personality_engine.cpython-313.pyc",
+          "name": "personality_engine.cpython-313.pyc",
+          "size_bytes": 13984,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.019120"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 1055,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.387597"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\base\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 1090,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.009379"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\idc1\\idc1_model.py",
+          "name": "idc1_model.py",
+          "size_bytes": 21284,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:41:44.643247"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\idc1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 902,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:29:29.354826"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\iu1\\iu1_model.py",
+          "name": "iu1_model.py",
+          "size_bytes": 16790,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:41:44.643247"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\iu1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 886,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:29:29.341709"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\s1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 868,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T12:25:42.550090"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 1149,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.371969"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\architectures\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 1263,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:02.004353"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\b1\\evaluate_impressioncore_b1.py",
+          "name": "evaluate_impressioncore_b1.py",
+          "size_bytes": 1529,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:09.425798"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\b1\\train_impressioncore_b1.py",
+          "name": "train_impressioncore_b1.py",
+          "size_bytes": 6520,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T12:54:52.212445"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\b1\\train_impressioncore_optimized.py",
+          "name": "train_impressioncore_optimized.py",
+          "size_bytes": 7402,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T12:54:52.231402"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\b1\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 696,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T11:59:09.476766"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\impressioncore_b1_20250510_203625.pt",
+          "name": "impressioncore_b1_20250510_203625.pt",
+          "size_bytes": 245322294,
+          "size_mb": 233.96,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-05-10T20:36:25.730882"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\impressioncore_b1_20250510_223830.pt",
+          "name": "impressioncore_b1_20250510_223830.pt",
+          "size_bytes": 245322294,
+          "size_mb": 233.96,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-05-10T22:38:31.236174"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\impressioncore_b1_20250510_235340.pt",
+          "name": "impressioncore_b1_20250510_235340.pt",
+          "size_bytes": 849302070,
+          "size_mb": 809.96,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-05-10T23:53:43.990934"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\vae_cifar10_128.pt",
+          "name": "vae_cifar10_128.pt",
+          "size_bytes": 28318896,
+          "size_mb": 27.01,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:36:49.698612"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\b1_resume_test\\impressioncore_b1_best.pt",
+          "name": "impressioncore_b1_best.pt",
+          "size_bytes": 7619118,
+          "size_mb": 7.27,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-05-15T10:32:21.053863"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\checkpoints\\b1_resume_test\\impressioncore_b1_epoch_5.pt",
+          "name": "impressioncore_b1_epoch_5.pt",
+          "size_bytes": 7619473,
+          "size_mb": 7.27,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-05-15T10:32:24.406585"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\conditioning.py",
+          "name": "conditioning.py",
+          "size_bytes": 11845,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-09T09:54:43.462364"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\diffusion_trainer.py",
+          "name": "diffusion_trainer.py",
+          "size_bytes": 1472,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:05.793290"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\noise_predictor.py",
+          "name": "noise_predictor.py",
+          "size_bytes": 7069,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-09T09:54:43.462364"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\scheduler.py",
+          "name": "scheduler.py",
+          "size_bytes": 8888,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-09T09:54:43.462364"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\train_diffusion.py",
+          "name": "train_diffusion.py",
+          "size_bytes": 7120,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T14:55:41.804789"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 977,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-09T09:54:43.478422"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\conditioning.cpython-310.pyc",
+          "name": "conditioning.cpython-310.pyc",
+          "size_bytes": 8632,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.438811"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\conditioning.cpython-313.pyc",
+          "name": "conditioning.cpython-313.pyc",
+          "size_bytes": 13825,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.950436"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\noise_predictor.cpython-310.pyc",
+          "name": "noise_predictor.cpython-310.pyc",
+          "size_bytes": 5100,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.415583"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\noise_predictor.cpython-313.pyc",
+          "name": "noise_predictor.cpython-313.pyc",
+          "size_bytes": 8055,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.942820"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\scheduler.cpython-310.pyc",
+          "name": "scheduler.cpython-310.pyc",
+          "size_bytes": 6207,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.432301"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\scheduler.cpython-313.pyc",
+          "name": "scheduler.cpython-313.pyc",
+          "size_bytes": 10796,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.944824"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 738,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.399008"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\diffusion\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 757,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.939356"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-1b-finetuned\\config.json",
+          "name": "config.json",
+          "size_bytes": 242,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-14T17:31:06.943393"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-1b-finetuned\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-18T18:55:22.813744"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\b1_inference.py",
+          "name": "b1_inference.py",
+          "size_bytes": 1497,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T12:01:44.247924"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\b1_memory.py",
+          "name": "b1_memory.py",
+          "size_bytes": 1254,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T12:01:44.255910"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\b1_model.py",
+          "name": "b1_model.py",
+          "size_bytes": 4678,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T12:04:58.345596"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\b1_trainer.py",
+          "name": "b1_trainer.py",
+          "size_bytes": 5415,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T12:39:16.828548"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\b1_unified_model.py",
+          "name": "b1_unified_model.py",
+          "size_bytes": 71003,
+          "size_mb": 0.07,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-12T13:16:10.030262"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\config.json",
+          "name": "config.json",
+          "size_bytes": 274,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-14T17:31:17.379155"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 652204502,
+          "size_mb": 621.99,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-02T18:58:22.351503"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\README.md",
+          "name": "README.md",
+          "size_bytes": 1025,
+          "size_mb": 0.0,
+          "extension": ".md",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T12:01:44.209006"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 1234208,
+          "size_mb": 1.18,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-02T18:58:23.133151"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\__pycache__\\b1_unified_model.cpython-310.pyc",
+          "name": "b1_unified_model.cpython-310.pyc",
+          "size_bytes": 32035,
+          "size_mb": 0.03,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T12:55:25.371969"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\impressioncore-base\\__pycache__\\b1_unified_model.cpython-313.pyc",
+          "name": "b1_unified_model.cpython-313.pyc",
+          "size_bytes": 51117,
+          "size_mb": 0.05,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.899122"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\memory_efficient_attention.py",
+          "name": "memory_efficient_attention.py",
+          "size_bytes": 12034,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:20.908935"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\memory_optimization.py",
+          "name": "memory_optimization.py",
+          "size_bytes": 32862,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-05T09:30:26.643430"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\production_sparse_attention.py",
+          "name": "production_sparse_attention.py",
+          "size_bytes": 30506,
+          "size_mb": 0.03,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-30T10:05:07.964529"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\progressive_context.py",
+          "name": "progressive_context.py",
+          "size_bytes": 23370,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-29T17:52:52.870083"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\sparse_attention.py",
+          "name": "sparse_attention.py",
+          "size_bytes": 21331,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-29T17:22:49.990663"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\vector_quantizer.py",
+          "name": "vector_quantizer.py",
+          "size_bytes": 8482,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T15:44:12.512215"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\__pycache__\\vector_quantizer.cpython-310.pyc",
+          "name": "vector_quantizer.cpython-310.pyc",
+          "size_bytes": 4593,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.465669"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\layers\\__pycache__\\vector_quantizer.cpython-313.pyc",
+          "name": "vector_quantizer.cpython-313.pyc",
+          "size_bytes": 7580,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.952730"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\demo_20250407_110607.log",
+          "name": "demo_20250407_110607.log",
+          "size_bytes": 2525,
+          "size_mb": 0.0,
+          "extension": ".log",
+          "is_real_data": false,
+          "last_modified": "2025-04-07T11:06:14.287389"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-122655 (2).json",
+          "name": "interaction_20250228-122655 (2).json",
+          "size_bytes": 232,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T12:26:55.012245"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-122655.json",
+          "name": "interaction_20250228-122655.json",
+          "size_bytes": 232,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T12:26:55.012245"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-130722 (2).json",
+          "name": "interaction_20250228-130722 (2).json",
+          "size_bytes": 232,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:07:22.665948"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-130722.json",
+          "name": "interaction_20250228-130722.json",
+          "size_bytes": 232,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:07:22.665948"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-131800 (2).json",
+          "name": "interaction_20250228-131800 (2).json",
+          "size_bytes": 220,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:18:00.921149"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-131800.json",
+          "name": "interaction_20250228-131800.json",
+          "size_bytes": 220,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:18:00.921149"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-133020 (2).json",
+          "name": "interaction_20250228-133020 (2).json",
+          "size_bytes": 220,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:30:20.294877"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-133020.json",
+          "name": "interaction_20250228-133020.json",
+          "size_bytes": 220,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:30:20.294877"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-133247 (2).json",
+          "name": "interaction_20250228-133247 (2).json",
+          "size_bytes": 224,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:32:47.888357"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-133247.json",
+          "name": "interaction_20250228-133247.json",
+          "size_bytes": 224,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T13:32:47.888357"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-185039 (2).json",
+          "name": "interaction_20250228-185039 (2).json",
+          "size_bytes": 243,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T18:50:39.218862"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-185039.json",
+          "name": "interaction_20250228-185039.json",
+          "size_bytes": 243,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T18:50:39.218862"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-185453 (2).json",
+          "name": "interaction_20250228-185453 (2).json",
+          "size_bytes": 243,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T18:54:53.910952"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\interaction_20250228-185453.json",
+          "name": "interaction_20250228-185453.json",
+          "size_bytes": 243,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-02-28T18:54:53.910952"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\memory_profiles\\test_test_tokenizer_and_memory_manager_gpu0_memory.png",
+          "name": "test_test_tokenizer_and_memory_manager_gpu0_memory.png",
+          "size_bytes": 35086,
+          "size_mb": 0.03,
+          "extension": ".png",
+          "is_real_data": false,
+          "last_modified": "2025-04-06T13:44:51.193772"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\memory_profiles\\test_test_tokenizer_and_memory_manager_process_memory.png",
+          "name": "test_test_tokenizer_and_memory_manager_process_memory.png",
+          "size_bytes": 34426,
+          "size_mb": 0.03,
+          "extension": ".png",
+          "is_real_data": false,
+          "last_modified": "2025-04-06T13:44:51.053147"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\logs\\memory_profiles\\test_test_tokenizer_and_memory_manager_report.json",
+          "name": "test_test_tokenizer_and_memory_manager_report.json",
+          "size_bytes": 1750,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": false,
+          "last_modified": "2025-04-06T13:44:51.209397"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\adapters.py",
+          "name": "adapters.py",
+          "size_bytes": 40930,
+          "size_mb": 0.04,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T08:51:25.166669"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\base.py",
+          "name": "base.py",
+          "size_bytes": 12163,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.452293"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\composition.py",
+          "name": "composition.py",
+          "size_bytes": 13710,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.466311"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\config.py",
+          "name": "config.py",
+          "size_bytes": 13494,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-01T08:22:23.379936"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\dynamic.py",
+          "name": "dynamic.py",
+          "size_bytes": 12525,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.488401"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\hierarchical.py",
+          "name": "hierarchical.py",
+          "size_bytes": 11010,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.508037"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\interfaces.py",
+          "name": "interfaces.py",
+          "size_bytes": 6235,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.508037"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\qlora_model.py",
+          "name": "qlora_model.py",
+          "size_bytes": 23908,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-01T08:47:35.479972"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\quantization.py",
+          "name": "quantization.py",
+          "size_bytes": 13652,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.529507"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\sparsity.py",
+          "name": "sparsity.py",
+          "size_bytes": 17238,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.549690"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\test_enhanced_lora.py",
+          "name": "test_enhanced_lora.py",
+          "size_bytes": 9297,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": false,
+          "last_modified": "2025-06-09T11:16:22.805778"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\test_simple_lora.py",
+          "name": "test_simple_lora.py",
+          "size_bytes": 8729,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": false,
+          "last_modified": "2025-06-09T10:42:01.328707"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\utils.py",
+          "name": "utils.py",
+          "size_bytes": 25651,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-01T07:59:50.709126"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\utils_new.py",
+          "name": "utils_new.py",
+          "size_bytes": 2278,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:21.344306"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 5707,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-01T08:47:59.566560"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\lora\\__init__new.py",
+          "name": "__init__new.py",
+          "size_bytes": 1452,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.599829"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\moe\\routing.py",
+          "name": "routing.py",
+          "size_bytes": 12253,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T09:13:42.917241"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\moe\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 16373,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T09:36:58.988066"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\pretrained_weights\\text_model.pt",
+          "name": "text_model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-13T11:34:14.553826"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\qlora\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 18068,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T12:41:37.719436"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\shadow\\knowledge_distillation.py",
+          "name": "knowledge_distillation.py",
+          "size_bytes": 17320,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:21.428479"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 350563458,
+          "size_mb": 334.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T16:49:51.004097"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch1_final_20250406_190545_step113.pt",
+          "name": "epoch1_final_20250406_190545_step113.pt",
+          "size_bytes": 359001330,
+          "size_mb": 342.37,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:05:46.165437"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch1_final_20250406_191626_step113.pt",
+          "name": "epoch1_final_20250406_191626_step113.pt",
+          "size_bytes": 359001330,
+          "size_mb": 342.37,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:16:27.569996"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch2_20250406_190659_step200.pt",
+          "name": "epoch2_20250406_190659_step200.pt",
+          "size_bytes": 359003842,
+          "size_mb": 342.37,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:07:00.728004"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch2_20250406_191743_step200.pt",
+          "name": "epoch2_20250406_191743_step200.pt",
+          "size_bytes": 359003842,
+          "size_mb": 342.37,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:17:44.487230"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch2_final_20250406_190726_step226.pt",
+          "name": "epoch2_final_20250406_190726_step226.pt",
+          "size_bytes": 359006450,
+          "size_mb": 342.38,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:07:27.420554"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\epoch2_final_20250406_191808_step226.pt",
+          "name": "epoch2_final_20250406_191808_step226.pt",
+          "size_bytes": 359006450,
+          "size_mb": 342.38,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T19:18:09.491274"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\small\\final_model.pt",
+          "name": "final_model.pt",
+          "size_bytes": 350563658,
+          "size_mb": 334.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-06T16:49:52.110647"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\sparse\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 18693,
+          "size_mb": 0.02,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-04T09:30:53.845622"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\text\\text_generator.py",
+          "name": "text_generator.py",
+          "size_bytes": 15287,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T16:42:37.577826"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\text\\text_generator_clean.py",
+          "name": "text_generator_clean.py",
+          "size_bytes": 0,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-06-06T17:50:13.991653"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\text\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 1509,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-24T13:15:06.639880"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\final_model.pt",
+          "name": "final_model.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\best\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323029,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:06.834599"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\best\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:07.006530"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\best\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T13:06:07.006530"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\best\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 476,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:07.006530"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-0\\optimizer (2).pt",
+          "name": "optimizer (2).pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:07.277838"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-0\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:07.277838"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-0\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T13:06:07.277838"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-0\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 476,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:07.277838"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-1\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323029,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:10.505057"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-1\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:10.671916"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-1\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T13:06:10.671916"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-1\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 476,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:10.671916"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-2\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323029,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:13.824663"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-2\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:13.991613"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-2\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T13:06:13.991613"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch-2\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 476,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:13.991613"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\config.json",
+          "name": "config.json",
+          "size_bytes": 410,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-14T17:31:26.284927"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.357426"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323477,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.330452"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 1320,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T19:31:48.330727"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T19:31:48.330727"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.330727"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557778,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.378665"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.330727"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_0\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.330727"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\config.json",
+          "name": "config.json",
+          "size_bytes": 410,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-14T17:31:37.167268"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.561998"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323477,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 1320,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557778,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.593233"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\checkpoint-epoch_1\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T19:31:48.546383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\final\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53323029,
+          "size_mb": 50.85,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:14.091469"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\final\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:14.275753"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\final\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T13:06:14.276754"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained\\final\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 476,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T13:06:14.277754"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_100.pt",
+          "name": "checkpoint_100.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:45:48.208464"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_1000.pt",
+          "name": "checkpoint_1000.pt",
+          "size_bytes": 161274986,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:49:52.814768"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_200.pt",
+          "name": "checkpoint_200.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:46:08.605059"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_300.pt",
+          "name": "checkpoint_300.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:46:36.558945"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_400.pt",
+          "name": "checkpoint_400.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:47:04.625454"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_500.pt",
+          "name": "checkpoint_500.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:47:32.644360"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_600.pt",
+          "name": "checkpoint_600.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:48:00.766588"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_700.pt",
+          "name": "checkpoint_700.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:48:28.754655"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_800.pt",
+          "name": "checkpoint_800.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:48:56.798642"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\checkpoint_900.pt",
+          "name": "checkpoint_900.pt",
+          "size_bytes": 161274850,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:49:24.791898"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\final_document_model.pt",
+          "name": "final_document_model.pt",
+          "size_bytes": 161275730,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:49:53.561332"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\trained_document_model\\final_model.pt",
+          "name": "final_model.pt",
+          "size_bytes": 161274442,
+          "size_mb": 153.8,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:49:53.199805"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\utils\\memory_optimization.py",
+          "name": "memory_optimization.py",
+          "size_bytes": 10809,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:21.589744"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\utils\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 2979,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T08:41:21.619829"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\diffusion_transformer.cpython-310.pyc",
+          "name": "diffusion_transformer.cpython-310.pyc",
+          "size_bytes": 15070,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.382391"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\diffusion_transformer.cpython-313.pyc",
+          "name": "diffusion_transformer.cpython-313.pyc",
+          "size_bytes": 21368,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.937356"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\latent_diffusion_transformer.cpython-310.pyc",
+          "name": "latent_diffusion_transformer.cpython-310.pyc",
+          "size_bytes": 19741,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.332240"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\latent_diffusion_transformer.cpython-313.pyc",
+          "name": "latent_diffusion_transformer.cpython-313.pyc",
+          "size_bytes": 31550,
+          "size_mb": 0.03,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.919237"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\memory_optimizations.cpython-310.pyc",
+          "name": "memory_optimizations.cpython-310.pyc",
+          "size_bytes": 14855,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.348382"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\memory_optimizations.cpython-313.pyc",
+          "name": "memory_optimizations.cpython-313.pyc",
+          "size_bytes": 18619,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.924673"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\model.cpython-310.pyc",
+          "name": "model.cpython-310.pyc",
+          "size_bytes": 9021,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:32:50.828678"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\model.cpython-313.pyc",
+          "name": "model.cpython-313.pyc",
+          "size_bytes": 13201,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:04:18.540864"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\transformer.cpython-310.pyc",
+          "name": "transformer.cpython-310.pyc",
+          "size_bytes": 19770,
+          "size_mb": 0.02,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:43.815128"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\transformer.cpython-313.pyc",
+          "name": "transformer.cpython-313.pyc",
+          "size_bytes": 27583,
+          "size_mb": 0.03,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:04:18.609751"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\vae_encoder.cpython-310.pyc",
+          "name": "vae_encoder.cpython-310.pyc",
+          "size_bytes": 7216,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T21:23:44.365556"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\vae_encoder.cpython-313.pyc",
+          "name": "vae_encoder.cpython-313.pyc",
+          "size_bytes": 9819,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:22:01.928715"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\__init__.cpython-310.pyc",
+          "name": "__init__.cpython-310.pyc",
+          "size_bytes": 1727,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:32:50.825957"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\models\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 1796,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-13T20:04:18.536358"
+        }
+      ],
+      "total_size_mb": 7803.43,
+      "real_data_size_mb": 7788.79
+    },
+    {
+      "directory": "D:\\Projects\\impressioncore\\src\\training\\datasets",
+      "category": "datasets",
+      "total_files": 5,
+      "real_data_files": 5,
+      "test_data_files": 0,
+      "total_size_bytes": 23495,
+      "real_data_size_bytes": 23495,
+      "files": [
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\datasets\\data_loading.py",
+          "name": "data_loading.py",
+          "size_bytes": 9971,
+          "size_mb": 0.01,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T07:35:55.611797"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\datasets\\enhanced_high_school_training_data.json",
+          "name": "enhanced_high_school_training_data.json",
+          "size_bytes": 0,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-16T15:53:18.273563"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\datasets\\__init__.py",
+          "name": "__init__.py",
+          "size_bytes": 1708,
+          "size_mb": 0.0,
+          "extension": ".py",
+          "is_real_data": true,
+          "last_modified": "2025-05-25T07:35:55.611797"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\datasets\\__pycache__\\data_loading.cpython-313.pyc",
+          "name": "data_loading.cpython-313.pyc",
+          "size_bytes": 10091,
+          "size_mb": 0.01,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-14T01:02:03.976111"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\datasets\\__pycache__\\__init__.cpython-313.pyc",
+          "name": "__init__.cpython-313.pyc",
+          "size_bytes": 1725,
+          "size_mb": 0.0,
+          "extension": ".pyc",
+          "is_real_data": true,
+          "last_modified": "2025-06-14T01:02:03.960486"
+        }
+      ],
+      "total_size_mb": 0.02,
+      "real_data_size_mb": 0.02
+    },
+    {
+      "directory": "D:\\Projects\\impressioncore\\exports",
+      "category": "exports",
+      "total_files": 14,
+      "real_data_files": 14,
+      "test_data_files": 0,
+      "total_size_bytes": 972044689,
+      "real_data_size_bytes": 972044689,
+      "files": [
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\impressioncore_b1_pytorch.pt",
+          "name": "impressioncore_b1_pytorch.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\README.md",
+          "name": "README.md",
+          "size_bytes": 0,
+          "size_mb": 0.0,
+          "extension": ".md",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:35:55.846160"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\direct_inference\\config.json",
+          "name": "config.json",
+          "size_bytes": 843,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:35:55.830538"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\direct_inference\\impressioncore_b1_inference.pt",
+          "name": "impressioncore_b1_inference.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\ollama\\metadata.json",
+          "name": "metadata.json",
+          "size_bytes": 549,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:35:55.735079"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\ollama\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183555\\ollama\\Modelfile",
+          "name": "Modelfile",
+          "size_bytes": 897,
+          "size_mb": 0.0,
+          "extension": "",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:35:55.735079"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\impressioncore_b1_pytorch.pt",
+          "name": "impressioncore_b1_pytorch.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\README.md",
+          "name": "README.md",
+          "size_bytes": 2437,
+          "size_mb": 0.0,
+          "extension": ".md",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:38:01.500688"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\direct_inference\\config.json",
+          "name": "config.json",
+          "size_bytes": 843,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:38:01.500688"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\direct_inference\\impressioncore_b1_inference.pt",
+          "name": "impressioncore_b1_inference.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\ollama\\metadata.json",
+          "name": "metadata.json",
+          "size_bytes": 549,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T18:38:01.401569"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\ollama\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 162006282,
+          "size_mb": 154.5,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-04-07T11:08:43.012016"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\exports\\production_models\\impressioncore_b1_export_20250617_183801\\ollama\\Modelfile",
+          "name": "Modelfile",
+          "size_bytes": 879,
+          "size_mb": 0.0,
+          "extension": "",
+          "is_real_data": true,
+          "last_modified": "2025-06-17T19:26:37.993430"
+        }
+      ],
+      "total_size_mb": 927.01,
+      "real_data_size_mb": 927.01
+    },
+    {
+      "directory": "D:\\Projects\\impressioncore\\src\\data",
+      "category": "data",
+      "total_files": 0,
+      "real_data_files": 0,
+      "test_data_files": 0,
+      "total_size_bytes": 0,
+      "real_data_size_bytes": 0,
+      "files": []
+    },
+    {
+      "directory": "D:\\Projects\\impressioncore\\src\\training\\checkpoints",
+      "category": "checkpoints",
+      "total_files": 165,
+      "real_data_files": 127,
+      "test_data_files": 38,
+      "total_size_bytes": 5293658635,
+      "real_data_size_bytes": 5282550104,
+      "files": [
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 82719979,
+          "size_mb": 78.89,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:21:45.906201"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_10.pt",
+          "name": "checkpoint_10.pt",
+          "size_bytes": 83429902,
+          "size_mb": 79.56,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:12:34.886291"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_100.pt",
+          "name": "checkpoint_100.pt",
+          "size_bytes": 82720687,
+          "size_mb": 78.89,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:23:22.723123"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_1000.pt",
+          "name": "checkpoint_1000.pt",
+          "size_bytes": 1881655650,
+          "size_mb": 1794.49,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-18T14:37:37.493020"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_150.pt",
+          "name": "checkpoint_150.pt",
+          "size_bytes": 82819503,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:45:46.449853"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_200.pt",
+          "name": "checkpoint_200.pt",
+          "size_bytes": 82819503,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:45:56.668064"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_25.pt",
+          "name": "checkpoint_25.pt",
+          "size_bytes": 164250666,
+          "size_mb": 156.64,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-18T15:47:25.065171"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_250.pt",
+          "name": "checkpoint_250.pt",
+          "size_bytes": 82819503,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:06.734064"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_300.pt",
+          "name": "checkpoint_300.pt",
+          "size_bytes": 82819567,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:16.868829"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_350.pt",
+          "name": "checkpoint_350.pt",
+          "size_bytes": 82819567,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:27.352624"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_400.pt",
+          "name": "checkpoint_400.pt",
+          "size_bytes": 82819567,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:37.528929"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_450.pt",
+          "name": "checkpoint_450.pt",
+          "size_bytes": 82819567,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:47.720084"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_5.pt",
+          "name": "checkpoint_5.pt",
+          "size_bytes": 83429721,
+          "size_mb": 79.56,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:12:24.534721"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_50.pt",
+          "name": "checkpoint_50.pt",
+          "size_bytes": 82720510,
+          "size_mb": 78.89,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:21:46.053626"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint_500.pt",
+          "name": "checkpoint_500.pt",
+          "size_bytes": 82819567,
+          "size_mb": 78.98,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T12:46:57.853856"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\final_model.pt",
+          "name": "final_model.pt",
+          "size_bytes": 82720156,
+          "size_mb": 78.89,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T14:23:22.877470"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\interrupted_checkpoint.pt",
+          "name": "interrupted_checkpoint.pt",
+          "size_bytes": 82722167,
+          "size_mb": 78.89,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-25T18:26:29.341931"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\mixed_corpus_interrupted.pt",
+          "name": "mixed_corpus_interrupted.pt",
+          "size_bytes": 212443065,
+          "size_mb": 202.6,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-02-26T15:02:20.937192"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410295,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.080704"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_10.pt",
+          "name": "checkpoint_epoch_10.pt",
+          "size_bytes": 410997,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.113691"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 410983,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.086564"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_4.pt",
+          "name": "checkpoint_epoch_4.pt",
+          "size_bytes": 410983,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.086564"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_6.pt",
+          "name": "checkpoint_epoch_6.pt",
+          "size_bytes": 410983,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.097383"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1\\checkpoint_epoch_8.pt",
+          "name": "checkpoint_epoch_8.pt",
+          "size_bytes": 410983,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:40:09.104250"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_121214\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1187,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:12:14.985154"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_121329\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1187,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:13:29.074545"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122119\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:21:19.102822"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122244\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:22:44.665934"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122501\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:25:01.271387"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410615,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:26:47.709430"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\checkpoint_epoch_10.pt",
+          "name": "checkpoint_epoch_10.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:26:48.599487"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:26:40.753737"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\checkpoint_epoch_4.pt",
+          "name": "checkpoint_epoch_4.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:26:42.823019"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\checkpoint_epoch_6.pt",
+          "name": "checkpoint_epoch_6.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:26:44.797992"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\checkpoint_epoch_8.pt",
+          "name": "checkpoint_epoch_8.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:26:46.526505"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122614\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:26:14.506820"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410615,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:28:58.891747"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\checkpoint_epoch_10.pt",
+          "name": "checkpoint_epoch_10.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:29:05.883993"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:28:59.592549"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\checkpoint_epoch_4.pt",
+          "name": "checkpoint_epoch_4.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:29:01.193904"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\checkpoint_epoch_6.pt",
+          "name": "checkpoint_epoch_6.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:29:02.778471"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\checkpoint_epoch_8.pt",
+          "name": "checkpoint_epoch_8.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:29:04.213083"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_122855\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:28:55.660150"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_123627\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410615,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:36:31.328080"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_123627\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:36:31.328080"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_123627\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1359,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:36:27.588650"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410615,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:47:45.666331"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_10.pt",
+          "name": "checkpoint_epoch_10.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:14.389021"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_12.pt",
+          "name": "checkpoint_epoch_12.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:16.047238"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_14.pt",
+          "name": "checkpoint_epoch_14.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:17.499363"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_16.pt",
+          "name": "checkpoint_epoch_16.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:19.139916"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_18.pt",
+          "name": "checkpoint_epoch_18.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:20.943968"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:47:08.106956"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_20.pt",
+          "name": "checkpoint_epoch_20.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:22.375901"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_22.pt",
+          "name": "checkpoint_epoch_22.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:24.023236"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_24.pt",
+          "name": "checkpoint_epoch_24.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:25.667043"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_26.pt",
+          "name": "checkpoint_epoch_26.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:27.084213"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_28.pt",
+          "name": "checkpoint_epoch_28.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:28.718965"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_30.pt",
+          "name": "checkpoint_epoch_30.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:30.363883"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_32.pt",
+          "name": "checkpoint_epoch_32.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:31.820004"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_34.pt",
+          "name": "checkpoint_epoch_34.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:33.471635"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_36.pt",
+          "name": "checkpoint_epoch_36.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:35.403301"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_38.pt",
+          "name": "checkpoint_epoch_38.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:36.840281"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_4.pt",
+          "name": "checkpoint_epoch_4.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:47:09.708366"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_40.pt",
+          "name": "checkpoint_epoch_40.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:38.508793"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_42.pt",
+          "name": "checkpoint_epoch_42.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:40.167605"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_44.pt",
+          "name": "checkpoint_epoch_44.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:41.630203"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_46.pt",
+          "name": "checkpoint_epoch_46.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:43.259958"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_48.pt",
+          "name": "checkpoint_epoch_48.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:44.945870"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_50.pt",
+          "name": "checkpoint_epoch_50.pt",
+          "size_bytes": 1228939,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:46.601751"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_6.pt",
+          "name": "checkpoint_epoch_6.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:47:11.308726"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\checkpoint_epoch_8.pt",
+          "name": "checkpoint_epoch_8.pt",
+          "size_bytes": 411239,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T12:47:12.700993"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_124704\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1360,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:47:04.606258"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410679,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:01:30.515031"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\checkpoint_epoch_10.pt",
+          "name": "checkpoint_epoch_10.pt",
+          "size_bytes": 1229067,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:30.512423"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 1229029,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:22.876263"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\checkpoint_epoch_4.pt",
+          "name": "checkpoint_epoch_4.pt",
+          "size_bytes": 1229029,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:24.748900"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\checkpoint_epoch_6.pt",
+          "name": "checkpoint_epoch_6.pt",
+          "size_bytes": 1229029,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:26.635736"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\checkpoint_epoch_8.pt",
+          "name": "checkpoint_epoch_8.pt",
+          "size_bytes": 1229029,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:28.538187"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130118\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1478,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:01:18.469411"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130232\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410679,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:02:37.052795"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130232\\checkpoint_epoch_2.pt",
+          "name": "checkpoint_epoch_2.pt",
+          "size_bytes": 1229029,
+          "size_mb": 1.17,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:02:38.105531"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130232\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1477,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:02:32.048790"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130543\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410679,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:05:46.751109"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_130543\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1477,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:05:43.791234"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_131721\\best_model.pt",
+          "name": "best_model.pt",
+          "size_bytes": 410999,
+          "size_mb": 0.39,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-06-11T13:17:24.222064"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\bulletproof_b1_20250611_131721\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 1776,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T13:17:21.189754"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\config.json",
+          "name": "config.json",
+          "size_bytes": 638,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.069076"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.110436"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126869,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:35.818789"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102931030,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.069076"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-08T20:53:36.069076"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.069076"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.152766"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.069076"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:11.709488"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-100\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:36.085919"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-150\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:31.126749"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-150\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:31.299749"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-150\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:31.300752"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-150\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:31.300752"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-200\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:49.097380"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-200\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:49.276381"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-200\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:49.276381"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-200\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:49.277382"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\config.json",
+          "name": "config.json",
+          "size_bytes": 638,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.465878"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.516047"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126869,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.142170"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102931030,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.465878"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-08T20:53:24.465878"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.465878"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.617142"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.465878"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:48:51.859092"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-50\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:24.481802"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-0\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:48:59.862429"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-0\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:00.040575"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-0\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:00.041577"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-0\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:00.041577"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-1\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:28.151273"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-1\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:28.332825"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-1\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:28.333750"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-1\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:28.333750"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-2\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.122493"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-2\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.318505"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-2\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:55.319495"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch-2\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.319495"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\config.json",
+          "name": "config.json",
+          "size_bytes": 638,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.640651"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.690677"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126869,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.440521"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102931030,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.640651"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-08T20:53:22.640651"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.657562"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.724012"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.656278"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_0\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:22.660070"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\config.json",
+          "name": "config.json",
+          "size_bytes": 638,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.772354"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.799500"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126869,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.549602"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102931030,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.766346"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-08T20:53:32.772354"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.772354"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.832825"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.772354"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_1\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:32.772354"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\config.json",
+          "name": "config.json",
+          "size_bytes": 638,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.224385"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.264061"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126869,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.024425"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102931030,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.224385"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-08T20:53:42.224385"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 137,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.224385"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.291075"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 528,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.224385"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\checkpoint-epoch_2\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-08T20:53:42.241391"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\enhanced_b1_20250611_125643\\enhanced_training_config.json",
+          "name": "enhanced_training_config.json",
+          "size_bytes": 3142,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:56:43.635342"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\enhanced_b1_20250611_125816\\enhanced_training_config.json",
+          "name": "enhanced_training_config.json",
+          "size_bytes": 3142,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-06-11T12:58:16.030962"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\final\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 53126357,
+          "size_mb": 50.67,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.416660"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\final\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 102930966,
+          "size_mb": 98.16,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.605616"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\final\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-03T17:49:55.606618"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\final\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 449,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-03T17:49:55.606618"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\new_tokenizer\\merges.txt",
+          "name": "merges.txt",
+          "size_bytes": 456318,
+          "size_mb": 0.44,
+          "extension": ".txt",
+          "is_real_data": true,
+          "last_modified": "2025-04-15T18:54:09.767183"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\new_tokenizer\\special_tokens_map.json",
+          "name": "special_tokens_map.json",
+          "size_bytes": 104,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-15T18:54:09.729412"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\new_tokenizer\\tokenizer.json",
+          "name": "tokenizer.json",
+          "size_bytes": 3557680,
+          "size_mb": 3.39,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-15T18:54:09.798459"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\new_tokenizer\\tokenizer_config.json",
+          "name": "tokenizer_config.json",
+          "size_bytes": 495,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-15T18:54:09.729412"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\checkpoints\\new_tokenizer\\vocab.json",
+          "name": "vocab.json",
+          "size_bytes": 798156,
+          "size_mb": 0.76,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-04-15T18:54:09.745028"
+        }
+      ],
+      "total_size_mb": 5048.43,
+      "real_data_size_mb": 5037.83
+    },
+    {
+      "directory": "D:\\Projects\\impressioncore\\src\\training\\outputs",
+      "category": "outputs",
+      "total_files": 33,
+      "real_data_files": 25,
+      "test_data_files": 8,
+      "total_size_bytes": 2623269820,
+      "real_data_size_bytes": 2623261308,
+      "files": [
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\memory_benchmark_results.png",
+          "name": "memory_benchmark_results.png",
+          "size_bytes": 51908,
+          "size_mb": 0.05,
+          "extension": ".png",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T18:18:44.098799"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\best\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:12.342734"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\best\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:12.856852"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\best\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:26:12.856852"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\best\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:12.857854"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1600\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T13:57:59.892062"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1600\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T13:58:00.422835"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1600\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T13:58:00.423821"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1600\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T13:58:00.423821"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1700\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:00:33.116053"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1700\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:00:33.654132"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1700\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:00:33.655136"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1700\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:00:33.655136"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1800\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:03:06.498940"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1800\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:03:07.026361"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1800\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:03:07.026361"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1800\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:03:07.027363"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1900\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:05:40.156693"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1900\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:05:40.675943"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1900\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:05:40.676961"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-1900\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:05:40.676961"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-2000\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:08:13.812790"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-2000\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:08:14.340078"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-2000\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:08:14.340078"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-2000\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:08:14.341078"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-epoch-0\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:13.141472"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-epoch-0\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:13.677513"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-epoch-0\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:26:13.677513"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\checkpoint-epoch-0\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:13.678500"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\final\\model.pt",
+          "name": "model.pt",
+          "size_bytes": 122042262,
+          "size_mb": 116.39,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:13.967062"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\final\\optimizer.pt",
+          "name": "optimizer.pt",
+          "size_bytes": 205858454,
+          "size_mb": 196.32,
+          "extension": ".pt",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:14.505255"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\final\\scheduler.pt",
+          "name": "scheduler.pt",
+          "size_bytes": 1064,
+          "size_mb": 0.0,
+          "extension": ".pt",
+          "is_real_data": false,
+          "last_modified": "2025-03-05T14:26:14.506268"
+        },
+        {
+          "path": "D:\\Projects\\impressioncore\\src\\training\\outputs\\final\\training_config.json",
+          "name": "training_config.json",
+          "size_bytes": 459,
+          "size_mb": 0.0,
+          "extension": ".json",
+          "is_real_data": true,
+          "last_modified": "2025-03-05T14:26:14.506268"
+        }
+      ],
+      "total_size_mb": 2501.75,
+      "real_data_size_mb": 2501.74
+    }
+  ],
+  "summary": {
+    "total_directories": 6,
+    "total_files": 443,
+    "real_data_files": 378,
+    "test_data_files": 65,
+    "total_size_bytes": 17071488422,
+    "real_data_size_bytes": 17045022392,
+    "total_size_gb": 15.9,
+    "real_data_size_gb": 15.87
+  },
+  "f_drive_space": {
+    "total_bytes": 512107737088,
+    "used_bytes": 132532121600,
+    "free_bytes": 379575615488,
+    "total_gb": 476.94,
+    "used_gb": 123.43,
+    "free_gb": 353.51,
+    "usage_percent": 25.88
+  },
+  "migration_recommendation": "PROCEED - Sufficient F: drive space available"
+}

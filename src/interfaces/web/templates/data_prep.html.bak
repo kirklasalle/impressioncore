@@ -1,0 +1,92 @@
+<div class="section-card">
+    <h4>Data Preparation</h4>
+    <p>Prepare and preprocess your training data for ImpressionCore.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-file-earmark-text"></i> Data Upload</h5>
+        <div class="mb-3">
+            <label for="data-type" class="form-label">Data Type:</label>
+            <select class="form-select" id="data-type">
+                <option value="text">Text</option>
+                <option value="image">Image</option>
+                <option value="multimodal">Multimodal</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="data-files" class="form-label">Upload Data Files:</label>
+            <input type="file" class="form-control" id="data-files" multiple>
+            <small class="text-muted">Supported formats: txt, csv, jpg, png</small>
+        </div>
+        <button class="btn btn-primary" id="upload-data-btn">
+            <i class="bi bi-cloud-upload"></i> Upload Data
+        </button>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-gear-wide"></i> Preprocessing Settings</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="batch-size" class="form-label">Batch Size:</label>
+                    <input type="number" class="form-control" id="batch-size" value="32" min="1" max="512">
+                </div>
+                <div class="mb-3">
+                    <label for="validation-split" class="form-label">Validation Split:</label>
+                    <input type="number" class="form-control" id="validation-split" value="0.2" min="0.1" max="0.4" step="0.1">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="shuffle-buffer" class="form-label">Shuffle Buffer Size:</label>
+                    <input type="number" class="form-control" id="shuffle-buffer" value="10000" min="1000" max="100000">
+                </div>
+                <div class="mb-3">
+                    <label for="num-workers" class="form-label">Number of Workers:</label>
+                    <input type="number" class="form-control" id="num-workers" value="4" min="1" max="16">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="enable-augmentation" checked>
+            <label class="form-check-label" for="enable-augmentation">
+                Enable Data Augmentation
+            </label>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-bar-chart"></i> Data Analysis</h5>
+        <button class="btn btn-primary mb-3" id="analyze-data-btn">
+            <i class="bi bi-graph-up"></i> Analyze Data
+        </button>
+        <div id="data-analysis" style="display: none;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Dataset Statistics</h6>
+                            <div id="dataset-stats"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Data Distribution</h6>
+                            <div id="data-distribution"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="preprocessing-progress" class="card mb-4 p-3 bg-light" style="display: none;">
+        <h5>Preprocessing Progress</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+        </div>
+        <div id="progress-text" class="text-center"></div>
+    </div>
+</div>

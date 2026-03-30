@@ -1,0 +1,323 @@
+{
+  "analysis_date": "2025-07-28T18:44:50.347844",
+  "total_files": 1133474,
+  "total_size_gb": 158.89373335056007,
+  "directory_stats": {
+    ".": {
+      "files": 1,
+      "size_mb": 0.0
+    },
+    "academic\\papers": {
+      "files": 10023,
+      "size_mb": 56.64477062225342
+    },
+    "audio\\raw": {
+      "files": 298698,
+      "size_mb": 5927.173492431641
+    },
+    "educational\\materials": {
+      "files": 6904,
+      "size_mb": 29.677955627441406
+    },
+    "embeddings\\embeddings": {
+      "files": 14464,
+      "size_mb": 22761.92638206482
+    },
+    "structured\\tabular": {
+      "files": 14836,
+      "size_mb": 20837.484661102295
+    },
+    "text": {
+      "files": 2,
+      "size_mb": 0.0007486343383789062
+    },
+    "text\\raw": {
+      "files": 298954,
+      "size_mb": 17281.8757648468
+    },
+    "vision\\images": {
+      "files": 489592,
+      "size_mb": 95812.39917564392
+    }
+  },
+  "extension_counts": {
+    "": 31,
+    ".json": 29082,
+    ".pdf": 22,
+    ".textgrid": 576722,
+    ".flac": 2621,
+    ".txt": 13260,
+    ".npy": 323926,
+    ".csv": 49,
+    ".safetensors": 74,
+    ".jinja": 11,
+    ".py": 67,
+    ".pt": 64,
+    ".wav": 3764,
+    ".bz2": 1,
+    ".bin": 20,
+    ".md": 42,
+    ".model": 2,
+    ".pth": 52,
+    ".log": 5,
+    ".faiss": 6,
+    ".db": 2,
+    ".pkl": 3,
+    ".sh": 2,
+    ".vocab": 1,
+    ".arff": 1,
+    ".dat": 6,
+    ".raw": 4,
+    ".pcap": 5,
+    ".cap": 3,
+    ".mp4": 6,
+    ".nii": 2,
+    ".dcm": 3,
+    ".geojson": 2,
+    ".avi": 14710,
+    ".xml": 1,
+    ".rtf": 1,
+    ".parquet": 29,
+    ".jpg": 163938,
+    ".incomplete": 2,
+    ".zip": 2,
+    ".meta": 1,
+    ".off": 4899,
+    ".vtt": 3,
+    ".gz": 1,
+    ".arrow": 4,
+    ".m": 2,
+    ".png": 3,
+    ".html": 1,
+    ".obj": 1,
+    ".pcd": 5,
+    ".xyz": 5,
+    ".gltf": 1,
+    ".ply": 4
+  },
+  "modality_counts": {
+    "other": 297,
+    "json_structured": 29082,
+    "documents": 65,
+    "audio_transcripts": 576722,
+    "audio": 6385,
+    "text": 13260,
+    "time_series": 323926,
+    "tabular": 49,
+    "code": 67,
+    "sensor_data": 30,
+    "network_data": 8,
+    "video": 14716,
+    "medical_imaging": 5,
+    "geospatial": 2,
+    "xml_structured": 1,
+    "image": 163941,
+    "3d_models": 4904,
+    "captioned_videos": 3,
+    "markup": 1,
+    "point_clouds": 10
+  },
+  "modality_files": {
+    "other": [
+      "F:\\DATASETS\\nul",
+      "F:\\DATASETS\\audio\\raw\\1",
+      "F:\\DATASETS\\audio\\raw\\13f9c8e2c431ed64b5b56490d3ceaadac9d60d1e7224cadd1c26fbb462036fec",
+      "F:\\DATASETS\\audio\\raw\\28",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_1.safetensors",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_100-121669-0000.safetensors",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_100-121669-0001.safetensors",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_100-121669-0002.safetensors",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_100-121669-0003.safetensors",
+      "F:\\DATASETS\\audio\\raw\\b1_embedding_processed_100-121669-0004.safetensors"
+    ],
+    "json_structured": [
+      "F:\\DATASETS\\academic\\papers\\2410.00844v5.json",
+      "F:\\DATASETS\\academic\\papers\\2410.00844v5_1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.00947v1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.00947v1_1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.00948v1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.00948v1_1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.01072v1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.01072v1_1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.01075v1.json",
+      "F:\\DATASETS\\academic\\papers\\2410.01075v1_1.json"
+    ],
+    "documents": [
+      "F:\\DATASETS\\academic\\papers\\adam_optimizer.pdf",
+      "F:\\DATASETS\\academic\\papers\\batch_normalization.pdf",
+      "F:\\DATASETS\\academic\\papers\\bert_pretraining_bidirectional.pdf",
+      "F:\\DATASETS\\academic\\papers\\clip_multimodal_learning.pdf",
+      "F:\\DATASETS\\academic\\papers\\dall_e_zero_shot_text_image.pdf",
+      "F:\\DATASETS\\academic\\papers\\dropout_regularization.pdf",
+      "F:\\DATASETS\\academic\\papers\\efficientnet_scaling.pdf",
+      "F:\\DATASETS\\academic\\papers\\gan_generative_adversarial_nets.pdf",
+      "F:\\DATASETS\\academic\\papers\\gpt3_language_models_few_shot.pdf",
+      "F:\\DATASETS\\academic\\papers\\mobilenet_efficient_convnets.pdf"
+    ],
+    "audio_transcripts": [
+      "F:\\DATASETS\\audio\\raw\\100-121669-0000.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0001.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0002.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0003.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0004.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0005.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0006.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0007.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0008.TextGrid",
+      "F:\\DATASETS\\audio\\raw\\100-121669-0009.TextGrid"
+    ],
+    "audio": [
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0000.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0001.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0002.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0003.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0004.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0005.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0006.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0007.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0008.flac",
+      "F:\\DATASETS\\audio\\raw\\1089-134686-0009.flac"
+    ],
+    "text": [
+      "F:\\DATASETS\\audio\\raw\\1089-134686.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\1089-134691.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\1188-133604.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\121-121726.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\121-123852.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\121-123859.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\121-127105.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\1221-135766.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\1221-135767.trans.txt",
+      "F:\\DATASETS\\audio\\raw\\1284-1180.trans.txt"
+    ],
+    "time_series": [
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_000000.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_000800.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_001600.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_002400.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_003200.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_004000.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_004800.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_005600.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_006400.npy",
+      "F:\\DATASETS\\audio\\raw\\audio_mel_spectrogram_01_007200.npy"
+    ],
+    "tabular": [
+      "F:\\DATASETS\\audio\\raw\\audio_meta_metadata_20250621.csv",
+      "F:\\DATASETS\\audio\\raw\\metadata.csv",
+      "F:\\DATASETS\\educational\\materials\\synthetic_education_data.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\basic_tensor_test_1.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\basic_tensor_test_summary_1.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\embedding_label_mapping_1.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\video_unknown_test_20250621_1.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\video_unknown_train_20250621_1.csv",
+      "F:\\DATASETS\\embeddings\\embeddings\\video_unknown_validate_20250621_1.csv",
+      "F:\\DATASETS\\structured\\tabular\\matchpairsDevTest.csv"
+    ],
+    "code": [
+      "F:\\DATASETS\\audio\\raw\\download_common_voice.py",
+      "F:\\DATASETS\\audio\\raw\\download_librispeech.py",
+      "F:\\DATASETS\\audio\\raw\\setup_common_voice.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\aggregate_data_for_embedding_1.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\download_flickr30k_1.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\download_vqa_1.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\f_drive_embedding_analyzer_1_1.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\f_drive_embedding_analyzer_2.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\great_embedding_system_1_1.py",
+      "F:\\DATASETS\\embeddings\\embeddings\\great_embedding_system_2.py"
+    ],
+    "sensor_data": [
+      "F:\\DATASETS\\audio\\raw\\pytorch_model.bin",
+      "F:\\DATASETS\\embeddings\\embeddings\\Camera8-4_0_1.bin",
+      "F:\\DATASETS\\embeddings\\embeddings\\PodDisconnect_1.bin",
+      "F:\\DATASETS\\embeddings\\embeddings\\PodFirmwareAltLED_1.bin",
+      "F:\\DATASETS\\embeddings\\embeddings\\Version20220830092340_1.bin",
+      "F:\\DATASETS\\embeddings\\embeddings\\VerticalFlipCamera_1.bin",
+      "F:\\DATASETS\\structured\\tabular\\accelerometer_data_1.bin",
+      "F:\\DATASETS\\structured\\tabular\\accelerometer_data_2.bin",
+      "F:\\DATASETS\\structured\\tabular\\accelerometer_data_3.bin",
+      "F:\\DATASETS\\structured\\tabular\\accelerometer_data_4.bin"
+    ],
+    "network_data": [
+      "F:\\DATASETS\\structured\\tabular\\network_capture_1.pcap",
+      "F:\\DATASETS\\structured\\tabular\\network_capture_2.pcap",
+      "F:\\DATASETS\\structured\\tabular\\network_capture_3.pcap",
+      "F:\\DATASETS\\structured\\tabular\\network_capture_4.pcap",
+      "F:\\DATASETS\\structured\\tabular\\network_capture_5.pcap",
+      "F:\\DATASETS\\structured\\tabular\\network_trace_1.cap",
+      "F:\\DATASETS\\structured\\tabular\\network_trace_2.cap",
+      "F:\\DATASETS\\structured\\tabular\\network_trace_3.cap"
+    ],
+    "video": [
+      "F:\\DATASETS\\structured\\tabular\\real_sample.mp4",
+      "F:\\DATASETS\\structured\\tabular\\sample-5s.mp4",
+      "F:\\DATASETS\\structured\\tabular\\sample.mp4",
+      "F:\\DATASETS\\structured\\tabular\\sample_captioned_1.mp4",
+      "F:\\DATASETS\\structured\\tabular\\sample_captioned_2.mp4",
+      "F:\\DATASETS\\structured\\tabular\\sample_captioned_3.mp4",
+      "F:\\DATASETS\\structured\\tabular\\v_ApplyEyeMakeup_g01_c01.avi",
+      "F:\\DATASETS\\structured\\tabular\\v_ApplyEyeMakeup_g01_c02.avi",
+      "F:\\DATASETS\\structured\\tabular\\v_ApplyEyeMakeup_g01_c03.avi",
+      "F:\\DATASETS\\structured\\tabular\\v_ApplyEyeMakeup_g01_c04.avi"
+    ],
+    "medical_imaging": [
+      "F:\\DATASETS\\structured\\tabular\\sample_brain_scan.nii",
+      "F:\\DATASETS\\structured\\tabular\\sample_ct_head.dcm",
+      "F:\\DATASETS\\structured\\tabular\\sample_functional_mri.nii",
+      "F:\\DATASETS\\structured\\tabular\\sample_mri_brain.dcm",
+      "F:\\DATASETS\\structured\\tabular\\sample_xray_chest.dcm"
+    ],
+    "geospatial": [
+      "F:\\DATASETS\\structured\\tabular\\us_states.geojson",
+      "F:\\DATASETS\\structured\\tabular\\world_boundaries.geojson"
+    ],
+    "xml_structured": [
+      "F:\\DATASETS\\text\\raw\\enwiktionary-latest-pages-articles.xml"
+    ],
+    "image": [
+      "F:\\DATASETS\\vision\\images\\000000000009.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000025.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000030.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000034.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000036.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000042.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000042_1.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000049.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000061.jpg",
+      "F:\\DATASETS\\vision\\images\\000000000064.jpg"
+    ],
+    "3d_models": [
+      "F:\\DATASETS\\vision\\images\\bathtub_0001.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0002.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0003.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0004.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0005.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0006.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0007.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0008.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0009.off",
+      "F:\\DATASETS\\vision\\images\\bathtub_0010.off"
+    ],
+    "captioned_videos": [
+      "F:\\DATASETS\\vision\\images\\captions_001.vtt",
+      "F:\\DATASETS\\vision\\images\\captions_002.vtt",
+      "F:\\DATASETS\\vision\\images\\captions_003.vtt"
+    ],
+    "markup": [
+      "F:\\DATASETS\\vision\\images\\readme.html"
+    ],
+    "point_clouds": [
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_1.pcd",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_1.xyz",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_2.pcd",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_2.xyz",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_3.pcd",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_3.xyz",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_4.pcd",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_4.xyz",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_5.pcd",
+      "F:\\DATASETS\\vision\\images\\sample_pointcloud_5.xyz"
+    ]
+  },
+  "modalities_detected": 19
+}

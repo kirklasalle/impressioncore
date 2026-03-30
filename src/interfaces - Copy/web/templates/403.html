@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Forbidden - ImpressionCore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="text-align: center; padding: 3rem;">
+        <h1 class="section-title" style="color: var(--danger-color);">403 - Forbidden</h1>
+        <p style="font-size: 1.2rem; color: var(--text-secondary);">Sorry, you do not have permission to access this
+            page or resource.</p>
+        <p>If you believe this is an error, please contact the administrator.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary" style="margin-top: 1.5rem;">
+            <i class="fas fa-home"></i> Go to Homepage
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+ideas_improvements:
+- category: ideas_improvements
+  created_at: '2025-06-07T13:59:57.248544'
+  description: Complete timeline analysis of 11-hour development cycle that created
+    complex FastMCP system vs simple 1-2 hour enhancement to working server.py. Valuable
+    lessons about over-engineering vs pragmatic solutions.
+  file_path: d:\Projects\impressioncore\src\memlog\ids_mcp_development_timeline_analysis_2025-01-07.md
+  id: bm_20250607_135957_8d2756ff
+  tags:
+  - development-lessons
+  - mcp-server
+  - architecture-decisions
+  - time-management
+  - pragmatic-development
+  title: 'MCP Server Development: Simple vs Complex Architecture Lessons'
+process: []
+review_engagement: []
+strategic: []
+technical:
+- created_at: '2025-06-07T12:33:36.366866'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: e8eb54c3
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:36:11.169632'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: 3816c932
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:37:25.173045'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: '04350332'
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:39:53.247634'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: dc85eb8e
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:41:53.147524'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: dad06cb3
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:43:57.729298'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: 25249fc1
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:45:33.560951'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: 188a6bcf
+  tags:
+  - test
+  - validation
+  title: Test Bookmark
+- created_at: '2025-06-07T12:50:18.223383'
+  description: Test bookmark for validation
+  file_path: docs/test_bookmark.md
+  id: fde79467
+  tags:
+  - test
+  - validation
+  title: Test Bookmark

@@ -1,0 +1,20 @@
+model:
+  type: "transformer"
+  layers: 12
+  hidden_size: 768
+  num_attention_heads: 12
+  dropout: 0.1
+
+training:
+  batch_size: 32
+  learning_rate: 0.0001
+  epochs: 10
+  optimizer: "adam"
+  scheduler: "linear"
+
+data:
+  train_path: "data/train.parquet"
+  val_path: "data/val.parquet"
+
+evaluation:
+  metrics: ["accuracy", "f1_score"]

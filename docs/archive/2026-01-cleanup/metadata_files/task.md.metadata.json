@@ -1,0 +1,6 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_TASK",
+  "summary":  "Marked DPG migration as cancelled and added Reversion task.",
+  "updatedAt":  "2025-12-27T23:44:07.956868400Z",
+  "version":  "5"
+}

@@ -1,0 +1,166 @@
+{
+  "timestamp": "2026-01-05T11:40:53.324858",
+  "overall_readiness": true,
+  "readiness_percentage": 100.0,
+  "readiness_checks": {
+    "system_resources": true,
+    "embeddings_loaded": true,
+    "educational_priority": true,
+    "model_initialized": true,
+    "performance_target": "True",
+    "memory_budget": true
+  },
+  "system_resources": {
+    "cpu_percent": 6.5,
+    "ram_total_gb": 31.93392562866211,
+    "ram_available_gb": 22.029582977294922,
+    "ram_percent_used": 31.0,
+    "gpu_available": true,
+    "gpu_info": {
+      "name": "NVIDIA GeForce GTX 1050 Ti",
+      "memory_total_gb": 4.0,
+      "memory_free_gb": 3.525390625,
+      "memory_used_gb": 0.3857421875,
+      "utilization_percent": 0.0,
+      "temperature": 29.0
+    },
+    "f_drive": {
+      "total_gb": 476.93749618530273,
+      "used_gb": 404.55939865112305,
+      "free_gb": 72.37809753417969,
+      "percent_used": 84.82440610916888
+    },
+    "pytorch_version": "2.6.0+cu124",
+    "device": "cuda"
+  },
+  "embedding_statistics": {
+    "total_files": 205,
+    "total_size_gb": 0.00031769275665283203,
+    "categories": {
+      "educational": {
+        "file_count": 205,
+        "total_size_gb": 0.00031769275665283203,
+        "files": [
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_2_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_2_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_3_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_3_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_2_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_2_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_3_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_3_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_educational.npy"
+          }
+        ]
+      }
+    }
+  },
+  "embedding_loading": {
+    "total_loaded": 10,
+    "memory_used_gb": 1.5497207641601562e-05,
+    "categories": {
+      "educational": 10,
+      "multimodal": 0,
+      "text": 0,
+      "image": 0,
+      "audio": 0
+    },
+    "educational_priority_success": true
+  },
+  "model_information": {
+    "total_parameters": 146553376,
+    "trainable_parameters": 146553376,
+    "memory_mb": 559.0567626953125,
+    "memory_gb": 0.5459538698196411,
+    "device": "cuda",
+    "model_config": {
+      "text_encoder_dim": 768,
+      "image_encoder_dim": 512,
+      "audio_encoder_dim": 768,
+      "fusion_dim": 1024,
+      "expert_dim": 2048,
+      "num_experts": 8,
+      "active_experts": 2,
+      "max_sequence_length": 512,
+      "use_mhc": true,
+      "mhc_iterations": 20,
+      "b3_ultra": true,
+      "num_moe_blocks": 4
+    }
+  },
+  "evaluation_results": {
+    "model_ready": true,
+    "warmup_time": 0.2036738395690918,
+    "avg_inference_time": 0.035486245155334474,
+    "samples_per_second": 56.35986538573946,
+    "memory_allocated_gb": 0.5548877716064453,
+    "memory_reserved_gb": 0.697265625,
+    "max_memory_gb": 0.5646700859069824,
+    "output_shape": [
+      2,
+      768
+    ],
+    "target_performance": {
+      "samples_per_second_target": 20.0,
+      "memory_budget_gb": 3.5,
+      "performance_meets_target": "True",
+      "memory_within_budget": true
+    }
+  },
+  "training_readiness": {
+    "ready_for_training": true,
+    "educational_content_protected": true,
+    "performance_target_met": "True",
+    "memory_optimized": true
+  }
+}

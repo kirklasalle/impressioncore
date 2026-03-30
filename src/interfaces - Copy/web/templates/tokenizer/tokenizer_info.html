@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Tokenization Information{% endblock %}
+
+{% block content %}
+<div class="section-card">
+    <h1>About Tokenization</h1>
+    
+    <div class="note">
+        <p><b>Note:</b> This section provides information about tokenization concepts and techniques.</p>
+    </div>
+    
+    <div class="card">
+        <h2>What is Tokenization?</h2>
+        <p>Tokenization is the process of converting raw input data (such as text or images) into discrete tokens that can be processed by neural networks.</p>
+    </div>
+    
+    <div class="card">
+        <h2>Text Tokenization</h2>
+        <p>Text tokenization involves breaking down text into smaller units:</p>
+        <ul>
+            <li><strong>Word Tokenization:</strong> Splits text into words.</li>
+            <li><strong>Subword Tokenization:</strong> Creates tokens for common subword units, balancing vocabulary size and coverage.</li>
+            <li><strong>Byte-Pair Encoding (BPE):</strong> Iteratively merges most frequent character pairs to form new tokens.</li>
+            <li><strong>WordPiece:</strong> Similar to BPE but uses likelihood rather than frequency for merges.</li>
+            <li><strong>Unigram:</strong> Probabilistic model that optimizes likelihood of the training data.</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h2>Image Tokenization</h2>
+        <p>Image tokenization converts visual data into discrete tokens:</p>
+        <ul>
+            <li><strong>Patch-Based:</strong> Divides images into regular grid patches, used in Vision Transformers (ViT).</li>
+            <li><strong>Vector Quantization:</strong> Maps continuous features to a discrete codebook, as in VQGAN.</li>
+            <li><strong>Convolutional Tokenization:</strong> Uses convolutional layers to extract features before tokenization.</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h2>Tokenization in Multimodal Models</h2>
+        <p>Multimodal models use tokenization to process different data types:</p>
+        <ul>
+            <li>Consistent token dimensionality across modalities</li>
+            <li>Token type embeddings to differentiate modalities</li>
+            <li>Specialized tokenizers for each modality</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+name: Shim Expiry Reminder
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-shim-expiry:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install deps
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run guard (upcoming focus)
+      run: |
+        python -m dev_tools.ci.root_script_guard --fail-on-duplicates --json-report guard_report.json --badge-json badge.json --upcoming-threshold 10
+        python -c "import json,pathlib;d=json.loads(pathlib.Path('guard_report.json').read_text());up=d.get('upcoming_expirations',[]);rem=d.get('removal_suggestions',[]);f=open('shim_expiry_summary.md','w',encoding='utf-8');w=f.write;w('# Shim Expiry Summary\n\n');w(f'Total Violations: {len(d.get(''violations'',[]))}\n\n');\nif up:w('## Upcoming Expirations (<=10 days)\n');[w(f'- {x}\n') for x in up];w('\n');\nif rem:w('## Removal Suggestions (Expired)\n');[w(f'- `{x}`\n') for x in rem];w('\n');\nif not up and not rem:w('No upcoming or expired shims. Structure healthy.\n');f.close()"
+
+    - name: Upload reminder artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: shim-expiry-reminder
+        path: |
+          guard_report.json
+          badge.json
+          shim_expiry_summary.md

@@ -1,0 +1,16 @@
+{
+  "ids_version": "1.0.0",
+  "initialization_time": "2025-06-01T13:11:44.958943",
+  "duration_seconds": 0.0,
+  "steps_completed": 8,
+  "total_steps": 8,
+  "completion_percentage": 100.0,
+  "issues_found": 0,
+  "actions_taken": 0,
+  "priority_docs_status": {},
+  "automation_status": {},
+  "tag_system_status": {},
+  "memlog_integration_status": {},
+  "detailed_issues": [],
+  "detailed_actions": []
+}

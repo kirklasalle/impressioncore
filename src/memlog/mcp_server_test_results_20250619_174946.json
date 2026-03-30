@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-06-19T17:49:37.796079",
+  "servers": {
+    "ids": {
+      "name": "ImpressionCore IDS",
+      "status": "\u2705 OPERATIONAL",
+      "tools": [],
+      "tests": {
+        "knowledge_graph": "\u274c FAIL",
+        "search": "\u274c FAIL",
+        "tags": "\u274c FAIL"
+      },
+      "errors": [
+        "Knowledge graph: 'AIEnhancedIDSCore' object has no attribute 'get_system_status'",
+        "Search: 'AIEnhancedIDSCore' object has no attribute 'search'",
+        "Tags: 'AIEnhancedIDSCore' object has no attribute 'list_tags'"
+      ]
+    },
+    "eds": {
+      "name": "ImpressionCore EDS",
+      "status": "\u274c FAILED",
+      "tools": [],
+      "tests": {},
+      "errors": [
+        "Initialization: cannot import name 'EDSEnhancedMCPServer' from 'server_enhanced' (d:\\Projects\\impressioncore\\.mcp\\impressioncore-eds\\server_enhanced.py)"
+      ]
+    },
+    "vrgc": {
+      "name": "ImpressionCore VRGC Enhanced",
+      "status": "\u274c FAILED",
+      "tools": [],
+      "tests": {},
+      "errors": [
+        "Initialization: cannot import name 'VRGCEnhancedWebMCPServer' from 'server_enhanced' (d:\\Projects\\impressioncore\\.mcp\\impressioncore-eds\\server_enhanced.py)"
+      ]
+    }
+  },
+  "summary": {
+    "total_servers": 3,
+    "operational_servers": 1,
+    "total_tools": 0,
+    "total_tests": 3,
+    "passed_tests": 0,
+    "success_rate": "0.0%"
+  }
+}

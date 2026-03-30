@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Log - ImpressionCore{% endblock %}
+
+{% block content %}
+<div class="section-title">Activity Log</div>
+
+<div class="card">
+    <div class="section-subtitle">Activity History</div>
+    
+    <div class="filter-bar">
+        <div class="form-group">
+            <label class="form-label">Filter by Type</label>
+            <div class="custom-select">
+                <select class="form-control" id="activityType">
+                    <option value="all">All Activities</option>
+                    <option value="login">Login Events</option>
+                    <option value="api">API Usage</option>
+                    <option value="training">Training Sessions</option>
+                    <option value="system">System Changes</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Time Range</label>
+            <div class="custom-select">
+                <select class="form-control" id="timeRange">
+                    <option value="24h">Last 24 Hours</option>
+                    <option value="7d">Last 7 Days</option>
+                    <option value="30d">Last 30 Days</option>
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="activity-list" id="activityList">
+        <!-- Activities will be populated here -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-subtitle">Export Options</div>
+    <div class="form-group">
+        <button class="btn btn-primary" id="exportCsv">
+            <i class="fas fa-file-csv"></i>
+            Export as CSV
+        </button>
+        <button class="btn btn-primary" id="exportJson">
+            <i class="fas fa-file-code"></i>
+            Export as JSON
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadActivities() {
+    try {
+        const type = document.getElementById('activityType').value;
+        const range = document.getElementById('timeRange').value;
+        
+        const response = await fetch(`/api/v1/user/activities?type=${type}&range=${range}`);
+        if (response.ok) {
+            const activities = await response.json();
+            const activityList = document.getElementById('activityList');
+            activityList.innerHTML = '';
+            
+            activities.forEach(activity => {
+                const activityElement = document.createElement('div');
+                activityElement.className = 'activity-item';
+                activityElement.innerHTML = `
+                    <div class="activity-header">
+                        <span class="activity-type badge badge-${getActivityBadgeClass(activity.type)}">
+                            ${activity.type}
+                        </span>
+                        <span class="activity-time">${formatDate(activity.timestamp)}</span>
+                    </div>
+                    <div class="activity-details">
+                        ${activity.description}
+                    </div>
+                `;
+                activityList.appendChild(activityElement);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading activities:', error);
+    }
+}
+
+function getActivityBadgeClass(type) {
+    const types = {
+        'login': 'primary',
+        'api': 'success',
+        'training': 'warning',
+        'system': 'info'
+    };
+    return types[type] || 'primary';
+}
+
+function formatDate(timestamp) {
+    return new Date(timestamp).toLocaleString();
+}
+
+// Event listeners
+document.getElementById('activityType').addEventListener('change', loadActivities);
+document.getElementById('timeRange').addEventListener('change', loadActivities);
+
+document.getElementById('exportCsv').addEventListener('click', async () => {
+    const response = await fetch('/api/v1/user/activities/export?format=csv');
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'activity_log.csv';
+    a.click();
+});
+
+document.getElementById('exportJson').addEventListener('click', async () => {
+    const response = await fetch('/api/v1/user/activities/export?format=json');
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'activity_log.json';
+    a.click();
+});
+
+// Initialize
+loadActivities();
+</script>
+
+<style>
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.activity-list {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.activity-time {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.activity-details {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,113 @@
+---
+title: ImpressionCore Web Server Architecture
+---
+
+%% Mermaid diagram for ImpressionCore Web Server Architecture
+flowchart TD
+    A[User Browser] -->|HTTP/WS| B(Flask App)
+    B --> C[Blueprint: web]
+    B --> D[API Endpoints]
+    B --> E[WebSocket Handlers]
+    C --> F[Templates]
+    D --> G[Model Management]
+    D --> H[GPU/Memory Profiling]
+    D --> I[Tokenizer Training]
+    D --> J[Inference]
+    E --> K[Training Progress WS]
+    E --> L[Tokenizer Progress WS]
+    B --> M[Static Files]
+    B --> N[Session/Auth]
+    B --> O[Logging]
+    B --> P[Error Handlers]
+    B --> Q[Uploads]
+    B --> R[Model Cache]
+    B --> S[Config/Env Checks]
+    B --> T[Route Config]
+    B --> U[User Management]
+    B --> V[Settings]
+    B --> W[Walkthrough]
+    B --> X[Activity Log]
+    B --> Y[Dashboard]
+    B --> Z[Docs]
+
+%% Add more detail as needed for each module
+
+%% Example: Model Management
+G --> G1[Create Model]
+G --> G2[Validate Model]
+G --> G3[Memory Profile]
+G --> G4[Architecture]
+
+%% Example: Tokenizer Training
+I --> I1[Upload Data]
+I --> I2[Start Training]
+I --> I3[Stop Training]
+I --> I4[Progress WS]
+I --> I5[Download Results]
+
+%% Example: Inference
+J --> J1[Run Inference]
+J --> J2[List Models]
+
+%% Example: GPU/Memory Profiling
+H --> H1[GPU Info]
+H --> H2[Clear GPU Memory]
+
+%% Example: WebSocket Handlers
+K --> K1[Training Updates]
+L --> L1[Tokenizer Updates]
+
+%% Example: User Management
+U --> U1[API Keys]
+U --> U2[Sessions]
+U --> U3[Revoke]
+
+%% Example: Settings
+V --> V1[Advanced Settings]
+
+%% Example: Walkthrough
+W --> W1[System Checks]
+W --> W2[Dependencies]
+W --> W3[Config Validation]
+W --> W4[Data Checks]
+
+%% Example: Dashboard
+Y --> Y1[Training Dashboard]
+
+%% Example: Docs
+Z --> Z1[User Guide]
+Z --> Z2[API Reference]
+Z --> Z3[Architecture]
+
+%% Example: Activity Log
+X --> X1[User Actions]
+
+%% Example: Error Handlers
+P --> P1[404]
+P --> P2[500]
+
+%% Example: Logging
+O --> O1[Rich Logging]
+O --> O2[Tracebacks]
+
+%% Example: Session/Auth
+N --> N1[Login]
+N --> N2[Logout]
+N --> N3[Session Mgmt]
+
+%% Example: Uploads
+Q --> Q1[Tokenizer Data]
+Q --> Q2[Model Files]
+
+%% Example: Model Cache
+R --> R1[Thread Lock]
+R --> R2[Cache Dict]
+
+%% Example: Config/Env Checks
+S --> S1[Virtualenv]
+S --> S2[Dependencies]
+S --> S3[Structure]
+
+%% Example: Route Config
+T --> T1[ROUTE_MAP]
+T --> T2[NAV_SECTIONS]

@@ -1,0 +1,186 @@
+{
+  "status": "success",
+  "total_time_seconds": 75.96565961837769,
+  "best_quality": 0.3832386076450348,
+  "training_history": [
+    {
+      "epoch": 1,
+      "avg_loss": 54.01445799607497,
+      "validation": {
+        "avg_quality": 0.3832386076450348,
+        "avg_inference_time_ms": 26.147794723510742,
+        "samples": [
+          {
+            "prompt": "Hello, how are you?",
+            "quality": 0.39017045497894287,
+            "inference_time_ms": 85.82115173339844
+          },
+          {
+            "prompt": "What is machine learning?",
+            "quality": 0.3760802447795868,
+            "inference_time_ms": 0.0
+          },
+          {
+            "prompt": "Can you help me with programming?",
+            "quality": 0.3841487169265747,
+            "inference_time_ms": 16.911029815673828
+          },
+          {
+            "prompt": "I'm feeling excited today!",
+            "quality": 0.3864738643169403,
+            "inference_time_ms": 12.382984161376953
+          },
+          {
+            "prompt": "Explain quantum physics simply.",
+            "quality": 0.3793197572231293,
+            "inference_time_ms": 15.623807907104492
+          }
+        ]
+      }
+    },
+    {
+      "epoch": 2,
+      "avg_loss": 39.835669590876655,
+      "validation": {
+        "avg_quality": 0.20454834699630736,
+        "avg_inference_time_ms": 32.41314888000488,
+        "samples": [
+          {
+            "prompt": "Hello, how are you?",
+            "quality": 0.2008754312992096,
+            "inference_time_ms": 10.066032409667969
+          },
+          {
+            "prompt": "What is machine learning?",
+            "quality": 0.20033565163612366,
+            "inference_time_ms": 52.75464057922363
+          },
+          {
+            "prompt": "Can you help me with programming?",
+            "quality": 0.2128736972808838,
+            "inference_time_ms": 60.924530029296875
+          },
+          {
+            "prompt": "I'm feeling excited today!",
+            "quality": 0.2058822065591812,
+            "inference_time_ms": 18.125534057617188
+          },
+          {
+            "prompt": "Explain quantum physics simply.",
+            "quality": 0.2027747482061386,
+            "inference_time_ms": 20.19500732421875
+          }
+        ]
+      }
+    },
+    {
+      "epoch": 3,
+      "avg_loss": 36.5960085942195,
+      "validation": {
+        "avg_quality": 0.13816751837730407,
+        "avg_inference_time_ms": 14.904928207397461,
+        "samples": [
+          {
+            "prompt": "Hello, how are you?",
+            "quality": 0.1344272494316101,
+            "inference_time_ms": 14.543294906616211
+          },
+          {
+            "prompt": "What is machine learning?",
+            "quality": 0.13531231880187988,
+            "inference_time_ms": 10.073184967041016
+          },
+          {
+            "prompt": "Can you help me with programming?",
+            "quality": 0.14247994124889374,
+            "inference_time_ms": 19.7141170501709
+          },
+          {
+            "prompt": "I'm feeling excited today!",
+            "quality": 0.14051410555839539,
+            "inference_time_ms": 12.087106704711914
+          },
+          {
+            "prompt": "Explain quantum physics simply.",
+            "quality": 0.13810397684574127,
+            "inference_time_ms": 18.106937408447266
+          }
+        ]
+      }
+    },
+    {
+      "epoch": 4,
+      "avg_loss": 35.018856928898735,
+      "validation": {
+        "avg_quality": 0.12453236877918243,
+        "avg_inference_time_ms": 10.651683807373047,
+        "samples": [
+          {
+            "prompt": "Hello, how are you?",
+            "quality": 0.12111692875623703,
+            "inference_time_ms": 14.041900634765625
+          },
+          {
+            "prompt": "What is machine learning?",
+            "quality": 0.12219972163438797,
+            "inference_time_ms": 13.376951217651367
+          },
+          {
+            "prompt": "Can you help me with programming?",
+            "quality": 0.1283041089773178,
+            "inference_time_ms": 10.085821151733398
+          },
+          {
+            "prompt": "I'm feeling excited today!",
+            "quality": 0.12650105357170105,
+            "inference_time_ms": 9.556293487548828
+          },
+          {
+            "prompt": "Explain quantum physics simply.",
+            "quality": 0.12454003095626831,
+            "inference_time_ms": 6.197452545166016
+          }
+        ]
+      }
+    },
+    {
+      "epoch": 5,
+      "avg_loss": 35.1492977142334,
+      "validation": {
+        "avg_quality": 0.12306664735078812,
+        "avg_inference_time_ms": 12.742137908935547,
+        "samples": [
+          {
+            "prompt": "Hello, how are you?",
+            "quality": 0.11969348788261414,
+            "inference_time_ms": 11.457443237304688
+          },
+          {
+            "prompt": "What is machine learning?",
+            "quality": 0.12071119248867035,
+            "inference_time_ms": 15.630006790161133
+          },
+          {
+            "prompt": "Can you help me with programming?",
+            "quality": 0.12680810689926147,
+            "inference_time_ms": 17.650127410888672
+          },
+          {
+            "prompt": "I'm feeling excited today!",
+            "quality": 0.12498871982097626,
+            "inference_time_ms": 18.973112106323242
+          },
+          {
+            "prompt": "Explain quantum physics simply.",
+            "quality": 0.12313172966241837,
+            "inference_time_ms": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "model_info": {
+    "parameters": 56845145,
+    "size_mb": 216.84701919555664
+  }
+}

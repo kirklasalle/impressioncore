@@ -1,0 +1,114 @@
+{
+  "curriculum_metadata": {
+    "timestamp": "2025-06-17 12:13:02",
+    "total_duration": 2.748396158218384,
+    "system_status": "operational",
+    "curriculum_version": "1.0.0"
+  },
+  "progression_summary": {
+    "levels_attempted": 5,
+    "levels_passed": 4,
+    "current_level": 5,
+    "completion_percentage": 80.0
+  },
+  "quality_analysis": {
+    "overall_average": 9.606385889103253,
+    "best_score": 10.0,
+    "consistency": 0.3071504869395687,
+    "target_achievement": true
+  },
+  "level_results": {
+    "level_1": {
+      "level": 1,
+      "sessions_completed": 5,
+      "quality_scores": [
+        8.614300973879137,
+        8.96110441248339,
+        9.19685987987875,
+        9.28561719249888,
+        9.504156505872238
+      ],
+      "average_quality": 9.112407792922479,
+      "target_quality": 9.0,
+      "passed": true,
+      "improvement_rate": 0.889855531993101,
+      "consistency": 0.5550722340034495
+    },
+    "level_2": {
+      "level": 2,
+      "sessions_completed": 5,
+      "quality_scores": [
+        8.964204003111762,
+        9.26530540393146,
+        9.348321233033008,
+        9.54371000488562,
+        9.704790347130622
+      ],
+      "average_quality": 9.365266198418496,
+      "target_quality": 9.3,
+      "passed": true,
+      "improvement_rate": 0.74058634401886,
+      "consistency": 0.62970682799057
+    },
+    "level_3": {
+      "level": 3,
+      "sessions_completed": 5,
+      "quality_scores": [
+        9.396065886486449,
+        9.501796146220764,
+        9.778604720294561,
+        9.906396070331875,
+        10.0
+      ],
+      "average_quality": 9.71657256466673,
+      "target_quality": 9.6,
+      "passed": true,
+      "improvement_rate": 0.6039341135135512,
+      "consistency": 0.6980329432432244
+    },
+    "level_4": {
+      "level": 4,
+      "sessions_completed": 5,
+      "quality_scores": [
+        9.504298396978266,
+        9.734899329447314,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "average_quality": 9.847839545285115,
+      "target_quality": 9.8,
+      "passed": true,
+      "improvement_rate": 0.49570160302173427,
+      "consistency": 0.7521491984891329
+    },
+    "level_5": {
+      "level": 5,
+      "sessions_completed": 5,
+      "quality_scores": [
+        9.949216721117205,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "average_quality": 9.989843344223441,
+      "target_quality": 10.0,
+      "passed": false,
+      "improvement_rate": 0.0507832788827951,
+      "consistency": 0.9746083605586024
+    }
+  },
+  "next_steps": [
+    "\ud83c\udfaf Continue advanced level training",
+    "\ud83d\udcc8 Focus on consistency improvements",
+    "\ud83d\udd0d Conduct detailed quality analysis",
+    "\u26a1 Optimize inference speed"
+  ],
+  "readiness_assessment": {
+    "readiness_level": "ready_for_advanced_text",
+    "confidence": "medium",
+    "quality_score": 9.606385889103253,
+    "recommendation": "Based on 4/5 levels passed with 9.61 quality"
+  }
+}

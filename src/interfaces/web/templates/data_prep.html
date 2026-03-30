@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Data Preparation | ImpressionCore-b1{% endblock %}
+{% block content %}
+<div class="section-title">Data Preparation</div>
+<div class="card">
+  <p>Upload and validate your training or inference data. Supported formats: <b>.txt, .csv, .json</b>. Data quality is critical for model performance.
+When you upload your data file on the ImpressionCore Data Preparation page, you are providing the raw information (such as text, CSV, or JSON data) that will be used 
+to train or evaluate the ImpressionCore language model. The system immediately validates, cleans, and stores your file in a dedicated directory (uploads). 
+This ensures your data is ready for the next steps in the AI pipeline, such as tokenization and model training, with minimal errors and maximum efficiency.
+  </p>
+  <form method="post" action="/data_prep/upload" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="dataFile" class="form-label">Select Data File</label>
+      <input class="form-control" type="file" id="dataFile" name="dataFile" accept=".txt,.csv,.json" required>
+    </div>
+    <button class="btn btn-primary" type="submit"><i class="fas fa-upload"></i> Upload Data</button>
+  </form>
+  <div class="alert alert-info mt-3">Tip: Use clean, well-structured data for best results. <br>Developers: See <code>src/data/datasets/</code> for loader logic.</div></div><br>
+
+  <div class="section-title">Data Preparation for ImpressionCore and ImpressionCore-b1</div>
+<div class="card" style="padding: 1.5em;">
+  <h5>Quick Overview</h5>
+  <p>
+    When you upload your data file on the ImpressionCore Data Preparation page, you are providing the raw information (such as text, CSV, or JSON data) that will be used to train or evaluate the ImpressionCore language model. The system immediately validates, cleans, and stores your file in a dedicated directory (<code>uploads</code>). This ensures your data is ready for the next steps in the AI pipeline, such as tokenization and model training, with minimal errors and maximum efficiency.
+  </p>
+  <hr>
+  <h5>1. Introduction: The Role of Data Preparation</h5>
+  <p>
+    Data preparation is the foundational stage in any machine learning (ML) or artificial intelligence (AI) workflow. For ImpressionCore—a brain-inspired, multimodal large language model (LM) framework—data preparation is especially critical. The quality, structure, and cleanliness of your data directly impact the performance, reliability, and generalization ability of the resulting models, including the flagship ImpressionCore-b1.
+    <br><br>
+    ImpressionCore is designed to run efficiently on consumer hardware, such as systems with a GTX 1050 Ti GPU and limited VRAM. This constraint makes robust data preparation even more essential, as it helps prevent memory bottlenecks and ensures that only high-quality, relevant data is used for training and inference.
+  </p>
+  <hr>
+  <h5>2. User Workflow: From Upload to Clean Data</h5>
+  <ol>
+    <li>
+      <b>File Upload</b>
+      <ul>
+        <li><b>User Action:</b> The user selects a data file (supported formats: <code>.txt</code>, <code>.csv</code>, <code>.json</code>) and uploads it via the web interface.</li>
+        <li><b>System Response:</b> The backend receives the file, checks its type, and saves it to <code>uploads</code>.</li>
+      </ul>
+    </li>
+    <li>
+      <b>Validation and Cleaning</b>
+      <ul>
+        <li><b>Validation:</b> The system verifies that the file is not empty, is of an allowed type, and meets minimum content requirements (e.g., a <code>.txt</code> file must have at least 10 lines).</li>
+        <li><b>Cleaning:</b> Depending on the file type, the system applies cleaning steps:
+          <ul>
+            <li><b>CSV/JSON:</b> Removes duplicate entries, handles missing values (e.g., drops rows with missing data), and may perform additional normalization.</li>
+            <li><b>TXT:</b> Ensures sufficient content and may perform basic formatting checks.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Storage and Preparation for Next Steps</b>
+      <ul>
+        <li><b>Cleaned Output:</b> Cleaned files are saved with a <code>cleaned_</code> prefix in the uploads directory.</li>
+        <li><b>Ready for Tokenization:</b> The cleaned data is now ready for tokenization, which is the next step in the ImpressionCore pipeline.</li>
+      </ul>
+    </li>
+  </ol>
+  <hr>
+  <h5>3. Technical Details: Data Preparation Pipeline</h5>
+  <ul>
+    <li>
+      <b>Directory Structure</b>
+      <ul>
+        <li><b>Uploads Directory:</b> All user-uploaded and cleaned files are stored in <code>uploads</code>.</li>
+        <li><b>Separation of Raw and Cleaned Data:</b> Raw uploads are preserved, while cleaned versions are generated for downstream tasks.</li>
+      </ul>
+    </li>
+    <li>
+      <b>Memory-Efficient Processing</b>
+      <ul>
+        <li><b>Chunked Reading:</b> For large CSV files, data is read and processed in chunks (e.g., 10,000 rows at a time) to avoid exceeding system memory limits.</li>
+        <li><b>Streaming:</b> Files are streamed and not fully loaded into memory unless necessary, which is crucial for low-VRAM environments.</li>
+      </ul>
+    </li>
+    <li>
+      <b>Cleaning Logic</b>
+      <ul>
+        <li><b>Duplicate Removal:</b> Ensures that repeated entries do not bias the model.</li>
+        <li><b>Missing Value Handling:</b> Rows with missing or invalid data are dropped or imputed, depending on the cleaning strategy.</li>
+        <li><b>Format Normalization:</b> Ensures consistent encoding, line endings, and field delimiters.</li>
+      </ul>
+    </li>
+    <li>
+      <b>Error Handling</b>
+      <ul>
+        <li><b>User Feedback:</b> If the upload fails validation or cleaning, the user receives a clear error message (e.g., "Text file must have at least 10 lines").</li>
+        <li><b>Logging:</b> Errors and cleaning steps are logged for debugging and reproducibility.</li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+  <h5>4. Why Data Preparation Matters for ImpressionCore-b1</h5>
+  <ul>
+    <li><b>Model Generalization:</b> Clean, diverse, and well-structured data helps the model generalize better to unseen inputs.</li>
+    <li><b>Resource Efficiency:</b> By removing irrelevant or redundant data, the model can be trained faster and with less memory usage.</li>
+    <li><b>Error Reduction:</b> Early detection and correction of data issues prevent downstream failures during tokenization, training, or inference.</li>
+    <li><b>Reproducibility:</b> Consistent data cleaning ensures that experiments can be reliably repeated and compared.</li>
+  </ul>
+  <hr>
+  <h5>5. Integration with the ImpressionCore Pipeline</h5>
+  <p>
+    After data preparation, the cleaned data is passed to the tokenizer, which converts raw text into numerical tokens suitable for model training. The ImpressionCore pipeline is modular, so each stage (data prep, tokenization, training, evaluation) is clearly separated, allowing for easy debugging, extension, and optimization.
+  </p>
+  <hr>
+  <h5>6. Best Practices and Recommendations</h5>
+  <ul>
+    <li><b>Use Clean, Well-Structured Data:</b> Always review your data for errors, inconsistencies, and irrelevant content before uploading.</li>
+    <li><b>Prefer Tabular Formats for Structured Data:</b> Use CSV or JSON for datasets with multiple fields or records.</li>
+    <li><b>Monitor Data Size:</b> Large files are supported, but chunked processing is used to avoid memory issues.</li>
+    <li><b>Check Logs and Feedback:</b> Pay attention to system messages and logs for any issues during upload or cleaning.</li>
+  </ul>
+  <hr>
+  <h5>7. Conclusion</h5>
+  <p>
+    Data preparation in ImpressionCore is not just a preliminary step—it is a critical process that ensures the success of all subsequent AI tasks. By validating, cleaning, and structuring your data before tokenization and training, ImpressionCore enables robust, efficient, and reproducible language modeling, even on modest hardware. Whether you are training a new ImpressionCore-b1 model or running inference, investing time in proper data preparation will yield better, more reliable results.
+  </p>
+  <div class="alert alert-info mt-3">
+    <b>For more details, consult the user guide at <code>user_guide.md</code> or the web-based guide at <code>docs/user_guide.html</code>.</b>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" onclick="window.location.href='{{ url_for('tokenizer') }}'">
+        <i class="fas fa-arrow-right"></i> Continue to Tokenization
+    </button>
+</div>
+{% endblock %}

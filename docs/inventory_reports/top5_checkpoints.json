@@ -1,0 +1,62 @@
+[
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25.pth",
+    "filename": "unified_final_step_25.pth",
+    "size_mb": 4490.49,
+    "timestamp": 1755885991.7120123,
+    "primary": 10.821548461914062,
+    "best_loss": 10.821548461914062,
+    "val_best": null,
+    "hist_tail": 10.95604782104492,
+    "steps": 25,
+    "load_mode": "full"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_20.pth",
+    "filename": "unified_final_step_20.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755885234.8323822,
+    "primary": 10.937961196899414,
+    "best_loss": 10.937961196899414,
+    "val_best": null,
+    "hist_tail": 11.091047096252442,
+    "steps": 20,
+    "load_mode": "full"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_8.pth",
+    "filename": "unified_final_step_8.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755887180.5231411,
+    "primary": 11.001396179199219,
+    "best_loss": 11.001396179199219,
+    "val_best": null,
+    "hist_tail": 11.001396179199219,
+    "steps": 8,
+    "load_mode": "full"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_5.pth",
+    "filename": "unified_final_step_5.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755884464.3377888,
+    "primary": 11.277332305908203,
+    "best_loss": 11.277332305908203,
+    "val_best": null,
+    "hist_tail": 11.277332305908203,
+    "steps": 5,
+    "load_mode": "full"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\b3_ollama_enhanced\\b3_ollama_enhanced_stage_2_step_5500.pth",
+    "filename": "b3_ollama_enhanced_stage_2_step_5500.pth",
+    "size_mb": 4454.44,
+    "timestamp": 1754769518.6169727,
+    "primary": 4570.548486328125,
+    "best_loss": 4570.548486328125,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 5500,
+    "load_mode": "full"
+  }
+]

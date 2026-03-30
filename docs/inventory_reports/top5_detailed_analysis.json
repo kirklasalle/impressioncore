@@ -1,0 +1,854 @@
+[
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25.pth",
+    "filename": "unified_final_step_25.pth",
+    "size_mb": 4490.49,
+    "timestamp": 1755885991.7120123,
+    "timestamp_human": "2025-08-22 14:06:31",
+    "load_mode": "full",
+    "metrics": {
+      "primary": 10.821548461914062,
+      "best_loss": 10.821548461914062,
+      "val_best": null,
+      "hist_tail": 10.95604782104492,
+      "steps": 25
+    },
+    "state": {
+      "param_elems": 506045321,
+      "param_tensors": 755,
+      "top_tensors": [
+        {
+          "name": "embeddings.token_embeddings.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "lm_head.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.0.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.1.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.2.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.sensor_processor.fusion_network.0.weight",
+          "shape": [
+            1536,
+            3072
+          ],
+          "elems": 4718592,
+          "percent": 0.932
+        },
+        {
+          "name": "layers.0.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.0.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.4.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        }
+      ]
+    },
+    "bits_per_param": 74.438,
+    "anomalies": [
+      "low_step_count",
+      "high_bits_per_param"
+    ],
+    "config_summary": "num_layers=8, vocab_size=50257, max_seq_length=512"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_20.pth",
+    "filename": "unified_final_step_20.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755885234.8323822,
+    "timestamp_human": "2025-08-22 13:53:54",
+    "load_mode": "full",
+    "metrics": {
+      "primary": 10.937961196899414,
+      "best_loss": 10.937961196899414,
+      "val_best": null,
+      "hist_tail": 11.091047096252442,
+      "steps": 20
+    },
+    "state": {
+      "param_elems": 506045321,
+      "param_tensors": 755,
+      "top_tensors": [
+        {
+          "name": "embeddings.token_embeddings.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "lm_head.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.0.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.1.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.2.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.sensor_processor.fusion_network.0.weight",
+          "shape": [
+            1536,
+            3072
+          ],
+          "elems": 4718592,
+          "percent": 0.932
+        },
+        {
+          "name": "layers.0.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.0.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.4.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        }
+      ]
+    },
+    "bits_per_param": 32.005,
+    "anomalies": [
+      "low_step_count"
+    ],
+    "config_summary": "num_layers=8, vocab_size=50257, max_seq_length=512"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_8.pth",
+    "filename": "unified_final_step_8.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755887180.5231411,
+    "timestamp_human": "2025-08-22 14:26:20",
+    "load_mode": "full",
+    "metrics": {
+      "primary": 11.001396179199219,
+      "best_loss": 11.001396179199219,
+      "val_best": null,
+      "hist_tail": 11.001396179199219,
+      "steps": 8
+    },
+    "state": {
+      "param_elems": 506045321,
+      "param_tensors": 755,
+      "top_tensors": [
+        {
+          "name": "embeddings.token_embeddings.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "lm_head.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.0.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.1.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.2.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.sensor_processor.fusion_network.0.weight",
+          "shape": [
+            1536,
+            3072
+          ],
+          "elems": 4718592,
+          "percent": 0.932
+        },
+        {
+          "name": "layers.0.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.0.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.4.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        }
+      ]
+    },
+    "bits_per_param": 32.005,
+    "anomalies": [
+      "low_step_count"
+    ],
+    "config_summary": "num_layers=8, vocab_size=50257, max_seq_length=512"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_5.pth",
+    "filename": "unified_final_step_5.pth",
+    "size_mb": 1930.69,
+    "timestamp": 1755884464.3377888,
+    "timestamp_human": "2025-08-22 13:41:04",
+    "load_mode": "full",
+    "metrics": {
+      "primary": 11.277332305908203,
+      "best_loss": 11.277332305908203,
+      "val_best": null,
+      "hist_tail": 11.277332305908203,
+      "steps": 5
+    },
+    "state": {
+      "param_elems": 506045321,
+      "param_tensors": 755,
+      "top_tensors": [
+        {
+          "name": "embeddings.token_embeddings.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "lm_head.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.0.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.1.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.2.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.sensor_processor.fusion_network.0.weight",
+          "shape": [
+            1536,
+            3072
+          ],
+          "elems": 4718592,
+          "percent": 0.932
+        },
+        {
+          "name": "layers.0.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.0.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.4.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        }
+      ]
+    },
+    "bits_per_param": 32.005,
+    "anomalies": [
+      "low_step_count"
+    ],
+    "config_summary": "num_layers=8, vocab_size=50257, max_seq_length=512"
+  },
+  {
+    "path": "F:\\models\\checkpoints\\b3_ollama_enhanced\\b3_ollama_enhanced_stage_2_step_5500.pth",
+    "filename": "b3_ollama_enhanced_stage_2_step_5500.pth",
+    "size_mb": 4454.44,
+    "timestamp": 1754769518.6169727,
+    "timestamp_human": "2025-08-09 15:58:38",
+    "load_mode": "full",
+    "metrics": {
+      "primary": 4570.548486328125,
+      "best_loss": 4570.548486328125,
+      "val_best": null,
+      "hist_tail": null,
+      "steps": 5500
+    },
+    "state": {
+      "param_elems": 506045321,
+      "param_tensors": 755,
+      "top_tensors": [
+        {
+          "name": "embeddings.token_embeddings.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "lm_head.weight",
+          "shape": [
+            50257,
+            768
+          ],
+          "elems": 38597376,
+          "percent": 7.627
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.0.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.1.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.video_processor.conv3d_layers.2.weight",
+          "shape": [
+            768,
+            768,
+            3,
+            3,
+            3
+          ],
+          "elems": 15925248,
+          "percent": 3.147
+        },
+        {
+          "name": "embeddings.sensor_processor.fusion_network.0.weight",
+          "shape": [
+            1536,
+            3072
+          ],
+          "elems": 4718592,
+          "percent": 0.932
+        },
+        {
+          "name": "layers.0.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.0.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.1.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.2.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.3.diffusion.ffn.3.weight",
+          "shape": [
+            768,
+            3072
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        },
+        {
+          "name": "layers.4.diffusion.ffn.0.weight",
+          "shape": [
+            3072,
+            768
+          ],
+          "elems": 2359296,
+          "percent": 0.466
+        }
+      ]
+    },
+    "bits_per_param": 73.84,
+    "anomalies": [
+      "loss_scale_outlier",
+      "high_bits_per_param"
+    ],
+    "config_summary": null
+  }
+]

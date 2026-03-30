@@ -1,0 +1,87 @@
+# Goal Description
+Migrate the existing React-based User Interface ([App.jsx](file:///d:/Projects/impressioncore/src/interfaces/web_client/src/App.jsx)) to a high-performance, native desktop application using **Dear PyGui**. The new application will replicate the futuristic "Chat Interface", "Vision Controls", and "System Status" panels, while maintaining connection to the existing `triad_api` backend for logic and device control.
+
+# User Review Required
+> [!IMPORTANT]
+> **Architecture Decision**: The Dear PyGui application will act as a **Client**, connecting to the existing `triad_api` (FastAPI) running on `localhost:8000`. This ensures existing backend logic ([OrbCloudVision](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py#84-895), `UnifiedBrainTriad`) remains untouched and stable.
+>
+> **Video Streaming**: Video feeds will be consumed via the existing MJPEG stream (`/v1/vision/stream`) to avoid hardware conflict (as the backend "owns" the camera connection).
+
+# Visual Migration Strategy
+
+## Color Palette (Tailwind Translation)
+We will replicate the "Cyberpunk/Sci-Fi" aesthetic by mapping the existing Tailwind colors to Dear PyGui theme variables.
+
+| Role | Tailwind Class | Hex Code | DPG Target |
+| :--- | :--- | :--- | :--- |
+| **Window Bg** | `bg-slate-900` | `#0f172a` | `mvThemeCol_WindowBg` |
+| **Panel Bg** | `bg-black/40` | `#000000` (Alpha 100) | `mvThemeCol_ChildBg` |
+| **Primary Text** | `text-slate-300` | `#cbd5e1` | `mvThemeCol_Text` |
+| **Accent (Main)** | `text-cyan-400` | `#22d3ee` | `mvThemeCol_Button`, `mvThemeCol_Border` |
+| **Accent (Active)** | `text-cyan-300` | `#67e8f9` | `mvThemeCol_ButtonActive` |
+| **Status (Green)** | `text-green-500` | `#22c55e` | Custom Indicator Color |
+| **Status (Red)** | `text-red-500` | `#ef4444` | Custom Indicator Color |
+
+## Typography
+- **Monospace Font**: The key to the "Technical" look is a clean monospace font (like `JetBrains Mono` or `Consolas`).
+- **Implementation**: We will load a `.ttf` file using `dpg.add_font()` and apply it globally to match the `font-mono` look of the React app.
+
+## Layout Structure
+- **Flexbox Emulation**: DPG uses `add_group(horizontal=True)` to create row-based layouts.
+- **Responsive**: We will use `dpg.set_primary_window()` to ensure the main container resizes with the OS window, mimicking the web app's responsiveness.
+- **Glassmorphism**: While true separate-layer blur is hard in standard DPG, we will use semi-transparent backgrounds (`alpha=200`) on child windows to simulate the depth of `backdrop-blur`.
+
+# Proposed Changes
+
+
+## New Directory: `src/interfaces/dpg_client/`
+
+### [NEW] `src/interfaces/dpg_client/main.py`
+Entry point for the application. Sets up the DPG context, viewport, and main loop.
+
+### [NEW] `src/interfaces/dpg_client/ui/style.py`
+Defines the "ImpressionCore" theme:
+- Custom colors (`slate-900` equivalent, `cyan-400` accents).
+- Rounded styling (where supported) and font configuration.
+
+### [NEW] `src/interfaces/dpg_client/components/chat_panel.py`
+Replicates the Chat Interface:
+- Scrolling message history.
+- Input field with "Send" button.
+- **Voice Integration**:
+    - Uses `src.orchestrator.orbcloud_audio.OrbCloudAudio` for STT.
+    - Implements a "Hold to Speak" or "Toggle" button that triggers [start_listening](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_audio.py#78-154) / [stop_listening](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_audio.py#202-207).
+    - Routes transcribed text into the chat input field.
+    - Uses `ffplay` (via `orbcloud_audio.play_file`) or `playsound` for TTS output.
+
+### [NEW] `src/interfaces/dpg_client/components/vision_panel.py`
+Replicates Vision Controls & Telemetry:
+- **Video Display**: A DPG Image item updated 30fps from the backend stream.
+- **Controls**: Sliders for Brightness, Contrast, Saturation.
+- **Telemetry**: Real-time text/graphs for X/Y/Z tracking data.
+
+### [NEW] `src/interfaces/dpg_client/components/system_status.py`
+Replicates the System Status Overlay:
+- Health indicators (Green/Yellow/Red) for Vision, Intelligence, Sensory.
+- VRAM usage progress bar.
+
+### [NEW] `src/interfaces/dpg_client/async_utils.py`
+Helper for running async API calls (requests/axios equivalent) without blocking the DPG GUI thread.
+
+# Verification Plan
+
+## Automated Tests
+- None (GUI testing is manual).
+
+## Manual Verification
+1.  **Start Backend**: Run [src/interfaces/triad_api.py](file:///d:/Projects/impressioncore/src/interfaces/triad_api.py).
+2.  **Start Client**: Run `src/interfaces/dpg_client/main.py`.
+3.  **Verify UI**:
+    -   Check if the **Theme** matches the "tech/dark" aesthetic.
+    -   Confirm **System Status** loads and shows "Active"/"Nominal".
+4.  **Verify Chat**:
+    -   Type a message "Hello", ensure it appears in the chat log and receives a response from the backend.
+5.  **Verify Vision**:
+    -   Check if the **Video Feed** is visible and updating.
+    -   Adjust **Sliders** (Brightness) and verify the video feed changes.
+    -   Verify **Telemetry** numbers update when moving in front of the camera.

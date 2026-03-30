@@ -1,0 +1,28 @@
+[
+  {
+    "primary_score": 4570.548486328125,
+    "best_loss": 4570.548486328125,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 5500,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3_ollama_enhanced\\b3_ollama_enhanced_stage_2_step_5500.pth",
+    "filename": "b3_ollama_enhanced_stage_2_step_5500.pth",
+    "size_mb": 4454.44,
+    "probe_loss": null,
+    "timestamp": 1754769518.6169727
+  },
+  {
+    "primary_score": Infinity,
+    "best_loss": Infinity,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 5000,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3_ollama_enhanced\\b3_ollama_enhanced_final_step_5000.pth",
+    "filename": "b3_ollama_enhanced_final_step_5000.pth",
+    "size_mb": 1930.7,
+    "probe_loss": null,
+    "timestamp": 1754765772.6896167
+  }
+]

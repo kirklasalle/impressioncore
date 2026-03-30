@@ -1,0 +1,11 @@
+# NEXUS Plan: Memory Search Template
+# Called via: (EXECUTE-PLAN "memory-search")
+# Note: Modify the query before executing
+
+(LOG "=== Memory Search ===")
+
+# Search for recent context (replace query as needed)
+(LET ((query "user preferences"))
+  (MEMORY-SEARCH query))
+
+(LOG "=== Search Complete ===")

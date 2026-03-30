@@ -1,0 +1,13 @@
+# Computer Science > Machine Learning
+[v1](https://arxiv.org/abs/1707.06347v1)
+
+# Title:Proximal Policy Optimization Algorithms
+[John Schulman](https://arxiv.org/search/cs?searchtype=author&query=Schulman,+J)
+[Filip Wolski](https://arxiv.org/search/cs?searchtype=author&query=Wolski,+F)
+[Prafulla Dhariwal](https://arxiv.org/search/cs?searchtype=author&query=Dhariwal,+P)
+[Alec Radford](https://arxiv.org/search/cs?searchtype=author&query=Radford,+A)
+[Oleg Klimov](https://arxiv.org/search/cs?searchtype=author&query=Klimov,+O)
+[View PDF](https://arxiv.org/pdf/1707.06347)
+[arXiv:1707.06347](https://arxiv.org/abs/1707.06347)
+[arXiv:1707.06347v2](https://arxiv.org/abs/1707.06347v2)
+[https://doi.org/10.48550/arXiv.1707.06347](https://doi.org/10.48550/arXiv.1707.06347)

@@ -1,0 +1,28 @@
+# UI Responsiveness & Audio Init Fix
+
+## Problem Description
+1. **UI Clutter & Scaling**: The interface is cluttered, the audio compass is cut off, and it doesn't adapt to different resolutions (720p - 4K).
+2. **Audio Count Bug**: The "Available Audio Arrays" count is incorrect at startup.
+
+## Proposed Changes
+
+### 1. Audio Device Detection Fix ([src/orchestrator/audio_engine.py](file:///d:/Projects/impressioncore/src/orchestrator/audio_engine.py))
+- **Issue**: [_scan_devices](file:///d:/Projects/impressioncore/src/orchestrator/audio_engine.py#44-77) might be running too early or failing silently at startup.
+- **Fix**:
+    - Ensure [_scan_devices](file:///d:/Projects/impressioncore/src/orchestrator/audio_engine.py#44-77) is robust and retries if empty.
+    - Add a "Refresh" capability that the API can trigger.
+    - Check if "Microphone count" logic needs to better aggregate the channels.
+
+### 2. UI Responsiveness ([src/interfaces/web_client/src/App.jsx](file:///d:/Projects/impressioncore/src/interfaces/web_client/src/App.jsx))
+- **Strategy**: Implement a "Game UI" scaling approach or CSS Grid/Flex fluid layout.
+- **Changes**:
+    - **Global Scaling**: Wrap the main app container in a scaling provider that listens to window resize logic, or use `vmin`/`vmax` units.
+    - **Sidebar**: Convert fixed pixel widths (e.g., `w-72`) to percentage or `min-content` with scroll.
+    - **AudioPanel**:
+        - Fix `overflow-hidden` blocking the compass.
+        - Ensure the compass container has aspect ratio preservation.
+        - Increase base font sizes or use fluid typography.
+
+## Verification
+- Resize window from small (720p) to large (4K) and verify elements don't overlap or vanish.
+- Restart app and verify "Arrays" count is correct immediately.

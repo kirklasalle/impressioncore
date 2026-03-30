@@ -1,0 +1,58 @@
+{
+  "analysis_timestamp": "2025-06-22T06:58:55.322349",
+  "total_dataset_size_gb": 0.6207925183698535,
+  "total_files": 15829,
+  "modality_coverage": {
+    "text": 70,
+    "image": 15563,
+    "audio": 15,
+    "video": 11,
+    "facial": 8,
+    "multimodal": 24
+  },
+  "modality_gaps": [
+    {
+      "modality": "text",
+      "current_files": 70,
+      "required_files": 200,
+      "gap_percentage": 65.0,
+      "severity": "moderate"
+    },
+    {
+      "modality": "audio",
+      "current_files": 15,
+      "required_files": 100,
+      "gap_percentage": 85.0,
+      "severity": "critical"
+    },
+    {
+      "modality": "video",
+      "current_files": 11,
+      "required_files": 50,
+      "gap_percentage": 78.0,
+      "severity": "critical"
+    },
+    {
+      "modality": "facial",
+      "current_files": 8,
+      "required_files": 100,
+      "gap_percentage": 92.0,
+      "severity": "critical"
+    }
+  ],
+  "recommendations": [
+    "CRITICAL: Address critical modality gaps before B1 training",
+    "Download audio datasets - need 85 more files",
+    "Download video datasets - need 39 more files",
+    "Download facial datasets - need 92 more files",
+    "B1 embedding training should wait until all modalities meet minimum requirements"
+  ],
+  "b1_embedding_readiness": {
+    "text_ready": false,
+    "image_ready": true,
+    "audio_ready": false,
+    "video_ready": false,
+    "facial_ready": false,
+    "overall_ready": false
+  }
+}

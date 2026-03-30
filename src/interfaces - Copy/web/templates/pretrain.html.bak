@@ -1,0 +1,83 @@
+<div class="section-card">
+    <h4>Model Pretraining</h4>
+    <p>Configure and manage model pretraining for better initialization.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-gear"></i> Pretraining Configuration</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="pretrain-objective" class="form-label">Pretraining Objective:</label>
+                    <select class="form-select" id="pretrain-objective">
+                        <option value="mlm">Masked Language Modeling</option>
+                        <option value="clm">Causal Language Modeling</option>
+                        <option value="mae">Masked Autoencoder</option>
+                        <option value="custom">Custom Objective</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pretrain-data" class="form-label">Pretraining Data:</label>
+                    <input type="file" class="form-control" id="pretrain-data" multiple>
+                    <small class="text-muted">Upload your pretraining dataset</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="pretrain-epochs" class="form-label">Number of Epochs:</label>
+                    <input type="number" class="form-control" id="pretrain-epochs" value="10" min="1" max="100">
+                </div>
+                <div class="mb-3">
+                    <label for="mask-ratio" class="form-label">Masking Ratio:</label>
+                    <input type="number" class="form-control" id="mask-ratio" value="0.15" min="0.05" max="0.5" step="0.05">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-play-circle"></i> Pretraining Controls</h5>
+        <button class="btn btn-primary me-2" id="start-pretrain-btn">
+            <i class="bi bi-play"></i> Start Pretraining
+        </button>
+        <button class="btn btn-danger me-2" id="stop-pretrain-btn" style="display: none;">
+            <i class="bi bi-stop"></i> Stop
+        </button>
+        <button class="btn btn-warning" id="pause-pretrain-btn" style="display: none;">
+            <i class="bi bi-pause"></i> Pause
+        </button>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-graph-up"></i> Pretraining Progress</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="pretrain-loss-chart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="pretrain-accuracy-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-clock-history"></i> Pretraining History</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Epoch</th>
+                        <th>Loss</th>
+                        <th>Accuracy</th>
+                        <th>Time Elapsed</th>
+                    </tr>
+                </thead>
+                <tbody id="pretrain-history">
+                    <!-- History will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="section-card">
+    <h4>Checkpoint Management</h4>
+    <p>Manage your model checkpoints and saved states.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-save"></i> Available Checkpoints</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Size</th>
+                        <th>Performance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="checkpoint-list">
+                    <!-- Checkpoints will be listed here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-cloud-upload"></i> Save Checkpoint</h5>
+        <div class="mb-3">
+            <label for="checkpoint-name" class="form-label">Checkpoint Name:</label>
+            <input type="text" class="form-control" id="checkpoint-name">
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="include-optimizer" checked>
+            <label class="form-check-label" for="include-optimizer">
+                Include Optimizer State
+            </label>
+        </div>
+        <button class="btn btn-primary" id="save-checkpoint-btn">
+            <i class="bi bi-save"></i> Save Checkpoint
+        </button>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-arrow-repeat"></i> Checkpoint Operations</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="source-checkpoint" class="form-label">Source Checkpoint:</label>
+                    <select class="form-select" id="source-checkpoint">
+                        <!-- Checkpoint options will be populated here -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Operation:</label>
+                    <select class="form-select" id="operation">
+                        <option value="merge">Merge Checkpoints</option>
+                        <option value="prune">Prune Weights</option>
+                        <option value="quantize">Quantize Model</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" id="execute-operation-btn">
+            <i class="bi bi-play"></i> Execute Operation
+        </button>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+# NEXUS Plan: Analytical Mode
+# Called via: (EXECUTE-PLAN "analytical-mode")
+# Shifts the Brain-Triad towards logical/systematic thinking
+
+(LOG "Activating Analytical Mode...")
+
+# Boost left hemisphere logic
+(SET-TEMP "left" 0.1)
+
+# Moderate right hemisphere
+(SET-TEMP "right" 0.4)
+
+# Request analytical output
+(REQUEST-OUTPUT "left-hemisphere" "analysis"
+  (DICT ("depth" "detailed") ("reasoning" "step-by-step")))
+
+(LOG "Analytical Mode: ACTIVE")

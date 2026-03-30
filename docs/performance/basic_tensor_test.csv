@@ -1,0 +1,3 @@
+timestamp,gpu_util_pct,memory_used_mb,memory_free_mb,memory_total_mb,power_watts,temperature_c,system_ram_used_mb,system_ram_free_mb
+1744045756.0442312,0,0.0,4095.75,4095.75,0,30.0,10343.95703125,22356.3828125
+1744045757.314646,0,51.93994140625,4035.75,4095.75,0,31.0,10390.703125,22309.63671875

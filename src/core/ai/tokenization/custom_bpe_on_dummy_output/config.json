@@ -1,0 +1,4 @@
+{
+  "tokenizer_class": "PreTrainedTokenizerFast",
+  "model_type": "custom_bpe_on_dummy"
+}

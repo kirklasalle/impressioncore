@@ -1,0 +1,189 @@
+<!-- Replace your entire script section with this fixed version -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // --- Terminal Setup --- 
+    const terminalPopup = document.getElementById('terminal-popup');
+    const terminalContainer = document.getElementById('terminal-container');
+    const toggleTerminalButton = document.getElementById('toggle-terminal-btn');
+    const closeTerminalButton = document.getElementById('terminal-close-btn');
+    let term; // Terminal instance
+    let ws; // WebSocket instance
+    let fitAddon; // FitAddon for proper sizing
+    let searchAddon; // SearchAddon for finding text
+    let webglAddon; // WebGL rendering for better performance
+    let reconnectAttempts = 0;
+    const MAX_RECONNECT_ATTEMPTS = 5;
+    const RECONNECT_INTERVAL = 3000;
+
+    function initializeTerminal() {
+        if (term) return; // Already initialized
+        
+        // Create terminal with better options
+        term = new Terminal({
+            cursorBlink: true,
+            theme: {
+                background: '#1a1f2e',
+                foreground: '#ffffff',
+                cursor: '#ffffff',
+                selection: 'rgba(255, 255, 255, 0.3)',
+                black: '#000000',
+                red: '#e06c75',
+                green: '#98c379',
+                yellow: '#d19a66',
+                blue: '#61afef',
+                magenta: '#c678dd',
+                cyan: '#56b6c2',
+                white: '#abb2bf'
+            },
+            fontFamily: 'Consolas, "Courier New", monospace',
+            fontSize: 14,
+            lineHeight: 1.2,
+            allowTransparency: true,
+            convertEol: true,
+            scrollback: 10000, // Larger scrollback for history
+            disableStdin: false,
+            cursorStyle: 'block',
+            windowsMode: navigator.platform.toLowerCase().indexOf('win') >= 0, // Better Windows compatibility
+            rightClickSelectsWord: true
+        });
+        
+        term.open(terminalContainer);
+        term.write('Welcome to the ImpressionCore Terminal!\r\n');
+    } // <-- THIS CLOSING BRACE WAS MISSING
+
+    // --- Global function to send commands --- 
+    window.sendTerminalCommand = function(command) {
+        if (!terminalPopup.classList.contains('visible')) {
+            toggleTerminal(); // Show terminal if hidden
+        }
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            // Add newline to execute command in most shells
+            ws.send(command + '\r'); 
+        } else {
+            term.write(`\x1b[31mWebSocket not connected. Cannot send command: ${command}\x1b[0m\r\n`);
+            connectWebSocket(); // Attempt to reconnect
+        }
+    }
+    // --- End Global function ---
+
+    function toggleTerminal() {
+        terminalPopup.classList.toggle('visible');
+        if (terminalPopup.classList.contains('visible')) {
+            initializeTerminal(); // Initialize on first open
+            term.focus();
+        }
+    }
+
+    toggleTerminalButton.addEventListener('click', toggleTerminal);
+    closeTerminalButton.addEventListener('click', toggleTerminal);
+
+    // --- F12 Console Setup --- 
+    const f12ConsolePopup = document.getElementById('f12-console-popup');
+    const f12ConsoleContent = document.getElementById('f12-console-content');
+    const toggleF12ConsoleButton = document.getElementById('toggle-f12-console-btn');
+    const closeF12ConsoleButton = document.getElementById('f12-console-close-btn');
+
+    function toggleF12Console() {
+        f12ConsolePopup.classList.toggle('visible');
+    }
+
+    toggleF12ConsoleButton.addEventListener('click', toggleF12Console);
+    closeF12ConsoleButton.addEventListener('click', toggleF12Console);
+
+    // Capture console logs
+    const originalConsole = {
+        log: console.log.bind(console),
+        warn: console.warn.bind(console),
+        error: console.error.bind(console),
+        info: console.info.bind(console),
+        debug: console.debug.bind(console)
+    };
+
+    function formatLogArguments(args) {
+        return Array.from(args).map(arg => {
+            if (typeof arg === 'object' && arg !== null) {
+                try {
+                    return JSON.stringify(arg, null, 2); // Pretty print objects
+                } catch (e) {
+                    return '[Unserializable Object]';
+                }
+            } else if (arg === undefined) {
+                return 'undefined';
+            } else if (arg === null) {
+                return 'null';
+            } else {
+                return arg.toString();
+            }
+        }).join(' ');
+    }
+
+    function addLogEntry(type, args) {
+        const message = formatLogArguments(args);
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.classList.add('log-entry', `log-${type}`);
+        entry.innerHTML = `<span class="log-timestamp">${timestamp}</span>${message}`;
+        f12ConsoleContent.appendChild(entry);
+        // Auto-scroll to bottom
+        f12ConsoleContent.scrollTop = f12ConsoleContent.scrollHeight;
+    }
+
+    console.log = function(...args) {
+        originalConsole.log(...args);
+        addLogEntry('info', args);
+    };
+    console.warn = function(...args) {
+        originalConsole.warn(...args);
+        addLogEntry('warn', args);
+    };
+    console.error = function(...args) {
+        originalConsole.error(...args);
+        addLogEntry('error', args);
+    };
+    console.info = function(...args) {
+        originalConsole.info(...args);
+        addLogEntry('info', args);
+    };
+    console.debug = function(...args) {
+        originalConsole.debug(...args);
+        addLogEntry('debug', args); // You might want a specific style for debug
+    };
+
+    // Handle uncaught exceptions
+    window.onerror = function(message, source, lineno, colno, error) {
+        const errorArgs = [
+            `Uncaught Error: ${message}`,
+            `\nSource: ${source}:${lineno}:${colno}`,
+            error // The error object itself
+        ];
+        originalConsole.error(...errorArgs);
+        addLogEntry('error', errorArgs);
+        return false; // Prevent default browser handling if needed
+    };
+
+    // Handle unhandled promise rejections
+    window.onunhandledrejection = function(event) {
+        const reason = event.reason;
+        const errorArgs = [
+            `Unhandled Promise Rejection:`,
+            reason
+        ];
+        originalConsole.error(...errorArgs);
+        addLogEntry('error', errorArgs);
+    };
+
+    console.log("F12 Console capture initialized."); 
+    // --- End F12 Console Setup ---
+
+    // Optional: Make terminal header draggable (basic implementation)
+    const header = document.getElementById('terminal-header');
+    let isDragging = false;
+    let dragOffsetX, dragOffsetY;
+
+    header.addEventListener('mousedown', (e) => {
+        // Implement dragging logic if desired - more complex
+    });
+    // document.addEventListener('mousemove', (e) => { ... });
+    // document.addEventListener('mouseup', () => { ... });
+});
+</script>

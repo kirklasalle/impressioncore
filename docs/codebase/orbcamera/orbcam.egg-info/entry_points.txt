@@ -1,0 +1,3 @@
+[console_scripts]
+orbcam = orbcam.cli:main
+verify_agent = verify_agent:verify_agent

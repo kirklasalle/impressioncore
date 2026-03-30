@@ -1,0 +1,247 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "impressioncore"
+version = "1.0.0"
+description = "Brain-inspired multimodal AI framework optimized for consumer hardware"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Kirk LaSalle"},
+    {name = "ImpressionCore Team"},
+]
+keywords = ["ai", "multimodal", "brain-inspired", "low-vram", "pytorch"]
+
+dependencies = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+    "torchaudio>=2.4.0",
+    "numpy>=1.24.0",
+    "transformers>=4.26.0",
+    "datasets>=2.10.0",
+    "tokenizers>=0.13.0",
+    "sentencepiece>=0.1.99",
+    "accelerate>=0.18.0",
+    "safetensors>=0.3.1",
+    "einops>=0.6.0",
+    "rich>=13.4.2",
+    "tqdm>=4.64.0",
+    "psutil>=5.9.6",
+    "pynvml>=11.5.0",
+    "networkx>=3.0",
+    "faiss-cpu",
+    "python-dotenv>=0.19.0",
+    "tiktoken>=0.4.0",
+    "PyYAML>=6.0",
+    "scipy>=1.10.0",
+    "pandas>=2.0.0",
+    "scikit-learn>=1.2.0",
+    "pillow>=9.0.0",
+    "matplotlib>=3.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-timeout>=2.2.0",
+    "ruff>=0.4.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.7.0",
+    "memory-profiler>=0.61.0",
+]
+web = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "flask>=2.2.0",
+    "flask-cors>=4.0.0",
+    "flask-socketio>=5.3.0",
+    "gradio>=5.25.0",
+]
+training = [
+    "wandb>=0.15.0",
+    "tensorboard>=2.12.0",
+    "bitsandbytes>=0.37.0",
+    "librosa>=0.10.0",
+    "soundfile>=0.12.1",
+]
+all = ["impressioncore[dev,web,training]"]
+
+[project.scripts]
+impressioncore = "src.main:main"
+
+# ---------------------------------------------------------------------------
+# Tool configuration
+# ---------------------------------------------------------------------------
+
+# -- Ruff (replaces flake8 + isort + black) ---------------------------------
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["src", "agent0core"]
+exclude = [
+    "src/archive",        # archived code — not actively maintained
+    "src/deployment",     # deployment snapshots — frozen copies
+    "**/*.ipynb",         # notebooks — use notebook-specific tools
+]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes
+    "I",     # isort (import sorting)
+    "N",     # pep8-naming
+    "UP",    # pyupgrade
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "T20",   # flake8-print (flag print statements)
+    "ERA",   # eradicate (commented-out code)
+    "RUF",   # ruff-specific rules
+]
+ignore = [
+    "E501",   # line too long — handled by formatter
+    "E402",   # import not at top — 94.5% false positives from IDS docstring headers
+    "ERA001", # commented-out code — enable after archive cleanup
+    "B905",   # zip without strict= — Python 3.10 compat
+    "F821",   # undefined-name — 141 false positives from dynamic imports, star imports, and IDS-injected patterns
+    "N812",   # lowercase-imported-as-non-lowercase — ML convention (e.g., import torch.nn.functional as F)
+    "RUF001", # ambiguous-unicode-character-string — IDS headers contain em-dashes and curly quotes
+    "RUF002", # ambiguous-unicode-character-docstring — same as RUF001
+    "RUF003", # ambiguous-unicode-character-comment — same as RUF001
+    "E741",   # ambiguous-variable-name — ML code uses l, O, I as conventional names
+    "N801",   # invalid-class-name — some ML class names follow framework conventions
+    "SIM102", # collapsible-if — explicit nesting often clearer for complex conditions
+    "SIM108", # if-else-block-instead-of-if-exp — ternaries not always more readable
+    "SIM117", # multiple-with-statements — Python 3.10+ combined with syntax may break compat
+    "SIM115", # open-file-with-context-handler — not always feasible in all patterns
+    "RUF012", # mutable-class-default — ClassVar annotations not enforced, low-priority typing concern
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/archive/**" = ["ALL"]         # archived code: skip all checks
+"src/deployment/**" = ["ALL"]       # deployment snapshots: skip
+"**/*.ipynb" = ["ALL"]             # notebooks: skip ruff (use notebook-specific tools)
+"src/tests/**" = ["T20", "N806"]            # allow print + constant naming in tests
+"src/dev_tools/**" = ["T20", "N806", "N802"]  # allow print + varied naming in dev tools
+"src/training/**" = ["T20", "N806"]  # allow print + ML-convention uppercase vars
+"src/core/utils/**" = ["T20", "N806"]       # allow print + varied naming in utilities
+"src/core/ux/**" = ["T20", "N806"]   # allow print + UX state names
+"src/core/attention/*benchmark*.py" = ["T20"]  # benchmark scripts use console output
+"src/core/attention/*example*.py" = ["T20"]    # example scripts use console output
+"src/core/attention/*experiment*.py" = ["T20"] # experiment scripts use console output
+"src/core/attention/test_*.py" = ["T20"]       # inline test scripts
+"src/core/brainsim/memory/analyze_*.py" = ["T20"]   # analysis scripts
+"src/core/brainsim/memory/inspect_*.py" = ["T20"]   # inspection scripts
+"src/core/brainsim/memory/validate_*.py" = ["T20"]  # validation scripts
+"src/core/brainsim/memory/debug_*.py" = ["T20"]     # debug scripts
+"src/core/brainsim/memory/backup_*.py" = ["T20"]    # backup utility scripts
+"src/core/brainsim/memory/profile_*.py" = ["T20"]   # profiling scripts
+"src/core/brainsim/memory/uks_*.py" = ["T20"]       # UKS utility scripts
+"src/core/security/*benchmark*.py" = ["T20"]   # security benchmark scripts
+"src/core/security/validate_*.py" = ["T20"]    # security validation scripts
+"src/core/models/registry/cli.py" = ["T20"]    # CLI tool uses console output
+"src/core/models/**/test_*.py" = ["T20"]       # inline test scripts
+"src/core/initialization/b3_full_embedding_processor.py" = ["T20"]  # batch processor
+"src/core/ai/inference/**" = ["T20"]  # inference example/usage scripts
+"src/core/ai/multimodal/**" = ["T20", "N806"]  # multimodal pipeline scripts + ML naming
+"src/core/phoneme_embedding/**" = ["T20"]  # phoneme embedding utilities
+"src/core/run/**" = ["T20"]           # run scripts use console output
+"src/core/tests/**" = ["T20"]         # inline core tests
+"src/interfaces/**" = ["T20", "N806"]  # allow print + UI naming in interfaces
+"src/services/**" = ["T20"]         # allow print in services
+"src/evaluation/**" = ["T20"]       # allow print in evaluation/benchmark suites
+"src/inference/**" = ["T20", "N806"]   # allow print + ML naming in inference
+"src/benchmarks/**" = ["T20"]       # allow print in benchmark scripts
+"src/tools/**" = ["T20"]            # allow print in tool scripts
+"src/examples/**" = ["T20"]         # allow print in example scripts
+"src/data_tools/**" = ["T20"]       # allow print in data processing tools
+"src/memlog/**" = ["T20"]           # allow print in memlog utilities
+"src/vision/**" = ["T20"]           # allow print in vision pipeline scripts
+"src/knowledge/**" = ["T20", "N806"]        # allow print + ML naming in knowledge modules
+"src/evaluation/CRITICAL_TRAINING_DEGRADATION_ANALYSIS.py" = ["N999"]  # uppercase module name is intentional
+"src/intelligence/**" = ["T20"]     # allow print in intelligence modules
+"agent0core/**" = ["T20", "E701", "N818", "B904", "SIM116"]  # allow print + small residual suppressions
+"src/main.py" = ["T20"]             # allow print in main entry point
+"**/__init__.py" = ["F401", "F403", "F405"]  # re-exports & wildcard imports are intentional in __init__ files
+"src/**/test_*.py" = ["F401", "F811"]   # test files often import for side effects
+"src/**/validate_*.py" = ["F401"]       # validation scripts import to prove availability
+"src/core/ai/multimodal/core/utils/**" = ["F403", "F405"]  # mirror utils use wildcard imports
+"src/inference/runtime/**" = ["F403", "F405"]  # production inference uses wildcard imports
+"src/interfaces/web*/**" = ["F403", "F405"]    # web apps use wildcard imports for Flask
+"src/orchestrator/**" = ["T20", "F403", "F405", "N806"]  # allow print + wildcard imports + ML naming
+"src/core/pipeline/**" = ["N806"]      # pipeline uses ML naming
+"src/core/layers/**" = ["N806"]       # layers use tensor dimension naming
+"src/core/security/**" = ["N806"]     # security uses ML naming for analytics
+"src/core/knowledge/**" = ["N806"]    # knowledge uses graph naming conventions
+
+
+[tool.ruff.lint.isort]
+known-first-party = ["src", "agent0core"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+# -- Mypy (type checking) ---------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false        # start permissive, tighten over time
+check_untyped_defs = true
+ignore_missing_imports = true        # many deps lack stubs
+
+[[tool.mypy.overrides]]
+module = "src.core.*"
+disallow_untyped_defs = true         # stricter for core modules
+
+[[tool.mypy.overrides]]
+module = "src.training.pipelines.*"
+disallow_untyped_defs = true         # stricter for canonical pipelines
+
+# -- Pytest ------------------------------------------------------------------
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "-ra --strict-markers"
+testpaths = ["src/tests"]
+norecursedirs = [
+    ".*", "build", "dist", "logs", "archive", "deployment",
+    "src/deployment", "src/archive", "src/logs",
+]
+python_files = ["test_*.py", "*_test.py"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests requiring external resources (GPU, F: drive)",
+    "gpu: marks tests requiring CUDA GPU",
+]
+filterwarnings = [
+    "ignore:invalid escape sequence:SyntaxWarning",
+    "ignore:asyncio_default_fixture_loop_scope",
+    "ignore:.*numpy\\.core\\._multiarray_umath.*:DeprecationWarning:faiss.loader",
+]
+
+# -- Coverage ----------------------------------------------------------------
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "src/archive/*",
+    "src/deployment/*",
+    "src/training/b3_*.py",
+    "src/training/b1_*.py",
+]
+
+[tool.coverage.report]
+fail_under = 1.5          # ratchet: 0.96% → 1.59% (Phase 6); target 5% next
+show_missing = true
+skip_empty = true
+
+# -- Setuptools --------------------------------------------------------------
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "agent0core*"]

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orbcam"
+version = "1.0.0"
+description = "AI-Driven Control Suite for Logitech QuickCam Orb MP"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  {name = "Antigravity Agent", email = "agent@orbcam.dev"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Multimedia :: Video :: Capture",
+]
+dependencies = [
+    "opencv-python",
+    "comtypes",
+    "wmi",
+    "sounddevice",
+    "numpy",
+    "flask>=3.0.0",
+    "pyttsx3",
+    "python-dotenv",
+    "openai",
+    "requests"
+]
+
+[project.urls]
+Homepage = "https://github.com/example/orbcam"
+
+[project.scripts]
+orbcam = "orbcam.cli:main"
+verify_agent = "verify_agent:verify_agent"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["orbcam*"]

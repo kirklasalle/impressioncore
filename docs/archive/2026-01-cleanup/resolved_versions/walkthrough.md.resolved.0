@@ -1,0 +1,34 @@
+# Walkthrough: System Refinement & Sensor Fusion
+
+## Overview
+This session focused on polishing the ImpressionCore deployment, enhancing the UI for better usability, and implementing critical Sensor Fusion logic to merge Vision and Audio data.
+
+## Key Accomplishments
+
+### 1. Sensor Fusion
+We implemented a fused telemetry system that robustly handles missing data:
+- **Logic**: If Vision tracks a face, it uses that position. If Vision is blind (no face), it falls back to Audio Direction-of-Arrival (DoA) signals.
+- **Implementation**: Added [get_fused_telemetry()](file:///d:/Projects/impressioncore/src/orchestrator/unified_triad.py#654-693) to [UnifiedBrainTriad](file:///d:/Projects/impressioncore/src/orchestrator/unified_triad.py#25-740).
+- **API**: Updated `/v1/vision/telemetry` to serve this fused data.
+- **Result**: The "Raw Tracking Data" panel now remains active and informative even in low-light or occluded scenarios, driven by audio.
+
+### 2. User Interface Refinements
+- **Resizable Sidebar**: The left sidebar is now draggable and resizable.
+- **Audio Panel Compass**: Increased height to `192px` (from `64px`) to fully visualize the 360-degree spatial compass without cutoff.
+- **Scrolling**: Fixed CSS overflow issues to ensure all controls are accessible on smaller screens.
+- **Audit Progress**: Added a visual progress bar to the System Status Overlay.
+
+### 3. Deployment & Shutdown
+- **Window Management**: [orbos_ready.bat](file:///d:/Projects/impressioncore/orbos_ready.bat) updated to tile windows side-by-side and auto-launch the browser.
+- **Graceful Shutdown**:
+    - Added a **"SYSTEM SHUTDOWN"** button to the UI.
+    - Implemented a backend shutdown sequence that releases cameras (`cap.release()`), stops audio streams, clears VRAM, and terminates the server process cleanly.
+    - Cleaned up console logs by removing unmet `pyaudio` dependency.
+
+## Verification Results
+- **Startup**: System launches without "pyaudio" warnings.
+- **UI**: Audio Compass is fully visible. Sidebar resizes smoothly.
+- **Shutdown**: Clicking "SYSTEM SHUTDOWN" correctly turns off camera LEDs and closes the backend console.
+
+## Updated Architecture
+The [UnifiedBrainTriad](file:///d:/Projects/impressioncore/src/orchestrator/unified_triad.py#25-740) now acts as a true central orchestrator, managing the lifecycle of both sensory inputs (Vision/Audio) and maintaining system health.

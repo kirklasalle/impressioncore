@@ -1,0 +1,23 @@
+# IMPRESSIONCORE (ORBOS): React Restoration
+
+## Goal Description
+The user canceled the migration to Dear PyGui. The objective is now to restore the original React-based web client while retaining the critical backend bug fixes (Vision Loop Crash).
+
+## Proposed Changes
+### Backend (Retained)
+- [src/orchestrator/orbcloud_vision.py](file:///d:/Projects/impressioncore/src/orchestrator/orbcloud_vision.py):
+    - **Keep**: `comtypes.CoInitialize()` fix for thread safety.
+    - **Keep**: `KeyError: 98` fix using `traceback` and `detection_history` auto-init.
+
+### Launch Scripts
+- [orbos_ready.ps1](file:///d:/Projects/impressioncore/orbos_ready.ps1):
+    - **Modify**: Remove Python Client launch logic.
+    - **Restore**: Node.js environment checks.
+    - **Restore**: `npm` dependency installation.
+    - **Restore**: `npm run dev` launch command for `src/interfaces/web_client`.
+
+## Verification Plan
+1. Run `orbos_ready.bat`.
+2. Verify Backend launches (Port 8000).
+3. Verify Frontend launches (Localhost:5173/3000).
+4. Verify Camera feed in the Web UI.

@@ -1,0 +1,96 @@
+{
+  "system_info": {
+    "version": "1.1.0 - Enhanced Scale-Up",
+    "date": "2025-06-11T12:53:18.762305",
+    "target_hardware": "NVIDIA GTX 1050 Ti (4GB VRAM)",
+    "dataset_scale": "60% increase (5 \u2192 8 samples per modality)",
+    "optimization_level": "Enhanced for increased data"
+  },
+  "model": {
+    "text_embed_dim": 128,
+    "image_embed_dim": 128,
+    "fusion_dim": 256,
+    "num_classes": 10,
+    "dropout_rate": 0.1,
+    "activation": "relu"
+  },
+  "training": {
+    "batch_size": 4,
+    "learning_rate": 8e-05,
+    "num_epochs": 15,
+    "fp16": true,
+    "gradient_clip": 1.0,
+    "weight_decay": 0.0001,
+    "scheduler": "cosine",
+    "warmup_epochs": 2
+  },
+  "optimization": {
+    "memory_fraction": 0.75,
+    "gradient_checkpointing": true,
+    "dataloader_workers": 0,
+    "pin_memory": true,
+    "prefetch_factor": 2,
+    "enhanced_mode": true
+  },
+  "datasets": {
+    "text": {
+      "path": "src/data/minimal_datasets/text_samples",
+      "expected_samples": 8,
+      "max_length": 512,
+      "tokenizer": "basic"
+    },
+    "images": {
+      "path": "src/data/minimal_datasets/images",
+      "expected_samples": 8,
+      "size": [
+        224,
+        224
+      ],
+      "augmentation": true,
+      "normalization": true
+    },
+    "audio": {
+      "path": "src/data/minimal_datasets/audio",
+      "expected_samples": 8,
+      "sample_rate": 22050,
+      "n_mfcc": 13,
+      "hop_length": 512
+    }
+  },
+  "checkpointing": {
+    "save_every": 3,
+    "keep_best": true,
+    "monitor": "loss",
+    "patience": 5,
+    "early_stopping": true
+  },
+  "logging": {
+    "level": "INFO",
+    "save_logs": true,
+    "rich_output": true,
+    "progress_tracking": true,
+    "memory_monitoring": true
+  },
+  "enhancement_features": {
+    "data_scaling": {
+      "original_samples": 5,
+      "enhanced_samples": 8,
+      "scale_factor": 1.6,
+      "percentage_increase": 60
+    },
+    "performance_optimizations": [
+      "Enhanced batch processing",
+      "Improved memory utilization",
+      "Optimized learning rate scheduling",
+      "Advanced gradient management",
+      "Dynamic memory allocation"
+    ],
+    "quality_improvements": [
+      "Richer text content with advanced AI concepts",
+      "More sophisticated image patterns",
+      "Enhanced audio signal diversity",
+      "Improved cross-modal relationships",
+      "Better convergence characteristics"
+    ]
+  }
+}

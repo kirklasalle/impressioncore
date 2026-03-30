@@ -1,0 +1,24 @@
+; orbit_uvc_force.inf
+; Forces Logitech Orbit MI_00 to use Microsoft USB Video Class (UVC) driver.
+
+[Version]
+Signature="$Windows NT$"
+Class=Camera
+ClassGuid={ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
+Provider="ImpressionCore"
+DriverVer=06/21/2006,10.0.19041.6033
+CatalogFile=orbit_uvc.cat
+
+[Manufacturer]
+"ImpressionCore"=ImpressionCore,NTamd64
+
+[ImpressionCore.NTamd64]
+"Logitech Orbit UVC (Forced)"=USBVideo,USB\VID_046D&PID_08C2&MI_00
+
+[USBVideo]
+Include=usbvideo.inf
+Needs=USBVideo.NT
+
+[USBVideo.Services]
+Include=usbvideo.inf
+Needs=USBVideo.Services

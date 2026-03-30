@@ -1,0 +1,41 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\checkpoints\\b2_fixed\\b2_fixed_epoch_0.pth",
+    "filename": "b2_fixed_epoch_0.pth",
+    "size_mb": 315.52,
+    "probe_loss": null,
+    "timestamp": 1752014549.5179973
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\checkpoints\\b2_fixed\\b2_fixed_epoch_1.pth",
+    "filename": "b2_fixed_epoch_1.pth",
+    "size_mb": 315.52,
+    "probe_loss": null,
+    "timestamp": 1752014657.3856606
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\checkpoints\\b2_fixed\\b2_fixed_epoch_2.pth",
+    "filename": "b2_fixed_epoch_2.pth",
+    "size_mb": 315.52,
+    "probe_loss": null,
+    "timestamp": 1752014765.4652457
+  }
+]

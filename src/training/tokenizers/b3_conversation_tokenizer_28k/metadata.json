@@ -1,0 +1,12 @@
+{
+  "requested_vocab_size": 28000,
+  "actual_vocab_size": 28000,
+  "corpus_size": 572838,
+  "special_tokens": {
+    "bos_token": "<|bos|>",
+    "eos_token": "<|eos|>",
+    "pad_token": "<|pad|>",
+    "unk_token": "<|unk|>"
+  },
+  "filler_tokens_added": 0
+}

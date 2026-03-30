@@ -1,0 +1,23 @@
+[
+    ".gitkeep",
+    "error_handling.md",
+    "evaluate_model_state.log",
+    "gpu_memory_state.log",
+    "init.log",
+    "initial_state.json",
+    "logState.js",
+    "model_state.json",
+    "model_status.log",
+    "prepare_training_state.log",
+    "progress_log.json",
+    "project_status.log",
+    "project_status_2025_05_03.json",
+    "state.json",
+    "state.log",
+    "system_state.json",
+    "system_state_2025_03_29.json",
+    "test_runs.log",
+    "test_status.log",
+    "training_scripts.log",
+    "training_status.log"
+]

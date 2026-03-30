@@ -1,0 +1,2 @@
+[console_scripts]
+orbcam = orbcam.cli:main

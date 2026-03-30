@@ -1,0 +1,4 @@
+{
+  "tokenizer_class": "PreTrainedTokenizerFast",
+  "tokenizer_file": "tokenizer.json"
+}

@@ -1,0 +1,47 @@
+;; rlm_document_analysis.nexus
+;; 
+;; Example RLM plan for analyzing a large document via Brain-Triad
+;; 
+;; Usage: (EXECUTE-PLAN "rlm_document_analysis")
+;; Prerequisite: Load a document first with (CONTEXT-LOAD "path/to/doc.md")
+
+;; Step 1: Check if context is loaded
+(LET ((stats (CONTEXT-STATS)))
+    (LOG "RLM Document Analysis Starting...")
+    (LOG stats)
+    
+    ;; Step 2: Get context statistics
+    (IF (= stats "(ERROR \"No context loaded\")")
+        (LOG "ERROR: No context loaded. Use (CONTEXT-LOAD path) first.")
+        
+        ;; Step 3: Create chunks for parallel processing
+        (LET ((chunks (CONTEXT-CHUNK 16000 "paragraphs")))
+            (LOG chunks)
+            
+            ;; Step 4: Query hemispheres with analysis requests
+            (LET ((left-analysis 
+                    (LLM-QUERY "left" 
+                        "Analyze the structure and key facts in this document. 
+                         Focus on: main topics, data points, logical arguments."))
+                  (right-analysis
+                    (LLM-QUERY "right"
+                        "What are the creative insights and hidden connections in this document?
+                         Focus on: patterns, implications, novel interpretations.")))
+                
+                ;; Step 5: Log the pending analyses
+                (LOG "Left hemisphere analysis: ")
+                (LOG left-analysis)
+                (LOG "Right hemisphere analysis: ")
+                (LOG right-analysis)
+                
+                ;; Step 6: Request synthesis from Colossus
+                (LET ((synthesis
+                        (LLM-QUERY "colossus"
+                            "Synthesize the analytical and creative perspectives into a 
+                             comprehensive summary that balances facts with insights.")))
+                    
+                    (LOG "Colossus synthesis: ")
+                    (LOG synthesis)
+                    
+                    ;; Return final status
+                    "RLM Analysis Complete - Check output queue for results")))))

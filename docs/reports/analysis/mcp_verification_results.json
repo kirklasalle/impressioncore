@@ -1,0 +1,174 @@
+{
+  "verification_time": 0.193987,
+  "timestamp": "2025-08-08T14:11:06.997856",
+  "overall_status": "PARTIAL",
+  "servers_passed": 3,
+  "total_servers": 5,
+  "success_rate": 60.0,
+  "total_tools_found": 35,
+  "expected_tools": 95,
+  "tool_coverage": 36.84210526315789,
+  "shared_components": {
+    "status": "PASS",
+    "components": {
+      "MCPBaseServer": {
+        "exists": true,
+        "size": 14349,
+        "modified": "2025-08-08T13:56:00.519629"
+      },
+      "Documentation": {
+        "exists": true,
+        "size": 14876,
+        "modified": "2025-08-08T14:11:03.519687"
+      }
+    }
+  },
+  "server_results": {
+    "DPA": {
+      "status": "PASS",
+      "tools_found": 11,
+      "architecture_verified": true,
+      "rag_integration": true,
+      "error_handling": true,
+      "file_exists": true,
+      "syntax_valid": true,
+      "import_successful": true,
+      "details": [
+        "\u2705 Server file exists: D:\\Projects\\impressioncore\\.mcp\\impressioncore-dpa\\server.py",
+        "\u2705 Python syntax valid"
+      ],
+      "features": [
+        "JSON-RPC Protocol",
+        "RAG Memory Integration",
+        "Error Handling"
+      ],
+      "compliance_score": 1.0,
+      "architecture_details": [
+        "\u2705 JSON-RPC implementation",
+        "\u2705 RAG integration",
+        "\u2705 Error handling",
+        "\u2705 Tool count threshold"
+      ]
+    },
+    "EDS": {
+      "status": "PASS",
+      "tools_found": 10,
+      "architecture_verified": true,
+      "rag_integration": true,
+      "error_handling": true,
+      "file_exists": true,
+      "syntax_valid": true,
+      "import_successful": true,
+      "details": [
+        "\u2705 Server file exists: D:\\Projects\\impressioncore\\.mcp\\impressioncore-eds\\server.py",
+        "\u2705 Python syntax valid"
+      ],
+      "features": [
+        "MCPBaseServer Architecture",
+        "JSON-RPC Protocol",
+        "RAG Memory Integration",
+        "Error Handling"
+      ],
+      "compliance_score": 1.0,
+      "architecture_details": [
+        "\u2705 MCPBaseServer inheritance",
+        "\u2705 RAG integration",
+        "\u2705 Error handling",
+        "\u2705 Minimum tool count"
+      ]
+    },
+    "IPA": {
+      "status": "PASS",
+      "tools_found": 10,
+      "architecture_verified": true,
+      "rag_integration": true,
+      "error_handling": true,
+      "file_exists": true,
+      "syntax_valid": true,
+      "import_successful": true,
+      "details": [
+        "\u2705 Server file exists: D:\\Projects\\impressioncore\\.mcp\\impressioncore-ipa\\server.py",
+        "\u2705 Python syntax valid"
+      ],
+      "features": [
+        "MCPBaseServer Architecture",
+        "RAG Memory Integration",
+        "Error Handling"
+      ],
+      "compliance_score": 1.0,
+      "architecture_details": [
+        "\u2705 MCPBaseServer inheritance",
+        "\u2705 RAG integration",
+        "\u2705 Error handling",
+        "\u2705 Minimum tool count"
+      ]
+    },
+    "VRGC": {
+      "status": "FAIL",
+      "tools_found": 0,
+      "architecture_verified": true,
+      "rag_integration": true,
+      "error_handling": true,
+      "file_exists": true,
+      "syntax_valid": true,
+      "import_successful": true,
+      "details": [
+        "\u2705 Server file exists: D:\\Projects\\impressioncore\\.mcp\\impressioncore-vrgc\\server.py",
+        "\u2705 Python syntax valid"
+      ],
+      "features": [
+        "JSON-RPC Protocol",
+        "RAG Memory Integration",
+        "Error Handling"
+      ],
+      "compliance_score": 0.75,
+      "architecture_details": [
+        "\u2705 JSON-RPC implementation",
+        "\u2705 RAG integration",
+        "\u2705 Error handling",
+        "\u274c Tool count threshold"
+      ]
+    },
+    "Goliath": {
+      "status": "FAIL",
+      "tools_found": 4,
+      "architecture_verified": false,
+      "rag_integration": true,
+      "error_handling": true,
+      "file_exists": true,
+      "syntax_valid": true,
+      "import_successful": true,
+      "details": [
+        "\u2705 Server file exists: D:\\Projects\\impressioncore\\.mcp\\impressioncore-goliath\\server.py",
+        "\u2705 Python syntax valid"
+      ],
+      "features": [
+        "RAG Memory Integration",
+        "Error Handling"
+      ],
+      "compliance_score": 0.5,
+      "architecture_details": [
+        "\u274c JSON-RPC implementation",
+        "\u2705 RAG integration",
+        "\u2705 Error handling",
+        "\u274c Tool count threshold"
+      ]
+    }
+  },
+  "architecture_compliance": {
+    "mcpbaseserver_servers": [
+      "EDS",
+      "IPA"
+    ],
+    "custom_jsonrpc_servers": [
+      "DPA",
+      "VRGC",
+      "Goliath"
+    ],
+    "architecture_diversity": true
+  },
+  "recommendations": [
+    "Address issues in: VRGC, Goliath",
+    "Verify tool counts for: VRGC, Goliath"
+  ]
+}

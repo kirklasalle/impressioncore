@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+
+{% block title %}Python Environment Setup{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h1><i class="fas fa-python"></i> Python Environment Setup</h1>
+    <p class="lead">Set up your Python development environment for ImpressionCore</p>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-info-circle"></i> Python Version Requirements</h2>
+    <div class="note">
+        <i class="fas fa-exclamation-circle"></i>
+        <p>ImpressionCore requires Python 3.8 - 3.10 for best compatibility with PyTorch pre-built wheels. Python 3.11 is supported by newer PyTorch versions, while Python 3.12+ might require building dependencies from source.</p>
+    </div>
+    
+    <div class="code-block">
+        <h4>Check Your Python Version</h4>
+        <pre><code>python --version</code></pre>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-terminal"></i> Virtual Environment Setup</h2>
+    <p>It's strongly recommended to use a virtual environment to manage dependencies and avoid conflicts with other Python projects.</p>
+
+    <div class="step-cards">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Navigate to Project Root</h4>
+                <div class="code-block">
+                    <pre><code>cd path/to/impressioncore</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Create Virtual Environment</h4>
+                <div class="code-block">
+                    <pre><code>python -m venv venv</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Activate Virtual Environment</h4>
+                <div class="environment-tabs">
+                    <button class="tab-btn active" data-tab="windows-cmd">
+                        <i class="fas fa-windows"></i> Windows (CMD)
+                    </button>
+                    <button class="tab-btn" data-tab="windows-ps">
+                        <i class="fas fa-terminal"></i> Windows (PowerShell)
+                    </button>
+                    <button class="tab-btn" data-tab="linux">
+                        <i class="fas fa-linux"></i> Linux/macOS
+                    </button>
+                </div>
+
+                <div class="tab-content" id="windows-cmd">
+                    <div class="code-block">
+                        <pre><code>venv\Scripts\activate.bat</code></pre>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="windows-ps" style="display: none;">
+                    <div class="code-block">
+                        <pre><code>.\venv\Scripts\Activate.ps1</code></pre>
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>You might need to run <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code> first if you encounter script execution errors.</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="linux" style="display: none;">
+                    <div class="code-block">
+                        <pre><code>source venv/bin/activate</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note success">
+        <i class="fas fa-check-circle"></i>
+        <p>Your terminal prompt should now indicate that the virtual environment is active (e.g., <code>(venv) C:\Projects\impressioncore></code>)</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-download"></i> Installing Dependencies</h2>
+    
+    <div class="step-cards">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Install Core Dependencies</h4>
+                <div class="code-block">
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                </div>
+                <div class="note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Core packages include: Flask, Flask-Cors, Flask-Sock, numpy, Pillow, scikit-image, matplotlib, markdown</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Install PyTorch (CPU Version)</h4>
+                <p>If you're not setting up GPU support, install the CPU version:</p>
+                <div class="code-block">
+                    <pre><code>pip install torch torchvision torchaudio</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Development Installation</h4>
+                <p>For modifying ImpressionCore source code, install in editable mode:</p>
+                <div class="code-block">
+                    <pre><code>pip install -e .</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-arrow-right"></i> Next Steps</h2>
+    <p>Once your Python environment is set up, you can proceed with GPU setup or explore the documentation:</p>
+    <div class="button-group">
+        <button type="button" class="btn btn-primary mr-3" onclick="window.location.href='/dependencies'">
+            <i class="fas fa-microchip"></i> Dependencies
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='/documentation'">
+            <i class="fas fa-book"></i> View Documentation
+        </button>
+    </div>
+</div>
+
+<style>
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.step-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.step-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+}
+
+.environment-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: var(--hover-bg);
+    color: var(--accent-color);
+}
+
+.tab-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.code-block {
+    background: var(--primary-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.code-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.code-block code {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.9rem;
+}
+
+.note {
+    background: rgba(74, 144, 226, 0.05);
+    border-left: 4px solid var(--accent-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.note.success {
+    background: rgba(39, 174, 96, 0.05);
+    border-left-color: #27AE60;
+}
+
+.note.success i {
+    color: #27AE60;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+</style>
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active tab button
+            document.querySelectorAll('.tab-btn').forEach(btn => 
+                btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show selected content
+            const tabId = this.getAttribute('data-tab');
+            document.querySelectorAll('.tab-content').forEach(content => 
+                content.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        });
+    });
+
+    // Copy code functionality
+    document.querySelectorAll('.code-block').forEach(block => {
+        const code = block.querySelector('code');
+        if (code) {
+            block.style.position = 'relative';
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerHTML = '<i class="fas fa-copy"></i>';
+            button.style.position = 'absolute';
+            button.style.right = '0.5rem';
+            button.style.top = '0.5rem';
+            button.style.background = 'none';
+            button.style.border = 'none';
+            button.style.color = 'var(--text-secondary)';
+            button.style.cursor = 'pointer';
+            button.style.padding = '0.25rem';
+            
+            button.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(code.textContent);
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i>';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+            
+            block.appendChild(button);
+        }
+    });
+});
+</script>
+{% endblock %}
+{% endblock %}

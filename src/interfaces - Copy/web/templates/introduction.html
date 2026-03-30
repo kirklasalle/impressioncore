@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Introduction & Overview | ImpressionCore-b1{% endblock %}
+
+{% block content %}
+
+
+<div class="text-center mb-4">
+  <h1>Introduction to ImpressionCore</h1>
+  <p class="lead">Welcome to ImpressionCore, the next-generation, brain-inspired multimodal AI framework designed for researchers, developers, and innovators seeking to build advanced, memory-efficient, and secure AI systems on consumer hardware.<br><br>
+  <b>ImpressionCore</b> is engineered to empower you with the tools, architecture, and decision-support needed to create, train, and deploy your own Small Language Identity Models (SLIMs) and multimodal AI agents. Whether you are a first-time builder or an experienced ML engineer, this platform provides a comprehensive, step-by-step journey from data preparation to secure deployment.<br><br>
+  <span style="font-size:1.1em; color:#007bff;">This introduction will guide you through the core concepts, architecture, and workflow of ImpressionCore, with rich visualizations and actionable insights at every step.</span></p>
+  <img src="{{ url_for('static', filename='img/workflow.svg') }}" alt="ImpressionCore Workflow" class="img-fluid my-3" style="max-width: 500px;" aria-label="Workflow diagram: Data Prep, Tokenization, Model Def, Training, Eval, Deploy">
+  <div class="alert alert-secondary mt-3" role="alert">
+    <b>How to read this diagram:</b> The workflow diagram below visually maps the entire ImpressionCore process, from raw data ingestion to model deployment. Each node represents a critical phase, and the arrows indicate the recommended progression. Hover over each step in the sidebar for detailed tooltips and links to in-depth documentation.
+  </div>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <b>Quick Start:</b>
+  <ol class="text-left mb-0" style="max-width: 700px; margin: 0 auto;">
+    <li><b>Prepare your data:</b> Gather, clean, and structure your text, image, or multimodal datasets. ImpressionCore supports a wide range of formats and provides utilities for data validation and augmentation.</li>
+    <li><b>Tokenize (text & images):</b> Use the built-in tokenization tools to convert raw data into model-ready tokens. Both text and image tokenization are supported, with options for custom vocabularies and embeddings.</li>
+    <li><b>Define your model:</b> Select or customize a model architecture. ImpressionCore offers modular templates for transformers, adapters, and multimodal fusion layers, all optimized for low VRAM usage.</li>
+    <li><b>Train:</b> Launch the training pipeline with memory profiling and checkpointing. The system is designed to maximize performance on GPUs like the GTX 1050 Ti, with built-in support for gradient checkpointing and mixed precision.</li>
+    <li><b>Evaluate:</b> Assess your model using comprehensive evaluation metrics, including accuracy, perplexity, and multimodal benchmarks. Visualize results with interactive plots and dashboards.</li>
+    <li><b>Inference & Deploy:</b> Seamlessly deploy your trained model for inference, with secure digital identity management and unified knowledge store integration. Use the deployment tools to serve your model locally or in the cloud.</li>
+  </ol>
+  <div class="mt-2"><b>Tip:</b> Each step is documented in detail in the <a href="/documentation">Documentation Index</a>. Use the sidebar for direct navigation.</div>
+</div>
+<div class="card mb-4">
+  <h2><i class="fas fa-brain"></i> Architecture Overview</h2>
+  <div class="text-center">
+    <img src="{{ url_for('static', filename='img/brainsim_mermaid.svg') }}" alt="BrainSim Architecture" class="img-fluid my-3" style="max-width: 600px; background: #181c24; border-radius: 12px;" aria-label="BrainSimIII, Unified Knowledge Store, Multi-Modal Model, Secure Identity, User">
+  </div>
+  <p>
+    <b>ImpressionCore's architecture</b> is inspired by the human brain, combining modularity, security, and multimodal processing. The core components include:<br>
+    <ul>
+      <li><b>Unified Knowledge Store (UKS):</b> A high-efficiency, memory-optimized knowledge base for storing and retrieving facts, embeddings, and user data. Designed for rapid access and minimal VRAM footprint.</li>
+      <li><b>BrainSimIII:</b> The cognitive engine that orchestrates learning, memory, and reasoning. Implements advanced memory management, context switching, and multi-threaded inference for real-time performance.</li>
+      <li><b>Multi-Modal Model:</b> Supports text, image, and future audio/video modalities. Modular adapters allow seamless integration of new data types and tasks.</li>
+      <li><b>Secure Digital Identity:</b> Ensures privacy and security using quantum-resistant cryptography. Each user and model instance is uniquely identified and protected.</li>
+      <li><b>User:</b> The human-in-the-loop, empowered with decision-support tools, interactive dashboards, and transparent model controls.</li>
+    </ul>
+    <span class="d-block mt-2"><b>Memory Optimization:</b> Every component is engineered for low VRAM usage, enabling complex AI on affordable hardware. See <a href="/documentation">Documentation Index</a> for in-depth technical details.</span>
+  </p>
+  <div class="alert alert-success mt-3" role="alert">
+    <b>Interactive Architecture:</b> <span>Explore the architecture diagram above. Hover or tap on each module for a tooltip with a summary and direct links to relevant documentation. For a 3D interactive version, <a href="https://impressioncore.org/3d-architecture" target="_blank">view the 3D diagram</a> (opens in new tab).</span>
+  </div>
+</div>
+
+<div class="note">
+  <p><b>Note:</b> This walkthrough provides a step-by-step guide for building and training the ImpressionCore-b1 model as the core example. You may customize this model or build a new model utilizing the ImpressionCore architecture. It is suggested to build the default model first to familiarize yourself with the workflow, best practices, and system capabilities. <br>
+  <b>Decision Support:</b> At each stage, you will find callouts and tips to help you make informed choices about architecture, data, and deployment. For advanced users, links to technical deep-dives and benchmarking tools are provided.</p>
+</div>
+
+<div class="section-title">ImpressionCore-b1: Introduction & Overview</div>
+<div class="card">
+  <h2><i class="fas fa-rocket"></i> What is ImpressionCore-b1?</h2>
+  <p>
+    <b>ImpressionCore-b1</b> is a reference implementation of a Small Language Identity Model (SLIM) built on the ImpressionCore framework. It is designed to be:
+    <ul>
+      <li><b>Modular:</b> Easily extend or swap components for research or production needs.</li>
+      <li><b>Memory-Efficient:</b> Optimized for GPUs with 4GB VRAM (GTX 1050 Ti+), using advanced memory management and checkpointing.</li>
+      <li><b>Multimodal:</b> Supports both text and image data, with future extensibility for audio and video.</li>
+      <li><b>Secure:</b> Implements robust digital identity and privacy controls.</li>
+      <li><b>Transparent:</b> Provides clear, step-by-step feedback and logging at every stage.</li>
+    </ul>
+    <span class="d-block mt-2">This walkthrough will guide you through each step required to build, train, and deploy your own brain-inspired ImpressionCore-b1 model. <b>All progress is saved automatically</b>, and you can resume at any stage.</span>
+  </p>
+  <div class="alert alert-info mt-3">Tip: Use the sidebar to navigate each step. For a full list of available documentation, see the <a href="/documentation">Documentation Index</a>.</div>
+</div>
+
+<div class="card mb-4">
+  <h2><i class="fas fa-star"></i> Key Features & Innovations</h2>
+  <ul>
+    <li><b>Flexible Model Architecture:</b> Choose from pre-built templates or design your own transformer, adapter, or multimodal fusion models.</li>
+    <li><b>Comprehensive Data Preparation:</b> Built-in tools for cleaning, augmenting, and validating text and image datasets.</li>
+    <li><b>Advanced Training & Evaluation:</b> Memory profiling, mixed precision, and checkpointing for efficient training. Interactive dashboards for real-time evaluation.</li>
+    <li><b>Seamless Deployment:</b> One-click deployment for local or cloud inference, with secure API endpoints and user management.</li>
+    <li><b>Unified Multimodal Tokenization:</b> Tokenize and embed text and images in a single pipeline, with support for custom vocabularies.</li>
+    <li><b>Secure Digital Identity:</b> Quantum-resistant cryptography and privacy controls for all user and model data.</li>
+    <li><b>Optimized for Consumer GPUs:</b> Run complex models on affordable hardware (GTX 1050 Ti+), with VRAM-aware scheduling and memory optimization.</li>
+    <li><b>Rich Visualizations:</b> Interactive diagrams, 3D architecture viewers, and cloud plots to support decision-making and onboarding.</li>
+  </ul>
+  <div class="alert alert-warning mt-2">New: <b>3D Interactive Diagrams</b> and <b>Animated Cloud Plots</b> are now available in the <a href="/visualizations">Visualizations Gallery</a>. These tools help you explore model internals, training progress, and architecture in real time.</div>
+</div>
+|   |-- prd.md
+<div class="card mb-4">
+    <h2>Project Structure</h2>
+    <p>The codebase is organized for clarity, modularity, and rapid onboarding. Each directory is documented in the <a href="/documentation">Documentation Index</a> and includes inline README files where appropriate.</p>
+    <pre><code>
+impressioncore/
+|-- .github/              # GitHub and Copilot instructions
+|-- docs/                 # Project documentation (roadmap, guides, PRD, etc.)
+|-- src/                  # All source code (see below)
+  |-- core/                 # Core framework, kernel, utils, security 
+  |-- data/                 # Data loading, preprocessing, tokenization
+  |-- models/               # Model architectures, layers, embeddings
+  |-- training/             # Training, evaluation, checkpoints
+  |-- inference/            # Inference pipelines, serving
+  |-- brainsim/             # Brain-inspired simulation, memory, multimodal
+  |-- tools/                # Standalone tools/scripts
+  |-- interfaces/           # Web UI, CLI, API endpoints
+  |-- memlog/               # System memory and logs
+  |-- user_data/            # User-specific configs and data
+    </code></pre>
+    <div class="alert alert-secondary mt-2">For a full, up-to-date directory map and documentation, see <a href="/documentation">DOCUMENTATION_INDEX.md</a>.</div>
+</div>
+    </code></pre>
+</div>
+
+<div class="card mb-4">
+    <h2>Next Steps</h2>
+    <p>Ready to start building? Begin with the <b>System Requirements</b> section to configure your development environment. For a guided onboarding, follow the sidebar steps in order, or jump to any section as needed. <br>
+    <b>Decision Support:</b> Throughout the workflow, look for <span style="color:#007bff;">callouts</span> and <span style="color:#28a745;">interactive diagrams</span> that provide context, best practices, and links to relevant documentation. <br>
+    <b>Visualizations:</b> Explore the <a href="/visualizations">Visualizations Gallery</a> for 3D diagrams, animated cloud plots, and architecture explorers to deepen your understanding.</p>
+    <a href="{{ url_for('system_requirements') }}" class="btn btn-primary" role="button">
+        <i class="fas fa-arrow-right"></i> Continue to System Requirements
+    </a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('hover-effect');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('hover-effect');
+        });
+    });
+});
+</script>
+{% endblock %}
+
+<!--
+  ImpressionCore Introduction: Inline Documentation
+  - This template is synchronized with DOCUMENTATION_INDEX.md and the IDS documentation system.
+  - For the latest onboarding, architecture, and workflow details, always cross-reference the documentation index.
+  - For advanced visualizations, see /visualizations and the static/img/ directory.
+  - For technical support, see the sidebar or /documentation.
+-->

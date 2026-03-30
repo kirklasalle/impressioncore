@@ -1,0 +1,14 @@
+{
+  "checkpoint": "F:\\models\\management\\training_sessions\\colossus\\20251026_200322_colossus_distilled.pt",
+  "num_prompts": 24,
+  "avg_l2": 0.2784296677758296,
+  "max_l2": 0.308024138212204,
+  "max_prompt": "Recommend check-in questions that help a mediator detect cognitive overload during a high-stakes AI ethics escalation.",
+  "max_conf_checkpoint": 0.700517240458919,
+  "max_conf_baseline": 0.8577942165674701,
+  "avg_confidence_delta": -0.13381566951672239,
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251025_174538_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251026_regulator_remediation_blend.json"
+  ]
+}

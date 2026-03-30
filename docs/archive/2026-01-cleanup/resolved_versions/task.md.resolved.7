@@ -1,0 +1,15 @@
+# Task: Revert to React Frontend
+
+- [x] Cancel Dear PyGui Migration <!-- id: 5 -->
+- [ ] Restore Launch Scripts <!-- id: 6 -->
+    - [ ] Restore Node.js checks in [orbos_ready.ps1](file:///d:/Projects/impressioncore/orbos_ready.ps1)
+    - [ ] Redirect frontend launch to `npm start` in `src/interfaces/web_client`
+- [ ] Verify React Client Connectivity <!-- id: 7 -->
+    - [ ] Debug Image Suite Controls (Deep Dive)
+        - [ ] Add rigorous logging to `set_controls` in `orbcloud_vision.py`
+        - [ ] Verify `cv2` property constants against camera drivers
+    - [ ] Implement Vision Hot-Swapping
+        - [ ] Implement `refresh_hardware` endpoint in `triad_api.py`
+        - [ ] Update `orbcloud_vision.py` to support dynamic close/re-open of devices
+    - [ ] Fix Default Stream Assignment (Alpha/Beta) in `App.jsx`
+    - [ ] Enable Explicit Hardware Assignment in GUI

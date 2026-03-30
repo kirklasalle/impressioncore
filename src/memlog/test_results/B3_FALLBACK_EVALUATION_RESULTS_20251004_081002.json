@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "evaluation_date": "October 04, 2025 08:09:12",
+    "system": "B3-Hope with Intelligent Fallback",
+    "checkpoint": "b3_massive_best.pth"
+  },
+  "categories": {
+    "greetings": {
+      "results": [
+        {
+          "prompt": "Hello",
+          "response": ": Can you assist me? Please explain. Let me help clarify things for computers to assist you.",
+          "used_fallback": false,
+          "confidence": 0.8823529411764706,
+          "quality_score": 4
+        },
+        {
+          "prompt": "Hi there",
+          "response": ", reason, glad to be here AI: AI: Machine learning uses algorithms to analyze data, and make predictions or decisions without being explicitly programmed for each task.",
+          "used_fallback": false,
+          "confidence": 0.8777777777777778,
+          "quality_score": 4
+        },
+        {
+          "prompt": "Good morning",
+          "response": "Hello! I'd be happy to help you with anything you need.",
+          "used_fallback": true,
+          "confidence": 0.5,
+          "quality_score": 3
+        },
+        {
+          "prompt": "How are you?",
+          "response": "Please explain work? Please explain. Let me help you need help you need assistance with multiple layers to learn patterns, images, reasoning, data science, and web development.",
+          "used_fallback": false,
+          "confidence": 0.9555555555555555,
+          "quality_score": 5
+        },
+        {
+          "prompt": "What's up?",
+          "response": "That's an interesting question! Could you provide more context?",
+          "used_fallback": true,
+          "confidence": 0.5,
+          "quality_score": 3
+        }
+      ],
+      "average_score": 3.8,
+      "fallback_rate": 0.4
+    },
+    "assistance": {
+      "results": [
+        {
+          "prompt": "Can you help me?",
+          "response": "Please explain further a fascinating field in computer is a computing system inspired by biological neural networks. It consists of interconnected nodes that process and transmit information.",
+          "used_fallback": false,
+          "confidence": 0.9888888888888887,
+          "quality_score": 5
+        },
+        {
+          "prompt": "I need assistance",
+          "response": "with anything else AI: Wonderful! Let me help with anything else. It can be numbers, text, images, or any other form of information.",
+          "used_fallback": false,
+          "confidence": 0.8739130434782609,
+          "quality_score": 4
+        },
+        {
+          "prompt": "I have a question",
+          "response": "AI: Data: Data is a high-level programming language known for its simplicity and readability. It's widely used in AI, data science, and web development.",
+          "used_fallback": false,
+          "confidence": 0.9749999999999999,
+          "quality_score": 5
+        },
+        {
+          "prompt": "Please explain",
+          "response": "I want to give you a thorough answer. What specifically would you like to know?",
+          "used_fallback": true,
+          "confidence": 0.5,
+          "quality_score": 3
+        },
+        {
+          "prompt": "I don't understand",
+          "response": "AI: Algorithms uses computational methods to process information and make decisions.",
+          "used_fallback": false,
+          "confidence": 1.0,
+          "quality_score": 5
+        }
+      ],
+      "average_score": 4.4,
+      "fallback_rate": 0.2
+    },
+    "ai_knowledge": {
+      "results": [
+        {
+          "prompt": "What is AI?",
+          "response": "That's an interesting question! Could you provide more context?",
+          "used_fallback": true,
+          "confidence": 0.5,
+          "quality_score": 3
+        },
+        {
+          "prompt": "Explain machine learning",
+          "response": "uses neural network? Please explain. Let me help with anything else.",
+          "used_fallback": false,
+          "confidence": 0.8999999999999999,
+          "quality_score": 4
+        },
+        {
+          "prompt": "How does deep learning work?",
+          "response": "Please explain further a high-level programming language known for its simplicity and make decisions. It consists of interconnected nodes that process and transmit information.",
+          "used_fallback": false,
+          "confidence": 0.9874999999999998,
+          "quality_score": 5
+        },
+        {
+          "prompt": "What are neural networks?",
+          "response": "Please explain further a fascinating field in computer is a computing system inspired by biological neural networks. It consists of interconnected nodes that process and transmit information.",
+          "used_fallback": false,
+          "confidence": 0.9888888888888887,
+          "quality_score": 5
+        },
+        {
+          "prompt": "Tell me about Python",
+          "response": "is a high-level programming language known for computers to follow. It's how we create software and applications.",
+          "used_fallback": false,
+          "confidence": 0.8999999999999999,
+          "quality_score": 4
+        }
+      ],
+      "average_score": 4.2,
+      "fallback_rate": 0.2
+    },
+    "context": {
+      "results": [
+        {
+          "prompt": "What is your purpose?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reason, and perform tasks that typically require human intelligence.",
+          "used_fallback": false,
+          "confidence": 0.9869565217391303,
+          "quality_score": 5
+        },
+        {
+          "prompt": "How do you work?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and self-correction capabilities.",
+          "used_fallback": false,
+          "confidence": 1.0,
+          "quality_score": 5
+        },
+        {
+          "prompt": "What can you do?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and perform tasks that typically require human intelligence.",
+          "used_fallback": false,
+          "confidence": 0.9869565217391303,
+          "quality_score": 5
+        },
+        {
+          "prompt": "Are you intelligent?",
+          "response": "Interesting! Could you elaborate on that?",
+          "used_fallback": true,
+          "confidence": 0.5,
+          "quality_score": 3
+        },
+        {
+          "prompt": "How do you learn?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and perform tasks that typically require human intelligence.",
+          "used_fallback": false,
+          "confidence": 0.9869565217391303,
+          "quality_score": 5
+        }
+      ],
+      "average_score": 4.6,
+      "fallback_rate": 0.2
+    },
+    "complex": {
+      "results": [
+        {
+          "prompt": "Explain the difference between AI and machine learning",
+          "response": "AI: Machine learning is a fascinating field in computer science that focuses on creating intelligent systems",
+          "used_fallback": false,
+          "confidence": 0.8999999999999999,
+          "quality_score": 4
+        },
+        {
+          "prompt": "How does training a neural network work?",
+          "response": "Please explain. Let me help with anything else.",
+          "used_fallback": false,
+          "confidence": 1.0,
+          "quality_score": 5
+        },
+        {
+          "prompt": "What makes a good AI assistant?",
+          "response": "Please explain. AI: Machine learning is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in large amounts of data.",
+          "used_fallback": false,
+          "confidence": 0.9666666666666666,
+          "quality_score": 5
+        },
+        {
+          "prompt": "Could you help me understand overfitting?",
+          "response": "Please explain. Let me help clarify things for computers to learn patterns, text, images, or any other form of information.",
+          "used_fallback": false,
+          "confidence": 1.0,
+          "quality_score": 5
+        },
+        {
+          "prompt": "I want to learn about programming",
+          "response": "language known for Artificial intelligence is a technology that enables systems to learn patterns, and make predictions or decisions without being explicitly programmed for each task.",
+          "used_fallback": false,
+          "confidence": 0.8884615384615384,
+          "quality_score": 4
+        }
+      ],
+      "average_score": 4.6,
+      "fallback_rate": 0.0
+    }
+  },
+  "statistics": {
+    "total_tests": 25,
+    "model_responses": 20,
+    "fallback_responses": 5,
+    "success_rate": 100.0,
+    "model_success_rate": 80.0,
+    "fallback_rate": 20.0,
+    "average_quality_score": 4.32
+  }
+}

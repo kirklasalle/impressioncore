@@ -1,0 +1,69 @@
+{
+  "model": {
+    "name": "ImpressionCore-B1-MVP",
+    "max_seq_length": 512,
+    "hidden_size": 512,
+    "num_attention_heads": 8,
+    "num_hidden_layers": 6,
+    "vocab_size": 50000
+  },
+  "training": {
+    "batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 5e-05,
+    "num_epochs": 3,
+    "warmup_steps": 100,
+    "save_steps": 500,
+    "eval_steps": 250,
+    "logging_steps": 50,
+    "max_grad_norm": 1.0,
+    "weight_decay": 0.01,
+    "fp16": true,
+    "dataloader_num_workers": 2,
+    "remove_unused_columns": false,
+    "load_best_model_at_end": true,
+    "metric_for_best_model": "eval_loss",
+    "greater_is_better": false
+  },
+  "memory_optimization": {
+    "gradient_checkpointing": true,
+    "use_cache": false,
+    "incremental_loading": true,
+    "load_percentage": 20,
+    "pin_memory": true,
+    "prefetch_factor": 2
+  },
+  "datasets": {
+    "audio": {
+      "ljspeech": {
+        "path": "D:\\Projects\\impressioncore\\src\\data\\datasets\\audio\\ljspeech\\LJSpeech-1.1",
+        "enabled": true,
+        "sample_rate": 22050,
+        "max_length": 160000
+      }
+    },
+    "images": {
+      "coco_val2017": {
+        "path": "D:\\Projects\\impressioncore\\src\\data\\datasets\\images\\coco2017\\val2017",
+        "annotations": "D:\\Projects\\impressioncore\\src\\data\\datasets\\images\\coco2017\\annotations",
+        "enabled": true,
+        "image_size": 224,
+        "max_images": 1000
+      }
+    },
+    "text": {
+      "samples": {
+        "path": "D:\\Projects\\impressioncore\\src\\data\\datasets\\text",
+        "enabled": true,
+        "max_length": 512
+      }
+    }
+  },
+  "output": {
+    "output_dir": "D:\\Projects\\impressioncore\\src\\data\\output\\mvp_training",
+    "logging_dir": "D:\\Projects\\impressioncore\\src\\data\\logs\\mvp_training",
+    "run_name": "mvp_training_20250610_221543",
+    "save_total_limit": 3,
+    "save_strategy": "steps"
+  }
+}

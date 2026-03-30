@@ -1,0 +1,37 @@
+MCP IDS Tools Testing Results
+========================================
+
+search_documents: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+find_by_tag: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+get_file_info: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+list_tags: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+get_system_status: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+semantic_search: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+search_with_context: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+get_search_analytics: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+rebuild_index: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+incremental_update: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+check_index_freshness: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+validate_documentation: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+generate_documentation_report: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+export_index_data: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+create_bookmark: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+manage_bookmarks_list: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls
+get_bookmark_analytics: SIMULATED (0.00s)
+  Details: Tool available but requires SSE mode for reliable multiple calls

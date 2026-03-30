@@ -1,0 +1,467 @@
+{% extends "base.html" %}
+
+{% block title %}Training Dashboard - ImpressionCore{% endblock %}
+
+{% block head %}
+{{ super() }}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    padding: 1rem;
+}
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 1rem;
+}
+.full-width {
+    grid-column: 1 / -1;
+}
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+.metric-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+.metric-card {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: background-color 0.2s;
+}
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.btn-success {
+    background: rgba(76, 175, 80, 0.3);
+}
+.btn-success:hover {
+    background: rgba(76, 175, 80, 0.5);
+}
+.btn-danger {
+    background: rgba(244, 67, 54, 0.3);
+}
+.btn-danger:hover {
+    background: rgba(244, 67, 54, 0.5);
+}
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.status-active {
+    background-color: #4CAF50;
+    box-shadow: 0 0 10px #4CAF50;
+}
+.status-inactive {
+    background-color: #F44336;
+}
+.status-paused {
+    background-color: #FFC107;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="card full-width">
+        <div class="controls">
+            <div>
+                <h2>
+                    <span class="status-indicator status-active"></span>
+                    Training Monitor
+                </h2>
+            </div>
+            <div>
+                <button id="pause-btn" class="btn">Pause Training</button>
+                <button id="stop-btn" class="btn btn-danger">Stop Training</button>
+                <button id="save-checkpoint-btn" class="btn btn-success">Save Checkpoint</button>
+            </div>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Training Loss</div>
+                <div class="metric-value" id="train-loss">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Validation Loss</div>
+                <div class="metric-value" id="val-loss">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Learning Rate</div>
+                <div class="metric-value" id="learning-rate">-</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Tokens/Second</div>
+                <div class="metric-value" id="tokens-per-second">-</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h3>Training Loss</h3>
+        <div id="loss-chart" style="width:100%;height:300px;"></div>
+    </div>
+    
+    <div class="card">
+        <h3>Learning Rate</h3>
+        <div id="lr-chart" style="width:100%;height:300px;"></div>
+    </div>
+    
+    <div class="card">
+        <h3>GPU Usage</h3>
+        <div id="gpu-chart" style="width:100%;height:300px;"></div>
+    </div>
+    
+    <div class="card">
+        <h3>CPU & Memory</h3>
+        <div id="system-chart" style="width:100%;height:300px;"></div>
+    </div>
+</div>
+
+<script>
+// Initialize charts
+const lossChart = Plotly.newPlot(
+    'loss-chart',
+    [
+        {
+            x: [],
+            y: [],
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Training Loss',
+            line: {color: '#4CAF50'}
+        },
+        {
+            x: [],
+            y: [],
+            type: 'scatter',
+            mode: 'markers',
+            name: 'Validation Loss',
+            marker: {color: '#2196F3'}
+        }
+    ],
+    {
+        margin: {t: 10, r: 10, b: 40, l: 60},
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#fff'},
+        xaxis: {
+            title: 'Steps',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        },
+        yaxis: {
+            title: 'Loss',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        },
+        showlegend: true,
+        legend: {orientation: 'h', y: 1.1}
+    }
+);
+
+const lrChart = Plotly.newPlot(
+    'lr-chart',
+    [{
+        x: [],
+        y: [],
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Learning Rate',
+        line: {color: '#FF9800'}
+    }],
+    {
+        margin: {t: 10, r: 10, b: 40, l: 60},
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#fff'},
+        xaxis: {
+            title: 'Steps',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        },
+        yaxis: {
+            title: 'Learning Rate',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        }
+    }
+);
+
+const gpuChart = Plotly.newPlot(
+    'gpu-chart',
+    [{
+        x: [],
+        y: [],
+        type: 'scatter',
+        fill: 'tozeroy',
+        name: 'GPU Memory Usage (MB)',
+        line: {color: '#E91E63'}
+    }],
+    {
+        margin: {t: 10, r: 10, b: 40, l: 60},
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#fff'},
+        xaxis: {
+            title: 'Time',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        },
+        yaxis: {
+            title: 'Memory (MB)',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        }
+    }
+);
+
+const systemChart = Plotly.newPlot(
+    'system-chart',
+    [
+        {
+            x: [],
+            y: [],
+            type: 'scatter',
+            name: 'CPU %',
+            line: {color: '#00BCD4'}
+        },
+        {
+            x: [],
+            y: [],
+            type: 'scatter',
+            name: 'Memory %',
+            line: {color: '#9C27B0'}
+        }
+    ],
+    {
+        margin: {t: 10, r: 10, b: 40, l: 60},
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#fff'},
+        xaxis: {
+            title: 'Time',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        },
+        yaxis: {
+            title: 'Percentage',
+            gridcolor: 'rgba(255,255,255,0.1)',
+            zerolinecolor: 'rgba(255,255,255,0.1)'
+        }
+    }
+);
+
+// WebSocket for real-time updates
+let socket = null;
+let steps = 0;
+let timestamps = [];
+
+function connectWebSocket() {
+    socket = new WebSocket(`ws://${window.location.host}/training/metrics`);
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        updateDashboard(data);
+    };
+
+    socket.onclose = function(event) {
+        console.log('WebSocket connection closed, reconnecting in 3 seconds...');
+        setTimeout(connectWebSocket, 3000);
+    };
+
+    socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+        socket.close();
+    };
+}
+
+function updateDashboard(data) {
+    // Update timestamp
+    const now = new Date().toISOString();
+    timestamps.push(now);
+    steps++;
+    
+    // Update metrics
+    if (data.training) {
+        // Update loss value
+        if (data.training.loss && data.training.loss.length > 0) {
+            const lastLoss = data.training.loss[data.training.loss.length - 1];
+            document.getElementById('train-loss').textContent = lastLoss.toFixed(4);
+            
+            // Update loss chart
+            Plotly.extendTraces('loss-chart', {
+                x: [[steps]],
+                y: [[lastLoss]]
+            }, [0]);
+        }
+        
+        // Update validation loss if available
+        if (data.training.val_loss && data.training.val_loss.length > 0) {
+            const lastValLoss = data.training.val_loss[data.training.val_loss.length - 1];
+            document.getElementById('val-loss').textContent = lastValLoss.toFixed(4);
+            
+            // Update val loss point
+            Plotly.extendTraces('loss-chart', {
+                x: [[steps]],
+                y: [[lastValLoss]]
+            }, [1]);
+        }
+        
+        // Update learning rate
+        if (data.training.learning_rate && data.training.learning_rate.length > 0) {
+            const lastLr = data.training.learning_rate[data.training.learning_rate.length - 1];
+            document.getElementById('learning-rate').textContent = lastLr.toExponential(2);
+            
+            // Update LR chart
+            Plotly.extendTraces('lr-chart', {
+                x: [[steps]],
+                y: [[lastLr]]
+            }, [0]);
+        }
+        
+        // Update tokens per second
+        if (data.training.tokens_per_second) {
+            document.getElementById('tokens-per-second').textContent = 
+                Math.round(data.training.tokens_per_second).toLocaleString();
+        }
+    }
+    
+    // Update system metrics
+    if (data.system) {
+        // Update GPU memory
+        const gpuMemoryUsed = data.system.gpu_memory_used || 0;
+        const gpuMemoryTotal = data.system.gpu_memory_total || 1;
+        const gpuUsagePercent = (gpuMemoryUsed / gpuMemoryTotal * 100).toFixed(1);
+        
+        // Update GPU chart
+        Plotly.extendTraces('gpu-chart', {
+            x: [[now]],
+            y: [[gpuMemoryUsed]]
+        }, [0]);
+        
+        // Update system chart
+        Plotly.extendTraces('system-chart', {
+            x: [[now], [now]],
+            y: [[data.system.cpu_percent], [data.system.memory_percent]]
+        }, [0, 1]);
+        
+        // Keep charts at most recent 100 points
+        if (timestamps.length > 100) {
+            // Trim timestamps array
+            timestamps = timestamps.slice(-100);
+            
+            // Update CPU/Memory chart
+            Plotly.update('system-chart', {}, {
+                xaxis: {
+                    range: [timestamps[0], timestamps[timestamps.length - 1]]
+                }
+            });
+            
+            // Update GPU chart
+            Plotly.update('gpu-chart', {}, {
+                xaxis: {
+                    range: [timestamps[0], timestamps[timestamps.length - 1]]
+                }
+            });
+        }
+    }
+}
+
+// Button event handlers
+document.getElementById('pause-btn').addEventListener('click', function() {
+    const btn = document.getElementById('pause-btn');
+    const statusIndicator = document.querySelector('.status-indicator');
+    
+    if (btn.textContent === 'Pause Training') {
+        // Send pause request
+        fetch('/training/api/pause', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    statusIndicator.className = 'status-indicator status-paused';
+                    btn.textContent = 'Resume Training';
+                }
+            });
+    } else {
+        // Send resume request
+        fetch('/training/api/resume', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    statusIndicator.className = 'status-indicator status-active';
+                    btn.textContent = 'Pause Training';
+                }
+            });
+    }
+});
+
+document.getElementById('stop-btn').addEventListener('click', function() {
+    if (confirm('Are you sure you want to stop the training process?')) {
+        fetch('/training/api/stop', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector('.status-indicator').className = 'status-indicator status-inactive';
+                    document.getElementById('pause-btn').disabled = true;
+                }
+            });
+    }
+});
+
+document.getElementById('save-checkpoint-btn').addEventListener('click', function() {
+    fetch('/training/api/save-checkpoint', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Checkpoint saved: ${data.path}`);
+            } else {
+                alert(`Failed to save checkpoint: ${data.error}`);
+            }
+        });
+});
+
+// Initialize the dashboard
+document.addEventListener('DOMContentLoaded', function() {
+    // Connect to WebSocket for real-time updates
+    connectWebSocket();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        Plotly.Plots.resize('loss-chart');
+        Plotly.Plots.resize('lr-chart');
+        Plotly.Plots.resize('gpu-chart');
+        Plotly.Plots.resize('system-chart');
+    });
+});
+</script>
+{% endblock %}

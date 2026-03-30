@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-07-28T20:29:37.113951",
+  "system_info": {
+    "pytorch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "f_drive_available": true,
+    "gpu_name": "NVIDIA GeForce GTX 1050 Ti",
+    "gpu_memory_gb": 3.999755859375
+  },
+  "model_config": {
+    "embed_dim": 768,
+    "num_heads": 12,
+    "num_layers": 8,
+    "vocab_size": 50257,
+    "num_experts": 8,
+    "expert_dim": 2048,
+    "experts_per_token": 2,
+    "dropout": 0.1,
+    "image_embed_dim": 768,
+    "audio_embed_dim": 768,
+    "phoneme_vocab_size": 256,
+    "max_seq_length": 4096,
+    "use_gradient_checkpointing": true
+  },
+  "embedding_stats": {
+    "text": {
+      "count": 0,
+      "size_mb": 0
+    },
+    "image": {
+      "count": 0,
+      "size_mb": 0
+    },
+    "audio": {
+      "count": 0,
+      "size_mb": 0
+    },
+    "video": {
+      "count": 0,
+      "size_mb": 0
+    },
+    "total": {
+      "count": 0,
+      "size_mb": 0
+    }
+  },
+  "paths": {
+    "dataset": "F:\\dataset",
+    "embeddings": "F:\\embeddings",
+    "models": "F:\\models"
+  }
+}

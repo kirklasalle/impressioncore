@@ -1,0 +1,70 @@
+# ⚠️ ARCHIVED FILE
+This file has been archived for historical, compatibility, or deprecation reasons. Do not modify or use in active development.
+
+{% extends "layout.html" %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+<h1>Introduction to ImpressionCore</h1>
+
+<div class="note">
+    <p><b>Note:</b> This walkthrough provides a step-by-step guide for building and training models with ImpressionCore.</p>
+</div>
+
+<div class="card mb-4">
+    <h2>Overview</h2>
+    <p>Welcome to ImpressionCore, a platform for building and training machine learning models. This walkthrough provides a step-by-step guide for creating, training, and deploying models.</p>
+</div>
+
+<div class="card mb-4">
+    <h2>Key Features</h2>
+    <ul>
+        <li>Flexible model architecture definition</li>
+        <li>Comprehensive data preparation tools</li>
+        <li>Advanced training and evaluation workflows</li>
+        <li>Seamless deployment for inference</li>
+    </ul>
+</div>
+
+<div class="card mb-4">
+    <h2>Project Structure</h2>
+    <p>The codebase is organized as follows:</p>
+    <pre><code>
+impressioncore/
+├── src/
+│   ├── models/          # Model architectures
+│   ├── tokenization/    # Tokenization utilities
+│   ├── training/        # Training utilities
+│   └── web/            # Web interface
+├── data/               # Data management
+├── tests/             # Unit tests
+└── docs/              # Documentation
+    </code></pre>
+</div>
+
+<div class="card mb-4">
+    <h2>Next Steps</h2>
+    <p>Ready to start building? Begin with the Environment Setup section to configure your development environment.</p>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url_for('setup') }}'">
+        <i class="fas fa-arrow-right"></i> Continue to Environment Setup
+    </button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('hover-effect');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('hover-effect');
+        });
+    });
+});
+</script>
+{% endblock %}

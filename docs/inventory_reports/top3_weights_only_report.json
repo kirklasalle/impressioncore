@@ -1,0 +1,23 @@
+[
+  {
+    "original": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25.pth",
+    "weights_only": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25_weights_only.pth",
+    "weights_only_size_mb": 1930.69,
+    "param_elems": 506045321,
+    "bits_per_param": 32.005
+  },
+  {
+    "original": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_20.pth",
+    "weights_only": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_20_weights_only.pth",
+    "weights_only_size_mb": 1930.69,
+    "param_elems": 506045321,
+    "bits_per_param": 32.005
+  },
+  {
+    "original": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_8.pth",
+    "weights_only": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_8_weights_only.pth",
+    "weights_only_size_mb": 1930.69,
+    "param_elems": 506045321,
+    "bits_per_param": 32.005
+  }
+]

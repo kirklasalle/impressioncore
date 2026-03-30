@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-07-28T21:00:21.298865",
+  "total_files": 1138398,
+  "processing_speed_fph": 1000,
+  "batch_size": 32,
+  "vram_limit_gb": 4.0,
+  "phases": [
+    {
+      "name": "Phase 1: Priority Categories",
+      "description": "High-value academic and pre-processed data",
+      "priority_patterns": [
+        "academic",
+        "arxiv",
+        "papers",
+        "b3_professional",
+        "embeddings",
+        "processed",
+        "educational"
+      ],
+      "max_files": 10000,
+      "estimated_hours": 8
+    },
+    {
+      "name": "Phase 2: Core Multimodal",
+      "description": "Essential image, audio, and text data",
+      "target_categories": [
+        "image",
+        "audio",
+        "text"
+      ],
+      "max_files": 50000,
+      "estimated_hours": 32
+    },
+    {
+      "name": "Phase 3: Video & Complex",
+      "description": "Video sequences and complex multimodal data",
+      "target_categories": [
+        "video"
+      ],
+      "max_files": 25000,
+      "estimated_hours": 72
+    },
+    {
+      "name": "Phase 4: Comprehensive",
+      "description": "All remaining files for complete coverage",
+      "target_categories": [
+        "image",
+        "audio",
+        "text",
+        "other"
+      ],
+      "max_files": 1138398,
+      "estimated_hours": 300
+    }
+  ],
+  "total_estimated_hours": 412,
+  "hardware_target": "GTX 1050 Ti (4GB VRAM)"
+}

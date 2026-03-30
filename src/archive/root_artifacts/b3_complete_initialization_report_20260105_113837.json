@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-01-05T11:38:38.896041",
+  "overall_readiness": false,
+  "readiness_percentage": 50.0,
+  "readiness_checks": {
+    "system_resources": true,
+    "embeddings_loaded": true,
+    "educational_priority": true,
+    "model_initialized": false,
+    "performance_target": false,
+    "memory_budget": false
+  },
+  "system_resources": {
+    "cpu_percent": 23.8,
+    "ram_total_gb": 31.93392562866211,
+    "ram_available_gb": 22.03040313720703,
+    "ram_percent_used": 31.0,
+    "gpu_available": true,
+    "gpu_info": {
+      "name": "NVIDIA GeForce GTX 1050 Ti",
+      "memory_total_gb": 4.0,
+      "memory_free_gb": 3.5263671875,
+      "memory_used_gb": 0.384765625,
+      "utilization_percent": 11.0,
+      "temperature": 29.0
+    },
+    "f_drive": {
+      "total_gb": 476.93749618530273,
+      "used_gb": 404.55939865112305,
+      "free_gb": 72.37809753417969,
+      "percent_used": 84.82440610916888
+    },
+    "pytorch_version": "2.6.0+cu124",
+    "device": "cuda"
+  },
+  "embedding_statistics": {
+    "total_files": 205,
+    "total_size_gb": 0.00031769275665283203,
+    "categories": {
+      "educational": {
+        "file_count": 205,
+        "total_size_gb": 0.00031769275665283203,
+        "files": [
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_2_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_2_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_3_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_3_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_chunk1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "1stGrade_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_2_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_2_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_3_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_3_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_chunk1_educational.npy"
+          },
+          {
+            "path": "F:\\data\\embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_educational.npy",
+            "size_bytes": 1664,
+            "size_mb": 0.0015869140625,
+            "filename": "2ndGrade_educational.npy"
+          }
+        ]
+      }
+    }
+  },
+  "embedding_loading": {
+    "total_loaded": 10,
+    "memory_used_gb": 1.5497207641601562e-05,
+    "categories": {
+      "educational": 10,
+      "multimodal": 0,
+      "text": 0,
+      "image": 0,
+      "audio": 0
+    },
+    "educational_priority_success": true
+  },
+  "model_information": {
+    "error": "Failed to initialize B3 model: B3CompleteModelInitializer.initialize_b3_model_architecture.<locals>.MixtureOfExperts.__init__() got an unexpected keyword argument 'use_mhc'"
+  },
+  "evaluation_results": {
+    "error": "Model readiness evaluation failed: 'complete_model'",
+    "model_ready": false
+  },
+  "training_readiness": {
+    "ready_for_training": false,
+    "educational_content_protected": true,
+    "performance_target_met": false,
+    "memory_optimized": false
+  }
+}

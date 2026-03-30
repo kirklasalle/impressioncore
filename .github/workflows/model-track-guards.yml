@@ -1,0 +1,66 @@
+name: Model Track Guards
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - "src/core/config/model_track_config.py"
+            - "src/core/models/model_track_contracts.py"
+            - "src/dev_tools/validation/check_model_track_boundaries.py"
+            - "src/dev_tools/validation/validate_model_track_contracts.py"
+            - "src/training/pipelines/model_track_pipeline.py"
+            - "src/training/**"
+            - "src/data/**"
+            - "src/inference/b3_embedding_generator.py"
+            - ".github/workflows/model-track-guards.yml"
+    pull_request:
+        branches: [main]
+        paths:
+            - "src/core/config/model_track_config.py"
+            - "src/core/models/model_track_contracts.py"
+            - "src/dev_tools/validation/check_model_track_boundaries.py"
+            - "src/dev_tools/validation/validate_model_track_contracts.py"
+            - "src/training/pipelines/model_track_pipeline.py"
+            - "src/training/**"
+            - "src/data/**"
+            - "src/inference/b3_embedding_generator.py"
+            - ".github/workflows/model-track-guards.yml"
+
+permissions:
+    contents: read
+
+jobs:
+    model-track-validation:
+        name: Boundary and Contract Validation
+        runs-on: windows-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Set up Python 3.10
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Prepare F drive test roots
+              shell: pwsh
+              run: |
+                  $fRoot = Join-Path $env:RUNNER_TEMP "impressioncore-fdrive"
+                  New-Item -ItemType Directory -Force -Path $fRoot | Out-Null
+                  cmd /c "subst F: $fRoot"
+                  New-Item -ItemType Directory -Force -Path "F:\models", "F:\models\checkpoints", "F:\data", "F:\data\embeddings", "F:\data\datasets" | Out-Null
+
+            - name: Run model-track boundary check
+              shell: pwsh
+              run: python src/dev_tools/validation/check_model_track_boundaries.py
+
+            - name: Run model-track contract check
+              shell: pwsh
+              run: python src/dev_tools/validation/validate_model_track_contracts.py
+
+            - name: Run model-track pipeline dry-run
+              shell: pwsh
+              env:
+                  PYTHONPATH: "."
+              run: python src/training/pipelines/model_track_pipeline.py --profile smoke

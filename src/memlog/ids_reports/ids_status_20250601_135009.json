@@ -1,0 +1,189 @@
+{
+  "ids_version": "1.0.0",
+  "initialization_time": "2025-06-01T13:50:09.203634",
+  "duration_seconds": 25.477369,
+  "steps_completed": 7,
+  "total_steps": 8,
+  "completion_percentage": 87.5,
+  "issues_found": 7,
+  "actions_taken": 5,
+  "priority_docs_status": {
+    "Developer Guide": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\ARCHITECTURE.md",
+      "last_modified": "2025-05-31",
+      "issues": []
+    },
+    "User Guide": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\user_guide\\complete_user_guide.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "CLI Walkthrough": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\cli_build_walkthrough.md",
+      "last_modified": "2025-05-31",
+      "issues": []
+    },
+    "Web UI Walkthrough": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\user\\web_ui_walkthrough.md",
+      "last_modified": "2025-06-01",
+      "issues": []
+    },
+    "API Reference": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\api\\complete_api_reference.md",
+      "last_modified": "2025-05-31",
+      "issues": []
+    },
+    "PRD": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\prd.md",
+      "last_modified": "2025-05-31",
+      "issues": []
+    }
+  },
+  "automation_status": {
+    "tag_management": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\add_or_update_tags.py",
+      "functional": false,
+      "test_output": "Script failed: Traceback (most recent call last):\n  File \"D:\\Projects\\impressioncore\\docs\\developer\\add_or_update_tags.py\", line 5, in <module>\n    from src.core.utils.rich_enhancements import (\nModul"
+    },
+    "tag_indexing": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\tags_index.py",
+      "functional": true,
+      "test_output": "usage: tags_index.py [-h] [--table] [--sort] [--wrap WRAP]\n\nImpressionCore Tag Index Tool\n\noptions:\n  -h, --help   show this help message and exit\n  --table      Print tag table\n  --sort       Sort ta"
+    },
+    "documentation_automation": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\src\\scripts\\documentation\\doc_automation.py",
+      "functional": false,
+      "test_output": "Script failed: +--------------------- Traceback (most recent call last) ---------------------+\n| D:\\Projects\\impressioncore\\src\\scripts\\documentation\\doc_automation.py:460  |\n| in <module>            "
+    },
+    "health_check": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\health_check_and_notification.py",
+      "functional": true,
+      "test_output": "All documentation is up to date.\n"
+    },
+    "redundancy_check": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\redundancy_and_deprecation_checker.py",
+      "functional": true,
+      "test_output": "Moved 1 duplicate(s) to archive.\n"
+    },
+    "inventory_update": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\inventory_and_index_update.py",
+      "functional": true,
+      "test_output": "Documentation index updated.\n"
+    },
+    "categorize_inbox": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\categorize_and_move_inbox.py",
+      "functional": true,
+      "test_output": "Inbox processing complete.\n"
+    },
+    "doc_analytics": {
+      "exists": true,
+      "path": "D:\\Projects\\impressioncore\\docs\\developer\\doc_analytics.py",
+      "functional": true,
+      "test_output": "usage: doc_analytics.py [-h] [--update-index]\n\nImpressionCore Documentation Analytics & Tag Health Script.\n\noptions:\n  -h, --help      show this help message and exit\n  --update-index  If set, appends"
+    }
+  },
+  "tag_system_status": {
+    "tags_index_exists": true,
+    "doc_index_exists": true,
+    "issues": [
+      "Tag update failed",
+      "Tag table generation failed",
+      "Documentation validation failed"
+    ],
+    "updates_applied": false
+  },
+  "memlog_integration_status": {
+    "memlog_dir_exists": true,
+    "important_files_found": [
+      "README.md"
+    ],
+    "total_md_files": 63,
+    "recent_activity": 45
+  },
+  "detailed_issues": [
+    {
+      "category": "priority_docs",
+      "description": "User Guide missing at D:\\Projects\\impressioncore\\docs\\user_guide\\complete_user_guide.md",
+      "severity": "error",
+      "timestamp": "2025-06-01T13:49:43.749626"
+    },
+    {
+      "category": "automation",
+      "description": "Script tag_management not functional: Script failed: Traceback (most recent call last):\n  File \"D:\\Projects\\impressioncore\\docs\\developer\\",
+      "severity": "warning",
+      "timestamp": "2025-06-01T13:49:43.881320"
+    },
+    {
+      "category": "automation",
+      "description": "Script documentation_automation not functional: Script failed: +--------------------- Traceback (most recent call last) ---------------------+\n| D:\\",
+      "severity": "warning",
+      "timestamp": "2025-06-01T13:49:45.266514"
+    },
+    {
+      "category": "tag_system",
+      "description": "Tag update failed: Script failed: Traceback (most recent call last):\n  File \"D:\\Projects\\impressioncore\\docs\\developer\\",
+      "severity": "warning",
+      "timestamp": "2025-06-01T13:49:47.487402"
+    },
+    {
+      "category": "tag_system",
+      "description": "Tag table generation failed: Script timed out after 20 seconds",
+      "severity": "warning",
+      "timestamp": "2025-06-01T13:50:07.498480"
+    },
+    {
+      "category": "tag_system",
+      "description": "Documentation validation failed: Script failed: +--------------------- Traceback (most recent call last) ---------------------+\n| D:\\",
+      "severity": "warning",
+      "timestamp": "2025-06-01T13:50:08.752980"
+    },
+    {
+      "category": "memlog",
+      "description": "Limited memlog documentation found",
+      "severity": "info",
+      "timestamp": "2025-06-01T13:50:08.761741"
+    }
+  ],
+  "detailed_actions": [
+    {
+      "description": "Health checks completed successfully",
+      "success": true,
+      "timestamp": "2025-06-01T13:50:08.865400"
+    },
+    {
+      "description": "Redundancy check completed",
+      "success": true,
+      "timestamp": "2025-06-01T13:50:08.966767"
+    },
+    {
+      "description": "Inbox organization completed",
+      "success": true,
+      "timestamp": "2025-06-01T13:50:09.083068"
+    },
+    {
+      "description": "Documentation inventory updated",
+      "success": true,
+      "timestamp": "2025-06-01T13:50:09.188698"
+    },
+    {
+      "description": "Documentation index timestamp updated",
+      "success": true,
+      "timestamp": "2025-06-01T13:50:09.200720"
+    }
+  ]
+}

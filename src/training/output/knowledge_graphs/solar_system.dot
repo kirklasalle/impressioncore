@@ -1,0 +1,33 @@
+digraph KnowledgeGraph {
+  rankdir=LR;
+  node [shape=box, style=filled, fillcolor=lightblue];
+  "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="Sun\ntype: star | color: yellow | diameter_km: 1392684 | ..."];
+  "713a5bc3-bbf7-491f-9113-8acf1be1a5c9" [label="Mercury\ntype: planet | color: gray | diameter_km: 4879 | ..."];
+  "1c7f0010-d6e8-40c4-bda7-dd10610949b7" [label="Venus\ntype: planet | color: yellow | diameter_km: 12104 | ..."];
+  "68306f53-8d9f-41be-a6f7-2b76691ccb7b" [label="Earth\ntype: planet | color: blue | diameter_km: 12742 | ..."];
+  "168aed23-4749-4c31-95e8-0a7e304284ce" [label="Mars\ntype: planet | color: red | diameter_km: 6779 | ..."];
+  "9bd02672-bd33-4e01-8fba-4c14a80ee51a" [label="Jupiter\ntype: planet | color: orange | diameter_km: 139820 | ..."];
+  "571f9229-7265-4d80-9567-7afe7a7f6f9f" [label="Saturn\ntype: planet | color: yellow | diameter_km: 116460 | ..."];
+  "a6eaca4f-3206-4b9e-a9b8-b5c1963107f0" [label="Uranus\ntype: planet | color: blue | diameter_km: 50724 | ..."];
+  "c59f7e8f-54ba-482e-8f96-f0e284531739" [label="Neptune\ntype: planet | color: blue | diameter_km: 49244 | ..."];
+  "7f208a2b-768c-44d4-b629-cf12ea9621c2" [label="Luna\ntype: moon | diameter_km: 3475"];
+  "1b681946-fffe-436d-a3fd-444dfaac17f7" [label="Phobos\ntype: moon | diameter_km: 22"];
+  "03ebf1a9-7043-498a-8b32-05ad95c0f6b5" [label="Deimos\ntype: moon | diameter_km: 12"];
+  "35834de0-8ede-483f-a101-632c16668a33" [label="Io\ntype: moon | diameter_km: 3643"];
+  "3635e936-2af0-4e8e-b76e-485115e6e8f6" [label="Europa\ntype: moon | diameter_km: 3122"];
+  "709f0ee8-334d-4a80-8e4a-359d3934e99d" [label="Titan\ntype: moon | diameter_km: 5149"];
+  "713a5bc3-bbf7-491f-9113-8acf1be1a5c9" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "1c7f0010-d6e8-40c4-bda7-dd10610949b7" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "68306f53-8d9f-41be-a6f7-2b76691ccb7b" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "168aed23-4749-4c31-95e8-0a7e304284ce" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "9bd02672-bd33-4e01-8fba-4c14a80ee51a" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "571f9229-7265-4d80-9567-7afe7a7f6f9f" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "a6eaca4f-3206-4b9e-a9b8-b5c1963107f0" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "c59f7e8f-54ba-482e-8f96-f0e284531739" -> "92e97cff-2922-4322-a122-0b4c58b0bcdd" [label="orbits"];
+  "7f208a2b-768c-44d4-b629-cf12ea9621c2" -> "68306f53-8d9f-41be-a6f7-2b76691ccb7b" [label="orbits"];
+  "1b681946-fffe-436d-a3fd-444dfaac17f7" -> "168aed23-4749-4c31-95e8-0a7e304284ce" [label="orbits"];
+  "03ebf1a9-7043-498a-8b32-05ad95c0f6b5" -> "168aed23-4749-4c31-95e8-0a7e304284ce" [label="orbits"];
+  "35834de0-8ede-483f-a101-632c16668a33" -> "9bd02672-bd33-4e01-8fba-4c14a80ee51a" [label="orbits"];
+  "3635e936-2af0-4e8e-b76e-485115e6e8f6" -> "9bd02672-bd33-4e01-8fba-4c14a80ee51a" [label="orbits"];
+  "709f0ee8-334d-4a80-8e4a-359d3934e99d" -> "571f9229-7265-4d80-9567-7afe7a7f6f9f" [label="orbits"];
+}

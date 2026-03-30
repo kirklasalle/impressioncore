@@ -1,0 +1,820 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive Configuration{% endblock %}
+
+{% block styles %}
+<style>
+    .config-card {
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    
+    .config-panel {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .memory-bar {
+        height: 25px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .memory-bar .bar {
+        height: 100%;
+        border-radius: 5px;
+        background-color: #007bff;
+        transition: width 0.3s ease;
+    }
+    
+    .memory-bar .bar.warning {
+        background-color: #ffc107;
+    }
+    
+    .memory-bar .bar.danger {
+        background-color: #dc3545;
+    }
+    
+    .preset-btn {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .feature-toggle {
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+    }
+    
+    .feature-toggle.active {
+        border-color: #28a745;
+        background-color: #f8fff9;
+    }
+    
+    .config-section {
+        margin-bottom: 30px;
+    }
+    
+    .param-description {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    
+    .config-summary {
+        background-color: #f8f9fa;
+        border-left: 4px solid #007bff;
+        padding: 15px;
+        margin-top: 20px;
+    }
+    
+    .alert-limited-vram {
+        border-left: 4px solid #dc3545;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('web.index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Interactive Configuration</li>
+        </ol>
+    </nav>
+    
+    <h1 class="mb-3">Interactive Model Configuration</h1>
+    
+    <div class="alert alert-info d-flex align-items-center" role="alert">
+        <i class="fas fa-info-circle me-2 fa-lg"></i>
+        <div>
+            Configure your model for optimal performance on your hardware. All changes are applied in real-time.
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <!-- Control Panel -->
+        <div class="col-lg-8">
+            <div class="card config-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Configuration Controls</span>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary" id="reset-config">
+                            <i class="fas fa-undo me-1"></i> Reset
+                        </button>
+                        <button class="btn btn-sm btn-primary ms-2" id="save-config">
+                            <i class="fas fa-save me-1"></i> Save
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Hardware Presets -->
+                    <div class="config-section">
+                        <h4 class="mb-3">Hardware Presets</h4>
+                        <div class="d-flex flex-wrap">
+                            <button class="btn btn-outline-primary preset-btn" data-preset="gtx_1050ti">
+                                GTX 1050 Ti (4GB)
+                            </button>
+                            <button class="btn btn-outline-primary preset-btn" data-preset="gtx_1660">
+                                GTX 1660 (6GB)
+                            </button>
+                            <button class="btn btn-outline-primary preset-btn" data-preset="rtx_3060">
+                                RTX 3060 (12GB)
+                            </button>
+                            <button class="btn btn-outline-primary preset-btn" data-preset="rtx_4090">
+                                RTX 4090 (24GB)
+                            </button>
+                            <button class="btn btn-outline-primary preset-btn" data-preset="cpu_only">
+                                CPU Only
+                            </button>
+                            <button class="btn btn-outline-secondary preset-btn" data-preset="custom">
+                                Custom
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Advanced Features -->
+                    <div class="config-section">
+                        <h4 class="mb-3">Advanced Features</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="feature-toggle" id="feature-moe">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="enable-moe">
+                                        <label class="form-check-label" for="enable-moe">
+                                            <strong>Mixture of Experts (MoE)</strong>
+                                        </label>
+                                    </div>
+                                    <p class="mt-2 mb-0 param-description">
+                                        Use specialized sub-networks that dynamically route inputs for more efficient processing.
+                                    </p>
+                                    <div class="mt-3 moe-config d-none">
+                                        <div class="mb-2">
+                                            <label for="moe-num-experts" class="form-label">Number of Experts</label>
+                                            <input type="range" class="form-range" min="2" max="8" step="1" value="4" id="moe-num-experts">
+                                            <div class="d-flex justify-content-between">
+                                                <span>2</span>
+                                                <span>4</span>
+                                                <span>6</span>
+                                                <span>8</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="moe-top-k" class="form-label">Top-K Selection</label>
+                                            <select class="form-select" id="moe-top-k">
+                                                <option value="1">1 (Sparse Routing)</option>
+                                                <option value="2" selected>2 (Balanced)</option>
+                                                <option value="3">3 (Dense Routing)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="feature-toggle" id="feature-lora">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="enable-lora">
+                                        <label class="form-check-label" for="enable-lora">
+                                            <strong>Low-Rank Adaptation (LoRA)</strong>
+                                        </label>
+                                    </div>
+                                    <p class="mt-2 mb-0 param-description">
+                                        Fine-tune models with significantly fewer parameters through low-rank decomposition.
+                                    </p>
+                                    <div class="mt-3 lora-config d-none">
+                                        <div class="mb-2">
+                                            <label for="lora-rank" class="form-label">LoRA Rank</label>
+                                            <input type="range" class="form-range" min="4" max="64" step="4" value="16" id="lora-rank">
+                                            <div class="d-flex justify-content-between">
+                                                <span>4</span>
+                                                <span>16</span>
+                                                <span>32</span>
+                                                <span>64</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="lora-alpha" class="form-label">LoRA Alpha</label>
+                                            <input type="range" class="form-range" min="1" max="32" step="1" value="8" id="lora-alpha">
+                                            <div class="d-flex justify-content-between">
+                                                <span>1</span>
+                                                <span>8</span>
+                                                <span>16</span>
+                                                <span>32</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Model Configuration -->
+                    <div class="config-section">
+                        <h4 class="mb-3">Model Parameters</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="model-precision" class="form-label">Precision</label>
+                                    <select class="form-select" id="model-precision">
+                                        <option value="fp32">FP32 (Full Precision)</option>
+                                        <option value="fp16" selected>FP16 (Mixed Precision)</option>
+                                        <option value="bf16">BF16 (Mixed Precision)</option>
+                                        <option value="int8">INT8 (Quantized)</option>
+                                    </select>
+                                    <div class="form-text">Lower precision reduces memory usage but may impact model quality.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="batch-size" class="form-label">Batch Size</label>
+                                    <input type="number" class="form-control" id="batch-size" value="1" min="1" max="32">
+                                    <div class="form-text">Higher values increase throughput but require more memory.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="context-length" class="form-label">Context Length</label>
+                                    <select class="form-select" id="context-length">
+                                        <option value="1024">1K</option>
+                                        <option value="2048" selected>2K</option>
+                                        <option value="4096">4K</option>
+                                        <option value="8192">8K</option>
+                                        <option value="16384">16K</option>
+                                        <option value="32768">32K</option>
+                                        <option value="65536">64K</option>
+                                    </select>
+                                    <div class="form-text">Maximum sequence length the model can process.</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch mt-4">
+                                        <input class="form-check-input" type="checkbox" id="enable-checkpoint" checked>
+                                        <label class="form-check-label" for="enable-checkpoint">Enable Gradient Checkpointing</label>
+                                    </div>
+                                    <div class="form-text">Reduces memory usage during training at the cost of recomputation.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Memory Optimization -->
+                    <div class="config-section">
+                        <h4 class="mb-3">Memory Optimizations</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="enable-attn-chunk" checked>
+                                    <label class="form-check-label" for="enable-attn-chunk">Attention Chunking</label>
+                                    <div class="form-text">Process attention in smaller chunks to reduce peak memory usage.</div>
+                                </div>
+                                
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="enable-flash-attn" checked>
+                                    <label class="form-check-label" for="enable-flash-attn">Flash Attention</label>
+                                    <div class="form-text">Optimized attention implementation for faster, memory-efficient computation.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="enable-cpu-offload">
+                                    <label class="form-check-label" for="enable-cpu-offload">CPU Offloading</label>
+                                    <div class="form-text">Move some model layers to CPU to reduce VRAM usage.</div>
+                                </div>
+                                
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="enable-cache-limit">
+                                    <label class="form-check-label" for="enable-cache-limit">KV Cache Limits</label>
+                                    <div class="form-text">Set hard limits on attention caching to control memory growth.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Status Panel -->
+        <div class="col-lg-4">
+            <div class="card config-card">
+                <div class="card-header">Configuration Impact</div>
+                <div class="card-body">
+                    <h5 class="mb-3">Memory Usage Estimate</h5>
+                    
+                    <div class="mb-4">
+                        <label>VRAM Usage</label>
+                        <div class="memory-bar">
+                            <div class="bar" id="vram-bar" style="width: 75%;"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span id="vram-usage">3.0 GB</span>
+                            <span id="vram-total">4.0 GB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label>System RAM Usage</label>
+                        <div class="memory-bar">
+                            <div class="bar" id="ram-bar" style="width: 25%;"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span id="ram-usage">8.0 GB</span>
+                            <span id="ram-total">32.0 GB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning alert-limited-vram mb-4 d-none" id="vram-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span>Current configuration exceeds available VRAM. Consider enabling optimizations or reducing model parameters.</span>
+                    </div>
+                    
+                    <h5 class="mb-3">Performance Impact</h5>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Training Speed:</span>
+                            <span id="training-speed-impact">Medium</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Inference Speed:</span>
+                            <span id="inference-speed-impact">Fast</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span>Model Quality:</span>
+                            <span id="model-quality-impact">High</span>
+                        </div>
+                    </div>
+                    
+                    <div class="config-summary mt-4">
+                        <h6>Configuration Summary</h6>
+                        <div id="config-summary-content">
+                            <p>GTX 1050 Ti Preset</p>
+                            <ul>
+                                <li>Mixed Precision (FP16)</li>
+                                <li>Batch Size: 1</li>
+                                <li>Context Length: 2K</li>
+                                <li>Flash Attention: Enabled</li>
+                                <li>Advanced Features: None</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-primary" id="apply-config">
+                            <i class="fas fa-check me-1"></i> Apply Configuration
+                        </button>
+                        <button class="btn btn-outline-secondary" id="export-config">
+                            <i class="fas fa-file-export me-1"></i> Export Configuration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // MoE Toggle Handling
+        const enableMoE = document.getElementById('enable-moe');
+        const moeConfig = document.querySelector('.moe-config');
+        const featureMoE = document.getElementById('feature-moe');
+        
+        enableMoE.addEventListener('change', function() {
+            if (this.checked) {
+                moeConfig.classList.remove('d-none');
+                featureMoE.classList.add('active');
+                updateMemoryEstimate();
+            } else {
+                moeConfig.classList.add('d-none');
+                featureMoE.classList.remove('active');
+                updateMemoryEstimate();
+            }
+        });
+        
+        // LoRA Toggle Handling
+        const enableLoRA = document.getElementById('enable-lora');
+        const loraConfig = document.querySelector('.lora-config');
+        const featureLoRA = document.getElementById('feature-lora');
+        
+        enableLoRA.addEventListener('change', function() {
+            if (this.checked) {
+                loraConfig.classList.remove('d-none');
+                featureLoRA.classList.add('active');
+                updateMemoryEstimate();
+            } else {
+                loraConfig.classList.add('d-none');
+                featureLoRA.classList.remove('active');
+                updateMemoryEstimate();
+            }
+        });
+        
+        // Hardware Preset Handling
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        
+        presetButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                presetButtons.forEach(btn => btn.classList.remove('btn-primary'));
+                presetButtons.forEach(btn => btn.classList.add('btn-outline-primary'));
+                
+                // Add active class to clicked button
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary');
+                
+                // Apply preset configuration
+                applyPreset(this.dataset.preset);
+            });
+        });
+        
+        // Apply the default preset (GTX 1050 Ti)
+        applyPreset('gtx_1050ti');
+        
+        // Memory Estimate Update on Parameter Change
+        const configParams = document.querySelectorAll('select, input[type="range"], input[type="number"], input[type="checkbox"]');
+        
+        configParams.forEach(param => {
+            param.addEventListener('change', updateMemoryEstimate);
+        });
+        
+        // Function to apply hardware presets
+        function applyPreset(preset) {
+            // Reset advanced features
+            enableMoE.checked = false;
+            moeConfig.classList.add('d-none');
+            featureMoE.classList.remove('active');
+            
+            enableLoRA.checked = false;
+            loraConfig.classList.add('d-none');
+            featureLoRA.classList.remove('active');
+            
+            // Apply preset-specific configurations
+            switch(preset) {
+                case 'gtx_1050ti':
+                    // 4GB VRAM configuration
+                    document.getElementById('model-precision').value = 'fp16';
+                    document.getElementById('batch-size').value = '1';
+                    document.getElementById('context-length').value = '2048';
+                    document.getElementById('enable-checkpoint').checked = true;
+                    document.getElementById('enable-attn-chunk').checked = true;
+                    document.getElementById('enable-flash-attn').checked = true;
+                    document.getElementById('enable-cpu-offload').checked = false;
+                    document.getElementById('enable-cache-limit').checked = true;
+                    
+                    // Update VRAM total
+                    document.getElementById('vram-total').textContent = '4.0 GB';
+                    break;
+                    
+                case 'gtx_1660':
+                    // 6GB VRAM configuration
+                    document.getElementById('model-precision').value = 'fp16';
+                    document.getElementById('batch-size').value = '2';
+                    document.getElementById('context-length').value = '4096';
+                    document.getElementById('enable-checkpoint').checked = true;
+                    document.getElementById('enable-attn-chunk').checked = true;
+                    document.getElementById('enable-flash-attn').checked = true;
+                    document.getElementById('enable-cpu-offload').checked = false;
+                    document.getElementById('enable-cache-limit').checked = false;
+                    
+                    // Update VRAM total
+                    document.getElementById('vram-total').textContent = '6.0 GB';
+                    break;
+                    
+                case 'rtx_3060':
+                    // 12GB VRAM configuration
+                    document.getElementById('model-precision').value = 'bf16';
+                    document.getElementById('batch-size').value = '4';
+                    document.getElementById('context-length').value = '8192';
+                    document.getElementById('enable-checkpoint').checked = false;
+                    document.getElementById('enable-attn-chunk').checked = false;
+                    document.getElementById('enable-flash-attn').checked = true;
+                    document.getElementById('enable-cpu-offload').checked = false;
+                    document.getElementById('enable-cache-limit').checked = false;
+                    
+                    // Enable MoE for larger VRAM
+                    enableMoE.checked = true;
+                    moeConfig.classList.remove('d-none');
+                    featureMoE.classList.add('active');
+                    
+                    // Update VRAM total
+                    document.getElementById('vram-total').textContent = '12.0 GB';
+                    break;
+                    
+                case 'rtx_4090':
+                    // 24GB VRAM configuration
+                    document.getElementById('model-precision').value = 'bf16';
+                    document.getElementById('batch-size').value = '8';
+                    document.getElementById('context-length').value = '32768';
+                    document.getElementById('enable-checkpoint').checked = false;
+                    document.getElementById('enable-attn-chunk').checked = false;
+                    document.getElementById('enable-flash-attn').checked = true;
+                    document.getElementById('enable-cpu-offload').checked = false;
+                    document.getElementById('enable-cache-limit').checked = false;
+                    
+                    // Enable advanced features
+                    enableMoE.checked = true;
+                    moeConfig.classList.remove('d-none');
+                    featureMoE.classList.add('active');
+                    
+                    enableLoRA.checked = true;
+                    loraConfig.classList.remove('d-none');
+                    featureLoRA.classList.add('active');
+                    
+                    // Update VRAM total
+                    document.getElementById('vram-total').textContent = '24.0 GB';
+                    break;
+                    
+                case 'cpu_only':
+                    // CPU configuration
+                    document.getElementById('model-precision').value = 'int8';
+                    document.getElementById('batch-size').value = '1';
+                    document.getElementById('context-length').value = '1024';
+                    document.getElementById('enable-checkpoint').checked = false;
+                    document.getElementById('enable-attn-chunk').checked = true;
+                    document.getElementById('enable-flash-attn').checked = false;
+                    document.getElementById('enable-cpu-offload').checked = true;
+                    document.getElementById('enable-cache-limit').checked = true;
+                    
+                    // Update VRAM total (N/A for CPU)
+                    document.getElementById('vram-total').textContent = 'N/A';
+                    break;
+                    
+                case 'custom':
+                    // Keep current settings
+                    break;
+            }
+            
+            // Update memory estimates and summary
+            updateMemoryEstimate();
+            updateConfigSummary(preset);
+        }
+        
+        // Function to update memory estimates
+        function updateMemoryEstimate() {
+            // In a real implementation, this would call an API to get accurate estimates
+            // For demonstration, we'll use a simplified calculation based on parameters
+            
+            let vramUsage = 0;
+            const batchSize = parseInt(document.getElementById('batch-size').value);
+            const contextLength = parseInt(document.getElementById('context-length').value);
+            const precision = document.getElementById('model-precision').value;
+            
+            // Basic model size (1.5 GB for a medium transformer model)
+            vramUsage += 1.5;
+            
+            // Adjust for precision
+            if (precision === 'fp32') {
+                vramUsage *= 2;
+            } else if (precision === 'int8') {
+                vramUsage *= 0.5;
+            }
+            
+            // Account for batch size (linear scaling)
+            vramUsage *= batchSize;
+            
+            // Account for context length (not perfectly linear in practice)
+            const contextFactor = Math.log2(contextLength / 1024) / 2;
+            vramUsage *= (1 + contextFactor);
+            
+            // Account for advanced features
+            if (document.getElementById('enable-moe').checked) {
+                const numExperts = parseInt(document.getElementById('moe-num-experts').value);
+                const expertOverhead = numExperts * 0.2;
+                vramUsage += expertOverhead;
+            }
+            
+            // Apply memory optimizations
+            if (document.getElementById('enable-flash-attn').checked) {
+                vramUsage *= 0.7; // Flash attention saves about 30% memory
+            }
+            
+            if (document.getElementById('enable-cpu-offload').checked) {
+                vramUsage *= 0.6; // CPU offloading can save about 40% VRAM
+            }
+            
+            // Format to 1 decimal place
+            vramUsage = vramUsage.toFixed(1);
+            
+            // Update VRAM usage display
+            document.getElementById('vram-usage').textContent = vramUsage + ' GB';
+            
+            // Update VRAM progress bar
+            const vramTotal = document.getElementById('vram-total').textContent;
+            let vramPercentage = 0;
+            
+            if (vramTotal !== 'N/A') {
+                const vramTotalValue = parseFloat(vramTotal.split(' ')[0]);
+                vramPercentage = (vramUsage / vramTotalValue) * 100;
+                vramPercentage = Math.min(vramPercentage, 100); // Cap at 100%
+                
+                const vramBar = document.getElementById('vram-bar');
+                vramBar.style.width = vramPercentage + '%';
+                
+                // Color coding based on usage
+                vramBar.classList.remove('warning', 'danger');
+                if (vramPercentage > 90) {
+                    vramBar.classList.add('danger');
+                    document.getElementById('vram-warning').classList.remove('d-none');
+                } else if (vramPercentage > 75) {
+                    vramBar.classList.add('warning');
+                    document.getElementById('vram-warning').classList.add('d-none');
+                } else {
+                    document.getElementById('vram-warning').classList.add('d-none');
+                }
+            } else {
+                // CPU only mode
+                document.getElementById('vram-bar').style.width = '0%';
+                document.getElementById('vram-warning').classList.add('d-none');
+            }
+            
+            // Update performance impact
+            updatePerformanceImpact();
+        }
+        
+        // Function to update performance impact estimates
+        function updatePerformanceImpact() {
+            const precision = document.getElementById('model-precision').value;
+            const batchSize = parseInt(document.getElementById('batch-size').value);
+            const useFlashAttn = document.getElementById('enable-flash-attn').checked;
+            const useCpuOffload = document.getElementById('enable-cpu-offload').checked;
+            
+            // Training speed impact
+            let trainingSpeed = 'Medium';
+            if (precision === 'fp32') {
+                trainingSpeed = 'Slow';
+            } else if (precision === 'int8') {
+                trainingSpeed = 'Fast';
+            }
+            
+            if (batchSize >= 4) {
+                trainingSpeed = 'Fast';
+            }
+            
+            if (useCpuOffload) {
+                trainingSpeed = 'Very Slow';
+            }
+            
+            // Inference speed impact
+            let inferenceSpeed = 'Medium';
+            if (precision === 'fp32') {
+                inferenceSpeed = 'Slow';
+            } else if (useFlashAttn) {
+                inferenceSpeed = 'Fast';
+            }
+            
+            if (useCpuOffload) {
+                inferenceSpeed = 'Slow';
+            }
+            
+            // Model quality impact
+            let modelQuality = 'Medium';
+            if (precision === 'fp32') {
+                modelQuality = 'High';
+            } else if (precision === 'int8') {
+                modelQuality = 'Lower';
+            }
+            
+            if (document.getElementById('enable-moe').checked) {
+                modelQuality = 'High';
+            }
+            
+            // Update the display
+            document.getElementById('training-speed-impact').textContent = trainingSpeed;
+            document.getElementById('inference-speed-impact').textContent = inferenceSpeed;
+            document.getElementById('model-quality-impact').textContent = modelQuality;
+        }
+        
+        // Function to update configuration summary
+        function updateConfigSummary(preset) {
+            const summaryContent = document.getElementById('config-summary-content');
+            
+            // Generate preset name
+            let presetName = 'Custom Configuration';
+            if (preset && preset !== 'custom') {
+                if (preset === 'gtx_1050ti') presetName = 'GTX 1050 Ti Preset';
+                if (preset === 'gtx_1660') presetName = 'GTX 1660 Preset';
+                if (preset === 'rtx_3060') presetName = 'RTX 3060 Preset';
+                if (preset === 'rtx_4090') presetName = 'RTX 4090 Preset';
+                if (preset === 'cpu_only') presetName = 'CPU Only Preset';
+            }
+            
+            // Gather enabled features
+            const features = [];
+            if (document.getElementById('enable-moe').checked) {
+                const numExperts = document.getElementById('moe-num-experts').value;
+                features.push(`MoE (${numExperts} experts)`);
+            }
+            
+            if (document.getElementById('enable-lora').checked) {
+                const rank = document.getElementById('lora-rank').value;
+                features.push(`LoRA (rank ${rank})`);
+            }
+            
+            // Generate summary
+            const precision = document.getElementById('model-precision').value.toUpperCase();
+            const batchSize = document.getElementById('batch-size').value;
+            const contextLength = parseInt(document.getElementById('context-length').value) / 1000 + 'K';
+            
+            let optimizations = [];
+            if (document.getElementById('enable-flash-attn').checked) optimizations.push('Flash Attention');
+            if (document.getElementById('enable-checkpoint').checked) optimizations.push('Gradient Checkpointing');
+            if (document.getElementById('enable-cpu-offload').checked) optimizations.push('CPU Offloading');
+            
+            summaryContent.innerHTML = `
+                <p>${presetName}</p>
+                <ul>
+                    <li>${precision} Precision</li>
+                    <li>Batch Size: ${batchSize}</li>
+                    <li>Context Length: ${contextLength}</li>
+                    <li>Optimizations: ${optimizations.length ? optimizations.join(', ') : 'None'}</li>
+                    <li>Advanced Features: ${features.length ? features.join(', ') : 'None'}</li>
+                </ul>
+            `;
+        }
+        
+        // Handle apply configuration button
+        document.getElementById('apply-config').addEventListener('click', function() {
+            // In a real implementation, this would send the configuration to the server
+            // For demonstration, show a success toast
+            alert('Configuration applied successfully!');
+        });
+        
+        // Handle export configuration button
+        document.getElementById('export-config').addEventListener('click', function() {
+            // In a real implementation, this would export the configuration as JSON
+            // For demonstration, show what would be exported
+            const config = getConfigObject();
+            alert('Configuration exported. Check the console for details.');
+            console.log('Exported Configuration:', config);
+        });
+        
+        // Handle save configuration button
+        document.getElementById('save-config').addEventListener('click', function() {
+            // In a real implementation, this would save the configuration with a name
+            // For demonstration, prompt for a name
+            const name = prompt('Enter a name for this configuration:');
+            if (name) {
+                alert(`Configuration "${name}" saved successfully!`);
+            }
+        });
+        
+        // Handle reset configuration button
+        document.getElementById('reset-config').addEventListener('click', function() {
+            // Apply the default preset (GTX 1050 Ti)
+            applyPreset('gtx_1050ti');
+            
+            // Reset preset button UI
+            presetButtons.forEach(btn => btn.classList.remove('btn-primary'));
+            presetButtons.forEach(btn => btn.classList.add('btn-outline-primary'));
+            document.querySelector('[data-preset="gtx_1050ti"]').classList.remove('btn-outline-primary');
+            document.querySelector('[data-preset="gtx_1050ti"]').classList.add('btn-primary');
+        });
+        
+        // Helper function to get configuration as an object
+        function getConfigObject() {
+            return {
+                model: {
+                    precision: document.getElementById('model-precision').value,
+                    batch_size: parseInt(document.getElementById('batch-size').value),
+                    context_length: parseInt(document.getElementById('context-length').value)
+                },
+                advanced_features: {
+                    moe: {
+                        enabled: document.getElementById('enable-moe').checked,
+                        num_experts: parseInt(document.getElementById('moe-num-experts').value),
+                        top_k: parseInt(document.getElementById('moe-top-k').value)
+                    },
+                    lora: {
+                        enabled: document.getElementById('enable-lora').checked,
+                        rank: parseInt(document.getElementById('lora-rank').value),
+                        alpha: parseInt(document.getElementById('lora-alpha').value)
+                    }
+                },
+                optimizations: {
+                    gradient_checkpointing: document.getElementById('enable-checkpoint').checked,
+                    attention_chunking: document.getElementById('enable-attn-chunk').checked,
+                    flash_attention: document.getElementById('enable-flash-attn').checked,
+                    cpu_offload: document.getElementById('enable-cpu-offload').checked,
+                    kv_cache_limits: document.getElementById('enable-cache-limit').checked
+                }
+            };
+        }
+    });
+</script>
+{% endblock %}

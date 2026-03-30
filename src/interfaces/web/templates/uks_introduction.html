@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Knowledge Store (UKS) | ImpressionCore-b1{% endblock %}
+{% block content %}
+<div class="section-title">Knowledge Store (UKS)</div>
+<div class="card">
+  <p>Manage and query the Unified Knowledge Store (UKS). Add facts, run queries, and integrate knowledge with your model.</p>
+  <form method="post" action="/uks_introduction/add_fact">
+    <div class="mb-3">
+      <label for="subject" class="form-label">Subject</label>
+      <input class="form-control" type="text" id="subject" name="subject" required>
+    </div>
+    <div class="mb-3">
+      <label for="predicate" class="form-label">Predicate</label>
+      <input class="form-control" type="text" id="predicate" name="predicate" required>
+    </div>
+    <div class="mb-3">
+      <label for="object" class="form-label">Object</label>
+      <input class="form-control" type="text" id="object" name="object" required>
+    </div>
+    <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i> Add Fact</button>
+  </form>
+  <form method="get" action="/uks_introduction/query" class="mt-3">
+    <div class="mb-3">
+      <label for="querySubject" class="form-label">Query Subject</label>
+      <input class="form-control" type="text" id="querySubject" name="querySubject">
+    </div>
+    <button class="btn btn-info" type="submit"><i class="fas fa-search"></i> Query Knowledge</button>
+  </form>
+  <div class="alert alert-info mt-3">Tip: UKS enables persistent, queryable memory for your LLM. <br>Developers: See <code>src/brainsim/memory/</code> for details.</div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+  "generation_timestamp": "2025-10-25T15:51:09.361243+00:00",
+  "teacher_models": [
+    "phi3.5:3.8b-mini-instruct-q4_K_M"
+  ],
+  "total_examples": 1,
+  "examples": [
+    {
+      "prompt": "Design a scenario where product, QA, and SRE weigh conflicting evidence about a rollback while staying within psychological safety bounds.",
+      "teacher_responses": {
+        "phi3.5:3.8b-mini-instruct-q4_K_M": "**Scenario: Product Launch Rollback Dilemma at TechCorp Inc.**\n\nTechCorp Inc., an emerging tech company known for its innovative software solutions, recently launched the beta version of a new productivity application called TaskMaster Pro to eager users and stakeholders alike after months of intense development cycles led by their Product Team (Alice), Quality Assurance team (Bob) under QA Lead Claire, and Site Reliability Engineering group overseen by SRE Manager Dave.\n\n**Background: The Launch Event**\nTaskMaster Pro was anticipated to revolutionize how users manage tasks with its unique features such as AI-driven task prioritization, seamless integration of third-party services via APIs, and a sophisticated user interface designed for optimal workflow. Pre-launch testing showed promising results; however, post-deployment metrics indicated an unexpected drop in application performance due to increased traffic beyond predicted levels combined with some critical bugs related to the API integrations that were not caught during beta tests or QA processes.\n\n**Conflicting Evidence: The Situation Arises**\nTwo days after launching TaskMaster"
+      },
+      "timestamp": "2025-10-25T15:51:09.361243+00:00"
+    }
+  ]
+}

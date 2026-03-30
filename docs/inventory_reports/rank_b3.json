@@ -1,0 +1,54 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3\\b3_best_quality_model_20250802_124801.pth",
+    "filename": "b3_best_quality_model_20250802_124801.pth",
+    "size_mb": 199.83,
+    "probe_loss": null,
+    "timestamp": 1754153293.5623517
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3\\b3_training_epoch_1_20250801_070912.pth",
+    "filename": "b3_training_epoch_1_20250801_070912.pth",
+    "size_mb": 336.47,
+    "probe_loss": null,
+    "timestamp": 1754046554.0422559
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3\\b3_training_epoch_30_20250731_192831.pth",
+    "filename": "b3_training_epoch_30_20250731_192831.pth",
+    "size_mb": 336.47,
+    "probe_loss": null,
+    "timestamp": 1754004512.5946012
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3\\b3_training_epoch_30_20250801_074634.pth",
+    "filename": "b3_training_epoch_30_20250801_074634.pth",
+    "size_mb": 336.47,
+    "probe_loss": null,
+    "timestamp": 1754048795.6534226
+  }
+]

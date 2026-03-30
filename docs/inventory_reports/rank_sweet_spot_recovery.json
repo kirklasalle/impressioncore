@@ -1,0 +1,67 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 1000,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_1000.pth",
+    "filename": "recovery_step_1000.pth",
+    "size_mb": 4490.48,
+    "probe_loss": null,
+    "timestamp": 1754660760.8407984
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 1500,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_1500.pth",
+    "filename": "recovery_step_1500.pth",
+    "size_mb": 4490.48,
+    "probe_loss": null,
+    "timestamp": 1754665057.7249417
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 2000,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_2000.pth",
+    "filename": "recovery_step_2000.pth",
+    "size_mb": 4490.48,
+    "probe_loss": null,
+    "timestamp": 1754669860.6679642
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 2500,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_2500.pth",
+    "filename": "recovery_step_2500.pth",
+    "size_mb": 4490.48,
+    "probe_loss": null,
+    "timestamp": 1754674472.6374762
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 3000,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_3000.pth",
+    "filename": "recovery_step_3000.pth",
+    "size_mb": 4490.48,
+    "probe_loss": null,
+    "timestamp": 1754678826.3283038
+  }
+]

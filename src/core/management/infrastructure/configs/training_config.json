@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "updated": "2025-08-04T11:17:20.241313",
+  "training_infrastructure": {
+    "checkpoints_dir": "F:/models/training/epochs",
+    "active_model_dir": "F:/models/training/active",
+    "experiments_dir": "F:/models/training/experiments",
+    "logs_dir": "F:/models/training/logs"
+  },
+  "checkpoint_strategy": {
+    "save_every_epoch": true,
+    "save_location": "F:/models/training/epochs",
+    "best_model_location": "F:/models/checkpoints/best_quality",
+    "backup_location": "F:/models/checkpoints/backup"
+  },
+  "current_training": {
+    "resume_from": "F:/models/training/active/b3_training_epoch_30_20250801_074634.pth",
+    "next_epoch": 31,
+    "target_location": "F:/models/training/epochs"
+  }
+}

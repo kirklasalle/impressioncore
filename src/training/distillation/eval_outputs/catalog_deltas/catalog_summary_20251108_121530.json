@@ -1,0 +1,68 @@
+{
+  "generated_at": "November 08, 2025 12:15:30 PM",
+  "catalog_csv": "F:\\data\\catalogs\\f_drive_catalog_20251108.csv",
+  "group_depth": 2,
+  "filters": [
+    "huggingface_cache"
+  ],
+  "totals": {
+    "huggingface_cache/metadata": {
+      "bytes": 5137,
+      "files": 1
+    },
+    "huggingface_cache/modules": {
+      "bytes": 77665,
+      "files": 29
+    },
+    "huggingface_cache/hub": {
+      "bytes": 81277137395,
+      "files": 463
+    },
+    "huggingface_cache/datasets": {
+      "bytes": 4283245901,
+      "files": 10
+    }
+  },
+  "top_extensions": [
+    {
+      "extension": ".parquet",
+      "bytes": 80294387426
+    },
+    {
+      "extension": ".arrow",
+      "bytes": 4283243312
+    },
+    {
+      "extension": ".safetensors",
+      "bytes": 548105171
+    },
+    {
+      "extension": ".incomplete",
+      "bytes": 429916160
+    },
+    {
+      "extension": ".json",
+      "bytes": 3450069
+    },
+    {
+      "extension": ".txt",
+      "bytes": 912636
+    },
+    {
+      "extension": ".md",
+      "bytes": 299801
+    },
+    {
+      "extension": ".py",
+      "bytes": 131525
+    },
+    {
+      "extension": ".pyc",
+      "bytes": 19118
+    },
+    {
+      "extension": "<none>",
+      "bytes": 880
+    }
+  ]
+}

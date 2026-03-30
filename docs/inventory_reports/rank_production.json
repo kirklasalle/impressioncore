@@ -1,0 +1,15 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\production\\b3_best_quality_model_20250802_124801.pth",
+    "filename": "b3_best_quality_model_20250802_124801.pth",
+    "size_mb": 199.83,
+    "probe_loss": null,
+    "timestamp": 1754153293.5623517
+  }
+]

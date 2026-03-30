@@ -1,0 +1,1869 @@
+﻿[
+    {
+        "top_level":  "academic",
+        "path":  "F:\\data\\datasets\\academic",
+        "count":  10045,
+        "total_size_mb":  79.222,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  10014,
+                                 "size_mb":  16.813
+                             },
+                             {
+                                 "extension":  ".pdf",
+                                 "count":  30,
+                                 "size_mb":  62.408
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  1,
+                                 "size_mb":  0.001
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\dall_e_zero_shot_text_image.pdf",
+                                  "size_mb":  9.657
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\journals\\E-Journal_GJCST_(D)_Vol_24_Issue_1.pdf",
+                                  "size_mb":  8.935
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\clip_multimodal_learning.pdf",
+                                  "size_mb":  6.498
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\gpt3_language_models_few_shot.pdf",
+                                  "size_mb":  6.455
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\yolo_object_detection.pdf",
+                                  "size_mb":  5.051
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\vae_variational_autoencoders.pdf",
+                                  "size_mb":  3.745
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\transformer_attention_is_all_you_need.pdf",
+                                  "size_mb":  2.113
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\dropout_regularization.pdf",
+                                  "size_mb":  1.588
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\preprints\\arxiv_2408.01747.pdf",
+                                  "size_mb":  1.556
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\academic\\papers\\2301.07014v3.pdf",
+                                  "size_mb":  1.399
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\academic\\conferences\\conference_papers_2024.csv",
+                             "F:\\data\\datasets\\academic\\conferences\\conference_papers_2024.json",
+                             "F:\\data\\datasets\\academic\\journals\\ai-in-project-management-enhancing-efficiency-decision-making-and-riskrnmanagement.pdf",
+                             "F:\\data\\datasets\\academic\\journals\\E-Journal_GJCST_(D)_Vol_24_Issue_1.pdf",
+                             "F:\\data\\datasets\\academic\\journals\\Has the Future Started_ The Current Growth of ArtificialIntellige.pdf",
+                             "F:\\data\\datasets\\academic\\journals\\jogh-08-020303.pdf",
+                             "F:\\data\\datasets\\academic\\journals\\the-evolution-of-artificial-intelligence-in-2050-a-glimpse-into-tomorrows-technological-landscape.pdf",
+                             "F:\\data\\datasets\\academic\\papers\\2301.07014v3.pdf",
+                             "F:\\data\\datasets\\academic\\papers\\2407.00118v1.pdf",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00844v5.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00844v5_1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00947v1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00947v1_1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00948v1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.00948v1_1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.01072v1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.01072v1_1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.01075v1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.01075v1_1.json",
+                             "F:\\data\\datasets\\academic\\papers\\2410.01523v1.json"
+                         ]
+    },
+    {
+        "top_level":  "audio",
+        "path":  "F:\\data\\datasets\\audio",
+        "count":  620028,
+        "total_size_mb":  16800.262,
+        "by_extension":  [
+                             {
+                                 "extension":  ".TextGrid",
+                                 "count":  576722,
+                                 "size_mb":  6505.349
+                             },
+                             {
+                                 "extension":  ".wav",
+                                 "count":  29964,
+                                 "size_mb":  8285.488
+                             },
+                             {
+                                 "extension":  ".flac",
+                                 "count":  5324,
+                                 "size_mb":  692.691
+                             },
+                             {
+                                 "extension":  ".npy",
+                                 "count":  4297,
+                                 "size_mb":  468.202
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  3311,
+                                 "size_mb":  10.504
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  350,
+                                 "size_mb":  0.185
+                             },
+                             {
+                                 "extension":  ".safetensors",
+                                 "count":  21,
+                                 "size_mb":  0.066
+                             },
+                             {
+                                 "extension":  ".pt",
+                                 "count":  20,
+                                 "size_mb":  0.071
+                             },
+                             {
+                                 "extension":  "\u003cnoext\u003e",
+                                 "count":  6,
+                                 "size_mb":  558.286
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  4,
+                                 "size_mb":  10.557
+                             },
+                             {
+                                 "extension":  ".py",
+                                 "count":  3,
+                                 "size_mb":  0.015
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  2,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".model",
+                                 "count":  1,
+                                 "size_mb":  0.227
+                             },
+                             {
+                                 "extension":  ".bin",
+                                 "count":  1,
+                                 "size_mb":  48.325
+                             },
+                             {
+                                 "extension":  ".jinja",
+                                 "count":  1,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".bz2",
+                                 "count":  1,
+                                 "size_mb":  220.293
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\13f9c8e2c431ed64b5b56490d3ceaadac9d60d1e7224cadd1c26fbb462036fec",
+                                  "size_mb":  558.277
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\LJSpeech-1.1.tar.bz2",
+                                  "size_mb":  220.293
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\pytorch_model.bin",
+                                  "size_mb":  48.325
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00020000_20250711_093420.npy",
+                                  "size_mb":  14.649
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00015000_20250711_093420.npy",
+                                  "size_mb":  14.649
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00010000_20250711_093420.npy",
+                                  "size_mb":  14.649
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00005000_20250711_093419.npy",
+                                  "size_mb":  14.649
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00000000_20250711_093419.npy",
+                                  "size_mb":  14.649
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\b3_critical_success_audio_embeddings_00025000_20250711_093421.npy",
+                                  "size_mb":  4.521
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\audio\\raw\\librispeech_005000.npy",
+                                  "size_mb":  2.93
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0000.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0001.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0002.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0003.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0004.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0005.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0006.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0007.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0008.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0009.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0010.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0011.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0012.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0013.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\128104\\1272-128104-0014.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\135031\\1272-135031-0000.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\135031\\1272-135031-0001.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\135031\\1272-135031-0002.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\135031\\1272-135031-0003.TextGrid",
+                             "F:\\data\\datasets\\audio\\librispeech-alignments\\dev-clean\\1272\\135031\\1272-135031-0004.TextGrid"
+                         ]
+    },
+    {
+        "top_level":  "downloads",
+        "path":  "F:\\data\\datasets\\downloads",
+        "count":  0,
+        "total_size_mb":  0,
+        "by_extension":  {
+
+                         },
+        "largest_files":  {
+
+                          },
+        "sample_files":  {
+
+                         }
+    },
+    {
+        "top_level":  "educational",
+        "path":  "F:\\data\\datasets\\educational",
+        "count":  6904,
+        "total_size_mb":  29.679,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  4375,
+                                 "size_mb":  18.169
+                             },
+                             {
+                                 "extension":  ".npy",
+                                 "count":  2187,
+                                 "size_mb":  6.864
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  336,
+                                 "size_mb":  4.536
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  5,
+                                 "size_mb":  0.004
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  1,
+                                 "size_mb":  0.107
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_005_1.txt",
+                                  "size_mb":  1.198
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_005.txt",
+                                  "size_mb":  1.198
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_001.txt",
+                                  "size_mb":  0.718
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_001_1.txt",
+                                  "size_mb":  0.718
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_004_1.txt",
+                                  "size_mb":  0.579
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\educational_text_004.txt",
+                                  "size_mb":  0.579
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\synthetic_educational_corpus_20250621_130623.json",
+                                  "size_mb":  0.467
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\synthetic_educational_corpus_20250621_220016.json",
+                                  "size_mb":  0.467
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\synthetic_educational_corpus_20250621_215042.json",
+                                  "size_mb":  0.467
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational\\materials\\text_unknown_synthetic_educational_corpus_20250621_133031_20250621.json",
+                                  "size_mb":  0.467
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade.txt",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_2.txt",
+                             "F:\\data\\datasets\\educational\\materials\\1stGrade_chunk1_3.txt",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade.txt",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_2.txt",
+                             "F:\\data\\datasets\\educational\\materials\\2ndGrade_chunk1_3.txt",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade.txt",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_1.npy",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_1.txt",
+                             "F:\\data\\datasets\\educational\\materials\\3rdGrade_chunk1_2.txt"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus",
+        "path":  "F:\\data\\datasets\\educational_corpus",
+        "count":  14,
+        "total_size_mb":  0.051,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  8,
+                                 "size_mb":  0.021
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  6,
+                                 "size_mb":  0.03
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\K-12_science_Next_Generation_Science_Standards_564c021d.txt",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_50-State_High_School_Graduation_Requirements_3189df9b.txt",
+                                  "size_mb":  0.007
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\metadata\\acquired_content_20250802_091043.json",
+                                  "size_mb":  0.006
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\metadata\\acquired_content_20250801_154904.json",
+                                  "size_mb":  0.006
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_College_Board_Standards_and_Assessments_839948e6.txt",
+                                  "size_mb":  0.005
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_ede3a772.txt",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_d76923f3.txt",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\metadata\\educational_sources_20250802_091043.json",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\metadata\\educational_sources_20250801_154904.json",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus\\content\\K-12_all_subjects_Digest_of_Education_Statistics_eb6103b7.txt",
+                                  "size_mb":  0.002
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_50-State_High_School_Graduation_Requirements_3189df9b.txt",
+                             "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_d76923f3.txt",
+                             "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_ede3a772.txt",
+                             "F:\\data\\datasets\\educational_corpus\\content\\9-12_all_subjects_College_Board_Standards_and_Assessments_839948e6.txt",
+                             "F:\\data\\datasets\\educational_corpus\\content\\K-12_all_subjects_Digest_of_Education_Statistics_eb6103b7.txt",
+                             "F:\\data\\datasets\\educational_corpus\\content\\K-12_science_Next_Generation_Science_Standards_564c021d.txt",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\acquired_content_20250801_154904.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\acquired_content_20250802_091043.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\acquisition_summary_20250801_154904.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\acquisition_summary_20250802_091043.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\educational_sources_20250801_154904.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\educational_sources_20250802_091043.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\final_statistics_20250801_154904.json",
+                             "F:\\data\\datasets\\educational_corpus\\metadata\\final_statistics_20250802_091043.json"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus_archive",
+        "path":  "F:\\data\\datasets\\educational_corpus_archive",
+        "count":  1,
+        "total_size_mb":  0.018,
+        "by_extension":  {
+                             "extension":  ".txt",
+                             "count":  1,
+                             "size_mb":  0.018
+                         },
+        "largest_files":  {
+                              "path":  "F:\\data\\datasets\\educational_corpus_archive\\content\\eric_1_ERIC_Educational_Research_Document_ED269247_e97c462d.txt",
+                              "size_mb":  0.018
+                          },
+        "sample_files":  "F:\\data\\datasets\\educational_corpus_archive\\content\\eric_1_ERIC_Educational_Research_Document_ED269247_e97c462d.txt"
+    },
+    {
+        "top_level":  "educational_corpus_complete",
+        "path":  "F:\\data\\datasets\\educational_corpus_complete",
+        "count":  69,
+        "total_size_mb":  7.596,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  60,
+                                 "size_mb":  7.524
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  9,
+                                 "size_mb":  0.072
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_science_ngss_corpus.txt",
+                                  "size_mb":  1.827
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_recovered_sources_recovered_next_generation_science_standards___complete_framework_b2ba9b8b_14fe38a4.txt",
+                                  "size_mb":  1.824
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_assessment_frameworks_corpus.txt",
+                                  "size_mb":  0.747
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_4_existing_educational_text_001_4729d1ca_4729d1ca_4729d1ca.txt",
+                                  "size_mb":  0.718
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_social_studies_corpus.txt",
+                                  "size_mb":  0.643
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_common_core_ela_corpus.txt",
+                                  "size_mb":  0.466
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_recovered_sources_recovered_national_council_for_social_studies_standards_6f6fefbb_6f6fefbb.txt",
+                                  "size_mb":  0.412
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_recovered_sources_recovered_common_core_state_standards___english_language_arts_427c8cac_427c8cac.txt",
+                                  "size_mb":  0.239
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_recovered_sources_recovered_national_council_for_social_studies_standards_92efd41e_92efd41e.txt",
+                                  "size_mb":  0.229
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_recovered_sources_recovered_common_core_state_standards___english_language_arts_31014177_31014177.txt",
+                                  "size_mb":  0.227
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus_complete\\K12_COMPLETE_EDUCATIONAL_CORPUS_MISSION_ACCOMPLISHED_20250802_104535.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_b3_corpus_preparation_summary.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_assessment_frameworks_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_assessment_frameworks_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_common_core_ela_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_common_core_ela_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_existing_materials_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_existing_materials_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_science_ngss_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_science_ngss_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_social_studies_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_b3_embedding_ready\\complete_k12_social_studies_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_9-12_all_subjects_50-State_High_School_Graduation_Requirements_3189df9b_3189df9b_3189df9b.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_d76923f3_d76923f3_d76923f3.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_ede3a772_ede3a772_ede3a772.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_9-12_all_subjects_College_Board_Standards_and_Assessments_839948e6_839948e6_839948e6.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_K-12_all_subjects_Digest_of_Education_Statistics_eb6103b7_eb6103b7_eb6103b7.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_1_K-12_science_Next_Generation_Science_Standards_564c021d_564c021d_564c021d.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_2_p1_california_K-12_all_subjects_California_Department_of_Education_Stand_39d46290_39d46290_39d46290.txt",
+                             "F:\\data\\datasets\\educational_corpus_complete\\complete_integrated_content\\complete_final_corpus_integrated_phase_2_p1_florida_K-12_all_subjects_Florida_Department_of_Education_Standard_85890661_85890661_85890661.txt"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus_enhanced",
+        "path":  "F:\\data\\datasets\\educational_corpus_enhanced",
+        "count":  12,
+        "total_size_mb":  0.044,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  9,
+                                 "size_mb":  0.024
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  3,
+                                 "size_mb":  0.021
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\metadata\\enhanced_content_20250801_160020.json",
+                                  "size_mb":  0.012
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\metadata\\enhanced_sources_20250801_160020.json",
+                                  "size_mb":  0.008
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p3_national_K-12_all_subjects_OER_Commons_K-12_Educational_Resources_52b69a2f.txt",
+                                  "size_mb":  0.007
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_K-8_reading_Reading_Rockets_Educational_Resources_98fbb43f.txt",
+                                  "size_mb":  0.006
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_9-12_all_subjects_College_Board_SAT_Preparation_380a7006.txt",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_california_K-12_all_subjects_California_Department_of_Education_Stand_39d46290.txt",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_new_york_K-12_all_subjects_New_York_State_Education_Department_Stan_4fabf8e5.txt",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_9-12_all_subjects_AP_Central_-_Advanced_Placement_ae52a451.txt",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_K-12_all_subjects_What_Works_Clearinghouse_e55e6740.txt",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_florida_K-12_all_subjects_Florida_Department_of_Education_Standard_85890661.txt",
+                                  "size_mb":  0.001
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_california_K-12_all_subjects_California_Department_of_Education_Stand_39d46290.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_florida_K-12_all_subjects_Florida_Department_of_Education_Standard_85890661.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_national_K-12_math_ela_Common_Core_State_Standards_-_Home_2949edc8.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p1_new_york_K-12_all_subjects_New_York_State_Education_Department_Stan_4fabf8e5.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_9-12_all_subjects_AP_Central_-_Advanced_Placement_ae52a451.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_9-12_all_subjects_College_Board_SAT_Preparation_380a7006.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_K-12_all_subjects_What_Works_Clearinghouse_e55e6740.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p2_national_K-8_reading_Reading_Rockets_Educational_Resources_98fbb43f.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\content\\p3_national_K-12_all_subjects_OER_Commons_K-12_Educational_Resources_52b69a2f.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\metadata\\enhanced_acquisition_summary_20250801_160020.json",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\metadata\\enhanced_content_20250801_160020.json",
+                             "F:\\data\\datasets\\educational_corpus_enhanced\\metadata\\enhanced_sources_20250801_160020.json"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus_enhanced_v2",
+        "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2",
+        "count":  34,
+        "total_size_mb":  0.832,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  33,
+                                 "size_mb":  0.814
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  1,
+                                 "size_mb":  0.018
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_4729d1ca.txt",
+                                  "size_mb":  0.718
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\metadata\\enhanced_acquisition_summary_20250802_102152.json",
+                                  "size_mb":  0.018
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_professional_standards_mathematics_50f82ef9.txt",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_federal_standards_all_subjects_bdc3eea4.txt",
+                                  "size_mb":  0.008
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_state_standards_all_subjects_1aa90ad4.txt",
+                                  "size_mb":  0.005
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_college_prep_all_subjects_75ac2fa2.txt",
+                                  "size_mb":  0.005
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_assessment_standards_all_subjects_afac91e7.txt",
+                                  "size_mb":  0.005
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk1_2ef7341e.txt",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_national_standards_mathematics_841f7ffa.txt",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk10_aac86c7a.txt",
+                                  "size_mb":  0.003
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_assessment_standards_all_subjects_afac91e7.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_college_prep_all_subjects_75ac2fa2.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_federal_standards_all_subjects_bdc3eea4.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_national_standards_mathematics_841f7ffa.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_professional_standards_english_language_arts_afb5b9d3.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_professional_standards_mathematics_50f82ef9.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\enhanced_state_standards_all_subjects_1aa90ad4.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_1stGrade_26492cfa.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_2ndGrade_1d88c79a.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_3rdGrade_fcfb32d2.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_4thGrade_95806f31.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_5thGrade_6e7c7b9c.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_4729d1ca.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk100_97334778.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk101_3ddb9a90.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk102_d10e17c0.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk103_667f5f89.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk104_283ec814.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk105_4ed977ea.txt",
+                             "F:\\data\\datasets\\educational_corpus_enhanced_v2\\content\\existing_educational_text_001_chunk106_4c532bd6.txt"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus_failed_sources_recovery",
+        "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery",
+        "count":  7,
+        "total_size_mb":  2.942,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  6,
+                                 "size_mb":  2.933
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  1,
+                                 "size_mb":  0.009
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_next_generation_science_standards___complete_framework_b2ba9b8b.txt",
+                                  "size_mb":  1.824
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_6f6fefbb.txt",
+                                  "size_mb":  0.412
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_common_core_state_standards___english_language_arts_427c8cac.txt",
+                                  "size_mb":  0.239
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_92efd41e.txt",
+                                  "size_mb":  0.229
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_common_core_state_standards___english_language_arts_31014177.txt",
+                                  "size_mb":  0.227
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovery_metadata\\failed_sources_recovery_summary_20250802_104216.json",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_7a4aaab1.txt",
+                                  "size_mb":  0.002
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_common_core_state_standards___english_language_arts_31014177.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_common_core_state_standards___english_language_arts_427c8cac.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_6f6fefbb.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_7a4aaab1.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_national_council_for_social_studies_standards_92efd41e.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovered_content\\recovered_next_generation_science_standards___complete_framework_b2ba9b8b.txt",
+                             "F:\\data\\datasets\\educational_corpus_failed_sources_recovery\\recovery_metadata\\failed_sources_recovery_summary_20250802_104216.json"
+                         ]
+    },
+    {
+        "top_level":  "educational_corpus_final",
+        "path":  "F:\\data\\datasets\\educational_corpus_final",
+        "count":  62,
+        "total_size_mb":  0.949,
+        "by_extension":  [
+                             {
+                                 "extension":  ".txt",
+                                 "count":  52,
+                                 "size_mb":  0.919
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  10,
+                                 "size_mb":  0.03
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_4_existing_educational_text_001_4729d1ca_4729d1ca.txt",
+                                  "size_mb":  0.718
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_educational_research_corpus.txt",
+                                  "size_mb":  0.018
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_3_eric_1_ERIC_Educational_Research_Document_ED269247_e97c462d_e97c462d.txt",
+                                  "size_mb":  0.018
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\final_metadata\\integrated_content_metadata_20250802_102306.json",
+                                  "size_mb":  0.011
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\final_metadata\\integrated_content_metadata_20250802_083401.json",
+                                  "size_mb":  0.011
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_4_enhanced_professional_standards_mathematics_50f82ef9_50f82ef9.txt",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_assessment_materials_corpus.txt",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_K-12_science_Next_Generation_Science_Standards_564c021d_564c021d.txt",
+                                  "size_mb":  0.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_4_enhanced_federal_standards_all_subjects_bdc3eea4_bdc3eea4.txt",
+                                  "size_mb":  0.008
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_9-12_all_subjects_50-State_High_School_Graduation_Requirements_3189df9b_3189df9b.txt",
+                                  "size_mb":  0.007
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\educational_corpus_final\\K12_EDUCATIONAL_CORPUS_MISSION_COMPLETE_20250802_083401.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\K12_EDUCATIONAL_CORPUS_MISSION_COMPLETE_20250802_102306.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_assessment_materials_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_assessment_materials_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_corpus_preparation_summary.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_educational_research_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_educational_research_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_k12_standards_corpus.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\b3_embedding_ready\\b3_k12_standards_metadata.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\corpus_statistics\\final_corpus_statistics_20250802_083401.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\corpus_statistics\\final_corpus_statistics_20250802_102306.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\final_metadata\\integrated_content_metadata_20250802_083401.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\final_metadata\\integrated_content_metadata_20250802_102306.json",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_9-12_all_subjects_50-State_High_School_Graduation_Requirements_3189df9b_3189df9b.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_d76923f3_d76923f3.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_9-12_all_subjects_ACT_College_and_Career_Readiness_Standards_ede3a772_ede3a772.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_9-12_all_subjects_College_Board_Standards_and_Assessments_839948e6_839948e6.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_K-12_all_subjects_Digest_of_Education_Statistics_eb6103b7_eb6103b7.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_1_K-12_science_Next_Generation_Science_Standards_564c021d_564c021d.txt",
+                             "F:\\data\\datasets\\educational_corpus_final\\integrated_content\\integrated_phase_2_p1_california_K-12_all_subjects_California_Department_of_Education_Stand_39d46290_39d46290.txt"
+                         ]
+    },
+    {
+        "top_level":  "experimental",
+        "path":  "F:\\data\\datasets\\experimental",
+        "count":  2,
+        "total_size_mb":  1.473,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  1,
+                                 "size_mb":  1.451
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  1,
+                                 "size_mb":  0.022
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\experimental\\processed\\sample_multimodal_dataset.json",
+                                  "size_mb":  1.451
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\experimental\\processed\\sample_classification_dataset.csv",
+                                  "size_mb":  0.022
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\experimental\\processed\\sample_classification_dataset.csv",
+                             "F:\\data\\datasets\\experimental\\processed\\sample_multimodal_dataset.json"
+                         ]
+    },
+    {
+        "top_level":  "huggingface_cache",
+        "path":  "F:\\data\\datasets\\huggingface_cache",
+        "count":  168,
+        "total_size_mb":  22043.11,
+        "by_extension":  [
+                             {
+                                 "extension":  ".parquet",
+                                 "count":  61,
+                                 "size_mb":  21632.696
+                             },
+                             {
+                                 "extension":  ".py",
+                                 "count":  28,
+                                 "size_mb":  0.125
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  21,
+                                 "size_mb":  0.264
+                             },
+                             {
+                                 "extension":  "\u003cnoext\u003e",
+                                 "count":  18,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  18,
+                                 "size_mb":  0.006
+                             },
+                             {
+                                 "extension":  ".pyc",
+                                 "count":  11,
+                                 "size_mb":  0.018
+                             },
+                             {
+                                 "extension":  ".yaml",
+                                 "count":  9,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".incomplete",
+                                 "count":  2,
+                                 "size_mb":  410
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0020.parquet",
+                                  "size_mb":  487.207
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0002.parquet",
+                                  "size_mb":  485.009
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0027.parquet",
+                                  "size_mb":  481.642
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0030.parquet",
+                                  "size_mb":  474.497
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0022.parquet",
+                                  "size_mb":  473.996
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0013.parquet",
+                                  "size_mb":  473.756
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0005.parquet",
+                                  "size_mb":  472.609
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0021.parquet",
+                                  "size_mb":  468.669
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.100\\0004.parquet",
+                                  "size_mb":  464.198
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--librispeech_asr\\snapshots\\71cacbfb7e2354c4226d01e70d77d5fca3d04ba1\\clean\\train.360\\0001.parquet",
+                                  "size_mb":  464.146
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\.no_exist\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\.huggingface.yaml",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\.no_exist\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\beans.py",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\.no_exist\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\dataset_infos.json",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\refs\\main",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\snapshots\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\README.md",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\snapshots\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\data\\test-00000-of-00001.parquet",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\snapshots\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\data\\train-00000-of-00001.parquet",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--beans\\snapshots\\27aa014ce09b193e1a6f58112d4a66e0eddb69c5\\data\\validation-00000-of-00001.parquet",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\.no_exist\\0b2714987fa478483af9968de7c934580d0bb9a2\\.huggingface.yaml",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\.no_exist\\0b2714987fa478483af9968de7c934580d0bb9a2\\cifar10.py",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\.no_exist\\0b2714987fa478483af9968de7c934580d0bb9a2\\dataset_infos.json",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\refs\\main",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\snapshots\\0b2714987fa478483af9968de7c934580d0bb9a2\\README.md",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\snapshots\\0b2714987fa478483af9968de7c934580d0bb9a2\\plain_text\\test-00000-of-00001.parquet",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--cifar10\\snapshots\\0b2714987fa478483af9968de7c934580d0bb9a2\\plain_text\\train-00000-of-00001.parquet",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--conceptual_captions\\.no_exist\\0bb028f274446e0b102c1253d087a98eeb4519a3\\.huggingface.yaml",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--conceptual_captions\\.no_exist\\0bb028f274446e0b102c1253d087a98eeb4519a3\\conceptual_captions.py",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--conceptual_captions\\.no_exist\\0bb028f274446e0b102c1253d087a98eeb4519a3\\dataset_infos.json",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--conceptual_captions\\refs\\main",
+                             "F:\\data\\datasets\\huggingface_cache\\hub\\datasets--conceptual_captions\\snapshots\\0bb028f274446e0b102c1253d087a98eeb4519a3\\README.md"
+                         ]
+    },
+    {
+        "top_level":  "kinetics400",
+        "path":  "F:\\data\\datasets\\kinetics400",
+        "count":  6,
+        "total_size_mb":  86.7,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  3,
+                                 "size_mb":  76.663
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  3,
+                                 "size_mb":  10.037
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\train.json",
+                                  "size_mb":  61.678
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\test.json",
+                                  "size_mb":  9.878
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\train.csv",
+                                  "size_mb":  8.063
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\validate.json",
+                                  "size_mb":  5.107
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\test.csv",
+                                  "size_mb":  1.261
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\kinetics400\\validate.csv",
+                                  "size_mb":  0.712
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\kinetics400\\test.csv",
+                             "F:\\data\\datasets\\kinetics400\\test.json",
+                             "F:\\data\\datasets\\kinetics400\\train.csv",
+                             "F:\\data\\datasets\\kinetics400\\train.json",
+                             "F:\\data\\datasets\\kinetics400\\validate.csv",
+                             "F:\\data\\datasets\\kinetics400\\validate.json"
+                         ]
+    },
+    {
+        "top_level":  "metadata",
+        "path":  "F:\\data\\datasets\\metadata",
+        "count":  4,
+        "total_size_mb":  0.004,
+        "by_extension":  [
+                             {
+                                 "extension":  ".jsonl",
+                                 "count":  2,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".yml",
+                                 "count":  1,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  1,
+                                 "size_mb":  0.002
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\metadata\\README.md",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\metadata\\schema.yml",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\metadata\\sample_teachers.jsonl",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\metadata\\kd_dataset.jsonl",
+                                  "size_mb":  0
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\metadata\\kd_dataset.jsonl",
+                             "F:\\data\\datasets\\metadata\\README.md",
+                             "F:\\data\\datasets\\metadata\\sample_teachers.jsonl",
+                             "F:\\data\\datasets\\metadata\\schema.yml"
+                         ]
+    },
+    {
+        "top_level":  "multimodal",
+        "path":  "F:\\data\\datasets\\multimodal",
+        "count":  64380,
+        "total_size_mb":  9624.628,
+        "by_extension":  [
+                             {
+                                 "extension":  ".jpg",
+                                 "count":  64346,
+                                 "size_mb":  9352.025
+                             },
+                             {
+                                 "extension":  ".incomplete",
+                                 "count":  8,
+                                 "size_mb":  270
+                             },
+                             {
+                                 "extension":  ".lock",
+                                 "count":  8,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  4,
+                                 "size_mb":  0.008
+                             },
+                             {
+                                 "extension":  ".metadata",
+                                 "count":  4,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".gitkeep",
+                                 "count":  4,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".arrow",
+                                 "count":  1,
+                                 "size_mb":  2.578
+                             },
+                             {
+                                 "extension":  ".gitattributes",
+                                 "count":  1,
+                                 "size_mb":  0.002
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  1,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  1,
+                                 "size_mb":  0.006
+                             },
+                             {
+                                 "extension":  ".py",
+                                 "count":  1,
+                                 "size_mb":  0.009
+                             },
+                             {
+                                 "extension":  ".gitignore",
+                                 "count":  1,
+                                 "size_mb":  0
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\p69W53U_men5nMgZhHGpYIJX7Lw=.6237140c58f9afe7262f47b00b2c8dbfb99a9285bafc8347290ffc729545c52e.incomplete",
+                                  "size_mb":  50
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\wHjWji8Q1D7KHuRqUSM2cInT7DY=.718424ebd01109335f3b255a2eda7b0f5fbcefe5fb8cc1270cd5a2f46b3bbe6a.incomplete",
+                                  "size_mb":  40
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\IyyBmDsFDhvjyQtYqR7UisePMqY=.3d9a98eacc4087abb2a3f7d665584a77f29440d5075c3ac0d8b6a40a9ed280ba.incomplete",
+                                  "size_mb":  40
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\aZihyRP61YAHUv6SqLd-tHP99aI=.924f81e9ce20b2675c5cd3df5cc2ab68d9b5baaf0422c39afc680272d8208c8e.incomplete",
+                                  "size_mb":  30
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_rare\\RAplMLFq0ppZ52fvIXgkDlcPgpM=.84cab27c5bf744692612b17b17e4be175164d083bb9c8e2e17fb1f5067c25bc7.incomplete",
+                                  "size_mb":  30
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\htJB1mtDRxrpTIgiSrOMJW4DEtQ=.ff7a71d8334dcc299b0a2576637bb6f9da55e8b54e93472cf0dbbc99b41d83ad.incomplete",
+                                  "size_mb":  30
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_freq\\6BNxNkdfl5bTO9mt9IJuXDhOp40=.7ec5284759faa7170a304356f3c7869e548d3543a4e194e32e52d28f5af01110.incomplete",
+                                  "size_mb":  30
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\XKf_TZqAxse-3vtG1nZaFat9kBc=.91ff86915ab48548a6960c73ecb86f97d97ab44c4fc3b3871bcf8678d6d3f2bc.incomplete",
+                                  "size_mb":  20
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\dataset\\data-00000-of-00001.arrow",
+                                  "size_mb":  2.578
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\multimodal\\visual_genome\\VG_100K\\1159616.jpg",
+                                  "size_mb":  1.535
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\multimodal\\.gitattributes",
+                             "F:\\data\\datasets\\multimodal\\MultiDialog.py",
+                             "F:\\data\\datasets\\multimodal\\README.md",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\.gitignore",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\.gitattributes.metadata",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\MultiDialog.py.metadata",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\README.md.metadata",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test.txt.metadata",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_freq\\6BNxNkdfl5bTO9mt9IJuXDhOp40=.7ec5284759faa7170a304356f3c7869e548d3543a4e194e32e52d28f5af01110.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_freq\\test_freq_chunks_0000.tar.gz.lock",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_rare\\RAplMLFq0ppZ52fvIXgkDlcPgpM=.84cab27c5bf744692612b17b17e4be175164d083bb9c8e2e17fb1f5067c25bc7.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\test_rare\\test_rare_chunks_0000.tar.gz.lock",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\aZihyRP61YAHUv6SqLd-tHP99aI=.924f81e9ce20b2675c5cd3df5cc2ab68d9b5baaf0422c39afc680272d8208c8e.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\htJB1mtDRxrpTIgiSrOMJW4DEtQ=.ff7a71d8334dcc299b0a2576637bb6f9da55e8b54e93472cf0dbbc99b41d83ad.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\IyyBmDsFDhvjyQtYqR7UisePMqY=.3d9a98eacc4087abb2a3f7d665584a77f29440d5075c3ac0d8b6a40a9ed280ba.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\p69W53U_men5nMgZhHGpYIJX7Lw=.6237140c58f9afe7262f47b00b2c8dbfb99a9285bafc8347290ffc729545c52e.incomplete",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\train_chunks_0000.tar.gz.lock",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\train_chunks_0001.tar.gz.lock",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\train_chunks_0002.tar.gz.lock",
+                             "F:\\data\\datasets\\multimodal\\.cache\\huggingface\\download\\data\\train\\train_chunks_0003.tar.gz.lock"
+                         ]
+    },
+    {
+        "top_level":  "OpenAI-DataExport_Kirk_LaSalle",
+        "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle",
+        "count":  586,
+        "total_size_mb":  364.757,
+        "by_extension":  [
+                             {
+                                 "extension":  ".webp",
+                                 "count":  474,
+                                 "size_mb":  138.011
+                             },
+                             {
+                                 "extension":  ".wav",
+                                 "count":  74,
+                                 "size_mb":  37.151
+                             },
+                             {
+                                 "extension":  ".png",
+                                 "count":  23,
+                                 "size_mb":  12.823
+                             },
+                             {
+                                 "extension":  ".jpg",
+                                 "count":  5,
+                                 "size_mb":  0.143
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  4,
+                                 "size_mb":  72.93
+                             },
+                             {
+                                 "extension":  ".jpeg",
+                                 "count":  4,
+                                 "size_mb":  1.434
+                             },
+                             {
+                                 "extension":  ".html",
+                                 "count":  1,
+                                 "size_mb":  76.399
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  1,
+                                 "size_mb":  25.864
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\chat.html",
+                                  "size_mb":  76.399
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\conversations.json",
+                                  "size_mb":  72.911
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\chat.txt",
+                                  "size_mb":  25.864
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\689cb6fb-6d3c-832a-b0e4-bb01d65bfc4e\\audio\\file_00000000940c61f693d5f002157a112b-bbe5dfce-2997-4070-b51e-84cc643ecf7f.wav",
+                                  "size_mb":  2.724
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\689cb6fb-6d3c-832a-b0e4-bb01d65bfc4e\\audio\\file_000000001ce461f6b0fb66d9e71612ce-6b7afb20-e09f-438c-ad55-96e742fba424.wav",
+                                  "size_mb":  2.358
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\689cb6fb-6d3c-832a-b0e4-bb01d65bfc4e\\audio\\file_00000000b77861f69f78856094bc99f7-b8e70b0e-5d3c-40f8-b23a-f4863a7258a8.wav",
+                                  "size_mb":  2.266
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\user-QyJpvTipm5rIatGnUvjX7JKw\\file_00000000d04c61f5bd10de156534c952-337ccf44-bac4-4ebb-ac5a-78aada708032.png",
+                                  "size_mb":  2.255
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\user-QyJpvTipm5rIatGnUvjX7JKw\\file_00000000779c61f9a3a2d087aa739b88-422f59eb-7ed3-4afe-98a2-c24c6f2225ef.png",
+                                  "size_mb":  2.168
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\user-QyJpvTipm5rIatGnUvjX7JKw\\file_00000000a87861f697c7f99c4bfbd114-97249860-c7a1-4113-b142-28c896c96cd0.png",
+                                  "size_mb":  2.144
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\user-QyJpvTipm5rIatGnUvjX7JKw\\file_00000000e41861f68f59e08dfa2069d5-f2549c0c-bed4-4ef6-ad08-779dae7f9303.png",
+                                  "size_mb":  2.043
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\chat.html",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\chat.txt",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\conversations.json",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-1sZLieuSdRLijacwri85xX-error on 12192024_noonthirty.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-3phiOaIHA985xTen8eZZowki-photo-10483664-2462-411C-8374-918D9F96F29E.jpeg",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-6opbheKrEoYeuiHWdRTPxlUu-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-AdfLxhnBHSznQUn1XP8HEv-Screenshot 2024-12-10 114829.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-BvnTjj9t57wMR9iPPusP3X-9542C8DC-F834-4636-AA59-2F76DBED3479.jpeg",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-DGsUNgsrtHwhE47tdRSIWtf9-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-DTwzDY7s2XuxNATt1qNHOyeQ-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-EetsDI5kgG3VtwFXqOSx2NJw-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-EsPiilmzs6oA3Pxx0q0PFEd6-Storyboard_stickfigure-768x432.jpg",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-FMj5G1TQ5nreRgCsL9vA3y-error on 12192024_noon.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-FnULP4b7uiu5fAoosGC3PJ-image.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-GVFY9GrgDfxWWKgYeQyAr8-C9916FC3-F4CE-4FC7-B3ED-63CDF359CA82.jpeg",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-IdI95J06DPauLUveq5ScWMxY-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-KL3VUU3Xch52SPHv1vAayp-03A64337-79CF-425E-B473-5ED8CAE84C7D.jpeg",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-o7vjqzy5ATA4uopYrzV66771-LADY-BIRD-PAGE-1.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-oVXgESUQUbbF2TguNE7XBhb8-Screenshot 2023-11-12 163727.png",
+                             "F:\\data\\datasets\\OpenAI-DataExport_Kirk_LaSalle\\file-oY9GLldlXMIsTCBsQ4Oa4jpl-llm-OS-model.png"
+                         ]
+    },
+    {
+        "top_level":  "phonemes",
+        "path":  "F:\\data\\datasets\\phonemes",
+        "count":  105841,
+        "total_size_mb":  3185.257,
+        "by_extension":  [
+                             {
+                                 "extension":  ".wav",
+                                 "count":  105835,
+                                 "size_mb":  3184.686
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  2,
+                                 "size_mb":  0.538
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  2,
+                                 "size_mb":  0.009
+                             },
+                             {
+                                 "extension":  ".DS_Store",
+                                 "count":  1,
+                                 "size_mb":  0.006
+                             },
+                             {
+                                 "extension":  "\u003cnoext\u003e",
+                                 "count":  1,
+                                 "size_mb":  0.018
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\doing_the_dishes.wav",
+                                  "size_mb":  2.905
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\dude_miaowing.wav",
+                                  "size_mb":  1.886
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\exercise_bike.wav",
+                                  "size_mb":  1.869
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\running_tap.wav",
+                                  "size_mb":  1.866
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\white_noise.wav",
+                                  "size_mb":  1.831
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\_background_noise_\\pink_noise.wav",
+                                  "size_mb":  1.831
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\testing_list.txt",
+                                  "size_mb":  0.282
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\validation_list.txt",
+                                  "size_mb":  0.256
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\seven\\679463fc_nohash_2.wav",
+                                  "size_mb":  0.031
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\seven\\679463fc_nohash_3.wav",
+                                  "size_mb":  0.031
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\.DS_Store",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\LICENSE",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\README.md",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\testing_list.txt",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\validation_list.txt",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\0165e0e8_nohash_0.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\017c4098_nohash_0.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\017c4098_nohash_1.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\017c4098_nohash_2.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\017c4098_nohash_3.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\017c4098_nohash_4.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\02ade946_nohash_0.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\02ade946_nohash_1.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\02ade946_nohash_2.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\02ade946_nohash_3.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\02ade946_nohash_4.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\03401e93_nohash_0.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\03401e93_nohash_1.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\042a8dde_nohash_0.wav",
+                             "F:\\data\\datasets\\phonemes\\google_speech_commands_v2\\backward\\042a8dde_nohash_1.wav"
+                         ]
+    },
+    {
+        "top_level":  "processed",
+        "path":  "F:\\data\\datasets\\processed",
+        "count":  6263,
+        "total_size_mb":  784.167,
+        "by_extension":  [
+                             {
+                                 "extension":  ".npy",
+                                 "count":  3509,
+                                 "size_mb":  238.374
+                             },
+                             {
+                                 "extension":  ".flac",
+                                 "count":  2620,
+                                 "size_mb":  350.175
+                             },
+                             {
+                                 "extension":  ".TXT",
+                                 "count":  92,
+                                 "size_mb":  1.188
+                             },
+                             {
+                                 "extension":  ".metadata",
+                                 "count":  11,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".json",
+                                 "count":  10,
+                                 "size_mb":  0.005
+                             },
+                             {
+                                 "extension":  ".gitkeep",
+                                 "count":  5,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".parquet",
+                                 "count":  5,
+                                 "size_mb":  162.657
+                             },
+                             {
+                                 "extension":  ".gitattributes",
+                                 "count":  3,
+                                 "size_mb":  0.003
+                             },
+                             {
+                                 "extension":  ".md",
+                                 "count":  3,
+                                 "size_mb":  0.015
+                             },
+                             {
+                                 "extension":  ".gitignore",
+                                 "count":  3,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".arrow",
+                                 "count":  2,
+                                 "size_mb":  31.748
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\images_resized\\plain_text\\train-00000-of-00001.parquet",
+                                  "size_mb":  114.16
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\images_resized\\plain_text\\test-00000-of-00001.parquet",
+                                  "size_mb":  22.832
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\images_resized\\dataset\\data-00000-of-00001.arrow",
+                                  "size_mb":  21.752
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\text_tokenized\\squad_v2\\train-00000-of-00001.parquet",
+                                  "size_mb":  15.612
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\text_tokenized\\dataset\\data-00000-of-00001.arrow",
+                                  "size_mb":  9.996
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\audio_melspec\\clean\\validation-00000-of-00001.parquet",
+                                  "size_mb":  8.766
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\text_tokenized\\squad_v2\\validation-00000-of-00001.parquet",
+                                  "size_mb":  1.288
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\audio_melspec\\LibriSpeech\\CHAPTERS.TXT",
+                                  "size_mb":  0.64
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\audio_melspec\\LibriSpeech\\test-clean\\4507\\16021\\4507-16021-0047.flac",
+                                  "size_mb":  0.604
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\processed\\audio_melspec\\LibriSpeech\\test-clean\\2094\\142345\\2094-142345-0008.flac",
+                                  "size_mb":  0.59
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\processed\\audio_melspec\\.gitattributes",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\.gitkeep",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\melspec_config.json",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000000.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000001.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000002.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000003.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000004.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000005.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000006.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000007.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000008.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000009.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000010.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000011.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000012.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000013.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000014.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000015.npy",
+                             "F:\\data\\datasets\\processed\\audio_melspec\\processed_audio_000016.npy"
+                         ]
+    },
+    {
+        "top_level":  "raw",
+        "path":  "F:\\data\\datasets\\raw",
+        "count":  20,
+        "total_size_mb":  181.088,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  13,
+                                 "size_mb":  0.008
+                             },
+                             {
+                                 "extension":  ".arrow",
+                                 "count":  4,
+                                 "size_mb":  181.077
+                             },
+                             {
+                                 "extension":  ".txt",
+                                 "count":  3,
+                                 "size_mb":  0.003
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\train\\data-00000-of-00001.arrow",
+                                  "size_mb":  137.279
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\validation\\data-00000-of-00001.arrow",
+                                  "size_mb":  17.662
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\test\\data-00000-of-00001.arrow",
+                                  "size_mb":  16.904
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\audio\\dataset\\validation\\data-00000-of-00001.arrow",
+                                  "size_mb":  9.232
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\test\\dataset_info.json",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\validation\\dataset_info.json",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\images\\dataset\\train\\dataset_info.json",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\text\\research_notes.txt",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\audio\\dataset\\validation\\dataset_info.json",
+                                  "size_mb":  0.001
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\raw\\text\\technical_discussions.txt",
+                                  "size_mb":  0.001
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\raw\\audio\\dataset\\dataset_dict.json",
+                             "F:\\data\\datasets\\raw\\audio\\dataset\\validation\\data-00000-of-00001.arrow",
+                             "F:\\data\\datasets\\raw\\audio\\dataset\\validation\\dataset_info.json",
+                             "F:\\data\\datasets\\raw\\audio\\dataset\\validation\\state.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\dataset_dict.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\test\\data-00000-of-00001.arrow",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\test\\dataset_info.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\test\\state.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\train\\data-00000-of-00001.arrow",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\train\\dataset_info.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\train\\state.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\validation\\data-00000-of-00001.arrow",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\validation\\dataset_info.json",
+                             "F:\\data\\datasets\\raw\\images\\dataset\\validation\\state.json",
+                             "F:\\data\\datasets\\raw\\text\\research_notes.txt",
+                             "F:\\data\\datasets\\raw\\text\\research_notes.txt_metadata.json",
+                             "F:\\data\\datasets\\raw\\text\\social_media_sample.txt",
+                             "F:\\data\\datasets\\raw\\text\\social_media_sample.txt_metadata.json",
+                             "F:\\data\\datasets\\raw\\text\\technical_discussions.txt",
+                             "F:\\data\\datasets\\raw\\text\\technical_discussions.txt_metadata.json"
+                         ]
+    },
+    {
+        "top_level":  "splits",
+        "path":  "F:\\data\\datasets\\splits",
+        "count":  3,
+        "total_size_mb":  0.001,
+        "by_extension":  {
+                             "extension":  ".txt",
+                             "count":  3,
+                             "size_mb":  0.001
+                         },
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\splits\\train.txt",
+                                  "size_mb":  0
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\splits\\val.txt",
+                                  "size_mb":  0
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\splits\\test.txt",
+                                  "size_mb":  0
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\splits\\test.txt",
+                             "F:\\data\\datasets\\splits\\train.txt",
+                             "F:\\data\\datasets\\splits\\val.txt"
+                         ]
+    },
+    {
+        "top_level":  "structured",
+        "path":  "F:\\data\\datasets\\structured",
+        "count":  6,
+        "total_size_mb":  0.029,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  3,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  3,
+                                 "size_mb":  0.027
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\student_learning_analytics.csv",
+                                  "size_mb":  0.022
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\ai_model_performance.csv",
+                                  "size_mb":  0.003
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\technology_adoption_trends.csv",
+                                  "size_mb":  0.002
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\student_learning_analytics.json",
+                                  "size_mb":  0
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\technology_adoption_trends.json",
+                                  "size_mb":  0
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\structured\\datasets\\ai_model_performance.json",
+                                  "size_mb":  0
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\structured\\datasets\\ai_model_performance.csv",
+                             "F:\\data\\datasets\\structured\\datasets\\ai_model_performance.json",
+                             "F:\\data\\datasets\\structured\\datasets\\student_learning_analytics.csv",
+                             "F:\\data\\datasets\\structured\\datasets\\student_learning_analytics.json",
+                             "F:\\data\\datasets\\structured\\datasets\\technology_adoption_trends.csv",
+                             "F:\\data\\datasets\\structured\\datasets\\technology_adoption_trends.json"
+                         ]
+    },
+    {
+        "top_level":  "tabular",
+        "path":  "F:\\data\\datasets\\tabular",
+        "count":  127,
+        "total_size_mb":  13270.442,
+        "by_extension":  [
+                             {
+                                 "extension":  ".json",
+                                 "count":  53,
+                                 "size_mb":  545.495
+                             },
+                             {
+                                 "extension":  ".py",
+                                 "count":  21,
+                                 "size_mb":  157.463
+                             },
+                             {
+                                 "extension":  ".bin",
+                                 "count":  7,
+                                 "size_mb":  0.088
+                             },
+                             {
+                                 "extension":  ".dat",
+                                 "count":  6,
+                                 "size_mb":  0.046
+                             },
+                             {
+                                 "extension":  ".mp4",
+                                 "count":  6,
+                                 "size_mb":  2.719
+                             },
+                             {
+                                 "extension":  ".pcap",
+                                 "count":  5,
+                                 "size_mb":  0.039
+                             },
+                             {
+                                 "extension":  ".csv",
+                                 "count":  4,
+                                 "size_mb":  0.082
+                             },
+                             {
+                                 "extension":  ".raw",
+                                 "count":  4,
+                                 "size_mb":  0.029
+                             },
+                             {
+                                 "extension":  ".pkl",
+                                 "count":  3,
+                                 "size_mb":  12561.974
+                             },
+                             {
+                                 "extension":  ".dcm",
+                                 "count":  3,
+                                 "size_mb":  0.003
+                             },
+                             {
+                                 "extension":  ".cap",
+                                 "count":  3,
+                                 "size_mb":  0.007
+                             },
+                             {
+                                 "extension":  ".geojson",
+                                 "count":  2,
+                                 "size_mb":  0.326
+                             },
+                             {
+                                 "extension":  ".nii",
+                                 "count":  2,
+                                 "size_mb":  0.501
+                             },
+                             {
+                                 "extension":  ".sh",
+                                 "count":  2,
+                                 "size_mb":  0.001
+                             },
+                             {
+                                 "extension":  ".log",
+                                 "count":  2,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".vocab",
+                                 "count":  1,
+                                 "size_mb":  0
+                             },
+                             {
+                                 "extension":  ".arff",
+                                 "count":  1,
+                                 "size_mb":  1.618
+                             },
+                             {
+                                 "extension":  ".pyc",
+                                 "count":  1,
+                                 "size_mb":  0.011
+                             },
+                             {
+                                 "extension":  ".db",
+                                 "count":  1,
+                                 "size_mb":  0.039
+                             }
+                         ],
+        "largest_files":  [
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\aggregated_data_20250625_173042.pkl",
+                                  "size_mb":  8882
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\aggregated_data.pkl",
+                                  "size_mb":  2449.72
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\uks_db.pkl",
+                                  "size_mb":  1230.253
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\dataset_analysis_report_20250622_074231.json",
+                                  "size_mb":  437.135
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\reorganize_dataset_20250622_074231.py",
+                                  "size_mb":  157.186
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\b3_final_verification_report.json",
+                                  "size_mb":  46.162
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\massive_generation_report.json",
+                                  "size_mb":  18.184
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\b3_f_drive_scan_20250710_171354.json",
+                                  "size_mb":  15.775
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\b2_datasets_analysis.json",
+                                  "size_mb":  9.557
+                              },
+                              {
+                                  "path":  "F:\\data\\datasets\\tabular\\datasets_analysis.json",
+                                  "size_mb":  8.725
+                              }
+                          ],
+        "sample_files":  [
+                             "F:\\data\\datasets\\tabular\\academic_scraped_data.json",
+                             "F:\\data\\datasets\\tabular\\accelerometer_data_1.bin",
+                             "F:\\data\\datasets\\tabular\\accelerometer_data_2.bin",
+                             "F:\\data\\datasets\\tabular\\accelerometer_data_3.bin",
+                             "F:\\data\\datasets\\tabular\\accelerometer_data_4.bin",
+                             "F:\\data\\datasets\\tabular\\accelerometer_data_5.bin",
+                             "F:\\data\\datasets\\tabular\\aggregated_data.pkl",
+                             "F:\\data\\datasets\\tabular\\aggregated_data_20250625_173042.pkl",
+                             "F:\\data\\datasets\\tabular\\b2_datasets_analysis.json",
+                             "F:\\data\\datasets\\tabular\\b2_data_catalogue.json",
+                             "F:\\data\\datasets\\tabular\\b3_comprehensive_status_report_20250711_091728.json",
+                             "F:\\data\\datasets\\tabular\\b3_critical_success_report_20250711_093422.json",
+                             "F:\\data\\datasets\\tabular\\b3_enterprise_completion_report_20250711_092901.json",
+                             "F:\\data\\datasets\\tabular\\b3_final_verification_report.json",
+                             "F:\\data\\datasets\\tabular\\b3_f_drive_scan_20250710_171354.json",
+                             "F:\\data\\datasets\\tabular\\b3_professional_dataset_analysis.json",
+                             "F:\\data\\datasets\\tabular\\complete_multimodal_data_manager.py",
+                             "F:\\data\\datasets\\tabular\\comprehensive_dataset_collection_report.json",
+                             "F:\\data\\datasets\\tabular\\comprehensive_scraping_results.json",
+                             "F:\\data\\datasets\\tabular\\comprehensive_verification_report.json"
+                         ]
+    }
+]

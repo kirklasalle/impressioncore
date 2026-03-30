@@ -1,0 +1,224 @@
+{
+  "timestamp": "2025-06-11T15:47:09.501063",
+  "coverage_percent": 90.0,
+  "found_modalities": [
+    "3d_models",
+    "annotated_images",
+    "audio",
+    "audio_transcripts",
+    "captioned_videos",
+    "code",
+    "documents",
+    "geospatial",
+    "image",
+    "json_structured",
+    "markup",
+    "medical_imaging",
+    "point_clouds",
+    "tabular",
+    "text",
+    "time_series",
+    "video",
+    "xml_structured"
+  ],
+  "missing_modalities": [
+    "network_data",
+    "sensor_data"
+  ],
+  "directory_analysis": {
+    "Real Datasets": {
+      "extensions": {
+        ".py": 3,
+        ".json": 12,
+        ".md": 12,
+        ".obj": 1,
+        ".gltf": 1,
+        ".txt": 50,
+        ".off": 4899,
+        ".vtt": 3,
+        ".zip": 3,
+        ".pdf": 1,
+        ".csv": 7,
+        ".geojson": 2,
+        ".nii": 2,
+        ".dcm": 3,
+        ".ply": 4,
+        ".jpg": 5040,
+        ".wav": 40
+      },
+      "total": 10083
+    },
+    "Synthetic Scaled": {
+      "extensions": {
+        ".json": 2,
+        ".wav": 40,
+        ".jpg": 40,
+        ".txt": 40
+      },
+      "total": 122
+    },
+    "All Data": {
+      "extensions": {
+        ".py": 45,
+        ".json": 41,
+        ".db": 2,
+        ".npy": 1600,
+        ".txt": 91,
+        ".arff": 1,
+        ".csv": 34,
+        ".avi": 13320,
+        ".md": 14,
+        ".zip": 11,
+        ".textgrid": 292316,
+        ".bz2": 4,
+        ".wav": 3150,
+        ".jpg": 10048,
+        ".jsonl": 1,
+        ".pyc": 7,
+        ".gz": 5,
+        ".rtf": 1,
+        ".pkl": 3,
+        ".log": 4,
+        ".png": 32,
+        ".pt": 2,
+        ".obj": 1,
+        ".gltf": 1,
+        ".off": 4899,
+        ".vtt": 3,
+        ".pdf": 1,
+        ".geojson": 2,
+        ".nii": 2,
+        ".dcm": 3,
+        ".ply": 4,
+        ".html": 73,
+        ".js": 27,
+        ".css": 9,
+        ".svg": 1,
+        ".ico": 1,
+        ".bak": 12,
+        ".ini": 1
+      },
+      "total": 325772
+    }
+  },
+  "modality_extensions": {
+    "text": [
+      ".txt",
+      ".md",
+      ".rtf"
+    ],
+    "image": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".bmp",
+      ".tiff",
+      ".gif"
+    ],
+    "audio": [
+      ".wav",
+      ".mp3",
+      ".flac",
+      ".ogg",
+      ".m4a"
+    ],
+    "video": [
+      ".mp4",
+      ".avi",
+      ".mov",
+      ".mkv",
+      ".webm",
+      ".flv"
+    ],
+    "tabular": [
+      ".csv",
+      ".tsv",
+      ".xls",
+      ".xlsx"
+    ],
+    "json_structured": [
+      ".json",
+      ".jsonl"
+    ],
+    "xml_structured": [
+      ".xml",
+      ".html",
+      ".htm"
+    ],
+    "code": [
+      ".py",
+      ".js",
+      ".java",
+      ".cpp",
+      ".c",
+      ".cs",
+      ".php",
+      ".rb",
+      ".go",
+      ".rs"
+    ],
+    "markup": [
+      ".html",
+      ".htm",
+      ".xml",
+      ".svg"
+    ],
+    "geospatial": [
+      ".geojson",
+      ".kml",
+      ".shp",
+      ".gpx"
+    ],
+    "3d_models": [
+      ".obj",
+      ".ply",
+      ".stl",
+      ".off",
+      ".3ds"
+    ],
+    "point_clouds": [
+      ".pcd",
+      ".ply",
+      ".pts",
+      ".xyz"
+    ],
+    "sensor_data": [
+      ".bin",
+      ".dat",
+      ".raw"
+    ],
+    "network_data": [
+      ".pcap",
+      ".cap",
+      ".pcapng"
+    ],
+    "time_series": [
+      ".ts",
+      ".csv"
+    ],
+    "annotated_images": [
+      ".jpg",
+      ".png"
+    ],
+    "documents": [
+      ".pdf",
+      ".doc",
+      ".docx",
+      ".rtf"
+    ],
+    "medical_imaging": [
+      ".dcm",
+      ".nii",
+      ".nrrd"
+    ],
+    "audio_transcripts": [
+      ".textgrid",
+      ".srt",
+      ".vtt"
+    ],
+    "captioned_videos": [
+      ".mp4",
+      ".avi"
+    ]
+  }
+}

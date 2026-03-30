@@ -1,0 +1,27 @@
+{
+  "checkpoint": "F:\\models\\distillation\\enhanced_models\\20251107_144544_colossus_regulator_blend.pt",
+  "num_prompts": 42,
+  "avg_l2": 0.18930143259820484,
+  "max_l2": 0.21211519837379456,
+  "max_prompt": "How can a moderator help engineers reconcile contradictory postmortem narratives without erasing psychological safety?",
+  "max_conf_checkpoint": 0.7230499763198734,
+  "max_conf_baseline": 0.7107778366165063,
+  "avg_confidence_delta": 0.015479870062442698,
+  "watchlist_dims": [
+    27,
+    59,
+    70,
+    83,
+    118,
+    141,
+    191
+  ],
+  "watchlist_threshold": 0.035,
+  "watchlist_max_delta": 0.030594587326049805,
+  "watchlist_trigger_count": 0,
+  "watchlist_trigger_prompts": [],
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251027_154628_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251026_regulator_remediation_blend.json"
+  ]
+}

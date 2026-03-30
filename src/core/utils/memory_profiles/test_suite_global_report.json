@@ -1,0 +1,69 @@
+{
+  "name": "test_suite_global",
+  "start_time": 1743961490.0541837,
+  "end_time": 1743961491.3155715,
+  "duration_seconds": 1.261387825012207,
+  "sample_count": 3,
+  "sample_interval_ms": 500,
+  "process": {
+    "min_mb": 354.29296875,
+    "max_mb": 458.71875,
+    "avg_mb": 393.5533854166667,
+    "start_mb": 354.29296875,
+    "end_mb": 458.71875,
+    "delta_mb": 104.42578125,
+    "growth_rate_mb_per_second": 82.78641919584837
+  },
+  "markers": [
+    {
+      "name": "Test Suite Start",
+      "description": null,
+      "timestamp": 1743961490.0618558,
+      "relative_time": 0.007672309875488281
+    },
+    {
+      "name": "Start test_tokenizer_and_memory_manager",
+      "description": null,
+      "timestamp": 1743961490.0682259,
+      "relative_time": 0.014042377471923828
+    },
+    {
+      "name": "End test_tokenizer_and_memory_manager",
+      "description": null,
+      "timestamp": 1743961491.2988577,
+      "relative_time": 1.2446744441986084
+    },
+    {
+      "name": "Test Suite End",
+      "description": null,
+      "timestamp": 1743961491.308416,
+      "relative_time": 1.2542328834533691
+    }
+  ],
+  "plots": {
+    "process_memory": "tests\\memory_profiles\\test_suite_global_process_memory.png",
+    "gpu0_memory": "tests\\memory_profiles\\test_suite_global_gpu0_memory.png"
+  },
+  "gpu": {
+    "min_allocated_mb": 0.0,
+    "max_allocated_mb": 0.0,
+    "avg_allocated_mb": 0.0,
+    "start_allocated_mb": 0.0,
+    "end_allocated_mb": 0.0,
+    "delta_allocated_mb": 0.0,
+    "growth_rate_mb_per_second": 0.0,
+    "peak_percent": 0.0
+  },
+  "all_gpus": {
+    "0": {
+      "min_allocated_mb": 0.0,
+      "max_allocated_mb": 0.0,
+      "avg_allocated_mb": 0.0,
+      "start_allocated_mb": 0.0,
+      "end_allocated_mb": 0.0,
+      "delta_allocated_mb": 0.0,
+      "growth_rate_mb_per_second": 0.0,
+      "peak_percent": 0.0
+    }
+  }
+}

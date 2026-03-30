@@ -1,0 +1,1394 @@
+[
+    {
+        "name": "Realtek Bluetooth Adapter",
+        "hw_id": "USB\\VID_0BDA&PID_0821&REV_0200",
+        "status": "OK",
+        "service": "BTHUSB",
+        "manufacturer": "Realtek Semiconductor Corp.",
+        "device_id": "USB\\VID_0BDA&PID_0821\\00E04C000001"
+    },
+    {
+        "name": "Stereo Mix (Realtek High Definition Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{E384F5C6-D5EB-4C32-A05F-F09FF5018B25}"
+    },
+    {
+        "name": "Microphone (USB Camera-B4.09.24.1)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{A7B9F3C8-DB4E-4176-8813-9ED0C7489B4A}"
+    },
+    {
+        "name": "System board",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C01",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C01\\1"
+    },
+    {
+        "name": "Motherboard resources",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C02\\1"
+    },
+    {
+        "name": "Motherboard resources",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C02\\2"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_4320&PID_0301&REV_0102&MI_01",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_4320&PID_0301&MI_01\\7&38293427&0&0001"
+    },
+    {
+        "name": "HP Z24x (NVIDIA High Definition Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.0.00000000}.{E7E3EF33-5B63-4EB4-BB52-42C0AA7D59A1}"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655D-2544-11F0-B730-806E6F6E6963}#0000003A16200000"
+    },
+    {
+        "name": "USB Composite Device",
+        "hw_id": "USB\\VID_4320&PID_0301&REV_0102",
+        "status": "OK",
+        "service": "usbccgp",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\VID_4320&PID_0301\\6&3752F84A&0&3"
+    },
+    {
+        "name": "ACPI Fan",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0B",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0B\\0"
+    },
+    {
+        "name": "ACPI Fan",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0B",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0B\\1"
+    },
+    {
+        "name": "ACPI Fan",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0B",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0B\\2"
+    },
+    {
+        "name": "ACPI Fan",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0B",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0B\\3"
+    },
+    {
+        "name": "ACPI Fan",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0B",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0B\\4"
+    },
+    {
+        "name": "Microsoft Bluetooth Enumerator",
+        "hw_id": "BTH\\MS_BTHBRB",
+        "status": "OK",
+        "service": "BthEnum",
+        "manufacturer": "Microsoft",
+        "device_id": "BTH\\MS_BTHBRB\\6&6F86E6C&0&1"
+    },
+    {
+        "name": "Root Print Queue",
+        "hw_id": "PRINTENUM\\LocalPrintQueue",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\PRINTENUM\\PRINTQUEUES"
+    },
+    {
+        "name": "HID-compliant vendor-defined device",
+        "hw_id": "HID\\VID_03F0&PID_0747&REV_0002",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "HID\\VID_03F0&PID_0747\\7&303330DA&0&0000"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_05E3&PID_0610&REV_0654",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_05E3&PID_0610\\6&172E998C&0&1"
+    },
+    {
+        "name": "Volume Manager",
+        "hw_id": "ROOT\\VOLMGR",
+        "status": "OK",
+        "service": "volmgr",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VOLMGR\\0000"
+    },
+    {
+        "name": "Intel(R) 8 Series/C220 Series USB EHCI #2 - 8C2D",
+        "hw_id": "PCI\\VEN_8086&DEV_8C2D&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "usbehci",
+        "manufacturer": "Intel",
+        "device_id": "PCI\\VEN_8086&DEV_8C2D&SUBSYS_366D17AA&REV_05\\3&11583659&0&D0"
+    },
+    {
+        "name": "Numeric data processor",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C04",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C04\\4&31370CA8&0"
+    },
+    {
+        "name": "Realtek High Definition Audio",
+        "hw_id": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_0892&SUBSYS_17AA366D&REV_1003",
+        "status": "OK",
+        "service": "IntcAzAudAddService",
+        "manufacturer": "Realtek",
+        "device_id": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_0892&SUBSYS_17AA366D&REV_1003\\4&2FC7EA09&0&0001"
+    },
+    {
+        "name": "Logitech Mic (Orbit/Sphere MP) (Interface 2)",
+        "hw_id": "USB\\VID_046D&PID_08C2&REV_0005&MI_02",
+        "status": "OK",
+        "service": "libusbK",
+        "manufacturer": "Logitech, Inc.",
+        "device_id": "USB\\VID_046D&PID_08C2&MI_02\\6&16853086&4&0002"
+    },
+    {
+        "name": "Realtek 8821AE Wireless LAN 802.11ac PCI-E NIC",
+        "hw_id": "PCI\\VEN_10EC&DEV_8821&SUBSYS_A80317AA&REV_00",
+        "status": "OK",
+        "service": "RTWlanE02",
+        "manufacturer": "Realtek Semiconductor Corp.",
+        "device_id": "PCI\\VEN_10EC&DEV_8821&SUBSYS_A80317AA&REV_00\\00E04CFFFE872B0100"
+    },
+    {
+        "name": "WAN Miniport (PPPOE)",
+        "hw_id": "ms_pppoeminiport",
+        "status": "OK",
+        "service": "RasPppoe",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_PPPOEMINIPORT"
+    },
+    {
+        "name": "Microsoft Hyper-V Virtual Machine Bus Provider",
+        "hw_id": "root\\VMBus",
+        "status": "OK",
+        "service": "vmbusr",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VMBUS\\0000"
+    },
+    {
+        "name": "Microsoft Bluetooth LE Enumerator",
+        "hw_id": "BTH\\MS_BTHLE",
+        "status": "OK",
+        "service": "BthLEEnum",
+        "manufacturer": "Microsoft",
+        "device_id": "BTH\\MS_BTHLE\\6&6F86E6C&0&3"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{7CFFF15D-ED82-11F0-B764-3010B34A141C}#0000000000010000"
+    },
+    {
+        "name": "Microsoft Basic Display Driver",
+        "hw_id": "ROOT\\BasicDisplay",
+        "status": "OK",
+        "service": "BasicDisplay",
+        "manufacturer": "(Standard display types)",
+        "device_id": "ROOT\\BASICDISPLAY\\0000"
+    },
+    {
+        "name": "USB Root Hub",
+        "hw_id": "USB\\ROOT_HUB20&VID8086&PID8C2D&REV0005",
+        "status": "OK",
+        "service": "usbhub",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\ROOT_HUB20\\4&A49F07C&0"
+    },
+    {
+        "name": "Hyper-V Virtual Switch Extension Adapter",
+        "hw_id": "vms_vsmp",
+        "status": "OK",
+        "service": "VMSMP",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VMS_VSMP\\0000"
+    },
+    {
+        "name": "ACPI Thermal Zone",
+        "hw_id": "ACPI\\ThermalZone",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\THERMALZONE\\TZ00"
+    },
+    {
+        "name": "ACPI Thermal Zone",
+        "hw_id": "ACPI\\ThermalZone",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\THERMALZONE\\TZ01"
+    },
+    {
+        "name": "Microsoft RRAS Root Enumerator",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\{5E259276-BC7E-40E3-B93B-8F89B5F3ABC0}"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655D-2544-11F0-B730-806E6F6E6963}#0000000000100000"
+    },
+    {
+        "name": "Generic SuperSpeed USB Hub",
+        "hw_id": "USB\\VID_0424&PID_5537&REV_5000",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_0424&PID_5537\\5&2BF57C82&0&16"
+    },
+    {
+        "name": "WAN Miniport (PPTP)",
+        "hw_id": "ms_pptpminiport",
+        "status": "OK",
+        "service": "PptpMiniport",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_PPTPMINIPORT"
+    },
+    {
+        "name": "Microsoft XPS Document Writer",
+        "hw_id": "PRINTENUM\\{0f4130dd-19c7-7ab6-99a1-980f03b2ee4e}",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\PRINTENUM\\{50B59291-9DD9-44EC-B4E2-E829FF978D82}"
+    },
+    {
+        "name": "Legacy device",
+        "hw_id": "ACPI\\VEN_INT&DEV_0800",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\INT0800\\4&31370CA8&0"
+    },
+    {
+        "name": "Microsoft Hyper-V Virtualization Infrastructure Driver",
+        "hw_id": "ROOT\\VID",
+        "status": "OK",
+        "service": "Vid",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VID\\0000"
+    },
+    {
+        "name": "NVIDIA GeForce GTX 1050 Ti",
+        "hw_id": "PCI\\VEN_10DE&DEV_1C82&SUBSYS_85CD1043&REV_A1",
+        "status": "OK",
+        "service": "nvlddmkm",
+        "manufacturer": "NVIDIA",
+        "device_id": "PCI\\VEN_10DE&DEV_1C82&SUBSYS_85CD1043&REV_A1\\4&12D63069&0&0008"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_0424&PID_2503&REV_0100",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_0424&PID_2503\\5&2BF57C82&0&2"
+    },
+    {
+        "name": "High precision event timer",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0103",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0103\\0"
+    },
+    {
+        "name": "WAN Miniport (IKEv2)",
+        "hw_id": "ms_agilevpnminiport",
+        "status": "OK",
+        "service": "RasAgileVpn",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_AGILEVPNMINIPORT"
+    },
+    {
+        "name": "Composite Bus Enumerator",
+        "hw_id": "ROOT\\CompositeBus",
+        "status": "OK",
+        "service": "CompositeBus",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\COMPOSITEBUS\\0000"
+    },
+    {
+        "name": "Microsoft Virtual Drive Enumerator",
+        "hw_id": "ROOT\\vdrvroot",
+        "status": "OK",
+        "service": "vdrvroot",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VDRVROOT\\0000"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_17EF&PID_602E&REV_0200",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_17EF&PID_602E\\5&2BF57C82&0&5"
+    },
+    {
+        "name": "USB Camera-B4.09.24.1",
+        "hw_id": "USB\\VID_1415&PID_2000&REV_0200&MI_01",
+        "status": "OK",
+        "service": "usbaudio",
+        "manufacturer": "(Generic USB Audio)",
+        "device_id": "USB\\VID_1415&PID_2000&MI_01\\7&D9764AB&2&0001"
+    },
+    {
+        "name": "Microsoft Storage Spaces Controller",
+        "hw_id": "Root\\Spaceport",
+        "status": "OK",
+        "service": "spaceport",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\SPACEPORT\\0000"
+    },
+    {
+        "name": "Bluetooth",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\RADIO\\BLUETOOTH_3010B34A141C"
+    },
+    {
+        "name": "Intel(R) 8 Series/C220 Series USB EHCI #1 - 8C26",
+        "hw_id": "PCI\\VEN_8086&DEV_8C26&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "usbehci",
+        "manufacturer": "Intel",
+        "device_id": "PCI\\VEN_8086&DEV_8C26&SUBSYS_366D17AA&REV_05\\3&11583659&0&E8"
+    },
+    {
+        "name": "USB Camera-B4.04.27.1 (Interface 0)",
+        "hw_id": "USB\\VID_1415&PID_2000&REV_0200&MI_00",
+        "status": "OK",
+        "service": "libusb0",
+        "manufacturer": "Nam Tai E&E Products Ltd. or OmniVision Technologies, Inc.",
+        "device_id": "USB\\VID_1415&PID_2000&MI_00\\7&D9764AB&2&0000"
+    },
+    {
+        "name": "Communications Port (COM2)",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0501",
+        "status": "OK",
+        "service": "Serial",
+        "manufacturer": "(Standard port types)",
+        "device_id": "ACPI\\PNP0501\\2"
+    },
+    {
+        "name": "Microsoft Kernel Debug Network Adapter",
+        "hw_id": "root\\kdnic",
+        "status": "OK",
+        "service": "kdnic",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\KDNIC\\0000"
+    },
+    {
+        "name": "High Definition Audio Controller",
+        "hw_id": "PCI\\VEN_10DE&DEV_0FB9&SUBSYS_85CD1043&REV_A1",
+        "status": "OK",
+        "service": "HDAudBus",
+        "manufacturer": "Microsoft",
+        "device_id": "PCI\\VEN_10DE&DEV_0FB9&SUBSYS_85CD1043&REV_A1\\4&12D63069&0&0108"
+    },
+    {
+        "name": "Intel(R) Management Engine Interface ",
+        "hw_id": "PCI\\VEN_8086&DEV_8C3A&SUBSYS_366D17AA&REV_04",
+        "status": "OK",
+        "service": "MEIx64",
+        "manufacturer": "Intel",
+        "device_id": "PCI\\VEN_8086&DEV_8C3A&SUBSYS_366D17AA&REV_04\\3&11583659&0&B0"
+    },
+    {
+        "name": "Generic volume shadow copy",
+        "hw_id": "STORAGE\\VolumeSnapshot",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT1"
+    },
+    {
+        "name": "Generic volume shadow copy",
+        "hw_id": "STORAGE\\VolumeSnapshot",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT2"
+    },
+    {
+        "name": "HP61E383 (HP Photosmart 5510d series)",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "HP",
+        "device_id": "SWD\\DAFWSDPROVIDER\\URN:UUID:1C852A4D-B800-1F08-ABCD-AC162D61E383/HTTP://WWW.HP.COM/SCHEMAS/IMAGING/CON/LEDM/DISCOVERYTREE/2007/07/01"
+    },
+    {
+        "name": "Intel(R) Xeon(R) processor E3 - 1200 v3/4th Gen Core processor DRAM Controller - 0C00",
+        "hw_id": "PCI\\VEN_8086&DEV_0C00&SUBSYS_366D17AA&REV_06",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_0C00&SUBSYS_366D17AA&REV_06\\3&11583659&0&00"
+    },
+    {
+        "name": "System timer",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0100",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0100\\4&31370CA8&0"
+    },
+    {
+        "name": "USB Attached SCSI (UAS) Mass Storage Device",
+        "hw_id": "USB\\VID_06CA&PID_B1B1&REV_0100",
+        "status": "OK",
+        "service": "UASPStor",
+        "manufacturer": "USB Attached SCSI (UAS) Compatible Device",
+        "device_id": "USB\\VID_06CA&PID_B1B1\\MSFT30123456789012"
+    },
+    {
+        "name": "Kinect for Windows Audio Array Control",
+        "hw_id": "USB\\VID_045E&PID_02BB&REV_0100&MI_00",
+        "status": "OK",
+        "service": "WinUSB",
+        "manufacturer": "Microsoft",
+        "device_id": "USB\\VID_045E&PID_02BB&MI_00\\7&2B6B9B31&2&0000"
+    },
+    {
+        "name": "Microsoft Hyper-V NT Kernel Integration VSP",
+        "hw_id": "root\\vkrnlintvsp",
+        "status": "OK",
+        "service": "vkrnlintvsp",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VKRNLINTVSP\\0000"
+    },
+    {
+        "name": "Kinect for Windows Camera",
+        "hw_id": "USB\\VID_045E&PID_02AE&REV_010;",
+        "status": "OK",
+        "service": "KinectCamera",
+        "manufacturer": "Microsoft",
+        "device_id": "USB\\VID_045E&PID_02AE\\A00362A03848125A"
+    },
+    {
+        "name": "Intel(R) 8 Series/C220 Series PCI Express Root Port #6 - 8C1A",
+        "hw_id": "PCI\\VEN_8086&DEV_8C1A&SUBSYS_366D17AA&REV_D5",
+        "status": "OK",
+        "service": "pci",
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_8C1A&SUBSYS_366D17AA&REV_D5\\3&11583659&0&E5"
+    },
+    {
+        "name": "Speakers (Realtek High Definition Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.0.00000000}.{F9971E03-F19B-4D72-9B7D-1CAD6BA95F6B}"
+    },
+    {
+        "name": "Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz",
+        "hw_id": "ACPI\\GenuineIntel_-_Intel64_Family_6_Model_60",
+        "status": "OK",
+        "service": "intelppm",
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_60_-_INTEL(R)_CORE(TM)_I5-4460__CPU_@_3.20GHZ\\_1"
+    },
+    {
+        "name": "Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz",
+        "hw_id": "ACPI\\GenuineIntel_-_Intel64_Family_6_Model_60",
+        "status": "OK",
+        "service": "intelppm",
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_60_-_INTEL(R)_CORE(TM)_I5-4460__CPU_@_3.20GHZ\\_2"
+    },
+    {
+        "name": "Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz",
+        "hw_id": "ACPI\\GenuineIntel_-_Intel64_Family_6_Model_60",
+        "status": "OK",
+        "service": "intelppm",
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_60_-_INTEL(R)_CORE(TM)_I5-4460__CPU_@_3.20GHZ\\_3"
+    },
+    {
+        "name": "Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz",
+        "hw_id": "ACPI\\GenuineIntel_-_Intel64_Family_6_Model_60",
+        "status": "OK",
+        "service": "intelppm",
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\GENUINEINTEL_-_INTEL64_FAMILY_6_MODEL_60_-_INTEL(R)_CORE(TM)_I5-4460__CPU_@_3.20GHZ\\_4"
+    },
+    {
+        "name": "Bluetooth Device (RFCOMM Protocol TDI)",
+        "hw_id": "BTH\\MS_RFCOMM",
+        "status": "OK",
+        "service": "RFCOMM",
+        "manufacturer": "Microsoft",
+        "device_id": "BTH\\MS_RFCOMM\\6&6F86E6C&0&0"
+    },
+    {
+        "name": "Photosmart 5510d series [61E383] (4)",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\IPP\\1C852A4D-B800-1F08-ABCD-AC162D61E383"
+    },
+    {
+        "name": "Logitech USB Camera (Orbit/Sphere MP)",
+        "hw_id": "USB\\VID_046D&PID_08C2&REV_0005",
+        "status": "OK",
+        "service": "usbccgp",
+        "manufacturer": "Logitech",
+        "device_id": "USB\\VID_046D&PID_08C2\\5&2BF57C82&0&7"
+    },
+    {
+        "name": "UMBus Root Bus Enumerator",
+        "hw_id": "root\\umbus",
+        "status": "OK",
+        "service": "umbus",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\UMBUS\\0000"
+    },
+    {
+        "name": "USB Composite Device",
+        "hw_id": "USB\\VID_045E&PID_02BB&REV_0100",
+        "status": "OK",
+        "service": "usbccgp",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\VID_045E&PID_02BB\\A44882D11699125A"
+    },
+    {
+        "name": "Microsoft Radio Device Enumeration Bus",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\RADIO\\{3DB5895D-CC28-44B3-AD3D-6F01A782B8D2}"
+    },
+    {
+        "name": "Samsung SSD 850 EVO 250GB",
+        "hw_id": "SCSI\\DiskATA_____Samsung_SSD_850_2B6Q",
+        "status": "OK",
+        "service": "disk",
+        "manufacturer": "(Standard disk drives)",
+        "device_id": "SCSI\\DISK&VEN_ATA&PROD_SAMSUNG_SSD_850\\4&37BF5BB2&0&010000"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_0424&PID_2137&REV_5000",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_0424&PID_2137\\5&2BF57C82&0&1"
+    },
+    {
+        "name": "Microsoft Device Association Root Enumerator",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSDAS\\{CE958E9A-424F-4C88-86F4-11314821E75A}"
+    },
+    {
+        "name": "Microsoft Print to PDF",
+        "hw_id": "PRINTENUM\\{084f01fa-e634-4d77-83ee-074817c03581}",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\PRINTENUM\\{68778631-38FB-4F59-8E4A-F294A6371CBF}"
+    },
+    {
+        "name": "ACPI x64-based PC",
+        "hw_id": "acpiapic",
+        "status": "OK",
+        "service": "\\Driver\\ACPI_HAL",
+        "manufacturer": "(Standard computers)",
+        "device_id": "ROOT\\ACPI_HAL\\0000"
+    },
+    {
+        "name": "HID Keyboard Device",
+        "hw_id": "HID\\VID_17EF&PID_602D&REV_0130&MI_00",
+        "status": "OK",
+        "service": "kbdhid",
+        "manufacturer": "(Standard keyboards)",
+        "device_id": "HID\\VID_17EF&PID_602D&MI_00\\7&155E322B&0&0000"
+    },
+    {
+        "name": "WAN Miniport (Network Monitor)",
+        "hw_id": "ms_ndiswanbh",
+        "status": "OK",
+        "service": "NdisWan",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_NDISWANBH"
+    },
+    {
+        "name": "WAN Miniport (IP)",
+        "hw_id": "ms_ndiswanip",
+        "status": "OK",
+        "service": "NdisWan",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_NDISWANIP"
+    },
+    {
+        "name": "PCI Express Root Complex",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0A08",
+        "status": "OK",
+        "service": "pci",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0A08\\0"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_17EF&PID_602D&REV_0130&MI_01",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_17EF&PID_602D&MI_01\\6&8C00A33&0&0001"
+    },
+    {
+        "name": "High Definition Audio Controller",
+        "hw_id": "PCI\\VEN_8086&DEV_8C20&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "HDAudBus",
+        "manufacturer": "Microsoft",
+        "device_id": "PCI\\VEN_8086&DEV_8C20&SUBSYS_366D17AA&REV_05\\3&11583659&0&D8"
+    },
+    {
+        "name": "HP61E383 (HP Photosmart 5510d series)",
+        "hw_id": "PRINTENUM\\LocalPrintQueue",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "HP",
+        "device_id": "SWD\\PRINTENUM\\{5BF4F011-9C87-4EA2-AB42-1422EFD9D834}"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_17EF&PID_602D&REV_0130&MI_00",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_17EF&PID_602D&MI_00\\6&8C00A33&0&0000"
+    },
+    {
+        "name": "Logicool HID-compliant Cordless Mouse",
+        "hw_id": "HID\\VID_046D&PID_C50E&REV_2500",
+        "status": "OK",
+        "service": "mouhid",
+        "manufacturer": "Logicool",
+        "device_id": "HID\\VID_046D&PID_C50E\\7&30792DE4&0&0000"
+    },
+    {
+        "name": "Microsoft Hyper-V PCI Server",
+        "hw_id": "root\\Vpcivsp",
+        "status": "OK",
+        "service": "vpcivsp",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VPCIVSP\\0000"
+    },
+    {
+        "name": " Voyager S3 SCSI Disk Device",
+        "hw_id": "SCSI\\Disk________Voyager_S3______0___",
+        "status": "OK",
+        "service": "disk",
+        "manufacturer": "(Standard disk drives)",
+        "device_id": "SCSI\\DISK&VEN_&PROD_VOYAGER_S3\\7&136F15A&0&000000"
+    },
+    {
+        "name": "Logitech USB Device",
+        "hw_id": "LOGITECH_RAW_PDO",
+        "status": "OK",
+        "service": null,
+        "manufacturer": null,
+        "device_id": "{C1FCC185-55B3-4E00-814B-C588A13525E1}\\VID_046D&PID_C50E&REV_2500&USBFILT\\7&30792DE4&0&00"
+    },
+    {
+        "name": "Intel(R) USB 3.0 eXtensible Host Controller - 1.0 (Microsoft)",
+        "hw_id": "PCI\\VEN_8086&DEV_8C31&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "USBXHCI",
+        "manufacturer": "Generic USB xHCI Host Controller",
+        "device_id": "PCI\\VEN_8086&DEV_8C31&SUBSYS_366D17AA&REV_05\\3&11583659&0&A0"
+    },
+    {
+        "name": "Microsoft Wi-Fi Direct Virtual Adapter",
+        "hw_id": "{5d624f94-8850-40c3-a3fa-a4fd2080baf3}\\vwifimp_wfd",
+        "status": "OK",
+        "service": "vwifimp",
+        "manufacturer": "Microsoft",
+        "device_id": "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5&267C31FA&0&11"
+    },
+    {
+        "name": "Microsoft Wi-Fi Direct Virtual Adapter #2",
+        "hw_id": "{5d624f94-8850-40c3-a3fa-a4fd2080baf3}\\vwifimp_wfd",
+        "status": "OK",
+        "service": "vwifimp",
+        "manufacturer": "Microsoft",
+        "device_id": "{5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\\VWIFIMP_WFD\\5&267C31FA&0&12"
+    },
+    {
+        "name": "Microsoft ACPI-Compliant System",
+        "hw_id": "ACPI_HAL\\PNP0C08",
+        "status": "OK",
+        "service": "ACPI",
+        "manufacturer": "Microsoft",
+        "device_id": "ACPI_HAL\\PNP0C08\\0"
+    },
+    {
+        "name": null,
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": null,
+        "device_id": "HTREE\\ROOT\\0"
+    },
+    {
+        "name": "HP Photosmart 5510d series",
+        "hw_id": "WSDPRINT\\HPPhotosmart_5510d_s12C8",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "HP",
+        "device_id": "SWD\\PRINTENUM\\WSD-2C8943EF-975F-4BEB-AAF9-E521BF216DBF"
+    },
+    {
+        "name": "Microsoft Basic Render Driver",
+        "hw_id": "ROOT\\BasicRender",
+        "status": "OK",
+        "service": "BasicRender",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\BASICRENDER\\0000"
+    },
+    {
+        "name": "USB Root Hub",
+        "hw_id": "USB\\ROOT_HUB20&VID8086&PID8C26&REV0005",
+        "status": "OK",
+        "service": "usbhub",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\ROOT_HUB20\\4&365D56D1&0"
+    },
+    {
+        "name": "Kinect for Windows Security Control",
+        "hw_id": "USB\\VID_045E&PID_02BB&REV_0100&MI_01",
+        "status": "OK",
+        "service": "WinUSB",
+        "manufacturer": "Microsoft",
+        "device_id": "USB\\VID_045E&PID_02BB&MI_01\\7&2B6B9B31&2&0001"
+    },
+    {
+        "name": "NVIDIA High Definition Audio",
+        "hw_id": "HDAUDIO\\FUNC_01&VEN_10DE&DEV_0080&SUBSYS_104385CD&REV_1001",
+        "status": "OK",
+        "service": "NVHDA",
+        "manufacturer": "NVIDIA",
+        "device_id": "HDAUDIO\\FUNC_01&VEN_10DE&DEV_0080&SUBSYS_104385CD&REV_1001\\5&1F256795&0&0001"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_0409&PID_005A&REV_0100",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_0409&PID_005A\\5&2BF57C82&0&8"
+    },
+    {
+        "name": "WAN Miniport (SSTP)",
+        "hw_id": "ms_sstpminiport",
+        "status": "OK",
+        "service": "RasSstp",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_SSTPMINIPORT"
+    },
+    {
+        "name": "Realtek PCIe GbE Family Controller",
+        "hw_id": "PCI\\VEN_10EC&DEV_8168&SUBSYS_366D17AA&REV_09",
+        "status": "OK",
+        "service": "rt640x64",
+        "manufacturer": "Realtek",
+        "device_id": "PCI\\VEN_10EC&DEV_8168&SUBSYS_366D17AA&REV_09\\01000000684CE00000"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655D-2544-11F0-B730-806E6F6E6963}#000000001F500000"
+    },
+    {
+        "name": "HID Keyboard Device",
+        "hw_id": "HID\\VID_4320&PID_0301&REV_0102&MI_00",
+        "status": "OK",
+        "service": "kbdhid",
+        "manufacturer": "(Standard keyboards)",
+        "device_id": "HID\\VID_4320&PID_0301&MI_00\\8&18EBADFD&0&0000"
+    },
+    {
+        "name": "Kinect for Windows Device",
+        "hw_id": "USB\\VID_045E&PID_02B0&REV_0107",
+        "status": "OK",
+        "service": "WinUSB",
+        "manufacturer": "Microsoft",
+        "device_id": "USB\\VID_045E&PID_02B0\\6&1ABA7458&3&2"
+    },
+    {
+        "name": "ImpressionCore",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": "WUDFWpdFs",
+        "manufacturer": "        ",
+        "device_id": "SWD\\WPDBUSENUM\\{8FC66DEA-489A-11F0-B73C-3010B34A141C}#0000000000100000"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_8087&PID_8000&REV_0005",
+        "status": "OK",
+        "service": "usbhub",
+        "manufacturer": "(Generic USB Hub)",
+        "device_id": "USB\\VID_8087&PID_8000\\5&18B4DF74&0&1"
+    },
+    {
+        "name": "HID-compliant consumer control device",
+        "hw_id": "HID\\VID_17EF&PID_602D&REV_0130&MI_01&Col02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "HID\\VID_17EF&PID_602D&MI_01&COL02\\7&22E15ED&0&0001"
+    },
+    {
+        "name": "Generic SuperSpeed USB Hub",
+        "hw_id": "USB\\VID_05E3&PID_0626&REV_0654",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\VID_05E3&PID_0626\\6&E1AAB92&0&1"
+    },
+    {
+        "name": "HP DreamColor Z24x Professional Display",
+        "hw_id": "MONITOR\\HWP3132",
+        "status": "OK",
+        "service": "monitor",
+        "manufacturer": "HP",
+        "device_id": "DISPLAY\\HWP3132\\5&3037D4DF&0&UID4609"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655B-2544-11F0-B730-806E6F6E6963}#0000000000100000"
+    },
+    {
+        "name": "ACPI Fixed Feature Button",
+        "hw_id": "ACPI\\FixedButton",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\FIXEDBUTTON\\2&DABA3FF&0"
+    },
+    {
+        "name": "HP61E383 (HP Photosmart 5510d series)",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "HP",
+        "device_id": "SWD\\DAFWSDPROVIDER\\URN:UUID:1C852A4D-B800-1F08-ABCD-AC162D61E383"
+    },
+    {
+        "name": "HID-compliant system controller",
+        "hw_id": "HID\\VID_17EF&PID_602D&REV_0130&MI_01&Col01",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "HID\\VID_17EF&PID_602D&MI_01&COL01\\7&22E15ED&0&0000"
+    },
+    {
+        "name": "HID-compliant consumer control device",
+        "hw_id": "HID\\VID_4320&PID_0301&REV_0102&MI_01&Col02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "HID\\VID_4320&PID_0301&MI_01&COL02\\8&12821B8&0&0001"
+    },
+    {
+        "name": "Samsung SSD 860 EVO 500GB",
+        "hw_id": "SCSI\\DiskATA_____Samsung_SSD_860_4B6Q",
+        "status": "OK",
+        "service": "disk",
+        "manufacturer": "(Standard disk drives)",
+        "device_id": "SCSI\\DISK&VEN_ATA&PROD_SAMSUNG_SSD_860\\4&37BF5BB2&0&020000"
+    },
+    {
+        "name": "HID-compliant mouse",
+        "hw_id": "HID\\VID_17EF&PID_602E&REV_0200",
+        "status": "OK",
+        "service": "mouhid",
+        "manufacturer": "Microsoft",
+        "device_id": "HID\\VID_17EF&PID_602E\\6&C970B62&0&0000"
+    },
+    {
+        "name": "Motherboard resources",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C02\\10"
+    },
+    {
+        "name": "HID-compliant consumer control device",
+        "hw_id": "HID\\VID_4320&PID_0301&REV_0102&MI_01&Col01",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "HID\\VID_4320&PID_0301&MI_01&COL01\\8&12821B8&0&0000"
+    },
+    {
+        "name": "Intel(R) 8 Series/C220 Series PCI Express Root Port #1 - 8C10",
+        "hw_id": "PCI\\VEN_8086&DEV_8C10&SUBSYS_366D17AA&REV_D5",
+        "status": "OK",
+        "service": "pci",
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_8C10&SUBSYS_366D17AA&REV_D5\\3&11583659&0&E0"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655C-2544-11F0-B730-806E6F6E6963}#00000068AAB00000"
+    },
+    {
+        "name": "Realtek Digital Output (Realtek High Definition Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.0.00000000}.{D73AB99F-D7D1-46A1-B53A-7552ABC00A14}"
+    },
+    {
+        "name": "MATSHITA DVD-RAM SW830",
+        "hw_id": "SCSI\\CdRomMATSHITADVD-RAM_SW830___8.83",
+        "status": "OK",
+        "service": "cdrom",
+        "manufacturer": "(Standard CD-ROM drives)",
+        "device_id": "SCSI\\CDROM&VEN_MATSHITA&PROD_DVD-RAM_SW830\\4&37BF5BB2&0&040000"
+    },
+    {
+        "name": "QuickCam Orbit/Sphere MP (Interface 0)",
+        "hw_id": "USB\\VID_046D&PID_08C2&REV_0005&MI_00",
+        "status": "OK",
+        "service": "libusbK",
+        "manufacturer": "Logitech, Inc.",
+        "device_id": "USB\\VID_046D&PID_08C2&MI_00\\6&16853086&4&0000"
+    },
+    {
+        "name": "Microsoft Hyper-V Virtual Disk Server",
+        "hw_id": "root\\storvsp",
+        "status": "OK",
+        "service": "storvsp",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\STORVSP\\0000"
+    },
+    {
+        "name": "Logicool Cordless USB Mouse",
+        "hw_id": "USB\\VID_046D&PID_C50E&REV_2500",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "Logicool",
+        "device_id": "USB\\VID_046D&PID_C50E\\6&172E998C&0&3"
+    },
+    {
+        "name": "USB Composite Device",
+        "hw_id": "USB\\VID_17EF&PID_602D&REV_0130",
+        "status": "OK",
+        "service": "usbccgp",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\VID_17EF&PID_602D\\5&2BF57C82&0&6"
+    },
+    {
+        "name": "NVIDIA Virtual Audio Device (Wave Extensible) (WDM)",
+        "hw_id": "USB\\VID_0955&PID_9000",
+        "status": "OK",
+        "service": "nvvad_WaveExtensible",
+        "manufacturer": "NVIDIA",
+        "device_id": "ROOT\\UNNAMED_DEVICE\\0000"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_03F0&PID_0747&REV_0002",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_03F0&PID_0747\\6&172E998C&0&5"
+    },
+    {
+        "name": "Intel(R) B85 LPC Controller - 8C50",
+        "hw_id": "PCI\\VEN_8086&DEV_8C50&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "msisadrv",
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_8C50&SUBSYS_366D17AA&REV_05\\3&11583659&0&F8"
+    },
+    {
+        "name": "Microsoft GS Wavetable Synth",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\MICROSOFTGSWAVETABLESYNTH"
+    },
+    {
+        "name": "ACPI Power Button",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C0C",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C0C\\AA"
+    },
+    {
+        "name": "Fax",
+        "hw_id": "PRINTENUM\\microsoftmicrosoft_s7d14",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\PRINTENUM\\{26AECB5A-D494-4E31-AE7A-F0AE31EED67F}"
+    },
+    {
+        "name": "System CMOS/real time clock",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0B00",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0B00\\4&31370CA8&0"
+    },
+    {
+        "name": "ELAN SMBus Driver",
+        "hw_id": "PCI\\VEN_8086&DEV_8C22&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "ETDSMBus",
+        "manufacturer": "ELAN SMBus",
+        "device_id": "PCI\\VEN_8086&DEV_8C22&SUBSYS_366D17AA&REV_05\\3&11583659&0&FB"
+    },
+    {
+        "name": "Bluetooth Device (Personal Area Network)",
+        "hw_id": "BTH\\MS_BTHPAN",
+        "status": "OK",
+        "service": "BthPan",
+        "manufacturer": "Microsoft",
+        "device_id": "BTH\\MS_BTHPAN\\6&6F86E6C&0&2"
+    },
+    {
+        "name": "Kinect USB Audio",
+        "hw_id": "USB\\VID_045E&PID_02BB&REV_0100&MI_02",
+        "status": "OK",
+        "service": "usbaudio",
+        "manufacturer": "(Generic USB Audio)",
+        "device_id": "USB\\VID_045E&PID_02BB&MI_02\\7&2B6B9B31&2&0002"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{8FC66DEA-489A-11F0-B73C-3010B34A141C}#0000000000100000"
+    },
+    {
+        "name": "Generic USB Hub",
+        "hw_id": "USB\\VID_8087&PID_8008&REV_0005",
+        "status": "OK",
+        "service": "usbhub",
+        "manufacturer": "(Generic USB Hub)",
+        "device_id": "USB\\VID_8087&PID_8008\\5&34687401&0&1"
+    },
+    {
+        "name": "Hyper-V Virtual Ethernet Adapter",
+        "hw_id": "vms_mp",
+        "status": "OK",
+        "service": "VMSNPXYMP",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VMS_MP\\0000"
+    },
+    {
+        "name": "Hyper-V Virtual Ethernet Adapter #2",
+        "hw_id": "vms_mp",
+        "status": "OK",
+        "service": "VMSNPXYMP",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\VMS_MP\\0001"
+    },
+    {
+        "name": "NDIS Virtual Network Adapter Enumerator",
+        "hw_id": "ROOT\\NdisVirtualBus",
+        "status": "OK",
+        "service": "NdisVirtualBus",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\NDISVIRTUALBUS\\0000"
+    },
+    {
+        "name": "Volume",
+        "hw_id": "STORAGE\\Volume",
+        "status": "OK",
+        "service": "volume",
+        "manufacturer": "Microsoft",
+        "device_id": "STORAGE\\VOLUME\\{C8C7655C-2544-11F0-B730-806E6F6E6963}#000000001F500000"
+    },
+    {
+        "name": "Programmable interrupt controller",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0000",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0000\\4&31370CA8&0"
+    },
+    {
+        "name": "Microphone Array (Kinect USB Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{F76699B5-F0DD-49BA-85B8-4AEB34E57FBC}"
+    },
+    {
+        "name": "USB Input Device",
+        "hw_id": "USB\\VID_4320&PID_0301&REV_0102&MI_00",
+        "status": "OK",
+        "service": "HidUsb",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "USB\\VID_4320&PID_0301&MI_00\\7&38293427&0&0000"
+    },
+    {
+        "name": "Samsung SSD 870 EVO 250GB",
+        "hw_id": "SCSI\\DiskATA_____Samsung_SSD_870_2B6Q",
+        "status": "OK",
+        "service": "disk",
+        "manufacturer": "(Standard disk drives)",
+        "device_id": "SCSI\\DISK&VEN_ATA&PROD_SAMSUNG_SSD_870\\4&37BF5BB2&0&030000"
+    },
+    {
+        "name": "Microsoft VHD Loopback Controller",
+        "hw_id": "{8e7bd593-6e6c-4c52-86a6-77175494dd8e}\\MsVhdHba",
+        "status": "OK",
+        "service": "vhdmp",
+        "manufacturer": "Microsoft",
+        "device_id": "{8E7BD593-6E6C-4C52-86A6-77175494DD8E}\\MSVHDHBA\\1&3030E83&0&01"
+    },
+    {
+        "name": "USB Composite Device",
+        "hw_id": "USB\\VID_1415&PID_2000&REV_0200",
+        "status": "OK",
+        "service": "usbccgp",
+        "manufacturer": "(Standard USB Host Controller)",
+        "device_id": "USB\\VID_1415&PID_2000\\6&172E998C&0&4"
+    },
+    {
+        "name": "Motherboard resources",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0C02",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0C02\\111"
+    },
+    {
+        "name": "Genesys Logic USB2.0 Card Reader",
+        "hw_id": "USB\\VID_05E3&PID_0722&REV_9843",
+        "status": "OK",
+        "service": "GeneStor",
+        "manufacturer": "Genesys Logic",
+        "device_id": "USB\\VID_05E3&PID_0722\\000000009843"
+    },
+    {
+        "name": "Intel(R) Watchdog Timer Driver (Intel(R) WDT)",
+        "hw_id": "ACPI\\VEN_INT&DEV_3F0D",
+        "status": "OK",
+        "service": "ICCWDT",
+        "manufacturer": "Intel",
+        "device_id": "ACPI\\INT3F0D\\4&31370CA8&0"
+    },
+    {
+        "name": "HP61E383 (HP Photosmart 5510d series)",
+        "hw_id": "UMB\\VEN_03F0&DEV_Photosmart_5510d_series&SUBSYS_CQ183A",
+        "status": "OK",
+        "service": "WSDPrintDevice",
+        "manufacturer": "HP",
+        "device_id": "SWD\\DAFWSDPROVIDER\\URN:UUID:1C852A4D-B800-1F08-ABCD-AC162D61E383/HTTP://1C852A4D-B800-1F08-ABCD-AC162D61E383/PRINTSERVICE"
+    },
+    {
+        "name": "Microsoft System Management BIOS Driver",
+        "hw_id": "ROOT\\mssmbios",
+        "status": "OK",
+        "service": "mssmbios",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ROOT\\MSSMBIOS\\0000"
+    },
+    {
+        "name": "Intel(R) 8 Series/C220 Series PCI Express Root Port #8 - 8C1E",
+        "hw_id": "PCI\\VEN_8086&DEV_8C1E&SUBSYS_366D17AA&REV_D5",
+        "status": "OK",
+        "service": "pci",
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_8C1E&SUBSYS_366D17AA&REV_D5\\3&11583659&0&E7"
+    },
+    {
+        "name": "Direct memory access controller",
+        "hw_id": "ACPI\\VEN_PNP&DEV_0200",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ACPI\\PNP0200\\4&31370CA8&0"
+    },
+    {
+        "name": "Logitech HID Device",
+        "hw_id": "LOGITECH_RAW_PDO",
+        "status": "OK",
+        "service": null,
+        "manufacturer": null,
+        "device_id": "{C1FCC185-55B3-4E00-814B-C588A13525E1}\\VID_046D&PID_C50E&REV_2500&HIDFILT\\8&38F87047&0&00"
+    },
+    {
+        "name": "Intel(R) C220 series chipset SATA AHCI Controller",
+        "hw_id": "PCI\\VEN_8086&DEV_8C02&SUBSYS_366D17AA&REV_05",
+        "status": "OK",
+        "service": "iaStorE",
+        "manufacturer": "Intel Corporation",
+        "device_id": "PCI\\VEN_8086&DEV_8C02&SUBSYS_366D17AA&REV_05\\3&11583659&0&FA"
+    },
+    {
+        "name": "Plug and Play Software Device Enumerator",
+        "hw_id": "ROOT\\SWENUM",
+        "status": "OK",
+        "service": "swenum",
+        "manufacturer": "(Standard system devices)",
+        "device_id": "ROOT\\SYSTEM\\0000"
+    },
+    {
+        "name": "Logitech Pointing Device",
+        "hw_id": "LOGITECH_RAW_PDO",
+        "status": "OK",
+        "service": null,
+        "manufacturer": null,
+        "device_id": "{C1FCC185-55B3-4E00-814B-C588A13525E1}\\VID_046D&PID_C50E&REV_2500&MOUFILT\\8&38F87047&0&00"
+    },
+    {
+        "name": "USB Root Hub (USB 3.0)",
+        "hw_id": "USB\\ROOT_HUB30&VID8086&PID8C31&REV0005",
+        "status": "OK",
+        "service": "USBHUB3",
+        "manufacturer": "(Standard USB HUBs)",
+        "device_id": "USB\\ROOT_HUB30\\4&17FD5F3D&0&0"
+    },
+    {
+        "name": "Intel(R) Xeon(R) processor E3 - 1200 v3/4th Gen Core processor PCI Express x16 Controller - 0C01",
+        "hw_id": "PCI\\VEN_8086&DEV_0C01&SUBSYS_366D17AA&REV_06",
+        "status": "OK",
+        "service": "pci",
+        "manufacturer": "INTEL",
+        "device_id": "PCI\\VEN_8086&DEV_0C01&SUBSYS_366D17AA&REV_06\\3&11583659&0&08"
+    },
+    {
+        "name": "Remote Desktop Device Redirector Bus",
+        "hw_id": "ROOT\\RDPBUS",
+        "status": "OK",
+        "service": "rdpbus",
+        "manufacturer": "Microsoft",
+        "device_id": "ROOT\\RDPBUS\\0000"
+    },
+    {
+        "name": "WAN Miniport (IPv6)",
+        "hw_id": "ms_ndiswanipv6",
+        "status": "OK",
+        "service": "NdisWan",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_NDISWANIPV6"
+    },
+    {
+        "name": "Microsoft Virtual Disk",
+        "hw_id": "SCSI\\DiskMsft____Virtual_Disk____1.0_",
+        "status": "OK",
+        "service": "disk",
+        "manufacturer": "(Standard disk drives)",
+        "device_id": "SCSI\\DISK&VEN_MSFT&PROD_VIRTUAL_DISK\\2&1F4ADFFE&0&000002"
+    },
+    {
+        "name": "Microphone (Realtek High Definition Audio)",
+        "hw_id": "MMDEVAPI\\AudioEndpoints",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{8A5BCE72-BB6B-476B-A9F6-65A47699EFF3}"
+    },
+    {
+        "name": "WAN Miniport (L2TP)",
+        "hw_id": "ms_l2tpminiport",
+        "status": "OK",
+        "service": "Rasl2tp",
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\MSRRAS\\MS_L2TPMINIPORT"
+    },
+    {
+        "name": "Wi-Fi",
+        "hw_id": "N/A",
+        "status": "OK",
+        "service": null,
+        "manufacturer": "Microsoft",
+        "device_id": "SWD\\RADIO\\{CD8F1512-2929-4961-AB46-C8928D3151F8}"
+    }
+]

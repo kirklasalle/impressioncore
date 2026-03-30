@@ -1,0 +1,151 @@
+{
+  "coverage": {
+    "data": {
+      "total": 1863038,
+      "mapped": 34941,
+      "mapped_pct": 1.8755
+    }
+  },
+  "modality_coverage": {
+    "OpenAI-DataExport_Kirk_LaSalle": {
+      "total": 586,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "VS CODE AIEX Exports": {
+      "total": 64,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "academic": {
+      "total": 10045,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "audio": {
+      "total": 620028,
+      "mapped": 357,
+      "mapped_pct": 0.0576
+    },
+    "educational": {
+      "total": 6904,
+      "mapped": 4462,
+      "mapped_pct": 64.6292
+    },
+    "educational_corpus": {
+      "total": 14,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "educational_corpus_archive": {
+      "total": 1,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "educational_corpus_complete": {
+      "total": 69,
+      "mapped": 26,
+      "mapped_pct": 37.6812
+    },
+    "educational_corpus_enhanced": {
+      "total": 12,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "educational_corpus_enhanced_v2": {
+      "total": 34,
+      "mapped": 26,
+      "mapped_pct": 76.4706
+    },
+    "educational_corpus_failed_sources_recovery": {
+      "total": 7,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "educational_corpus_final": {
+      "total": 62,
+      "mapped": 26,
+      "mapped_pct": 41.9355
+    },
+    "experimental": {
+      "total": 2,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "huggingface_cache": {
+      "total": 168,
+      "mapped": 46,
+      "mapped_pct": 27.381
+    },
+    "kinetics400": {
+      "total": 6,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "metadata": {
+      "total": 4,
+      "mapped": 1,
+      "mapped_pct": 25.0
+    },
+    "multimodal": {
+      "total": 64380,
+      "mapped": 164,
+      "mapped_pct": 0.2547
+    },
+    "phonemes": {
+      "total": 105841,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "processed": {
+      "total": 6263,
+      "mapped": 87,
+      "mapped_pct": 1.3891
+    },
+    "raw": {
+      "total": 20,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "splits": {
+      "total": 3,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "structured": {
+      "total": 6,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "tabular": {
+      "total": 127,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "text": {
+      "total": 299512,
+      "mapped": 211,
+      "mapped_pct": 0.0704
+    },
+    "video": {
+      "total": 26655,
+      "mapped": 26640,
+      "mapped_pct": 99.9437
+    },
+    "vision": {
+      "total": 718830,
+      "mapped": 2895,
+      "mapped_pct": 0.4027
+    },
+    "web": {
+      "total": 9,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    },
+    "workspaceStorage": {
+      "total": 3386,
+      "mapped": 0,
+      "mapped_pct": 0.0
+    }
+  }
+}

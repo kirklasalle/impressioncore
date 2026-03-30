@@ -1,0 +1,21 @@
+{
+  "total_lines": 552521,
+  "empty_lines": 82024,
+  "session_delimiter_count": 22378,
+  "role_delimiter_count": 2679,
+  "session_samples": [
+    "## 1. Introduction\n",
+    "## 2. Early Language Acquisition (Infancy to Preschool)\n",
+    "### 2.1. Pre-Verbal Communication and First Words\n",
+    "### 2.2. Emergence of Word Combinations\n",
+    "## 3. Early Childhood (Preschool to Elementary)\n"
+  ],
+  "role_samples": [
+    "user\n",
+    "user\n",
+    "user\n",
+    "user\n",
+    "user\n"
+  ],
+  "recommendation": "Likely session/topic boundaries detected. Use these for chunking."
+}

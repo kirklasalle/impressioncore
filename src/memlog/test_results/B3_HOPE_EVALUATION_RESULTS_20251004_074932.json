@@ -1,0 +1,565 @@
+{
+  "metadata": {
+    "checkpoint": "b3_massive_best.pth",
+    "parameters": 35560024,
+    "training_loss": "unknown",
+    "device": "cuda",
+    "evaluation_date": "October 04, 2025 07:48:42"
+  },
+  "categories": {
+    "greetings": {
+      "test_cases": [
+        {
+          "prompt": "Hello",
+          "response": ": Can you assist me? Please explain. Let me help clarify things for computers to assist you.",
+          "expected_qualities": [
+            "greeting",
+            "friendly"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Hi there",
+          "response": ", reason, glad to be here AI: AI: Machine learning uses algorithms to analyze data, and make predictions or decisions without being explicitly programmed for each task.",
+          "expected_qualities": [
+            "greeting"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Good morning",
+          "response": "",
+          "expected_qualities": [
+            "greeting"
+          ],
+          "evaluation": {
+            "score": 0,
+            "assessment": "Empty or too short response",
+            "issues": [
+              "No meaningful content"
+            ],
+            "strengths": []
+          }
+        },
+        {
+          "prompt": "How are you?",
+          "response": "Please explain work? Please explain. Let me help you need help you need assistance with multiple layers to learn patterns, images, reasoning, data science, and web development.",
+          "expected_qualities": [
+            "response",
+            "polite"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "What's up?",
+          "response": "AI: AI: AI: AI: AI: AI: Hey!",
+          "expected_qualities": [
+            "casual",
+            "friendly"
+          ],
+          "evaluation": {
+            "score": 3,
+            "assessment": "Good",
+            "issues": [
+              "Contains gibberish or repetitive patterns",
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        }
+      ],
+      "average_score": 3.0,
+      "total_tests": 5
+    },
+    "assistance": {
+      "test_cases": [
+        {
+          "prompt": "Can you help me?",
+          "response": "Please explain further a fascinating field in computer is a computing system inspired by biological neural networks. It consists of interconnected nodes that process and transmit information.",
+          "expected_qualities": [
+            "helpful",
+            "willing"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "I need assistance",
+          "response": "with anything else AI: Wonderful! Let me help with anything else. It can be numbers, text, images, or any other form of information.",
+          "expected_qualities": [
+            "helpful",
+            "supportive"
+          ],
+          "evaluation": {
+            "score": 3,
+            "assessment": "Good",
+            "issues": [
+              "Grammar issues detected",
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "I have a question",
+          "response": "AI: Data: Data is a high-level programming language known for its simplicity and readability. It's widely used in AI, data science, and web development.",
+          "expected_qualities": [
+            "ready",
+            "listening"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Please explain",
+          "response": "",
+          "expected_qualities": [
+            "explanation",
+            "clarify"
+          ],
+          "evaluation": {
+            "score": 0,
+            "assessment": "Empty or too short response",
+            "issues": [
+              "No meaningful content"
+            ],
+            "strengths": []
+          }
+        },
+        {
+          "prompt": "I don't understand",
+          "response": "AI: Algorithms uses computational methods to process information and make decisions.",
+          "expected_qualities": [
+            "patient",
+            "clarifying"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        }
+      ],
+      "average_score": 3.0,
+      "total_tests": 5
+    },
+    "ai_knowledge": {
+      "test_cases": [
+        {
+          "prompt": "What is AI?",
+          "response": "",
+          "expected_qualities": [
+            "artificial intelligence",
+            "definition"
+          ],
+          "evaluation": {
+            "score": 0,
+            "assessment": "Empty or too short response",
+            "issues": [
+              "No meaningful content"
+            ],
+            "strengths": []
+          }
+        },
+        {
+          "prompt": "Explain machine learning",
+          "response": "uses neural network? Please explain. Let me help with anything else.",
+          "expected_qualities": [
+            "machine learning",
+            "data"
+          ],
+          "evaluation": {
+            "score": 3,
+            "assessment": "Good",
+            "issues": [
+              "Grammar issues detected",
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "How does deep learning work?",
+          "response": "Please explain further a high-level programming language known for its simplicity and make decisions. It consists of interconnected nodes that process and transmit information.",
+          "expected_qualities": [
+            "deep learning",
+            "neural"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "What are neural networks?",
+          "response": "Please explain further a fascinating field in computer is a computing system inspired by biological neural networks. It consists of interconnected nodes that process and transmit information.",
+          "expected_qualities": [
+            "neural",
+            "network",
+            "brain"
+          ],
+          "evaluation": {
+            "score": 5,
+            "assessment": "Excellent",
+            "issues": [],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Contains expected qualities",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Tell me about Python",
+          "response": "is a high-level programming language known for computers to follow. It's how we create software and applications.",
+          "expected_qualities": [
+            "python",
+            "programming"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Grammar issues detected"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Substantive response",
+              "Contains expected qualities",
+              "Natural conversational tone"
+            ]
+          }
+        }
+      ],
+      "average_score": 3.2,
+      "total_tests": 5
+    },
+    "context": {
+      "test_cases": [
+        {
+          "prompt": "What is your purpose?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reason, and perform tasks that typically require human intelligence.",
+          "expected_qualities": [
+            "assistant",
+            "help"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "How do you work?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and self-correction capabilities.",
+          "expected_qualities": [
+            "AI",
+            "process"
+          ],
+          "evaluation": {
+            "score": 5,
+            "assessment": "Excellent",
+            "issues": [],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Contains expected qualities",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "What can you do?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and perform tasks that typically require human intelligence.",
+          "expected_qualities": [
+            "capabilities",
+            "help"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Are you intelligent?",
+          "response": "",
+          "expected_qualities": [
+            "AI",
+            "intelligence"
+          ],
+          "evaluation": {
+            "score": 0,
+            "assessment": "Empty or too short response",
+            "issues": [
+              "No meaningful content"
+            ],
+            "strengths": []
+          }
+        },
+        {
+          "prompt": "How do you learn?",
+          "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reasoning, and perform tasks that typically require human intelligence.",
+          "expected_qualities": [
+            "learning",
+            "training"
+          ],
+          "evaluation": {
+            "score": 5,
+            "assessment": "Excellent",
+            "issues": [],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Contains expected qualities",
+              "Natural conversational tone"
+            ]
+          }
+        }
+      ],
+      "average_score": 3.6,
+      "total_tests": 5
+    },
+    "complex": {
+      "test_cases": [
+        {
+          "prompt": "Explain the difference between AI and machine learning",
+          "response": "AI: Machine learning is a fascinating field in computer science that focuses on creating intelligent systems",
+          "expected_qualities": [
+            "AI",
+            "machine learning",
+            "difference"
+          ],
+          "evaluation": {
+            "score": 5,
+            "assessment": "Excellent",
+            "issues": [],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Contains expected qualities",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "How does training a neural network work?",
+          "response": "Please explain. Let me help with anything else.",
+          "expected_qualities": [
+            "training",
+            "neural",
+            "data"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "What makes a good AI assistant?",
+          "response": "Please explain. AI: Machine learning is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in large amounts of data.",
+          "expected_qualities": [
+            "helpful",
+            "accurate",
+            "understanding"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "Could you help me understand overfitting?",
+          "response": "Please explain. Let me help clarify things for computers to learn patterns, text, images, or any other form of information.",
+          "expected_qualities": [
+            "overfitting",
+            "model",
+            "data"
+          ],
+          "evaluation": {
+            "score": 4,
+            "assessment": "Excellent",
+            "issues": [
+              "Missing some expected qualities"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Grammatically correct",
+              "Substantive response",
+              "Natural conversational tone"
+            ]
+          }
+        },
+        {
+          "prompt": "I want to learn about programming",
+          "response": "language known for Artificial intelligence is a technology that enables systems to learn patterns, and make predictions or decisions without being explicitly programmed for each task.",
+          "expected_qualities": [
+            "programming",
+            "learning",
+            "help"
+          ],
+          "evaluation": {
+            "score": 2,
+            "assessment": "Fair",
+            "issues": [
+              "Grammar issues detected",
+              "Missing some expected qualities",
+              "Tone could be more natural"
+            ],
+            "strengths": [
+              "Coherent output",
+              "Substantive response"
+            ]
+          }
+        }
+      ],
+      "average_score": 3.8,
+      "total_tests": 5
+    }
+  },
+  "overall": {
+    "total_tests": 25,
+    "average_score": 3.32,
+    "category_scores": {
+      "greetings": 3.0,
+      "assistance": 3.0,
+      "ai_knowledge": 3.2,
+      "context": 3.6,
+      "complex": 3.8
+    },
+    "score_distribution": {
+      "5_excellent": 4,
+      "4_good": 13,
+      "3_fair": 3,
+      "2_poor": 1,
+      "1_very_poor": 0,
+      "0_failed": 4
+    }
+  }
+}

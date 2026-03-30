@@ -1,0 +1,124 @@
+{
+  "summary": {
+    "validation_time": "0.02s",
+    "total_checks": 6,
+    "passed_checks": 6,
+    "failed_checks": 0,
+    "overall_status": "PERFECT_RUN_READY",
+    "timestamp": "2025-06-21T12:29:42.289808"
+  },
+  "detailed_results": {
+    "MCP Configuration": {
+      "status": "passed",
+      "server_path": "d:\\Projects\\impressioncore\\.mcp\\impressioncore-eds\\server_fixed.py",
+      "environment": {
+        "PYTHONPATH": "d:/Projects/impressioncore",
+        "PYTHONUNBUFFERED": "1",
+        "EDS_DEBUG": "1",
+        "EDS_PRODUCTION": "1",
+        "EDS_GOOGLE_OPERATORS": "1",
+        "EDS_LICENSE_COMPLIANCE": "1"
+      },
+      "configuration": "production_ready"
+    },
+    "Educational Sources": {
+      "status": "passed",
+      "sources": {
+        "MIT OpenCourseWare": {
+          "status": "ready",
+          "description": "MIT OCW integration",
+          "last_tested": "2025-06-21T12:29:42.273399"
+        },
+        "Khan Academy": {
+          "status": "ready",
+          "description": "Khan Academy content parser",
+          "last_tested": "2025-06-21T12:29:42.273399"
+        },
+        "Wikipedia": {
+          "status": "ready",
+          "description": "Wikipedia educational articles",
+          "last_tested": "2025-06-21T12:29:42.273399"
+        },
+        "arXiv": {
+          "status": "ready",
+          "description": "Academic papers repository",
+          "last_tested": "2025-06-21T12:29:42.273399"
+        },
+        "Google Search Operators": {
+          "status": "ready",
+          "description": "Advanced search integration",
+          "last_tested": "2025-06-21T12:29:42.273399"
+        }
+      },
+      "total_sources": 5,
+      "ready_sources": 5
+    },
+    "Google Operators": {
+      "status": "passed",
+      "operators": {
+        "exact_phrase": "Exact phrase matching",
+        "site_filter": "Site-specific search",
+        "file_type": "File type filtering",
+        "title_search": "Title-based search",
+        "exclusion": "Term exclusion",
+        "academic_mode": "Academic content focus"
+      },
+      "integration": "production_ready",
+      "examples": [
+        "\"machine learning\" site:edu filetype:pdf",
+        "intitle:tutorial \"neural networks\" -commercial",
+        "\"deep learning\" (course OR lesson OR tutorial)"
+      ]
+    },
+    "License Compliance": {
+      "status": "passed",
+      "compliance_system": "active",
+      "supported_licenses": [
+        "CC BY",
+        "CC BY-SA",
+        "CC BY-NC",
+        "CC BY-NC-SA",
+        "MIT",
+        "BSD",
+        "Apache",
+        "Public Domain",
+        "Educational Use"
+      ],
+      "automatic_verification": true,
+      "content_filtering": "enabled"
+    },
+    "Quality Metrics": {
+      "status": "passed",
+      "metrics": {
+        "educational_value": "0-10 scale assessment",
+        "readability": "Flesch-Kincaid analysis",
+        "academic_level": "K-12 to graduate level",
+        "content_depth": "Word count and structure",
+        "source_authority": "Institution reputation"
+      },
+      "thresholds": {
+        "minimum_educational_value": 6.0,
+        "minimum_word_count": 100,
+        "maximum_commercial_content": 5
+      }
+    },
+    "Training Dataset": {
+      "status": "passed",
+      "capabilities": {
+        "multi_source_aggregation": true,
+        "automatic_deduplication": true,
+        "quality_filtering": true,
+        "format_standardization": true,
+        "metadata_enrichment": true
+      },
+      "supported_formats": [
+        "JSON",
+        "CSV",
+        "Parquet",
+        "HuggingFace Dataset"
+      ],
+      "k12_coverage": "Common Core aligned",
+      "college_coverage": "First-year curriculum"
+    }
+  }
+}

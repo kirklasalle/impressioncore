@@ -1,0 +1,139 @@
+<div class="section-card">
+    <h4>How Tokenization Works</h4>
+    <p>Understanding the tokenization process in ImpressionCore for both text and images.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-file-text"></i> Text Tokenization (BPE)</h5>
+        <p>Byte-Pair Encoding (BPE) is a data compression technique adapted for tokenization:</p>
+        
+        <div class="tokenization-demo">
+            <h6>BPE Process:</h6>
+            <ol>
+                <li>Start with individual characters as tokens</li>
+                <li>Count frequency of adjacent token pairs</li>
+                <li>Merge most frequent pair into a new token</li>
+                <li>Repeat until desired vocabulary size is reached</li>
+            </ol>
+
+            <div class="mt-3">
+                <h6>Example:</h6>
+                <pre class="bg-light p-2">
+Input: "hello world"
+1. Split into characters: ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+2. Find pairs: 'll' appears most
+3. Merge 'll': ['h', 'e', 'll', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+4. Continue merging frequent pairs...</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-image"></i> Image Tokenization</h5>
+        <p>Image tokenization uses a learned patch-based approach with visual token embeddings:</p>
+
+        <div class="tokenization-demo">
+            <h6>Process:</h6>
+            <ol>
+                <li>Divide image into patches (e.g., 8x8 pixels)</li>
+                <li>Embed patches into a learned latent space</li>
+                <li>Quantize embeddings to nearest tokens</li>
+                <li>Use tokens for compression/reconstruction</li>
+            </ol>
+
+            <div class="mt-3">
+                <h6>Multi-Scale Reconstruction:</h6>
+                <ul>
+                    <li>Reconstructs image at multiple scales</li>
+                    <li>Uses skip connections for detail preservation</li>
+                    <li>Employs residual blocks for feature refinement</li>
+                    <li>Optimizes for both perceptual and structural similarity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-graph-up"></i> Performance Metrics</h5>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="tokenization-demo">
+                    <h6>Text Metrics:</h6>
+                    <ul>
+                        <li><strong>Compression Ratio:</strong> Original size vs tokenized</li>
+                        <li><strong>Vocabulary Coverage:</strong> % of text represented</li>
+                        <li><strong>Token Distribution:</strong> Balance of token usage</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="tokenization-demo">
+                    <h6>Image Metrics:</h6>
+                    <ul>
+                        <li><strong>SSIM:</strong> Structural similarity index</li>
+                        <li><strong>PSNR:</strong> Peak signal-to-noise ratio</li>
+                        <li><strong>Compression Rate:</strong> Tokens per image</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-lightbulb"></i> Advanced Features</h5>
+        
+        <div class="tokenization-demo">
+            <h6>Text Features:</h6>
+            <ul>
+                <li>Subword tokenization for better handling of rare words</li>
+                <li>Special token handling (padding, unknown, etc.)</li>
+                <li>Case-sensitive and case-insensitive modes</li>
+                <li>Custom vocabulary expansion</li>
+            </ul>
+
+            <h6 class="mt-3">Image Features:</h6>
+            <ul>
+                <li>Adaptive patch sizes based on content</li>
+                <li>Progressive token refinement</li>
+                <li>Perceptual loss optimization</li>
+                <li>Hardware-aware token allocation</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-cpu"></i> Tips for Optimal Results</h5>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="tokenization-demo">
+                    <h6>Text Tokenization:</h6>
+                    <ul>
+                        <li>Use domain-specific training data</li>
+                        <li>Balance vocabulary size vs compression</li>
+                        <li>Consider frequency thresholds</li>
+                        <li>Add special tokens as needed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="tokenization-demo">
+                    <h6>Image Tokenization:</h6>
+                    <ul>
+                        <li>Choose appropriate patch size</li>
+                        <li>Train on similar image types</li>
+                        <li>Adjust token count for quality</li>
+                        <li>Enable multi-scale features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add any interactive demonstrations or visualizations here
+    console.log('Tokenizer info page loaded');
+});
+</script>

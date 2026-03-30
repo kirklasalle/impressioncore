@@ -1,0 +1,123 @@
+# ImpressionCore CI — Lint, Type-Check, Test
+# Runs on every push to main and on all pull requests.
+
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    # ── Lint ────────────────────────────────────────────────────────────────
+    lint:
+        name: Lint (ruff)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Python 3.10
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Install ruff
+              run: pip install ruff>=0.4.0
+
+            - name: Ruff check
+              run: ruff check src/ agent0core/ --output-format=github
+
+            - name: Ruff format check
+              run: ruff format --check src/ agent0core/
+
+    # ── Type Check ──────────────────────────────────────────────────────────
+    typecheck:
+        name: Type check (mypy)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Python 3.10
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Install dependencies
+              run: |
+                  pip install mypy>=1.8.0
+                  pip install torch --index-url https://download.pytorch.org/whl/cpu
+                  pip install transformers tokenizers numpy rich tqdm psutil pynvml
+
+            - name: Mypy on core modules
+              run: mypy src/core/ --ignore-missing-imports --no-error-summary || true
+              # Start as advisory (|| true) — remove when type coverage improves
+
+    # ── Test ────────────────────────────────────────────────────────────────
+    test:
+        name: Test (pytest)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Python 3.10
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+                  cache: pip
+
+            - name: Install project + dev deps
+              run: |
+                  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+                  pip install -e ".[dev]" || pip install pytest pytest-cov pytest-timeout
+                  pip install -r requirements.txt || true
+
+            - name: Run tests
+              run: |
+                  pytest src/tests/ \
+                    -x \
+                    --timeout=120 \
+                    -m "not slow and not integration and not gpu" \
+                    --cov=src \
+                    --cov-report=term-missing \
+                    --cov-fail-under=10 \
+                    -q
+              env:
+                  PYTHONPATH: "."
+
+    # ── Security Audit ──────────────────────────────────────────────────────
+    security:
+        name: Security checks
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Check for wildcard CORS
+              run: |
+                  echo "Checking for allow_origins=['*'] in active source..."
+                  if grep -rn 'allow_origins=\["\\*"\]' src/ agent0core/ \
+                     --include='*.py' \
+                     --exclude-dir=deployment \
+                     --exclude-dir=archive; then
+                    echo "::error::Found wildcard CORS in active source code!"
+                    exit 1
+                  fi
+                  echo "No wildcard CORS found — OK"
+
+            - name: Check for unsafe torch.load
+              run: |
+                  echo "Checking for torch.load without weights_only in core paths..."
+                  UNSAFE=$(grep -rn 'torch\.load(' src/core/ src/inference/ src/services/ \
+                    --include='*.py' \
+                    --exclude-dir=archive \
+                    --exclude-dir=deployment | \
+                    grep -v 'weights_only' | \
+                    grep -v '# noqa' || true)
+                  if [ -n "$UNSAFE" ]; then
+                    echo "$UNSAFE"
+                    echo "::warning::Found torch.load calls without weights_only in critical paths"
+                  fi
+                  echo "Security check complete"

@@ -1,0 +1,3005 @@
+{
+  "suggestions_count": 2250,
+  "suggestions": [
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_2.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_3.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_4.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk1_5.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 1,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk2.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 2,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk2.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 2,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk2_1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 2,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\b3_39m\\audio_unknown_1089-134686.trans_20250621_chunk2_1.npy",
+      "prefix": "audio_unknown_1089-134686.trans_20250621",
+      "index": 2,
+      "dataset_example_prefix": "audio_unknown_1089-134686.trans_20250621"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_1_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_2_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\1stGrade_chunk1_3_educational.npy",
+      "prefix": "1stGrade",
+      "index": 1,
+      "dataset_example_prefix": "1stGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_1_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_2_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\2ndGrade_chunk1_3_educational.npy",
+      "prefix": "2ndGrade",
+      "index": 1,
+      "dataset_example_prefix": "2ndGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_1_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_2_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\3rdGrade_chunk1_3_educational.npy",
+      "prefix": "3rdGrade",
+      "index": 1,
+      "dataset_example_prefix": "3rdGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_1_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_2_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\4thGrade_chunk1_3_educational.npy",
+      "prefix": "4thGrade",
+      "index": 1,
+      "dataset_example_prefix": "4thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_1_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_2_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\5thGrade_chunk1_3_educational.npy",
+      "prefix": "5thGrade",
+      "index": 1,
+      "dataset_example_prefix": "5thGrade"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk10.npy_039f895c.npy",
+      "prefix": "educational_text_001",
+      "index": 10,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk10.npy_039f895c.npy",
+      "prefix": "educational_text_001",
+      "index": 10,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk101.npy_d3dda4c6.npy",
+      "prefix": "educational_text_001",
+      "index": 101,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk101.npy_d3dda4c6.npy",
+      "prefix": "educational_text_001",
+      "index": 101,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk111.npy_fde9ed50.npy",
+      "prefix": "educational_text_001",
+      "index": 111,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk111.npy_fde9ed50.npy",
+      "prefix": "educational_text_001",
+      "index": 111,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk111.npy_fde9ed50.npy",
+      "prefix": "educational_text_001",
+      "index": 111,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk111.npy_fde9ed50.npy",
+      "prefix": "educational_text_001",
+      "index": 111,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk118_1.npy_712f123e.npy",
+      "prefix": "educational_text_001",
+      "index": 118,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk118_1.npy_712f123e.npy",
+      "prefix": "educational_text_001",
+      "index": 118,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk118_1.npy_712f123e.npy",
+      "prefix": "educational_text_001",
+      "index": 118,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk118_1.npy_712f123e.npy",
+      "prefix": "educational_text_001",
+      "index": 118,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk120_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk121_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk122_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk123_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk124_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk125_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk126_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk127_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk128_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk129_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk12_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk12_1_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk12_2_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_001_chunk12_3_educational.npy",
+      "prefix": "educational_text_001",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk133.npy_65fc6b95.npy",
+      "prefix": "educational_text_001",
+      "index": 133,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk133.npy_65fc6b95.npy",
+      "prefix": "educational_text_001",
+      "index": 133,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk133.npy_65fc6b95.npy",
+      "prefix": "educational_text_001",
+      "index": 133,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk133.npy_65fc6b95.npy",
+      "prefix": "educational_text_001",
+      "index": 133,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk134_1.npy_7ee46144.npy",
+      "prefix": "educational_text_001",
+      "index": 134,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk134_1.npy_7ee46144.npy",
+      "prefix": "educational_text_001",
+      "index": 134,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk134_1.npy_7ee46144.npy",
+      "prefix": "educational_text_001",
+      "index": 134,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk134_1.npy_7ee46144.npy",
+      "prefix": "educational_text_001",
+      "index": 134,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk139.npy_27766868.npy",
+      "prefix": "educational_text_001",
+      "index": 139,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk139.npy_27766868.npy",
+      "prefix": "educational_text_001",
+      "index": 139,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk141.npy_12553017.npy",
+      "prefix": "educational_text_001",
+      "index": 141,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk141.npy_12553017.npy",
+      "prefix": "educational_text_001",
+      "index": 141,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk141.npy_12553017.npy",
+      "prefix": "educational_text_001",
+      "index": 141,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk141.npy_12553017.npy",
+      "prefix": "educational_text_001",
+      "index": 141,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk150_1.npy_68833807.npy",
+      "prefix": "educational_text_001",
+      "index": 150,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk158_1.npy_1f139042.npy",
+      "prefix": "educational_text_001",
+      "index": 158,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk158_1.npy_1f139042.npy",
+      "prefix": "educational_text_001",
+      "index": 158,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk158_1.npy_1f139042.npy",
+      "prefix": "educational_text_001",
+      "index": 158,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk158_1.npy_1f139042.npy",
+      "prefix": "educational_text_001",
+      "index": 158,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk15_1.npy_0f067623.npy",
+      "prefix": "educational_text_001",
+      "index": 15,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk15_1.npy_0f067623.npy",
+      "prefix": "educational_text_001",
+      "index": 15,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk160.npy_6acb7512.npy",
+      "prefix": "educational_text_001",
+      "index": 160,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk160.npy_6acb7512.npy",
+      "prefix": "educational_text_001",
+      "index": 160,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk160.npy_6acb7512.npy",
+      "prefix": "educational_text_001",
+      "index": 160,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk160.npy_6acb7512.npy",
+      "prefix": "educational_text_001",
+      "index": 160,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk166_1.npy_6e910dda.npy",
+      "prefix": "educational_text_001",
+      "index": 166,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk166_1.npy_6e910dda.npy",
+      "prefix": "educational_text_001",
+      "index": 166,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk166_1.npy_6e910dda.npy",
+      "prefix": "educational_text_001",
+      "index": 166,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk166_1.npy_6e910dda.npy",
+      "prefix": "educational_text_001",
+      "index": 166,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk173.npy_5ddfddbb.npy",
+      "prefix": "educational_text_001",
+      "index": 173,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk173.npy_5ddfddbb.npy",
+      "prefix": "educational_text_001",
+      "index": 173,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk173.npy_5ddfddbb.npy",
+      "prefix": "educational_text_001",
+      "index": 173,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk173.npy_5ddfddbb.npy",
+      "prefix": "educational_text_001",
+      "index": 173,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk175.npy_6e8eb0b7.npy",
+      "prefix": "educational_text_001",
+      "index": 175,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk175.npy_6e8eb0b7.npy",
+      "prefix": "educational_text_001",
+      "index": 175,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk177.npy_e7d28d24.npy",
+      "prefix": "educational_text_001",
+      "index": 177,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk177.npy_e7d28d24.npy",
+      "prefix": "educational_text_001",
+      "index": 177,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk179.npy_6b9a345b.npy",
+      "prefix": "educational_text_001",
+      "index": 179,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk179.npy_6b9a345b.npy",
+      "prefix": "educational_text_001",
+      "index": 179,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk182.npy_b0dea413.npy",
+      "prefix": "educational_text_001",
+      "index": 182,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk182.npy_b0dea413.npy",
+      "prefix": "educational_text_001",
+      "index": 182,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk182.npy_b0dea413.npy",
+      "prefix": "educational_text_001",
+      "index": 182,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk182.npy_b0dea413.npy",
+      "prefix": "educational_text_001",
+      "index": 182,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk18_1.npy_736e4c07.npy",
+      "prefix": "educational_text_001",
+      "index": 18,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk18_1.npy_736e4c07.npy",
+      "prefix": "educational_text_001",
+      "index": 18,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk196_1.npy_afcb10b1.npy",
+      "prefix": "educational_text_001",
+      "index": 196,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk199.npy_aa04d748.npy",
+      "prefix": "educational_text_001",
+      "index": 199,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk199.npy_aa04d748.npy",
+      "prefix": "educational_text_001",
+      "index": 199,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk200_1.npy_1124477b.npy",
+      "prefix": "educational_text_001",
+      "index": 200,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk203.npy_b7c3945c.npy",
+      "prefix": "educational_text_001",
+      "index": 203,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk203.npy_b7c3945c.npy",
+      "prefix": "educational_text_001",
+      "index": 203,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk204_1.npy_51588060.npy",
+      "prefix": "educational_text_001",
+      "index": 204,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk204_1.npy_51588060.npy",
+      "prefix": "educational_text_001",
+      "index": 204,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk204_1.npy_51588060.npy",
+      "prefix": "educational_text_001",
+      "index": 204,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk204_1.npy_51588060.npy",
+      "prefix": "educational_text_001",
+      "index": 204,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk205_1.npy_b901343a.npy",
+      "prefix": "educational_text_001",
+      "index": 205,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk205_1.npy_b901343a.npy",
+      "prefix": "educational_text_001",
+      "index": 205,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk205_1.npy_b901343a.npy",
+      "prefix": "educational_text_001",
+      "index": 205,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk205_1.npy_b901343a.npy",
+      "prefix": "educational_text_001",
+      "index": 205,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk215_1.npy_f421cae6.npy",
+      "prefix": "educational_text_001",
+      "index": 215,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk221.npy_5d88c55b.npy",
+      "prefix": "educational_text_001",
+      "index": 221,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk221.npy_5d88c55b.npy",
+      "prefix": "educational_text_001",
+      "index": 221,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk221.npy_5d88c55b.npy",
+      "prefix": "educational_text_001",
+      "index": 221,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk221.npy_5d88c55b.npy",
+      "prefix": "educational_text_001",
+      "index": 221,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk226_1.npy_380e2984.npy",
+      "prefix": "educational_text_001",
+      "index": 226,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk226_1.npy_380e2984.npy",
+      "prefix": "educational_text_001",
+      "index": 226,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk226_1.npy_380e2984.npy",
+      "prefix": "educational_text_001",
+      "index": 226,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk226_1.npy_380e2984.npy",
+      "prefix": "educational_text_001",
+      "index": 226,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk237_1.npy_949865eb.npy",
+      "prefix": "educational_text_001",
+      "index": 237,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk24.npy_4c877e7f.npy",
+      "prefix": "educational_text_001",
+      "index": 24,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk24.npy_4c877e7f.npy",
+      "prefix": "educational_text_001",
+      "index": 24,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk241.npy_8af0f5fd.npy",
+      "prefix": "educational_text_001",
+      "index": 241,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk241.npy_8af0f5fd.npy",
+      "prefix": "educational_text_001",
+      "index": 241,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk245_1.npy_8f6ea607.npy",
+      "prefix": "educational_text_001",
+      "index": 245,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk245_1.npy_8f6ea607.npy",
+      "prefix": "educational_text_001",
+      "index": 245,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk245_1.npy_8f6ea607.npy",
+      "prefix": "educational_text_001",
+      "index": 245,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk245_1.npy_8f6ea607.npy",
+      "prefix": "educational_text_001",
+      "index": 245,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk248.npy_a48d5a8e.npy",
+      "prefix": "educational_text_001",
+      "index": 248,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk248.npy_a48d5a8e.npy",
+      "prefix": "educational_text_001",
+      "index": 248,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk30_1.npy_d77f56e2.npy",
+      "prefix": "educational_text_001",
+      "index": 30,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk33_1.npy_29a62e7e.npy",
+      "prefix": "educational_text_001",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk33_1.npy_29a62e7e.npy",
+      "prefix": "educational_text_001",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk33_1.npy_29a62e7e.npy",
+      "prefix": "educational_text_001",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk33_1.npy_29a62e7e.npy",
+      "prefix": "educational_text_001",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk36.npy_12b1d45f.npy",
+      "prefix": "educational_text_001",
+      "index": 36,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk36.npy_12b1d45f.npy",
+      "prefix": "educational_text_001",
+      "index": 36,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk38.npy_511791d7.npy",
+      "prefix": "educational_text_001",
+      "index": 38,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk38.npy_511791d7.npy",
+      "prefix": "educational_text_001",
+      "index": 38,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk3_1.npy_4aca40ee.npy",
+      "prefix": "educational_text_001",
+      "index": 3,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk3_1.npy_4aca40ee.npy",
+      "prefix": "educational_text_001",
+      "index": 3,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk41.npy_923a4d2a.npy",
+      "prefix": "educational_text_001",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk41.npy_923a4d2a.npy",
+      "prefix": "educational_text_001",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk41.npy_923a4d2a.npy",
+      "prefix": "educational_text_001",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk41.npy_923a4d2a.npy",
+      "prefix": "educational_text_001",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk43_1.npy_ba74d046.npy",
+      "prefix": "educational_text_001",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk43_1.npy_ba74d046.npy",
+      "prefix": "educational_text_001",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk43_1.npy_ba74d046.npy",
+      "prefix": "educational_text_001",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk43_1.npy_ba74d046.npy",
+      "prefix": "educational_text_001",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk51_1.npy_a09cf955.npy",
+      "prefix": "educational_text_001",
+      "index": 51,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk52.npy_ee70881e.npy",
+      "prefix": "educational_text_001",
+      "index": 52,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk52.npy_ee70881e.npy",
+      "prefix": "educational_text_001",
+      "index": 52,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk54.npy_355713b7.npy",
+      "prefix": "educational_text_001",
+      "index": 54,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk54.npy_355713b7.npy",
+      "prefix": "educational_text_001",
+      "index": 54,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk55.npy_cf70947f.npy",
+      "prefix": "educational_text_001",
+      "index": 55,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk55.npy_cf70947f.npy",
+      "prefix": "educational_text_001",
+      "index": 55,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk74_1.npy_ed97e63b.npy",
+      "prefix": "educational_text_001",
+      "index": 74,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk77_1.npy_e36fcc83.npy",
+      "prefix": "educational_text_001",
+      "index": 77,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk77_1.npy_e36fcc83.npy",
+      "prefix": "educational_text_001",
+      "index": 77,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk77_1.npy_e36fcc83.npy",
+      "prefix": "educational_text_001",
+      "index": 77,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk77_1.npy_e36fcc83.npy",
+      "prefix": "educational_text_001",
+      "index": 77,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk84.npy_c0fa3c3b.npy",
+      "prefix": "educational_text_001",
+      "index": 84,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk84.npy_c0fa3c3b.npy",
+      "prefix": "educational_text_001",
+      "index": 84,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk84.npy_c0fa3c3b.npy",
+      "prefix": "educational_text_001",
+      "index": 84,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk84.npy_c0fa3c3b.npy",
+      "prefix": "educational_text_001",
+      "index": 84,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk92_1.npy_6c3992cd.npy",
+      "prefix": "educational_text_001",
+      "index": 92,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk93_1.npy_07d8c539.npy",
+      "prefix": "educational_text_001",
+      "index": 93,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk93_1.npy_07d8c539.npy",
+      "prefix": "educational_text_001",
+      "index": 93,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk93_1.npy_07d8c539.npy",
+      "prefix": "educational_text_001",
+      "index": 93,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_001_chunk93_1.npy_07d8c539.npy",
+      "prefix": "educational_text_001",
+      "index": 93,
+      "dataset_example_prefix": "educational_text_001"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_1_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_2_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_002_chunk12_3_educational.npy",
+      "prefix": "educational_text_002",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk25_1.npy_da37092f.npy",
+      "prefix": "educational_text_002",
+      "index": 25,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk26.npy_97d554b6.npy",
+      "prefix": "educational_text_002",
+      "index": 26,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk26.npy_97d554b6.npy",
+      "prefix": "educational_text_002",
+      "index": 26,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk33.npy_d81fc79a.npy",
+      "prefix": "educational_text_002",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk33.npy_d81fc79a.npy",
+      "prefix": "educational_text_002",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk33.npy_d81fc79a.npy",
+      "prefix": "educational_text_002",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk33.npy_d81fc79a.npy",
+      "prefix": "educational_text_002",
+      "index": 33,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk34_1.npy_4b04f506.npy",
+      "prefix": "educational_text_002",
+      "index": 34,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk34_1.npy_4b04f506.npy",
+      "prefix": "educational_text_002",
+      "index": 34,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk34_1.npy_4b04f506.npy",
+      "prefix": "educational_text_002",
+      "index": 34,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk34_1.npy_4b04f506.npy",
+      "prefix": "educational_text_002",
+      "index": 34,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk4.npy_67fc2818.npy",
+      "prefix": "educational_text_002",
+      "index": 4,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk4.npy_67fc2818.npy",
+      "prefix": "educational_text_002",
+      "index": 4,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk41_1.npy_7bf8cdc4.npy",
+      "prefix": "educational_text_002",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk41_1.npy_7bf8cdc4.npy",
+      "prefix": "educational_text_002",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk41_1.npy_7bf8cdc4.npy",
+      "prefix": "educational_text_002",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk41_1.npy_7bf8cdc4.npy",
+      "prefix": "educational_text_002",
+      "index": 41,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk43.npy_c051f970.npy",
+      "prefix": "educational_text_002",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk43.npy_c051f970.npy",
+      "prefix": "educational_text_002",
+      "index": 43,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk7.npy_44bde627.npy",
+      "prefix": "educational_text_002",
+      "index": 7,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk7.npy_44bde627.npy",
+      "prefix": "educational_text_002",
+      "index": 7,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk8_1.npy_76dbe14a.npy",
+      "prefix": "educational_text_002",
+      "index": 8,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk8_1.npy_76dbe14a.npy",
+      "prefix": "educational_text_002",
+      "index": 8,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk8_1.npy_76dbe14a.npy",
+      "prefix": "educational_text_002",
+      "index": 8,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_002_chunk8_1.npy_76dbe14a.npy",
+      "prefix": "educational_text_002",
+      "index": 8,
+      "dataset_example_prefix": "educational_text_002"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk106_1.npy_273e1bad.npy",
+      "prefix": "educational_text_003",
+      "index": 106,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk109.npy_6f629601.npy",
+      "prefix": "educational_text_003",
+      "index": 109,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk109.npy_6f629601.npy",
+      "prefix": "educational_text_003",
+      "index": 109,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk110.npy_bf60d797.npy",
+      "prefix": "educational_text_003",
+      "index": 110,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk110.npy_bf60d797.npy",
+      "prefix": "educational_text_003",
+      "index": 110,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk110.npy_bf60d797.npy",
+      "prefix": "educational_text_003",
+      "index": 110,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk110.npy_bf60d797.npy",
+      "prefix": "educational_text_003",
+      "index": 110,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk117.npy_3dd8d674.npy",
+      "prefix": "educational_text_003",
+      "index": 117,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk117.npy_3dd8d674.npy",
+      "prefix": "educational_text_003",
+      "index": 117,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk119.npy_0d5cee02.npy",
+      "prefix": "educational_text_003",
+      "index": 119,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk119.npy_0d5cee02.npy",
+      "prefix": "educational_text_003",
+      "index": 119,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk120_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 120,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk121_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 121,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk122_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 122,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk123_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 123,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk124_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 124,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk125_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 125,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk126_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 126,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk127_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 127,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk128_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 128,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk129_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 129,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk12_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk12_1_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk12_2_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\3b\\educational_materials\\educational_text_003_chunk12_3_educational.npy",
+      "prefix": "educational_text_003",
+      "index": 12,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk131.npy_3c4ae7c3.npy",
+      "prefix": "educational_text_003",
+      "index": 131,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk131.npy_3c4ae7c3.npy",
+      "prefix": "educational_text_003",
+      "index": 131,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk131.npy_3c4ae7c3.npy",
+      "prefix": "educational_text_003",
+      "index": 131,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk131.npy_3c4ae7c3.npy",
+      "prefix": "educational_text_003",
+      "index": 131,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk132.npy_7e593cfa.npy",
+      "prefix": "educational_text_003",
+      "index": 132,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk132.npy_7e593cfa.npy",
+      "prefix": "educational_text_003",
+      "index": 132,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk135.npy_0c77c8d1.npy",
+      "prefix": "educational_text_003",
+      "index": 135,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk135.npy_0c77c8d1.npy",
+      "prefix": "educational_text_003",
+      "index": 135,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk140.npy_2b606260.npy",
+      "prefix": "educational_text_003",
+      "index": 140,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk140.npy_2b606260.npy",
+      "prefix": "educational_text_003",
+      "index": 140,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk140.npy_2b606260.npy",
+      "prefix": "educational_text_003",
+      "index": 140,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk140.npy_2b606260.npy",
+      "prefix": "educational_text_003",
+      "index": 140,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk142_1.npy_ec5c9f3f.npy",
+      "prefix": "educational_text_003",
+      "index": 142,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk142_1.npy_ec5c9f3f.npy",
+      "prefix": "educational_text_003",
+      "index": 142,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk142_1.npy_ec5c9f3f.npy",
+      "prefix": "educational_text_003",
+      "index": 142,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk142_1.npy_ec5c9f3f.npy",
+      "prefix": "educational_text_003",
+      "index": 142,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk145_1.npy_369687ef.npy",
+      "prefix": "educational_text_003",
+      "index": 145,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk145_1.npy_369687ef.npy",
+      "prefix": "educational_text_003",
+      "index": 145,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk145_1.npy_369687ef.npy",
+      "prefix": "educational_text_003",
+      "index": 145,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk145_1.npy_369687ef.npy",
+      "prefix": "educational_text_003",
+      "index": 145,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk147.npy_7cd7c53d.npy",
+      "prefix": "educational_text_003",
+      "index": 147,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk147.npy_7cd7c53d.npy",
+      "prefix": "educational_text_003",
+      "index": 147,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk29_1.npy_8386fd6a.npy",
+      "prefix": "educational_text_003",
+      "index": 29,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk32_1.npy_615789e1.npy",
+      "prefix": "educational_text_003",
+      "index": 32,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk42_1.npy_45d30157.npy",
+      "prefix": "educational_text_003",
+      "index": 42,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk44.npy_e3250b75.npy",
+      "prefix": "educational_text_003",
+      "index": 44,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk44.npy_e3250b75.npy",
+      "prefix": "educational_text_003",
+      "index": 44,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk47_1.npy_e404d214.npy",
+      "prefix": "educational_text_003",
+      "index": 47,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk47_1.npy_e404d214.npy",
+      "prefix": "educational_text_003",
+      "index": 47,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk47_1.npy_e404d214.npy",
+      "prefix": "educational_text_003",
+      "index": 47,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk47_1.npy_e404d214.npy",
+      "prefix": "educational_text_003",
+      "index": 47,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk50_1.npy_7f071648.npy",
+      "prefix": "educational_text_003",
+      "index": 50,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk6.npy_2fcdffdf.npy",
+      "prefix": "educational_text_003",
+      "index": 6,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk6.npy_2fcdffdf.npy",
+      "prefix": "educational_text_003",
+      "index": 6,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk60.npy_c38929cf.npy",
+      "prefix": "educational_text_003",
+      "index": 60,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk60.npy_c38929cf.npy",
+      "prefix": "educational_text_003",
+      "index": 60,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk63_1.npy_4cb11a79.npy",
+      "prefix": "educational_text_003",
+      "index": 63,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk63_1.npy_4cb11a79.npy",
+      "prefix": "educational_text_003",
+      "index": 63,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk63_1.npy_4cb11a79.npy",
+      "prefix": "educational_text_003",
+      "index": 63,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk63_1.npy_4cb11a79.npy",
+      "prefix": "educational_text_003",
+      "index": 63,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk64_1.npy_42da02b0.npy",
+      "prefix": "educational_text_003",
+      "index": 64,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk64_1.npy_42da02b0.npy",
+      "prefix": "educational_text_003",
+      "index": 64,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk64_1.npy_42da02b0.npy",
+      "prefix": "educational_text_003",
+      "index": 64,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk64_1.npy_42da02b0.npy",
+      "prefix": "educational_text_003",
+      "index": 64,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk67_1.npy_2ad9d0fb.npy",
+      "prefix": "educational_text_003",
+      "index": 67,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk67_1.npy_2ad9d0fb.npy",
+      "prefix": "educational_text_003",
+      "index": 67,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk67_1.npy_2ad9d0fb.npy",
+      "prefix": "educational_text_003",
+      "index": 67,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk67_1.npy_2ad9d0fb.npy",
+      "prefix": "educational_text_003",
+      "index": 67,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk71_1.npy_fbee7678.npy",
+      "prefix": "educational_text_003",
+      "index": 71,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk72.npy_1bbe4aee.npy",
+      "prefix": "educational_text_003",
+      "index": 72,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk72.npy_1bbe4aee.npy",
+      "prefix": "educational_text_003",
+      "index": 72,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk75_1.npy_710e2391.npy",
+      "prefix": "educational_text_003",
+      "index": 75,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk75_1.npy_710e2391.npy",
+      "prefix": "educational_text_003",
+      "index": 75,
+      "dataset_example_prefix": "educational_text_003"
+    },
+    {
+      "embedding": "F:/data/embeddings\\impressioncore_b3\\generated_from_missing_subset\\text\\educational_text_003_chunk75_1.npy_710e2391.npy",
+      "prefix": "educational_text_003",
+      "index": 75,
+      "dataset_example_prefix": "educational_text_003"
+    }
+  ]
+}

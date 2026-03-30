@@ -1,0 +1,188 @@
+name: doc-checks
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**/*.md'
+      - 'src/dev_tools/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**/*.md'
+      - 'src/dev_tools/**'
+
+jobs:
+  run-doc-checks:
+    runs-on: windows-latest
+    env:
+      SHIM_GRACE_DAYS: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          if (Test-Path 'requirements.txt') { pip install -r requirements.txt }
+
+      - name: Run documentation checks
+        shell: pwsh
+        run: |
+          python src/dev_tools/precommit/run_doc_checks.py
+
+      - name: Run root structure guard (JSON report)
+        shell: pwsh
+        run: |
+          python -m dev_tools.ci.root_script_guard --fail-on-duplicates --enforce-expired --shim-grace-days $env:SHIM_GRACE_DAYS --json-report guard_report.json --badge-json badge.json
+          if (Test-Path guard_report.json) { (Get-Content guard_report.json | ConvertFrom-Json).removal_suggestions | Out-File removal_suggestions.txt }
+
+      - name: Ensure label colors/descriptions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const desired = [
+              {name:'maintenance', color:'0e8a16', description:'General maintenance / cleanup task'},
+              {name:'automation', color:'1d76db', description:'Created or managed by automation workflows'}
+            ];
+            const {owner, repo} = context.repo;
+            const {data: existing} = await github.rest.issues.listLabelsForRepo({owner, repo, per_page:100});
+            const map = new Map(existing.map(l=>[l.name,l]));
+            for (const d of desired) {
+              if (!map.has(d.name)) {
+                try { await github.rest.issues.createLabel({...d, owner, repo}); } catch(e) { core.warning('Create label failed '+d.name+': '+e.message); }
+              } else {
+                const cur = map.get(d.name);
+                if (cur.color.toLowerCase() !== d.color.toLowerCase() || (cur.description||'') !== d.description) {
+                  try { await github.rest.issues.updateLabel({owner, repo, name:d.name, color:d.color, description:d.description}); } catch(e) { core.warning('Update label failed '+d.name+': '+e.message); }
+                }
+              }
+            }
+
+      - name: Job summary (badge + metrics)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('guard_report.json') || !fs.existsSync('badge.json')) { return; }
+            const report = JSON.parse(fs.readFileSync('guard_report.json','utf8'));
+            const badge = JSON.parse(fs.readFileSync('badge.json','utf8'));
+            const badgeUrl = `https://img.shields.io/badge/${encodeURIComponent(badge.label)}-${encodeURIComponent(badge.message)}-${badge.color}`;
+            const table = `| Metric | Count |\n|---|---|\n| Violations | ${report.violations.length} |\n| Expired Shims | ${report.removal_suggestions.length} |\n| Upcoming Expirations | ${(report.upcoming_expirations||[]).length} |`;
+            let removal = 'None';
+            if (report.removal_suggestions.length) {
+              removal = report.removal_suggestions.map(r=>`- \`${r}\``).join('\n');
+            }
+            const upcomingList = (report.upcoming_expirations||[]).length ? (report.upcoming_expirations||[]).map(u=>`- ${u}`).join('\n') : 'None';
+            await core.summary
+              .addHeading('Root Structure Guard')
+              .addRaw(`<img alt="structure badge" src="${badgeUrl}" />`)
+              .addRaw('\n\n')
+              .addRaw(table)
+              .addRaw('\n\n')
+              .addHeading('Removal Suggestions', 2)
+              .addRaw(removal+'\n\n')
+              .addHeading('Upcoming Expirations', 2)
+              .addRaw(upcomingList+'\n')
+              .write();
+
+      - name: Post PR comment (root structure guard)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const bodyMarker = '<!-- root-structure-guard-report -->';
+            const report = JSON.parse(fs.readFileSync('guard_report.json','utf8'));
+            const violations = report.violations.length;
+            const expired = report.removal_suggestions.length;
+            const upcoming = (report.upcoming_expirations||[]).length;
+            const grace = report.grace_days;
+            const ok = report.ok;
+            const removalSection = report.removal_suggestions.length ? report.removal_suggestions.map(c=>`- \`${c}\``).join('\n') : 'None';
+            const summary = `### Root Structure Guard\n${ok ? '✅ Structure OK' : '❌ Issues found'} (grace ${grace} days)\n\n| Metric | Count |\n|---|---|\n| Violations | ${violations} |\n| Expired Shims | ${expired} |\n| Upcoming Expirations | ${upcoming} |\n\n**Removal Suggestions**\n${removalSection}\n\n${bodyMarker}`;
+            const {owner, repo, number} = context.issue;
+            const {data: comments} = await github.rest.issues.listComments({owner, repo, issue_number:number, per_page:100});
+            const existing = comments.find(c=>c.body && c.body.includes(bodyMarker));
+            if (existing) {
+              await github.rest.issues.updateComment({owner, repo, comment_id: existing.id, body: summary});
+            } else {
+              await github.rest.issues.createComment({owner, repo, issue_number:number, body: summary});
+            }
+
+      - name: Create issue for expired shims
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Ensure labels exist
+            const ensureLabels = async (labels) => {
+              const {owner, repo} = context.repo;
+              const {data: existing} = await github.rest.issues.listLabelsForRepo({owner, repo, per_page:100});
+              const existingNames = new Set(existing.map(l=>l.name));
+              for (const name of labels) {
+                if (!existingNames.has(name)) {
+                  try { await github.rest.issues.createLabel({owner, repo, name, color:'0e8a16'}); } catch (e) { /* ignore race */ }
+                }
+              }
+            };
+            await ensureLabels(['maintenance','automation']);
+            const fs = require('fs');
+            if (!fs.existsSync('guard_report.json')) { return; }
+            const report = JSON.parse(fs.readFileSync('guard_report.json','utf8'));
+            if (!report.removal_suggestions || !report.removal_suggestions.length) { return; }
+            const title = `Expired shims removal ${new Date().toISOString().slice(0,10)}`;
+            const {owner, repo} = context.repo;
+            const {data: issues} = await github.rest.issues.listForRepo({owner, repo, state:'open', per_page:100});
+            if (issues.find(i=>i.title === title)) { return; }
+            const body = [
+              'The following shims have exceeded the grace period and should be removed:',
+              '',
+              ...report.removal_suggestions.map(c=>`- \`${c}\``),
+              '',
+              `Grace period: ${report.grace_days} days`,
+              'Generated automatically by root structure guard.'
+            ].join('\n');
+            await github.rest.issues.create({owner, repo, title, body, labels: ['maintenance','automation']}).catch(async e=>{
+              // Create labels if missing then retry (best-effort)
+              try { await github.rest.issues.create({owner, repo, title, body}); } catch(e2) { core.warning('Issue creation failed: '+e2.message); }
+            });
+
+      - name: Auto-close resolved expired shim issues
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('guard_report.json')) { return; }
+            const report = JSON.parse(fs.readFileSync('guard_report.json','utf8'));
+            if (report.removal_suggestions && report.removal_suggestions.length) { return; } // still have expired shims
+            const {owner, repo} = context.repo;
+            const {data: issues} = await github.rest.issues.listForRepo({owner, repo, state:'open', labels:'automation,maintenance', per_page:100});
+            const targetIssues = issues.filter(i=>i.title.startsWith('Expired shims removal '));
+            for (const issue of targetIssues) {
+              await github.rest.issues.createComment({owner, repo, issue_number: issue.number, body: 'All expired shims removed; closing automatically.'});
+              await github.rest.issues.update({owner, repo, issue_number: issue.number, state:'closed'});
+            }
+
+      - name: Upload guard report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: root-structure-guard
+          path: |
+            guard_report.json
+            badge.json
+            removal_suggestions.txt
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-reports
+          path: docs/reports

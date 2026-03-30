@@ -1,0 +1,121 @@
+{
+  "timestamp": "20250612_082329",
+  "total_files": 749064,
+  "total_size_gb": 53.54789041914046,
+  "embedded_files": 325798,
+  "remaining_files": 423266,
+  "progress_percent": 43.4940138626339,
+  "modalities": {
+    "code": {
+      "total": 81,
+      "embedded": 72,
+      "remaining": 9
+    },
+    "json_structured": {
+      "total": 28,
+      "embedded": 44,
+      "remaining": -16
+    },
+    "unknown": {
+      "total": 90,
+      "embedded": 0,
+      "remaining": 90
+    },
+    "time_series": {
+      "total": 1600,
+      "embedded": 3,
+      "remaining": 1597
+    },
+    "text": {
+      "total": 203,
+      "embedded": 168,
+      "remaining": 35
+    },
+    "tabular": {
+      "total": 37,
+      "embedded": 31,
+      "remaining": 6
+    },
+    "video": {
+      "total": 13320,
+      "embedded": 13320,
+      "remaining": 0
+    },
+    "audio_transcripts": {
+      "total": 584632,
+      "embedded": 292319,
+      "remaining": 292313
+    },
+    "audio": {
+      "total": 5770,
+      "embedded": 3150,
+      "remaining": 2620
+    },
+    "annotated_images": {
+      "total": 21,
+      "embedded": 0,
+      "remaining": 21
+    },
+    "image": {
+      "total": 133369,
+      "embedded": 10080,
+      "remaining": 123289
+    },
+    "xml_structured": {
+      "total": 1,
+      "embedded": 73,
+      "remaining": -72
+    },
+    "markup": {
+      "total": 74,
+      "embedded": 1,
+      "remaining": 73
+    },
+    "3d_models": {
+      "total": 9798,
+      "embedded": 4904,
+      "remaining": 4894
+    },
+    "captioned_videos": {
+      "total": 3,
+      "embedded": 0,
+      "remaining": 3
+    },
+    "documents": {
+      "total": 1,
+      "embedded": 1,
+      "remaining": 0
+    },
+    "geospatial": {
+      "total": 2,
+      "embedded": 2,
+      "remaining": 0
+    },
+    "medical_imaging": {
+      "total": 5,
+      "embedded": 5,
+      "remaining": 0
+    },
+    "network_data": {
+      "total": 8,
+      "embedded": 8,
+      "remaining": 0
+    },
+    "point_clouds": {
+      "total": 4,
+      "embedded": 0,
+      "remaining": 4
+    },
+    "sensor_data": {
+      "total": 17,
+      "embedded": 1617,
+      "remaining": -1600
+    }
+  },
+  "missing_modalities": [
+    "unknown",
+    "captioned_videos",
+    "point_clouds",
+    "annotated_images"
+  ]
+}

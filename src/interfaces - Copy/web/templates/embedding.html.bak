@@ -1,0 +1,43 @@
+<div class="section-card">
+    <h4>Embedding Extraction</h4>
+    <p>Extract and visualize embeddings from your trained model.</p>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-box"></i> Extract Embeddings</h5>
+        <div class="mb-3">
+            <label for="embedding-input" class="form-label">Input Text or Image:</label>
+            <textarea class="form-control" id="embedding-input" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary" id="extract-embeddings-btn">
+            <i class="bi bi-arrow-right"></i> Extract Embeddings
+        </button>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-graph-up"></i> Embedding Visualization</h5>
+        <div class="mb-3">
+            <label for="viz-method" class="form-label">Visualization Method:</label>
+            <select class="form-select" id="viz-method">
+                <option value="tsne">t-SNE</option>
+                <option value="umap">UMAP</option>
+                <option value="pca">PCA</option>
+            </select>
+        </div>
+        <div id="embedding-plot" style="height: 500px;"></div>
+    </div>
+
+    <div class="card mb-4 p-3 bg-light">
+        <h5><i class="bi bi-arrow-down-circle"></i> Export Embeddings</h5>
+        <div class="mb-3">
+            <label for="export-format" class="form-label">Export Format:</label>
+            <select class="form-select" id="export-format">
+                <option value="numpy">NumPy (.npy)</option>
+                <option value="csv">CSV</option>
+                <option value="json">JSON</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" id="export-embeddings-btn">
+            <i class="bi bi-download"></i> Export
+        </button>
+    </div>
+</div>

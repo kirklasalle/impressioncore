@@ -1,0 +1,30 @@
+{
+  "points": [
+    {
+      "N_params": 101500000.0,
+      "loss": 0.001187,
+      "tokens": null,
+      "vram_mb": 3400,
+      "source": "B3_SCALING_SWEET_SPOT_THEORY.md",
+      "note": "Phase 1 success at ~101.5M params"
+    },
+    {
+      "N_params": 506000000.0,
+      "loss": null,
+      "tokens": null,
+      "vram_mb": null,
+      "source": "sweet_spot_recovery_training.log",
+      "note": "Recovery run; parse log for best loss if available"
+    },
+    {
+      "N_params": 506045321.0,
+      "loss": 0.999928,
+      "tokens": null,
+      "vram_mb": 5979.0,
+      "source": "log:sweet_spot_recovery_training.log",
+      "note": null
+    }
+  ],
+  "local_log_slope_loss_vs_params": 4.19294828106862,
+  "interpretation": "negative slope => loss falls with params (expected under adequate data); positive slope => anomaly (likely under-training/data mismatch)"
+}

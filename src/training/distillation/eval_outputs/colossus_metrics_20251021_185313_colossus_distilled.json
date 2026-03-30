@@ -1,0 +1,14 @@
+{
+  "checkpoint": "F:\\models\\management\\training_sessions\\colossus\\20251021_185313_colossus_distilled.pt",
+  "num_prompts": 82,
+  "avg_l2": 0.536362540431139,
+  "max_l2": 0.5858105421066284,
+  "max_prompt": "What are the key benefits and challenges of machine learning?",
+  "max_conf_checkpoint": 0.730167852935375,
+  "max_conf_baseline": 0.6828770002694737,
+  "avg_confidence_delta": 0.040736492014512786,
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251020_120039_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251024_followup.json"
+  ]
+}

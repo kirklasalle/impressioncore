@@ -1,0 +1,54 @@
+{
+  "package_name": "ImpressionCore-Certified-Academic-Dataset",
+  "version": "1.0.0",
+  "created_at": "2025-06-21T12:36:09.343037",
+  "certification": "Sacred Covenant Compliant",
+  "license_verification": "Complete",
+  "target_hardware": "GTX 1050 Ti optimized",
+  "coverage": {
+    "k12": "Common Core aligned",
+    "college": "First-year curriculum",
+    "domains": []
+  },
+  "sources": [],
+  "quality_metrics": {
+    "total_items": 45,
+    "total_words": 49591,
+    "average_words_per_item": 1102.0222222222221,
+    "average_educational_value": 8.66,
+    "domain_distribution": {
+      "mathematics": 9,
+      "science": 9,
+      "language_arts": 9,
+      "STEM": 9,
+      "liberal_arts": 9
+    },
+    "grade_level_distribution": {
+      "K-12": 27,
+      "college_freshman": 18
+    },
+    "source_distribution": {
+      "Khan Academy": 9,
+      "MIT OpenCourseWare K-12": 9,
+      "Educational Resources": 9,
+      "MIT OpenCourseWare": 9,
+      "Academic Consortium": 9
+    },
+    "quality_score": 86.6
+  },
+  "compliance_score": 0.0,
+  "total_items": 45,
+  "compliance_results": {
+    "total_items": 45,
+    "compliant_items": 45,
+    "non_compliant_items": 0,
+    "license_breakdown": {
+      "CC BY-NC-SA": 27,
+      "Educational Use": 18
+    },
+    "compliance_score": 100.0,
+    "violations": []
+  },
+  "package_hash": "10a542eea652418f",
+  "certification_level": "Production Ready"
+}

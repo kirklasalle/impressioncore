@@ -1,0 +1,88 @@
+{
+  "servers": {
+    "impressioncore-ids": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/ids-mcp/server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/ids-mcp",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore;d:/Projects/impressioncore/src",
+        "PYTHONUNBUFFERED": "1",
+        "IDS_DEBUG": "1"
+      }
+    },
+    "impressioncore-eds": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/impressioncore-eds/enhanced_server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/impressioncore-eds",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore;d:/Projects/impressioncore/src",
+        "PYTHONUNBUFFERED": "1",
+        "EDS_DEBUG": "1"
+      }
+    },
+    "impressioncore-vrgc": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/impressioncore-vrgc/server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/impressioncore-vrgc",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore;d:/Projects/impressioncore/src",
+        "PYTHONUNBUFFERED": "1",
+        "VRGC_DEBUG": "1"
+      }
+    },
+    "impressioncore-ipa": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/impressioncore-ipa/server_comprehensive.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/impressioncore-ipa",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore",
+        "PYTHONUNBUFFERED": "1",
+        "IPA_DEBUG": "1"
+      }
+    },
+    "impressioncore-dpa": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/impressioncore-dpa/server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/impressioncore-dpa",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore",
+        "PYTHONUNBUFFERED": "1",
+        "DPA_DEBUG": "1"
+      }
+    },
+    "web-search-mcp": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/web-search-mcp/server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/web-search-mcp",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore",
+        "PYTHONUNBUFFERED": "1",
+        "WEB_SEARCH_DEBUG": "1"
+      }
+    },
+    "impressioncore-goliath": {
+      "command": "d:/Projects/impressioncore/.venv310/Scripts/python.exe",
+      "args": [
+        "d:/Projects/impressioncore/.mcp/impressioncore-goliath/server.py"
+      ],
+      "cwd": "d:/Projects/impressioncore/.mcp/impressioncore-goliath",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore;d:/Projects/impressioncore/src;d:/Projects/impressioncore/.mcp/impressioncore-goliath",
+        "PYTHONUNBUFFERED": "1",
+        "GOLIATH_DEBUG": "1"
+      }
+    }
+  }
+}

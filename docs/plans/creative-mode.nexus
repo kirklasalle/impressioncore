@@ -1,0 +1,17 @@
+# NEXUS Plan: Creative Mode
+# Called via: (EXECUTE-PLAN "creative-mode")
+# Shifts the Brain-Triad towards creative/divergent thinking
+
+(LOG "Activating Creative Mode...")
+
+# Boost right hemisphere creativity
+(SET-TEMP "right" 0.95)
+
+# Keep left grounded but less dominant
+(SET-TEMP "left" 0.2)
+
+# Request creative output
+(REQUEST-OUTPUT "right-hemisphere" "creative-text" 
+  (DICT ("style" "imaginative") ("divergence" "high")))
+
+(LOG "Creative Mode: ACTIVE")

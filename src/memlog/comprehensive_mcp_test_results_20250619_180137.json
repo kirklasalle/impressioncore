@@ -1,0 +1,179 @@
+{
+  "test_date": "2025-06-19T18:00:35.319638",
+  "total_servers": 3,
+  "server_results": {
+    "vrgc": {
+      "server_name": "VRGC Web-Enhanced",
+      "total_tools": 25,
+      "successful_tests": 24,
+      "failed_tests": 1,
+      "tool_results": {
+        "vrgc_design_neural_architecture": {
+          "status": "SUCCESS",
+          "response_length": 671
+        },
+        "vrgc_analyze_model_complexity": {
+          "status": "SUCCESS",
+          "response_length": 233
+        },
+        "vrgc_optimize_layer_design": {
+          "status": "SUCCESS",
+          "response_length": 205
+        },
+        "vrgc_validate_architecture": {
+          "status": "SUCCESS",
+          "response_length": 188
+        },
+        "vrgc_generate_architecture_blueprint": {
+          "status": "SUCCESS",
+          "response_length": 161
+        },
+        "vrgc_web_fetch": {
+          "status": "SUCCESS",
+          "response_length": 256
+        },
+        "vrgc_web_search": {
+          "status": "SUCCESS",
+          "response_length": 624
+        },
+        "vrgc_download_file": {
+          "status": "SUCCESS",
+          "response_length": 315
+        },
+        "vrgc_ftp_access": {
+          "status": "SUCCESS",
+          "response_length": 254
+        },
+        "vrgc_api_request": {
+          "status": "SUCCESS",
+          "response_length": 690
+        },
+        "vrgc_web_monitor": {
+          "status": "SUCCESS",
+          "response_length": 133
+        },
+        "vrgc_web_scrape": {
+          "status": "SUCCESS",
+          "response_length": 158
+        },
+        "vrgc_research_assistant": {
+          "status": "SUCCESS",
+          "response_length": 147
+        },
+        "vrgc_web_security_scan": {
+          "status": "SUCCESS",
+          "response_length": 154
+        },
+        "vrgc_web_performance_test": {
+          "status": "SUCCESS",
+          "response_length": 157
+        },
+        "vrgc_assess_system": {
+          "status": "SUCCESS",
+          "response_length": 12421
+        },
+        "vrgc_monitor_training": {
+          "status": "SUCCESS",
+          "response_length": 387
+        },
+        "vrgc_optimize_hardware": {
+          "status": "SUCCESS",
+          "response_length": 997
+        },
+        "vrgc_verify_covenant": {
+          "status": "FAILED",
+          "error": "File protection enforcement failed: CovenantGuardian._create_emergency_backup() takes 1 positional argument but 2 were given"
+        },
+        "vrgc_analyze_intelligence": {
+          "status": "SUCCESS",
+          "response_length": 242718
+        }
+      }
+    },
+    "ids": {
+      "server_name": "IDS AI-Enhanced",
+      "total_tools": 7,
+      "successful_tests": 7,
+      "failed_tests": 0,
+      "tool_results": {
+        "ai_semantic_search": {
+          "status": "SUCCESS",
+          "results": 5
+        },
+        "b1_optimization_analysis": {
+          "status": "SUCCESS",
+          "note": "Structure validated"
+        },
+        "gtx_1050_ti_hardware_analysis": {
+          "status": "SUCCESS",
+          "note": "Structure validated"
+        },
+        "knowledge_graph_query": {
+          "status": "SUCCESS",
+          "nodes": 10010,
+          "edges": 18678
+        },
+        "conversational_documentation": {
+          "status": "SUCCESS",
+          "note": "Structure validated"
+        },
+        "ai_document_analysis": {
+          "status": "SUCCESS",
+          "note": "Structure validated"
+        },
+        "neural_forge_integration": {
+          "status": "SUCCESS",
+          "note": "Structure validated"
+        }
+      }
+    },
+    "eds": {
+      "server_name": "EDS Educational",
+      "total_tools": 40,
+      "successful_tests": 40,
+      "failed_tests": 0,
+      "tool_results": {
+        "Educational Content Scraping (MIT OpenCourseWare)": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Khan Academy Content Extraction": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Wikipedia Educational Mining": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "arXiv Paper Processing": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Dataset Creation & Management": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "License Compliance Verification": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Multi-modal Content Processing": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Training Pipeline Integration": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Quality Assessment Tools": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        },
+        "Content Monitoring Systems": {
+          "status": "SUCCESS",
+          "tools_found": 4
+        }
+      }
+    }
+  }
+}

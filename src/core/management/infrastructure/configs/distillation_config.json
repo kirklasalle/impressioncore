@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "updated": "2025-08-04T11:12:51.851695",
+  "base_paths": {
+    "models_root": "F:/models",
+    "checkpoints": "F:/models/checkpoints",
+    "training": "F:/models/training",
+    "distillation": "F:/models/distillation",
+    "deployment": "F:/models/deployment"
+  },
+  "ollama_progressive": {
+    "output_dir": "F:/models/distillation/ollama_progressive",
+    "checkpoint_dir": "F:/models/training/active",
+    "enhanced_models_dir": "F:/models/distillation/enhanced_models"
+  },
+  "remote_api": {
+    "output_dir": "F:/models/distillation/remote_api",
+    "results_dir": "F:/models/distillation/remote_api/results",
+    "enhanced_models_dir": "F:/models/distillation/enhanced_models"
+  },
+  "production": {
+    "best_model_source": "F:/models/checkpoints/best_quality/b3_best_quality_model_20250802_124801.pth",
+    "production_deployment": "F:/models/deployment/production",
+    "backup_location": "F:/models/checkpoints/backup"
+  }
+}

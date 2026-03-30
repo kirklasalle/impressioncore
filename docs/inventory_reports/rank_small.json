@@ -1,0 +1,28 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 112,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\impressioncore_b2\\src\\training\\models\\small\\best_model.pt",
+    "filename": "best_model.pt",
+    "size_mb": 334.32,
+    "probe_loss": null,
+    "timestamp": 1743972591.0040965
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": 112,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\impressioncore_b2\\src\\training\\models\\small\\final_model.pt",
+    "filename": "final_model.pt",
+    "size_mb": 334.32,
+    "probe_loss": null,
+    "timestamp": 1743972592.1106467
+  }
+]

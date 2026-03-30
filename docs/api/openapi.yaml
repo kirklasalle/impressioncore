@@ -1,0 +1,547 @@
+openapi: 3.1.0
+info:
+  title: ImpressionCore B3-Triad API
+  description: |
+    # ImpressionCore Brain-Triad API
+    
+    **World-class multimodal AI inference API** powering the ImpressionCore B3 system.
+    
+    ## Overview
+    
+    The B3-Triad API provides access to ImpressionCore's revolutionary brain-inspired 
+    AI architecture, featuring:
+    
+    - **Dual-Hemisphere Processing**: Left (analytical) and Right (creative) model inference
+    - **Colossus Synthesis**: Integration layer combining hemisphere outputs
+    - **Multimodal Input**: Text, image, and vision stream support
+    - **Real-time Vision**: Live MJPEG camera streaming with PS Eye support
+    - **Neural TTS**: High-quality text-to-speech with Ava neural voice
+    - **Session Memory**: Persistent conversation history with semantic search
+    
+    ## Architecture
+    
+    ```
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                    ImpressionCore B3-Triad                       │
+    ├─────────────────────────────────────────────────────────────────┤
+    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │
+    │  │ Left Hemi   │  │ Right Hemi  │  │      Colossus           │  │
+    │  │ (Analytical)│  │ (Creative)  │  │   (Integrator)          │  │
+    │  └──────┬──────┘  └──────┬──────┘  └───────────┬─────────────┘  │
+    │         │                │                      │               │
+    │         └────────────────┼──────────────────────┘               │
+    │                          ▼                                       │
+    │                   Response Synthesis                             │
+    └─────────────────────────────────────────────────────────────────┘
+    ```
+    
+    ## Authentication
+    
+    Currently operates in local development mode without authentication.
+    Production deployments should implement JWT or API key authentication.
+    
+    ## Rate Limits
+    
+    - Vision Stream: 30 FPS maximum
+    - Generate Endpoint: No hard limit (GPU-bound)
+    - Session Operations: No limit
+    
+  version: 1.0.0
+  contact:
+    name: ImpressionCore Team
+    email: kirk@impressioncore.ai
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Local Development Server
+  - url: http://0.0.0.0:8000
+    description: Network-accessible Development Server
+
+tags:
+  - name: Inference
+    description: Brain-Triad multimodal AI generation endpoints
+  - name: Vision
+    description: Camera and vision streaming endpoints
+  - name: Hardware
+    description: Hardware status and telemetry
+  - name: Sessions
+    description: Conversation session management
+  - name: Memory
+    description: Semantic memory search
+
+paths:
+  /v1/process:
+    post:
+      tags:
+        - Inference
+      summary: Multimodal AI Generation
+      description: |
+        Process a multimodal request through the Brain-Triad system.
+        
+        ## Processing Pipeline
+        
+        1. **Input Decoding**: Text prompt + optional base64 image
+        2. **Session Context**: Load conversation history if session_id provided
+        3. **Hemisphere Processing**: Parallel Left/Right model inference
+        4. **Colossus Synthesis**: Integrate hemisphere outputs
+        5. **Nexus Execution**: Process any S-expression commands
+        6. **TTS Generation**: Optional neural voice synthesis
+        7. **Response Assembly**: Return text, monitors, and audio URL
+        
+        ## Multimodal Support
+        
+        - **Text-only**: Standard conversational AI
+        - **Text + Image**: Vision-augmented responses
+        - **Text + Session**: Context-aware conversation
+        
+      operationId: processMultimodal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateRequest'
+            examples:
+              textOnly:
+                summary: Text-only request
+                value:
+                  prompt: "What is the meaning of consciousness?"
+                  voice_enabled: true
+              withImage:
+                summary: With image analysis
+                value:
+                  prompt: "What do you see in this image?"
+                  image_base64: "/9j/4AAQSkZJRgABAQAAAQ..."
+                  voice_enabled: true
+              withSession:
+                summary: With session context
+                value:
+                  prompt: "Can you elaborate on that?"
+                  session_id: "abc123-def456"
+                  voice_enabled: false
+      responses:
+        '200':
+          description: Successful generation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateResponse'
+              example:
+                response: "Consciousness is a fascinating phenomenon..."
+                monitors:
+                  left_output: "Analytical perspective on consciousness..."
+                  right_output: "Creative interpretation of awareness..."
+                  synthesis_confidence: 0.92
+                nexus_logs:
+                  - "(LOG \"Processing complete\")"
+                audio_url: "/audio/last_speech.mp3"
+        '500':
+          description: Processing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Triad not initialized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /v1/hardware:
+    get:
+      tags:
+        - Hardware
+      summary: Get Hardware Status
+      description: |
+        Returns comprehensive hardware telemetry including:
+        
+        - **Vision Layer**: Active cameras and their capabilities
+        - **VRAM Mode**: Memory allocation strategy
+        - **Camera Details**: Backend, model, and PTZ capabilities
+        
+        ## Camera Sources
+        
+        | Index | Source | Description |
+        |-------|--------|-------------|
+        | 0-10 | OpenCV | Standard UVC cameras via DSHOW/MSMF |
+        | 99 | pseyepy | PlayStation Eye via native libusb |
+        
+      operationId: getHardwareStatus
+      responses:
+        '200':
+          description: Hardware status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HardwareStatus'
+              example:
+                status: "OK"
+                vision_active: true
+                detected_cameras:
+                  - id: 99
+                    active: true
+                    backend: "LIBUSB_PSEYEPY"
+                    model: "PS Eye (Native)"
+                vram_mode: true
+                hardware_telemetry:
+                  gpu_memory_used: "2.1GB"
+                  gpu_memory_total: "4GB"
+
+  /v1/vision/stream:
+    get:
+      tags:
+        - Vision
+      summary: Live MJPEG Video Stream
+      description: |
+        Serves a live MJPEG video stream from the active camera.
+        
+        ## Stream Characteristics
+        
+        - **Format**: Motion JPEG (MJPEG)
+        - **Resolution**: 640x480 pixels
+        - **Frame Rate**: Up to 30 FPS (60 FPS source, throttled)
+        - **Content-Type**: `multipart/x-mixed-replace;boundary=frame`
+        
+        ## Camera Priority
+        
+        1. PS Eye (index 99) - Native libusb driver
+        2. First available OpenCV camera
+        3. "NO SIGNAL" fallback frame
+        
+        ## Usage in HTML
+        
+        ```html
+        <img src="http://localhost:8000/v1/vision/stream" alt="Live Feed" />
+        ```
+        
+        ## Usage in JavaScript
+        
+        ```javascript
+        const streamUrl = `${API_BASE}/v1/vision/stream?t=${Date.now()}`;
+        imgElement.src = streamUrl;
+        ```
+        
+      operationId: visionStream
+      parameters:
+        - name: t
+          in: query
+          description: Cache-busting timestamp (optional)
+          schema:
+            type: integer
+          example: 1703523600000
+      responses:
+        '200':
+          description: MJPEG video stream
+          content:
+            multipart/x-mixed-replace:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Vision inactive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /v1/memory/search:
+    get:
+      tags:
+        - Memory
+      summary: Semantic Memory Search
+      description: |
+        Search across all session memories using keyword matching.
+        
+        Returns relevant message excerpts from past conversations.
+        
+      operationId: searchMemory
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query string
+          schema:
+            type: string
+          example: "consciousness"
+        - name: limit
+          in: query
+          description: Maximum results to return
+          schema:
+            type: integer
+            default: 5
+            minimum: 1
+            maximum: 100
+          example: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemorySearchResults'
+
+  /v1/sessions:
+    get:
+      tags:
+        - Sessions
+      summary: List All Sessions
+      description: Returns a list of all conversation sessions with metadata.
+      operationId: listSessions
+      responses:
+        '200':
+          description: Session list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SessionSummary'
+              example:
+                - id: "abc123"
+                  title: "Philosophy Discussion"
+                  created_at: "2025-12-25T10:00:00Z"
+                  updated_at: "2025-12-25T12:30:00Z"
+                  message_count: 24
+    post:
+      tags:
+        - Sessions
+      summary: Create New Session
+      description: Creates a new conversation session and returns its ID.
+      operationId: createSession
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: New session ID
+              example:
+                id: "xyz789"
+
+  /v1/sessions/{session_id}:
+    get:
+      tags:
+        - Sessions
+      summary: Get Session Details
+      description: Returns full session data including all messages.
+      operationId: getSession
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "abc123"
+      responses:
+        '200':
+          description: Session data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '404':
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Sessions
+      summary: Delete Session
+      description: Permanently deletes a conversation session.
+      operationId: deleteSession
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "deleted"
+        '404':
+          description: Session not found
+
+components:
+  schemas:
+    GenerateRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          description: The text prompt to process
+          example: "Explain quantum entanglement in simple terms."
+        image_base64:
+          type: string
+          nullable: true
+          description: |
+            Base64-encoded image for vision analysis.
+            Supports JPEG and PNG formats.
+            Can include data URI prefix (data:image/jpeg;base64,...)
+          example: "/9j/4AAQSkZJRgABAQAAAQABAAD..."
+        voice_enabled:
+          type: boolean
+          default: true
+          description: Whether to generate TTS audio for the response
+        session_id:
+          type: string
+          nullable: true
+          description: Session ID for conversation continuity
+          example: "abc123-def456"
+
+    GenerateResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: The synthesized AI response text
+        monitors:
+          type: object
+          description: Internal processing monitors from Brain-Triad
+          properties:
+            left_output:
+              type: string
+              description: Left hemisphere (analytical) output
+            right_output:
+              type: string
+              description: Right hemisphere (creative) output
+            synthesis_confidence:
+              type: number
+              format: float
+              description: Colossus synthesis confidence score (0-1)
+        nexus_logs:
+          type: array
+          items:
+            type: string
+          description: Executed Nexus Language S-expressions
+        audio_url:
+          type: string
+          nullable: true
+          description: URL to generated TTS audio file
+          example: "/audio/last_speech.mp3"
+
+    HardwareStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [OK, ERROR]
+        vision_active:
+          type: boolean
+          description: Whether the vision layer is operational
+        detected_cameras:
+          type: array
+          items:
+            $ref: '#/components/schemas/CameraInfo'
+        vram_mode:
+          type: boolean
+          description: Whether simultaneous model loading is enabled
+        hardware_telemetry:
+          type: object
+          description: GPU and system resource metrics
+
+    CameraInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Camera index (99 = PS Eye, 0-10 = OpenCV)
+        active:
+          type: boolean
+          description: Whether camera is currently capturing
+        backend:
+          type: string
+          description: Camera driver backend
+          enum: [cv2, DSHOW, MSMF, LIBUSB_PSEYEPY]
+        model:
+          type: string
+          description: Camera model name
+          example: "PS Eye (Native)"
+
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+
+    SessionSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        message_count:
+          type: integer
+
+    Message:
+      type: object
+      properties:
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    MemorySearchResults:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              session_id:
+                type: string
+              message:
+                type: string
+              relevance:
+                type: number
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+          example: "Triad not initialized"

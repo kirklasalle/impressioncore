@@ -1,0 +1,235 @@
+{
+  "test_timestamp": "2025-10-04 21:09:59",
+  "total_embeddings": "1,301,186",
+  "knowledge_domains": [
+    "multimodal (1.2M)",
+    "educational (16K)",
+    "conversational (63K)"
+  ],
+  "summary": {
+    "total_tests": 14,
+    "successful_tests": 11,
+    "success_rate": 78.57142857142857,
+    "overall_rag_usage": 64.28571428571429,
+    "avg_confidence": 0.22309664956160954,
+    "avg_quality": 0.7671428571428571,
+    "avg_time_ms": 6868.07039805821,
+    "by_domain": {
+      "multimodal": {
+        "total": 3,
+        "rag_used": 3,
+        "avg_confidence": 0.33127347628275555,
+        "avg_docs": 5.0,
+        "avg_time_ms": 5596.708218256633,
+        "avg_quality": 1.05,
+        "rag_usage_rate": 100.0
+      },
+      "educational": {
+        "total": 4,
+        "rag_used": 3,
+        "avg_confidence": 0.26249381005764005,
+        "avg_docs": 2.75,
+        "avg_time_ms": 6119.396328926086,
+        "avg_quality": 0.7425,
+        "rag_usage_rate": 75.0
+      },
+      "conversational": {
+        "total": 3,
+        "rag_used": 3,
+        "avg_confidence": 0.35985247492790223,
+        "avg_docs": 5.0,
+        "avg_time_ms": 6616.050958633423,
+        "avg_quality": 0.81,
+        "rag_usage_rate": 100.0
+      },
+      "cross-domain": {
+        "total": 2,
+        "rag_used": 0,
+        "avg_confidence": 0.0,
+        "avg_docs": 0.0,
+        "avg_time_ms": 9221.545100212097,
+        "avg_quality": 0.6599999999999999,
+        "rag_usage_rate": 0.0
+      },
+      "edge-case": {
+        "total": 2,
+        "rag_used": 0,
+        "avg_confidence": 0.0,
+        "avg_docs": 0.0,
+        "avg_time_ms": 8297.016263008118,
+        "avg_quality": 0.435,
+        "rag_usage_rate": 0.0
+      }
+    }
+  },
+  "results": [
+    {
+      "query": "Show me pictures of cats",
+      "domain": "multimodal",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.32555872201919556,
+      "retrieval_time_ms": 9363.421201705933,
+      "rag_used": true,
+      "response_quality": 1.05,
+      "response_preview": "Based on available information: Document doc_218588 from multimodal. Document doc_218589 from multimodal.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "What does a sunset look like?",
+      "domain": "multimodal",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.3311850130558014,
+      "retrieval_time_ms": 1247.631549835205,
+      "rag_used": true,
+      "response_quality": 1.05,
+      "response_preview": "Based on available information: Document doc_218588 from multimodal. Document doc_218589 from multimodal.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "Describe a mountain landscape",
+      "domain": "multimodal",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.33707669377326965,
+      "retrieval_time_ms": 6179.07190322876,
+      "rag_used": true,
+      "response_quality": 1.05,
+      "response_preview": "Based on available information: Document doc_218588 from multimodal. Document doc_218589 from multimodal.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "Explain photosynthesis for 7th grade students",
+      "domain": "educational",
+      "docs_retrieved": 0,
+      "retrieval_confidence": 0.0,
+      "retrieval_time_ms": 14041.789293289185,
+      "rag_used": false,
+      "response_quality": 0.79,
+      "response_preview": "I want to give you a thorough answer. What specifically would you like to know?",
+      "success": false,
+      "notes": "Expected RAG retrieval but none occurred; Retrieved 0 docs, expected >=3"
+    },
+    {
+      "query": "What are the basics of arithmetic?",
+      "domain": "educational",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.3621574878692627,
+      "retrieval_time_ms": 3900.1927375793457,
+      "rag_used": true,
+      "response_quality": 0.81,
+      "response_preview": "Based on available information: txt from conversational. txt from conversational.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "How does the water cycle work?",
+      "domain": "educational",
+      "docs_retrieved": 1,
+      "retrieval_confidence": 0.33147522807121277,
+      "retrieval_time_ms": 4173.311948776245,
+      "rag_used": true,
+      "response_quality": 0.56,
+      "response_preview": "Based on available information: txt from conversational.",
+      "success": true,
+      "notes": "Retrieved 1 docs, expected >=3"
+    },
+    {
+      "query": "Explain the US Constitution for middle school",
+      "domain": "educational",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.35634252429008484,
+      "retrieval_time_ms": 2362.2913360595703,
+      "rag_used": true,
+      "response_quality": 0.81,
+      "response_preview": "Based on available information: txt from conversational. txt from conversational.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "How do you greet someone in the morning?",
+      "domain": "conversational",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.35593082308769225,
+      "retrieval_time_ms": 8167.043685913086,
+      "rag_used": true,
+      "response_quality": 0.81,
+      "response_preview": "Based on available information: txt from conversational. txt from conversational.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "What's a good way to ask for help?",
+      "domain": "conversational",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.3424255192279816,
+      "retrieval_time_ms": 9856.687307357788,
+      "rag_used": true,
+      "response_quality": 0.81,
+      "response_preview": "Based on available information: txt from conversational. txt from conversational.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "Tell me about casual conversation starters",
+      "domain": "conversational",
+      "docs_retrieved": 5,
+      "retrieval_confidence": 0.38120108246803286,
+      "retrieval_time_ms": 1824.4218826293945,
+      "rag_used": true,
+      "response_quality": 0.81,
+      "response_preview": "Based on available information: txt from conversational. txt from conversational.",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "How do I explain colors to a child?",
+      "domain": "cross-domain",
+      "docs_retrieved": 0,
+      "retrieval_confidence": 0.0,
+      "retrieval_time_ms": 3052.246332168579,
+      "rag_used": false,
+      "response_quality": 0.69,
+      "response_preview": "I'd like to help answer that. Could you rephrase or add more details?",
+      "success": false,
+      "notes": "Expected RAG retrieval but none occurred; Retrieved 0 docs, expected >=2"
+    },
+    {
+      "query": "Describe how plants grow using simple words",
+      "domain": "cross-domain",
+      "docs_retrieved": 0,
+      "retrieval_confidence": 0.0,
+      "retrieval_time_ms": 15390.843868255615,
+      "rag_used": false,
+      "response_quality": 0.63,
+      "response_preview": "That's an interesting question! Could you provide more context?",
+      "success": false,
+      "notes": "Expected RAG retrieval but none occurred; Retrieved 0 docs, expected >=3"
+    },
+    {
+      "query": "Hello, how are you?",
+      "domain": "edge-case",
+      "docs_retrieved": 0,
+      "retrieval_confidence": 0.0,
+      "retrieval_time_ms": 2430.460214614868,
+      "rag_used": false,
+      "response_quality": 0.39,
+      "response_preview": "Greetings! What would you like to know?",
+      "success": true,
+      "notes": "All checks passed"
+    },
+    {
+      "query": "xyzabc123 random nonsense query",
+      "domain": "edge-case",
+      "docs_retrieved": 0,
+      "retrieval_confidence": 0.0,
+      "retrieval_time_ms": 14163.572311401367,
+      "rag_used": false,
+      "response_quality": 0.48,
+      "response_preview": "I'm here to assist. What would you like to know?",
+      "success": true,
+      "notes": "All checks passed"
+    }
+  ]
+}

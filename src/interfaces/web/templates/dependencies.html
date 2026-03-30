@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+
+{% block title %}Dependencies - ImpressionCore{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h1><i class="fas fa-cubes"></i> Project Dependencies</h1>
+    <p class="lead">Review and manage ImpressionCore project dependencies</p>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-info-circle"></i> Core Dependencies</h2>
+    <div class="dependency-grid">
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>PyTorch Stack</h4>
+                <ul>
+                    <li><code>torch>=2.0.0</code></li>
+                    <li><code>torchvision>=0.15.0</code></li>
+                    <li><code>torchaudio>=2.0.0</code></li>
+                </ul>
+                <div class="note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>For CUDA support: <code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Scientific Computing</h4>
+                <ul>
+                    <li><code>numpy>=1.20.0</code></li>
+                    <li><code>scipy>=1.10.0</code></li>
+                    <li><code>pandas>=1.5.0</code></li>
+                    <li><code>scikit-learn>=1.2.0</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Image Processing</h4>
+                <ul>
+                    <li><code>pillow>=9.0.0</code></li>
+                    <li><code>matplotlib>=3.5.0</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-language"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>ML & NLP</h4>
+                <ul>
+                    <li><code>transformers>=4.26.0</code></li>
+                    <li><code>datasets>=2.10.0</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-memory"></i> VRAM Optimization</h2>
+    <p>Specialized dependencies for GTX 1050 Ti (4GB VRAM) compatibility:</p>
+    <div class="dependency-grid">
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-microchip"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Memory Efficiency</h4>
+                <ul>
+                    <li><code>bitsandbytes>=0.37.0</code> - For 8-bit optimizers</li>
+                    <li><code>accelerate>=0.18.0</code> - For efficient training</li>
+                </ul>
+                <div class="note">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>These packages help optimize memory usage for GPUs with limited VRAM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-project-diagram"></i> Visualization & Knowledge</h2>
+    <div class="dependency-grid">
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-chart-network"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Graph Visualization</h4>
+                <ul>
+                    <li><code>networkx>=2.8.0</code></li>
+                    <li><code>graphviz>=0.20.0</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Dashboard Components</h4>
+                <ul>
+                    <li><code>dash>=2.9.0</code></li>
+                    <li><code>dash-core-components>=2.0.0</code></li>
+                    <li><code>dash-html-components>=2.0.0</code></li>
+                    <li><code>plotly>=5.14.0</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-server"></i> Web Interface</h2>
+    <div class="dependency-grid">
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Flask Framework</h4>
+                <ul>
+                    <li><code>flask>=2.2.0</code></li>
+                    <li><code>flask-cors>=3.0.10</code></li>
+                    <li><code>flask-sock>=0.7.0</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-code-branch"></i> Development Tools</h2>
+    <div class="dependency-grid">
+        <div class="dependency-card">
+            <div class="dependency-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div class="dependency-content">
+                <h4>Testing & Code Quality</h4>
+                <ul>
+                    <li><code>pytest>=7.0.0</code></li>
+                    <li><code>black>=23.1.0</code></li>
+                    <li><code>isort>=5.12.0</code></li>
+                    <li><code>flake8>=6.0.0</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-terminal"></i> Installation Commands</h2>
+    <div class="command-section">
+        <h4>1. Basic Installation</h4>
+        <div class="code-block">
+            <pre><code>pip install -r requirements.txt</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+
+        <h4>2. GPU Support (CUDA)</h4>
+        <div class="code-block">
+            <pre><code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+
+        <h4>3. Development Installation</h4>
+        <div class="code-block">
+            <pre><code>pip install -e .</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <h2><i class="fas fa-arrow-right"></i> Next Steps</h2>
+    <p>Now that you understand the dependencies, set up your GPU environment for optimal performance:</p>
+    <div class="button-group">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/gpu_setup'">
+            <i class="fas fa-microchip"></i> Configure GPU Environment
+        </button>
+    </div>
+</div>
+
+<style>
+.section-header {
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dependency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dependency-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    min-width: 0; /* Prevents flex item overflow */
+}
+
+.dependency-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent-color), #67b7dc);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.dependency-content {
+    flex: 1;
+    min-width: 0; /* Prevents text overflow */
+}
+
+.dependency-content h4 {
+    margin: 0 0 0.875rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.dependency-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dependency-content li {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.dependency-content code {
+    font-size: 0.95rem;
+    font-family: 'Monaco', 'Consolas', monospace;
+    background: var(--primary-bg);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+.code-block {
+    background: var(--primary-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 1rem 2.5rem 1rem 1rem; /* Added right padding for copy button */
+    margin: 0.5rem 0;
+    position: relative;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.code-block code {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.copy-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.35rem;
+    transition: color 0.2s ease;
+    font-size: 1rem;
+}
+
+.copy-btn:hover {
+    color: var(--accent-color);
+}
+
+.note {
+    background: rgba(74, 144, 226, 0.05);
+    border-left: 4px solid var(--accent-color);
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    max-width: 1200px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.note i {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.command-section {
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.command-section h4 {
+    margin: 1.5rem 0 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.card {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Added wrapper to ensure consistent width */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--accent-color-dark, #2980b9);
+    transform: translateY(-1px);
+}
+
+.btn i {
+    font-size: 1.1em;
+}
+</style>
+
+{% block scripts %}
+<script>
+async function copyCode(button) {
+    const codeBlock = button.parentElement.querySelector('code');
+    try {
+        await navigator.clipboard.writeText(codeBlock.textContent);
+        const icon = button.querySelector('i');
+        icon.className = 'fas fa-check';
+        setTimeout(() => {
+            icon.className = 'fas fa-copy';
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy:', err);
+    }
+}
+</script>
+{% endblock %}
+{% endblock %}

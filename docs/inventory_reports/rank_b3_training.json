@@ -1,0 +1,28 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3_training\\b3_training_epoch_50_20250805_184808.pth",
+    "filename": "b3_training_epoch_50_20250805_184808.pth",
+    "size_mb": 1161.97,
+    "probe_loss": null,
+    "timestamp": 1754434093.1831985
+  },
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b3_training\\b3_training_epoch_9_20250805_145012.pth",
+    "filename": "b3_training_epoch_9_20250805_145012.pth",
+    "size_mb": 1161.97,
+    "probe_loss": null,
+    "timestamp": 1754419820.321981
+  }
+]

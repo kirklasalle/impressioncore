@@ -1,0 +1,146 @@
+{
+    "workbench.colorCustomizations": {},
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.commandsToSkipShell": [
+        ""
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "arena.codePrivacySettings": "Private",
+    "arena.maxOutputLines": 5000,
+    "bao-cline.allowedCommands": [
+        "npm test",
+        "npm install",
+        "tsc",
+        "git log",
+        "git diff",
+        "git show",
+        "cd ",
+        "pwd",
+        "node ",
+        "npm run dev",
+        "npx",
+        "mkdir",
+        "Remove-Item",
+        "dir",
+        "pip",
+        "python"
+    ],
+    "roo-cline.allowedCommands": [
+        "npm test",
+        "npm install",
+        "git log",
+        "git diff",
+        "git show",
+        "python",
+        "bash"
+    ],
+    "dotnet.unitTestDebuggingOptions": {},
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "java.home": "g:\\Users\\kirkl\\AppData\\Local\\Programs\\Microsoft VS Code\\jdk-17",
+    "redhat.telemetry.enabled": true,
+    "cmake.options.statusBarVisibility": "compact",
+    "cmake.showOptionsMovedNotification": false,
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "workbench.colorTheme": "Palenight (Mild Contrast)",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
+    "cline.modelSettings.o3Mini.reasoningEffort": "high",
+    "geminicodeassist.project": "",
+    "diffEditor.maxComputationTime": 0,
+    "accessibility.voice.autoSynthesize": "on",
+    "accessibility.voice.ignoreCodeBlocks": true,
+    "accessibility.voice.keywordActivation": "chatInContext",
+    "accessibility.voice.speechLanguage": "en-US",
+    "cSpell.userWords": [
+        "Ollama"
+    ],
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.shellIntegration.environmentReporting": true,
+    "AREPL.shell_plus": true,
+    "powershell.buttons.showPanelMovementButtons": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.analyzeOpenDocumentsOnly": true,
+    "python.terminal.focusAfterLaunch": true,
+    "python.terminal.shellIntegration.enabled": true,
+    "python.terminal.launchArgs": [],
+    "git.terminalGitEditor": true,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Windows PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        },
+        "mcp": {
+            "servers": {
+                "mcp-server-time": {
+                    "source": "Git Bash",
+                    "command": "python",
+                    "args": [
+                        "-m",
+                        "mcp_server_time",
+                        "--local-timezone=America/New_York"
+                    ],
+                    "env": {}
+                }
+            }
+        }
+    },
+    "mcp": {
+        "servers": {
+            "browser-tools-mcp": {
+                "command": "npx",
+                "args": [
+                    "browser-tools-mcp"
+                ],
+                "env": {}
+            },
+            "filesystem": {
+                "source": "Git Bash",
+                "command": "python",
+                "args": [
+                    "-m",
+                    "filesystem"
+                ],
+                "env": {}
+            },
+            "everart": {
+                "source": "Git Bash",
+                "command": "npx",
+                "args": [
+                    "-y",
+                    "everart"
+                ],
+                "env": {
+                    "EVERART_API_KEY": "everart-fsEj2zuBVKeg0iod8Rjis-d9cwr6TDfRsRwJyDJHF9Y"
+                }
+            },
+            "mcp-server-time": {
+                "command": "python",
+                "args": [
+                    "-m",
+                    "mcp_server_time",
+                    "--local-timezone=America/Los_Angeles"
+                ],
+                "env": {}
+            }
+        }
+    }
+}

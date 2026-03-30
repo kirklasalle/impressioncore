@@ -1,0 +1,83 @@
+{
+  "version": "2.0.0",
+  "created": "2025-08-04T11:17:20.238181",
+  "description": "Master configuration for F:\\models ImpressionCore infrastructure",
+  "migration_completed": "2025-08-04T11:17:20.238181",
+  "primary_model_location": "F:/models",
+  "paths": {
+    "models_root": "F:/models",
+    "checkpoints": {
+      "best_quality": "F:/models/checkpoints/best_quality",
+      "production": "F:/models/checkpoints/production",
+      "backup": "F:/models/checkpoints/backup"
+    },
+    "training": {
+      "active": "F:/models/training/active",
+      "epochs": "F:/models/training/epochs",
+      "experiments": "F:/models/training/experiments",
+      "logs": "F:/models/training/logs"
+    },
+    "distillation": {
+      "ollama_progressive": "F:/models/distillation/ollama_progressive",
+      "remote_api": "F:/models/distillation/remote_api",
+      "enhanced_models": "F:/models/distillation/enhanced_models",
+      "curriculum": "F:/models/distillation/curriculum"
+    },
+    "deployment": {
+      "production": "F:/models/deployment/production",
+      "testing": "F:/models/deployment/testing",
+      "configs": "F:/models/deployment/configs"
+    },
+    "archives": {
+      "legacy": "F:/models/archives/legacy",
+      "experiments": "F:/models/archives/experiments",
+      "deprecated": "F:/models/archives/deprecated"
+    },
+    "infrastructure": {
+      "scripts": "F:/models/management/scripts",
+      "configs": "F:/models/management/configs",
+      "utilities": "F:/models/management/utilities",
+      "monitoring": "F:/models/management/monitoring"
+    }
+  },
+  "legacy_paths": {
+    "f_data_embeddings": "F:/data/embeddings/b3_training/checkpoints",
+    "f_data_distillation": "F:/data/distillation",
+    "f_data_training": "F:/data/training"
+  },
+  "current_models": {
+    "best_quality_model": {
+      "path": "F:/models/checkpoints/best_quality/b3_best_quality_model_20250802_124801.pth",
+      "size_mb": 199.83,
+      "description": "Production-ready B3 best quality model",
+      "use_case": "Production inference and distillation base"
+    },
+    "latest_training_model": {
+      "path": "F:/models/training/active/b3_training_epoch_30_20250801_074634.pth",
+      "size_mb": 336.47,
+      "description": "Latest B3 training checkpoint",
+      "use_case": "Development continuity and further training"
+    }
+  },
+  "distillation_systems": {
+    "ollama_progressive": {
+      "output_dir": "F:/models/distillation/ollama_progressive",
+      "logs_dir": "F:/models/distillation/ollama_progressive/logs",
+      "results_dir": "F:/models/distillation/ollama_progressive/results",
+      "status": "Updated for F:/models"
+    },
+    "remote_api": {
+      "output_dir": "F:/models/distillation/remote_api",
+      "logs_dir": "F:/models/distillation/remote_api/logs",
+      "results_dir": "F:/models/distillation/remote_api/results",
+      "status": "Updated for F:/models"
+    }
+  },
+  "usage_guidelines": {
+    "new_models": "Save all new models to F:/models appropriate subdirectories",
+    "checkpoints": "Use F:/models/checkpoints for production models",
+    "training": "Use F:/models/training for active development",
+    "distillation": "Use F:/models/distillation for enhanced models",
+    "deployment": "Use F:/models/deployment for production deployment"
+  }
+}

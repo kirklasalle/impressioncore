@@ -1,0 +1,15 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\checkpoints\\b1\\distillation_checkpoint_epoch_75_quality_0.00_1.pth",
+    "filename": "distillation_checkpoint_epoch_75_quality_0.00_1.pth",
+    "size_mb": 494.57,
+    "probe_loss": null,
+    "timestamp": 1751127979.5079117
+  }
+]

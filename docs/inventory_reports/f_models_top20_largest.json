@@ -1,0 +1,142 @@
+[
+  {
+    "path": "F:\\models\\checkpoints\\phase2\\checkpoints\\b3_phase2_epoch_1_20250806_135110.pth",
+    "ext": ".pth",
+    "size_bytes": 7648660824,
+    "size_mb": 7294.33,
+    "mtime": 1754502712.5059292
+  },
+  {
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25.pth",
+    "ext": ".pth",
+    "size_bytes": 4708618117,
+    "size_mb": 4490.49,
+    "mtime": 1755885991.7120123
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_1000.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754660760.8407984
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_1500.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754665057.7249417
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_2000.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754669860.6679642
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_2500.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754674472.6374762
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_3000.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754678826.3283038
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_3500.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754682289.7791812
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_4000.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754685762.0752797
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_4500.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754689327.457018
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_5000.pth",
+    "ext": ".pth",
+    "size_bytes": 4708609180,
+    "size_mb": 4490.48,
+    "mtime": 1754692912.120834
+  },
+  {
+    "path": "F:\\models\\checkpoints\\sweet_spot_recovery\\recovery_step_500.pth",
+    "ext": ".pth",
+    "size_bytes": 4708607033,
+    "size_mb": 4490.48,
+    "mtime": 1754657309.4348307
+  },
+  {
+    "path": "F:\\models\\checkpoints\\b3_ollama_enhanced\\b3_ollama_enhanced_stage_2_step_5500.pth",
+    "ext": ".pth",
+    "size_bytes": 4670823702,
+    "size_mb": 4454.44,
+    "mtime": 1754769518.6169727
+  },
+  {
+    "path": "F:\\models\\checkpoints\\phase2\\checkpoints\\b3_phase2_epoch_1_20250805_211624.pth",
+    "ext": ".pth",
+    "size_bytes": 4135510116,
+    "size_mb": 3943.93,
+    "mtime": 1754443001.2327464
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\heel_stop_step_145.pt",
+    "ext": ".pt",
+    "size_bytes": 4048943986,
+    "size_mb": 3861.37,
+    "mtime": 1755254816.3786697
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_175.pt",
+    "ext": ".pt",
+    "size_bytes": 4048928910,
+    "size_mb": 3861.36,
+    "mtime": 1755274672.9050305
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_350.pt",
+    "ext": ".pt",
+    "size_bytes": 4048928910,
+    "size_mb": 3861.36,
+    "mtime": 1755276682.593364
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_525.pt",
+    "ext": ".pt",
+    "size_bytes": 4048928910,
+    "size_mb": 3861.36,
+    "mtime": 1755278810.0934038
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase2_fullrun_20250815\\step_605.pt",
+    "ext": ".pt",
+    "size_bytes": 4048928910,
+    "size_mb": 3861.36,
+    "mtime": 1755279845.4942682
+  },
+  {
+    "path": "F:\\models\\checkpoints\\kd_sft_phase\\step_175.pt",
+    "ext": ".pt",
+    "size_bytes": 4048928718,
+    "size_mb": 3861.36,
+    "mtime": 1755271287.0705867
+  }
+]

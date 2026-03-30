@@ -1,0 +1,54 @@
+{
+  "babilong": {
+    "benchmark_name": "babilong",
+    "accuracy": 0.0,
+    "avg_tokens_used": 100.0,
+    "avg_recursion_depth": 1.0,
+    "avg_latency_s": 0.005456809997558594,
+    "num_samples": 50,
+    "passed_threshold": false,
+    "details": {
+      "correct": 0,
+      "threshold": 0.85
+    }
+  },
+  "ruler": {
+    "benchmark_name": "ruler",
+    "accuracy": 0.0,
+    "avg_tokens_used": 100.0,
+    "avg_recursion_depth": 1.0,
+    "avg_latency_s": 0.0030709442339445416,
+    "num_samples": 38,
+    "passed_threshold": false,
+    "details": {
+      "correct": 0,
+      "threshold": 0.85
+    }
+  },
+  "longbench": {
+    "benchmark_name": "longbench",
+    "accuracy": 0.18,
+    "avg_tokens_used": 100.0,
+    "avg_recursion_depth": 1.0,
+    "avg_latency_s": 0.002755570411682129,
+    "num_samples": 50,
+    "passed_threshold": false,
+    "details": {
+      "correct": 9,
+      "threshold": 0.85
+    }
+  },
+  "impressioncore_qa": {
+    "benchmark_name": "impressioncore_qa",
+    "accuracy": 0.0,
+    "avg_tokens_used": 100.0,
+    "avg_recursion_depth": 1.0,
+    "avg_latency_s": 0.0029686641693115233,
+    "num_samples": 50,
+    "passed_threshold": false,
+    "details": {
+      "correct": 0,
+      "threshold": 0.85
+    }
+  }
+}

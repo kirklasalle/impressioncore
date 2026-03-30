@@ -1,0 +1,14 @@
+{
+  "checkpoint": "F:\\models\\management\\training_sessions\\colossus\\20251025_181549_colossus_distilled.pt",
+  "num_prompts": 203,
+  "avg_l2": 0.5728337215672573,
+  "max_l2": 0.618864893913269,
+  "max_prompt": "Explain how version control branching strategies can reduce integration conflicts.",
+  "max_conf_checkpoint": 0.8012105372617598,
+  "max_conf_baseline": 0.6793978360364791,
+  "avg_confidence_delta": 0.10255884029007899,
+  "baseline": "F:\\models\\management\\training_sessions\\colossus\\20251020_120039_colossus_distilled.pt",
+  "teacher_data": [
+    "src\\training\\distillation\\kd_inputs\\generated\\ollama_combined_teacher_20251025_regulator.json"
+  ]
+}

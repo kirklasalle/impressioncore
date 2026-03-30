@@ -1,0 +1,117 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background: #2c3e50;
+    color: white;
+    padding-top: 30px;
+    min-height: 100px;
+    border-bottom: #e74c3c 3px solid;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+nav {
+    background: #34495e;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #e74c3c;
+}
+
+section {
+    padding: 20px;
+    border-bottom: #ddd 1px solid;
+}
+
+section h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 15px;
+    border-bottom: #e74c3c 2px solid;
+    padding-bottom: 5px;
+}
+
+section h3 {
+    color: #34495e;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+section ul, section ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+section li {
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2c3e50;
+    color: #fff;
+}
+
+/* Code block styling */
+pre {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: block;
+    overflow-x: auto;
+    font-size: 0.9em;
+}
+
+code {
+    font-family: monospace;
+}

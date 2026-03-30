@@ -1,0 +1,10 @@
+Image Reconstruction Quality Metrics:
+----------------------------------------
+PSNR (Higher is better): 6.53 dB
+SSIM (Higher is better): 0.0407
+MSE  (Lower is better): 0.222564
+
+Interpretation:
+- PSNR > 30 dB is considered good quality
+- SSIM > 0.90 indicates high structural similarity
+- MSE closer to 0 means better reconstruction

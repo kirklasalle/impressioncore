@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}ImpressionCore - Chat{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>ImpressionCore-B1 Chat</h2>
+    <form id="chat-form" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" id="user-input" placeholder="Type your message..." autocomplete="off" required>
+            <button class="btn btn-primary" type="submit">Send</button>
+        </div>
+    </form>
+    <div id="chat-log" class="border rounded p-3" style="height: 350px; overflow-y: auto; background: #f8f9fa;"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const chatForm = document.getElementById('chat-form');
+const userInput = document.getElementById('user-input');
+const chatLog = document.getElementById('chat-log');
+
+chatForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const message = userInput.value.trim();
+    if (!message) return;
+    chatLog.innerHTML += `<div><b>You:</b> ${message}</div>`;
+    userInput.value = '';
+    chatLog.scrollTop = chatLog.scrollHeight;
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+        const data = await response.json();
+        if (data.reply) {
+            chatLog.innerHTML += `<div><b>ImpressionCore-B1:</b> ${data.reply}</div>`;
+        } else {
+            chatLog.innerHTML += `<div class='text-danger'><b>Error:</b> ${data.error || 'No reply'}</div>`;
+        }
+    } catch (err) {
+        chatLog.innerHTML += `<div class='text-danger'><b>Error:</b> ${err.message}</div>`;
+    }
+    chatLog.scrollTop = chatLog.scrollHeight;
+});
+</script>
+{% endblock %}

@@ -1,0 +1,150 @@
+{
+  "ids_version": "1.0.0",
+  "initialization_time": "2025-06-02T11:10:55.424987",
+  "duration_seconds": 0.027081,
+  "steps_completed": 2,
+  "total_steps": 8,
+  "completion_percentage": 25.0,
+  "issues_found": 14,
+  "actions_taken": 0,
+  "priority_docs_status": {
+    "Developer Guide": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\developer\\ARCHITECTURE.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "User Guide": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\user_guide\\complete_user_guide.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "CLI Walkthrough": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\developer\\cli_build_walkthrough.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "Web UI Walkthrough": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\user\\web_ui_walkthrough.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "API Reference": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\api\\complete_api_reference.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    },
+    "PRD": {
+      "exists": false,
+      "path": "D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\prd.md",
+      "last_modified": "N/A",
+      "issues": [
+        "Missing"
+      ]
+    }
+  },
+  "automation_status": {},
+  "tag_system_status": {},
+  "memlog_integration_status": {},
+  "detailed_issues": [
+    {
+      "category": "priority_docs",
+      "description": "Developer Guide missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\developer\\ARCHITECTURE.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "priority_docs",
+      "description": "User Guide missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\user_guide\\complete_user_guide.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "priority_docs",
+      "description": "CLI Walkthrough missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\developer\\cli_build_walkthrough.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "priority_docs",
+      "description": "Web UI Walkthrough missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\user\\web_ui_walkthrough.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "priority_docs",
+      "description": "API Reference missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\api\\complete_api_reference.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "priority_docs",
+      "description": "PRD missing at D:\\Projects\\impressioncore\\docs\\scripts\\automation\\docs\\prd.md",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.407886"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: tag_management",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: tag_indexing",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: documentation_automation",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: health_check",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: redundancy_check",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: inventory_update",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: categorize_inbox",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    },
+    {
+      "category": "automation",
+      "description": "Missing script: doc_analytics",
+      "severity": "error",
+      "timestamp": "2025-06-02T11:10:55.412932"
+    }
+  ],
+  "detailed_actions": []
+}

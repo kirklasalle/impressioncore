@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ImpressionCore embedding manifest",
+    "type": "object",
+    "properties": {
+        "path": {
+            "type": "string",
+            "description": "Filesystem path to embedding file (.npy/.npz)"
+        },
+        "dataset": {
+            "type": "string",
+            "description": "Dataset id or path; normalizer will canonicalize to `path` when appropriate"
+        },
+        "dtype": {
+            "type": "string"
+        },
+        "dim": {
+            "type": "integer"
+        },
+        "rows": {
+            "type": "integer"
+        },
+        "checksum": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "path"
+    ],
+    "additionalProperties": true
+}

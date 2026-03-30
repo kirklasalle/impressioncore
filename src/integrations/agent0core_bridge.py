@@ -1,0 +1,75 @@
+# ImpressionCore Header — Created: June 29, 2025
+# Module: src.integrations.agent0core_bridge
+# Description: Startup wiring — injects platform services into agent0core's DI boundary
+"""
+Agent0core startup bridge.
+
+Call :func:`wire_agent0core` once during application bootstrap (e.g. in
+``triad_api.py`` startup or ``src/main.py``) to inject concrete
+ImpressionCore platform services into agent0core's Dependency Inversion
+boundary.  After this call, agent0core code can use
+``get_vector_provider()`` and ``get_triad_provider()`` without importing
+anything from ``src/``.
+
+Usage::
+
+    from src.integrations.agent0core_bridge import wire_agent0core
+    wire_agent0core()        # registers VectorMemoryConnector + UnifiedBrainTriad
+"""
+from __future__ import annotations
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def wire_agent0core() -> None:
+    """Register ImpressionCore platform services with agent0core's DI layer.
+
+    This is safe to call multiple times — providers are only created once.
+    Failures are logged but never crash the application.
+    """
+    _wire_vector_provider()
+    _wire_triad_provider()
+
+
+def _wire_vector_provider() -> None:
+    """Inject :class:`VectorMemoryConnector` as the vector provider."""
+    try:
+        from agent0core.integrations.impressioncore import (
+            get_vector_provider,
+            register_vector_provider,
+        )
+
+        if get_vector_provider() is not None:
+            logger.debug("VectorMemoryProvider already registered — skipping")
+            return
+
+        from src.orchestrator.vector_connector import VectorMemoryConnector
+
+        register_vector_provider(VectorMemoryConnector())
+    except ImportError as exc:
+        logger.warning("Could not wire VectorMemoryProvider: %s", exc)
+    except Exception as exc:
+        logger.error("Unexpected error wiring VectorMemoryProvider: %s", exc, exc_info=True)
+
+
+def _wire_triad_provider() -> None:
+    """Inject :class:`UnifiedBrainTriad` as the LLM triad provider."""
+    try:
+        from agent0core.integrations.impressioncore import (
+            get_triad_provider,
+            register_triad_provider,
+        )
+
+        if get_triad_provider() is not None:
+            logger.debug("LLMTriadProvider already registered — skipping")
+            return
+
+        from src.orchestrator.unified_triad import UnifiedBrainTriad
+
+        register_triad_provider(UnifiedBrainTriad())
+    except ImportError as exc:
+        logger.warning("Could not wire LLMTriadProvider: %s", exc)
+    except Exception as exc:
+        logger.error("Unexpected error wiring LLMTriadProvider: %s", exc, exc_info=True)

@@ -1,0 +1,115 @@
+{
+  "timestamp": "2025-06-16T13:10:58.018471",
+  "script_version": "1.0",
+  "movements": [
+    {
+      "status": "not_found",
+      "from": "test_trainer_clip_fix.py",
+      "to": "src/dev_tools/tests/test_trainer_clip_fix.py"
+    },
+    {
+      "status": "not_found",
+      "from": "enhanced_high_school_training_data.json",
+      "to": "F:/ImpressionCore_Training/datasets/enhanced_high_school_training_data.json"
+    },
+    {
+      "status": "not_found",
+      "from": "high_school_graduate_dataset.json",
+      "to": "F:/ImpressionCore_Training/datasets/high_school_graduate_dataset.json"
+    },
+    {
+      "status": "not_found",
+      "from": "high_school_training_data.json",
+      "to": "F:/ImpressionCore_Training/datasets/high_school_training_data.json"
+    },
+    {
+      "status": "not_found",
+      "from": "world_class_high_school_dataset.json",
+      "to": "F:/ImpressionCore_Training/datasets/world_class_high_school_dataset.json"
+    },
+    {
+      "status": "not_found",
+      "from": "embedding_status_analysis_20250611_185056.json",
+      "to": "docs/reports/embedding_status_analysis_20250611_185056.json"
+    },
+    {
+      "status": "not_found",
+      "from": "embedding_status_analysis_20250611_191259.json",
+      "to": "docs/reports/embedding_status_analysis_20250611_191259.json"
+    },
+    {
+      "status": "not_found",
+      "from": "embedding_status_analysis_20250612_082329.json",
+      "to": "docs/reports/embedding_status_analysis_20250612_082329.json"
+    },
+    {
+      "status": "not_found",
+      "from": "ids_maintenance.log",
+      "to": "src/memlog/ids_maintenance.log"
+    },
+    {
+      "status": "not_found",
+      "from": "training_10_quality.log",
+      "to": "src/memlog/training_10_quality.log"
+    }
+  ],
+  "removals": [
+    {
+      "file": "=2.6.0",
+      "status": "not_found"
+    },
+    {
+      "file": "=3.7.0",
+      "status": "not_found"
+    },
+    {
+      "file": "__pycache__",
+      "status": "not_found"
+    }
+  ],
+  "backup_analysis": [
+    {
+      "directory": "backup_enhanced_system_final_20250615_145600",
+      "exists": true,
+      "size_mb": 0.08,
+      "file_count": 2,
+      "recommendation": "evaluate_for_consolidation"
+    },
+    {
+      "directory": "backup_enhanced_system_final_20250615_145606",
+      "exists": true,
+      "size_mb": 0.09,
+      "file_count": 5,
+      "recommendation": "evaluate_for_consolidation"
+    },
+    {
+      "directory": "backup_enhanced_system_final_20250615_145632",
+      "exists": true,
+      "size_mb": 0.08,
+      "file_count": 2,
+      "recommendation": "evaluate_for_consolidation"
+    },
+    {
+      "directory": "backup_model_loading_fix_20250615_120018",
+      "exists": true,
+      "size_mb": 0.14,
+      "file_count": 8,
+      "recommendation": "evaluate_for_consolidation"
+    },
+    {
+      "directory": "backup_runtime_fixes_20250615_144435",
+      "exists": true,
+      "size_mb": 0.06,
+      "file_count": 2,
+      "recommendation": "evaluate_for_consolidation"
+    }
+  ],
+  "summary": {
+    "total_movements_attempted": 10,
+    "successful_movements": 0,
+    "failed_movements": 0,
+    "not_found_movements": 10,
+    "successful_removals": 0,
+    "backup_directories_found": 5
+  }
+}

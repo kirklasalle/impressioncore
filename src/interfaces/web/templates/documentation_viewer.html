@@ -1,0 +1,708 @@
+{% extends "base.html" %}
+
+{% block title %}ImpressionCore Documentation{% endblock %}
+
+{% block content %}
+<div class="section-card documentation-viewer">
+    <nav class="doc-nav">
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#overview">1. Overview</a></li>
+                <li><a href="#getting-started">2. Getting Started</a></li>
+                <li><a href="#core-features">3. Core Features</a></li>
+                <li><a href="#installation">4. Installation</a></li>
+                <li><a href="#gpu-setup">5. GPU Setup</a></li>
+                <li><a href="#tokenization">6. Tokenization</a></li>
+                <li><a href="#training">7. Training</a></li>
+                <li><a href="#model-builder">8. Model Builder</a></li>
+                <li><a href="#examples">9. Examples</a></li>
+                <li><a href="#contributing">10. Contributing</a></li>
+                <li><a href="#troubleshooting">11. Troubleshooting</a></li>
+                <li><a href="#roadmap">12. Roadmap</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="doc-content markdown-body">
+        <h1 id="overview">ImpressionCore: Full User Guide</h1>
+        
+        <div class="content">
+            <p class="lead">
+                ImpressionCore is a versatile Python library designed for efficient <strong>tokenization</strong> of both 
+                <strong>text</strong> and <strong>images</strong>. It serves as a foundational component for building 
+                multimodal AI models, particularly those based on transformer architectures.
+            </p>
+
+            <div class="note info-box">
+                <h4>🎯 Core Philosophy</h4>
+                <p>Provide a robust and configurable system for handling the crucial first step in many AI pipelines: 
+                getting data into a format the model can understand.</p>
+            </div>
+
+            <h2 id="core-features">Core Features</h2>
+            <ul class="feature-list">
+                <li><strong>Dual Tokenization:</strong> Handles both text (using Byte-Pair Encoding - BPE) and images 
+                (using learned Patch-Based Vector Quantization - VQ)</li>
+                <li><strong>Efficiency:</strong> Designed for good compression and performance, especially relevant for 
+                image tokenization</li>
+                <li><strong>Configurability:</strong> Uses JSON files for configuring model architectures and training 
+                parameters</li>
+                <li><strong>Training Framework:</strong> Includes scripts and utilities to train your own text and image 
+                tokenizers on custom datasets</li>
+                <li><strong>Web Interface:</strong> Provides an interactive web UI (served via Flask) for exploring features, 
+                setting up the environment, and experimenting with tokenizers</li>
+                <li><strong>Command-Line Tools:</strong> Offers utilities for tokenizing content, converting token formats, 
+                and analyzing token distributions</li>
+                <li><strong>Modularity:</strong> Built with components like `ModalEngine` for potentially extending to other 
+                modalities in the future</li>
+                <li><strong>Transformer Architecture:</strong> Implements a brain-inspired architecture with attention 
+                mechanisms, feed-forward networks, and more</li>
+            </ul>
+
+            <h2 id="getting-started">Who is this guide for?</h2>
+            <p>This guide is intended for:</p>
+            <ul>
+                <li><strong>Developers:</strong> Who want to integrate ImpressionCore into their AI projects</li>
+                <li><strong>Researchers:</strong> Exploring multimodal tokenization techniques</li>
+                <li><strong>Students:</strong> Learning about text and image processing for deep learning</li>
+                <li><strong>Users:</strong> Who want to utilize the provided web interface and tools for tokenization tasks</li>
+            </ul>
+            <p>A basic understanding of Python, deep learning concepts (especially transformers), and command-line usage is beneficial.</p>
+            
+            <div class="note warning-box">
+                <h4>⚠️ System Requirements</h4>
+                <ul>
+                    <li>Python 3.8 - 3.10 (recommended)</li>
+                    <li>NVIDIA GPU with CUDA support (highly recommended)</li>
+                    <li>16GB RAM minimum (32GB+ recommended)</li>
+                    <li>20GB free disk space</li>
+                </ul>
+            </div>
+
+            <h2 id="installation">Installation</h2>
+            <p>Follow these steps to install ImpressionCore and its dependencies.</p>
+
+            <h3>Prerequisites</h3>
+            <ul>
+                <li><strong>Git:</strong> Required for cloning the repository. (<a href="https://git-scm.com/downloads">Download Git</a>)</li>
+                <li><strong>Python:</strong> Ensure you have a compatible Python version (3.8-3.10 recommended) installed and added to your system's PATH. (<a href="https://www.python.org/downloads/">Download Python</a>)</li>
+                <li><strong>C++ Build Tools (Windows):</strong> If installing certain dependencies on Windows (especially if building from source is needed), you might need Microsoft C++ Build Tools. You can get these via the Visual Studio Installer (select "Desktop development with C++").</li>
+            </ul>
+
+            <h3>Cloning the Repository</h3>
+            <p>Open your terminal or command prompt and clone the ImpressionCore repository:</p>
+            <pre><code>git clone &lt;repository_url&gt; # Replace &lt;repository_url&gt; with the actual Git URL
+cd impressioncore</code></pre>
+
+            <h3>Setting up the Python Environment</h3>
+            <p>It is strongly recommended to use a virtual environment to manage dependencies and avoid conflicts with other Python projects.</p>
+            <ol>
+                <li><strong>Navigate to the project root directory:</strong>
+                    <pre><code>cd path/to/impressioncore</code></pre>
+                </li>
+                <li><strong>Create a virtual environment:</strong> (Replace `venv` with your preferred environment name if desired)
+                    <pre><code>python -m venv venv</code></pre>
+                </li>
+                <li><strong>Activate the virtual environment:</strong>
+                    <ul>
+                        <li><strong>Windows (cmd.exe):</strong>
+                            <pre><code>venv\Scripts\activate.bat</code></pre>
+                        </li>
+                        <li><strong>Windows (PowerShell):</strong>
+                            <pre><code>.\venv\Scripts\Activate.ps1</code></pre>
+                            <p>(You might need to run <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code> first if you encounter script execution errors).</p>
+                        </li>
+                        <li><strong>Linux/macOS (bash/zsh):</strong>
+                            <pre><code>source venv/bin/activate</code></pre>
+                        </li>
+                    </ul>
+                    <p>Your terminal prompt should now indicate that the virtual environment is active (e.g., <code>(venv) C:\Projects\impressioncore&gt;</code>).</p>
+                </li>
+            </ol>
+
+            <h3>Installing Dependencies</h3>
+            <p>Once the virtual environment is active, install the required Python packages.</p>
+            <ol>
+                <li><strong>Install Core Dependencies:</strong>
+                    <p>The primary dependencies are listed in <code>requirements.txt</code>. PyTorch is usually installed separately for GPU support (see next section).</p>
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                    <p>*(Note: If <code>requirements.txt</code> doesn't exist or is incomplete, you might need to install packages like <code>Flask</code>, <code>Flask-Cors</code>, <code>Flask-Sock</code>, <code>numpy</code>, <code>Pillow</code>, <code>torch</code>, <code>torchvision</code>, <code>torchaudio</code>, <code>scikit-image</code>, <code>matplotlib</code>, <code>markdown</code> etc., manually or via <code>pip install -e .</code> if a <code>setup.py</code> is present).*</p>
+                </li>
+                <li><strong>Install PyTorch (CPU-only fallback):</strong>
+                    <p>If you are <em>not</em> setting up GPU support, you can install the CPU version of PyTorch:</p>
+                    <pre><code>pip install torch torchvision torchaudio</code></pre>
+                </li>
+                <li><strong>Install for Development (Editable Mode):</strong>
+                    <p>If you plan to modify the ImpressionCore source code, install it in editable mode:</p>
+                    <pre><code>pip install -e .</code></pre>
+                    <p>This links the installation to your source code directory, so changes are reflected immediately.</p>
+                </li>
+            </ol>
+
+            <h2 id="gpu-setup">GPU Setup (Highly Recommended)</h2>
+            <p>Using an NVIDIA GPU significantly accelerates training and inference tasks, especially for image tokenization and model operations.</p>
+
+            <h3>Why Use a GPU?</h3>
+            <ul>
+                <li><strong>Speed:</strong> Massively parallel processing capabilities speed up computations.</li>
+                <li><strong>Necessity:</strong> Many deep learning models are too computationally intensive to run effectively on a CPU.</li>
+                <li><strong>Image Tokenization:</strong> The VQ process benefits greatly from GPU acceleration.</li>
+            </ul>
+
+            <h3>Automatic GPU Setup</h3>
+            <p>ImpressionCore may provide a script to simplify PyTorch installation with the correct CUDA version. Check for a script like <code>tools/install_pytorch_cuda.py</code>.</p>
+            <p>If available, run it from your activated virtual environment:</p>
+            <pre><code>python tools/install_pytorch_cuda.py</code></pre>
+            <p>This script typically attempts to:</p>
+            <ol>
+                <li>Detect your system's installed CUDA Toolkit version.</li>
+                <li>Uninstall any conflicting PyTorch versions.</li>
+                <li>Install the correct PyTorch build matching your CUDA version.</li>
+            </ol>
+
+            <h3>Manual GPU Setup</h3>
+            <p>If the automatic script is unavailable or fails, follow these steps:</p>
+
+            <h4>1. Install NVIDIA Drivers</h4>
+            <p>Ensure you have the latest official NVIDIA drivers for your specific GPU model.</p>
+            <ul>
+                <li>Download from: <a href="https://www.nvidia.com/Download/index.aspx">NVIDIA Driver Downloads</a></li>
+                <li>Follow the installer instructions. A reboot may be required.</li>
+                <li>Verify installation by checking the NVIDIA Control Panel or using <code>nvidia-smi</code> in the terminal (if installed with the driver).</li>
+            </ul>
+
+            <h4>2. Install CUDA Toolkit</h4>
+            <p>PyTorch requires the NVIDIA CUDA Toolkit to interact with the GPU.</p>
+            <ul>
+                <li><strong>Check Compatibility:</strong> Refer to the PyTorch website (<a href="https://pytorch.org/">https://pytorch.org/</a>) for the recommended CUDA versions compatible with the desired PyTorch version. Common recent versions are 11.8 and 12.1.</li>
+                <li><strong>Download:</strong> Get the CUDA Toolkit installer from <a href="https://developer.nvidia.com/cuda-downloads">NVIDIA CUDA Downloads</a>. Select your OS, architecture, version, and installer type.</li>
+                <li><strong>Install:</strong> Run the installer. A "Custom" installation might be preferable to avoid installing components you don't need (like bundled drivers if yours are already up-to-date). Ensure the core CUDA runtime and development libraries are selected.</li>
+                <li><strong>Verify:</strong> After installation, check if <code>nvcc --version</code> runs in your terminal and displays the correct CUDA version. You might need to add CUDA paths to your system's environment variables (<code>PATH</code>, <code>CUDA_HOME</code>).</li>
+            </ul>
+
+            <h4>3. Install PyTorch with CUDA</h4>
+            <p>With the drivers and CUDA Toolkit installed, install the GPU-enabled version of PyTorch within your activated virtual environment.</p>
+            <ul>
+                <li><strong>Uninstall Existing PyTorch (Important):</strong> Ensure no CPU-only or incompatible PyTorch version is present.</li>
+                <pre><code>pip uninstall -y torch torchvision torchaudio</code></pre>
+                <li><strong>Install via PyTorch Website Command:</strong> Visit <a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a> and select your preferences (PyTorch Build, OS, Package=Pip, Language=Python, Compute Platform=CUDA X.X). Copy the generated <code>pip install</code> command.</li>
+            </ul>
+            <p>*Example for CUDA 11.8:*</p>
+            <pre><code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</code></pre>
+            <p>*Example for CUDA 12.1:*</p>
+            <pre><code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</code></pre>
+            <p><strong>Alternative (Requirements File):</strong> If the direct command fails (e.g., due to network issues or shell parsing), try using a temporary requirements file:</p>
+            <pre><code># Create file (e.g., for CUDA 12.1)
+echo "torch" &gt; pytorch-reqs.txt
+echo "torchvision" &gt;&gt; pytorch-reqs.txt
+echo "torchaudio" &gt;&gt; pytorch-reqs.txt
+echo "--index-url https://download.pytorch.org/whl/cu121" &gt;&gt; pytorch-reqs.txt
+
+# Install from file
+pip install -r pytorch-reqs.txt
+
+# Clean up
+rm pytorch-reqs.txt</code></pre>
+
+            <h4>4. Verify Installation</h4>
+            <p>Check if PyTorch can detect and use your GPU.</p>
+            <ul>
+                <li><strong>Run Verification Script:</strong> Check if an <code>examples/check_gpu.py</code> script exists and run it:</li>
+                <pre><code>python examples/check_gpu.py</code></pre>
+                <li><strong>Manual Python Check:</strong> Open a Python interpreter within your activated environment:</li>
+                <pre><code>import torch
+
+# Check if CUDA is available
+is_available = torch.cuda.is_available()
+print(f"CUDA Available: {is_available}")
+
+if is_available:
+    # Print number of GPUs
+    print(f"Number of GPUs: {torch.cuda.device_count()}")
+    # Print current GPU name
+    print(f"Current GPU Name: {torch.cuda.get_device_name(torch.cuda.current_device())}")
+else:
+    print("CUDA not available. PyTorch is running on CPU.")
+
+# Exit Python interpreter
+exit()</code></pre>
+                <p>You should see <code>CUDA Available: True</code> and details about your GPU.</p>
+            </ul>
+
+            <h3>GPU Troubleshooting</h3>
+            <ul>
+                <li><strong>`torch.cuda.is_available()` returns `False`:</strong>
+                    <ul>
+                        <li>Incorrect PyTorch version installed (CPU-only or wrong CUDA build). Reinstall using the correct command from the PyTorch website.</li>
+                        <li>CUDA Toolkit installation issue or not found in PATH. Verify <code>nvcc --version</code>.</li>
+                        <li>NVIDIA driver issue. Reinstall/update drivers.</li>
+                        <li>Incompatible hardware (GPU too old).</li>
+                    </ul>
+                </li>
+                <li><strong>"No matching distribution found for torch":</strong>
+                    <ul>
+                        <li>Unsupported Python version (try 3.8-3.10).</li>
+                        <li>Network issue preventing download from PyTorch index.</li>
+                        <li>Typo in the installation command or index URL.</li>
+                    </ul>
+                </li>
+                <li><strong>CUDA Out of Memory Errors:</strong>
+                    <ul>
+                        <li>Your GPU doesn't have enough VRAM for the task (model size, batch size). See <a href="#notes-for-gtx-1050-ti-4gb-vram">Notes for GTX 1050 Ti</a>.</li>
+                        <li>Other processes might be using GPU memory. Check with <code>nvidia-smi</code>.</li>
+                        <li>Memory leak in the code.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>Notes for GTX 1050 Ti (4GB VRAM)</h4>
+            <p>The GTX 1050 Ti is a capable card but has limited VRAM (4GB). Keep this in mind:</p>
+            <ul>
+                <li><strong>Model Size:</strong> Training large models from scratch will be very difficult or impossible. Focus on smaller models or fine-tuning.</li>
+                <li><strong>Batch Size:</strong> Use small batch sizes (e.g., 1, 2, 4, 8) during training and inference to fit within memory limits.</li>
+                <li><strong>Half Precision (FP16/BF16):</strong> Use <code>model.half()</code> or <code>torch.cuda.amp</code> (Automatic Mixed Precision) to reduce memory usage, potentially at the cost of some numerical stability.</li>
+                <li><strong>Gradient Checkpointing:</strong> Enable during training (<code>model.gradient_checkpointing_enable()</code>) to trade computation time for memory savings.</li>
+                <li><strong>Quantization:</strong> For inference, consider 8-bit quantization (<code>torch.quantization.quantize_dynamic</code>) to significantly reduce model size and memory footprint.</li>
+                <li><strong>Environment Variables:</strong> The <code>setup.html</code> page might suggest setting <code>PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:X</code> (e.g., X=512 or lower) to optimize memory allocation for smaller GPUs.</li>
+            </ul>
+
+            <h2 id="tokenization">Tokenization Deep Dive</h2>
+            <p>This section explores the text and image tokenization capabilities of ImpressionCore in more detail.</p>
+
+            <h3>Understanding Tokenization</h3>
+            <p>Tokenization breaks down complex data (like a paragraph of text or a high-resolution image) into smaller, manageable units (tokens) that a machine learning model can process. Each unique token is typically assigned an integer ID.</p>
+            <ul>
+                <li><strong>Text:</strong> Tokens can be words, subwords (like <code>token</code>, <code>ization</code>), or even characters.</li>
+                <li><strong>Images:</strong> Tokens often represent visual patterns within small patches of the image.</li>
+            </ul>
+
+            <h3>Text Tokenization (BPE)</h3>
+            <p>ImpressionCore uses Byte-Pair Encoding (BPE) for text.</p>
+
+            <h4>How BPE Works</h4>
+            <ol>
+                <li><strong>Initialization:</strong> Start with a vocabulary containing all individual characters present in the training corpus.</li>
+                <li><strong>Iteration:</strong> Repeatedly count all adjacent pairs of tokens (symbols) in the corpus.</li>
+                <li><strong>Merging:</strong> Find the most frequent pair (e.g., 't', 'h') and merge it into a new, single token ('th'). Add this new token to the vocabulary.</li>
+                <li><strong>Repeat:</strong> Continue merging the next most frequent pair until the desired vocabulary size is reached or no more merges are possible.</li>
+                <li><strong>Tokenization:</strong> To tokenize new text, apply the learned merges greedily in the order they were learned.</li>
+            </ol>
+
+            <h3>Using the <code>BPETokenizer</code></h3>
+            <p>The <code>src.tokenization.bpe.BPETokenizer</code> class handles text tokenization.</p>
+            <pre><code>from src.tokenization.bpe import BPETokenizer
+
+# --- Loading ---
+# Load a pre-trained tokenizer (replace path)
+try:
+    tokenizer = BPETokenizer.load("data/tokenizers/text_tokenizer.json")
+except FileNotFoundError:
+    print("Tokenizer file not found. Train one first.")
+    # Handle error or train a new one
+    exit()
+
+# --- Encoding ---
+text = "Hello ImpressionCore world!"
+# Get token IDs
+token_ids = tokenizer.encode(text)
+print(f"'{text}' -> IDs: {token_ids}")
+# Get token strings
+tokens = tokenizer.tokenize(text)
+print(f"'{text}' -> Tokens: {tokens}")
+
+# --- Decoding ---
+reconstructed_text = tokenizer.decode(token_ids)
+print(f"IDs {token_ids} -> '{reconstructed_text}'")
+
+# --- Vocabulary ---
+print(f"Vocabulary Size: {tokenizer.vocab_size}")
+# print(f"Vocabulary: {tokenizer.get_vocab()}") # Can be large</code></pre>
+
+            <h4>Special Tokens</h4>
+            <p>Special tokens are used to signal specific things to the model:</p>
+            <ul>
+                <li><code>&lt;unk&gt;</code> (ID 0): Represents words not found in the vocabulary.</li>
+                <li><code>&lt;pad&gt;</code> (ID 1): Used to make sequences in a batch the same length.</li>
+                <li><code>&lt;bos&gt;</code> (ID 2): Marks the beginning of a sequence.</li>
+                <li><code>&lt;eos&gt;</code> (ID 3): Marks the end of a sequence.</li>
+                <li><code>&lt;mask&gt;</code> (ID 4): Used in tasks like Masked Language Modeling.</li>
+            </ul>
+            <p>You can control their inclusion during encoding/decoding:</p>
+            <pre><code># Encode with BOS/EOS
+token_ids_special = tokenizer.encode(text, add_special_tokens=True)
+print(f"With BOS/EOS: {token_ids_special}")
+
+# Decode, skipping special tokens in the output string
+reconstructed_skip = tokenizer.decode(token_ids_special, skip_special_tokens=True)
+print(f"Decoded skipping special: '{reconstructed_skip}'")
+</code></pre>
+
+            <h4>Training a Text Tokenizer</h4>
+            <p>Use the <code>train_text_tokenizer</code> function or the command-line tool.</p>
+            <pre><code>from src.tokenization.train_tokenizers import train_text_tokenizer
+
+# Define paths and vocab size
+corpus_path = "data/text_corpus/your_data.txt" # Path to your raw text file
+output_path = "data/tokenizers/custom_text_tokenizer.json"
+target_vocab_size = 30000 # Example size
+
+# Train
+results = train_text_tokenizer(
+    input_file=corpus_path,
+    output_file=output_path,
+    vocab_size=target_vocab_size
+)
+print(f"Training complete. Tokenizer saved to {output_path}")
+print(f"Final Vocab Size: {results['vocab_size']}")
+</code></pre>
+            <p>Or via CLI:</p>
+            <pre><code>python -m src.training.train_tokenizer --type text --text-corpus data/text_corpus/your_data.txt --output-file data/tokenizers/custom_text_tokenizer.json --vocab-size 30000</code></pre>
+
+            <h2 id="training">Image Tokenization (VQ)</h2>
+            <p>ImpressionCore uses a patch-based Vector Quantization (VQ) approach.</p>
+
+            <h4>How Patch-Based VQ Works</h4>
+            <ol>
+                <li><strong>Patching:</strong> Divide the input image into a grid of non-overlapping patches (e.g., 16x16 pixels).</li>
+                <li><strong>Encoding:</strong> Pass each patch through an encoder network (often a CNN or transformer) to get a feature vector (embedding).</li>
+                <li><strong>Quantization:</strong> Find the closest vector in a pre-learned "codebook" (a set of representative feature vectors). The *index* of this closest codebook vector becomes the token ID for that patch.</li>
+                <li><strong>Decoding (Optional):</strong> To reconstruct the image, retrieve the codebook vectors corresponding to the token IDs and pass them through a decoder network to generate image patches, which are then reassembled.</li>
+            </ol>
+
+            <h3>Using the <code>ImageTokenizer</code></h3>
+            <p>The <code>src.tokenization.image.ImageTokenizer</code> class handles image tokenization. It often requires PyTorch and a GPU.</p>
+            <pre><code>import torch
+from PIL import Image
+from src.tokenization.image import ImageTokenizer
+from torchvision import transforms # Usually needed for preprocessing
+
+# --- Loading ---
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+try:
+    tokenizer = ImageTokenizer.load("data/tokenizers/image_tokenizer.pt").to(device)
+    tokenizer.eval() # Set to evaluation mode
+except FileNotFoundError:
+    print("Image tokenizer file not found. Train one first.")
+    exit()
+
+# --- Image Preparation ---
+image_path = "examples/sample_image.jpg" # Replace with your image
+try:
+    image = Image.open(image_path).convert('RGB')
+except FileNotFoundError:
+    print(f"Image file not found: {image_path}")
+    exit()
+
+# Preprocessing often involves resizing and converting to tensor
+# The exact transform depends on how the tokenizer was trained
+preprocess = transforms.Compose([
+    transforms.Resize((tokenizer.image_size, tokenizer.image_size)),
+    transforms.ToTensor(), # Converts to [C, H, W] tensor in [0, 1] range
+    # Add normalization if the tokenizer expects it
+    # transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
+image_tensor = preprocess(image).unsqueeze(0).to(device) # Add batch dimension
+
+# --- Encoding ---
+with torch.no_grad(): # Disable gradient calculation for inference
+    tokens = tokenizer.encode(image_tensor) # Get token IDs (likely a flattened list or grid)
+print(f"Image encoded to {tokens.shape} tokens.") # Shape depends on implementation
+
+# --- Decoding ---
+with torch.no_grad():
+    reconstructed_tensor = tokenizer.decode(tokens) # Get reconstructed image tensor
+
+# --- Postprocessing ---
+# Convert tensor back to PIL Image for saving/viewing
+reconstructed_image = transforms.ToPILImage()(reconstructed_tensor.squeeze(0).cpu())
+reconstructed_image.save("reconstructed_sample.jpg")
+print("Reconstructed image saved.")
+
+# --- Quality Metrics (Optional) ---
+# ssim = tokenizer.compute_ssim(image_tensor, reconstructed_tensor)
+# psnr = tokenizer.compute_psnr(image_tensor, reconstructed_tensor)
+# print(f"SSIM: {ssim:.4f}, PSNR: {psnr:.2f} dB")
+</code></pre>
+
+            <h4>Image Tokenizer Architecture</h4>
+            <ul>
+                <li><strong>Encoder:</strong> Maps image patches to latent vectors.</li>
+                <li><strong>Codebook:</strong> A learnable tensor <code>(num_tokens, embedding_dim)</code> storing the representative vectors.</li>
+                <li><strong>Quantization:</strong> Finds the nearest codebook entry for each patch embedding (using Euclidean distance or dot product).</li>
+                <li><strong>Decoder:</strong> Reconstructs image patches from codebook vectors.</li>
+                <li><strong>Loss Function:</strong> Training typically involves reconstruction loss (e.g., MSE, L1) and a codebook loss (encouraging codebook vectors to be used and updated).</li>
+            </ul>
+
+            <h3>Training an Image Tokenizer</h3>
+            <p>Use the <code>train_image_tokenizer</code> function or the command-line tool. This usually requires a significant amount of image data and GPU resources.</p>
+            <pre><code>from src.tokenization.train_tokenizers import train_image_tokenizer
+
+# Define paths and parameters
+image_dir = "data/images/your_dataset" # Directory containing image files
+output_path = "data/tokenizers/custom_image_tokenizer.pt"
+img_size = 256
+patch_s = 16
+num_codes = 8192 # Codebook size
+epochs = 50 # Number of training epochs
+
+# Train
+results = train_image_tokenizer(
+    input_dir=image_dir,
+    output_file=output_path,
+    image_size=img_size,
+    patch_size=patch_s,
+    num_tokens=num_codes,
+    epochs=epochs
+    # Add other parameters like batch_size, learning_rate etc. if available
+)
+print(f"Image tokenizer training complete. Saved to {output_path}")
+</code></pre>
+            <p>Or via CLI:</p>
+            <pre><code>python -m src.training.train_tokenizer --type image --image-dir data/images/your_dataset --output-file data/tokenizers/custom_image_tokenizer.pt --image-size 256 --patch-size 16 --num-tokens 8192 --epochs 50</code></pre>
+
+            <h2 id="model-builder">Working with Tokenized Content</h2>
+            <h3>Saving and Loading Tokens</h3>
+            <p>Token IDs are typically lists or arrays of integers. They can be saved in various formats.</p>
+            <pre><code>from src.tokenization.converter import save_token_ids, load_token_ids # Assuming this utility exists
+
+# Example token IDs
+text_tokens = [101, 7592, 103, 2376, 102]
+image_tokens = [512, 1024, 23, ..., 789] # Can be very long
+
+# Save
+save_token_ids(text_tokens, "output/my_text_tokens.json")
+save_token_ids(image_tokens, "output/my_image_tokens.npy") # NumPy binary format
+save_token_ids(image_tokens, "output/my_image_tokens.pt") # PyTorch tensor format
+save_token_ids(text_tokens, "output/my_text_tokens.txt", format='txt') # Simple space-separated text
+
+# Load
+loaded_text = load_token_ids("output/my_text_tokens.json")
+loaded_image = load_token_ids("output/my_image_tokens.npy")
+</code></pre>
+
+            <h3>Analyzing Tokens</h3>
+            <p>Understanding the distribution and characteristics of tokens can be useful.</p>
+            <pre><code>from collections import Counter
+import math
+import matplotlib.pyplot as plt
+
+# Assume 'token_ids' is a list of integers
+token_counts = Counter(token_ids)
+num_unique = len(token_counts)
+total_tokens = len(token_ids)
+
+print(f"Total Tokens: {total_tokens}")
+print(f"Unique Tokens: {num_unique}")
+
+# Entropy (measure of information/randomness)
+entropy = -sum((count / total_tokens) * math.log2(count / total_tokens)
+               for count in token_counts.values())
+print(f"Token Entropy: {entropy:.2f} bits/token")
+
+# Print most common tokens
+print("Most Common Tokens:")
+for token_id, count in token_counts.most_common(10):
+    print(f"  ID {token_id}: {count} times")
+
+# Visualize distribution (optional)
+# plt.figure(figsize=(10, 5))
+# plt.hist(token_ids, bins=min(num_unique, 100)) # Adjust bins as needed
+# plt.title("Token ID Distribution")
+# plt.xlabel("Token ID")
+# plt.ylabel("Frequency")
+# plt.show()
+</code></pre>
+            <p>Use the <code>view_tokens</code> command-line tool for quick analysis (see [Command-Line Tools](#command-line-tools)).</p>
+
+            <h2 id="examples">Advanced Tokenization</h2>
+            <h3>Multimodal Processing (<code>ModalEngine</code>)</h3>
+            <p>If ImpressionCore includes a <code>ModalEngine</code> (e.g., in <code>src/core/modal_engine.py</code>), it simplifies handling multiple data types.</p>
+            <pre><code># Conceptual Example
+from src.core.modal_engine import ModalEngine, ModalityType
+
+engine = ModalEngine()
+
+# Register the trained tokenizers
+text_tok = BPETokenizer.load("data/tokenizers/text_tokenizer.json")
+img_tok = ImageTokenizer.load("data/tokenizers/image_tokenizer.pt").to(device)
+engine.register_tokenizer(ModalityType.TEXT, text_tok)
+engine.register_tokenizer(ModalityType.IMAGE, img_tok)
+
+# Tokenize different types of content easily
+text_data = "This is text."
+image_data = preprocess(Image.open("image.png").convert("RGB")).unsqueeze(0).to(device)
+
+text_token_ids = engine.tokenize(text_data, ModalityType.TEXT)
+image_token_ids = engine.tokenize(image_data, ModalityType.IMAGE)
+
+print("Text Tokens:", text_token_ids)
+print("Image Tokens Shape:", image_token_ids.shape)
+</code></pre>
+
+            <h3>Custom Tokenizers</h3>
+            <p>You can integrate your own tokenizers by ensuring they adhere to the expected interface (typically <code>encode</code> and <code>decode</code> methods).</p>
+            <pre><code>class MySimpleTokenizer:
+    def __init__(self):
+        # Simple space splitting
+        self.vocab = {'&lt;unk&gt;': 0}
+        self.rev_vocab = {0: '&lt;unk&gt;'}
+        self.next_id = 1
+
+    def encode(self, text):
+        ids = []
+        for word in text.lower().split():
+            if word not in self.vocab:
+                # Add to vocab dynamically (simple example)
+                self.vocab[word] = self.next_id
+                self.rev_vocab[self.next_id] = word
+                self.next_id += 1
+            ids.append(self.vocab[word])
+        return ids
+
+    def decode(self, token_ids):
+        return " ".join(self.rev_vocab.get(id, '&lt;unk&gt;') for id in token_ids)
+
+# Register with ModalEngine (if applicable)
+# engine.register_tokenizer(ModalityType.CUSTOM, MySimpleTokenizer())
+</code></pre>
+
+            <h2>Tokenization Best Practices</h2>
+            <ul>
+                <li><strong>Consistency:</strong> Apply the *exact same* preprocessing (resizing, normalization, text cleaning) during inference as was used during tokenizer training.</li>
+                <li><strong>Vocabulary Fit:</strong> Train tokenizers on data representative of what they will be used on. A tokenizer trained on news articles might perform poorly on code.</li>
+                <li><strong>Text Normalization:</strong> Decide on a consistent strategy (lowercase, punctuation removal, unicode normalization) before training and apply it always.</li>
+                <li><strong>Image Resolution:</strong> Train and use the image tokenizer with the expected image size.</li>
+                <li><strong>Codebook Size (Images):</strong> Larger codebooks capture more detail but increase memory and computation. 8192-16384 is a common range.</li>
+                <li><strong>Evaluate:</strong> Check reconstruction quality (PSNR/SSIM for images) or downstream task performance to assess tokenizer effectiveness.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+.documentation-viewer {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.doc-nav {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.doc-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toc li {
+    margin: 0.5rem 0;
+}
+
+.toc a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 0.2s;
+}
+
+.toc a:hover {
+    color: #007bff;
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature-list li {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.feature-list li:before {
+    content: "•";
+    color: #007bff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.info-box, .warning-box {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+}
+
+.info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.warning-box {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+h1, h2, h3, h4 {
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+code {
+    background: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    display: block;
+    padding: 1rem;
+    overflow-x: auto;
+}
+</style>
+{% endblock %}

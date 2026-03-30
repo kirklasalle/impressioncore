@@ -1,0 +1,93 @@
+```mermaid
+graph TB
+    subgraph "VS Code Ecosystem"
+        A[VS Code IDE]
+        B[GitHub Copilot Chat]
+        C[Command Palette]
+        D[MCP Extension]
+    end
+    
+    subgraph "MCP Protocol Layer"
+        E[JSON-RPC 2.0]
+        F[Tool Discovery]
+        G[Request/Response]
+    end
+    
+    subgraph "IDS MCP Server"
+        H[Server.py - Main Process]
+        I[Tool Registry - 5 Tools]
+        J[Error Handling]
+        K[Timeout Protection]
+        L[Graceful Shutdown]
+        M[Production Logging]
+    end
+    
+    subgraph "Tool Implementation"
+        N[mcp_impressioncor_search]
+        O[mcp_impressioncor_get-file-info]
+        P[mcp_impressioncor_get-system-status]
+        Q[mcp_impressioncor_search-content]
+        R[mcp_impressioncor_export-data]
+    end
+    
+    subgraph "IDS Backend System"
+        S[4,894+ Files]
+        T[8,903+ Tags]
+        U[YAML Storage]
+        V[Search Engine]
+        W[Index Management]
+    end
+    
+    subgraph "Performance Metrics"
+        X[<1s Response Time]
+        Y[<100MB Memory]
+        Z[99.9% Uptime]
+    end
+    
+    subgraph "Future Optimization"
+        AA[SQLite Backend]
+        BB[In-Memory Cache]
+        CC[12 Additional Tools]
+        DD[Real-time Updates]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    E --> G
+    F --> H
+    G --> H
+    H --> I
+    H --> J
+    H --> K
+    H --> L
+    H --> M
+    I --> N
+    I --> O
+    I --> P
+    I --> Q
+    I --> R
+    N --> V
+    O --> S
+    P --> W
+    Q --> V
+    R --> U
+    V --> S
+    V --> T
+    V --> U
+    H --> X
+    H --> Y
+    H --> Z
+    
+    style H fill:#4CAF50
+    style I fill:#2196F3
+    style X fill:#FF9800
+    style Y fill:#FF9800
+    style Z fill:#FF9800
+    style AA fill:#9C27B0,stroke-dasharray: 5 5
+    style BB fill:#9C27B0,stroke-dasharray: 5 5
+    style CC fill:#9C27B0,stroke-dasharray: 5 5
+    style DD fill:#9C27B0,stroke-dasharray: 5 5
+```

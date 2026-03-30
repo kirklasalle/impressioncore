@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "created_at": "2025-06-19T20:50:09.495812",
+    "source": "ImpressionCore-EDS-Enhanced-v2.1",
+    "compliance": "Sacred-Covenant-Approved",
+    "license": "Educational-Use-License-Compliant",
+    "total_topics": 5,
+    "hardware_target": "GTX-1050-Ti-4GB-VRAM",
+    "total_entries": 5,
+    "b1_suitable_entries": 4,
+    "total_words_scraped": 84981,
+    "average_quality_score": 7.11,
+    "success_rate_percent": 100.0
+  },
+  "entries": [
+    {
+      "topic": "Machine_learning",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Machine_learning",
+      "content_preview": "Jump to content From Wikipedia, the free encyclopedia Study of algorithms that improve automatically through experience For the journal, see Machine Learning (journal) . \"Statistical learning\" redirects here. For statistical learning in linguistics, see Statistical learning in language acquisition . Part of a series on Machine learning and data mining Paradigms Supervised learning Unsupervised learning Semi-supervised learning Self-supervised learning Reinforcement learning Meta-learning Online ...",
+      "word_count": 18479,
+      "headings_count": 60,
+      "quality_score": 7.125948373829752,
+      "educational_value": 6.0,
+      "scraped_at": "2025-06-19T20:50:10.229232",
+      "license_compliant": true,
+      "b1_suitable": true
+    },
+    {
+      "topic": "Neural_network",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Neural_network",
+      "content_preview": "Jump to content From Wikipedia, the free encyclopedia Structure in biology and artificial intelligence For other uses, see Neural network (disambiguation) . A neural network is a group of interconnected units called neurons that send signals to one another. Neurons can be either biological cells or signal pathways . While individual neurons are simple, many of them together in a network can perform complex tasks. There are two main types of neural networks. In neuroscience , a biological neural ...",
+      "word_count": 1019,
+      "headings_count": 5,
+      "quality_score": 6.687910206084396,
+      "educational_value": 5.019,
+      "scraped_at": "2025-06-19T20:50:10.819842",
+      "license_compliant": true,
+      "b1_suitable": false
+    },
+    {
+      "topic": "Artificial_intelligence",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "content_preview": "Jump to content From Wikipedia, the free encyclopedia Intelligence of machines \"AI\" redirects here. For other uses, see AI (disambiguation) and Artificial intelligence (disambiguation) . Part of a series on Artificial intelligence (AI) Major goals Artificial general intelligence Intelligent agent Recursive self-improvement Planning Computer vision General game playing Knowledge representation Natural language processing Robotics AI safety Approaches Machine learning Symbolic Deep learning Bayesi...",
+      "word_count": 35326,
+      "headings_count": 69,
+      "quality_score": 7.241768102813792,
+      "educational_value": 6.0,
+      "scraped_at": "2025-06-19T20:50:12.438283",
+      "license_compliant": true,
+      "b1_suitable": true
+    },
+    {
+      "topic": "Deep_learning",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Deep_learning",
+      "content_preview": "Jump to content From Wikipedia, the free encyclopedia Branch of machine learning For the TV series episode, see Deep Learning (South Park) . Representing images on multiple layers of abstraction in deep learning [ 1 ] Part of a series on Artificial intelligence (AI) Major goals Artificial general intelligence Intelligent agent Recursive self-improvement Planning Computer vision General game playing Knowledge representation Natural language processing Robotics AI safety Approaches Machine learnin...",
+      "word_count": 20761,
+      "headings_count": 42,
+      "quality_score": 7.177679302538413,
+      "educational_value": 6.0,
+      "scraped_at": "2025-06-19T20:50:14.065752",
+      "license_compliant": true,
+      "b1_suitable": true
+    },
+    {
+      "topic": "Linear_algebra",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Linear_algebra",
+      "content_preview": "Jump to content From Wikipedia, the free encyclopedia Branch of mathematics Linear algebra is the branch of mathematics concerning linear equations such as a 1 x 1 + ⋯ + a n x n = b , {\\displaystyle a_{1}x_{1}+\\cdots +a_{n}x_{n}=b,} linear maps such as ( x 1 , … , x n ) ↦ a 1 x 1 + ⋯ + a n x n , {\\displaystyle (x_{1},\\ldots ,x_{n})\\mapsto a_{1}x_{1}+\\cdots +a_{n}x_{n},} and their representations in vector spaces and through matrices . [ 1 ] [ 2 ] [ 3 ] In three-dimensional Euclidean space , thes...",
+      "word_count": 9396,
+      "headings_count": 35,
+      "quality_score": 7.31890166028097,
+      "educational_value": 6.0,
+      "scraped_at": "2025-06-19T20:50:15.543844",
+      "license_compliant": true,
+      "b1_suitable": true
+    }
+  ],
+  "performance_stats": {
+    "runtime_seconds": 6.571156740188599,
+    "requests_made": 5,
+    "successful_scrapes": 5,
+    "failed_scrapes": 0,
+    "success_rate": 1.0,
+    "memory_usage_mb": 75.3359375
+  }
+}

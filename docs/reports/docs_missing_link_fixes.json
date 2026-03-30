@@ -1,0 +1,10 @@
+{
+  "replacements": [
+    {
+      "from": "docs/archive/archive/full_report/full_report (backup",
+      "to": "docs/archive/archive/full_report/full_report (backup).md",
+      "score": 0.95
+    }
+  ],
+  "unresolved": []
+}

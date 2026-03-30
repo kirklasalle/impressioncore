@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-07-28T20:57:50.062125",
+  "pytorch_available": true,
+  "cuda_available": true,
+  "device_name": "NVIDIA GeForce GTX 1050 Ti",
+  "vram_gb": 3.999755859375,
+  "f_drive_available": true,
+  "f_drive_free_gb": 174.6500473022461,
+  "b3_components": [
+    "ImpressionCoreB3Model",
+    "B3Config"
+  ],
+  "pytorch_version": "2.5.1+cu121",
+  "system_ready": true
+}

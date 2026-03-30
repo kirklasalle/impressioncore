@@ -1,0 +1,233 @@
+{
+  "test_date": "1759703993.3685427",
+  "total_tests": 14,
+  "avg_quality": 4.428571428571429,
+  "generic_rate": 14.285714285714285,
+  "success_rate": 85.71428571428571,
+  "enhancement_rate": 0.0,
+  "avg_time_ms": 2699.7088534491404,
+  "domain_performance": {
+    "multimodal": {
+      "avg_quality": 5.0,
+      "generic_rate": 0.0
+    },
+    "conversational": {
+      "avg_quality": 5.0,
+      "generic_rate": 0.0
+    },
+    "educational": {
+      "avg_quality": 3.6666666666666665,
+      "generic_rate": 33.33333333333333
+    },
+    "cross_domain": {
+      "avg_quality": 5.0,
+      "generic_rate": 0.0
+    },
+    "edge_case": {
+      "avg_quality": 3.6666666666666665,
+      "generic_rate": 33.33333333333333
+    }
+  },
+  "strategy_usage": {
+    "natural_low_confidence": 5,
+    "natural_only": 9
+  },
+  "results": [
+    {
+      "query": "What does a sunset look like?",
+      "domain": "multimodal",
+      "description": "Visual description test",
+      "response": "Please explain further a high-level programming language known for its simplicity and readability. It's widely used in large amounts of data.",
+      "strategy": "natural_low_confidence",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 5,
+      "confidence": 0.3311850130558014,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 4328.474760055542
+    },
+    {
+      "query": "Describe a beach scene",
+      "domain": "multimodal",
+      "description": "Scene description test",
+      "response": "work? Please explain. AI: Machine learning is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in large amounts of data.",
+      "strategy": "natural_low_confidence",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 5,
+      "confidence": 0.3329935073852539,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 4049.060583114624
+    },
+    {
+      "query": "What colors are in a rainbow?",
+      "domain": "multimodal",
+      "description": "Color knowledge test",
+      "response": "Please explain. AI: Neural networks is a fascinating field in computer science that focuses on creating intelligent systems.",
+      "strategy": "natural_low_confidence",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 5,
+      "confidence": 0.31828829646110535,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2707.6549530029297
+    },
+    {
+      "query": "How are you today?",
+      "domain": "conversational",
+      "description": "Greeting test",
+      "response": "Please explain further a fascinating field in computer science that helps machines perform tasks requiring intelligence.",
+      "strategy": "natural_low_confidence",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 5,
+      "confidence": 0.31146260499954226,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 1705.2347660064697
+    },
+    {
+      "query": "Can you help me with something?",
+      "domain": "conversational",
+      "description": "Help request test",
+      "response": "Please explain further a high-level programming language known for its simplicity and readability. It's widely used in large amounts of data.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2637.511968612671
+    },
+    {
+      "query": "What's your favorite color?",
+      "domain": "conversational",
+      "description": "Personal preference test",
+      "response": "AI: Algorithms is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in large amounts of data.",
+      "strategy": "natural_low_confidence",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 5,
+      "confidence": 0.33989131450653076,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2745.7380294799805
+    },
+    {
+      "query": "What is photosynthesis?",
+      "domain": "educational",
+      "description": "Scientific concept test",
+      "response": "Please explain further a high-level programming language known for Artificial Intelligence. It includes learning, reason, and perform tasks that typically require human intelligence.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2772.0108032226562
+    },
+    {
+      "query": "How does gravity work?",
+      "domain": "educational",
+      "description": "Physics concept test",
+      "response": "That's an interesting question! Could you provide more context?",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 1.0,
+      "is_generic": true,
+      "time_ms": 104.65312004089355
+    },
+    {
+      "query": "What is DNA?",
+      "domain": "educational",
+      "description": "Biology concept test",
+      "response": "AI: AI: Ai is a high-level programming language known for its simplicity and readability. It's widely used in AI, data science, and web development.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 4851.154804229736
+    },
+    {
+      "query": "Explain neural networks visually",
+      "domain": "cross_domain",
+      "description": "Visual + technical explanation",
+      "response": "neural network? Please explain. Let me help clarify things for computers to learn patterns, text, images, or any other form of information.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2823.1825828552246
+    },
+    {
+      "query": "How do I learn machine learning?",
+      "domain": "cross_domain",
+      "description": "Learning guidance test",
+      "response": "Please explain further a high-level programming language known for its simplicity and readability. It's widely used in large amounts of data.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2790.131092071533
+    },
+    {
+      "query": "asdfghjkl",
+      "domain": "edge_case",
+      "description": "Nonsense input test",
+      "response": "? Please explain further. AI: Machine learning is a subset of machine learning that uses neural networks with multiple layers to learn complex patterns in large amounts of data.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 3241.5847778320312
+    },
+    {
+      "query": "Tell me everything",
+      "domain": "edge_case",
+      "description": "Vague request test",
+      "response": "does machine learning work? Please explain. Let me help clarify things for computers to learn patterns, text, images, or any other form of information.",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 5.0,
+      "is_generic": false,
+      "time_ms": 2991.084337234497
+    },
+    {
+      "query": "",
+      "domain": "edge_case",
+      "description": "Empty query test",
+      "response": "Let me help you with that. Could you provide more details?",
+      "strategy": "natural_only",
+      "enhancement_applied": false,
+      "quality_preserved": true,
+      "docs_retrieved": 0,
+      "confidence": 0.0,
+      "quality": 1.0,
+      "is_generic": true,
+      "time_ms": 48.447370529174805
+    }
+  ]
+}

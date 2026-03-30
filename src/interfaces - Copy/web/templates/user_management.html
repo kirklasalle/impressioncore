@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}User Management - ImpressionCore{% endblock %}
+
+{% block content %}
+<div class="section-title">User Management</div>
+
+<div class="card">
+    <div class="section-subtitle">System Access</div>
+    <div class="form-group">
+        <label class="form-label">Access Level</label>
+        <div class="custom-select">
+            <select class="form-control" id="accessLevel">
+                <option value="admin">Administrator</option>
+                <option value="developer">Developer</option>
+                <option value="researcher">Researcher</option>
+                <option value="viewer">Viewer</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Authentication Method</label>
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="twoFactorAuth">
+                <span class="switch-slider"></span>
+            </label>
+            <span class="switch-label">Two-Factor Authentication</span>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-subtitle">API Access</div>
+    <div class="form-group">
+        <label class="form-label">API Keys</label>
+        <div class="api-key-list" id="apiKeyList">
+            <!-- API keys will be populated here -->
+        </div>
+        <button class="btn btn-primary" id="generateApiKey">
+            <i class="fas fa-key"></i>
+            Generate New API Key
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-subtitle">Resource Limits</div>
+    <div class="form-group">
+        <label class="form-label">Training Hours per Month</label>
+        <div class="slider-container">
+            <input type="range" min="0" max="100" step="5" value="50" id="trainingHours">
+            <span id="trainingHoursValue">50 hours</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Storage Quota</label>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" step="1" value="10" id="storageQuota">
+            <span id="storageQuotaValue">10 GB</span>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-subtitle">Session Management</div>
+    <div class="form-group">
+        <button class="btn btn-warning" id="revokeAllSessions">
+            <i class="fas fa-sign-out-alt"></i>
+            Revoke All Sessions
+        </button>
+        <button class="btn btn-primary" id="viewActivityLog">
+            <i class="fas fa-history"></i>
+            View Activity Log
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Update slider values
+document.getElementById('trainingHours').addEventListener('input', function() {
+    document.getElementById('trainingHoursValue').textContent = this.value + ' hours';
+});
+
+document.getElementById('storageQuota').addEventListener('input', function() {
+    document.getElementById('storageQuotaValue').textContent = this.value + ' GB';
+});
+
+// API Key Management
+document.getElementById('generateApiKey').addEventListener('click', function() {
+    // Instead of fetch, send a command to the site-wide terminal
+    const command = 'echo \"Simulating API Key Generation...\"'; // Placeholder command
+    if (window.sendTerminalCommand) {
+        window.sendTerminalCommand(command);
+    } else {
+        console.error('sendTerminalCommand function not found.');
+        alert('Terminal function not available.');
+    }
+    /* Original fetch logic commented out for testing
+    try {
+        const response = await fetch('/api/v1/user/api-key', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            // Update UI with new key (implementation needed)
+            console.log('New API Key:', data.apiKey); 
+            alert('New API Key Generated!');
+            // You would typically refresh the list or add the new key here
+        } else {
+            console.error('Failed to generate API key:', response.statusText);
+            alert('Error generating API key.');
+        }
+    } catch (error) {
+        console.error('Error during API key generation:', error);
+        alert('Network error or server issue.');
+    }
+    */
+});
+
+// Session Management
+document.getElementById('revokeAllSessions').addEventListener('click', async function() {
+    if (confirm('Are you sure you want to revoke all active sessions?')) {
+        try {
+            const response = await fetch('/api/v1/user/sessions', {
+                method: 'DELETE'
+            });
+            
+            if (response.ok) {
+                // Redirect to login page
+                window.location.href = '/login';
+            }
+        } catch (error) {
+            console.error('Error revoking sessions:', error);
+        }
+    }
+});
+
+// Activity Log
+document.getElementById('viewActivityLog').addEventListener('click', async function() {
+    window.location.href = '/user/activity-log';
+});
+
+// Load initial API keys
+async function loadApiKeys() {
+    try {
+        const response = await fetch('/api/v1/user/api-keys');
+        if (response.ok) {
+            const keys = await response.json();
+            const keyList = document.getElementById('apiKeyList');
+            keyList.innerHTML = '';
+            
+            keys.forEach(key => {
+                const keyElement = document.createElement('div');
+                keyElement.className = 'api-key-item';
+                keyElement.innerHTML = `
+                    <code>${key.prefix}...${key.suffix}</code>
+                    <button class="btn btn-warning btn-sm" onclick="revokeApiKey('${key.id}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                keyList.appendChild(keyElement);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading API keys:', error);
+    }
+}
+
+// Initialize
+loadApiKeys();
+</script>
+
+<style>
+.api-key-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: var(--glass-bg);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.api-key-item code {
+    font-family: monospace;
+    padding: 0.2rem 0.4rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+</style>
+{% endblock %}

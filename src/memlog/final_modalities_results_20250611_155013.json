@@ -1,0 +1,32 @@
+{
+  "network_data": true,
+  "sensor_data": true,
+  "created_files": [
+    "src\\data\\real_datasets\\network_data\\metadata.json",
+    "src\\data\\real_datasets\\network_data\\network_capture_1.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_2.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_3.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_4.pcap",
+    "src\\data\\real_datasets\\network_data\\network_capture_5.pcap",
+    "src\\data\\real_datasets\\network_data\\network_trace_1.cap",
+    "src\\data\\real_datasets\\network_data\\network_trace_2.cap",
+    "src\\data\\real_datasets\\network_data\\network_trace_3.cap",
+    "src\\data\\real_datasets\\sensor_data\\accelerometer_data_1.bin",
+    "src\\data\\real_datasets\\sensor_data\\accelerometer_data_2.bin",
+    "src\\data\\real_datasets\\sensor_data\\accelerometer_data_3.bin",
+    "src\\data\\real_datasets\\sensor_data\\accelerometer_data_4.bin",
+    "src\\data\\real_datasets\\sensor_data\\accelerometer_data_5.bin",
+    "src\\data\\real_datasets\\sensor_data\\gyroscope_raw_1.raw",
+    "src\\data\\real_datasets\\sensor_data\\gyroscope_raw_2.raw",
+    "src\\data\\real_datasets\\sensor_data\\gyroscope_raw_3.raw",
+    "src\\data\\real_datasets\\sensor_data\\metadata.json",
+    "src\\data\\real_datasets\\sensor_data\\temperature_sensor_1.dat",
+    "src\\data\\real_datasets\\sensor_data\\temperature_sensor_2.dat",
+    "src\\data\\real_datasets\\sensor_data\\temperature_sensor_3.dat",
+    "src\\data\\real_datasets\\sensor_data\\temperature_sensor_4.dat"
+  ],
+  "download_attempts": [
+    "network_data: FALLBACK_USED",
+    "sensor_data: SUCCESS"
+  ]
+}

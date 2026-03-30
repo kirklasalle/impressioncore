@@ -1,0 +1,288 @@
+General system information
+Camera Marketing Name =<!b> QuickCam Orbit/Sphere MP
+USB PID BCD =<!b> 08C20005
+------------------------------------------------------------------------
+Main application: 
+G:\Program Files (x86)\Logitech\LWS\Webcam Software\Launcher_Main.exe
+Version: 13.51.815.0
+------------------------------------------------------------------------
+Main_help: 
+C:\Program Files (x86)\Common Files\logishrd\LWSPlugins\LWS\Applets\HelpMain\Main_Help.dll
+Version: 13.51.828.0
+Software Version =<!b> 13.51.828.0
+CPU  =<!b> Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+RAM =<!b> 16.00 GB
+O.S. =<!b>  : 10.0.19045
+------------------------------------------------------------------------
+
+
+- PROCESSOR_ARCHITECTURE_AMD64
+------------------------------------------------------------------------
+ERROR:Assertion failure: !csOSDBID.IsEmpty()
+File: .\AcmeServer.cpp
+Line: 393
+------------------------------------------------------------------------
+Win32_OperatingSystem
+{
+BuildNumber:19045
+Locale:0409
+Manufacturer:Microsoft Corporation
+Name:Microsoft Windows 10 Pro|C:\WINDOWS|\Device\Harddisk2\Partition2
+ServicePackMajorVersion:0
+ServicePackMinorVersion:0
+SystemDirectory:C:\WINDOWS\system32
+Version:10.0.19045
+WindowsDirectory:C:\WINDOWS
+}
+Win32_ComputerSystem
+{
+Manufacturer:LENOVO
+Model:10181
+SystemType:x64-based PC
+}
+Win32_Processor
+{
+Description:Intel64 Family 6 Model 60 Stepping 3
+Manufacturer:GenuineIntel
+MaxClockSpeed:3201
+Name:Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+}
+Win32_BIOS
+{
+Description:LENOVO BIOS Rev: I1KT38A 0.0
+Manufacturer:LENOVO
+SMBIOSBIOSVersion:I1KT38AUS
+SMBIOSMajorVersion:2
+SMBIOSMinorVersion:8
+Version:LENOVO - 1260
+}
+Win32_TimeZone
+{
+Caption:(UTC-05:00) Eastern Time (US & Canada)
+DaylightName:Eastern Daylight Time
+Description:(UTC-05:00) Eastern Time (US & Canada)
+StandardName:Eastern Standard Time
+}
+Win32_PhysicalMemory (x4)
+{
+Capacity:8589934592
+Caption:Physical Memory
+Capacity2:8589934592
+Caption2:Physical Memory
+Capacity3:8589934592
+Caption3:Physical Memory
+Capacity4:8589934592
+Caption4:Physical Memory
+}
+Win32_USBController (x3)
+{
+Caption:Intel(R) 8 Series/C220 Series USB EHCI #2 - 8C2D
+Caption2:Intel(R) 8 Series/C220 Series USB EHCI #1 - 8C26
+Caption3:Intel(R) USB 3.0 eXtensible Host Controller - 1.0 (Microsoft)
+}
+Misc
+{
+Language: English (United States)
+Time Zone: Eastern Daylight Time
+Total Physical Memory: 2047 MB
+Available Physical Memory: 2047 MB
+Total Virtual Memory: 2047 MB
+Available Virtual Memory: 1912 MB
+Total Page File Space: 4095 MB
+Available Page File Space: 4095 MB
+}
+
+
+
+------------------------------------------------------------------------
+Logitech Software information
+---
+------------------------------------------------------------------------
+Main application: 
+G:\Program Files (x86)\Logitech\LWS\Webcam Software\Launcher_Main.exe
+Version: 13.51.815.0
+------------------------------------------------------------------------
+Main_help: 
+C:\Program Files (x86)\Common Files\logishrd\LWSPlugins\LWS\Applets\HelpMain\Main_Help.dll
+Version: 13.51.828.0
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+LWS system information:
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\CameraHelper
+File: CameraControlsUI.dll (13.51.815.0)
+File: CameraControls_Core.dll (13.51.815.0)
+File: CameraHelperShortcut.exe (13.51.815.0)
+File: CameraHelperUI.dll (13.51.815.0)
+File: CameraHelper_Core.dll (13.51.815.0)
+File: DevManagerCore.dll (13.51.815.0)
+File: VFXCore.dll (13.51.815.0)
+File: VideoEffects.dll (13.51.815.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\Gallery
+File: EmailWrapper.dll (13.51.827.0)
+File: Gallery_core.dll (13.51.827.0)
+File: LogiMail.dll (13.51.827.0)
+File: LogiMailApp.exe (11.90.0.1000)
+File: MovieStill.dll (13.51.827.0)
+File: PicPad.dll (13.51.827.0)
+File: picpadcore.dll (13.51.827.0)
+File: Settings.dll (13.51.827.0)
+File: Settings_core.dll (13.51.827.0)
+File: SocNet.dll (13.51.827.0)
+File: SocNet_core.dll (13.51.827.0)
+File: VidPlayer.dll (13.51.827.0)
+File: _Gallery.dll (13.51.827.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\Gallery\SocialNetworking\Applets\Facebook
+File: Facebook.dll (13.50.854.0)
+File: Facebook_core.dll (13.50.854.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\Gallery\SocialNetworking\Applets\Twitter
+File: twitter.dll (13.30.1346.0)
+File: twitter_core.dll (13.30.1346.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\Gallery\SocialNetworking\Applets\YouTube
+File: YouTube.dll (13.31.1038.0)
+File: YouTube_core.dll (13.31.1038.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\HelpMain
+File: Acme.exe (13.51.828.0)
+File: launchershortcut.exe (13.51.828.0)
+LWS2.css - 2012/9/26
+File: Main_help.dll (13.51.828.0)
+Resolution_13_0_0.xml - 2012/9/26
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\Launcher
+File: DevManagerCore.dll (13.51.828.0)
+File: EmailWrapper.dll (13.51.828.0)
+File: Launcher.dll (13.51.828.0)
+File: LauncherShortcut.exe (13.51.828.0)
+File: Launcher_Core.dll (13.51.828.0)
+File: Launchpad.dll (13.51.828.0)
+File: Launchpad_core.dll (13.51.828.0)
+File: LogiMail.dll (11.90.0.1000)
+File: _ThirdPartyApps.dll (13.51.828.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\MotionDetection
+File: AVCapture.dll (13.51.815.0)
+File: AVSrc.dll (13.51.815.0)
+File: CameraControlsUI.dll (13.51.815.0)
+File: CameraControls_Core.dll (13.51.815.0)
+File: CaptureManager.dll (13.51.815.0)
+File: DevManagerCore.dll (13.51.815.0)
+File: logiperformanceroutines.dll (No resource info available: C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\MotionDetection\logiperformanceroutines.dll/No resource info available: C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\MotionDetection\logiperformanceroutines.dll)
+File: MotDet_core.dll (13.51.815.0)
+File: MotionOptions.dll (13.51.815.0)
+File: MotionOptions_core.dll (13.51.815.0)
+File: MovieStill.dll (13.51.815.0)
+File: PicPad.dll (13.51.815.0)
+File: PicPadcore.dll (13.51.815.0)
+File: VFXCore.dll (13.51.815.0)
+File: VideoC.dll (13.51.815.0)
+File: VideoControlWrapper.dll (13.51.815.0)
+File: _MotDet.dll (13.51.815.0)
+------------------------------------------------------------------------
+C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\PicturesAndVideos
+File: AVCapture.dll (13.51.815.0)
+File: AVSrc.dll (13.51.815.0)
+File: CameraControlsUI.dll (13.51.815.0)
+File: CameraControls_Core.dll (13.51.815.0)
+File: CaptureManager.dll (13.51.815.0)
+File: DevManagerCore.dll (13.51.815.0)
+File: logiperformanceroutines.dll (No resource info available: C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\PicturesAndVideos\logiperformanceroutines.dll/No resource info available: C:\Program Files (x86)\Common Files\logishrd\\LWSPlugins\LWS\Applets\PicturesAndVideos\logiperformanceroutines.dll)
+File: MovieStill.dll (13.51.815.0)
+File: PicPad.dll (13.51.815.0)
+File: picpadcore.dll (13.51.815.0)
+UvcH264XuPlugin.ax - 2012/9/13
+File: VFXCore.dll (13.51.815.0)
+File: VideoC.dll (13.51.815.0)
+File: VideoControlWrapper.dll (13.51.815.0)
+File: VideoEffects.dll (13.51.815.0)
+File: WMFAACEncoder.dll (13.51.815.0)
+File: _PicVid.dll (13.51.815.0)
+------------------------------------------------------------------------
+G:\Program Files (x86)\Logitech\LWS\Webcam Software
+File: avcodec-52.dll (No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avcodec-52.dll/No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avcodec-52.dll)
+File: avformat-52.dll (No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avformat-52.dll/No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avformat-52.dll)
+File: avutil-50.dll (No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avutil-50.dll/No resource info available: G:\Program Files (x86)\Logitech\LWS\Webcam Software\avutil-50.dll)
+File: CameraHelperShell.exe (13.51.815.0)
+File: Launcher_Main.exe (13.51.815.0)
+File: Libeay32.dll (The OpenSSL Toolkit/0.9.8e)
+File: libmp4v2.dll (MP4v2/2.0-r335)
+LWS.css - 2012/9/13
+File: LWS.exe (13.51.815.0)
+File: MotionDetection.exe (13.51.815.0)
+File: Phonon4.dll (Qt4/4.3.1.0)
+File: QTCore4.dll (Qt4/4.6.0.0)
+File: QTGui4.dll (Qt4/4.6.0.0)
+File: QtNetwork4.dll (Qt4/4.6.0.0)
+File: QTWebkit4.dll (Qt4/4.6.0.0)
+File: QTXml4.dll (Qt4/4.6.0.0)
+File: QtXmlPatterns4.dll (Qt4/4.6.0.0)
+Resolution.xml - 2012/9/13
+File: Ssleay32.dll (The OpenSSL Toolkit/0.9.8e)
+------------------------------------------------------------------------
+G:\Program Files (x86)\Logitech\LWS\Webcam Software\ImageFormats
+File: QGif4.dll (Qt4/4.6.0.0)
+File: QJpeg4.dll (Qt4/4.6.0.0)
+------------------------------------------------------------------------
+G:\Program Files (x86)\Logitech\LWS\Webcam Software\ImageFormats\Microsoft.VC90.CRT
+Microsoft.VC90.CRT.manifest - 2012/9/13
+File: msvcm90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+File: msvcp90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+File: msvcr90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+------------------------------------------------------------------------
+G:\Program Files (x86)\Logitech\LWS\Webcam Software\Microsoft.VC90.CRT
+Microsoft.VC90.CRT.manifest - 2012/9/13
+File: msvcm90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+File: msvcp90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+File: msvcr90.dll (Microsoft® Visual Studio® 2008/9.00.21022.8)
+------------------------------------------------------------------------
+Resolution file
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+Searching folder: C:\Users\kirkl\AppData\Local\Temp\
+Found log file: lws_msiinstall.log
+Found log file: LWSDebugOut.txt
+------------------------------------------------------------------------
+Device information plus firmware
+---
+Device Information
+Descr: QuickCam Orbit/Sphere MP
+PID: 0x8c2
+BCD: 0005
+ID: usb\vid_046d&pid_08c2&mi_00\7&132845ef&1&0000
+VID: 0x46d
+ASIC Revision: 4
+Firmware Ver: 1.3.2333
+Driver Ver: 11.0.0
+Device Rev: 
+Serial Number: 
+Sensor Type: 3.3
+Firmware CRC: 0
+------------------------------------------------------------------------
+VFX information (VFX must be running)
+---
+Failed to OpenService(LVPrcSrv), last err: 1060
+The specified service does not exist as an installed service.
+Service: LVPrcSrv is NOT SERVICE_RUNNING
+Failed to OpenService(LvPr2Mon), last err: 1060
+The specified service does not exist as an installed service.
+Service: LvPr2Mon is NOT SERVICE_RUNNING
+Module: LvPrcInj.dll is NOT LOADED
+Module: UMVPL.dll is NOT LOADED
+Module: EFVal.dll is NOT LOADED
+Module: FxPreview.dll is NOT LOADED
+Module: MapTrackData.dll is NOT LOADED
+Module: MRSystem.dll is NOT LOADED
+Module: RendererIf.dll is NOT LOADED
+Module: UMVPLMute.dll is NOT LOADED
+Module: MMSystem.dll is NOT LOADED
+Module: VMSystem.dll is NOT LOADED
+Process: CociManager.exe is NOT RUNNING
+64-bit detected
+ERROR: failed to create HKLM: SOFTWARE\Logitech\UMVPL\ChainConfigurations\Post
+------------------------------------------------------------------------

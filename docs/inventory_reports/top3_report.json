@@ -1,0 +1,38 @@
+[
+  {
+    "filename": "unified_final_step_25.pth",
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_25.pth",
+    "best_loss": 10.821548461914062,
+    "hist_tail": 10.95604782104492,
+    "steps": 25,
+    "size_mb": 4490.49,
+    "param_elems": 506045321,
+    "bits_per_param_est": 74.438,
+    "probe_loss": 10.969470977783203,
+    "timestamp": 1755885991.7120123
+  },
+  {
+    "filename": "unified_final_step_20.pth",
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_20.pth",
+    "best_loss": 10.937961196899414,
+    "hist_tail": 11.091047096252442,
+    "steps": 20,
+    "size_mb": 1930.69,
+    "param_elems": 506045321,
+    "bits_per_param_est": 32.005,
+    "probe_loss": 11.015216827392578,
+    "timestamp": 1755885234.8323822
+  },
+  {
+    "filename": "unified_final_step_8.pth",
+    "path": "F:\\models\\checkpoints\\unified_sweet_spot\\unified_final_step_8.pth",
+    "best_loss": 11.001396179199219,
+    "hist_tail": 11.001396179199219,
+    "steps": 8,
+    "size_mb": 1930.69,
+    "param_elems": 506045321,
+    "bits_per_param_est": 32.005,
+    "probe_loss": 10.94251537322998,
+    "timestamp": 1755887180.5231411
+  }
+]

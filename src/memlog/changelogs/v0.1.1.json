@@ -1,0 +1,57 @@
+{
+    "version": "0.1.1",
+    "date": "2025-03-22",
+    "changes": [
+        {
+            "type": "perf",
+            "scope": "tokenization",
+            "description": "Added GPU memory optimization for legacy hardware",
+            "details": [
+                "Implemented gradient checkpointing",
+                "Added dynamic batch size adjustment",
+                "Optimized patch processing pipeline",
+                "Added automatic mixed precision training"
+            ]
+        },
+        {
+            "type": "feat",
+            "scope": "utils",
+            "description": "Added GPU memory management utilities",
+            "details": [
+                "Created memory monitoring tools",
+                "Implemented optimal batch size calculator",
+                "Added memory usage optimization functions"
+            ]
+        },
+        {
+            "type": "refactor",
+            "scope": "training",
+            "description": "Enhanced tokenizer training process",
+            "details": [
+                "Improved error handling and reporting",
+                "Added memory cleanup during training",
+                "Enhanced progress monitoring"
+            ]
+        }
+    ],
+    "breaking_changes": [],
+    "deprecations": [],
+    "contributors": [
+        {
+            "name": "System",
+            "role": "Developer"
+        }
+    ],
+    "performance_metrics": {
+        "gpu_memory": {
+            "peak_usage_mb": 3800,
+            "target_limit_mb": 4000,
+            "optimization_gains": "~25% reduction in memory usage"
+        },
+        "training": {
+            "batch_size_range": "8-32 (dynamically adjusted)",
+            "mixed_precision": true,
+            "checkpointing_enabled": true
+        }
+    }
+}

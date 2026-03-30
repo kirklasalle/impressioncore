@@ -1,0 +1,122 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/docs/reference/brainsim3/BrainSimulator.sln",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary;ForceNoAlign"
+			],
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "publish",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"publish",
+				"${workspaceFolder}/docs/reference/brainsim3/BrainSimulator.sln",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary;ForceNoAlign"
+			],
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "watch",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"watch",
+				"run",
+				"--project",
+				"${workspaceFolder}/docs/reference/brainsim3/BrainSimulator.sln"
+			],
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "Checkpoint: Backup Key Files and Documentation",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"Compress-Archive -Path .\\src, .\\docs, .\\requirements.txt, .\\manage_f_models.py, .\\*.md -DestinationPath .\\backups\\checkpoint_$(Get-Date -Format yyyyMMdd_HHmmss).zip"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Checkpoint: Backup Key Files and Documentation",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"Compress-Archive -Path .\\src, .\\docs, .\\requirements.txt, .\\manage_f_models.py, .\\*.md -DestinationPath .\\backups\\checkpoint_$(Get-Date -Format yyyyMMdd_HHmmss).zip"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Checkpoint: Backup Key Files and Documentation",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"Compress-Archive -Path .\\src, .\\docs, .\\requirements.txt, .\\manage_f_models.py, .\\*.md -DestinationPath .\\backups\\checkpoint_$(Get-Date -Format yyyyMMdd_HHmmss).zip"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Generate DPO Pairs (Phase 3 Scaling)",
+			"type": "shell",
+			"command": "python src/training/data/tools/generate_dpo_pairs.py"
+		},
+		{
+			"label": "Generate DPO Pairs (Phase 3 Scaling) - Full Run",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"$env:PYTHONPATH=\".\"; .venv310\\Scripts\\activate; python src/training/data/tools/generate_dpo_pairs.py"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate DPO Pairs (Phase 3 Scaling) - Full Run",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"$env:PYTHONPATH='.'; & .venv310\\Scripts\\python.exe src/training/data/tools/generate_dpo_pairs.py"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate DPO Pairs (Phase 3 Scaling) - Full Run",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/C",
+				"set PYTHONPATH=. && .venv310\\Scripts\\python.exe src/training/data/tools/generate_dpo_pairs.py"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run DPO Training (Phase 3)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"$env:PYTHONPATH=\".\"; .venv310\\Scripts\\activate; python src/training/pipelines/dpo_alignment.py"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

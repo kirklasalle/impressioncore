@@ -1,0 +1,495 @@
+{% extends "base.html" %}
+
+{% block title %}Memory Usage Visualization{% endblock %}
+
+{% block styles %}
+<style>
+    .visualization-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .visualization-container.loading {
+        background-image: url('/static/img/loading-spinner.gif');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 50px;
+    }
+    
+    .controls-card {
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .visualization-image {
+        max-width: 100%;
+        max-height: 800px;
+    }
+    
+    .memory-tag {
+        font-size: 0.8rem;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background-color: #28a745;
+    }
+    
+    .memory-tag.medium {
+        background-color: #ffc107;
+    }
+    
+    .memory-tag.high {
+        background-color: #dc3545;
+    }
+    
+    .memory-stat {
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f8f9fa;
+        border-left: 4px solid #6c757d;
+    }
+    
+    .memory-stat h5 {
+        margin-bottom: 10px;
+        color: #495057;
+    }
+    
+    .memory-stat.vram {
+        border-left-color: #007bff;
+    }
+    
+    .memory-stat.ram {
+        border-left-color: #28a745;
+    }
+    
+    .memory-stat.cpu {
+        border-left-color: #fd7e14;
+    }
+    
+    .memory-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .progress {
+        height: 15px;
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('model_viz.visualization_dashboard') }}">Visualization Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Memory Usage</li>
+        </ol>
+    </nav>
+    
+    <h1 class="mb-3">Memory Usage Visualization</h1>
+    
+    <div class="row">
+        <!-- Controls Panel -->
+        <div class="col-lg-4">
+            <div class="card controls-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Controls</span>
+                    <span class="memory-tag high">High VRAM</span>
+                </div>
+                <div class="card-body">
+                    <form id="memory-form">
+                        <div class="mb-3">
+                            <label for="model-select" class="form-label">Select Model</label>
+                            <select class="form-select" id="model-select" required>
+                                <option value="" selected disabled>Choose a model...</option>
+                                {% for model in models %}
+                                <option value="{{ model.id }}">{{ model.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="batch-size" class="form-label">Batch Size</label>
+                            <input type="number" class="form-control" id="batch-size" value="1" min="1" max="16" required>
+                            <div class="form-text">Lower values reduce memory usage.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="sequence-length" class="form-label">Sequence Length</label>
+                            <input type="number" class="form-control" id="sequence-length" value="512" min="128" max="32768" step="128" required>
+                            <div class="form-text">Lower values reduce memory usage.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="use-flash-attention" checked>
+                                <label class="form-check-label" for="use-flash-attention">Use Flash Attention</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="use-cpu-offload">
+                                <label class="form-check-label" for="use-cpu-offload">Use CPU Offloading</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="precision-select" class="form-label">Precision</label>
+                            <select class="form-select" id="precision-select">
+                                <option value="fp16" selected>FP16 (Mixed Precision)</option>
+                                <option value="fp32">FP32 (Full Precision)</option>
+                                <option value="bf16">BF16 (Mixed Precision)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Generate Memory Profile</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Current System Stats -->
+            <div class="card mt-3">
+                <div class="card-header">Current System Stats</div>
+                <div class="card-body">
+                    <div class="memory-stat vram">
+                        <h5><i class="fas fa-microchip me-2"></i>VRAM Usage</h5>
+                        <div class="memory-value" id="vram-usage">2.1 GB / 4.0 GB</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 52%" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="memory-stat ram">
+                        <h5><i class="fas fa-memory me-2"></i>System RAM</h5>
+                        <div class="memory-value" id="ram-usage">8.4 GB / 32.0 GB</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 26%" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="memory-stat cpu">
+                        <h5><i class="fas fa-tachometer-alt me-2"></i>CPU Usage</h5>
+                        <div class="memory-value" id="cpu-usage">32%</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 32%" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-sm btn-outline-secondary w-100" id="refresh-stats">
+                        <i class="fas fa-sync-alt me-1"></i> Refresh Stats
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Visualization Panel -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">Memory Profile</div>
+                <div class="card-body">
+                    <div id="visualization-container" class="visualization-container">
+                        <div class="text-center text-muted">
+                            <i class="fas fa-memory fa-4x mb-3"></i>
+                            <p>Select a model and configuration parameters to generate a memory profile.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 d-none" id="memory-breakdown">
+                        <h4>Memory Breakdown</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Memory Usage</th>
+                                        <th>% of Total</th>
+                                        <th>Optimized</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="memory-table-body">
+                                    <!-- Memory breakdown data will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 d-none" id="optimization-recommendations">
+                        <h4>Optimization Recommendations</h4>
+                        <div class="alert alert-info">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            <span>Memory usage could be further optimized. See recommendations below.</span>
+                        </div>
+                        <ul class="list-group" id="recommendations-list">
+                            <!-- Recommendations will be added here -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-secondary" id="download-btn" disabled>
+                        <i class="fas fa-download me-1"></i> Download Report
+                    </button>
+                    <button class="btn btn-info" id="compare-btn" disabled>
+                        <i class="fas fa-balance-scale me-1"></i> Compare Configurations
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('memory-form');
+        const vizContainer = document.getElementById('visualization-container');
+        const memoryBreakdown = document.getElementById('memory-breakdown');
+        const memoryTableBody = document.getElementById('memory-table-body');
+        const optimizationRecommendations = document.getElementById('optimization-recommendations');
+        const recommendationsList = document.getElementById('recommendations-list');
+        const downloadBtn = document.getElementById('download-btn');
+        const compareBtn = document.getElementById('compare-btn');
+        const refreshStatsBtn = document.getElementById('refresh-stats');
+        
+        // Function to update system stats
+        function updateSystemStats() {
+            // In a real implementation, this would fetch actual system stats
+            // For demonstration purposes, use simulated values
+            
+            // Simulate varying values
+            const vramUsed = (Math.random() * 1.5 + 1.8).toFixed(1);
+            const vramTotal = 4.0;
+            const vramPercent = (vramUsed / vramTotal * 100).toFixed(0);
+            
+            const ramUsed = (Math.random() * 4 + 6).toFixed(1);
+            const ramTotal = 32.0;
+            const ramPercent = (ramUsed / ramTotal * 100).toFixed(0);
+            
+            const cpuPercent = (Math.random() * 30 + 20).toFixed(0);
+            
+            // Update display
+            document.getElementById('vram-usage').textContent = `${vramUsed} GB / ${vramTotal} GB`;
+            document.getElementById('ram-usage').textContent = `${ramUsed} GB / ${ramTotal} GB`;
+            document.getElementById('cpu-usage').textContent = `${cpuPercent}%`;
+            
+            // Update progress bars
+            document.querySelector('.memory-stat.vram .progress-bar').style.width = `${vramPercent}%`;
+            document.querySelector('.memory-stat.vram .progress-bar').setAttribute('aria-valuenow', vramPercent);
+            
+            document.querySelector('.memory-stat.ram .progress-bar').style.width = `${ramPercent}%`;
+            document.querySelector('.memory-stat.ram .progress-bar').setAttribute('aria-valuenow', ramPercent);
+            
+            document.querySelector('.memory-stat.cpu .progress-bar').style.width = `${cpuPercent}%`;
+            document.querySelector('.memory-stat.cpu .progress-bar').setAttribute('aria-valuenow', cpuPercent);
+        }
+        
+        // Update stats initially
+        updateSystemStats();
+        
+        // Refresh stats button handler
+        refreshStatsBtn.addEventListener('click', updateSystemStats);
+        
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const modelId = document.getElementById('model-select').value;
+            const batchSize = parseInt(document.getElementById('batch-size').value);
+            const sequenceLength = parseInt(document.getElementById('sequence-length').value);
+            const useFlashAttention = document.getElementById('use-flash-attention').checked;
+            const useCpuOffload = document.getElementById('use-cpu-offload').checked;
+            const precision = document.getElementById('precision-select').value;
+            
+            if (!modelId) {
+                alert('Please select a model');
+                return;
+            }
+            
+            // Show loading state
+            vizContainer.innerHTML = '';
+            vizContainer.classList.add('loading');
+            downloadBtn.disabled = true;
+            compareBtn.disabled = true;
+            memoryBreakdown.classList.add('d-none');
+            optimizationRecommendations.classList.add('d-none');
+            
+            // Send request to API
+            fetch('/api/visualization/memory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model_id: modelId,
+                    input_shape: [batchSize, sequenceLength],
+                    use_flash_attention: useFlashAttention,
+                    use_cpu_offload: useCpuOffload,
+                    precision: precision
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove loading state
+                vizContainer.classList.remove('loading');
+                
+                if (data.error) {
+                    vizContainer.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                    return;
+                }
+                
+                // Display the visualization
+                vizContainer.innerHTML = `<img src="${data.image_url}" class="visualization-image" alt="Memory Profile">`;
+                
+                // Enable buttons
+                downloadBtn.disabled = false;
+                compareBtn.disabled = false;
+                
+                // Show memory breakdown
+                memoryBreakdown.classList.remove('d-none');
+                
+                // Populate memory breakdown table
+                populateMemoryBreakdown();
+                
+                // Show optimization recommendations
+                optimizationRecommendations.classList.remove('d-none');
+                
+                // Populate recommendations
+                populateRecommendations(useFlashAttention, useCpuOffload, precision, sequenceLength, batchSize);
+                
+                // Update system stats to reflect the memory profile generation
+                updateSystemStats();
+            })
+            .catch(error => {
+                vizContainer.classList.remove('loading');
+                vizContainer.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+            });
+        });
+        
+        // Populate memory breakdown table with sample data
+        function populateMemoryBreakdown() {
+            // In a real implementation, this would use actual data from the API response
+            // For demonstration, use sample data
+            const components = [
+                { name: 'Model Parameters', memory: '1.2 GB', percent: 45, optimized: true },
+                { name: 'KV Cache', memory: '0.8 GB', percent: 30, optimized: true },
+                { name: 'Activations', memory: '0.4 GB', percent: 15, optimized: false },
+                { name: 'Gradients', memory: '0.2 GB', percent: 7, optimized: true },
+                { name: 'Other', memory: '0.1 GB', percent: 3, optimized: true }
+            ];
+            
+            memoryTableBody.innerHTML = '';
+            components.forEach(component => {
+                memoryTableBody.innerHTML += `
+                    <tr>
+                        <td>${component.name}</td>
+                        <td>${component.memory}</td>
+                        <td>${component.percent}%</td>
+                        <td>
+                            ${component.optimized 
+                                ? '<span class="badge bg-success">Yes</span>' 
+                                : '<span class="badge bg-warning">No</span>'}
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+        
+        // Populate recommendations based on current settings
+        function populateRecommendations(useFlashAttention, useCpuOffload, precision, sequenceLength, batchSize) {
+            recommendationsList.innerHTML = '';
+            
+            // Generate recommendations based on configuration
+            const recommendations = [];
+            
+            if (!useFlashAttention) {
+                recommendations.push({
+                    text: 'Enable Flash Attention to reduce memory usage by up to 40%.',
+                    impact: 'high'
+                });
+            }
+            
+            if (precision === 'fp32') {
+                recommendations.push({
+                    text: 'Switch to FP16 mixed precision to reduce memory usage by up to 50%.',
+                    impact: 'high'
+                });
+            }
+            
+            if (sequenceLength > 1024) {
+                recommendations.push({
+                    text: `Reduce sequence length to 1024 if possible. Current value (${sequenceLength}) increases memory usage proportionally.`,
+                    impact: 'medium'
+                });
+            }
+            
+            if (batchSize > 1) {
+                recommendations.push({
+                    text: `Use batch size 1 for inference on limited VRAM. Current value (${batchSize}) increases memory usage linearly.`,
+                    impact: 'medium'
+                });
+            }
+            
+            if (!useCpuOffload && sequenceLength > 2048) {
+                recommendations.push({
+                    text: 'Enable CPU offloading for long sequences to reduce VRAM pressure.',
+                    impact: 'medium'
+                });
+            }
+            
+            recommendations.push({
+                text: 'Enable gradient checkpointing when fine-tuning to trade computation for memory.',
+                impact: 'low'
+            });
+            
+            // Add recommendations to list
+            if (recommendations.length === 0) {
+                recommendationsList.innerHTML = `
+                    <li class="list-group-item">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        Your configuration is already optimized for memory efficiency.
+                    </li>
+                `;
+            } else {
+                recommendations.forEach(rec => {
+                    const badgeClass = rec.impact === 'high' ? 'bg-danger' 
+                                    : rec.impact === 'medium' ? 'bg-warning' 
+                                    : 'bg-info';
+                    
+                    recommendationsList.innerHTML += `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>${rec.text}</span>
+                            <span class="badge ${badgeClass}">${rec.impact} impact</span>
+                        </li>
+                    `;
+                });
+            }
+        }
+        
+        // Download button handler
+        downloadBtn.addEventListener('click', function() {
+            const img = vizContainer.querySelector('img');
+            if (img) {
+                const a = document.createElement('a');
+                a.href = img.src;
+                a.download = 'memory_profile.png';
+                a.click();
+            }
+        });
+        
+        // Compare button handler
+        compareBtn.addEventListener('click', function() {
+            alert('Configuration comparison feature would launch here, allowing you to compare memory usage across different settings.');
+        });
+    });
+</script>
+{% endblock %}

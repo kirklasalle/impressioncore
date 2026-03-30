@@ -1,0 +1,239 @@
+{
+  "test_summary": {
+    "total_tests": 15,
+    "passed_tests": 15,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "duration_seconds": 24.327902793884277,
+    "timestamp": "2025-06-08T18:02:54.122135"
+  },
+  "test_results": [
+    {
+      "tool": "get-system-status",
+      "status": "PASS",
+      "description": "Retrieved system status",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "# ImpressionCore IDS System Status\n\n## Statistics\n- **Total Files Indexed**: 1103\n- **File Metadata Entries**: 1103\n- **Total Tags**: 2462\n- **Total Tag Usage**: 7612\n- **Average Tags per File**: 6.9\n\n## System Health\n- **Enhanced IDS Available**: Yes\n- **Rich Formatting Available**: Yes\n- **Server Version**: 1.0.0\n- **Timestamp**: 2025-06-08T18:02:53.122148\n\n## Top Tags by Usage\n- **2025**: 151 files\n- **reference\\training_data_guide_comprehensive.md**: 119 files\n- **user\\web_ui_walkthrough_complete.md**: 116 files\n- **developer\\system_administration_guide.md**: 113 files\n- **developer\\cli_build_walkthrough.md**: 96 files\n- **user\\user_guide.md**: 87 files\n- **reference\\training_data_guide_complete.md**: 86 files\n- **reference**: 80 files\n- **api\\complete_api_reference.md**: 79 files\n- **api\\complete_api_reference_v2.md**: 78 files\n\n## Index File Locations\n- **Docs Root**: D:\\Projects\\impressioncore\\docs\n- **Project Root**: D:\\Projects\\impressioncore\n- **Unified Index**: D:\\Projects\\impressioncore\\docs\\unified_tags_index.yaml\n- **File Metadata**: D:\\Projects\\impressioncore\\docs\\file_metadata.yaml\n- **Reverse Index**: D:\\Projects\\impressioncore\\docs\\reverse_tag_index.yaml\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.123370"
+    },
+    {
+      "tool": "list-tags",
+      "status": "PASS",
+      "description": "Retrieved 0 tags",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "**50 tags found (showing first 50 of 2462)**\n\n\u2022 000000\n\u2022 00695c\n\u2022 007bff\n\u2022 00bcd4\n\u2022 0c5460\n\u2022 1-core-architecture-overview\n\u2022 155724\n\u2022 1565c0\n\u2022 1976d2\n\u2022 1a237e\n\u2022 1b5e20\n\u2022 2-key-innovative-components\n\u2022 2025\n\u2022 2026\n\u2022 2027\n\u2022 2028\n\u2022 21-universal-knowledge-store-uks\n\u2022 22-brainsimiii-integration\n\u2022 222\n\u2022 23-dual-shadow-model-architecture\n\u2022 24-transformer-based-model-architecture\n\u2022 25-diffusion-model-integration\n\u2022 28a745\n\u2022 2e7d32\n\u2022 2ecc71\n\u2022 3-multimodal-integration-strategy\n\u2022 311b92\n\u2022 333\n\u2022 388e3c\n\u2022 4-training-pipeline-and-continuous-learning\n\u2022 41-data-pipeline-and-preprocessing\n\u2022 42-core-module-pretraining\n\u2022 43-multimodal-fusion-and-integration\n\u2022 44-dual-shadow-model--continuous-learning\n\u2022 45-evaluation-and-monitoring\n\u2022 45b7d1\n\u2022 46-deployment-and-maintenance\n\u2022 4a148c\n\u2022 4caf50\n\u2022 4ecdc4\n\u2022 5-development-roadmap\n\u2022 51-phase-1-foundation-completed\n\u2022 52-phase-2-advanced-features-in-progress\n\u2022 53-phase-3-production-system-planned\n\u2022 555\n\u2022 6-technical-implementation\n\u2022 6a1b9a\n\u2022 6c757d\n\u2022 6f42c1\n\u2022 721c24\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.877777"
+    },
+    {
+      "tool": "search",
+      "status": "PASS",
+      "description": "Found 0 results for 'authentication'",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Found 23 results for 'authentication':\n\n**docs\\api\\api_contracts.md**\nMatching tags: authentication_models\n\n**docs\\api\\complete_api_reference.md**\nMatching tags: api_key_authentication, authentication, session-based_authentication\n\n**docs\\api\\complete_api_reference_v2.md**\nMatching tags: api_key_authentication, authentication\n\n**docs\\api\\development_guide.md**\nMatching tags: api_key_authentication, authentication, session-based_authentication\n\n**docs\\developer\\api_contracts.md**\nMatching tags: authentication_and_authorization\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.884983"
+    },
+    {
+      "tool": "find-by-tag",
+      "status": "PASS",
+      "description": "Found 0 files with 'api' tag",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Found 11 files with tags: api (ANY tag matches)\n\n1. **api\\api_contracts.md**\n\n2. **api\\complete_api_reference.md**\n\n3. **api\\complete_api_reference_v2.md**\n\n4. **api\\development_guide.md**\n\n5. **api\\memory_optimization_api.md**\n\n6. **developer\\RULE_ENGINE_API.md**\n\n7. **developer\\api_contracts.md**\n\n8. **developer\\api_reference.md**\n\n9. **developer\\inference_api.md**\n\n10. **reference\\web_interface.md**\n\n11. **user\\api_tutorials.md**\n\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.885971"
+    },
+    {
+      "tool": "get-documentation-stats",
+      "status": "PASS",
+      "description": "Retrieved documentation statistics",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\ud83d\udcca **Documentation System Statistics**\n\n**Files**: 1,103\n**Total Tags**: 9,459\n**Average Tags per File**: 21.4\n\n**Most Common Tags**:\n\u2022 python: 879 files\n\u2022 source_code: 876 files\n\u2022 function: 677 files\n\u2022 import_logging: 458 files\n\u2022 import_typing: 458 files\n\u2022 class: 449 files\n\u2022 pytorch: 411 files\n\u2022 func___init__: 382 files\n\u2022 import_torch: 377 files\n\u2022 2025: 362 files\n\n**File Types**:\n\u2022 .py: 876 files\n\u2022 .md: 227 files\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.909221"
+    },
+    {
+      "tool": "get-file-info",
+      "status": "PASS",
+      "description": "Retrieved file information",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "File not found in IDS: docs/DOCUMENTATION_INDEX.md"
+          }
+        ],
+        "isError": true
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.910221"
+    },
+    {
+      "tool": "search-content",
+      "status": "PASS",
+      "description": "Found 0 content matches",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Error searching content: 'EnhancedIDS' object has no attribute 'search_content'"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.911222"
+    },
+    {
+      "tool": "get-recent-changes",
+      "status": "PASS",
+      "description": "Found 0 recent changes",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No files modified in the last 7 days"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.911222"
+    },
+    {
+      "tool": "manage-tags",
+      "status": "PASS",
+      "description": "Tag management list operation",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Found 9459 total tags in the system:\n\n\u2022 ---_dynamic_moe_routing_---\n\u2022 ---_forward_pass\n\u2022 ---_main_model_factory_---\n\u2022 ---_modular_encoders_and_fusion_---\n\u2022 -_documentation_access\n\u2022 -_hardware_detection\n\u2022 -_hardware_detection_and_optimization_profile_creation\n\u2022 -_interactive_capability_selection_with_intelligent_suggestions\n\u2022 -_memory-efficient_pipeline_assembly\n\u2022 -_memory_strategy\n\u2022 -_model_performance\n\u2022 -_model_selection\n\u2022 -_monitoring_and_logging_infrastructure_setup\n\u2022 -_multimodal_model_integration_and_optimization\n\u2022 -_optimization_profile\n\u2022 -_performance_benchmarking_and_validation\n\u2022 -_production-ready_system_configuration\n\u2022 -_real-time_resource_allocation_and_memory_planning\n\u2022 -_real-time_vram_usage\n\u2022 -_security_framework_integration\n\u2022 -_security_status\n\u2022 000000\n\u2022 00695c\n\u2022 007bff\n\u2022 00bcd4\n\u2022 0c5460\n\u2022 1-core-architecture-overview\n\u2022 1-install-nvidia-drivers\n\u2022 155724\n\u2022 1565c0\n\u2022 1976d2\n\u2022 1a237e\n\u2022 1b5e20\n\u2022 2-install-cuda-toolkit\n\u2022 2-key-innovative-components\n\u2022 2025\n\u2022 2026\n\u2022 2027\n\u2022 2028\n\u2022 21-universal-knowledge-store-uks\n\u2022 22-brainsimiii-integration\n\u2022 222\n\u2022 23-dual-shadow-model-architecture\n\u2022 24-transformer-based-model-architecture\n\u2022 25-diffusion-model-integration\n\u2022 256k_context_implementation\n\u2022 28a745\n\u2022 2e7d32\n\u2022 2ecc71\n\u2022 3-install-pytorch-with-cuda\n\u2022 3-multimodal-integration-strategy\n\u2022 311b92\n\u2022 333\n\u2022 388e3c\n\u2022 4-training-pipeline-and-continuous-learning\n\u2022 4-verify-installation\n\u2022 41-data-pipeline-and-preprocessing\n\u2022 42-core-module-pretraining\n\u2022 43-multimodal-fusion-and-integration\n\u2022 44-dual-shadow-model--continuous-learning\n\u2022 45-evaluation-and-monitoring\n\u2022 45b7d1\n\u2022 46-deployment-and-maintenance\n\u2022 4a148c\n\u2022 4caf50\n\u2022 4ecdc4\n\u2022 5-development-roadmap\n\u2022 51-phase-1-foundation-completed\n\u2022 52-phase-2-advanced-features-in-progress\n\u2022 53-phase-3-production-system-planned\n\u2022 555\n\u2022 6-digital-identity-management-core-new-section---2025-05-23\n\u2022 6-technical-implementation\n\u2022 6a1b9a\n\u2022 6c757d\n\u2022 6f42c1\n\u2022 721c24\n\u2022 757575\n\u2022 8-bit\n\u2022 856404\n\u2022 8e24aa\n\u2022 99ccff\n\u2022 99ff99\n\u2022 9c27b0\n\u2022 about_the_uks\n\u2022 abstract\n\u2022 access_control\n\u2022 access_intelligent_documentation_system\n\u2022 access_settings\n\u2022 access_the_interface_at_http\n\u2022 access_unified_dashboard_at_http\n\u2022 accessibility\n\u2022 accessibility-features\n\u2022 accessibility_features\n\u2022 accessibility_requirements\n\u2022 accessibility_standards\n\u2022 accessing-the-model-builder\n\u2022 accessing-the-web-interface\n\u2022 accessing-the-web-ui\n\u2022 accessing_the_interface\n\n... and 9359 more tags"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.921241"
+    },
+    {
+      "tool": "validate-index",
+      "status": "PASS",
+      "description": "Index validation completed",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\ud83d\udd0d **Index Validation Results**\n\n**Files Analyzed**: 1,103\n**Unique Tags**: 9,459\n**Avg Tags/File**: 21.4\n\n\u274c **Issues Found (136)**:\n\u2022 Missing files: 1103 files not found on disk\n\u2022 Duplicate tags in docs\\api\\api_contracts.md\n\u2022 Duplicate tags in docs\\api\\complete_api_reference_v2.md\n\u2022 Duplicate tags in docs\\api\\development_guide.md\n\u2022 Duplicate tags in docs\\api\\memory_optimization_api.md\n\u2022 Duplicate tags in docs\\archive\\testing_infrastructure.md\n\u2022 Duplicate tags in docs\\developer\\api_contracts.md\n\u2022 Duplicate tags in docs\\developer\\cli_build_walkthrough.md\n\u2022 Duplicate tags in docs\\developer\\code_documentation_standards.md\n\u2022 Duplicate tags in docs\\developer\\python_environment_management.md\n\u2022 Duplicate tags in docs\\developer\\security_implementation_complete.md\n\u2022 Duplicate tags in docs\\developer\\security_implementation_guide.md\n\u2022 Duplicate tags in docs\\developer\\system_administration_guide.md\n\u2022 Duplicate tags in docs\\developer\\testing_framework_complete.md\n\u2022 Duplicate tags in docs\\implementation-plans\\dynamic-rank-selection.md\n\u2022 Duplicate tags in docs\\implementation-plans\\hierarchical-lora.md\n\u2022 Duplicate tags in docs\\implementation-plans\\lora-composition.md\n\u2022 Duplicate tags in docs\\implementation-plans\\qlora-integration.md\n\u2022 Duplicate tags in docs\\implementation-plans\\sparsity-integration.md\n\u2022 Duplicate tags in docs\\prd.md\n\u2022 Duplicate tags in docs\\prd_complete_v3.md\n\u2022 Duplicate tags in docs\\process\\Gemini Review docs.md\n\u2022 Duplicate tags in docs\\process\\ImpressionCore Review.md\n\u2022 Duplicate tags in docs\\process\\SPRINT_BOARD.md\n\u2022 Duplicate tags in docs\\process\\development_roadmap.md\n\u2022 Duplicate tags in docs\\process\\documentation_completion_report_2025-06-03.md\n\u2022 Duplicate tags in docs\\process\\documentation_enhancement_completion_report.md\n\u2022 Duplicate tags in docs\\process\\latent_attention_diffusion_status_report.md\n\u2022 Duplicate tags in docs\\process\\lora-implementation-roadmap.md\n\u2022 Duplicate tags in docs\\process\\next_steps.md\n\u2022 Duplicate tags in docs\\process\\project-board.md\n\u2022 Duplicate tags in docs\\process\\project-status.md\n\u2022 Duplicate tags in docs\\process\\project_evaluation_report.md\n\u2022 Duplicate tags in docs\\process\\project_review_summary.md\n\u2022 Duplicate tags in docs\\process\\recommendations_next_steps.md\n\u2022 Duplicate tags in docs\\process\\summary-of-changes.md\n\u2022 Duplicate tags in docs\\process\\training_pipeline_workflow.md\n\u2022 Duplicate tags in docs\\process\\workflow_automation.md\n\u2022 Duplicate tags in docs\\reference\\BENCHMARKING_TOOLS.md\n\u2022 Duplicate tags in docs\\reference\\BRAINSIM3.md\n\u2022 Duplicate tags in docs\\reference\\CHANGELOG.md\n\u2022 Duplicate tags in docs\\reference\\CHECKPOINT_MANAGEMENT.md\n\u2022 Duplicate tags in docs\\reference\\Diffusion Transformers Research.md\n\u2022 Duplicate tags in docs\\reference\\GPU_MEMORY_MANAGEMENT.md\n\u2022 Duplicate tags in docs\\reference\\GPU_SETUP.md\n\u2022 Duplicate tags in docs\\reference\\IMPLEMENTATION_PLAN.md\n\u2022 Duplicate tags in docs\\reference\\KNOWLEDGE_MODULE_USAGE.md\n\u2022 Duplicate tags in docs\\reference\\MEMORY_EFFICIENT_ATTENTION.md\n\u2022 Duplicate tags in docs\\reference\\Permanent_Active_Directive.md\n\u2022 Duplicate tags in docs\\reference\\Permanent_Active_Directives.md\n\u2022 Duplicate tags in docs\\reference\\README tokenization.md\n\u2022 Duplicate tags in docs\\reference\\README.md\n\u2022 Duplicate tags in docs\\reference\\README_TRAINING_INFERENCE.md\n\u2022 Duplicate tags in docs\\reference\\SHADOW_MODEL_DISTILLATION.md\n\u2022 Duplicate tags in docs\\reference\\SHARED_MEMORY_GPU_TRAINING.md\n\u2022 Duplicate tags in docs\\reference\\TRAINER_COMPATIBILITY.md\n\u2022 Duplicate tags in docs\\reference\\TROUBLESHOOTING.md\n\u2022 Duplicate tags in docs\\reference\\UKS_UNIFIED_KNOWLEDGE_STORE.md\n\u2022 Duplicate tags in docs\\reference\\advanced-features.md\n\u2022 Duplicate tags in docs\\reference\\automation_templates.md\n\u2022 Duplicate tags in docs\\reference\\binder.md\n\u2022 Duplicate tags in docs\\reference\\ci-cd.md\n\u2022 Duplicate tags in docs\\reference\\component-integration.md\n\u2022 Duplicate tags in docs\\reference\\comprehensive_error_handling_plan.md\n\u2022 Duplicate tags in docs\\reference\\devops.md\n\u2022 Duplicate tags in docs\\reference\\documentation_synchronization.md\n\u2022 Duplicate tags in docs\\reference\\dummy_implementation_replacement.md\n\u2022 Duplicate tags in docs\\reference\\gpu-optimization.md\n\u2022 Duplicate tags in docs\\reference\\icore_enhancement_plan.md\n\u2022 Duplicate tags in docs\\reference\\implementation_plan_terminal_error_handling.md\n\u2022 Duplicate tags in docs\\reference\\implementation_strategy.md\n\u2022 Duplicate tags in docs\\reference\\impressioncore_b1_brain_security.md\n\u2022 Duplicate tags in docs\\reference\\impressioncore_b1_context_window.md\n\u2022 Duplicate tags in docs\\reference\\impressioncore_b1_memory_optimization.md\n\u2022 Duplicate tags in docs\\reference\\impressioncore_b1_training_pipeline.md\n\u2022 Duplicate tags in docs\\reference\\lora-enhancements-integration-strategy.md\n\u2022 Duplicate tags in docs\\reference\\lora-implementation.md\n\u2022 Duplicate tags in docs\\reference\\lora-integration-guide.md\n\u2022 Duplicate tags in docs\\reference\\lora-migration-guide.md\n\u2022 Duplicate tags in docs\\reference\\memory_efficient_tokenization.md\n\u2022 Duplicate tags in docs\\reference\\memory_optimization_strategies.md\n\u2022 Duplicate tags in docs\\reference\\modal-engine.md\n\u2022 Duplicate tags in docs\\reference\\modal_engine_tokenizer_integration.md\n\u2022 Duplicate tags in docs\\reference\\model_architecture_complete.md\n\u2022 Duplicate tags in docs\\reference\\model_builder_enhancement_plan.md\n\u2022 Duplicate tags in docs\\reference\\model_definition_integration_plan.md\n\u2022 Duplicate tags in docs\\reference\\model_definition_plan.md\n\u2022 Duplicate tags in docs\\reference\\model_visualization.md\n\u2022 Duplicate tags in docs\\reference\\performance-optimization.md\n\u2022 Duplicate tags in docs\\reference\\performance_benchmarks.md\n\u2022 Duplicate tags in docs\\reference\\plan_xformers_attention.md\n\u2022 Duplicate tags in docs\\reference\\prd.md\n\u2022 Duplicate tags in docs\\reference\\security.md\n\u2022 Duplicate tags in docs\\reference\\specialized_attention_patterns.md\n\u2022 Duplicate tags in docs\\reference\\template-for-copilot-instructions.md\n\u2022 Duplicate tags in docs\\reference\\templates_listing.md\n\u2022 Duplicate tags in docs\\reference\\terminal_integration_plan.md\n\u2022 Duplicate tags in docs\\reference\\test.md\n\u2022 Duplicate tags in docs\\reference\\testing-plan.md\n\u2022 Duplicate tags in docs\\reference\\testing_plan.md\n\u2022 Duplicate tags in docs\\reference\\third-party-libraries.md\n\u2022 Duplicate tags in docs\\reference\\token_converter_guide.md\n\u2022 Duplicate tags in docs\\reference\\token_rate_control.md\n\u2022 Duplicate tags in docs\\reference\\tokenization_benchmark_results.md\n\u2022 Duplicate tags in docs\\reference\\tokenization_guide.md\n\u2022 Duplicate tags in docs\\reference\\tokenization_system_improvements.md\n\u2022 Duplicate tags in docs\\reference\\training-pipeline.md\n\u2022 Duplicate tags in docs\\reference\\training_data_guide.md\n\u2022 Duplicate tags in docs\\reference\\training_data_guide_complete.md\n\u2022 Duplicate tags in docs\\reference\\training_data_guide_comprehensive.md\n\u2022 Duplicate tags in docs\\reference\\visualization.md\n\u2022 Duplicate tags in docs\\reference\\web_interface.md\n\u2022 Duplicate tags in docs\\reference\\workspace.md\n\u2022 Duplicate tags in docs\\strategic\\market_research_query_document_2025-06-07.md\n\u2022 Duplicate tags in docs\\technical\\b1_model_architecture_improvements.md\n\u2022 Duplicate tags in docs\\technical\\b1_unified_model_testing_milestone.md\n\u2022 Duplicate tags in docs\\technical\\b1_unified_model_testing_milestone_clean.md\n\u2022 Duplicate tags in docs\\technical\\memory_optimizations.md\n\u2022 Duplicate tags in docs\\technical\\performance_optimization_guide.md\n\u2022 Duplicate tags in docs\\user\\api_tutorials.md\n\u2022 Duplicate tags in docs\\user\\deployment_guide.md\n\u2022 Duplicate tags in docs\\user\\onboarding_guide.md\n\u2022 Duplicate tags in docs\\user\\performance_tuning.md\n\u2022 Duplicate tags in docs\\user\\user-flow.md\n\u2022 Duplicate tags in docs\\user\\user_guide.md\n\u2022 Duplicate tags in docs\\user\\user_guide_tools.md\n\u2022 Duplicate tags in docs\\user\\web_ui_walkthrough_complete.md\n\u2022 Duplicate tags in docs\\user_guide\\custom_memory_optimizations.md\n\u2022 Duplicate tags in docs\\user_guide\\impressioncore_b1_walkthrough.md\n\u2022 Duplicate tags in docs\\user_guide\\impressioncore_walkthrough.md\n\u2022 Duplicate tags in docs\\user_guide\\memory_optimization.md\n\u2022 Duplicate tags in docs\\user_guide\\memory_optimization_examples.md\n\u2022 Duplicate tags in docs\\user_guide\\memory_optimization_faq.md\n\u2022 Duplicate tags in docs\\user_guide\\model_training.md\n\u2022 Duplicate tags in docs\\user_guide\\troubleshooting_guide_complete.md\n\u2022 Duplicate tags in docs\\user_guide\\user_guide.md\n\n\u26a0\ufe0f **Warnings (1)**:\n\u2022 Many rare tags: 7831 tags appear in only 1 file\n\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:53.983985"
+    },
+    {
+      "tool": "export-data",
+      "status": "PASS",
+      "description": "Data export completed",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\ud83d\udce4 **Export Completed**\n\n**Format**: JSON\n**Filename**: ids_export_20250608_180253.json\n**Files**: 1,103\n**Size**: 888,377 characters\n\n**Export Preview** (first 500 characters):\n```json\n{\n  \"export_timestamp\": \"2025-06-08 18:02:53\",\n  \"version\": \"1.0.0\",\n  \"unified_index\": {\n    \"docs\\\\DOCUMENTATION_INDEX.md\": [\n      \"2025\",\n      \"archive\",\n      \"archive_documentation\",\n      \"assets\",\n      \"assets_documentation\",\n      \"bookmark_categories\",\n      \"completion_status\",\n      \"comprehensive_mcp_documentation\",\n      \"core_architecture_diagrams\",\n      \"core_ids_files\",\n      \"current_active_bookmarks\",\n      \"current_system_status\",\n      \"developer\",\n      \"developer_docume...\n```\n\nNote: This is a simulation. Actual file saving requires file system write access."
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:54.015305"
+    },
+    {
+      "tool": "bookmark-management",
+      "status": "PASS",
+      "description": "Retrieved 0 bookmarks",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Error executing tool 'bookmark-management': 'list' object has no attribute 'get'"
+          }
+        ],
+        "isError": true
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:54.058466"
+    },
+    {
+      "tool": "analyze-documentation",
+      "status": "PASS",
+      "description": "Documentation analysis completed",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\ud83d\udccb **Documentation Analysis Overview**\n\n**Total Files**: 1,103\n**Total Tags**: 9,459\n\n**Coverage by Category**:\n\u2022 general: 1103 files\n\u2022 memory: 32 files\n\u2022 model: 13 files\n\u2022 training: 13 files\n\u2022 brain: 12 files\n\u2022 multimodal: 12 files\n\u2022 impressioncore: 12 files\n\u2022 api: 12 files\n\u2022 performance: 12 files\n\u2022 hardware: 11 files\n\u2022 best: 11 files\n\u2022 core: 10 files\n\u2022 advanced: 10 files\n\u2022 integration: 10 files\n\u2022 data: 9 files\n\u2022 long: 8 files\n\u2022 cross: 8 files\n\u2022 b1: 8 files\n\u2022 real: 8 files\n\u2022 web: 7 files\n\u2022 medium: 6 files\n\u2022 environment: 6 files\n\u2022 multi: 6 files\n\u2022 security: 6 files\n\u2022 usage: 6 files\n\u2022 system: 5 files\n\u2022 monitoring: 5 files\n\u2022 quantum: 5 files\n\u2022 cli: 5 files\n\u2022 implementation: 5 files\n\u2022 kirk: 4 files\n\u2022 inference: 4 files\n\u2022 testing: 4 files\n\u2022 related: 4 files\n\u2022 configuration: 4 files\n\u2022 user: 4 files\n\u2022 high: 4 files\n\u2022 quality: 4 files\n\u2022 technical: 4 files\n\u2022 project: 4 files\n\u2022 python: 3 files\n\u2022 third: 3 files\n\u2022 impressioncore_: 3 files\n\u2022 compliance: 3 files\n\u2022 key: 3 files\n\u2022 secure: 3 files\n\u2022 day_1: 3 files\n\u2022 day_3: 3 files\n\u2022 day_5: 3 files\n\u2022 future: 3 files\n\u2022 current: 3 files\n\u2022 attention: 3 files\n\u2022 command: 3 files\n\u2022 paradigm: 3 files\n\u2022 supported: 3 files\n\u2022 getting: 3 files\n\u2022 accessing: 3 files\n\u2022 running: 3 files\n\u2022 understanding: 3 files\n\u2022 ids: 2 files\n\u2022 deployment: 2 files\n\u2022 error: 2 files\n\u2022 rate: 2 files\n\u2022 session: 2 files\n\u2022 low: 2 files\n\u2022 fine: 2 files\n\u2022 auto: 2 files\n\u2022 code: 2 files\n\u2022 troubleshooting: 2 files\n\u2022 phase: 2 files\n\u2022 authentication: 2 files\n\u2022 input: 2 files\n\u2022 installation: 2 files\n\u2022 end: 2 files\n\u2022 product: 2 files\n\u2022 development: 2 files\n\u2022 market: 2 files\n\u2022 scalability: 2 files\n\u2022 week_3: 2 files\n\u2022 multimodal_integration_: 2 files\n\u2022 near: 2 files\n\u2022 next: 2 files\n\u2022 custom: 2 files\n\u2022 tokenizer: 2 files\n\u2022 visualization: 2 files\n\u2022 short: 2 files\n\u2022 knowledge: 2 files\n\u2022 1: 2 files\n\u2022 2: 2 files\n\u2022 3: 2 files\n\u2022 4: 2 files\n\u2022 6: 2 files\n\u2022 : 2 files\n\u2022 introduction: 2 files\n\u2022 post: 2 files\n\u2022 common: 2 files\n\u2022 preprocessing: 2 files\n\u2022 impressioncore_training_data_guide_: 2 files\n\u2022 go: 2 files\n\u2022 adaptive: 2 files\n\u2022 gpu: 2 files\n\u2022 quick: 2 files\n\u2022 dashboard: 2 files\n\u2022 image: 2 files\n\u2022 training_and_fine: 2 files\n\u2022 cloning: 2 files\n\u2022 installing: 2 files\n\u2022 rest: 1 files\n\u2022 websocket: 1 files\n\u2022 impressioncore_api_reference_: 1 files\n\u2022 sdk: 1 files\n\u2022 get_real: 1 files\n\u2022 relationship: 1 files\n\u2022 benchmark_tokenizerpy: 1 files\n\u2022 script: 1 files\n\u2022 utility: 1 files\n\u2022 coding: 1 files\n\u2022 todo: 1 files\n\u2022 contribution: 1 files\n\u2022 developer: 1 files\n\u2022 faq: 1 files\n\u2022 subsystem: 1 files\n\u2022 tagging: 1 files\n\u2022 critical_fix_: 1 files\n\u2022 neural_forge_express_preset_system_: 1 files\n\u2022 digital: 1 files\n\u2022 impressioncore_phase_8a_: 1 files\n\u2022 example_of_loading_a_pre: 1 files\n\u2022 audit: 1 files\n\u2022 cryptographic: 1 files\n\u2022 vulnerability: 1 files\n\u2022 role: 1 files\n\u2022 backup: 1 files\n\u2022 disaster: 1 files\n\u2022 docker: 1 files\n\u2022 logging: 1 files\n\u2022 continuous: 1 files\n\u2022 impressioncore_testing_framework_: 1 files\n\u2022 mock: 1 files\n\u2022 test: 1 files\n\u2022 unit: 1 files\n\u2022 implementation_excellence_: 1 files\n\u2022 test_results_: 1 files\n\u2022 security_infrastructure_implementation_report_: 1 files\n\u2022 phase_8b_week_1_implementation_plan_: 1 files\n\u2022 task: 1 files\n\u2022 phase_b2_: 1 files\n\u2022 phase_b3_: 1 files\n\u2022 phase_b4_: 1 files\n\u2022 documentation: 1 files\n\u2022 resource: 1 files\n\u2022 risk: 1 files\n\u2022 sector: 1 files\n\u2022 success: 1 files\n\u2022 support: 1 files\n\u2022 target: 1 files\n\u2022 timeline: 1 files\n\u2022 alignment: 1 files\n\u2022 architectural: 1 files\n\u2022 background: 1 files\n\u2022 community: 1 files\n\u2022 conceptual: 1 files\n\u2022 ethical: 1 files\n\u2022 evaluation: 1 files\n\u2022 human: 1 files\n\u2022 modular: 1 files\n\u2022 overview: 1 files\n\u2022 phd: 1 files\n\u2022 scope: 1 files\n\u2022 suggestions: 1 files\n\u2022 technology: 1 files\n\u2022 uniqueness: 1 files\n\u2022 weaknesses: 1 files\n\u2022 next_development_phase_: 1 files\n\u2022 q1_2026_: 1 files\n\u2022 q3_2025_: 1 files\n\u2022 q4_2025_: 1 files\n\u2022 impressioncore_sprint_board_: 1 files\n\u2022 impressioncore_multi: 1 files\n\u2022 phase_7d_implementation_: 1 files\n\u2022 priority: 1 files\n\u2022 production: 1 files\n\u2022 week_1: 1 files\n\u2022 week_5: 1 files\n\u2022 week_7: 1 files\n\u2022 week_9: 1 files\n\u2022 day_10: 1 files\n\u2022 day_12: 1 files\n\u2022 day_15: 1 files\n\u2022 day_17: 1 files\n\u2022 day_19: 1 files\n\u2022 day_8: 1 files\n\u2022 backlog_: 1 files\n\u2022 priority_1_: 1 files\n\u2022 priority_2_: 1 files\n\u2022 priority_3_: 1 files\n\u2022 project_board_: 1 files\n\u2022 benchmark: 1 files\n\u2022 benchmarking_tools_for_impressioncore: 1 files\n\u2022 component: 1 files\n\u2022 context: 1 files\n\u2022 flash: 1 files\n\u2022 gradient: 1 files\n\u2022 kv: 1 files\n\u2022 mixed: 1 files\n\u2022 sliding: 1 files\n\u2022 distillation: 1 files\n\u2022 feature: 1 files\n\u2022 soft: 1 files\n\u2022 synchronization: 1 files\n\u2022 impressioncore_high: 1 files\n\u2022 21: 1 files\n\u2022 22: 1 files\n\u2022 23: 1 files\n\u2022 24: 1 files\n\u2022 25: 1 files\n\u2022 41: 1 files\n\u2022 42: 1 files\n\u2022 43: 1 files\n\u2022 44: 1 files\n\u2022 45: 1 files\n\u2022 46: 1 files\n\u2022 5: 1 files\n\u2022 51: 1 files\n\u2022 52: 1 files\n\u2022 53: 1 files\n\u2022 executive: 1 files\n\u2022 complete_tagging_system_: 1 files\n\u2022 comprehensive_world: 1 files\n\u2022 demonstrate_cross: 1 files\n\u2022 enhanced_ids_with_real: 1 files\n\u2022 foundation_genesis_phase_: 1 files\n\u2022 industry: 1 files\n\u2022 security_framework_: 1 files\n\u2022 uks_implementation_: 1 files\n\u2022 create_low: 1 files\n\u2022 parameter: 1 files\n\u2022 server: 1 files\n\u2022 re: 1 files\n\u2022 cpu: 1 files\n\u2022 create_a_memory: 1 files\n\u2022 device: 1 files\n\u2022 process_content_memory: 1 files\n\u2022 modal: 1 files\n\u2022 process_content_in_memory: 1 files\n\u2022 architecture: 1 files\n\u2022 extension: 1 files\n\u2022 impressioncore_model_architecture_: 1 files\n\u2022 backend: 1 files\n\u2022 objectives: 1 files\n\u2022 resources: 1 files\n\u2022 template: 1 files\n\u2022 ui: 1 files\n\u2022 extending: 1 files\n\u2022 layer: 1 files\n\u2022 non: 1 files\n\u2022 process_in_memory: 1 files\n\u2022 configure_memory: 1 files\n\u2022 augmentation_that_maintains_cross: 1 files\n\u2022 content: 1 files\n\u2022 filter_low: 1 files\n\u2022 for_time: 1 files\n\u2022 metadata: 1 files\n\u2022 modality: 1 files\n\u2022 stage: 1 files\n\u2022 additional_root: 1 files\n\u2022 directory_structure_overview_: 1 files\n\u2022 impressioncore_strategic_vision_: 1 files\n\u2022 three: 1 files\n\u2022 ai: 1 files\n\u2022 dialogue: 1 files\n\u2022 forward: 1 files\n\u2022 forward_progression_dialogue_: 1 files\n\u2022 personal: 1 files\n\u2022 competitive: 1 files\n\u2022 audio: 1 files\n\u2022 latent: 1 files\n\u2022 b1_unified_model_testing_milestone_: 1 files\n\u2022 8: 1 files\n\u2022 install_cuda: 1 files\n\u2022 tools: 1 files\n\u2022 vision: 1 files\n\u2022 accessibility: 1 files\n\u2022 mobile: 1 files\n\u2022 prerequisites: 1 files\n\u2022 touch: 1 files\n\u2022 higher: 1 files\n\u2022 building: 1 files\n\u2022 performing: 1 files\n\u2022 starting: 1 files\n\u2022 verifying: 1 files\n\u2022 section: 1 files\n\u2022 built: 1 files\n\u2022 processing: 1 files\n\u2022 training_a_medium: 1 files\n\u2022 bitsandbytes_8: 1 files\n\u2022 file: 1 files\n\u2022 linux: 1 files\n\u2022 macos: 1 files\n\u2022 network: 1 files\n\u2022 windows: 1 files\n\u2022 analyzing: 1 files\n\u2022 automatic: 1 files\n\u2022 checkpoint: 1 files\n\u2022 directory: 1 files\n\u2022 how: 1 files\n\u2022 launching: 1 files\n\u2022 manual: 1 files\n\u2022 navigating: 1 files\n\u2022 notes: 1 files\n\u2022 pretraining: 1 files\n\u2022 purpose: 1 files\n\u2022 running_cifar: 1 files\n\u2022 saving: 1 files\n\u2022 setting: 1 files\n\u2022 setup: 1 files\n\u2022 special: 1 files\n\u2022 text: 1 files\n\u2022 tokenization: 1 files\n\u2022 unified: 1 files\n\u2022 using: 1 files\n\u2022 walkthrough: 1 files\n\u2022 what: 1 files\n\u2022 who: 1 files\n\u2022 why: 1 files\n\u2022 working: 1 files\n"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:54.070668"
+    },
+    {
+      "tool": "backup-system",
+      "status": "PASS",
+      "description": "System backup completed",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\ud83d\udcbe **Backup System Simulation**\n\n**Backup Name**: ids_backup_20250608_180254\n**Timestamp**: 20250608_180254\n**Include Files**: No\n\n**Backup Contents**:\n\u2022 Unified Index: 1,103 files\n\u2022 File Metadata: 1,103 entries\n\u2022 Reverse Index: 2,462 tags\n\u2022 Estimated Size: 1,248,553 bytes (1219.3 KB)\n\nBackup would be saved as: `ids_backup_20250608_180254.json`\n\nNote: This is a simulation. Actual backup requires file system write access."
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:54.113264"
+    },
+    {
+      "tool": "rebuild-index",
+      "status": "PASS",
+      "description": "Index rebuild completed",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "\u26a0\ufe0f **Rebuild Index - Confirmation Required**\n\n**Type**: Standard rebuild\n\n**WARNING**: This operation will rebuild the entire index.\n\n**Current Index**:\n\u2022 Files: 1,103\n\u2022 Tags: 9,459\n\nStandard rebuild will:\n\u2022 Refresh existing indices\n\u2022 Update file modification times\n\u2022 Repair any corruption\n\nTo proceed, call this tool again with `confirm: true`\n\nNote: This is a simulation. Actual rebuild requires file system write access."
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-06-08T18:02:54.119489"
+    }
+  ]
+}

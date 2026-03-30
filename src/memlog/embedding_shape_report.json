@@ -1,0 +1,22 @@
+{
+  "inspected": 500,
+  "unique": [
+    {
+      "signature": "shape=(800, 768)|dtype=float32",
+      "count": 96,
+      "example": "F:\\data\\datasets\\audio\\raw\\audio_mel_spectrogram_01_000000.npy"
+    },
+    {
+      "signature": "shape=(597, 768)|dtype=float32",
+      "count": 4,
+      "example": "F:\\data\\datasets\\audio\\raw\\audio_mel_spectrogram_01_019200.npy"
+    },
+    {
+      "signature": "shape=(768,)|dtype=float32",
+      "count": 400,
+      "example": "F:\\data\\datasets\\audio\\raw\\audio_unknown_1089-134686.trans_20250621_chunk1.npy"
+    }
+  ],
+  "errors": [],
+  "timestamp": "2025-08-29T16:03:50"
+}

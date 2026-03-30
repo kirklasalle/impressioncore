@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "impressioncore-ids": {
+      "command": "G:\\Program Files\\Python313\\python.exe",
+      "args": ["d:/Projects/impressioncore/.mcp/ids-mcp/server.py"],
+      "cwd": "d:/Projects/impressioncore",
+      "env": {
+        "PYTHONPATH": "d:/Projects/impressioncore",
+        "PYTHONUNBUFFERED": "1",
+        "IDS_DEBUG": "1"
+      }
+    }
+  }
+}

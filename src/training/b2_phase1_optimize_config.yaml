@@ -1,0 +1,45 @@
+# B2 Phase 1 Optimization Training Config
+# Save as: b2_phase1_optimize_config.yaml
+
+embed_dim: 768
+num_layers: 12
+num_heads: 12
+vocab_size: 50257
+max_seq_length: 128000
+ffn_hidden_dim: 3072
+img_dim: 256
+audio_dim: 16000
+max_seq_len: 128000
+n_experts: 4
+vision_decoder_layers: 8
+vision_decoder_steps: 50
+audio_decoder_layers: 8
+audio_decoder_steps: 50
+sp_model_path: dummy.model
+vision_patch_dim: 768
+patch_size: 16
+audio_feat_dim: 768
+n_mels: 64
+sample_rate: 16000
+video_feat_dim: 768
+num_frames: 8
+video_mean: 0.5
+video_std: 0.5
+num_sentiment_classes: 3
+num_intent_classes: 10
+batch_size: 2
+base_learning_rate: 0.00007
+classification_learning_rate: 0.0003
+weight_decay: 0.01
+gradient_clip_norm: 1.0
+loss_weights:
+  text: 0.25
+  sentiment: 1.2
+  intent: 2.5
+  quality: 0.15
+max_epochs: 12
+early_stopping_patience: 6
+validation_interval: 1
+log_interval: 5
+save_interval: 3
+output_dir: enhanced_checkpoints_phase1_optimize

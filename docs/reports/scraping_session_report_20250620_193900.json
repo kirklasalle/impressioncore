@@ -1,0 +1,19 @@
+{
+  "session_id": "20250620_193900",
+  "timestamp": "2025-06-20T19:39:00.957716",
+  "f_drive_root": "F:\\",
+  "statistics": {
+    "total_sources": 4,
+    "total_content_mb": 0.5525369644165039,
+    "total_educational_topics": 25,
+    "f_drive_usage_mb": 0.5525369644165039
+  },
+  "directories_used": {
+    "datasets": "F:\\datasets",
+    "training_data": "F:\\training_data",
+    "embeddings": "F:\\embeddings",
+    "cache": "F:\\cache",
+    "logs": "F:\\logs"
+  },
+  "session_log": "F:\\logs\\great_scraping_session_20250620_193900.log"
+}

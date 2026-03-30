@@ -1,0 +1,18 @@
+# NEXUS Plan: System Initialization Sequence
+# Called via: (EXECUTE-PLAN "init-system")
+
+# Log startup
+(LOG "=== NEXUS INIT: System Startup Sequence ===")
+
+# System Status Check
+(SYS-STAT)
+
+# Set default hemisphere temperatures
+(SET-TEMP "left" 0.3)
+(SET-TEMP "right" 0.85)
+
+# Memory summary for context
+(LOG "Loading memory context...")
+(MEMORY-SUMMARY)
+
+(LOG "=== NEXUS INIT: Complete ===")

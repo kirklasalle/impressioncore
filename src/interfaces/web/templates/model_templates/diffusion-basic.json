@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "template_id": "diffusion-basic",
+  "display_name": "Diffusion Basic",
+  "description": "Basic diffusion model for image generation tasks",
+  "category": "diffusion",
+  "icon": "diffusion_icon.svg",
+  "parameters": {
+    "model": {
+      "image_size": {
+        "value": 256,
+        "description": "Size of the generated images (square)",
+        "tooltip": "Larger sizes increase detail but require more memory",
+        "type": "integer",
+        "range": [64, 512],
+        "step": 64,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 1
+      },
+      "num_channels": {
+        "value": 128,
+        "description": "Number of channels in the UNet architecture",
+        "tooltip": "More channels increase model capacity",
+        "type": "integer",
+        "range": [32, 256],
+        "step": 32,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 2
+      },
+      "num_layers": {
+        "value": 4,
+        "description": "Number of downsampling/upsampling layers in UNet",
+        "tooltip": "More layers capture finer details",
+        "type": "integer",
+        "range": [2, 8],
+        "step": 1,
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 3
+      },
+      "attention_resolutions": {
+        "value": "[16, 32]",
+        "description": "Resolutions at which to apply attention",
+        "tooltip": "Apply attention at these feature map sizes",
+        "type": "string",
+        "options": ["[32]", "[16, 32]", "[8, 16, 32]"],
+        "training_impact": "medium",
+        "hardware_impact": "medium",
+        "display_order": 4
+      }
+    },
+    "training": {
+      "learning_rate": {
+        "value": 1e-4,
+        "description": "Learning rate for optimizer",
+        "tooltip": "Controls how quickly the model adapts to the training data",
+        "type": "float",
+        "range": [1e-6, 1e-3],
+        "log_scale": true,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 1
+      },
+      "batch_size": {
+        "value": 8,
+        "description": "Training batch size",
+        "tooltip": "Larger batch sizes can speed up training but require more memory",
+        "type": "integer",
+        "range": [1, 32],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "high",
+        "display_order": 2,
+        "hardware_dependent": true
+      },
+      "epochs": {
+        "value": 5,
+        "description": "Number of training epochs",
+        "tooltip": "More epochs allow for better learning but take longer",
+        "type": "integer",
+        "range": [1, 50],
+        "step": 1,
+        "training_impact": "high",
+        "hardware_impact": "none",
+        "display_order": 3
+      }
+    },
+    "advanced": {
+      "dropout_rate": {
+        "value": 0.0,
+        "description": "Dropout rate throughout the UNet",
+        "tooltip": "Helps prevent overfitting",
+        "type": "float",
+        "range": [0.0, 0.5],
+        "step": 0.05,
+        "training_impact": "low",
+        "hardware_impact": "none",
+        "display_order": 1,
+        "advanced": true
+      },
+      "diffusion_steps": {
+        "value": 1000,
+        "description": "Number of diffusion steps",
+        "tooltip": "More steps improve sample quality but slow down generation",
+        "type": "integer",
+        "range": [100, 2000],
+        "step": 100,
+        "training_impact": "medium",
+        "hardware_impact": "low",
+        "display_order": 2,
+        "advanced": true
+      }
+    }
+  },
+  "training_settings": {
+    "recommended_epochs": 5,
+    "eval_strategy": "epoch",
+    "save_strategy": "epoch",
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.1
+  },
+  "hardware_requirements": {
+    "min_vram": "6GB",
+    "recommended_vram": "12GB",
+    "vram_calculation": "((image_size * image_size * num_channels * 4 * num_layers * 8) / (1024 * 1024 * 1024) + 1) GB",
+    "scaling_notes": "Memory usage scales quadratically with image_size and linearly with num_channels and num_layers"
+  },
+  "use_cases": [
+    "Image generation",
+    "Image style transfer",
+    "Image inpainting"
+  ],
+  "caveats": [
+    "Training diffusion models is computationally intensive",
+    "High resolution image generation requires significant VRAM"
+  ],
+  "references": [
+    {
+      "title": "Denoising Diffusion Probabilistic Models",
+      "url": "https://arxiv.org/abs/2006.11239"
+    }
+  ]
+}

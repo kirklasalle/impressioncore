@@ -1,0 +1,15 @@
+[
+  {
+    "primary_score": 1000000000000.0,
+    "best_loss": null,
+    "val_best": null,
+    "hist_tail": null,
+    "steps": null,
+    "load_mode": "full",
+    "path": "F:\\models\\deployment\\impressioncore_b2_production_20250709_145132\\impressioncore_b2\\src\\training\\ultra_light_checkpoints\\checkpoint_epoch_0.pth",
+    "filename": "checkpoint_epoch_0.pth",
+    "size_mb": 150.88,
+    "probe_loss": null,
+    "timestamp": 1752011243.6045735
+  }
+]

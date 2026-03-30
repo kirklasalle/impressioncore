@@ -1,0 +1,18 @@
+[
+    {
+        "N_params": 101500000,
+        "loss": 0.001187,
+        "tokens": null,
+        "vram_mb": 3400,
+        "source": "B3_SCALING_SWEET_SPOT_THEORY.md",
+        "note": "Phase 1 success at ~101.5M params"
+    },
+    {
+        "N_params": 506000000,
+        "loss": null,
+        "tokens": null,
+        "vram_mb": null,
+        "source": "sweet_spot_recovery_training.log",
+        "note": "Recovery run; parse log for best loss if available"
+    }
+]
