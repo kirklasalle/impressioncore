@@ -257,126 +257,8 @@ def api_models_available():
     return jsonify({'models': models})
 
 # --- Walkthrough Section ---
-@builder_bp.route('/walkthrough')
-def walkthrough():
-    return _serve_page('walkthrough.html')
-
-@builder_bp.route('/introduction')
-def introduction():
-    return _serve_page('introduction.html')
-
-@builder_bp.route('/system_requirements')
-def system_requirements():
-    return _serve_page('system_requirements.html')
-
-@builder_bp.route('/data_prep', methods=['GET'])
-def data_prep():
-    return _serve_page('data_prep.html')
-
-@builder_bp.route('/data_prep/upload', methods=['POST'])
-def data_prep_upload():
-    upload_dir = os.path.join(os.path.dirname(__file__), '../../../data/uploads')
-    os.makedirs(upload_dir, exist_ok=True)
-    file = request.files.get('dataFile')
-    if not file:
-        flash('No file selected.', 'danger')
-        return redirect(url_for('data_prep'))
-    filename = file.filename
-    if not filename or not (filename.endswith('.txt') or filename.endswith('.csv') or filename.endswith('.json')):
-        flash('Invalid file type. Only .txt, .csv, .json allowed.', 'danger')
-        return redirect(url_for('data_prep'))
-    save_path = os.path.join(upload_dir, filename)
-    file.save(save_path)
-    flash(f'File {filename} uploaded successfully.', 'success')
-    return redirect(url_for('data_prep'))
-
-@builder_bp.route('/tokenizer')
-def tokenizer():
-    return _serve_page('tokenizer.html')
-
-@builder_bp.route('/tokenizer/configure', methods=['POST'])
-def tokenizer_configure():
-    """
-    Handle tokenizer configuration form submission.
-    Args: None (form data from POST)
-    Returns: Redirects back to /tokenizer with a flash message.
-    Memory: Minimal, only processes form data.
-    """
-    tokenizer_type = request.form.get('tokenizerType')
-    vocab_size = request.form.get('vocabSize')
-    if not tokenizer_type or not vocab_size:
-        flash('Tokenizer type and vocabulary size are required.', 'danger')
-        return redirect(url_for('tokenizer'))
-    try:
-        vocab_size = int(vocab_size)
-    except ValueError:
-        flash('Vocabulary size must be an integer.', 'danger')
-        return redirect(url_for('tokenizer'))
-    # Here you would save or apply the configuration as needed
-    flash(f'Tokenizer configured: {tokenizer_type} with vocab size {vocab_size}', 'success')
-    return redirect(url_for('tokenizer'))
-
-@builder_bp.route('/define_model')
-def define_model():
-    return _serve_page('define_model.html')
-
-@builder_bp.route('/training')
-def training():
-    return _serve_page('training.html')
-
-@builder_bp.route('/evaluation')
-def evaluation():
-    return _serve_page('evaluation.html')
-
-@builder_bp.route('/inference')
-def inference():
-    return _serve_page('inference.html')
-
-@builder_bp.route('/deployment')
-def deployment():
-    return _serve_page('deployment.html')
-
-@builder_bp.route('/uks_introduction')
-def uks_introduction():
-    return _serve_page('uks_introduction.html')
-
-@builder_bp.route('/rule_engine')
-def rule_engine():
-    return _serve_page('rule_engine.html')
-
-@builder_bp.route('/inheritance')
-def inheritance():
-    return _serve_page('inheritance.html')
-
-# --- Advanced & Reference Section ---
-@builder_bp.route('/unified_builder')
-def unified_builder():
-    return _serve_page('unified_builder.html')
-
-@builder_bp.route('/configuration_interactive')
-def configuration_interactive():
-    return _serve_page('configuration_interactive.html')
-
-@builder_bp.route('/metrics_dashboard')
-def metrics_dashboard():
-    return _serve_page('metrics_dashboard.html')
-
-@builder_bp.route('/api_reference')
-def api_reference():
-    return _serve_page('api_reference.html')
-
-@builder_bp.route('/documentation')
-def documentation():
-    return _serve_page('documentation.html')
-
-@builder_bp.route('/development_roadmap')
-def development_roadmap():
-    return _serve_page('development_roadmap.html')
-
-@builder_bp.route('/chat', methods=['GET', 'POST'])
+@builder_bp.route('/chat', methods=['POST'])
 def chat():
-    if request.method == 'GET':
-        return _serve_page('chat.html')
     try:
         data = request.get_json(force=True)
         message = data.get('message', '').strip()
@@ -400,22 +282,10 @@ def builder_assets(filename):
         return send_from_directory(builder_client_assets, filename)
     return jsonify({'error': 'React assets not found'}), 404
 
-@builder_bp.route('/gpu_setup')
-def gpu_setup():
-    return _serve_page('gpu_setup.html')
-
-@builder_bp.route('/model_architecture')
-def model_architecture():
-    return _serve_page('model_architecture.html')
-
-@builder_bp.route('/checkpoint')
-def checkpoint():
-    return _serve_page('checkpoint.html')
-
 @builder_bp.route('/favicon.ico')
 def favicon():
     return send_from_directory(
-        os.path.join(app.root_path, 'static'),
+        os.path.join(current_app.root_path, 'static'),
         'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 # --- Walkthrough API Endpoints ---

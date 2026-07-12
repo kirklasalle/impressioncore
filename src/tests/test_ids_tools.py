@@ -67,6 +67,9 @@ class TestResults:
                 "test_results": self.results
             }, f, indent=2)
 
+import pytest
+
+@pytest.mark.anyio
 async def test_ids_tools():
     """Test ALL ImpressionCore IDS tools comprehensively."""
     test_tracker = TestResults()

@@ -76,9 +76,9 @@ try:
     from transformers import AutoTokenizer, AutoModel
     import torch
     HAS_NLP_LIBS = True
-except ImportError:
+except (ImportError, Exception) as e:
     HAS_NLP_LIBS = False
-    print("⚠️  Advanced NLP libraries not available - using basic text processing")
+    print(f"⚠️  Advanced NLP libraries not available ({e}) - using basic text processing")
 
 # Setup logging with rich enhancements
 logging.basicConfig(
@@ -417,6 +417,24 @@ class GTX1050TiOptimizedModel(nn.Module):
             logger.error(f"Semantic search error: {e}")
             return self._fallback_search(query, max_results)
     
+    def _get_project_files(self, extensions: List[str]) -> List[Path]:
+        """Get project files matching extensions while efficiently pruning skipped directories"""
+        files_list = []
+        skip_dirs = {'node_modules', 'backup', 'dist', 'build', 'deployment', 'production', 'temp', 'tmp', 'src/deployment', 'logs', 'log', 'archive', 'test_outputs', 'test_output', 'tests', 'test', 'data', 'memlog', 'training'}
+        for root, dirs, files in os.walk(self.root_path):
+            # Prune directories in place: skip if startswith('.', 'venv' in name, or in skip_dirs)
+            dirs[:] = [
+                d for d in dirs 
+                if d not in skip_dirs 
+                and not d.startswith('.') 
+                and 'venv' not in d.lower()
+            ]
+            for file in files:
+                ext = os.path.splitext(file)[1]
+                if ext in extensions:
+                    files_list.append(Path(root) / file)
+        return files_list
+
     def _build_document_embeddings(self):
         """Build TF-IDF embeddings for all documents"""
         logger.info("🧠 Building AI document embeddings...")
@@ -425,20 +443,20 @@ class GTX1050TiOptimizedModel(nn.Module):
         document_paths = []
         
         # Collect all documentation files
-        for ext in ['.md', '.txt', '.py', '.json', '.yaml']:
-            for file_path in self.root_path.rglob(f'*{ext}'):
-                if any(skip in str(file_path) for skip in ['.git', '__pycache__', '.venv', 'node_modules', 'backup']):
+        file_paths = self._get_project_files(['.md', '.txt', '.py', '.json', '.yaml'])
+        for file_path in file_paths:
+            try:
+                # Skip files larger than 1MB
+                if file_path.stat().st_size > 1024 * 1024:
                     continue
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
                 
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    documents.append(content)
-                    document_paths.append(file_path)
-                    
-                except Exception as e:
-                    logger.warning(f"Error reading {file_path}: {e}")
+                documents.append(content)
+                document_paths.append(file_path)
+                
+            except Exception as e:
+                logger.warning(f"Error reading {file_path}: {e}")
         
         if not documents:
             logger.warning("No documents found for embedding")
@@ -455,7 +473,7 @@ class GTX1050TiOptimizedModel(nn.Module):
         
         # Fit and transform documents
         document_matrix = self.vectorizer.fit_transform(documents)
-          # Store embeddings
+        # Store embeddings
         for i, doc_path in enumerate(document_paths):
             self.document_embeddings[doc_path] = document_matrix[i:i+1]
         
@@ -466,28 +484,28 @@ class GTX1050TiOptimizedModel(nn.Module):
         results = []
         query_terms = query.lower().split()
         
-        for ext in ['.md', '.txt', '.py', '.json', '.yaml']:
-            for file_path in self.root_path.rglob(f'*{ext}'):
-                if any(skip in str(file_path) for skip in ['.git', '__pycache__', '.venv', 'backup']):
+        file_paths = self._get_project_files(['.md', '.txt', '.py', '.json', '.yaml'])
+        for file_path in file_paths:
+            try:
+                # Skip files larger than 1MB
+                if file_path.stat().st_size > 1024 * 1024:
                     continue
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read().lower()
                 
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        content = f.read().lower()
-                    
-                    # Simple keyword matching
-                    matches = sum(1 for term in query_terms if term in content)
-                    if matches > 0:
-                        results.append({
-                            'path': str(file_path),
-                            'similarity_score': matches / len(query_terms),
-                            'content_preview': content[:500] + "..." if len(content) > 500 else content,
-                            'file_size': len(content),
-                            'b1_recommendations': []
-                        })
-                
-                except Exception as e:
-                    logger.warning(f"Error reading {file_path}: {e}")
+                # Simple keyword matching
+                matches = sum(1 for term in query_terms if term in content)
+                if matches > 0:
+                    results.append({
+                        'path': str(file_path),
+                        'similarity_score': matches / len(query_terms),
+                        'content_preview': content[:500] + "..." if len(content) > 500 else content,
+                        'file_size': len(content),
+                        'b1_recommendations': []
+                    })
+            
+            except Exception as e:
+                logger.warning(f"Error reading {file_path}: {e}")
         
         # Sort by relevance
         results.sort(key=lambda x: x['similarity_score'], reverse=True)
@@ -499,37 +517,37 @@ class GTX1050TiOptimizedModel(nn.Module):
         
         # Clear existing graph
         self.knowledge_graph.clear()
-          # Process all documentation files
-        for ext in ['.md', '.txt', '.py']:
-            for file_path in self.root_path.rglob(f'*{ext}'):
-                if any(skip in str(file_path) for skip in ['.git', '__pycache__', '.venv', 'backup']):
+        # Process all documentation files
+        file_paths = self._get_project_files(['.md', '.txt', '.py'])
+        for file_path in file_paths:
+            try:
+                # Skip files larger than 1MB
+                if file_path.stat().st_size > 1024 * 1024:
                     continue
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
                 
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    # Add file node
-                    file_node = str(file_path.relative_to(self.root_path))
-                    self.knowledge_graph.add_node(file_node, type='file', size=len(content))
-                    
-                    # Extract and add concept nodes
-                    concepts = self._extract_concepts(content)
-                    for concept in concepts:
-                        concept_node = f"concept_{concept}"
-                        self.knowledge_graph.add_node(concept_node, type='concept')
-                        self.knowledge_graph.add_edge(file_node, concept_node, relation='contains')
-                    
-                    # Extract and add function/class nodes for Python files
-                    if file_path.suffix == '.py':
-                        functions = self._extract_python_entities(content)
-                        for func in functions:
-                            func_node = f"function_{func}"
-                            self.knowledge_graph.add_node(func_node, type='function')
-                            self.knowledge_graph.add_edge(file_node, func_node, relation='defines')
+                # Add file node
+                file_node = str(file_path.relative_to(self.root_path))
+                self.knowledge_graph.add_node(file_node, type='file', size=len(content))
                 
-                except Exception as e:
-                    logger.warning(f"Error processing {file_path}: {e}")
+                # Extract and add concept nodes
+                concepts = self._extract_concepts(content)
+                for concept in concepts:
+                    concept_node = f"concept_{concept}"
+                    self.knowledge_graph.add_node(concept_node, type='concept')
+                    self.knowledge_graph.add_edge(file_node, concept_node, relation='contains')
+                
+                # Extract and add function/class nodes for Python files
+                if file_path.suffix == '.py':
+                    functions = self._extract_python_entities(content)
+                    for func in functions:
+                        func_node = f"function_{func}"
+                        self.knowledge_graph.add_node(func_node, type='function')
+                        self.knowledge_graph.add_edge(file_node, func_node, relation='defines')
+            
+            except Exception as e:
+                logger.warning(f"Error processing {file_path}: {e}")
         
         # Save knowledge graph
         self._save_knowledge_graph()

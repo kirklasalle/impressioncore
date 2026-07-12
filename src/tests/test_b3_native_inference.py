@@ -76,3 +76,61 @@ def test_b3_hope_v1_load():
     assert status["loaded"] is True
     assert status["parameters"] > 0
     print(f"B3 Hope v1 loaded: {status['parameters']:,} parameters")
+
+
+def test_b3_native_generation_mocked():
+    """Test the complete B3NativeInference flow (load, generate) with a tiny mock config/model."""
+    from inference.b3_native_inference import B3NativeInference
+    from src.core.models.impressioncore_b3_architecture import ImpressionCoreB3Model, B3Config
+    import tempfile
+    import json
+    import torch
+    
+    # 1. Create a tiny mock config dict
+    mock_config = {
+        "embed_dim": 64,
+        "num_heads": 2,
+        "num_layers": 1,
+        "vocab_size": 50257,
+        "num_experts": 2,
+        "expert_dim": 128,
+        "experts_per_token": 1,
+        "dropout": 0.0,
+        "max_seq_length": 128,
+        "use_gradient_checkpointing": False,
+        "use_mhc": False
+    }
+    
+    # 2. Write it to temporary files
+    with tempfile.TemporaryDirectory() as tmpdir:
+        cfg_path = Path(tmpdir) / "config.json"
+        ckpt_path = Path(tmpdir) / "model.pt"
+        
+        with open(cfg_path, 'w') as f:
+            json.dump(mock_config, f)
+            
+        # Instantiate a tiny model and save its state dict as a mock checkpoint
+        config_obj = B3Config(**mock_config)
+        model = ImpressionCoreB3Model(config_obj)
+        torch.save({"model_state_dict": model.state_dict()}, ckpt_path)
+        
+        # 3. Create inference engine pointing to temporary files
+        engine = B3NativeInference(
+            checkpoint_path=str(ckpt_path),
+            config_path=str(cfg_path),
+            device="cpu"
+        )
+        
+        # Load
+        assert engine.load() is True
+        assert engine.get_status()["loaded"] is True
+        
+        # Generate
+        result = engine.generate("Test prompt", max_new_tokens=5, temperature=0.7)
+        
+        # Verify result fields
+        assert "text" in result
+        assert "tokens_generated" in result
+        assert result["tokens_generated"] > 0
+        assert "latency_ms" in result
+        assert "tokens_per_second" in result

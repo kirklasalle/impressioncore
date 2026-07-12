@@ -52,6 +52,7 @@ try:
     from interfaces.web.routes.model_definition import model_definition as model_definition_bp
     from interfaces.web.routes.metrics import metrics_bp
     from interfaces.web.routes.builder import builder_bp
+    from interfaces.web.routes.builder_views import builder_views_bp
     WEB_BLUEPRINT_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Route blueprints not fully available: {e}")
@@ -60,6 +61,10 @@ except ImportError as e:
 
 def create_app() -> Flask:
     logger = get_rich_logger(__name__)
+    
+    # Enforce data drive availability on startup
+    from src.core.config.data_paths import enforce_data_drive
+    enforce_data_drive()
     app = Flask(__name__)
     app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'impressioncore-secret')
     
@@ -115,6 +120,7 @@ def create_app() -> Flask:
         app.register_blueprint(model_definition_bp)
         app.register_blueprint(metrics_bp)
         app.register_blueprint(builder_bp)
+        app.register_blueprint(builder_views_bp)
 
         # Alias blueprint endpoints to unprefixed names for legacy templates.
         for rule in app.url_map.iter_rules():

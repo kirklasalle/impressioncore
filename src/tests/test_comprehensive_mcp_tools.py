@@ -46,6 +46,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / ".mcp" / "ids-mcp"))
 sys.path.insert(0, str(PROJECT_ROOT / ".mcp" / "impressioncore-vrgc"))
 
+@pytest.mark.anyio
 async def test_vrgc_web_tools():
     """Test VRGC Enhanced Web & AI Tools"""
     print("🌐 TESTING VRGC WEB & INTERNET TOOLS")
@@ -105,6 +106,7 @@ async def test_vrgc_web_tools():
         print(f"❌ VRGC Test failed: {e}")
         return False, 0
 
+@pytest.mark.anyio
 async def test_ids_ai_tools():
     """Test IDS AI-Enhanced Documentation Tools"""
     print("\n🧠 TESTING IDS AI-ENHANCED TOOLS")

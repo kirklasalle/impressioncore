@@ -400,3 +400,15 @@ async def get_concurrency_status():
         "total_rejected": api_state._gpu_total_rejected,
         "headroom": api_state._GPU_CONCURRENCY_LIMIT - api_state._gpu_active_count,
     }
+
+@router.post("/v1/system/memory/clear")
+async def clear_system_memory():
+    """Clear GPU VRAM cache and trigger garbage collection."""
+    try:
+        from src.core.utils.gpu_utils import clear_gpu_memory
+        clear_gpu_memory()
+        log_event("API", "GPU memory cache cleared via API endpoint.")
+        return {"status": "SUCCESS", "message": "GPU memory cleared."}
+    except Exception as e:
+        log_event("API", f"Failed to clear GPU memory: {e}", level="ERROR")
+        raise HTTPException(status_code=500, detail=str(e))

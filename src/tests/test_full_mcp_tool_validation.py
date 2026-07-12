@@ -68,6 +68,7 @@ def print_section(title):
     print(f"🔧 {title}")
     print(f"{'─' * 50}")
 
+@pytest.mark.anyio
 async def test_all_vrgc_tools():
     """COMPREHENSIVE VRGC TOOL TESTING - ALL 25 TOOLS"""
     print_header("VRGC WEB-ENHANCED MCP SERVER - FULL TOOL TESTING")
@@ -80,10 +81,18 @@ async def test_all_vrgc_tools():
         "tool_results": {}
     }
 
+    import sys
+    from pathlib import Path
+    vrgc_path = Path("d:/Projects/impressioncore/.mcp/impressioncore-vrgc")
+    if str(vrgc_path) not in sys.path:
+        sys.path.insert(0, str(vrgc_path))
+    if 'server_enhanced' in sys.modules:
+        del sys.modules['server_enhanced']
+
     try:
         from server_enhanced import VRGCEnhancedWebMCPServer
-    except ImportError:
-        pytest.skip("VRGC MCP server not importable")
+    except ImportError as e:
+        pytest.skip(f"VRGC MCP server not importable: {e}")
 
     try:
         from server_enhanced import VRGCEnhancedWebMCPServer
@@ -233,6 +242,7 @@ async def test_all_vrgc_tools():
         test_results["critical_error"] = str(e)
         return test_results
 
+@pytest.mark.anyio
 async def test_all_ids_tools():
     """COMPREHENSIVE IDS AI TOOL TESTING - ALL 7 TOOLS"""
     print_header("IDS AI-ENHANCED DOCUMENTATION SYSTEM - FULL TOOL TESTING")
@@ -245,13 +255,18 @@ async def test_all_ids_tools():
         "tool_results": {}
     }
 
-    try:
-        from server_ai_enhanced import ai_ids
-    except (ImportError, SyntaxError):
-        pytest.skip("IDS MCP server not importable")
+    import sys
+    from pathlib import Path
+    ids_path = Path("d:/Projects/impressioncore/.mcp/ids-mcp")
+    if str(ids_path) not in sys.path:
+        sys.path.insert(0, str(ids_path))
 
     try:
-        # Import and test IDS server components
+        from server_ai_enhanced import ai_ids
+    except (ImportError, SyntaxError) as e:
+        pytest.skip(f"IDS MCP server not importable: {e}")
+
+    try:
         from server_ai_enhanced import ai_ids
         print("✅ IDS AI Core imported successfully")
 

@@ -245,6 +245,35 @@ async def process_multimodal(request: GenerateRequest):
         log_event("API", f"Processing Error: {e}", level="ERROR")
         import traceback
         traceback.print_exc()
+
+        # Catch CUDA out-of-memory errors (OOM)
+        err_msg = str(e).lower()
+        is_oom = "out of memory" in err_msg or "oom" in err_msg or "cuda error: out of memory" in err_msg
+        
+        # Check if PyTorch's OutOfMemoryError exists and match
+        if not is_oom:
+            try:
+                import torch
+                if isinstance(e, torch.cuda.OutOfMemoryError):
+                    is_oom = True
+            except AttributeError:
+                pass
+
+        if is_oom:
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "error": "GPU_OOM",
+                    "message": "GPU memory exhausted (Out of Memory) on NVIDIA GTX 1050 Ti.",
+                    "details": str(e),
+                    "fallback_suggestions": [
+                        "Run the model on CPU by setting the env var IMPRESSIONCORE_FORCE_CPU=1.",
+                        "Call POST /v1/system/memory/clear to free inactive GPU VRAM caches.",
+                        "Use Ollama-based inference if configured, to delegate model execution."
+                    ]
+                }
+            )
+
         raise HTTPException(status_code=500, detail=str(e)) from e
     finally:
         api_state._gpu_semaphore.release()

@@ -60,7 +60,12 @@ import asyncio
 import websockets
 import torch
 import psutil
-from memory_profiler import profile
+try:
+    from memory_profiler import profile
+except ImportError:
+    # Fallback dummy decorator
+    def profile(func):
+        return func
 import torch.nn as nn
 import torch.optim as optim
 from pathlib import Path

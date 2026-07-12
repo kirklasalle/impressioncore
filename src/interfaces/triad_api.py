@@ -88,6 +88,14 @@ from src.orchestrator.unified_triad import UnifiedBrainTriad
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Unified Lifecycle Manager for hardware and neural resources."""
+    # Enforce data drive availability on startup
+    from src.core.config.data_paths import enforce_data_drive
+    try:
+        enforce_data_drive()
+    except Exception as e:
+        log_event("API", f"CRITICAL: Boot aborted due to missing data drive: {e}", level="CRITICAL")
+        raise e
+
     try:
         log_event("API", "Initializing Global Triad Instance...")
         api_state.triad_instance = UnifiedBrainTriad()

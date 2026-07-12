@@ -712,6 +712,10 @@ def main_cli_entry(): # Renamed to avoid conflict with module-level 'main' name 
             file_event_logger_main.removeHandler(handler)
     return exit_code
 
+def main():
+    """Entry point for command line script mapping."""
+    return main_cli_entry()
+
 if __name__ == "__main__":
     exit_status = 1 # Default to error
     try:

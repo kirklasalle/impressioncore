@@ -13,6 +13,7 @@ pytest.importorskip("agent0core.core.tools", reason="agent0core.core.tools not a
 from agent0core.core.tools.vision_tool import VisionTool
 
 
+@pytest.mark.anyio
 async def test_social_vision_v2():
     print("--- [TEST] Social Vision V2 (Body + Face) ---")
     vision = VisionTool()

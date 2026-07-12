@@ -64,6 +64,7 @@ def print_section(title: str):
     print(f"🔧 {title}")
     print(f"{'─'*40}")
 
+@pytest.mark.anyio
 async def test_ids_server():
     """Test ImpressionCore IDS (Documentation System) MCP Server"""
     print_header("TESTING IDS - AI-ENHANCED DOCUMENTATION SYSTEM")
@@ -76,18 +77,13 @@ async def test_ids_server():
         "errors": []
     }
 
-    try:
-        from server_ai_enhanced import ai_ids
-    except (ImportError, SyntaxError):
-        pytest.skip("IDS MCP server not importable")
-
-    try:
-        # Add IDS server path
-        ids_path = Path("d:/Projects/impressioncore/.mcp/ids-mcp")
+    # Add IDS server path
+    ids_path = Path("d:/Projects/impressioncore/.mcp/ids-mcp")
+    if str(ids_path) not in sys.path:
         sys.path.insert(0, str(ids_path))
 
+    try:
         from server_ai_enhanced import ai_ids
-
         print("✅ IDS Server imported successfully")
 
         # Test knowledge graph
@@ -138,6 +134,7 @@ async def test_ids_server():
     test_results["servers"]["ids"] = server_results
     return server_results
 
+@pytest.mark.anyio
 async def test_eds_server():
     """Test ImpressionCore EDS (Enhanced Data System) MCP Server"""
     print_header("TESTING EDS - ENHANCED DATA SYSTEM")
@@ -150,16 +147,16 @@ async def test_eds_server():
         "errors": []
     }
 
-    try:
-        from server_enhanced import EDSEnhancedMCPServer
-    except ImportError:
-        pytest.skip("EDS MCP server not importable")
-
-    try:
-        # Add EDS server path
-        eds_path = Path("d:/Projects/impressioncore/.mcp/impressioncore-eds")
+    # Add EDS server path
+    eds_path = Path("d:/Projects/impressioncore/.mcp/impressioncore-eds")
+    if str(eds_path) not in sys.path:
         sys.path.insert(0, str(eds_path))
+    
+    # Avoid module name collision with VRGC's server_enhanced
+    if 'server_enhanced' in sys.modules:
+        del sys.modules['server_enhanced']
 
+    try:
         from server_enhanced import EDSEnhancedMCPServer
 
         async with EDSEnhancedMCPServer() as eds_server:
@@ -209,6 +206,7 @@ async def test_eds_server():
     test_results["servers"]["eds"] = server_results
     return server_results
 
+@pytest.mark.anyio
 async def test_vrgc_server():
     """Test ImpressionCore VRGC (Enhanced Web) MCP Server"""
     print_header("TESTING VRGC - ENHANCED WEB & AI SYSTEM")
@@ -221,16 +219,16 @@ async def test_vrgc_server():
         "errors": []
     }
 
-    try:
-        from server_enhanced import VRGCEnhancedWebMCPServer
-    except ImportError:
-        pytest.skip("VRGC MCP server not importable")
-
-    try:
-        # Add VRGC server path
-        vrgc_path = Path("d:/Projects/impressioncore/.mcp/impressioncore-vrgc")
+    # Add VRGC server path
+    vrgc_path = Path("d:/Projects/impressioncore/.mcp/impressioncore-vrgc")
+    if str(vrgc_path) not in sys.path:
         sys.path.insert(0, str(vrgc_path))
+    
+    # Avoid module name collision with EDS's server_enhanced
+    if 'server_enhanced' in sys.modules:
+        del sys.modules['server_enhanced']
 
+    try:
         from server_enhanced import VRGCEnhancedWebMCPServer
 
         async with VRGCEnhancedWebMCPServer() as vrgc_server:

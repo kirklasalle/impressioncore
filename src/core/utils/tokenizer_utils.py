@@ -28,7 +28,7 @@
 # Status:** Active
 
 
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Default generative model: small, efficient, open-source (can be changed via config)
 DEFAULT_GENERATIVE_MODEL = "distilgpt2"

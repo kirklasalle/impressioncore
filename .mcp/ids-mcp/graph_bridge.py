@@ -66,13 +66,20 @@ class GraphBridge:
         self.graph.clear()
         
         # 1. Map Files and Directories
-        for file_path in self.root_path.rglob("*.py"):
-            # Skip hidden and vendor directories
-            if any(part.startswith(".") or part in ["node_modules", "venv", "__pycache__", "backups"] for part in file_path.parts):
-                continue
-            
-            relative_path = str(file_path.relative_to(self.root_path))
-            self._parse_python_file(file_path, relative_path)
+        skip_dirs = {'node_modules', 'backup', 'dist', 'build', 'deployment', 'production', 'temp', 'tmp', 'src/deployment', 'logs', 'log', 'archive', 'test_outputs', 'test_output', 'tests', 'test', 'data', 'memlog', 'training'}
+        for root, dirs, files in os.walk(self.root_path):
+            # Prune directories in place: skip if startswith('.', 'venv' in name, or in skip_dirs)
+            dirs[:] = [
+                d for d in dirs 
+                if d not in skip_dirs 
+                and not d.startswith('.') 
+                and 'venv' not in d.lower()
+            ]
+            for file in files:
+                if file.endswith(".py"):
+                    file_path = Path(root) / file
+                    relative_path = str(file_path.relative_to(self.root_path))
+                    self._parse_python_file(file_path, relative_path)
             
         logger.info(f"✅ Graph built with {len(self.graph.nodes)} nodes and {len(self.graph.edges)} edges.")
         self.save_graph()
