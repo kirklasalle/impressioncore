@@ -44,9 +44,9 @@ This plan addresses the following key high-priority roadmap items:
 - [x] Task 3.3: Add integration tests for native B3 inference with mock tensors.
 
 ### Phase 4: Containerization, CI/CD, and Coverage (P1)
-- [ ] Task 4.1: Write a multi-stage `Dockerfile` and `docker-compose.yml` for local deployment.
-- [ ] Task 4.2: Create `.github/workflows/ci.yml` for automated linting and test execution.
-- [ ] Task 4.3: Raise test coverage by writing unit tests for routes and controllers.
+- [x] Task 4.1: Write a multi-stage `Dockerfile` and `docker-compose.yml` for local deployment.
+- [x] Task 4.2: Create `.github/workflows/ci.yml` for automated linting and test execution.
+- [x] Task 4.3: Raise test coverage by writing unit tests for routes and controllers.
 
 ---
 
