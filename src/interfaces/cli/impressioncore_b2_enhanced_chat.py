@@ -64,9 +64,9 @@ sys.path.insert(0, str(project_root / 'src'))
 
 # Import required modules
 try:
-    from core.utils.rich_enhancements import print_error, print_header, print_success, print_warning
-    from core.utils.rich_logging import get_logger
-    from core.utils.rich_status_animation import StatusAnimation
+    from src.core.utils.rich_enhancements import print_error, print_header, print_success, print_warning
+    from src.core.utils.rich_logging import get_logger
+    from src.core.utils.rich_status_animation import StatusAnimation
     from models.b2_multimodal.core.b2_multimodal_model import B2MultimodalModel
 except ImportError as e:
     print(f"Warning: Could not import some modules: {e}")

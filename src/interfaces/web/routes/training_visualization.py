@@ -375,7 +375,7 @@ def start_training():
         config = request.get_json() or {}
 
         # Import trainer here to avoid circular imports
-        from .training.trainer import ModelTrainer
+        from src.training.trainer import ModelTrainer
 
         # Create trainer instance
         trainer = ModelTrainer(

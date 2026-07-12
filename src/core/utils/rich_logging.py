@@ -35,7 +35,7 @@ Design Philosophy:
 Examples:
 ```python
 # Basic usage example
-from core.utils.logging import MainClass
+from src.core.utils.logging import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -71,6 +71,7 @@ class RichLogger:
         self.name = name
         self.logger = logging.getLogger(name)
         self.logger.setLevel(logging.INFO)
+        self.logger.propagate = False
         
         # Clear existing handlers
         self.logger.handlers.clear()
@@ -115,3 +116,38 @@ class RichLogger:
 def setup_rich_logging(name: str, log_file: Optional[Path] = None) -> RichLogger:
     """Setup rich logging for ImpressionCore"""
     return RichLogger(name, log_file)
+
+
+def get_rich_logger(name: str, log_file: Optional[Path] = None) -> RichLogger:
+    """Get a rich logger instance by name"""
+    return RichLogger(name, log_file)
+
+
+# Alias for backward compatibility
+setup_rich_logger = setup_rich_logging
+
+
+# ---------------------------------------------------------------------------
+# Module-level convenience functions (used by vector_index, openai_embeddings, etc.)
+# ---------------------------------------------------------------------------
+_default_logger = RichLogger("ImpressionCore")
+
+
+def log_info(message: str) -> None:
+    """Log an info-level message."""
+    _default_logger.info(message)
+
+
+def log_warning(message: str) -> None:
+    """Log a warning-level message."""
+    _default_logger.warning(message)
+
+
+def log_error(message: str) -> None:
+    """Log an error-level message."""
+    _default_logger.error(message)
+
+
+def log_success(message: str) -> None:
+    """Log a success message (info level with prefix)."""
+    _default_logger.info(f"[SUCCESS] {message}")

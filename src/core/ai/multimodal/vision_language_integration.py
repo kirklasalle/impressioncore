@@ -22,16 +22,20 @@ import numpy as np
 
 # Advanced ImpressionCore utilities integration
 try:
-    from src.core.utils.rich_enhancements import FallbackConsole
+    from src.core.utils.rich_enhancements import HAS_RICH, FallbackConsole
     from src.core.utils.rich_logging import setup_rich_logger
     from src.core.utils.rich_status_animation import StatusAnimation
     from src.core.utils.gpu_memory_manager import GPUMemoryManager, get_gpu_memory_info
-    from src.dev_tools.performance_optimizer import PerformanceOptimizer
-    from src.dev_tools.memory_manager import MemoryManager
+    from dev_tools.performance_optimizer import PerformanceOptimizer
+    from dev_tools.memory_manager import MemoryManager
     from src.core.utils.benchmarking import PerformanceBenchmark
     ADVANCED_UTILS_AVAILABLE = True
-      # Initialize rich utilities
-    console = FallbackConsole()
+      # Initialize rich utilities - use real Rich Console when available
+    if HAS_RICH:
+        from rich.console import Console as _RichConsole
+        console = _RichConsole()
+    else:
+        console = FallbackConsole()
     logger = setup_rich_logger(__name__)
     # status_animation = StatusAnimation()  # Disabled - requires parameters
     

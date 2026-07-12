@@ -129,7 +129,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.memory.dynamic_memory_manager import MainClass
+from src.core.memory.dynamic_memory_manager import MainClass
 instance = MainClass()
 result = instance.process()
 ```

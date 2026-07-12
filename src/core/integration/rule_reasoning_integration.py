@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.integration.rule_reasoning_integration import BrainSimRuleIntegration
+from src.core.integration.rule_reasoning_integration import BrainSimRuleIntegration
 instance = BrainSimRuleIntegration()
 result = instance.process()
 ```

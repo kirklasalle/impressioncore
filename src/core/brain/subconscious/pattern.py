@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.subconscious.pattern import MainClass
+from src.core.brain.subconscious.pattern import MainClass
 instance = MainClass()
 result = instance.process()
 ```

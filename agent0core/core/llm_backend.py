@@ -147,6 +147,99 @@ class TriadBackend(LLMBackend):
         return info
 
 
+class B3NativeBackend(LLMBackend):
+    """
+    Connects to the native B3 Hope v1 model, run directly on local GPU/CPU.
+
+    This is independent of :class:`TriadBackend` — it bypasses the
+    Left/Right/Colossus triad entirely and talks straight to the trained
+    B3 checkpoint via ``B3NativeLLMProvider`` (registered at startup by
+    ``src.integrations.agent0core_bridge.wire_agent0core``). Useful for
+    lower-latency, single-model inference without triad orchestration
+    overhead, and eliminates any Ollama/external LLM dependency.
+    """
+
+    name = "b3_native"
+    description = "ImpressionCore B3 Hope v1 (native, no Ollama dependency)"
+
+    def __init__(self):
+        self._provider = None
+        self._initialized = False
+        logger.info("B3NativeBackend created (lazy loading)")
+
+    def _lazy_load(self) -> bool:
+        """Lazy load the B3NativeLLMProvider."""
+        if self._provider is not None:
+            return True
+
+        try:
+            from agent0core.integrations.impressioncore import get_b3_native_provider
+            provider = get_b3_native_provider()
+            if provider is None:
+                logger.error(
+                    "B3NativeLLMProvider not registered — call wire_agent0core() at startup"
+                )
+                return False
+            self._provider = provider
+            self._initialized = True
+            logger.info("B3NativeLLMProvider loaded for B3NativeBackend via DI boundary")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to load B3NativeLLMProvider: {e}")
+            return False
+
+    async def generate(
+        self,
+        prompt: str,
+        system_prompt: str = "",
+        history: list[dict[str, str]] | None = None
+    ) -> str:
+        """Generate using the native B3 Hope v1 model."""
+        if not self._lazy_load():
+            return "Error: B3 native model not available"
+
+        try:
+            full_prompt = prompt
+            if system_prompt:
+                full_prompt = f"[System: {system_prompt[:200]}...]\n\n{prompt}"
+
+            # B3NativeLLMProvider.generate() is synchronous (blocking model
+            # forward passes) — run it in a thread pool to stay async-friendly.
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(
+                None,
+                lambda: self._provider.generate(full_prompt)
+            )
+            return result or "Error: empty response from B3 native model"
+
+        except Exception as e:
+            logger.error(f"B3NativeBackend generation error: {e}")
+            return f"Error generating response: {e}"
+
+    def is_available(self) -> bool:
+        """Check if the B3 native provider is registered and its checkpoint exists."""
+        if not self._lazy_load():
+            return False
+        try:
+            return self._provider.is_available()
+        except Exception:
+            return False
+
+    def get_info(self) -> dict[str, Any]:
+        """Get B3 native backend info."""
+        info = {
+            "name": self.name,
+            "description": self.description,
+            "initialized": self._initialized,
+        }
+        if self._provider:
+            try:
+                info.update(self._provider.get_model_status())
+            except Exception:
+                pass
+        return info
+
+
 class OllamaBackend(LLMBackend):
     """
     Connects to local Ollama server.
@@ -312,6 +405,7 @@ class OpenAIBackend(LLMBackend):
 # Registry of available backends
 BACKEND_REGISTRY: dict[str, type] = {
     "triad": TriadBackend,
+    "b3_native": B3NativeBackend,
     "ollama": OllamaBackend,
     "openai": OpenAIBackend,
 }

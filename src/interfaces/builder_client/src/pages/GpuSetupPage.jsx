@@ -1,39 +1,30 @@
 import React, { useState } from 'react';
-import { RefreshCw, Loader2, CheckCircle2, XCircle, Cpu, HardDrive, Thermometer } from 'lucide-react';
+import { RefreshCw, Loader2, CheckCircle2, XCircle, Cpu, HardDrive, Thermometer, AlertTriangle } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, CardTitle, Badge, ProgressBar, StatCard } from '../components/ui';
-import { checkGpu } from '../lib/api';
+import { detectGpu } from '../lib/api';
 import toast from 'react-hot-toast';
-
-const DEMO_GPU = {
-    name: 'NVIDIA GeForce GTX 1050 Ti',
-    vram_total: 4096,
-    vram_used: 512,
-    vram_free: 3584,
-    cuda_version: '12.1',
-    driver_version: '546.33',
-    compute_capability: '6.1',
-    temperature: 42,
-    power_draw: 35,
-    power_limit: 75,
-    utilization: 12,
-    memory_clock: 3504,
-    gpu_clock: 1392,
-};
 
 export default function GpuSetupPage() {
     const [info, setInfo] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const detect = async () => {
         setLoading(true);
+        setError(null);
         try {
-            const { data } = await checkGpu();
-            setInfo(data.gpu || data);
-            toast.success('GPU detected');
-        } catch {
-            setInfo(DEMO_GPU);
-            toast.success('GPU detected (demo)');
+            const { data } = await detectGpu();
+            if (data.gpu) {
+                setInfo(data.gpu);
+                toast.success(data.gpu.available ? 'GPU detected' : 'No CUDA GPU found — showing available info');
+            } else {
+                setError('Unexpected response from server');
+                toast.error('Detection returned an unexpected format');
+            }
+        } catch (err) {
+            setError(err?.response?.data?.error || err.message || 'Failed to reach server');
+            toast.error('GPU detection failed');
         } finally {
             setLoading(false);
         }
@@ -51,14 +42,22 @@ export default function GpuSetupPage() {
                 </button>
             </div>
 
-            {!info ? (
+            {error && (
+                <div className="flex items-center gap-2 mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm">
+                    <AlertTriangle size={16} className="shrink-0" />
+                    <span className="flex-1">{error}</span>
+                    <button className="btn-secondary text-xs px-2 py-1" onClick={detect} disabled={loading}>Retry</button>
+                </div>
+            )}
+
+            {!info && !error ? (
                 <Card className="flex items-center justify-center h-64">
                     <div className="text-center text-txt-muted">
                         <Cpu size={48} className="mx-auto mb-3 opacity-30" />
                         <p className="text-sm">Click "Detect GPU" to scan hardware</p>
                     </div>
                 </Card>
-            ) : (
+            ) : info ? (
                 <div className="space-y-6 animate-fade-in-up">
                     {/* Header */}
                     <Card>
@@ -123,7 +122,7 @@ export default function GpuSetupPage() {
                         </Card>
                     </div>
                 </div>
-            )}
+            ) : null}
         </ContentArea>
     );
 }

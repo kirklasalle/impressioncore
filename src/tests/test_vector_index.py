@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 
 from src.core.utils.openai_embeddings import generate_openai_embeddings_batched, get_openai_api_key
 from src.core.utils.vector_index import (
-    add_text_embeddings,
+    add_text_embeddings_internal,
     load_index_and_mapping,
     save_index,
     save_mapping,
@@ -39,7 +39,11 @@ def test_basic_index_roundtrip(tmp_path: Path):
     index_path = tmp_path / "test.index"
     mapping_path = tmp_path / "mapping.json"
     index, mapping = load_index_and_mapping(index_path, mapping_path)
-    index, mapping = add_text_embeddings(index, texts, arr, mapping)
+    # NOTE: `add_text_embeddings` was refactored to a new signature
+    # (index_path, embeddings, text_ids, metadata) -> None. The original
+    # (index, texts, embeddings, mapping) -> (index, mapping) shape this
+    # test exercises is now `add_text_embeddings_internal`.
+    index, mapping = add_text_embeddings_internal(index, texts, arr, mapping)
     save_index(index, index_path)
     save_mapping(mapping, mapping_path)
     # Reload

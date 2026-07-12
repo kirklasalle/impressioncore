@@ -31,7 +31,7 @@ def fix_device_compatibility():
 
     try:
         # Test basic B3 integration
-        from core.models.b3_unified_integration import create_optimized_b3_system
+        from src.core.models.b3_unified_integration import create_optimized_b3_system
 
         # Create system
         system = create_optimized_b3_system()

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.integration.context_manager import ContextManager
+from src.core.brain.integration.context_manager import ContextManager
 instance = ContextManager()
 result = instance.process()
 ```

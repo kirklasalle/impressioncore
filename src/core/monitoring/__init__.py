@@ -68,7 +68,7 @@ import gc
 import time
 from typing import Dict, List, Tuple, Optional, Union, Any, Callable
 
-from core.exceptions import MemoryLimitExceededError, GPUNotAvailableError
+from src.core.exceptions import MemoryLimitExceededError, GPUNotAvailableError
 # Memory optimization: Memory-critical operation
 
 logger = logging.getLogger(__name__)
@@ -255,7 +255,7 @@ class PerformanceOptimizer:
             return model
             
         try:
-            from core.utils.memory_optimization.dynamic_precision import setup_dynamic_precision
+            from src.core.utils.memory_optimization.dynamic_precision import setup_dynamic_precision
             # Memory optimization: Memory-critical operation
             self.logger.info("Applying dynamic precision...")
             

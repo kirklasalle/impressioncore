@@ -4,7 +4,7 @@ ImpressionCore: Gpu Enforcer
 
 Module for gpu enforcer functionality in the ImpressionCore framework.
 
-File: core\utils\gpu_enforcer.py
+File: core/utils/gpu_enforcer.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.gpu_enforcer import MainClass
+from src.core.utils.gpu_enforcer import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -148,42 +148,7 @@ def check_cuda_toolkit():
         # Memory optimization: Memory-critical operation
         with open(gpu_state_log, "w") as f:
         # Memory optimization: Memory-critical operation
-            f.write(f"CUDA_TOOLKIT_CHECK - {time.strftime('%Y-%m-%d %H:%M:%S')}\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\gpu_enforcer.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
-\n\n")
+            f.write(f"CUDA_TOOLKIT_CHECK - {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n\n")
             # Memory optimization: Memory-critical operation
             for key, value in result.items():
                 f.write(f"{key}: {value}\n")

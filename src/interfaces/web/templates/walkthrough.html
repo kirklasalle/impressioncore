@@ -6,16 +6,17 @@
 <div class="section-title">Interactive Walkthrough</div>
 
 <div class="card" id="stepCard">
-<div id="terminalContainer" style="display: none; margin-top: 20px;">
-    <div class="terminal-output" id="terminalOutput" style="background-color: #1e1e1e; color: #00ff00; padding: 10px; font-family: 'Consolas', monospace; height: 200px; overflow-y: auto; border-radius: 5px; line-height: 1.4;">
-        <div class="terminal-line command">$ <span class="cursor">_</span></div>
+    <div id="terminalContainer" style="display: none; margin-top: 20px;">
+        <div class="terminal-output" id="terminalOutput"
+            style="background-color: #1e1e1e; color: #00ff00; padding: 10px; font-family: 'Consolas', monospace; height: 200px; overflow-y: auto; border-radius: 5px; line-height: 1.4;">
+            <div class="terminal-line command">$ <span class="cursor">_</span></div>
+        </div>
     </div>
-</div>
     <div class="section-subtitle" id="stepTitle">Welcome to ImpressionCore</div>
     <div class="step-content" id="stepContent">
         <p>This interactive walkthrough will guide you through setting up and using ImpressionCore's key features.</p>
     </div>
-    
+
     <div class="step-progress">
         <div class="progress-bar">
             <div class="progress" id="progressBar" style="width: 0%"></div>
@@ -74,7 +75,7 @@
 
 {% block scripts %}
 <script>
-const terminalStyles = `
+    const terminalStyles = `
 .terminal-line {
     padding: 2px 0;
     white-space: pre-wrap;
@@ -99,241 +100,266 @@ const terminalStyles = `
 }
 `;
 
-// Keep track of active cursor
-let activeCursor = null;
+    // Keep track of active cursor
+    let activeCursor = null;
 
-async function typeText(text, element) {
-    const chars = text.split('');
-    let currentText = '';
-    
-    for (const char of chars) {
-        currentText += char;
-        const cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        cursor.textContent = '_';
-        
-        if (activeCursor) {
-            activeCursor.remove();
+    async function typeText(text, element) {
+        const chars = text.split('');
+        let currentText = '';
+
+        for (const char of chars) {
+            currentText += char;
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            cursor.textContent = '_';
+
+            if (activeCursor) {
+                activeCursor.remove();
+            }
+
+            element.innerHTML = `<div class="terminal-line command">$ ${currentText}</div>`;
+            element.lastChild.appendChild(cursor);
+            activeCursor = cursor;
+
+            await new Promise(resolve => setTimeout(resolve, 50)); // Adjust typing speed
         }
-        
-        element.innerHTML = `<div class="terminal-line command">$ ${currentText}</div>`;
-        element.lastChild.appendChild(cursor);
-        activeCursor = cursor;
-        
-        await new Promise(resolve => setTimeout(resolve, 50)); // Adjust typing speed
+
+        // Remove cursor from command line after typing
+        element.innerHTML = `<div class="terminal-line command">$ ${text}</div>`;
+
+        activeCursor = null;
+
+        // Add new line with cursor
+        const newLine = document.createElement('div');
+        newLine.className = 'terminal-line';
+        newLine.innerHTML = '$ <span class="cursor">_</span>';
+        element.appendChild(newLine);
     }
-    
-    // Remove cursor from command line after typing
-    element.innerHTML = `<div class="terminal-line command">$ ${text}</div>`;
-    
-    activeCursor = null;
 
-    // Add new line with cursor
-    const newLine = document.createElement('div');
-    newLine.className = 'terminal-line';
-    newLine.innerHTML = '$ <span class="cursor">_</span>';
-    element.appendChild(newLine);
-}
+    async function showTerminal(command, actions) {
+        const terminal = {
+            container: document.getElementById('terminalContainer'),
+            output: document.getElementById('terminalOutput')
+        };
 
-async function showTerminal(command, actions) {
-    const terminal = {
-        container: document.getElementById('terminalContainer'),
-        output: document.getElementById('terminalOutput')
-    };
-    
-    terminal.container.style.display = 'block';
-    terminal.output.textContent = '';
+        terminal.container.style.display = 'block';
+        terminal.output.textContent = '';
 
-    // Type out the command
-    await typeText(command, terminal.output);
-    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate typing
-    terminal.output.scrollTop = terminal.output.scrollHeight;
+        // Type out the command
+        await typeText(command, terminal.output);
+        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate typing
+        terminal.output.scrollTop = terminal.output.scrollHeight;
 
-    // Execute actions and show their output
-    if (actions && actions.length > 0) {
-        for (const action of actions) {
-            try {
-                const response = await fetch(`/api/v1/walkthrough/action/${action.type}`);
-                const result = await response.json();
-                
-                if (result.success && result.data) {
-                    if (result.data.command_output) {
-                        terminal.output.innerHTML += result.data.command_output.split('\n').map(line => `<div class="terminal-line">${escapeHtml(line)}</div>`).join('');
-                    } else if (result.data.python_version) {
-                        terminal.output.innerHTML += `<div class="terminal-line command">$ python --version</div>`;
-                        terminal.output.innerHTML += `<div class="terminal-line">${result.data.python_version}</div>`;
-                        if (result.data.pip_list) {
-                            terminal.output.innerHTML += `<div class="terminal-line">${result.data.pip_list}</div>`;
-                            await new Promise(resolve => setTimeout(resolve, 300)); // Simulate output delay
-                            terminal.output.scrollTop = terminal.output.scrollHeight;
+        // Execute actions and show their output
+        if (actions && actions.length > 0) {
+            for (const action of actions) {
+                try {
+                    const response = await fetch(`/api/v1/walkthrough/action/${action.type}`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+                    const result = await response.json();
+
+                    if (result.success && result.data) {
+                        if (result.data.command_output) {
+                            terminal.output.innerHTML += result.data.command_output.split('\n').map(line => `<div class="terminal-line">${escapeHtml(line)}</div>`).join('');
+                        } else if (result.data.python_version) {
+                            terminal.output.innerHTML += `<div class="terminal-line command">$ python --version</div>`;
+                            terminal.output.innerHTML += `<div class="terminal-line">${result.data.python_version}</div>`;
+                            if (result.data.pip_list) {
+                                terminal.output.innerHTML += `<div class="terminal-line">${result.data.pip_list}</div>`;
+                                await new Promise(resolve => setTimeout(resolve, 300)); // Simulate output delay
+                                terminal.output.scrollTop = terminal.output.scrollHeight;
+                            }
+                        } else if (result.data.files) {
+                            terminal.output.innerHTML += result.data.files.split('\n').map(line => `<div class="terminal-line">${escapeHtml(line)}</div>`).join('');
+                            terminal.output.innerHTML += `<div class="terminal-line command">$ <span class="cursor">_</span></div>`;
                         }
-                    } else if (result.data.files) {
-                        terminal.output.innerHTML += result.data.files.split('\n').map(line => `<div class="terminal-line">${escapeHtml(line)}</div>`).join('');
+                    } else {
+                        terminal.output.innerHTML += `<div class="terminal-line error">Error: ${result.error || 'Unknown error'}</div>`;
                         terminal.output.innerHTML += `<div class="terminal-line command">$ <span class="cursor">_</span></div>`;
                     }
-                } else {
-                    terminal.output.innerHTML += `<div class="terminal-line error">Error: ${result.error || 'Unknown error'}</div>`;
-                    terminal.output.innerHTML += `<div class="terminal-line command">$ <span class="cursor">_</span></div>`;
+                    await new Promise(resolve => setTimeout(resolve, 300)); // Simulate output delay
+                    terminal.output.scrollTop = terminal.output.scrollHeight;
+                } catch (error) {
+                    console.error(`Error executing action ${action.type}:`, error);
+                    terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
                 }
-                await new Promise(resolve => setTimeout(resolve, 300)); // Simulate output delay
-                terminal.output.scrollTop = terminal.output.scrollHeight;
-            } catch (error) {
-                console.error(`Error executing action ${action.type}:`, error);
-                terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
             }
         }
     }
-}
 
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML.replace(/[<>&]/g, function(c) {
-        return {
-            '<': '&lt;',
-            '>': '&gt;',
-            '&': '&amp;'
-        }[c];
-    });
-}
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML.replace(/[<>&]/g, function (c) {
+            return {
+                '<': '&lt;',
+                '>': '&gt;',
+                '&': '&amp;'
+            }[c];
+        });
+    }
 
-const walkthrough = {
-    steps: [
-        {
-            title: "Welcome to ImpressionCore",
-            content: "This interactive walkthrough will guide you through setting up and using ImpressionCore's key features.",
-            actions: [],
-            command: "echo 'Welcome to ImpressionCore!'"
-        },
-        {
-            title: "System Requirements",
-            content: "Let's check if your system meets the requirements for running ImpressionCore efficiently.",
-            actions: [
-                { type: 'checkGPU' }
-            ],
-            command: "nvidia-smi\necho 'Checking system requirements...'"
-        },
-        {
-            title: "Environment Setup",
-            content: "Now we'll set up your Python environment and install required dependencies.",
-            actions: [
-                { type: 'checkDependencies' }
-            ],
-            command: "Checking Python environment..."
-        },
-        {
-            title: "Model Configuration",
-            content: "Configure your model architecture and training parameters.",
-            actions: [
-                { type: 'validateConfig' }
-            ],
-            command: "Validating configuration..."
-        },
-        {
-            title: "Training Setup",
-            content: "Prepare your training environment and data pipeline.",
-            actions: [
-                { type: 'checkData' }
-            ],
-            command: "Checking training data..."
+    const walkthrough = {
+        steps: [
+            {
+                title: "Welcome to ImpressionCore",
+                content: "This interactive walkthrough will guide you through setting up and using ImpressionCore's key features.",
+                actions: [],
+                command: "echo 'Welcome to ImpressionCore!'"
+            },
+            {
+                title: "System Requirements",
+                content: "Let's check if your system meets the requirements for running ImpressionCore efficiently.",
+                actions: [
+                    { type: 'gpu_check' }
+                ],
+                command: "nvidia-smi\necho 'Checking system requirements...'"
+            },
+            {
+                title: "Environment Setup",
+                content: "Now we'll set up your Python environment and install required dependencies.",
+                actions: [
+                    { type: 'dependency_check' }
+                ],
+                command: "Checking Python environment..."
+            },
+            {
+                title: "Model Configuration",
+                content: "Configure your model architecture and training parameters.",
+                actions: [
+                    { type: 'config_check' }
+                ],
+                command: "Validating configuration..."
+            },
+            {
+                title: "Training Setup",
+                content: "Prepare your training environment and data pipeline.",
+                actions: [
+                    { type: 'data_check' }
+                ],
+                command: "Checking training data..."
+            }
+        ]
+    };
+
+    // ── Persistence helpers ──────────────────────────────────────
+    const LS_KEY = 'ic_walkthrough_step';
+
+    function loadStep() {
+        try {
+            const saved = localStorage.getItem(LS_KEY);
+            if (saved !== null) {
+                const idx = parseInt(saved, 10);
+                if (!isNaN(idx) && idx >= 0 && idx < walkthrough.steps.length) return idx;
+            }
+        } catch { /* ignore */ }
+        return 0;
+    }
+
+    function saveStep(idx) {
+        try { localStorage.setItem(LS_KEY, String(idx)); } catch { /* ignore */ }
+        // Also persist to backend (fire-and-forget)
+        fetch('/api/v1/builder/walkthrough/progress', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ current_step: idx, completed: [] }),
+        }).catch(() => { });
+    }
+
+    let currentStep = loadStep();
+
+    async function executeActions(step) {
+        await showTerminal(step.command, step.actions);
+    }
+
+    async function updateStep() {
+        const step = walkthrough.steps[currentStep];
+        document.getElementById('stepTitle').textContent = step.title;
+        document.getElementById('stepContent').innerHTML = `<p>${step.content}</p>`;
+        document.getElementById('stepCounter').textContent = `Step ${currentStep + 1}/${walkthrough.steps.length}`;
+        document.getElementById('progressBar').style.width = `${((currentStep + 1) / walkthrough.steps.length) * 100}%`;
+
+        await executeActions(step);
+
+        document.getElementById('prevStep').disabled = currentStep === 0;
+        document.getElementById('nextStep').textContent = currentStep === walkthrough.steps.length - 1 ? 'Finish' : 'Next';
+        saveStep(currentStep);
+    }
+
+    document.getElementById('prevStep').addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            updateStep().catch(console.error);
         }
-    ]
-};
+    });
 
-let currentStep = 0;
+    document.getElementById('nextStep').addEventListener('click', () => {
+        if (currentStep < walkthrough.steps.length - 1) {
+            currentStep++;
+            updateStep().catch(console.error);
+        } else {
+            window.location.href = '/home';
+        }
+    });
 
-async function executeActions(step) {
-    await showTerminal(step.command, step.actions);
-}
+    // Quick action handlers
+    document.getElementById('skipToSetup').addEventListener('click', () => {
+        const terminal = {
+            container: document.getElementById('terminalContainer'),
+            output: document.getElementById('terminalOutput')
+        };
 
-async function updateStep() {
-    const step = walkthrough.steps[currentStep];
-    document.getElementById('stepTitle').textContent = step.title;
-    document.getElementById('stepContent').innerHTML = `<p>${step.content}</p>`;
-    document.getElementById('stepCounter').textContent = `Step ${currentStep + 1}/${walkthrough.steps.length}`;
-    document.getElementById('progressBar').style.width = `${((currentStep + 1) / walkthrough.steps.length) * 100}%`;
+        terminal.container.style.display = 'block';
+        showTerminal('cd setup && ./configure', [{ type: 'dependency_check' }])
+            .then(() => {
+                setTimeout(() => window.location.href = '/home', 2000);
+            })
+            .catch(error => {
+                console.error('Error in setup:', error.message || error);
+                terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
+            });
+    });
 
-    await executeActions(step);
-    
-    document.getElementById('prevStep').disabled = currentStep === 0;
-    document.getElementById('nextStep').textContent = currentStep === walkthrough.steps.length - 1 ? 'Finish' : 'Next';
-}
+    document.getElementById('skipToTraining').addEventListener('click', () => {
+        const terminal = {
+            container: document.getElementById('terminalContainer'),
+            output: document.getElementById('terminalOutput')
+        };
 
-document.getElementById('prevStep').addEventListener('click', () => {
-    if (currentStep > 0) {
-        currentStep--;
-        updateStep().catch(console.error);
-    }
-});
+        terminal.container.style.display = 'block';
+        showTerminal('cd training && ./start_training.sh', [{ type: 'gpu_check' }])
+            .then(() => {
+                setTimeout(() => window.location.href = '/home', 2000);
+            })
+            .catch(error => {
+                console.error('Error in training:', error.message || error);
+                terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
+            });
+    });
 
-document.getElementById('nextStep').addEventListener('click', () => {
-    if (currentStep < walkthrough.steps.length - 1) {
-        currentStep++;
-        updateStep().catch(console.error);
-    } else {
-        window.location.href = '/home';
-    }
-});
+    document.getElementById('skipToEvaluation').addEventListener('click', () => {
+        const terminal = {
+            container: document.getElementById('terminalContainer'),
+            output: document.getElementById('terminalOutput')
+        };
 
-// Quick action handlers
-document.getElementById('skipToSetup').addEventListener('click', () => {
-    const terminal = {
-        container: document.getElementById('terminalContainer'),
-        output: document.getElementById('terminalOutput')
-    };
-    
-    terminal.container.style.display = 'block';
-    showTerminal('cd setup && ./configure', [{ type: 'checkDependencies' }])
-        .then(() => {
-            setTimeout(() => window.location.href = '/home', 2000);
-        })
-        .catch(error => {
-            console.error('Error in setup:', error.message || error);
-            terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
-        });
-});
+        terminal.container.style.display = 'block';
+        showTerminal('cd evaluation && python evaluate.py', [{ type: 'config_check' }])
+            .then(() => {
+                setTimeout(() => window.location.href = '/home', 2000);
+            })
+            .catch(error => {
+                console.error('Error in evaluation:', error.message || error);
+                terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
+            });
+    });
 
-document.getElementById('skipToTraining').addEventListener('click', () => {
-    const terminal = {
-        container: document.getElementById('terminalContainer'),
-        output: document.getElementById('terminalOutput')
-    };
-    
-    terminal.container.style.display = 'block';
-    showTerminal('cd training && ./start_training.sh', [{ type: 'checkGPU' }])
-        .then(() => {
-            setTimeout(() => window.location.href = '/home', 2000);
-        })
-        .catch(error => {
-            console.error('Error in training:', error.message || error);
-            terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
-        });
-});
+    // Initialize first step
+    updateStep().catch(console.error);
 
-document.getElementById('skipToEvaluation').addEventListener('click', () => {
-    const terminal = {
-        container: document.getElementById('terminalContainer'),
-        output: document.getElementById('terminalOutput')
-    };
-    
-    terminal.container.style.display = 'block';
-    showTerminal('cd evaluation && python evaluate.py', [{ type: 'validateConfig' }])
-        .then(() => {
-            setTimeout(() => window.location.href = '/home', 2000);
-        })
-        .catch(error => {
-            console.error('Error in evaluation:', error.message || error);
-            terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
-        });
-});
-
-// Initialize first step
-updateStep().catch(console.error);
-
-// Add terminal styles
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = terminalStyles;
-document.head.appendChild(styleSheet);
+    // Add terminal styles
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = terminalStyles;
+    document.head.appendChild(styleSheet);
 </script>
 {% endblock %}

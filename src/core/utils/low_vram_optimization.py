@@ -4,7 +4,7 @@ ImpressionCore: Low Vram Optimization
 
 Module for low vram optimization functionality in the ImpressionCore framework.
 
-File: core\utils\low_vram_optimization.py
+File: core/utils/low_vram_optimization.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.low_vram_optimization import MainClass
+from src.core.utils.low_vram_optimization import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -56,9 +56,9 @@ Notes:
 import gc
 import torch
 from typing import List, Optional
-from core.utils.gradient_checkpointing import apply_gradient_checkpointing
-from core.utils.attention_utils import setup_attention_chunking
-from core.utils.cpu_offload import selective_cpu_offload
+from src.core.utils.gradient_checkpointing import apply_gradient_checkpointing
+from src.core.utils.attention_utils import setup_attention_chunking
+from src.core.utils.cpu_offload import selective_cpu_offload
 
 def optimize_for_low_vram(
     model: torch.nn.Module,
@@ -118,38 +118,3 @@ def optimize_for_low_vram(
     # Memory optimization: Force garbage collection
 
     return model
-\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\low_vram_optimization.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""

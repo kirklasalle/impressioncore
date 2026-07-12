@@ -28,7 +28,7 @@ sys.path.append('.')
 sys.path.append('./src')
 
 try:
-    from core.models.impressioncore_b3_architecture import (
+    from src.core.models.impressioncore_b3_architecture import (
         B3Config,
         B3Config3B,
         ImpressionCoreB3Model,
@@ -149,7 +149,7 @@ except ImportError:
 
 # Try to import memory manager
 try:
-    from core.memory.memory_manager import MemoryManager
+    from src.core.memory.memory_manager import MemoryManager
 except ImportError:
     try:
         from src.core.memory.memory_manager import MemoryManager
@@ -162,7 +162,7 @@ except ImportError:
 
 # Try to import sacred covenant
 try:
-    from core.compliance.sacred_covenant import SacredCovenant
+    from src.core.compliance.sacred_covenant import SacredCovenant
 except ImportError:
     try:
         from src.core.compliance.sacred_covenant import SacredCovenant

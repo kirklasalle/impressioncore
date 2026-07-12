@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block description %}ImpressionCore Wiki — Complete documentation for the brain-inspired multimodal AI framework{%
+endblock %}
+
+{% block content %}
+<!-- Hero -->
+<div class="hero hero-shell card">
+    <div class="hero-kicker">Builder-aligned documentation hub</div>
+    <h1><span class="gradient-text">ImpressionCore</span> Wiki</h1>
+    <p class="hero-subtitle">
+        Comprehensive documentation for the brain-inspired multimodal AI framework.
+        Architecture, training, deployment, and more — now with the same cyberpunk feel as the builder client.
+    </p>
+    <div class="hero-actions">
+        <a href="search.html" class="btn btn-primary">Open Search</a>
+        <a href="#categories" class="btn btn-secondary">Browse Categories</a>
+        {% if recent_docs %}<a href="#recently-updated" class="btn btn-secondary">Recent Updates</a>{% endif %}
+    </div>
+    <p class="hero-note">Static-site speed, local search, deep links, and builder-style UI polish.</p>
+    <div class="hero-search">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="heroSearch" placeholder="Search {{ total_docs }} documents…" autocomplete="off">
+    </div>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="stat-value">{{ total_docs }}</div>
+            <div class="stat-label">Documents</div>
+        </div>
+        <div class="hero-stat">
+            <div class="stat-value">{{ categories | length }}</div>
+            <div class="stat-label">Categories</div>
+        </div>
+        <div class="hero-stat">
+            <div class="stat-value">{{ total_tags }}</div>
+            <div class="stat-label">Tags</div>
+        </div>
+    </div>
+    <div class="hero-panel-grid">
+        <div class="hero-panel">
+            <div class="hero-panel-label">Navigation</div>
+            <div class="hero-panel-value">Sidebar + TOC</div>
+            <div class="hero-panel-copy">Jump between categories, drill into documents, and keep context with the sticky
+                table of contents.</div>
+        </div>
+        <div class="hero-panel">
+            <div class="hero-panel-label">Search</div>
+            <div class="hero-panel-value">Fast local index</div>
+            <div class="hero-panel-copy">Search across titles, snippets, and tags using the same quick, task-oriented
+                flow as the builder experience.</div>
+        </div>
+        <div class="hero-panel">
+            <div class="hero-panel-label">Workflow</div>
+            <div class="hero-panel-value">Docs command center</div>
+            <div class="hero-panel-copy">Use the wiki as the builder’s documentation companion for architecture reviews,
+                setup, training, and deployment work.</div>
+        </div>
+    </div>
+</div>
+
+<div class="feature-grid" style="margin-top:20px">
+    <div class="feature-card">
+        <div class="feature-label">Theme parity</div>
+        <div class="feature-title">Builder-style glow and surfaces</div>
+        <div class="feature-copy">Shared cyan/indigo accents, darker surfaces, hover lift, and polished cards make the
+            wiki feel native to ImpressionCore.</div>
+    </div>
+    <div class="feature-card">
+        <div class="feature-label">Deep linking</div>
+        <div class="feature-title">Search-first documentation flow</div>
+        <div class="feature-copy">Use category browsing, tag chips, and direct search to reach the exact doc you need
+            with minimal navigation friction.</div>
+    </div>
+    <div class="feature-card">
+        <div class="feature-label">Local-first</div>
+        <div class="feature-title">Static and lightweight</div>
+        <div class="feature-copy">The wiki keeps the simplicity of a static site while gaining the visual clarity and
+            information density of the builder client.</div>
+    </div>
+</div>
+
+<!-- Category Grid -->
+<h2 id="categories" style="margin-bottom:4px">Browse by Category</h2>
+<p style="color:var(--txt-secondary);font-size:.9rem;margin-bottom:20px">
+    Explore documentation organized by topic area
+</p>
+<div class="category-grid">
+    {% for cat in categories %}
+    <a href="{{ cat.slug }}/index.html" class="category-card card">
+        <div class="cat-icon">{{ cat.icon }}</div>
+        <div class="cat-name">{{ cat.name }}</div>
+        <div class="cat-count">{{ cat.doc_count }} docs</div>
+        <div class="cat-desc">{{ cat.description }}</div>
+    </a>
+    {% endfor %}
+</div>
+
+<!-- Quick Links -->
+<div style="margin-top:40px">
+    <h2 style="margin-bottom:16px">Quick Links</h2>
+    <div class="quick-links-grid">
+        {% for link in quick_links %}
+        <a href="{{ link.url }}" class="btn btn-secondary">{{ link.label }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Recently Updated -->
+{% if recent_docs %}
+<div id="recently-updated" style="margin-top:40px">
+    <h2 style="margin-bottom:16px">Recently Updated</h2>
+    <div class="recent-list card">
+        {% for doc in recent_docs[:12] %}
+        <div class="recent-item">
+            <span class="recent-date">{{ doc.updated or '—' }}</span>
+            <a href="{{ doc.category_slug }}/{{ doc.slug }}.html">{{ doc.title | truncate(60) }}</a>
+            <span class="recent-cat badge badge-default">{{ doc.category_name }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('heroSearch').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && this.value.trim()) {
+            window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
+        }
+    });
+</script>
+{% endblock %}

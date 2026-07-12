@@ -71,12 +71,12 @@ sys.path.append(str(project_root))
 
 # Import components
 from src.core.knowledge.document_store import DocumentStore
-from core.model import ImpressionCoreModel, ModelConfig
+from src.core.model import ImpressionCoreModel, ModelConfig
 # Memory optimization: Explicit memory cleanup
-from core.gpu_utils import get_device, get_memory_info, MemoryTracker
+from src.core.gpu_utils import get_device, get_memory_info, MemoryTracker
 # Memory optimization: Device placement for memory management
-from core.config.config_manager import get_config_manager
-from core.memory_optimization import optimize_for_training
+from src.core.config.config_manager import get_config_manager
+from src.core.memory_optimization import optimize_for_training
 # Memory optimization: Memory-critical operation
 
 # Configure logging

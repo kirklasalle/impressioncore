@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layers, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, CardTitle, Badge, ProgressBar } from '../components/ui';
 import { PIPELINE_STEPS } from '../lib/constants';
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
+import useWalkthroughProgress from '../hooks/useWalkthroughProgress';
 
 export default function UnifiedBuilderPage() {
-    const [activeStep, setActiveStep] = useState(0);
-    const [stepStatus, setStepStatus] = useState(
-        PIPELINE_STEPS.reduce((acc, s) => ({ ...acc, [s.key]: 'pending' }), {})
-    );
+    const { currentStep: activeStep, setCurrentStep: setActiveStep, completed, markDone: hookMarkDone, resetProgress, allComplete } = useWalkthroughProgress();
 
-    const completedCount = Object.values(stepStatus).filter((s) => s === 'done').length;
+    const completedCount = completed.size;
     const progress = Math.round((completedCount / PIPELINE_STEPS.length) * 100);
     const step = PIPELINE_STEPS[activeStep];
 
-    const markDone = () => {
-        setStepStatus((p) => ({ ...p, [step.key]: 'done' }));
-        if (activeStep < PIPELINE_STEPS.length - 1) setActiveStep(activeStep + 1);
-    };
+    const markDone = () => hookMarkDone(activeStep);
 
     return (
         <ContentArea title="Unified Builder" subtitle="End-to-end pipeline in a single view.">
@@ -46,11 +41,11 @@ export default function UnifiedBuilderPage() {
                         >
                             <span className={cn(
                                 'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
-                                stepStatus[s.key] === 'done' ? 'bg-accent-success text-white'
+                                completed.has(i) ? 'bg-accent-success text-white'
                                     : i === activeStep ? 'bg-accent-cyan text-white'
                                         : 'bg-ic-surface text-txt-muted'
                             )}>
-                                {stepStatus[s.key] === 'done' ? '✓' : s.num}
+                                {completed.has(i) ? '✓' : s.num}
                             </span>
                             <div className="flex-1 min-w-0">
                                 <div className="text-sm font-medium text-txt-primary truncate">{s.label}</div>
@@ -70,7 +65,7 @@ export default function UnifiedBuilderPage() {
                             <div className="flex-1">
                                 <div className="flex items-center gap-3">
                                     <h2 className="text-xl font-bold text-txt-primary">{step.label}</h2>
-                                    {stepStatus[step.key] === 'done' && <Badge variant="success">Complete</Badge>}
+                                    {completed.has(activeStep) && <Badge variant="success">Complete</Badge>}
                                 </div>
                                 <p className="text-sm text-txt-secondary mt-1">{step.desc}</p>
 
@@ -80,9 +75,11 @@ export default function UnifiedBuilderPage() {
                                         <Link to={step.route} className="btn-primary text-sm">
                                             Open Full Page <ChevronRight size={14} />
                                         </Link>
-                                        <button onClick={markDone} className="btn-secondary text-sm">
-                                            <CheckCircle2 size={14} /> Mark Complete
-                                        </button>
+                                        {!completed.has(activeStep) && (
+                                            <button onClick={markDone} className="btn-secondary text-sm">
+                                                <CheckCircle2 size={14} /> Mark Complete
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
 
@@ -107,6 +104,16 @@ export default function UnifiedBuilderPage() {
                     </Card>
                 </div>
             </div>
+            {allComplete && (
+                <Card className="mt-6">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-accent-success">All pipeline steps complete!</span>
+                        <button onClick={resetProgress} className="btn-secondary text-xs">
+                            Reset Walkthrough
+                        </button>
+                    </div>
+                </Card>
+            )}
         </ContentArea>
     );
 }

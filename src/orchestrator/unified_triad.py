@@ -4,19 +4,18 @@ import time
 from datetime import datetime
 from typing import Any
 
-import cv2
+try:
+    import cv2
+except ImportError:
+    cv2 = None
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer
 
-from agent0core.core.pose_interpreter import PoseInterpreter
 from src.core.utils.swarm_presence import swarm as swarm_presence
-from src.orchestrator.audio_engine import AudioEngine
-from src.orchestrator.avatar_engine import AvatarEngine
 from src.orchestrator.image_generator import ImageGenerator
 from src.orchestrator.message_protocol import pack_message
 from src.orchestrator.nexus_interpreter import NexusInterpreter
-from src.orchestrator.orbcloud_vision import OrbCloudVision
 from src.orchestrator.phoneme_utils import PhonemeProcessor
 from src.orchestrator.system_logger import log_event
 
@@ -45,6 +44,9 @@ class UnifiedBrainTriad(nn.Module):
         self.imager = ImageGenerator()
 
         try:
+            from agent0core.core.pose_interpreter import PoseInterpreter
+            from src.orchestrator.orbcloud_vision import OrbCloudVision
+
             self.vision = OrbCloudVision()
             self.pose_interpreter = PoseInterpreter()
             # We don't call open() here to avoid startup delays,
@@ -53,10 +55,13 @@ class UnifiedBrainTriad(nn.Module):
         except Exception as e:
             log_event("TRIAD", f"Vision Layer Unavailable (Graceful Shutoff): {e}", level="WARNING")
             self.vision = None
+            self.pose_interpreter = None
             self.vision_active = False
 
         # Initialize Audio Engine
         try:
+            from src.orchestrator.audio_engine import AudioEngine
+
             self.audio = AudioEngine()
         except Exception as e:
             log_event("TRIAD", f"Audio Engine Unavailable: {e}", level="WARNING")
@@ -64,10 +69,12 @@ class UnifiedBrainTriad(nn.Module):
 
         # Initialize Avatar Engine
         try:
-             self.avatar = AvatarEngine()
+            from src.orchestrator.avatar_engine import AvatarEngine
+
+            self.avatar = AvatarEngine()
         except Exception as e:
-             log_event("TRIAD", f"Avatar Engine Unavailable: {e}", level="WARNING")
-             self.avatar = None
+            log_event("TRIAD", f"Avatar Engine Unavailable: {e}", level="WARNING")
+            self.avatar = None
 
         # Initialize Models (Qwen Nano-Brain)
         # Using Qwen2.5-0.5B-Instruct as the base "Brain" for all three roles.

@@ -145,7 +145,7 @@ if __name__ == "__main__":
 \"\"\"# Escaped triple quotes
 ImpressionCore - Brain-Inspired Multimodal AI Framework
 
-File: src\\modules\\phoneme_embedding\\utils.py
+File: src//modules//phoneme_embedding//utils.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-25
 Modified: 2025-05-25

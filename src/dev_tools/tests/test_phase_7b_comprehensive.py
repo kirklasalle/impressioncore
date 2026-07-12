@@ -48,10 +48,10 @@ except ImportError as e1:
         import os
         ux_path = os.path.join(os.path.dirname(__file__), '..', 'core', 'ux')
         sys.path.insert(0, ux_path)
-        from core.ux.interactive_dashboard import InteractiveDashboard, DashboardMetrics
-        from core.ux.generation_visualizer import GenerationVisualizer, PipelineState, ProcessingStage
-        from core.ux.advanced_controls import AdvancedControls, QualitySpeedProfile
-        from core.ux.phase_7b_integration import Phase7BIntegration, UIConfiguration, UIMode
+        from src.core.ux.interactive_dashboard import InteractiveDashboard, DashboardMetrics
+        from src.core.ux.generation_visualizer import GenerationVisualizer, PipelineState, ProcessingStage
+        from src.core.ux.advanced_controls import AdvancedControls, QualitySpeedProfile
+        from src.core.ux.phase_7b_integration import Phase7BIntegration, UIConfiguration, UIMode
         
         imports_successful = True
     except ImportError as e2:

@@ -79,7 +79,7 @@ class AdvancedB3SOTAAnalyzer:
         self.start_time = time.time()
 
         # Paths
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent.parent
         self.b3_enhanced_path = self.project_root / "b3_enhanced"
         self.analysis_output_path = self.project_root / "b3_advanced_analysis"
         self.reports_path = self.project_root / "src" / "memlog" / "b3_advanced_analysis"

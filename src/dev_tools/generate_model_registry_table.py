@@ -19,7 +19,7 @@ if _src_root not in sys.path:
 import re
 from pathlib import Path
 
-from core.models.registry import get_metadata, get_model, list_models  # type: ignore
+from src.core.models.registry import get_metadata, get_model, list_models  # type: ignore
 
 
 def build_table():

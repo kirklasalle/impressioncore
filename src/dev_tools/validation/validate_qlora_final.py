@@ -26,7 +26,7 @@ import time
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 try:
-    from core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_logging import setup_rich_logging
     RICH_AVAILABLE = True
 except ImportError:
     print("Rich utilities not available, using basic logging")

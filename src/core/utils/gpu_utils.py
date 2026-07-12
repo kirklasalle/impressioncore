@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.gpu_utils import MemoryTracker
+from src.core.gpu_utils import MemoryTracker
 instance = MemoryTracker()
 result = instance.process()
 ```
@@ -69,7 +69,9 @@ logger = logging.getLogger(__name__)
 
 # Environment variable to force CPU usage even when CUDA is available
 # Memory optimization: Memory-critical operation
-CPU_FORCE_ENV = "CORE_FORCE_CPU"
+CPU_FORCE_ENV = "IMPRESSIONCORE_FORCE_CPU"
+# Legacy environment variable support for older code paths
+LEGACY_CPU_FORCE_ENV = "CORE_FORCE_CPU"
 # Environment variable to set memory fraction
 # Memory optimization: Memory-critical operation
 MEMORY_FRACTION_ENV = "CORE_GPU_MEMORY_FRACTION"
@@ -385,10 +387,10 @@ def get_device() -> torch.device:
         torch.device: The selected device
         # Memory optimization: Device placement for memory management
     """
-    # Check if CPU is forced via environment variable
+    # Check if CPU is forced via environment variables
     force_cpu = os.environ.get(CPU_FORCE_ENV, "").lower() in ("1", "true", "yes")
-    
-    if force_cpu:
+    legacy_force_cpu = os.environ.get(LEGACY_CPU_FORCE_ENV, "").lower() in ("1", "true", "yes")
+    if force_cpu or legacy_force_cpu:
         logger.info("Forced CPU usage via environment variable")
         return torch.device("cpu")
         # Memory optimization: Device placement for memory management

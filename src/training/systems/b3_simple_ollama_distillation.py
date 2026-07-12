@@ -33,7 +33,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 
-from core.utils.amp_utils import autocast_context, create_grad_scaler
+from src.core.utils.amp_utils import autocast_context, create_grad_scaler
 
 # Rich UI imports
 try:
@@ -76,7 +76,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 # Import REAL B3 architecture
 try:
-    from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+    from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
     HAS_B3_ARCHITECTURE = True
 except ImportError:
     logger.warning("Could not import B3 architecture, using fallback")

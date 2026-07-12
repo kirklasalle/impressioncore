@@ -24,12 +24,12 @@ Memory Optimization:
 Examples:
 ```python
 # Basic fused attention usage
-from core.utils.memory_optimization.fused_attention import FusedMultiHeadAttention
+from src.core.utils.memory_optimization.fused_attention import FusedMultiHeadAttention
 attention = FusedMultiHeadAttention(hidden_size=768, num_heads=12)
 output = attention(query, key, value)
 
 # Cross-modal fused attention
-from core.utils.memory_optimization.fused_attention import FusedCrossModalAttention
+from src.core.utils.memory_optimization.fused_attention import FusedCrossModalAttention
 cross_attn = FusedCrossModalAttention(text_dim=768, image_dim=2048)
 fused_output = cross_attn(text_features, image_features)
 ```

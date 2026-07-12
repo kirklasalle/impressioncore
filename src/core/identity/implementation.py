@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.identity.implementation import MainClass
+from src.core.identity.implementation import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -62,14 +62,14 @@ import hmac
 import base64
 from typing import Dict, Any, Optional, List, Tuple, Union
 
-from core.log_manager import log_state_change, store_persistent_data, get_persistent_data
-from core.identity.interface import (
+from src.core.utils.log_manager import log_state_change, store_persistent_data, get_persistent_data
+from src.core.identity.interface import (
     IdentityID, IdentityToken, AuthCredential, BiometricData,
     AuthenticationResult, IdentityAttribute, AccessPolicy,
     VerificationChallenge, VerificationResponse
 )
-import core.identity.secure_storage as secure_storage
-import core.identity.biometrics as biometrics
+import src.core.identity.secure_storage as secure_storage
+import src.core.identity.biometrics as biometrics
 
 # Constants
 TOKEN_VALIDITY_SECONDS = 3600  # 1 hour

@@ -7,7 +7,14 @@ import sys
 import pytest
 
 
+@pytest.mark.integration
+@pytest.mark.slow
 def test_registry_table_generator_updates_readme(tmp_path):
+    """Marked integration+slow: update_readme() -> build_table() iterates
+    all registered models including the B3 unified bridge, which downloads
+    pretrained tokenizer/model weights (GPT-2) from HuggingFace Hub over the
+    network. Not mocked at the registry layer.
+    """
     # Resolve paths relative to this file, not cwd
     _test_dir = os.path.dirname(os.path.abspath(__file__))
     _repo_root = os.path.abspath(os.path.join(_test_dir, '..', '..'))

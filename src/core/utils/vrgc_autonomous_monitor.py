@@ -52,7 +52,7 @@ from typing import Any
 import psutil
 
 try:
-    from core.monitoring.system_monitor import SystemMonitor
+    from src.core.monitoring.system_monitor import SystemMonitor
     SYSTEM_MONITOR_AVAILABLE = True
 except ImportError:
     SYSTEM_MONITOR_AVAILABLE = False

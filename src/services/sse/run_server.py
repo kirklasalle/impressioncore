@@ -158,8 +158,9 @@ def check_src_structure():
     """
     from pathlib import Path
     import os
-    # Use absolute path to src directory
-    project_root = Path(__file__).resolve().parent  # FIXED: now points to repo root
+    # This file lives at <repo_root>/src/services/sse/run_server.py, so
+    # walking up 3 levels (sse -> services -> src) reaches <repo_root>.
+    project_root = Path(__file__).resolve().parents[3]
     src_path = project_root / "src"
     required_dirs = [
         (src_path / "core" / "brainsim"),
@@ -168,7 +169,7 @@ def check_src_structure():
         (src_path / "models"),
         (src_path / "training"),
         (src_path / "inference"),
-        (src_path / "web")
+        (src_path / "interfaces" / "web")
     ]
     missing = [str(d.relative_to(src_path)) for d in required_dirs if not d.is_dir()]
     logger.info(f"[DEBUG] Checking src/ structure at: {src_path}")
@@ -188,17 +189,19 @@ def check_server_health():
         None. Prints errors and exits if health check fails.
     """
     try:
-        # FIX: Look for server.py in src/web/server.py
-        server_path = Path(__file__).parent / "src" / "web" / "server.py"
+        # This file lives at <repo_root>/src/services/sse/run_server.py, so
+        # walking up 3 levels (sse -> services -> src) reaches <repo_root>.
+        repo_root = Path(__file__).resolve().parents[3]
+        server_path = repo_root / "src" / "interfaces" / "web" / "server.py"
         if not server_path.exists():
             print(f"[ERROR] server.py not found at {server_path}")
             sys.exit(1)
         spec = importlib.util.spec_from_file_location("server", str(server_path))
         server = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(server)
-        # Optionally, check for required attributes/routes        # Just check for the app instance and run_server function
-        assert hasattr(server, 'app'), "Flask app instance 'app' not found in server.py"
-        assert hasattr(server, 'run_server'), "Function 'run_server' not found in server.py"
+        # The real server module exposes a create_app() factory, not a bare
+        # `app` instance or `run_server` function.
+        assert hasattr(server, 'create_app'), "create_app() factory not found in server.py"
         print("[INFO] server.py health check passed.")
     except Exception as e:
         print(f"[ERROR] server.py health check failed: {e}")
@@ -247,9 +250,12 @@ check_server_health()
 
 import sys, os
 
-# First, add the project root to sys.path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# This file lives at <repo_root>/src/services/sse/run_server.py, so walking
+# up 3 levels (sse -> services -> src) reaches <repo_root>. (Previously this
+# only walked up 2 levels, incorrectly landing on src/ as "project_root" and
+# src/services as "src_path" — a real path-resolution bug.)
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+src_path = os.path.join(project_root, 'src')
 
 # Make sure both project_root and src_path are in sys.path
 if project_root not in sys.path:
@@ -262,8 +268,15 @@ print(f"Project root path: {project_root}")
 print(f"Src path: {src_path}")
 print(f"sys.path: {sys.path}")
 
-# Import the Flask app from server_new.py
-from src.interfaces.web.server_new import run_server
+# Import the Flask app factory from the real server module (server_new.py
+# does not exist; the canonical module only exposes create_app()).
+from src.interfaces.web.server import create_app
+app = create_app()
+
+
+def main():
+    app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 if __name__ == '__main__':
-    run_server()
+    main()

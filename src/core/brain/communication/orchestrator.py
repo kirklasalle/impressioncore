@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.communication.orchestrator import Orchestrator
+from src.core.brain.communication.orchestrator import Orchestrator
 instance = Orchestrator()
 result = instance.process()
 ```

@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GitBranch, ChevronDown, ChevronRight, Plus, Trash2, Radio, ArrowRight } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
+import HarnessPageHeader from '../components/layout/HarnessPageHeader';
+import TemplateGallery from '../components/harness/TemplateGallery';
 import { Card, CardTitle, Input, Select, Badge, Toggle } from '../components/ui';
+import { listLayers, toggleLayerActive, toggleModuleInherited, saveLayers } from '../lib/api';
+import { INHERITANCE_PRESETS } from '../lib/harnessTemplates';
 import { cn } from '../lib/utils';
 import toast from 'react-hot-toast';
 
@@ -38,18 +42,71 @@ const DEFAULT_LAYERS = [
 
 export default function InheritancePage() {
     const [layers, setLayers] = useState(DEFAULT_LAYERS);
+    const [appliedPresets, setAppliedPresets] = useState(new Set());
+    const [applyingId, setApplyingId] = useState(null);
+
+    // Load persisted layers from server (falls back to defaults above)
+    useEffect(() => {
+        listLayers().then(({ data }) => {
+            if (data.success && data.layers.length) {
+                setLayers(data.layers.map((l) => ({ ...l, expanded: l.expanded ?? false })));
+            }
+        }).catch(() => { });
+    }, []);
 
     const toggleExpand = (id) => {
         setLayers((p) => p.map((l) => l.id === id ? { ...l, expanded: !l.expanded } : l));
     };
-    const toggleActive = (id) => {
-        setLayers((p) => p.map((l) => l.id === id ? { ...l, active: !l.active } : l));
+    const toggleActive = async (id) => {
+        try {
+            const { data } = await toggleLayerActive(id);
+            if (data.success) {
+                setLayers((p) => p.map((l) => l.id === id ? { ...l, active: data.layer.active } : l));
+            }
+        } catch {
+            setLayers((p) => p.map((l) => l.id === id ? { ...l, active: !l.active } : l));
+        }
     };
-    const toggleInherited = (layerId, moduleId) => {
-        setLayers((p) => p.map((l) => l.id === layerId ? {
-            ...l,
-            modules: l.modules.map((m) => m.id === moduleId ? { ...m, inherited: !m.inherited } : m),
-        } : l));
+    const toggleInherited = async (layerId, moduleId) => {
+        try {
+            const { data } = await toggleModuleInherited(layerId, moduleId);
+            if (data.success) {
+                setLayers((p) => p.map((l) => l.id === layerId ? {
+                    ...l,
+                    modules: l.modules.map((m) => m.id === moduleId ? { ...m, inherited: data.module.inherited } : m),
+                } : l));
+            }
+        } catch {
+            setLayers((p) => p.map((l) => l.id === layerId ? {
+                ...l,
+                modules: l.modules.map((m) => m.id === moduleId ? { ...m, inherited: !m.inherited } : m),
+            } : l));
+        }
+    };
+
+    // Apply an architecture preset — replaces all layers (with confirmation)
+    const applyPreset = async (preset) => {
+        const confirmed = window.confirm(
+            `Apply "${preset.name}"?\n\nThis will REPLACE your current layer configuration with ${preset.layers.length} layers and ${preset.layers.reduce((a, l) => a + l.modules.length, 0)} modules.\n\nThis action can be undone by re-applying a different preset or manually editing layers.`
+        );
+        if (!confirmed) return;
+
+        setApplyingId(preset.id);
+        try {
+            const newLayers = preset.layers.map((l) => ({ ...l, expanded: false }));
+            const { data } = await saveLayers(newLayers);
+            if (data.success) {
+                setLayers(newLayers);
+                setAppliedPresets(new Set([preset.id]));
+                toast.success(`Applied "${preset.name}" — ${preset.layers.length} layers, ${preset.layers.reduce((a, l) => a + l.modules.length, 0)} modules`);
+            } else {
+                toast.error(data.error || 'Failed to apply preset');
+            }
+        } catch (err) {
+            toast.error(`Error applying preset: ${err.message}`);
+        } finally {
+            setApplyingId(null);
+        }
     };
 
     const totalModules = layers.reduce((a, l) => a + l.modules.length, 0);
@@ -57,6 +114,33 @@ export default function InheritancePage() {
 
     return (
         <ContentArea title="Model Inheritance" subtitle="Configure layer hierarchy and module inheritance chains.">
+            <HarnessPageHeader
+                section="Harness · Inheritance"
+                description="Inheritance is the UKS's native mechanism for knowledge compression and hierarchical organization. Child nodes automatically inherit attributes from their parents — you only need to store what makes each Thing unique. This maps directly to your model's layer and module architecture: the Foundation Layer's configuration propagates through Attention, FFN, and Output layers unless explicitly overridden."
+                capabilities={[
+                    'Visualize the inheritance chain across model layers',
+                    'Toggle entire layers active or inactive',
+                    'Mark individual modules as inherited or overridden',
+                    'Track inherited vs. overridden module counts',
+                    'Expand/collapse layers to inspect module configurations',
+                    'Knowledge compression: only store unique attributes per layer',
+                ]}
+                builderContext="Part of the UKS subsystem within the Harness. Inheritance defines how knowledge and configuration propagate through your model's layer hierarchy. This connects to Model Definition (Step 5) architecture but operates at the knowledge and configuration level rather than the training level."
+                reference='The UKS implements inheritance so that Relationships which add attributes to a parent Thing are automatically expressed as attributes of its children. Supports exceptions: a child can override any inherited attribute locally. This combination of inheritance and exceptions mirrors how the human mind stores knowledge — you never need to store all attributes of a Thing, only those which make it unique.'
+            />
+
+            <TemplateGallery
+                title="Architecture Presets"
+                description="Pre-configured layer architectures — Standard Transformer, Memory-Optimized, MoE, Distillation, and Deep Narrow. Replaces your current configuration."
+                templates={INHERITANCE_PRESETS}
+                onApply={applyPreset}
+                appliedIds={appliedPresets}
+                loadingId={applyingId}
+                variant="replace"
+                itemLabel="layers"
+                itemCount={(t) => t.layers.length}
+            />
+
             {/* Stats */}
             <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="stat-card"><span className="text-lg font-bold text-txt-primary">{layers.length}</span><span className="text-[10px] text-txt-muted">Layers</span></div>

@@ -74,7 +74,7 @@ from dataclasses import dataclass
 
 # Import RichStatusAnimation with fallback
 try:
-    from core.utils.rich_status_animation import RichStatusAnimation
+    from src.core.utils.rich_status_animation import RichStatusAnimation
 except ImportError:
     print("⚠️ RichStatusAnimation not available - using fallback")
     RichStatusAnimation = None

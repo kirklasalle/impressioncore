@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { BarChart3, Play, Loader2, Upload } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BarChart3, Play, Loader2, Upload, FolderOpen } from 'lucide-react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, CardTitle, Input, Select, Toggle, StatCard, Badge } from '../components/ui';
-import { runEvaluation } from '../lib/api';
+import { runEvaluation, getCheckpoints, setCheckpointDir } from '../lib/api';
 import { EVAL_METRICS } from '../lib/constants';
 import toast from 'react-hot-toast';
 
@@ -17,6 +17,26 @@ export default function EvaluationPage() {
     });
     const [running, setRunning] = useState(false);
     const [results, setResults] = useState(null);
+    const [checkpoints, setCheckpointsState] = useState([]);
+    const [ckptDir, setCkptDir] = useState('');
+
+    const loadCheckpoints = async () => {
+        try {
+            const { data } = await getCheckpoints();
+            if (data.success) {
+                setCheckpointsState(data.checkpoints || []);
+                setCkptDir(data.directory || '');
+            }
+        } catch { /* ignore */ }
+    };
+
+    useEffect(() => { loadCheckpoints(); }, []);
+
+    const checkpointOptions = [
+        { value: 'latest', label: 'Latest Checkpoint' },
+        { value: 'best', label: 'Best Checkpoint' },
+        ...checkpoints.map((ck) => ({ value: ck.name, label: `${ck.name} (${ck.size_mb} MB)` })),
+    ];
 
     const toggleMetric = (key) => {
         setConfig((p) => ({
@@ -85,13 +105,47 @@ export default function EvaluationPage() {
                     <Card>
                         <CardTitle icon={BarChart3}>Evaluation Configuration</CardTitle>
                         <div className="mt-4 space-y-4">
-                            <Select label="Checkpoint" options={[
-                                { value: 'latest', label: 'Latest Checkpoint' },
-                                { value: 'best', label: 'Best Checkpoint' },
-                                { value: 'epoch_1', label: 'Epoch 1' },
-                                { value: 'epoch_2', label: 'Epoch 2' },
-                                { value: 'epoch_3', label: 'Epoch 3' },
-                            ]} value={config.checkpoint} onChange={(e) => setConfig((p) => ({ ...p, checkpoint: e.target.value }))} />
+                            <div title="Directory containing checkpoint .pt files. Change and click Set to point to a different location.">
+                                <label className="block text-xs font-medium text-txt-muted mb-1">Checkpoint Directory</label>
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={ckptDir}
+                                        onChange={(e) => setCkptDir(e.target.value)}
+                                        className="flex-1 bg-ic-bg border border-ic-border rounded-lg px-3 py-1.5 text-xs font-mono text-txt focus:outline-none focus:ring-1 focus:ring-sky-500"
+                                        placeholder="F:\models\checkpoints"
+                                    />
+                                    <button
+                                        onClick={async () => {
+                                            try {
+                                                const { data } = await setCheckpointDir(ckptDir);
+                                                if (data.success) {
+                                                    toast.success('Checkpoint directory updated');
+                                                    setCkptDir(data.directory);
+                                                    loadCheckpoints();
+                                                } else {
+                                                    toast.error(data.error || 'Failed to set directory');
+                                                }
+                                            } catch (err) {
+                                                toast.error(err.response?.data?.error || 'Failed to set directory');
+                                            }
+                                        }}
+                                        className="btn-secondary px-3 py-1.5 text-xs"
+                                        title="Validate and set the checkpoint directory. Creates the directory if it doesn't exist."
+                                    >
+                                        <FolderOpen size={14} /> Set
+                                    </button>
+                                </div>
+                                {ckptDir && (
+                                    <p className="mt-1 text-[10px] text-txt-muted flex items-center gap-1">
+                                        <FolderOpen size={10} className="shrink-0" />
+                                        <span className="font-mono truncate">{ckptDir}</span>
+                                        <span>· {checkpoints.length} checkpoint{checkpoints.length !== 1 ? 's' : ''}</span>
+                                    </p>
+                                )}
+                            </div>
+                            <Select label="Checkpoint" options={checkpointOptions}
+                                value={config.checkpoint} onChange={(e) => setConfig((p) => ({ ...p, checkpoint: e.target.value }))} />
                             <Input label="Batch Size" type="number" value={config.batchSize}
                                 onChange={(e) => setConfig((p) => ({ ...p, batchSize: +e.target.value }))} />
                             <div>

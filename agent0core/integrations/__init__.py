@@ -13,8 +13,10 @@ concrete implementations injected at startup by ``src/``.
 from agent0core.integrations.impressioncore import (
     LLMTriadProvider,
     VectorMemoryProvider,
+    get_b3_native_provider,
     get_triad_provider,
     get_vector_provider,
+    register_b3_native_provider,
     register_triad_provider,
     register_vector_provider,
 )
@@ -22,8 +24,10 @@ from agent0core.integrations.impressioncore import (
 __all__ = [
     "LLMTriadProvider",
     "VectorMemoryProvider",
+    "get_b3_native_provider",
     "get_triad_provider",
     "get_vector_provider",
+    "register_b3_native_provider",
     "register_triad_provider",
     "register_vector_provider",
 ]

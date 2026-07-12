@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.logic.reasoning import MainClass
+from src.core.brain.logic.reasoning import MainClass
 instance = MainClass()
 result = instance.process()
 ```

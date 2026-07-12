@@ -77,7 +77,7 @@ class B3SOTAEnhancementSystem:
         self.start_time = time.time()
 
         # Paths
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent
         self.b3_enhanced_path = self.project_root / "b3_enhanced"
         self.sota_output_path = self.project_root / "b3_sota_pipeline"
         self.reports_path = self.project_root / "src" / "memlog" / "b3_sota_enhancement"

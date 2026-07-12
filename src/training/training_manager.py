@@ -85,13 +85,22 @@ from dataclasses import dataclass, asdict
 from datetime import datetime
 
 from .trainer import ModelTrainer
-from ..core.config.training_config import (
-    DEFAULT_VRAM_TARGET, PRECISION_MODES, CHECKPOINT_INTERVAL_STEPS, METRICS_EXPORT_INTERVAL_STEPS
-)
-from ..core.utils.error_reporting import log_error
-from ..core.utils.memory_profiler import MemoryProfiler
-from ..core.utils.memory_utils import get_gpu_memory_usage
-from ..core.utils.precision_manager import PrecisionMode
+try:
+    from core.config.training_config import (
+        DEFAULT_VRAM_TARGET, PRECISION_MODES, CHECKPOINT_INTERVAL_STEPS, METRICS_EXPORT_INTERVAL_STEPS
+    )
+    from core.utils.error_reporting import log_error
+    from core.utils.memory_profiler import MemoryProfiler
+    from core.utils.memory_utils import get_gpu_memory_usage
+    from core.utils.precision_manager import PrecisionMode
+except ImportError:
+    from ..core.config.training_config import (
+        DEFAULT_VRAM_TARGET, PRECISION_MODES, CHECKPOINT_INTERVAL_STEPS, METRICS_EXPORT_INTERVAL_STEPS
+    )
+    from ..core.utils.error_reporting import log_error
+    from ..core.utils.memory_profiler import MemoryProfiler
+    from ..core.utils.memory_utils import get_gpu_memory_usage
+    from ..core.utils.precision_manager import PrecisionMode
 
 logger = logging.getLogger(__name__)
 

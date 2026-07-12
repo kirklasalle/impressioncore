@@ -1,0 +1,49 @@
+# ImpressionCore — Python Backend Image (Builder + Runtime API)
+# =================================================================
+# Shared base image used by both the Builder (Flask, port 5000) and
+# Runtime (FastAPI, port 8000) services. CPU-only by default — GPU/CUDA
+# support requires the NVIDIA Container Toolkit on the host and passing
+# `--gpus all` (or the `deploy.resources.reservations.devices` block,
+# already wired up in docker-compose.yml) at run time.
+#
+# NOTE: Windows-only hardware integrations (Kinect via comtypes/pywin32,
+# WMI-based hardware detection, DirectShow camera enumeration) are NOT
+# available inside this Linux container. Vision/audio hardware features
+# are automatically disabled via graceful-degradation code paths already
+# present in src/orchestrator/orbcloud_vision.py and friends. Run those
+# features on bare-metal Windows instead — see docs/README.md.
+
+FROM python:3.10-slim AS base
+
+# System dependencies for OpenCV, audio libs, and building some wheels.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    libsndfile1 \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python dependencies first for better layer caching.
+COPY requirements.txt pyproject.toml ./
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy the full source tree.
+COPY src/ ./src/
+COPY agent0core/ ./agent0core/
+COPY main.py ./
+COPY .env.example ./
+
+ENV PYTHONPATH=/app \
+    PYTHONUNBUFFERED=1 \
+    IMPRESSIONCORE_DATA_DRIVE=/data
+
+# Default command is overridden per-service in docker-compose.yml.
+CMD ["python", "--version"]

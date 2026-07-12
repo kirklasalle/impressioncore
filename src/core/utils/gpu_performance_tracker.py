@@ -4,7 +4,7 @@ ImpressionCore: Gpu Performance Tracker
 
 Module for gpu performance tracker functionality in the ImpressionCore framework.
 
-File: core\utils\gpu_performance_tracker.py
+File: core/utils/gpu_performance_tracker.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.gpu_performance_tracker import GPUPerformanceTracker
+from src.core.utils.gpu_performance_tracker import GPUPerformanceTracker
 instance = GPUPerformanceTracker()
 result = instance.process()
 ```
@@ -632,42 +632,7 @@ def main():
         # Sleep for specified duration
         time.sleep(args.duration)
     except KeyboardInterrupt:
-        print("\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\gpu_performance_tracker.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
-\n\nTracking stopped by user")
+        print("\n\n\nTracking stopped by user")
     finally:
         # Stop tracking
         summary = tracker.stop_tracking()

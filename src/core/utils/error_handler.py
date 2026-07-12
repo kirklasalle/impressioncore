@@ -4,7 +4,7 @@ ImpressionCore: Error Handler
 
 Module for error handler functionality in the ImpressionCore framework.
 
-File: core\utils\error_handler.py
+File: core/utils/error_handler.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.error_handler import ErrorHandler
+from src.core.utils.error_handler import ErrorHandler
 instance = ErrorHandler()
 result = instance.process()
 ```
@@ -185,38 +185,4 @@ if __name__ == "__main__":
     error_handler.log_info("This is an info message.")
     error_handler.log_warning("This is a warning message.")
     error_handler.log_error("This is an error message.")
-    error_handler.log_critical("This is a critical message.")\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\error_handler.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
+    error_handler.log_critical("This is a critical message.")

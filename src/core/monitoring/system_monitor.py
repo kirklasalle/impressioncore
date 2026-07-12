@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.system_monitor import SystemMonitor
+from src.core.system_monitor import SystemMonitor
 instance = SystemMonitor()
 result = instance.process()
 ```

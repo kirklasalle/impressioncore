@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Type, Play, Loader2, Sparkles } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, CardTitle, Input, Select, Toggle, Badge, StatCard } from '../components/ui';
-import { configureTokenizer } from '../lib/api';
+import { configureTokenizer, tokenizeText } from '../lib/api';
 import { TOKENIZER_TYPES } from '../lib/constants';
 import toast from 'react-hot-toast';
 
@@ -17,7 +17,7 @@ const TOKEN_COLORS = [
 
 export default function TokenizerPage() {
     const [config, setConfig] = useState({
-        type: 'bpe', vocabSize: 32000, minFrequency: 2,
+        type: 'bpe', vocabSize: 50257, minFrequency: 2,
         maxTokenLength: 16, specialTokens: '<pad>,<eos>,<bos>,<unk>',
         normalize: true, imagePatchVQ: false,
     });
@@ -39,10 +39,23 @@ export default function TokenizerPage() {
         }
     };
 
-    const handleTokenize = () => {
-        // Client-side word-level tokenization demo
-        const words = testInput.split(/(\s+|[.,!?;:'"-])/g).filter(Boolean);
-        setTokens(words);
+    const [compression, setCompression] = useState(null);
+
+    const handleTokenize = async () => {
+        try {
+            const { data } = await tokenizeText(testInput);
+            if (data.success) {
+                setTokens(data.tokens);
+                setCompression(data.compression);
+            } else {
+                toast.error(data.error || 'Tokenization failed');
+            }
+        } catch {
+            // Fallback to client-side splitting if server unavailable
+            const words = testInput.split(/(\s+|[.,!?;:'"-])/g).filter(Boolean);
+            setTokens(words);
+            setCompression(null);
+        }
     };
 
     return (
@@ -111,7 +124,7 @@ export default function TokenizerPage() {
                                 </div>
                                 <div className="grid grid-cols-3 gap-3 mt-4">
                                     <StatCard label="Tokens" value={tokens.length} />
-                                    <StatCard label="Compression" value={`${(testInput.length / Math.max(tokens.length, 1)).toFixed(1)}x`} />
+                                    <StatCard label="Compression" value={compression ? `${compression}x` : `${(testInput.length / Math.max(tokens.length, 1)).toFixed(1)}x`} />
                                     <StatCard label="Characters" value={testInput.length} />
                                 </div>
                             </div>

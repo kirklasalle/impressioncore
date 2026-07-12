@@ -1,0 +1,26 @@
+# ImpressionCore — Frontend Image (Vite/React dev server)
+# =================================================================
+# Shared build stage for both the Runtime web_client (port 5173) and the
+# Builder builder_client (port 3000). Runs the Vite dev server rather than
+# a production static build, matching the existing local-dev workflow in
+# src/dev_tools/scripts/start_full_stack_with_monitor.bat. For a
+# production build, run `npm run build` and serve the resulting dist/
+# directory with a static file server instead.
+#
+# Build with --build-arg CLIENT_DIR=src/interfaces/web_client (or
+# builder_client) to select which frontend to build — see
+# docker-compose.yml for the two service definitions using this image.
+
+FROM node:20-slim AS base
+
+ARG CLIENT_DIR=src/interfaces/web_client
+WORKDIR /app
+
+COPY ${CLIENT_DIR}/package.json ${CLIENT_DIR}/package-lock.json ./
+RUN npm ci
+
+COPY ${CLIENT_DIR}/ ./
+
+EXPOSE 3000 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

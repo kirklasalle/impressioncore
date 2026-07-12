@@ -7,10 +7,15 @@ import pytest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 
+@pytest.mark.integration
+@pytest.mark.slow
 def test_imagination_loop():
     """Integration test for UnifiedBrainTriad imagination loop.
 
     Requires a valid model configuration with ``model_type`` in config.json.
+    Marked integration+slow: instantiating UnifiedBrainTriad loads the full
+    InternVL2-1B multimodal model (network download + GPU/VRAM allocation),
+    which is far too heavy for the default fast unit-test run.
     """
     try:
         from src.orchestrator.unified_triad import UnifiedBrainTriad

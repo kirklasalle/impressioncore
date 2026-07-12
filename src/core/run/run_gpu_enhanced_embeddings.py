@@ -50,8 +50,8 @@ sys.path.append(str(project_root))
 from rich.console import Console
 from rich.panel import Panel
 
-from core.training.advanced_embedding_enhancement import EmbeddingConfig, enhance_impressioncore_embeddings
-from core.utils.device_manager import get_device_manager
+from src.core.training.advanced_embedding_enhancement import EmbeddingConfig, enhance_impressioncore_embeddings
+from src.core.utils.device_manager import get_device_manager
 
 console = Console()
 

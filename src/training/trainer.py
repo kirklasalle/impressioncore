@@ -58,12 +58,20 @@ Memory Considerations:
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from ..core.utils.memory_optimization.advanced_optimizer import (
-    get_memory_efficient_optimizer,
-    MemoryEfficientOptimizerManager,
-    MemoryOptimizationConfig,
-    CustomMemoryEfficientOptimizers
-)
+try:
+    from core.utils.memory_optimization.advanced_optimizer import (
+        get_memory_efficient_optimizer,
+        MemoryEfficientOptimizerManager,
+        MemoryOptimizationConfig,
+        CustomMemoryEfficientOptimizers
+    )
+except ImportError:
+    from ..core.utils.memory_optimization.advanced_optimizer import (
+        get_memory_efficient_optimizer,
+        MemoryEfficientOptimizerManager,
+        MemoryOptimizationConfig,
+        CustomMemoryEfficientOptimizers
+    )
 from torch.utils.data import DataLoader, Dataset, random_split
 import logging
 from pathlib import Path
@@ -72,11 +80,19 @@ import time
 from tqdm import tqdm
 from torch.utils.checkpoint import checkpoint
 import threading
-from ..core.memory import dynamic_memory_manager as dmm
+
+try:
+    from core.memory import dynamic_memory_manager as dmm
+except ImportError:
+    from ..core.memory import dynamic_memory_manager as dmm
 # Memory optimization: Memory-critical operation
 
-from ..core.utils.precision_manager import PrecisionManager, PrecisionMode
-from ..core.utils.memory_utils import LayerManager
+try:
+    from core.utils.precision_manager import PrecisionManager, PrecisionMode
+    from core.utils.memory_utils import LayerManager
+except ImportError:
+    from ..core.utils.precision_manager import PrecisionManager, PrecisionMode
+    from ..core.utils.memory_utils import LayerManager
 # Memory optimization: Memory-critical operation
 from .pretraining import MaskedLanguageModeling
 

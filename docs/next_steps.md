@@ -26,31 +26,43 @@
    - [x] Develop dynamic memory management strategies (Adaptive mitigation logic added 2025-05-15).
 
 ### 2025-05-15: Adaptive Memory Management Enhancement
+
 - Added `adaptiveMemoryManagement` to `src/services/systemOversight.ts`.
 - Monitors VRAM and triggers precision reduction/offload if VRAM > 85%.
 - Logs mitigation and records critical anomaly for traceability.
 - Next: Integrate into model serving/training, add tests, update docs.
 
-4. **Unit Testing Suite**
+1. **Unit Testing Suite**
    - [x] Begin implementing unit tests for core components.
    - [x] Test tokenizer and memory manager functionality.
    - [x] Enhance test suite with memory usage tracking and reporting.
    - [x] Add status animations with percentage completion indicators.
 
-5. **Integration Testing Framework**
+2. **Integration Testing Framework**
    - [x] Develop integration tests for tokenizer and memory manager interaction.
    - [x] Add memory profiling to cross-component interactions.
 
-6. **Performance Optimization**
+3. **Performance Optimization**
    - [x] Implement multi-GPU memory distribution.
    - [x] Add smart batching for memory efficiency.
    - [x] Integrate memory profiling with garbage collection hooks.
 
-7. **Documentation Updates**
+4. **Documentation Updates**
    - [x] Update technical documentation with memory profiling capabilities.
    - [ ] Refine technical specifications based on PRD requirements.
    - [ ] Update API contracts and security documentation.
    - [ ] Begin drafting user documentation and API documentation.
+
+5. **Audio Pipeline Enhancement**
+   - [x] Install and verify librosa 0.11.0, soundfile 0.13.1, torchaudio 2.6.0+cu124.
+   - [x] Advanced audio feature extraction framework (MFCC, Mel, Chroma, Tonnetz).
+   - [x] Audio-Language Integration module (Phase 8A.2).
+   - [x] Chunk-based processing for GTX 1050 Ti memory constraints.
+   - [ ] Integrate Whisper-based speech-to-text for transcription.
+   - [ ] Implement real-time audio streaming pipeline.
+   - [ ] Add speaker diarization and identification.
+   - [ ] Integrate Coqui TTS for text-to-speech synthesis.
+   - [ ] Audio data augmentation for training (noise injection, pitch shifting, time stretching).
 
 ## Updated Short Term (1-2 Months)
 

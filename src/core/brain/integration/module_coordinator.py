@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.integration.module_coordinator import MainClass
+from src.core.brain.integration.module_coordinator import MainClass
 instance = MainClass()
 result = instance.process()
 ```

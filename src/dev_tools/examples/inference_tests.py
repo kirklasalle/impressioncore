@@ -66,18 +66,18 @@ sys.path.append(str(project_root))
 
 # Import components
 from src.pipeline.main import ModalEngine
-from core.model import ImpressionCoreModel, ModelConfig
+from src.core.model import ImpressionCoreModel, ModelConfig
 # Memory optimization: Explicit memory cleanup
-from core.gpu_utils import (
+from src.core.gpu_utils import (
 # Memory optimization: Memory-critical operation
     get_device, get_memory_info, clear_gpu_memory, 
     # Memory optimization: Device placement for memory management
     MemoryTracker, is_shared_memory_gpu
     # Memory optimization: Memory-critical operation
 )
-from core.memory_optimization import memory_efficient_inference
+from src.core.memory_optimization import memory_efficient_inference
 # Memory optimization: Memory-critical operation
-from core.config.config_manager import get_config_manager
+from src.core.config.config_manager import get_config_manager
 
 # Configure logging
 logging.basicConfig(

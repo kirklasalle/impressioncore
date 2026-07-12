@@ -50,12 +50,12 @@ def main():
 
     # import model classes
     try:
-        from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+        from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
     except Exception as e:
         print('Failed to import model from core.models.impressioncore_b3_architecture:', e)
         print('Attempting alternative imports...')
         try:
-            from core.models import impressioncore_b3_architecture as impmod
+            from src.core.models import impressioncore_b3_architecture as impmod
             B3Config = impmod.B3Config
             ImpressionCoreB3Model = impmod.ImpressionCoreB3Model
         except Exception as e2:

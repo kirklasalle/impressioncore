@@ -4,7 +4,7 @@ ImpressionCore: Safe Ops
 
 Module for safe ops functionality in the ImpressionCore framework.
 
-File: core\utils\safe_ops.py
+File: core/utils/safe_ops.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.safe_ops import MainClass
+from src.core.utils.safe_ops import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -201,38 +201,3 @@ def safe_eval(expression: str, default: Any = None) -> Any:
         return ast.literal_eval(expression)
     except (ValueError, SyntaxError):
         return default
-\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\safe_ops.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""

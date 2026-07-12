@@ -69,13 +69,13 @@ sys.path.append(str(project_root))
 
 # Import utilities for memory management
 # Memory optimization: Memory-critical operation
-from core.utils.gpu_memory_manager import GPUMemoryManager
+from src.core.utils.gpu_memory_manager import GPUMemoryManager
 # Memory optimization: Memory-critical operation
-from core.utils.memory_swap_manager import MemorySwapManager
+from src.core.utils.memory_swap_manager import MemorySwapManager
 # Memory optimization: Memory-critical operation
-from core.utils.cuda_utils import clean_gpu_memory, get_cuda_info
+from src.core.utils.cuda_utils import clean_gpu_memory, get_cuda_info
 # Memory optimization: Memory-critical operation
-from core.config import ConfigManager
+from src.core.config import ConfigManager
 
 # Configure logging
 logging.basicConfig(
@@ -290,9 +290,9 @@ def main():
     # Memory optimization: Device placement for memory management
     
     try:        # Import required modules
-        from core.model import ModelInterface
+        from src.core.model import ModelInterface
         # Memory optimization: Explicit memory cleanup
-        from core.trainer import DistillationTrainer
+        from src.core.trainer import DistillationTrainer
         from torch.utils.data import DataLoader, Dataset, ConcatDataset
         from transformers import GPT2Tokenizer
         
@@ -748,7 +748,7 @@ class CustomTrainerWithMemoryManagement:
         # Try to adapt to the actual DistillationTrainer
         try:
             # Create a reference trainer for API compatibility
-            from core.trainer import DistillationTrainer
+            from src.core.trainer import DistillationTrainer
             self.ref_trainer = DistillationTrainer(
                 student_model=self.model,
                 tokenizer=self.tokenizer,

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.system.oversight_module import MainClass
+from src.core.system.oversight_module import MainClass
 instance = MainClass()
 result = instance.process()
 ```

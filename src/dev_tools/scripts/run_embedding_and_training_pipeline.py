@@ -47,7 +47,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / 'src'))
 
 from transformers import AutoTokenizer
 
-from core.models.impressioncore_b3_architecture import ImpressionCoreB3Model3B, run_full_embedding_extraction
+from src.core.models.impressioncore_b3_architecture import ImpressionCoreB3Model3B, run_full_embedding_extraction
 
 console = Console()
 

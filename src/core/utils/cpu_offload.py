@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.cpu_offload import MainClass
+from src.core.utils.cpu_offload import MainClass
 instance = MainClass()
 result = instance.process()
 ```

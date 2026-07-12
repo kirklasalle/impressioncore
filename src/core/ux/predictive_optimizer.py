@@ -49,9 +49,9 @@ try:
     MemoryTracker = None  # Use simplified memory tracking
 except ImportError:
     try:
-        from core.utils.rich_enhancements import RichTextManager
-        from core.utils.rich_logging import RichLogger
-        from core.utils.rich_status_animation import RichStatusAnimation
+        from src.core.utils.rich_enhancements import RichTextManager
+        from src.core.utils.rich_logging import RichLogger
+        from src.core.utils.rich_status_animation import RichStatusAnimation
         CORE_UTILS_AVAILABLE = True
         MemoryTracker = None  # Use simplified memory tracking
     except ImportError:

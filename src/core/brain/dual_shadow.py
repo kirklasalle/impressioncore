@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.dual_shadow import ShadowModelUpdateConfig
+from src.core.dual_shadow import ShadowModelUpdateConfig
 instance = ShadowModelUpdateConfig()
 result = instance.process()
 ```

@@ -41,7 +41,7 @@ from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeEl
 from torch.utils.data import DataLoader, Dataset
 from urllib3.util.retry import Retry
 
-from core.utils.amp_utils import autocast_context, create_grad_scaler
+from src.core.utils.amp_utils import autocast_context, create_grad_scaler
 
 # Set encoding for Windows compatibility
 if sys.platform.startswith('win'):
@@ -69,7 +69,7 @@ except Exception:
     pass
 
 # Import REAL B3 architecture
-from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
 
 
 # Clean Curriculum System - NO B1 DEPENDENCIES

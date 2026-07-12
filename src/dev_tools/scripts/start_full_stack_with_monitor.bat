@@ -36,10 +36,15 @@ call :check_file "src\interfaces\web_client\package.json" "Frontend package"
 call :check_cmd python "Python"
 call :check_cmd node "Node.js"
 call :check_cmd npm "npm"
+call :check_python_module cv2 "OpenCV cv2"
+call :check_python_module fastapi "FastAPI"
+call :check_python_module uvicorn "Uvicorn"
+call :check_python_module multipart "python-multipart"
 
-if "%FAIL%"=="1" (
+if not "!FAIL!"=="0" (
     echo.
-    echo [ERROR] Startup checks failed. Fix the missing requirements above.
+    echo [ERROR] Startup checks failed. Install the missing Python packages with:
+    echo         "%PY_EXE%" -m pip install -r requirements.txt
     exit /b 1
 )
 
@@ -117,6 +122,16 @@ if exist "%~1" (
 ) else (
     echo [MISSING] %~2 ^(%~1^)
     set "FAIL=1"
+)
+exit /b 0
+
+:check_python_module
+"%PY_EXE%" -c "import %~1" >nul 2>&1
+if errorlevel 1 (
+    echo [MISSING] Python module %~2
+    set "FAIL=1"
+) else (
+    echo [OK] Python module %~2 available
 )
 exit /b 0
 

@@ -26,7 +26,7 @@ src_path = Path(__file__).parent.parent
 if str(src_path) not in sys.path:
     sys.path.insert(0, str(src_path))
 
-from core.models.impressioncore_b3_architecture import (
+from src.core.models.impressioncore_b3_architecture import (
     B3Config,
     ImpressionCoreB3Model,
     extract_audio_embedding,
@@ -35,7 +35,7 @@ from core.models.impressioncore_b3_architecture import (
     extract_video_embedding,
     validate_environment,
 )
-from core.utils.rich_enhancements import get_rich_logger
+from src.core.utils.rich_enhancements import get_rich_logger
 
 logger = get_rich_logger(__name__)
 

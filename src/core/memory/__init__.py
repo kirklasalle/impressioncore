@@ -61,7 +61,8 @@ Notes:
 """
 
 from .manager import MemoryManager
+from .memory_manager import EmbeddingMemoryStore
 # Memory optimization: Memory-critical operation
 
-__all__ = ['MemoryManager']
+__all__ = ['MemoryManager', 'EmbeddingMemoryStore']
 # Memory optimization: Memory-critical operation

@@ -31,7 +31,7 @@ def my_enhanced_search_approach(user_query, context=""):
     # Get the project root (three levels up from current file)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     sys.path.insert(0, os.path.join(project_root, 'src'))
-    from core.utils.ids_tool_interface import IDSToolInterface, ids_enhance_search
+    from src.core.utils.ids_tool_interface import IDSToolInterface, ids_enhance_search
     
     # Step 1: Get IDS intelligence FIRST
     ids_enhancement = ids_enhance_search(user_query, context)

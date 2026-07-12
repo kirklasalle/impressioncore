@@ -69,6 +69,10 @@ class LLMTriadProvider(Protocol):
 
 _vector_provider: VectorMemoryProvider | None = None
 _triad_provider: LLMTriadProvider | None = None
+# Additive: native B3 Hope v1 provider, independent of the Left/Right/Colossus
+# triad. Registered separately so callers can opt into pure B3 inference
+# without disturbing the existing triad wiring.
+_b3_native_provider: LLMTriadProvider | None = None
 
 
 def register_vector_provider(provider: VectorMemoryProvider) -> None:
@@ -93,3 +97,15 @@ def get_vector_provider() -> VectorMemoryProvider | None:
 def get_triad_provider() -> LLMTriadProvider | None:
     """Return the registered LLM triad provider, or ``None`` if not yet wired."""
     return _triad_provider
+
+
+def register_b3_native_provider(provider: LLMTriadProvider) -> None:
+    """Register the native B3 Hope v1 provider (additive, called once at startup)."""
+    global _b3_native_provider
+    _b3_native_provider = provider
+    logger.info("agent0core: B3NativeLLMProvider registered (%s)", type(provider).__name__)
+
+
+def get_b3_native_provider() -> LLMTriadProvider | None:
+    """Return the registered native B3 provider, or ``None`` if not yet wired."""
+    return _b3_native_provider

@@ -61,7 +61,7 @@ def fix_device_compatibility():
 
     try:
         # Import and test B3 integration
-        from core.models.b3_unified_integration import create_optimized_b3_system
+        from src.core.models.b3_unified_integration import create_optimized_b3_system
 
         # Create system and test device placement
         with console.status("Creating optimized B3 system..."):

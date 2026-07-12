@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.creativity.adaptation import MainClass
+from src.core.brain.creativity.adaptation import MainClass
 instance = MainClass()
 result = instance.process()
 ```

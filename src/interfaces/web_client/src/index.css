@@ -3,16 +3,81 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-950 text-slate-100 font-mono;
+  @apply bg-ic-bg text-txt-primary font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — matches OrbOS */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  @apply bg-slate-900;
+  @apply bg-ic-bg;
 }
+
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded;
+  @apply bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Selection */
+::selection {
+  @apply bg-accent-cyan/20 text-txt-primary;
+}
+
+/* Card glow border */
+@layer components {
+  .card-glow {
+    @apply bg-ic-card rounded-xl border border-ic-border p-6 transition-all duration-300 hover:border-accent-cyan/25 hover:shadow-lg hover:shadow-accent-cyan/5;
+  }
+
+  .card-glow-sm {
+    @apply bg-ic-card rounded-lg border border-ic-border p-4 transition-all duration-300 hover:border-accent-cyan/25;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent;
+  }
+
+  .input-dark {
+    @apply w-full bg-ic-surface border border-ic-border rounded-lg px-4 py-2.5 text-txt-primary placeholder-txt-muted text-sm focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/25 transition-colors;
+  }
+
+  .label-upper {
+    @apply block text-[11px] font-semibold uppercase tracking-wider text-txt-secondary mb-1.5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-gradient-to-r from-accent-cyan to-accent-indigo text-white hover:shadow-lg hover:shadow-accent-cyan/25 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-ic-surface border border-ic-border text-txt-secondary hover:border-accent-cyan/30 hover:text-txt-primary transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-accent-danger/10 border border-accent-danger/30 text-accent-danger hover:bg-accent-danger/20 transition-all duration-200;
+  }
+
+  .stat-card {
+    @apply bg-ic-surface rounded-lg border border-ic-border p-3 text-center;
+  }
+
+  .step-badge {
+    @apply w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono shrink-0 bg-ic-surface border border-ic-border text-txt-muted;
+  }
+
+  .step-badge-active {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-indigo text-white border-transparent;
+  }
+
+  .step-badge-complete {
+    @apply bg-accent-success/20 border-accent-success text-accent-success;
+  }
 }

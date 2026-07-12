@@ -66,10 +66,10 @@ import numpy as np
 from PIL import Image
 
 try:
-    from core.tokenization import get_tokenizer
-    from core.modal_engine import ModalEngine, ModalityType
-    from core.tokenization.integration import TokenizationProcessor
-    from core.api import ImpressionCoreAPI
+    from src.core.tokenization import get_tokenizer
+    from src.core.modal_engine import ModalEngine, ModalityType
+    from src.core.tokenization.integration import TokenizationProcessor
+    from src.core.api import ImpressionCoreAPI
     
     TOKENIZATION_AVAILABLE = True
 except ImportError:

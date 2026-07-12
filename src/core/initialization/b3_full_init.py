@@ -134,7 +134,7 @@ class B3FullInitializer:
                 sys.path.insert(0, src_path)
 
             # Import B3 components
-            from core.models.impressioncore_b3_architecture import (
+            from src.core.models.impressioncore_b3_architecture import (
                 B3Config,
                 B3Config3B,
                 ImpressionCoreB3Model,
@@ -260,7 +260,7 @@ class B3FullInitializer:
             return True
 
         try:
-            from core.models.impressioncore_b3_architecture import (
+            from src.core.models.impressioncore_b3_architecture import (
                 extract_audio_embedding,
                 extract_image_embedding,
                 extract_text_embedding,

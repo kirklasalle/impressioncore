@@ -160,11 +160,59 @@ graph TD
 
 ## 8. Dependencies
 
-- `librosa`
-- `numpy`
-- `soundfile` (or alternative for loading diverse formats)
-- `webrtcvad` (optional, for VAD)
-- `pydub` (optional, for format conversion or simple manipulations)
+### Required
+
+| Package | Version | Purpose | Install |
+|---------|---------|---------|---------|
+| `librosa` | ≥0.10.0 | Audio feature extraction (MFCC, Mel, Chroma, Tonnetz) | `pip install librosa` |
+| `soundfile` | ≥0.12.0 | Audio I/O (WAV, FLAC, OGG) | `pip install soundfile` |
+| `numpy` | ≥1.20.0 | Numerical operations | `pip install numpy` |
+| `torchaudio` | ≥2.0.0 | GPU-accelerated audio transforms | See CUDA note below |
+| `audioread` | ≥3.0.0 | MP3 and format decoding backend | `pip install audioread` |
+
+### Optional
+
+| Package | Version | Purpose | Install |
+|---------|---------|---------|---------|
+| `webrtcvad` | ≥2.0.10 | Voice Activity Detection | `pip install webrtcvad` |
+| `pydub` | ≥0.25.0 | Format conversion, simple manipulations | `pip install pydub` |
+
+### Installation
+
+**Standard install (all required):**
+
+```bash
+pip install librosa soundfile audioread
+```
+
+**torchaudio with CUDA 12.4 (matches ImpressionCore's torch 2.6.0+cu124):**
+
+```bash
+pip install torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+**Full install (required + optional):**
+
+```bash
+pip install librosa soundfile audioread webrtcvad pydub
+pip install torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+### CUDA Compatibility
+
+- `torchaudio` must match the installed `torch` CUDA version
+- Current target: `torch 2.6.0+cu124` → `torchaudio 2.6.0+cu124`
+- `librosa` is CPU-only — zero VRAM impact, safe for GTX 1050 Ti
+- `soundfile` wraps libsndfile (C library) — minimal memory footprint (~2MB)
+
+### Status (as of March 2026)
+
+- ✅ `librosa 0.11.0` — Installed and verified
+- ✅ `soundfile 0.13.1` — Installed and verified
+- ✅ `torchaudio 2.6.0+cu124` — Installed and verified
+- ✅ `audioread 3.1.0` — Installed (librosa dependency)
+- ⬚ `webrtcvad` — Not installed (optional, for advanced VAD)
+- ⬚ `pydub` — Not installed (optional, for format conversion)
 
 ## 9. Future Enhancements
 

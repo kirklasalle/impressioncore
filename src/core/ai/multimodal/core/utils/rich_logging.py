@@ -32,7 +32,7 @@ Stub for core.ai.multimodal.core.utils.rich_logging
 Re-exports core.utils.rich_logging for advanced utility compatibility.
 """
 try:
-    from core.utils.rich_logging import *
+    from src.core.utils.rich_logging import *
 except ImportError:
     # Provide a minimal fallback if rich_logging is unavailable
     import logging

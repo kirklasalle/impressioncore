@@ -78,10 +78,10 @@ import torch
 import torch.nn as nn
 from flask import Blueprint, jsonify, request
 
-from ...core.utils.rich_logging import RichLogger
+from src.core.utils.rich_logging import RichLogger
 
 # ImpressionCore imports
-from ...deployment.deployment_manager import (
+from src.deployment.deployment_manager import (
     DeploymentConfig,
     DeploymentManager,
     DeploymentTarget,
@@ -93,7 +93,7 @@ from ...deployment.deployment_manager import (
 deployment_bp = Blueprint('deployment', __name__, url_prefix='/api/v1/deployment')
 
 # Initialize logger
-logger = RichLogger(__name__).get_logger()
+logger = RichLogger(__name__).logger
 
 # Global deployment tracking
 active_deployments: dict[str, dict[str, Any]] = {}

@@ -40,7 +40,7 @@ TODO:
 
 Examples:
     # Basic usage example
-    from core.utils.attention_utils import setup_attention_chunking
+    from src.core.utils.attention_utils import setup_attention_chunking
     model = ...
     model = setup_attention_chunking(model, chunk_size=128)
 

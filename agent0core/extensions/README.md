@@ -38,4 +38,4 @@ async def on_tool_call(agent, tool_name, params):
 
 ## Prime Directive
 
-All extensions must comply with the 7 Laws. Extensions that violate the Prime Directive will not be loaded.
+All extensions must comply with the 10 Laws. Extensions that violate the Prime Directive will not be loaded.

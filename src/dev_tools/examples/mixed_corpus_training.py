@@ -76,9 +76,9 @@ logger = logging.getLogger(__name__)
 try:
     # Import ImpressionCore components
     from src.core.config.config_manager import ConfigManager
-    from core.model import ImpressionCoreModel
+    from src.core.model import ImpressionCoreModel
     # Memory optimization: Explicit memory cleanup
-    from core.trainer import DistillationTrainer
+    from src.core.trainer import DistillationTrainer
     from torch.utils.data import DataLoader, Dataset, ConcatDataset
     from transformers import GPT2Tokenizer
 except ImportError as e:

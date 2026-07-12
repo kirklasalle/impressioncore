@@ -31,8 +31,8 @@ except ImportError:
     PYNVML_AVAILABLE = False
 
 try:
-    from core.utils.rich_enhancements import create_progress, create_panel
-    from core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_enhancements import create_progress, create_panel
+    from src.core.utils.rich_logging import setup_rich_logging
     RICH_AVAILABLE = True
 except ImportError:
     RICH_AVAILABLE = False

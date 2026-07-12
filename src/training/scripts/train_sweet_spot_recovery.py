@@ -31,8 +31,8 @@ logger = logging.getLogger(__name__)
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-from core.models.b3_unified_integration import UnifiedTokenizerSystem
-from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+from src.core.models.b3_unified_integration import UnifiedTokenizerSystem
+from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
 
 
 class SweetSpotRecoveryTrainer:

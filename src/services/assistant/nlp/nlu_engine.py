@@ -1114,3 +1114,66 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+# ---------------------------------------------------------------------------
+# Module-level convenience wrappers used by external bridges (e.g. dpa MCP)
+# ---------------------------------------------------------------------------
+# These manage a singleton NLUEngine so callers can do `quick_analyze(text)`
+# without constructing/initializing the engine themselves.
+
+_default_engine: Optional["NLUEngine"] = None
+_default_engine_lock = asyncio.Lock()
+
+
+async def _get_default_engine() -> "NLUEngine":
+    global _default_engine
+    if _default_engine is not None:
+        return _default_engine
+    async with _default_engine_lock:
+        if _default_engine is None:
+            engine = NLUEngine({})
+            await engine.initialize()
+            _default_engine = engine
+        return _default_engine
+
+
+async def quick_analyze(text: str, context: Optional[Dict[str, Any]] = None) -> "NLUResult":
+    """Async convenience wrapper: analyze `text` with a shared NLUEngine."""
+    engine = await _get_default_engine()
+    return await engine.process(text, context)
+
+
+async def extract_intent_only(text: str) -> "Intent":
+    result = await quick_analyze(text)
+    return result.intent
+
+
+async def extract_entities_only(text: str) -> List["Entity"]:
+    result = await quick_analyze(text)
+    return result.entities
+
+
+def _run_sync(coro):
+    """Run a coroutine synchronously, even from inside an existing event loop
+    (uses a worker thread in that case)."""
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        return asyncio.run(coro)
+    # Already in an event loop; run on a worker thread with its own loop.
+    import concurrent.futures
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+        return pool.submit(asyncio.run, coro).result()
+
+
+def quick_analyze_sync(text: str, context: Optional[Dict[str, Any]] = None) -> "NLUResult":
+    return _run_sync(quick_analyze(text, context))
+
+
+def extract_intent_only_sync(text: str) -> "Intent":
+    return _run_sync(extract_intent_only(text))
+
+
+def extract_entities_only_sync(text: str) -> List["Entity"]:
+    return _run_sync(extract_entities_only(text))

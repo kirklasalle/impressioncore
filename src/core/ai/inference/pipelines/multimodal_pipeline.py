@@ -54,19 +54,19 @@ import torch.nn as nn
 try:
     # Import from impressioncore-base directory using importlib for hyphenated names
     import importlib
-    impressioncore_base = importlib.import_module('src.training.models.impressioncore-base.b1_unified_model')
+    impressioncore_base = importlib.import_module('training.models.impressioncore-base.b1_unified_model')
     ImpressionCoreB1Model = impressioncore_base.ImpressionCoreB1UnifiedModel
     MODEL_AVAILABLE = True
 except ImportError:
     try:
         # Try alternative paths
         import importlib
-        other_module = importlib.import_module('src.training.models.architectures.b1.b1_model')
+        other_module = importlib.import_module('training.models.architectures.b1.b1_model')
         ImpressionCoreB1Model = other_module.ImpressionCoreB1Model
         MODEL_AVAILABLE = True
     except ImportError:
         try:
-            from src.training.models.architectures.b1.b1_model import ImpressionCoreB1Model  
+            from training.models.architectures.b1.b1_model import ImpressionCoreB1Model  
             MODEL_AVAILABLE = True
         except ImportError:
             MODEL_AVAILABLE = False
@@ -74,9 +74,11 @@ except ImportError:
 # Use real model if available, otherwise fallback
 if not MODEL_AVAILABLE:
         class ImpressionCoreB1Model(nn.Module):
-            def __init__(self, **kwargs):
+            def __init__(self, config=None, **kwargs):
                 super().__init__()
-                # Accept any kwargs for compatibility
+                # Accept positional config dict or kwargs for compatibility
+                if config is not None and isinstance(config, dict):
+                    kwargs.update(config)
                 self.input_dim = kwargs.get('input_dim', 768)
                 self.hidden_dim = kwargs.get('hidden_dim', 1024)
                 self.num_layers = kwargs.get('num_layers', 6)
@@ -227,7 +229,15 @@ class MultimodalPipeline:
                 }
             }
             
-            self.model = ImpressionCoreB1Model(model_config)
+            self.model = ImpressionCoreB1Model(
+                input_dim=model_config.get('ldt_config', {}).get('hidden_size', 768),
+                hidden_dim=model_config.get('text_encoder_config', {}).get('hidden_dim', 768),
+                num_layers=model_config.get('ldt_config', {}).get('num_layers', 6),
+                num_heads=model_config.get('ldt_config', {}).get('num_heads', 12),
+                dropout=model_config.get('ldt_config', {}).get('dropout', 0.1),
+                chunk_size=model_config.get('ldt_config', {}).get('max_seq_len', 512),
+                enable_gradient_checkpointing=model_config.get('ldt_config', {}).get('enable_gradient_checkpointing', True),
+            )
               # Load weights if provided or search for available weights
             if self.model_path and Path(self.model_path).exists():
                 self.logger.info(f"Loading weights from {self.model_path}")

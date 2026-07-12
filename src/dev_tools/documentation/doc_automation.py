@@ -55,7 +55,7 @@ try:
     from rich.text import Text
     from rich.table import Table
     from rich import print as rprint
-    from core.utils.rich_logging import get_rich_logger # Assuming this function exists
+    from src.core.utils.rich_logging import get_rich_logger # Assuming this function exists
     logger = get_rich_logger(__name__)
 except ImportError:
     # Fallback if rich or rich_logging is not available

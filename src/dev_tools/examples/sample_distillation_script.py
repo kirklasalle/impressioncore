@@ -56,10 +56,10 @@ Notes:
 import logging
 import torch
 from transformers import GPT2Tokenizer
-from core.config import ConfigManager
-from core.model import ImpressionCoreModel
+from src.core.config import ConfigManager
+from src.core.model import ImpressionCoreModel
 # Memory optimization: Explicit memory cleanup
-from core.trainer import DistillationTrainer
+from src.core.trainer import DistillationTrainer
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)

@@ -1,0 +1,4 @@
+# Build output — regenerated from source
+site/
+__pycache__/
+*.pyc

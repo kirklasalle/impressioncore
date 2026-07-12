@@ -48,9 +48,9 @@ try:
     MemoryTracker = None  # Use simplified memory tracking
 except ImportError:
     try:
-        from core.utils.rich_enhancements import RichTextManager
-        from core.utils.rich_logging import RichLogger
-        from core.utils.rich_status_animation import RichStatusAnimation
+        from src.core.utils.rich_enhancements import RichTextManager
+        from src.core.utils.rich_logging import RichLogger
+        from src.core.utils.rich_status_animation import RichStatusAnimation
         CORE_UTILS_AVAILABLE = True
         MemoryTracker = None  # Use simplified memory tracking
     except ImportError:
@@ -170,7 +170,7 @@ class PerformanceCorrelation:
 
 class SentimentAnalyzer:
     """Lightweight sentiment analysis for user feedback."""
-      def __init__(self):
+    def __init__(self):
         self.logger = RichLogger("SentimentAnalyzer") if CORE_UTILS_AVAILABLE else logging.getLogger(__name__)
         self.rich_manager = RichTextManager() if CORE_UTILS_AVAILABLE else None
         self.memory_tracker = MemoryTracker() if MemoryTracker else None

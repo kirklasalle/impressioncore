@@ -21,7 +21,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 # Add src to path
 sys.path.append('src')
-from core.models.b3_architecture import B3Config, B3Model
+from src.core.models.b3_architecture import B3Config, B3Model
 
 
 class SweetSpotTrainer:

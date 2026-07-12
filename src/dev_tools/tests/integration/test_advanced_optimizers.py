@@ -39,7 +39,7 @@ from pathlib import Path
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core.utils.memory_optimization.advanced_optimizer import (
+from src.core.utils.memory_optimization.advanced_optimizer import (
     get_memory_efficient_optimizer,
     MemoryEfficientOptimizerManager,
     MemoryOptimizationConfig,

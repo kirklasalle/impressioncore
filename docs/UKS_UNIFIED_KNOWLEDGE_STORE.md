@@ -4,9 +4,10 @@
 
 ## Overview
 
-The Unified Knowledge Store (UKS) is ImpressionCore-b1's memory system designed for storing, retrieving, and reasoning over structured knowledge. It serves as both a persistent knowledge base and a dynamic memory system that can be enriched through interaction with BrainSim3.
+The Unified Knowledge Store (UKS) is ImpressionCore memory system designed for storing, retrieving, and reasoning over structured knowledge. It serves as both a persistent knowledge base and a dynamic memory system that can be enriched through interaction with BrainSim3.
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Architecture](#architecture)
 - [Core Components](#core-components)
@@ -26,7 +27,8 @@ UKS is designed to efficiently represent and operate on semantic knowledge in a 
 - Efficiently stores complex hierarchical knowledge
 - Integrates with other components of ImpressionCore-b1
 
-Implementation: 
+Implementation:
+
 - Python: `src/core/brainsim/memory/unified_knowledge_store.py`
 - C#: `src/core/brainsim3/UKS/`
 
@@ -140,6 +142,7 @@ UKS implements several optimizations for memory-constrained environments:
 - **Pruning**: Periodically removes low-relevance or stale knowledge
 
 Memory usage example:
+
 - 10,000 entities with relationships: ~50MB memory
 - Full solar system knowledge graph: ~4MB memory
 - Complete knowledge graph with 100,000 entities: ~250MB memory
@@ -247,6 +250,7 @@ The UKS implementation uses specialized data structures to maximize efficiency:
 ### Core Algorithms
 
 1. **Knowledge Insertion**
+
 ```python
 def add_entity(name, concepts, properties, relationships):
     # Check if entity exists
@@ -268,7 +272,8 @@ def add_entity(name, concepts, properties, relationships):
     return entity_id
 ```
 
-2. **Graph Traversal**
+1. **Graph Traversal**
+
 ```python
 def traverse_relationships(start_id, relationship_type, max_depth=3):
     visited = set()
@@ -294,7 +299,8 @@ def traverse_relationships(start_id, relationship_type, max_depth=3):
     return results
 ```
 
-3. **Inference Engine**
+1. **Inference Engine**
+
 ```python
 def apply_inference_rules(rules, max_iterations=5):
     new_facts = True
@@ -324,6 +330,7 @@ UKS uses a custom binary format for efficient storage:
 5. **Value Store**: Compressed data values
 
 Sample file structure:
+
 ```
 UKS_FILE_HEADER (16 bytes)
 NODE_COUNT (4 bytes)
@@ -374,24 +381,28 @@ The graph shows a near-linear scaling in memory usage and query time up to 100,0
 The UKS system will continue to evolve with these planned enhancements:
 
 ### Short-term (Q3 2025)
+
 - **Distributed UKS**: Support for sharding large knowledge bases across multiple machines
 - **Streaming Updates**: Real-time knowledge base updates with minimal locking
 - **Advanced Inference**: Probabilistic reasoning with uncertainty handling
 - **CUDA Acceleration**: GPU-accelerated graph operations for complex queries
 
 ### Medium-term (Q4 2025 - Q1 2026)
+
 - **Knowledge Distillation**: Automatic summarization of knowledge graphs
 - **Temporal Reasoning**: First-class support for time-based relationships and facts
 - **Multimodal Knowledge**: Integration with visual and audio knowledge representations
 - **Self-healing Consistency**: Automatic detection and resolution of knowledge conflicts
 
 ### Long-term (Q2 2026+)
+
 - **Neuromorphic Integration**: Direct mapping between UKS and neuromorphic hardware
 - **Autonomous Knowledge Acquisition**: Self-directed knowledge gathering and organization
 - **Quantum-resistant Security**: Protection of sensitive knowledge with post-quantum cryptography
 - **Conscious Knowledge Access**: Integration with higher-order cognitive processes in BrainSim4
 
 ### Research Directions
+
 1. **Compression Techniques**: Further reducing memory footprint without sacrificing performance
 2. **Explainable Inference**: Making reasoning paths transparent and understandable
 3. **Cross-domain Knowledge Transfer**: Methods for applying knowledge from one domain to another

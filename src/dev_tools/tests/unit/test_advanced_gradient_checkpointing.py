@@ -34,7 +34,7 @@ import time
 # Add src to Python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
-from core.utils.gradient_checkpointing import (
+from src.core.utils.gradient_checkpointing import (
     PerformanceMetrics,
     AdaptiveCheckpointSelector,
     MemoryPressureMonitor,

@@ -79,7 +79,7 @@ class Phase2ReadinessVerification:
         self.start_time = time.time()
 
         # Paths
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent.parent
         self.phase1_results = self.project_root / "src" / "memlog" / "b3_phase1_integration"
         self.phase2_prep = self.project_root / "src" / "memlog" / "b3_phase2_preparation"
         self.reports_path = self.project_root / "src" / "memlog" / "phase2_readiness"

@@ -33,13 +33,22 @@ dependencies = [
     "pynvml>=11.5.0",
     "networkx>=3.0",
     "faiss-cpu",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "python-multipart>=0.0.9",
+    "timm>=1.0.0",
+    "comtypes>=1.4.0; platform_system == 'Windows'",
     "python-dotenv>=0.19.0",
     "tiktoken>=0.4.0",
     "PyYAML>=6.0",
     "scipy>=1.10.0",
     "pandas>=2.0.0",
     "scikit-learn>=1.2.0",
+    "sounddevice>=0.4.6",
+    "pywin32>=306; platform_system == 'Windows'",
+    "WMI>=1.5.1; platform_system == 'Windows'",
     "pillow>=9.0.0",
+    "opencv-python>=4.8.0",
     "matplotlib>=3.7.0",
 ]
 
@@ -237,7 +246,9 @@ omit = [
 ]
 
 [tool.coverage.report]
-fail_under = 1.5          # ratchet: 0.96% → 1.59% (Phase 6); target 5% next
+fail_under = 8            # ratchet: 0.96% → 1.59% (Phase 6) → 8.20% measured (2026-07-01, was falsely 1.59%
+                           # because 7 test-collection errors from syntax corruption were silently excluding
+                           # ~180 files from ever running); target 10% next, matches CI gate
 show_missing = true
 skip_empty = true
 

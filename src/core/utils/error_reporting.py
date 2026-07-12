@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.error_reporting import MainClass
+from src.core.utils.error_reporting import MainClass
 instance = MainClass()
 result = instance.process()
 ```

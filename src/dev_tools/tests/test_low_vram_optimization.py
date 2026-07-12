@@ -57,7 +57,7 @@ import sys
 sys.path.insert(0, 'd:/Projects/impressioncore/src')
 
 try:
-    from core.utils.low_vram_optimization import optimize_for_low_vram
+    from src.core.utils.low_vram_optimization import optimize_for_low_vram
     print("Import successful")
 except ImportError as e:
     print(f"ImportError: {e}")

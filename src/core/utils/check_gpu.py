@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.check_gpu import MainClass
+from src.core.utils.check_gpu import MainClass
 instance = MainClass()
 result = instance.process()
 ```

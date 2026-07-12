@@ -559,13 +559,11 @@ python -m src.training.rlm.dashboard --port 8888
 - [B3 Training Strategy](file:///d:/Projects/impressioncore/docs/strategic/b3/B3_COMPREHENSIVE_TRAINING_STRATEGY.md)
 - [RLM Research Report](file:///C:/Users/kirkl/.gemini/antigravity/brain/952494ce-e35b-4760-aa55-b940828b6406/rlm_research_report.md)
 
----
-
 ## 🛡️ Prime Directive Compliance
 
-> **Authority:** [Permanent Active Directives](file:///d:/Projects/impressioncore/Prime_Directive.txt) - IMMUTABLE
+> **Authority:** [Permanent Active Directives](file:///d:/Projects/impressioncore/docs/reference/Permanent_Active_Directives.md) - IMMUTABLE
 
-### 7 Laws Verification
+### 10 Laws Verification
 
 | Law | Requirement | RLM Training Compliance |
 |-----|-------------|------------------------|
@@ -576,6 +574,9 @@ python -m src.training.rlm.dashboard --port 8888
 | **Fifth** | No judicial authority | ✅ Not applicable - no legal processing |
 | **Sixth** | Privacy and data protection | ✅ Training uses synthetic/public datasets only |
 | **Seventh** | No deception/manipulation | ✅ Anti-reward-hacking enforces truthful outputs |
+| **Eighth** | Equity and neutrality | ✅ Data sourcing is balanced to ensure bias-free training |
+| **Ninth** | Explainability and fallback | ✅ Model outputs NEXUS trace; falls back to simple summarization if complex reasoning fails |
+| **Tenth** | Operational boundaries | ✅ System is contained within the runtime sandbox; cannot self-replicate |
 
 ### Core Tenets Alignment
 
@@ -603,6 +604,6 @@ python -m src.training.rlm.dashboard --port 8888
 
 *This plan represents Phase 2 of the NEXUS-RLM integration, building on the language features implemented in v1.2-1.4. Successful completion will enable ImpressionCore to process arbitrarily large contexts while maintaining answer quality and efficiency.*
 
-**Document Version:** 2.0  
-**Last Updated:** January 20, 2026  
+**Document Version:** 2.1  
+**Last Updated:** July 01, 2026  
 **Update Author:** Kirk LaSalle; Antigravity Agent

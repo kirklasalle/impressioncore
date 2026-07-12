@@ -7,10 +7,10 @@ semantic memory recall works correctly.
 import sys
 from pathlib import Path
 
-# Add project roots
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / "src"))
+# Add project roots dynamically
+_REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+sys.path.insert(0, str(_REPO_ROOT))
+sys.path.insert(0, str(_REPO_ROOT / "src"))
 
 def main():
     try:
@@ -32,7 +32,7 @@ def main():
                 "type": "architecture",
             },
             {
-                "text": "Agent0Core is governed by the Prime Directive: 7 laws for intelligent systems including Stability, Hardware, and Truth.",
+                "text": "Agent0Core is governed by the Prime Directive: 10 laws for intelligent systems.",
                 "type": "governance",
             },
             {

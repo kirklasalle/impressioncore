@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.modal_engine import ModalityType
+from src.core.modal_engine import ModalityType
 instance = ModalityType()
 result = instance.process()
 ```

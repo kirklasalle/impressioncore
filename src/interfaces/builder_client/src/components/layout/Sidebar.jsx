@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { Home, ChevronDown, ChevronRight, Menu, X, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { PIPELINE_STEPS, KNOWLEDGE_NAV, ADVANCED_NAV } from '../../lib/constants';
+import { PIPELINE_STEPS, HARNESS_NAV, HARNESS_SECTION_DESC, ADVANCED_NAV } from '../../lib/constants';
+import useWalkthroughProgress from '../../hooks/useWalkthroughProgress';
 
-const SidebarSection = ({ title, children, defaultOpen = true }) => {
+const SidebarSection = ({ title, subtitle, children, defaultOpen = true, titleSize }) => {
     const [open, setOpen] = useState(defaultOpen);
     return (
         <div className="mb-2">
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between px-4 py-2 text-[10px] font-semibold uppercase tracking-widest text-txt-muted hover:text-txt-secondary transition-colors"
+                className={cn(
+                    'w-full flex items-center justify-between px-4 py-2 font-semibold uppercase tracking-widest text-txt-muted hover:text-txt-secondary transition-colors',
+                    titleSize || 'text-[10px]'
+                )}
             >
-                {title}
+                <span>
+                    {title}
+                    {subtitle && <span className="block text-[9px] font-normal normal-case tracking-normal text-txt-muted/60">{subtitle}</span>}
+                </span>
                 {open ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
             </button>
             {open && <div className="space-y-0.5">{children}</div>}
@@ -20,7 +27,7 @@ const SidebarSection = ({ title, children, defaultOpen = true }) => {
     );
 };
 
-const SidebarLink = ({ to, icon: Icon, label, badge }) => {
+const SidebarLink = ({ to, icon: Icon, label, badge, completed, indicator }) => {
     const location = useLocation();
     const isActive = location.pathname === to;
     return (
@@ -30,23 +37,35 @@ const SidebarLink = ({ to, icon: Icon, label, badge }) => {
                 'flex items-center gap-3 px-4 py-2 mx-2 rounded-lg text-sm transition-all duration-200',
                 isActive
                     ? 'bg-gradient-to-r from-accent-cyan/15 to-accent-indigo/10 text-accent-cyan border-l-2 border-accent-cyan'
-                    : 'text-txt-secondary hover:text-txt-primary hover:bg-ic-hover'
+                    : completed
+                        ? 'text-accent-success hover:text-accent-success hover:bg-accent-success/5'
+                        : 'text-txt-secondary hover:text-txt-primary hover:bg-ic-hover'
             )}
         >
             {badge != null ? (
-                <span className={cn('step-badge', isActive && 'step-badge-active')}>
-                    {badge}
-                </span>
+                completed ? (
+                    <span className="step-badge step-badge-complete">
+                        <CheckCircle2 size={14} />
+                    </span>
+                ) : (
+                    <span className={cn('step-badge', isActive && 'step-badge-active')}>
+                        {badge}
+                    </span>
+                )
             ) : (
                 Icon && <Icon size={16} className="shrink-0" />
             )}
             <span className="truncate">{label}</span>
+            {indicator}
         </NavLink>
     );
 };
 
 export default function Sidebar() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const { completed: walkthroughCompleted, allComplete } = useWalkthroughProgress();
+    const walkthroughActive = walkthroughCompleted.size > 0 && !allComplete;
+    const homeRoute = walkthroughActive ? '/walkthrough' : '/';
 
     return (
         <>
@@ -75,7 +94,7 @@ export default function Sidebar() {
             )}>
                 {/* Header */}
                 <div className="p-5 border-b border-ic-border">
-                    <NavLink to="/" className="flex items-center gap-3 group" onClick={() => setMobileOpen(false)}>
+                    <NavLink to={homeRoute} className="flex items-center gap-3 group" onClick={() => setMobileOpen(false)}>
                         <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white font-bold text-sm">
                             IC
                         </div>
@@ -94,25 +113,38 @@ export default function Sidebar() {
                 <nav className="flex-1 overflow-y-auto py-4 space-y-1" onClick={() => setMobileOpen(false)}>
                     {/* Home */}
                     <div className="mb-2">
-                        <SidebarLink to="/" icon={Home} label="Home" />
+                        <SidebarLink
+                            to={homeRoute}
+                            icon={Home}
+                            label="Home"
+                            indicator={walkthroughActive ? (
+                                <span className="ml-auto flex items-center gap-1.5 text-[10px] font-mono text-accent-cyan">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse" />
+                                    {walkthroughCompleted.size}/{PIPELINE_STEPS.length}
+                                </span>
+                            ) : allComplete ? (
+                                <CheckCircle2 size={12} className="ml-auto text-accent-success" />
+                            ) : null}
+                        />
                     </div>
 
                     {/* Build Walkthrough (pipeline steps) */}
                     <SidebarSection title="Build Pipeline">
-                        {PIPELINE_STEPS.map((step) => (
+                        {PIPELINE_STEPS.map((step, idx) => (
                             <SidebarLink
                                 key={step.key}
                                 to={step.route}
                                 icon={step.icon}
                                 label={step.label}
                                 badge={step.num}
+                                completed={walkthroughCompleted.has(idx)}
                             />
                         ))}
                     </SidebarSection>
 
-                    {/* Knowledge & AI */}
-                    <SidebarSection title="Knowledge & AI" defaultOpen={false}>
-                        {KNOWLEDGE_NAV.map((item) => (
+                    {/* Harness — post-build integration layer (UKS, Rules, Inheritance) */}
+                    <SidebarSection title="Harness" subtitle={HARNESS_SECTION_DESC} defaultOpen={false} titleSize="text-xs">
+                        {HARNESS_NAV.map((item) => (
                             <SidebarLink key={item.key} to={item.route} icon={item.icon} label={item.label} />
                         ))}
                     </SidebarSection>

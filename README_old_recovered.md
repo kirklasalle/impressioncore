@@ -489,7 +489,6 @@ ImpressionCore's achievements have been documented and celebrated:
 
 ImpressionCore is released under the **MIT License** - maximizing accessibility while protecting innovation:
 
-```
 MIT License
 
 Copyright (c) 2025 ImpressionCore Project
@@ -503,7 +502,6 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-```
 
 ### **Additional Legal Notes**
 
@@ -571,8 +569,6 @@ ImpressionCore represents humanity's best opportunity to make professional AI ac
 
 **Together, we can make professional AI training as accessible as web browsing.**
 
----
-
-**ImpressionCore: Democratizing AI, One GPU at a Time™**
+## ImpressionCore: Democratizing AI, One GPU at a Time™
 
 *Building tomorrow's AI accessibility today, on today's consumer hardware.*

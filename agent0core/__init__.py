@@ -7,7 +7,7 @@ Author: ImpressionCore Team
 This package provides autonomous agent capabilities for ImpressionCore,
 integrating Agent Zero framework with existing MCP servers and the B3 model.
 
-All agents are governed by the Prime Directive (7 Laws for Intelligent Systems).
+All agents are governed by the Prime Directive (10 Laws for Intelligent Systems).
 """
 
 __version__ = "0.1.0"

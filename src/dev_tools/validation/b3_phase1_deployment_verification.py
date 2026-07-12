@@ -66,7 +66,7 @@ class B3Phase1DeploymentVerification:
 
     def __init__(self):
         self.console = Console()
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent.parent
         self.verification_path = self.project_root / "src" / "memlog" / "b3_phase1_deployment_verification"
         self.verification_path.mkdir(parents=True, exist_ok=True)
 

@@ -29,7 +29,7 @@ print("=" * 50)
 
 # Import B3 components directly
 try:
-    from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+    from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
     print("✅ B3 components imported successfully")
 except ImportError as e:
     print(f"❌ Import error: {e}")

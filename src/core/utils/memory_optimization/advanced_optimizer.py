@@ -56,7 +56,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_optimization.advanced_optimizer import MemoryOptimizationConfig
+from src.core.utils.memory_optimization.advanced_optimizer import MemoryOptimizationConfig
 instance = MemoryOptimizationConfig()
 result = instance.process()
 ```

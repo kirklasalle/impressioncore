@@ -18,10 +18,10 @@ import warnings
 # Core utilities
 ADVANCED_UTILS_AVAILABLE = False
 try:
-    from core.utils.gpu_memory_manager import GPUMemoryManager
-    from core.utils.rich_status_animation import StatusAnimation
-    from src.dev_tools.performance_optimizer import PerformanceOptimizer
-    from src.dev_tools.memory_manager import MemoryManager
+    from src.core.utils.gpu_memory_manager import GPUMemoryManager
+    from src.core.utils.rich_status_animation import StatusAnimation
+    from dev_tools.performance_optimizer import PerformanceOptimizer
+    from dev_tools.memory_manager import MemoryManager
     ADVANCED_UTILS_AVAILABLE = True
 except ImportError:
     logging.warning("⚠️  Advanced utilities not available - using fallbacks")

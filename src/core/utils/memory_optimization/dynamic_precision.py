@@ -39,7 +39,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_optimization.dynamic_precision import MainClass
+from src.core.utils.memory_optimization.dynamic_precision import MainClass
 instance = MainClass()
 result = instance.process()
 ```

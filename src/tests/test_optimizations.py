@@ -41,7 +41,7 @@ import pytest
 pytest.importorskip("core.models", reason="core.models not available in current path layout")
 import torch
 
-from core.models.impressioncore_b3_architecture import (
+from src.core.models.impressioncore_b3_architecture import (
     AssemblyOfExperts,
     B3Config,
     ImpressionCoreB3Model,

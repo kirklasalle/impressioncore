@@ -76,4 +76,8 @@ body {
     .step-badge-active {
         @apply bg-gradient-to-r from-accent-cyan to-accent-indigo text-white border-transparent;
     }
+
+    .step-badge-complete {
+        @apply bg-accent-success/20 border-accent-success text-accent-success;
+    }
 }

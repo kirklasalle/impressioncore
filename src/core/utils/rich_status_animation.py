@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.rich_status_animation import StatusAnimation
+from src.core.utils.rich_status_animation import StatusAnimation
 instance = StatusAnimation()
 result = instance.process()
 ```

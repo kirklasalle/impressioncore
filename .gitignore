@@ -112,6 +112,16 @@ bin/
 *.pdf
 *.pkl
 
+# Explicit large artifacts (audit: vector_database_1.db was 4GB in repo)
+src/core/vector_database_1.db
+src/core/vector_database_1/
+
+# Backup and temp files (audit: 17 .bak/.resolved files found in active code)
+*.bak
+*.backup_*
+*.resolved
+*.append_temp
+
 # Deployment packages (contain full project copies)
 src/deployment/
 

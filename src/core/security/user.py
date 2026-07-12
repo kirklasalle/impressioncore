@@ -4,7 +4,7 @@ ImpressionCore: User
 
 Module for user functionality in the ImpressionCore framework.
 
-File: security\user.py
+File: security/user.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -98,6 +98,42 @@ class User:
         hashed_password = hashlib.sha256(salted_password).hexdigest()
         return f'{salt.hex()}:{hashed_password}'
 
+    def to_dict(self) -> Dict:
+        """
+        Serialize this user to a plain dict suitable for JSON persistence.
+
+        Note: stores the already-hashed password (``password_hash``), never
+        the plaintext password, so round-tripping through ``from_dict``
+        preserves the hash rather than re-hashing.
+        """
+        return {
+            "user_id": self.user_id,
+            "username": self.username,
+            "password_hash": self.password_hash,
+            "email": self.email,
+            "personal_data": self.personal_data,
+            "security_questions": self.security_questions,
+            "authentication_factors": self.authentication_factors,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict) -> "User":
+        """
+        Reconstruct a :class:`User` from a dict produced by :meth:`to_dict`.
+
+        Bypasses ``__init__`` (which would re-hash a plaintext password) and
+        restores the stored ``password_hash`` directly.
+        """
+        user = cls.__new__(cls)
+        user.user_id = data.get("user_id") or str(uuid.uuid4())
+        user.username = data["username"]
+        user.password_hash = data.get("password_hash", "")
+        user.email = data.get("email", "")
+        user.personal_data = data.get("personal_data") or {}
+        user.security_questions = data.get("security_questions") or {}
+        user.authentication_factors = data.get("authentication_factors") or []
+        return user
+
     def verify_password(self, password: str) -> bool:
         """
         Verify the password against the stored hash.
@@ -140,38 +176,4 @@ if __name__ == "__main__":
     print(f"User ID: {user.user_id}")
     print(f"Username: {user.username}")
     print(f"Password hash: {user.password_hash}")
-    print(f"Password verification: {user.verify_password('password123')}")\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\security\user.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [security]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
+    print(f"Password verification: {user.verify_password('password123')}")

@@ -20,6 +20,11 @@ except Exception as _exc:
     _triad_import_error = str(_exc)
     UnifiedBrainTriad = None  # type: ignore[assignment,misc]
 
+# Module-level marker: every test here that calls _create_triad() loads the
+# full InternVL2-1B multimodal model (network download + GPU/VRAM
+# allocation), which is far too heavy for the default fast unit-test run.
+pytestmark = [pytest.mark.integration, pytest.mark.slow]
+
 
 class TestSwarmBridgeIntegration(unittest.TestCase):
 

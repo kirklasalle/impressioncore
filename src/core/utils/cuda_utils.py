@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.cuda_utils import CudaMonitor
+from src.core.utils.cuda_utils import CudaMonitor
 instance = CudaMonitor()
 result = instance.process()
 ```

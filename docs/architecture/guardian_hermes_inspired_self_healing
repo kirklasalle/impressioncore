@@ -1,0 +1,56 @@
+# PRISM Guardian & Hermes Agent Self-Healing System Architecture
+
+This document describes the design, integration patterns, and operational flow of the PRISM Self-Healing and Self-Improving system, drawing inspiration from the **Nous Research Hermes Agent** paradigm.
+
+## 1. The Hermes Agent Blueprint
+The Nous Research Hermes Agent (released in early 2026) is designed for persistent, multi-session operation on local or remote infrastructure. Its defining feature is a **closed learning loop**:
+
+```mermaid
+graph TD
+    A[Execute Complex Task] --> B[Evaluate Outcome & Trace]
+    B --> C{Successful?}
+    C -- Yes --> D[Extract Reasoning Pattern as a Skill]
+    C -- No --> E[Trigger Self-Healing Diagnostic Sweep]
+    D --> F[Persist to Skill Store as JSON/YAML]
+    E --> G[Formulate Virtual Repair Patch or Support Ticket]
+    F --> H[Refine Skills with Feedback & Telemetry]
+    G --> H
+```
+
+*   **Skill Extraction:** Successful execution chains are modularized into structured procedures (skills) and persisted to disk.
+*   **Self-Healing Loop:** Failed tasks trigger diagnostic sweeps, creating support entries or applying virtual repair patches.
+*   **Long-Term Memory:** Sessions, logs, and skills are indexed and reviewed periodically to refine behavior.
+
+---
+
+## 2. PRISM Mapping: The Guardian as a Custodian Agent
+PRISM maps the Hermes blueprint onto the **Guardian Agent** (a permanent, non-reapable system agent) and the **Skills Engine** (a durable, step-based workflow execution framework).
+
+### 2.1 Role Boundaries
+*   **The CAC Character Agent:** Handles user-facing interactive sessions and tab-level operations.
+*   **The Guardian Agent:** Acts as the background system custodian. It runs periodic tasks (cron-like checks), monitors log volumes, and executes custodian skills to verify directive integrity, MCP health, and system telemetry.
+
+### 2.2 Periodic Self-Review Flow
+The Guardian periodically triggers log analysis and system self-reviews. It evaluates the live `ActivityBus` event stream to:
+1.  Detect warnings, failures, or anomalous behaviors (e.g. AAB ledger issues).
+2.  Raise tickets in the SQLite **Support Desk** database (`support_tickets`) when faults are found.
+3.  Execute dynamic custodian skills to attempt automatic restoration or self-healing.
+4.  Refine and update files in the **Knowledge Base** (`artifacts/self-review/` and `skills/`) to record learned patterns and prevent recurrence.
+
+---
+
+## 3. Implementation of the Log Analysis & Self-Improvement Skill
+
+To implement this intelligently, we define a dedicated custodian skill: **`skill.custodian.log-analysis`**.
+
+### 3.1 Skill Definition: `skills/guardian/skill.custodian.log-analysis.json`
+This skill instructs the Guardian to:
+1.  Read recent logs from the ActivityBus/database and identify repeating failures or system drift.
+2.  Triage issues by creating support tickets and referencing relevant KB files.
+3.  Write self-review analysis summaries to `artifacts/self-review/self-review-latest.json`.
+4.  Optionally create or refine local skill rules based on successful outcomes.
+
+### 3.2 Scheduled Execution (Cron)
+This self-review is triggered:
+*   **On a Timer/Cron:** Every 10 minutes, the Guardian runs the `log_review_analysis` task.
+*   **Autonomous Loop:** The active Character Agent can also invoke this skill programmatically when executing diagnostic workflows.

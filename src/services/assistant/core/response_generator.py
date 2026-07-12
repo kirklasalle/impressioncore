@@ -730,7 +730,8 @@ class ResponseGenerator:
             # Pass the context manager if available in metadata or session_context
             context_manager=context.metadata.get('context_manager') or context.session_context.get('context_manager')
         )
-      async def generate_response(self, 
+
+    async def generate_response(self, 
                               user_input_or_context,
                               nlu_result: Optional[Any] = None,
                               conversation_history: Optional[List[Any]] = None,

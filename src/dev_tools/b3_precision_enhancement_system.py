@@ -81,7 +81,7 @@ class B3PrecisionEnhancementSystem:
         self.start_time = time.time()
 
         # Paths
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent
         self.b3_enhanced_path = self.project_root / "b3_enhanced"
         self.precision_output_path = self.project_root / "b3_precision_enhanced"
         self.reports_path = self.project_root / "src" / "memlog" / "b3_precision_enhancement"

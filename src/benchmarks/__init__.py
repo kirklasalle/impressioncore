@@ -5,33 +5,34 @@ ImpressionCore Benchmarks Package
 File: src/benchmarks/__init__.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-01-06 (System Timestamp)
-Status: B1-FOCUSED DEVELOPMENT
+Updated: April 2026
+Status: B1 + B3 DEVELOPMENT
 
 Purpose: Export benchmarking infrastructure for ImpressionCore performance
-         testing, optimization, and validation specifically focused on B1 model.
+         testing, optimization, and validation for B1 and B3 models.
 
 Authors:
 - GitHub Copilot (Performance Engineering Lead)
 - Kirk LaSalle (Project Owner)
 
 License: MIT
-Copyright (c) 2025 ImpressionCore Team
+Copyright (c) 2025-2026 ImpressionCore Team
 
-Tags: [benchmarks, performance, optimization, b1, testing, 2025]
+Tags: [benchmarks, performance, optimization, b1, b3, testing, 2026]
 """
 
 # Core benchmark infrastructure
 from .b1_performance_suite import B1PerformanceBenchmark
+from .b3_performance_suite import B3PerformanceBenchmark
 
-# Benchmark utilities and helpers
 __all__ = [
-    "B1PerformanceBenchmark"
+    "B1PerformanceBenchmark",
+    "B3PerformanceBenchmark",
 ]
 
-# Version information
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __author__ = "ImpressionCore Team"
-__description__ = "Performance benchmarking infrastructure for ImpressionCore-B1"
+__description__ = "Performance benchmarking infrastructure for ImpressionCore B1 and B3"
 
 def quick_b1_benchmark(output_dir: str = "benchmarks/results") -> dict:
     """
@@ -86,3 +87,23 @@ def benchmark_b1_compatibility():
     """Quick B1 hardware compatibility benchmark."""
     benchmark = B1PerformanceBenchmark()
     return benchmark.benchmark_hardware_compatibility()
+
+
+# ── B3 Quick Access Functions ────────────────────────────────────────────
+
+def quick_b3_benchmark(output_dir: str = "benchmarks/results/b3") -> dict:
+    """Quick B3 performance benchmark (all 8 dimensions)."""
+    try:
+        benchmark = B3PerformanceBenchmark(output_dir=output_dir)
+        return benchmark.run_comprehensive_benchmark()
+    except Exception as e:
+        print(f"❌ B3 Quick Benchmark Failed: {e}")
+        return {"success": False, "error": str(e)}
+
+def benchmark_b3_latency():
+    """Quick B3 inference latency benchmark."""
+    return B3PerformanceBenchmark().benchmark_inference_latency()
+
+def benchmark_b3_vram():
+    """Quick B3 VRAM utilization benchmark."""
+    return B3PerformanceBenchmark().benchmark_vram_utilization()

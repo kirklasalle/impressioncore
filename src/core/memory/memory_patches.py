@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.memory_patches import MainClass
+from src.core.memory_patches import MainClass
 instance = MainClass()
 result = instance.process()
 ```

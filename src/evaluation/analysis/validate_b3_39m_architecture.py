@@ -29,7 +29,7 @@ def validate_b3_39m_architecture():
 
     try:
         # Import B3 components
-        from core.models.impressioncore_b3_architecture import (
+        from src.core.models.impressioncore_b3_architecture import (
             AssemblyOfExperts,
             B3Config,
             BrainInspiredTransformerLayer,

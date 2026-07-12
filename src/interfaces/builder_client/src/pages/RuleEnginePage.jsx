@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Shield, Plus, Power, Trash2, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
+import HarnessPageHeader from '../components/layout/HarnessPageHeader';
+import TemplateGallery from '../components/harness/TemplateGallery';
+import CustomRuleGuide from '../components/harness/CustomRuleGuide';
 import { Card, CardTitle, Input, Select, Badge, Toggle } from '../components/ui';
+import { listRules, addRule as apiAddRule, deleteRule as apiDeleteRule, toggleRule as apiToggleRule } from '../lib/api';
+import { RULE_TEMPLATES } from '../lib/harnessTemplates';
 import { cn } from '../lib/utils';
 import toast from 'react-hot-toast';
+
+const RULE_STORAGE_KEY = 'ic_applied_rule_templates';
 
 const PRIORITIES = [
     { value: 'critical', label: 'Critical', color: 'danger' },
@@ -20,33 +27,86 @@ const CATEGORIES = [
     { value: 'custom', label: 'Custom' },
 ];
 
-const DEFAULT_RULES = [
-    { id: 1, name: 'No harmful content', category: 'safety', priority: 'critical', active: true, condition: 'output contains harmful_keywords', action: 'Block and log' },
-    { id: 2, name: 'PII redaction', category: 'safety', priority: 'critical', active: true, condition: 'output matches PII_regex', action: 'Redact matched text' },
-    { id: 3, name: 'Response length limit', category: 'output', priority: 'medium', active: true, condition: 'token_count > 4096', action: 'Truncate with notice' },
-    { id: 4, name: 'Ethical guidelines', category: 'ethics', priority: 'high', active: true, condition: 'topic in ethical_sensitive_list', action: 'Apply ethical framework' },
-];
-
 export default function RuleEnginePage() {
-    const [rules, setRules] = useState(DEFAULT_RULES);
+    const [rules, setRules] = useState([]);
     const [newRule, setNewRule] = useState({
         name: '', category: 'safety', priority: 'medium', condition: '', action: '',
     });
     const [showAdd, setShowAdd] = useState(false);
+    const [appliedTemplates, setAppliedTemplates] = useState(() => {
+        try { return new Set(JSON.parse(localStorage.getItem(RULE_STORAGE_KEY) || '[]')); }
+        catch { return new Set(); }
+    });
+    const [applyingId, setApplyingId] = useState(null);
 
-    const toggleRule = (id) => {
-        setRules((p) => p.map((r) => r.id === id ? { ...r, active: !r.active } : r));
+    // Load persisted rules on mount
+    useEffect(() => {
+        listRules().then(({ data }) => {
+            if (data.success) setRules(data.rules);
+        }).catch(() => { });
+    }, []);
+
+    const toggleRule = async (id) => {
+        try {
+            const { data } = await apiToggleRule(id);
+            if (data.success) {
+                setRules((p) => p.map((r) => r.id === id ? { ...r, active: data.rule.active } : r));
+            }
+        } catch {
+            setRules((p) => p.map((r) => r.id === id ? { ...r, active: !r.active } : r));
+        }
     };
-    const removeRule = (id) => {
-        setRules((p) => p.filter((r) => r.id !== id));
-        toast('Rule removed');
+    const removeRule = async (id) => {
+        try {
+            await apiDeleteRule(id);
+            setRules((p) => p.filter((r) => r.id !== id));
+            toast('Rule removed');
+        } catch {
+            setRules((p) => p.filter((r) => r.id !== id));
+            toast('Rule removed');
+        }
     };
-    const addRule = () => {
+    const addRule = async () => {
         if (!newRule.name || !newRule.condition || !newRule.action) return toast.error('Fill all fields');
-        setRules((p) => [...p, { ...newRule, id: Date.now(), active: true }]);
-        setNewRule({ name: '', category: 'safety', priority: 'medium', condition: '', action: '' });
-        setShowAdd(false);
-        toast.success('Rule added');
+        try {
+            const { data } = await apiAddRule(newRule);
+            if (data.success) {
+                setRules((p) => [...p, data.rule]);
+                setNewRule({ name: '', category: 'safety', priority: 'medium', condition: '', action: '' });
+                setShowAdd(false);
+                toast.success('Rule added');
+            } else {
+                toast.error(data.error || 'Failed to add rule');
+            }
+        } catch (err) {
+            toast.error(err.response?.data?.error || 'Failed to add rule');
+        }
+    };
+
+    // Apply a rule template suite — adds rules, skipping duplicates by name
+    const applyTemplate = async (template) => {
+        setApplyingId(template.id);
+        const existingNames = new Set(rules.map((r) => r.name.toLowerCase()));
+        let added = 0;
+        try {
+            for (const rule of template.rules) {
+                if (existingNames.has(rule.name.toLowerCase())) continue;
+                const { data } = await apiAddRule(rule);
+                if (data.success) {
+                    setRules((p) => [...p, data.rule]);
+                    existingNames.add(rule.name.toLowerCase());
+                    added++;
+                }
+            }
+            const next = new Set([...appliedTemplates, template.id]);
+            setAppliedTemplates(next);
+            localStorage.setItem(RULE_STORAGE_KEY, JSON.stringify([...next]));
+            toast.success(`Applied "${template.name}" — ${added} new rules added`);
+        } catch (err) {
+            toast.error(`Error applying template: ${err.message}`);
+        } finally {
+            setApplyingId(null);
+        }
     };
 
     const active = rules.filter((r) => r.active).length;
@@ -54,6 +114,35 @@ export default function RuleEnginePage() {
 
     return (
         <ContentArea title="Rule Engine" subtitle="Define safety, behavior, and content filtering rules.">
+            <HarnessPageHeader
+                section="Harness · Rule Engine"
+                description="The Rule Engine is the UKS reasoning layer that evaluates conditional IF-THEN rules against the knowledge graph state at inference time. It enables you to define safety filters, ethical constraints, content policies, and behavioral guardrails that shape your model's output — all without retraining. Rules execute in priority order: critical rules fire first, ensuring safety constraints always take precedence."
+                capabilities={[
+                    'Define conditional rules with IF condition → THEN action patterns',
+                    'Categorize rules: Safety, Ethics, Content Filter, Behavior, Output Format, Custom',
+                    'Set priority levels: Critical, High, Medium, Low',
+                    'Toggle rules on/off without deleting them',
+                    'Monitor active vs. disabled rule counts in real time',
+                    'Rules apply at inference time — no model retraining required',
+                ]}
+                builderContext="Part of the UKS subsystem within the Harness. Rules operate on the Knowledge Store at inference time — they constrain and shape model behavior without retraining. This is optional: your model works without rules, but rules add guardrails for safety, compliance, and behavioral alignment."
+                reference="Rule evaluation follows a priority-ordered execution model with condition/action factories. Conditions are evaluated against UKS state; if all conditions are true, the rule fires and its actions are applied. Supports rule chaining and execution tracing for debugging."
+            />
+
+            <TemplateGallery
+                title="Rule Templates"
+                description="Pre-built rule suites for safety, ethics, content quality, and behavioral alignment — apply with one click."
+                templates={RULE_TEMPLATES}
+                onApply={applyTemplate}
+                appliedIds={appliedTemplates}
+                loadingId={applyingId}
+                variant="additive"
+                itemLabel="rules"
+                itemCount={(t) => t.rules.length}
+            />
+
+            <CustomRuleGuide />
+
             {/* Stats */}
             <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="stat-card"><span className="text-lg font-bold text-txt-primary">{rules.length}</span><span className="text-[10px] text-txt-muted">Total Rules</span></div>

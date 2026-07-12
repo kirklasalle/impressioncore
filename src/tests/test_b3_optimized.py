@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
 """Test B3 Optimized Architecture"""
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+
 import pytest
 
-pytest.importorskip("b3_optimized_trainer", reason="Legacy root script archived")
+try:
+    from src.archive.training_experiments.b3_optimized_trainer import B3OptimizedConfig, ImpressionCoreB3Optimized
+except ImportError:
+    try:
+        from archive.training_experiments.b3_optimized_trainer import B3OptimizedConfig, ImpressionCoreB3Optimized
+    except ImportError:
+        # If legacy trainer is completely removed/archived in other ways, mock them or importorskip
+        import pytest
+        pytest.skip("Legacy archived b3_optimized_trainer is not importable.")
 import torch
-from b3_optimized_trainer import B3OptimizedConfig, ImpressionCoreB3Optimized
 
 print("🧪 Testing B3 Optimized Architecture...")
 

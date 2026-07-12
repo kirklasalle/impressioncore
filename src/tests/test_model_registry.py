@@ -12,7 +12,7 @@ if str(_src) not in sys.path:
     sys.path.insert(0, str(_src))
 
 pytest.importorskip("core.models", reason="core.models not available in current path layout")
-from core.models import registry
+from src.core.models import registry
 
 
 def test_registry_lists_entry():
@@ -20,7 +20,9 @@ def test_registry_lists_entry():
 
 
 def test_b3_unified_bridge_factory_lazy():
+    from unittest.mock import patch
     entry = registry.MODEL_REGISTRY['b3_unified_bridge']
-    payload = entry()
+    with patch('src.core.models.unified_tokenizer_system.UnifiedTokenizerSystem.initialize_tokenizers', return_value=True):
+        payload = entry()
     assert 'instance' in payload
     assert payload['instance'] is not None

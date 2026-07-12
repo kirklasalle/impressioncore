@@ -66,7 +66,7 @@ sys.path.append(str(project_root))
 
 # Import GPU utilities
 # Memory optimization: Memory-critical operation
-from core.gpu_utils import setup_cuda_environment, get_device, verify_cuda_installation
+from src.core.gpu_utils import setup_cuda_environment, get_device, verify_cuda_installation
 # Memory optimization: Device placement for memory management
 
 # Configure logging

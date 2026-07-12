@@ -53,8 +53,8 @@ import torch
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from core.utils.rich_enhancements import create_rich_console
-from core.utils.rich_logging import setup_rich_logging
+from src.core.utils.rich_enhancements import create_rich_console
+from src.core.utils.rich_logging import setup_rich_logging
 from training.high_school_distillation_trainer import HighSchoolDistillationTrainer, HighSchoolTrainingConfig
 
 console = create_rich_console()

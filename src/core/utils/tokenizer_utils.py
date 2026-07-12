@@ -49,7 +49,7 @@ def load_generative_model_and_tokenizer(model_name: str = DEFAULT_GENERATIVE_MOD
     model.eval()
     return tokenizer, model
 
-def generate_text(prompt: str, tokenizer, model, device: str | None = None, max_length: int = 64) -> str:
+def generate_text(prompt: str, tokenizer, model, device: str | None = None, max_length: int = 64, **gen_kwargs) -> str:
     """
     Generates text from a prompt using a generative model.
 
@@ -59,6 +59,7 @@ def generate_text(prompt: str, tokenizer, model, device: str | None = None, max_
         model: HuggingFace generative model.
         device (str, optional): Device to run inference on (e.g., 'cpu', 'cuda').
         max_length (int): Maximum length of generated text.
+        **gen_kwargs: Additional generation parameters (temperature, top_p, top_k, do_sample).
 
     Returns:
         str: Generated text response.
@@ -67,8 +68,11 @@ def generate_text(prompt: str, tokenizer, model, device: str | None = None, max_
         device = "cuda" if torch.cuda.is_available() else "cpu"
     model = model.to(device)
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    # Defaults, overridden by gen_kwargs
+    params = dict(max_length=max_length, do_sample=True, top_p=0.95, top_k=50, temperature=0.8, pad_token_id=tokenizer.eos_token_id)
+    params.update({k: v for k, v in gen_kwargs.items() if v is not None})
     with torch.no_grad():
-        outputs = model.generate(**inputs, max_length=max_length, do_sample=True, top_p=0.95, top_k=50, temperature=0.8, pad_token_id=tokenizer.eos_token_id)
+        outputs = model.generate(**inputs, **params)
     generated = tokenizer.decode(outputs[0], skip_special_tokens=True)
     # Remove the prompt from the output for a clean reply
     if generated.startswith(prompt):

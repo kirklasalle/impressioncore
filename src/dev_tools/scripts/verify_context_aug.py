@@ -2,8 +2,8 @@
 import asyncio
 import sys
 
-# Add project root to path
-sys.path.append('d:/Projects/impressioncore')
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 async def verify_context_aug():
     try:
@@ -41,7 +41,7 @@ async def verify_context_aug():
         print("\n--- PHASE 2: Testing Proactive Knowledge Search ---")
         # Ask something related to documentation (e.g., SAL or Prime Directive)
         # Note: We indexed the docs/ directory in the previous step.
-        response = await agent.process_message("What are the 7 Laws for Intelligent Systems?")
+        response = await agent.process_message("What are the 10 Laws for Intelligent Systems?")
 
         print(f"Agent Response: {response.content}")
         if "Prime Directive" in response.content or "Law" in response.content:

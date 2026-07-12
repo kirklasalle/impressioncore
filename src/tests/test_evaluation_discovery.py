@@ -24,7 +24,11 @@ def test_eval_deprecated_forwarder():
     except ModuleNotFoundError:
         import pytest
         pytest.skip("eval package not available (deprecated forwarder not created)")
-    assert hasattr(mod, 'eval_placeholder')
+    # NOTE: the forwarder's contract changed — it now re-exports
+    # `B3PerformanceBenchmark` from `benchmarks.b3_performance_suite`
+    # instead of a bare `eval_placeholder` symbol. Assert on the current,
+    # real contract rather than the stale placeholder name.
+    assert hasattr(mod, 'B3PerformanceBenchmark')
 
 
 def test_benchmarks_deprecated_shim():

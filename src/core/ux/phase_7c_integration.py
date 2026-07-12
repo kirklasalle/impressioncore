@@ -41,9 +41,9 @@ try:
     MemoryTracker = None  # Use simplified memory tracking
 except ImportError:
     try:
-        from core.utils.rich_enhancements import RichTextManager
-        from core.utils.rich_logging import RichLogger
-        from core.utils.rich_status_animation import RichStatusAnimation
+        from src.core.utils.rich_enhancements import RichTextManager
+        from src.core.utils.rich_logging import RichLogger
+        from src.core.utils.rich_status_animation import RichStatusAnimation
         CORE_UTILS_AVAILABLE = True
         MemoryTracker = None  # Use simplified memory tracking
     except ImportError:
@@ -76,19 +76,19 @@ try:
     )
 except ImportError:
     try:
-        from core.ux.ml_adaptation import (
+        from src.core.ux.ml_adaptation import (
             MLAdaptationEngine, 
             UserBehaviorPattern, 
             AdaptationParameters,
             PerformanceMetrics
         )
-        from core.ux.feedback_system import (
+        from src.core.ux.feedback_system import (
             ComprehensiveFeedbackSystem,
             FeedbackType,
             SatisfactionMetrics,
             PerformanceCorrelation
         )
-        from core.ux.predictive_optimizer import (
+        from src.core.ux.predictive_optimizer import (
             PredictiveOptimizer,
             PredictionType,
             OptimizationRecommendation,

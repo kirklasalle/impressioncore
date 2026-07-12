@@ -20,7 +20,7 @@ def main():
     """Main UI entry point."""
     print("=" * 60)
     print("  Agent0Core Web UI")
-    print("  Governed by the Prime Directive (7 Laws)")
+    print("  Governed by the Prime Directive (10 Laws)")
     print("=" * 60)
     print()
 

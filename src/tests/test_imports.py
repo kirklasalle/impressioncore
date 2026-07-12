@@ -42,7 +42,7 @@ def test_basic_imports():
     surface real problems instead of masking them as skips.
     """
     try:
-        from training.datasets.data_loading import get_embedding_dataloaders
+        from training.datasets.data_loading import load_text_data
     except ModuleNotFoundError as e:  # pragma: no cover - transitional
         pytest.skip(f"training package not yet importable: {e}")
     except ImportError as e:  # Differentiate internal errors

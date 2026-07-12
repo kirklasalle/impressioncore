@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.loss_analysis import MainClass
+from src.core.loss_analysis import MainClass
 instance = MainClass()
 result = instance.process()
 ```

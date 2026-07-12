@@ -376,7 +376,7 @@ class VRGCEnhancedWebMCPServer:
                             "filter_academic": {
                                 "type": "boolean",
                                 "description": "Filter for academic and research sources",
-                                "default": True
+                                "default": False
                             },
                             "use_operators": {
                                 "type": "boolean",
@@ -988,7 +988,7 @@ class VRGCEnhancedWebMCPServer:
         query = args.get("query")
         search_engines = args.get("search_engines", ["google", "duckduckgo"])
         result_count = args.get("result_count", 10)
-        filter_academic = args.get("filter_academic", True)
+        filter_academic = args.get("filter_academic", False)
         use_operators = args.get("use_operators", True)
         google_operators = args.get("google_operators", {})
         
@@ -1008,12 +1008,31 @@ class VRGCEnhancedWebMCPServer:
                     if google_results.get("results"):
                         all_results.extend(google_results["results"])
                         engines_used.append("google")
+                    else:
+                        # Fallback to DuckDuckGo search if Google fails/blocked
+                        self._log_info("Google search returned no results. Falling back to DuckDuckGo search.")
+                        ddg_results = await self._duckduckgo_search(query, result_count)
+                        if ddg_results.get("results"):
+                            all_results.extend(ddg_results["results"])
+                            engines_used.append("duckduckgo (google fallback)")
                         
                 elif engine.lower() == "duckduckgo":
                     ddg_results = await self._duckduckgo_search(query, result_count)
                     if ddg_results.get("results"):
-                        all_results.extend(ddg_results["results"])
-                        engines_used.append("duckduckgo")
+                        # Avoid adding duplicates if already added by fallback
+                        for r in ddg_results["results"]:
+                            if r not in all_results:
+                                all_results.append(r)
+                        if "duckduckgo" not in engines_used and "duckduckgo (google fallback)" not in engines_used:
+                            engines_used.append("duckduckgo")
+            
+            # If still no results and duckduckgo wasn't explicitly searched, force DDG search as a last resort
+            if not all_results and "duckduckgo" not in [e.lower() for e in search_engines]:
+                self._log_info("All requested engines failed. Forcing DuckDuckGo search fallback.")
+                ddg_results = await self._duckduckgo_search(query, result_count)
+                if ddg_results.get("results"):
+                    all_results.extend(ddg_results["results"])
+                    engines_used.append("duckduckgo (last-resort fallback)")
             
             # Remove duplicates based on URL
             unique_results = []
@@ -1022,16 +1041,20 @@ class VRGCEnhancedWebMCPServer:
                 if result.get("url") not in seen_urls:
                     seen_urls.add(result.get("url"))
                     
-                    # Score for academic content if filtering is enabled
-                    if filter_academic:
-                        result["academic_score"] = self._score_academic_content(result)
+                    # Score for academic content
+                    result["academic_score"] = self._score_academic_content(result)
                     
                     unique_results.append(result)
             
-            # Filter and sort by academic score if requested
+            # Filter by academic score if requested, but fall back if it filters out all results
             if filter_academic:
-                unique_results = [r for r in unique_results if r.get("academic_score", 0) > 0.3]
-                unique_results.sort(key=lambda x: x.get("academic_score", 0), reverse=True)
+                filtered = [r for r in unique_results if r.get("academic_score", 0) > 0.3]
+                if filtered:
+                    unique_results = filtered
+                    unique_results.sort(key=lambda x: x.get("academic_score", 0), reverse=True)
+                else:
+                    self._log_info("Academic filtering returned 0 results; bypassing filter to return general results.")
+                    unique_results.sort(key=lambda x: x.get("academic_score", 0), reverse=True)
             
             # Limit to requested count
             unique_results = unique_results[:result_count]
@@ -1944,7 +1967,30 @@ class VRGCEnhancedWebMCPServer:
         return " ".join(query_parts)
     
     async def _duckduckgo_search(self, query: str, result_count: int) -> Dict[str, Any]:
-        """Perform DuckDuckGo search (privacy-focused fallback)."""
+        """Perform DuckDuckGo search (using library, falling back to raw HTML if needed)."""
+        # Try library search first
+        try:
+            from duckduckgo_search import DDGS
+            with DDGS() as ddgs:
+                ddg_results = list(ddgs.text(query, max_results=result_count))
+                if ddg_results:
+                    results = []
+                    for r in ddg_results:
+                        results.append({
+                            "title": r.get("title", "No Title"),
+                            "url": r.get("href", ""),
+                            "snippet": r.get("body", ""),
+                            "source": "duckduckgo",
+                            "academic_score": 0
+                        })
+                    return {
+                        "status": "success",
+                        "results": results
+                    }
+        except Exception as library_exc:
+            self._log_info(f"DDG library search failed: {library_exc}. Falling back to raw HTML search.")
+
+        # Fallback to direct HTML requests
         try:
             search_url = f"https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}"
             headers = {"User-Agent": self.user_agent}
@@ -1975,9 +2021,9 @@ class VRGCEnhancedWebMCPServer:
                 "results": results
             }
             
-        except Exception as e:
+        except Exception as html_exc:
             return {
-                "error": f"DuckDuckGo search failed: {str(e)}",
+                "error": f"DuckDuckGo search failed (HTML fallback failed): {str(html_exc)}",
                 "query": query
             }
 
@@ -2014,9 +2060,15 @@ async def main():
                 request = json.loads(line)
                 
                 if request.get("method") == "initialize":
-                    print(json.dumps(init_response))
+                    response_with_id = dict(init_response)
+                    response_with_id["id"] = request.get("id")
+                    print(json.dumps(response_with_id))
                     sys.stdout.flush()
-                    
+
+                elif request.get("method") and request.get("method").startswith("notifications/"):
+                    # Notifications carry no id and require no response.
+                    continue
+
                 elif request.get("method") == "tools/list":
                     tools_response = {
                         "jsonrpc": "2.0",

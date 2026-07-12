@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.communication.__init__ import MainClass
+from src.core.brain.communication.__init__ import MainClass
 instance = MainClass()
 result = instance.process()
 ```

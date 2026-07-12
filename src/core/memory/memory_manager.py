@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.memory_manager import MemorySnapshot
+from src.core.memory_manager import MemorySnapshot
 instance = MemorySnapshot()
 result = instance.process()
 ```
@@ -63,9 +63,12 @@ import psutil
 import gc
 import os
 import logging
+import warnings
 from typing import Dict, Any, Optional, List, Tuple, Union
 from dataclasses import dataclass
 from contextlib import contextmanager
+
+import numpy as np
 
 # Import rich enhancements for beautiful logging
 try:
@@ -96,6 +99,105 @@ class MemorySnapshot:
     cpu_available: float
     timestamp: str
 
+class EmbeddingMemoryStore:
+    """
+    Lightweight NumPy-backed nearest-neighbor embedding memory store.
+
+    Used as a simple associative memory for multimodal embedding vectors
+    (e.g. by ``src.core.initialization.b3_full_initialization``) when a
+    full vector-DB backend (FAISS, etc.) is unnecessary. Not GPU-aware —
+    intended for small-to-moderate embedding counts on constrained
+    hardware where an exact brute-force L2 search is cheap enough.
+    """
+
+    def __init__(self, embed_dim: int):
+        """
+        Args:
+            embed_dim: Dimensionality of embeddings this store will hold.
+        """
+        self.embed_dim = embed_dim
+        self.index: Optional[np.ndarray] = None  # (N, embed_dim) float32
+        self.is_trained = False
+
+    def train(self, samples: "np.ndarray") -> None:
+        """
+        No-op "training" step for API parity with index-based backends
+        (e.g. FAISS IVF indexes that require a training pass). The NumPy
+        brute-force store needs no training; this simply marks the store
+        as ready.
+
+        Args:
+            samples: Sample embeddings, shape (N, embed_dim). Unused beyond
+                validating dimensionality.
+        """
+        samples = np.asarray(samples)
+        if samples.ndim == 2 and samples.shape[-1] != self.embed_dim:
+            raise ValueError(
+                f"Sample embedding dim {samples.shape[-1]} != store embed_dim {self.embed_dim}"
+            )
+        self.is_trained = True
+
+    def add_embeddings(self, embeddings: "np.ndarray") -> None:
+        """
+        Append new embedding vectors to the store.
+
+        Args:
+            embeddings: Array of shape (N, embed_dim) to add.
+        """
+        embeddings = np.asarray(embeddings, dtype=np.float32)
+        if embeddings.ndim == 1:
+            embeddings = embeddings.reshape(1, -1)
+        if embeddings.shape[-1] != self.embed_dim:
+            raise ValueError(
+                f"Embedding dim {embeddings.shape[-1]} != store embed_dim {self.embed_dim}"
+            )
+        if self.index is None:
+            self.index = embeddings.copy()
+        else:
+            self.index = np.concatenate([self.index, embeddings], axis=0)
+
+    def retrieve_memory(
+        self, query: "np.ndarray", k: int = 3
+    ) -> Tuple["np.ndarray", "np.ndarray"]:
+        """
+        Retrieve the ``k`` nearest stored embeddings to ``query`` by L2 distance.
+
+        Args:
+            query: Query vector(s), shape (embed_dim,) or (Q, embed_dim).
+            k: Number of nearest neighbors to return.
+
+        Returns:
+            (distances, indices), each shape (Q, min(k, N)). Empty arrays
+            (shape (0,)) if the store has no embeddings yet.
+        """
+        if self.index is None or len(self.index) == 0:
+            return np.empty((0,), dtype=np.float32), np.empty((0,), dtype=np.int64)
+
+        query = np.asarray(query, dtype=np.float32)
+        if query.ndim == 1:
+            query = query.reshape(1, -1)
+
+        k = min(k, len(self.index))
+        # Brute-force squared L2 distance: ||q - x||^2 for all stored x.
+        diffs = self.index[None, :, :] - query[:, None, :]  # (Q, N, D)
+        dists = np.sum(diffs ** 2, axis=-1)  # (Q, N)
+        indices = np.argsort(dists, axis=-1)[:, :k]
+        distances = np.take_along_axis(dists, indices, axis=-1)
+        return distances, indices
+
+    def get_memory_state(self) -> Dict[str, Any]:
+        """
+        Return a summary of the store's current state.
+
+        Returns:
+            Dict with ``total_memories`` (int) and ``embedding_dimension`` (int).
+        """
+        return {
+            "total_memories": 0 if self.index is None else len(self.index),
+            "embedding_dimension": self.embed_dim,
+        }
+
+
 class MemoryManager:
 # Memory optimization: Memory-critical operation
     """
@@ -107,7 +209,7 @@ class MemoryManager:
     utilities for running AI models on constrained hardware.
     """
     
-    def __init__(self, enable_monitoring: bool = True):
+    def __init__(self, enable_monitoring: bool = True, embed_dim: Optional[int] = None):
         """
         Initialize the memory manager.
         # Memory optimization: Memory-critical operation
@@ -115,7 +217,26 @@ class MemoryManager:
         Args:
             enable_monitoring: Whether to enable continuous memory monitoring
             # Memory optimization: Memory-critical operation
+            embed_dim: Deprecated. Passing this constructs an embedding
+                memory store instead — use :class:`EmbeddingMemoryStore`
+                directly. Kept for backward compatibility with older
+                callers that used ``MemoryManager(embed_dim=...)`` as an
+                embedding store.
         """
+        if embed_dim is not None:
+            warnings.warn(
+                "MemoryManager(embed_dim=...) is deprecated; use "
+                "EmbeddingMemoryStore(embed_dim=...) directly instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            self._embedding_store = EmbeddingMemoryStore(embed_dim=embed_dim)
+            self.embed_dim = embed_dim
+            self.index = self._embedding_store.index
+            self.is_trained = self._embedding_store.is_trained
+        else:
+            self._embedding_store = None
+
         self.enable_monitoring = enable_monitoring
         self.vram_usage = 0
         self.models_registry = {}
@@ -145,6 +266,46 @@ class MemoryManager:
             # Memory optimization: Memory-critical operation
                 print_info(f"GPU Devices: {self.device_count}, Primary: {self.primary_device}")
                 # Memory optimization: Device placement for memory management
+
+    # -- Deprecated EmbeddingMemoryStore delegation ------------------------
+    # These methods only function when this MemoryManager was constructed
+    # with `embed_dim=...` (the deprecated embedding-store mode). They
+    # delegate to an internal EmbeddingMemoryStore instance for backward
+    # compatibility with older callers (e.g. b3_full_initialization.py).
+
+    def train(self, samples: Any) -> None:
+        """Deprecated: delegates to EmbeddingMemoryStore.train()."""
+        if self._embedding_store is None:
+            raise AttributeError(
+                "train() requires MemoryManager(embed_dim=...) construction"
+            )
+        self._embedding_store.train(samples)
+        self.is_trained = self._embedding_store.is_trained
+
+    def add_embeddings(self, embeddings: Any) -> None:
+        """Deprecated: delegates to EmbeddingMemoryStore.add_embeddings()."""
+        if self._embedding_store is None:
+            raise AttributeError(
+                "add_embeddings() requires MemoryManager(embed_dim=...) construction"
+            )
+        self._embedding_store.add_embeddings(embeddings)
+        self.index = self._embedding_store.index
+
+    def retrieve_memory(self, query: Any, k: int = 3):
+        """Deprecated: delegates to EmbeddingMemoryStore.retrieve_memory()."""
+        if self._embedding_store is None:
+            raise AttributeError(
+                "retrieve_memory() requires MemoryManager(embed_dim=...) construction"
+            )
+        return self._embedding_store.retrieve_memory(query, k=k)
+
+    def get_memory_state(self) -> Dict[str, Any]:
+        """Deprecated: delegates to EmbeddingMemoryStore.get_memory_state()."""
+        if self._embedding_store is None:
+            raise AttributeError(
+                "get_memory_state() requires MemoryManager(embed_dim=...) construction"
+            )
+        return self._embedding_store.get_memory_state()
 
     def track_vram(self, tensor: Any, name: str = "unnamed") -> None:
         """

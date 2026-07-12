@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ page_title | default('ImpressionCore Wiki') }}{% endblock %} — ImpressionCore Wiki
+    </title>
+    <meta name="description"
+        content="{% block description %}{{ meta_description | default('ImpressionCore — Brain-inspired multimodal AI framework documentation') }}{% endblock %}">
+    {% if tags %}
+    <meta name="keywords" content="{{ tags | join(', ') }}">{% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ root_path }}css/cyberpunk.css">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+    </button>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{{ root_path }}index.html" class="sidebar-brand">
+                <div class="sidebar-logo">IC</div>
+                <div>
+                    <div class="sidebar-title">ImpressionCore</div>
+                    <div class="sidebar-subtitle">WIKI</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="sidebar-search">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="sidebarSearch" placeholder="Search docs…" autocomplete="off">
+        </div>
+
+        <nav class="sidebar-nav" id="sidebarNav">
+            {% for cat in categories %}
+            <div class="sidebar-section{% if not loop.first and loop.index > 5 %} collapsed{% endif %}"
+                data-section="{{ cat.slug }}">
+                <button class="sidebar-section-toggle">
+                    {{ cat.name }}
+                    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+                <div class="sidebar-section-links">
+                    <a href="{{ root_path }}{{ cat.slug }}/index.html"
+                        class="sidebar-link{% if active_category == cat.slug and not active_page %} active{% endif %}">
+                        <span class="link-icon">📂</span>
+                        All {{ cat.name }}
+                        <span class="doc-count">{{ cat.doc_count }}</span>
+                    </a>
+                    {% for doc in cat.docs[:15] %}
+                    <a href="{{ root_path }}{{ cat.slug }}/{{ doc.slug }}.html"
+                        class="sidebar-link{% if active_page == doc.slug %} active{% endif %}">
+                        {{ doc.title | truncate(30) }}
+                    </a>
+                    {% endfor %}
+                    {% if cat.docs | length > 15 %}
+                    <a href="{{ root_path }}{{ cat.slug }}/index.html" class="sidebar-link"
+                        style="color:var(--txt-muted);font-size:.78rem">
+                        + {{ cat.docs | length - 15 }} more…
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>ImpressionCore &copy; 2026</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-area">
+        <div class="shell-status" aria-label="Wiki status">
+            <span class="shell-pill shell-pill-primary">Builder-synced cyberpunk wiki</span>
+            <span class="shell-pill">{{ total_docs }} docs indexed</span>
+            <span class="shell-pill">{{ categories | length }} categories</span>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="wiki-footer">
+        <span>ImpressionCore Wiki &mdash; Built from {{ total_docs }} documentation files &mdash; &copy; 2026 Kirk
+            LaSalle</span>
+    </footer>
+
+    <script src="{{ root_path }}js/nav.js"></script>
+    <script src="{{ root_path }}js/search.js"></script>
+    <script src="{{ root_path }}js/theme.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

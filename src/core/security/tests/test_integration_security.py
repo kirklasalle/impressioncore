@@ -31,7 +31,7 @@ from security.privacy import PrivacyControlsManager
 from security.identity import DigitalIdentityManager
 
 # Import core utilities
-from core.utils.rich_logging import RichLogger
+from src.core.utils.rich_logging import RichLogger
 
 
 class SecurityIntegrationTestSuite:

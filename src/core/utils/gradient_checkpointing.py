@@ -39,11 +39,11 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.gradient_checkpointing import apply_gradient_checkpointing
+from src.core.utils.gradient_checkpointing import apply_gradient_checkpointing
 model = apply_gradient_checkpointing(model)
 
 # QLoRA-specific usage
-from core.utils.gradient_checkpointing import QLoRAGradientCheckpointing
+from src.core.utils.gradient_checkpointing import QLoRAGradientCheckpointing
 checkpoint_manager = QLoRAGradientCheckpointing(model, quantized_layers=['q_proj', 'k_proj'])
 with checkpoint_manager.selective_checkpointing():
     output = model(input_data)

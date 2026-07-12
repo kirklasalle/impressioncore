@@ -13,8 +13,8 @@ from torch import nn
 from .config import CheckpointConfig
 
 sys.path.append(r'd:/Projects/impressioncore/src')
-from core.models.impressioncore_b3_architecture import ImpressionCoreB3Model
-from core.models.unified_tokenizer_system import UnifiedTokenizerSystem
+from src.core.models.impressioncore_b3_architecture import ImpressionCoreB3Model
+from src.core.models.unified_tokenizer_system import UnifiedTokenizerSystem
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

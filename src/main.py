@@ -225,14 +225,14 @@ except ImportError as e:
 
 # Set up rich logging and enhancements
 try:
-    from core.utils.rich_enhancements import (  # noqa: F401
+    from src.core.utils.rich_enhancements import (  # noqa: F401
         create_header,
         print_error,
         print_info,
         print_success,
         print_warning,
     )
-    from core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_logging import setup_rich_logging
     logger = setup_rich_logging(__name__)
     create_header("ImpressionCore CLI")
     print_info("Rich logging and enhancements enabled.")
@@ -245,8 +245,8 @@ except ImportError as e:
 
 try:
     # Import core modules that are available in your project structure
-    from core.brain.modal_engine import ModalityType  # noqa: F401
-    from core.utils.hardware_detection import get_system_info, optimize_for_hardware  # noqa: F401
+    from src.core.brain.modal_engine import ModalityType  # noqa: F401
+    from src.core.utils.hardware_detection import get_system_info, optimize_for_hardware  # noqa: F401
     from dev_tools.evaluation.core_evaluator import start_evaluation
 
     # from models.memory_controller import get_memory_controller # SystemMonitor/API might handle aspects of this
@@ -259,8 +259,8 @@ try:
     advanced_utils_available = False
     advanced_utils_error = None
     try:
-        from core.ai.multimodal.core import AdvancedMultimodalEngine  # noqa: F401
-        from core.ai.multimodal.dev_tools import AdvancedDevTools  # noqa: F401
+        from src.core.ai.multimodal.core import AdvancedMultimodalEngine  # noqa: F401
+        from src.core.ai.multimodal.dev_tools import AdvancedDevTools  # noqa: F401
         advanced_utils_available = True
         log_event_main("advanced_utilities_import", "success", {"modules": ["AdvancedMultimodalEngine", "AdvancedDevTools"]})
     except ImportError as e:
@@ -383,7 +383,7 @@ def handle_tokenize(args, api):
             if args.output_file:
                 try:
                     # Assuming core.ai.tokenization.converter is available
-                    from core.ai.tokenization.converter import save_token_ids
+                    from src.core.ai.tokenization.converter import save_token_ids
                     save_token_ids(token_ids, args.output_file)
                     logger.info(f"Saved {len(token_ids)} tokens to {args.output_file}")
                     log_event_main("tokenize_text_output", "success", {"destination": "file", "file_path": args.output_file, "token_count": len(token_ids)})
@@ -413,7 +413,7 @@ def handle_tokenize(args, api):
             # Output
             if args.output_file:
                 try:
-                    from core.ai.tokenization.converter import save_token_ids
+                    from src.core.ai.tokenization.converter import save_token_ids
                     save_token_ids(token_ids, args.output_file)
                     logger.info(f"Saved {len(token_ids)} tokens to {args.output_file}")
                     log_event_main("tokenize_image_output", "success", {"destination": "file", "file_path": args.output_file, "token_count": len(token_ids)})
@@ -446,7 +446,7 @@ def handle_detokenize(args, api):
     try:
         try:
             # Assuming core.ai.tokenization.converter is available
-            from core.ai.tokenization.converter import load_token_ids
+            from src.core.ai.tokenization.converter import load_token_ids
             token_ids = load_token_ids(args.input_file)
             log_event_main("detokenize_input", "success", {"file_path": args.input_file, "token_count": len(token_ids)})
         except Exception as e:

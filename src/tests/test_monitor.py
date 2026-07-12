@@ -35,7 +35,7 @@ import sys
 # conftest.py already adds src to sys.path
 
 try:
-    from core.utils.vrgc_autonomous_monitor import VRGCAutonomousMonitor
+    from src.core.utils.vrgc_autonomous_monitor import VRGCAutonomousMonitor
     print("🤖 VRGC Monitor imported successfully")
 
     monitor = VRGCAutonomousMonitor()

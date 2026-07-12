@@ -1,20 +1,12 @@
 #!/usr/bin/env python3
 """
-!/usr/bin/env python3
-
-r"""
-**Created:** October-15-2024  
-**Updated:** August-04-2025  
-**Author:** ImpressionCore Team  
-**Tags:** #.mcp\impressioncore_dpa\main_server.py #documentation #python #source_code  
-**Category:** Source Code  
+**Created:** October-15-2024
+**Updated:** August-04-2025
+**Author:** ImpressionCore Team
+**Tags:** #.mcp/impressioncore_dpa/main_server.py #documentation #python #source_code
+**Category:** Source Code
 **Status:** Active
 """
-"""
-
-
-
-
 
 # Add project root and src to sys.path for reliable imports
 import sys

@@ -43,7 +43,7 @@ src_path = Path(__file__).parent / "src"
 sys.path.insert(0, str(src_path))
 
 # Import validated B3 components
-from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
 
 # Import RAG system
 try:

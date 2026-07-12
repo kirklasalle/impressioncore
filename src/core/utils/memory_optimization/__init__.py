@@ -40,7 +40,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_optimization.__init__ import OptimizerChain
+from src.core.utils.memory_optimization.__init__ import OptimizerChain
 instance = OptimizerChain()
 result = instance.process()
 ```
@@ -57,7 +57,7 @@ import torch
 from typing import Dict, Any, Optional, List, Union, Tuple, Callable
 from src.core.utils.gradient_checkpointing import apply_gradient_checkpointing
 from src.core.utils.attention_utils import setup_attention_chunking
-from src.core.utils.memory_utils import monitor_memory_usage # Updated import to point to memory_utils.py
+# monitor_memory_usage is imported from .monitoring below (avoids circular import with memory_utils)
 # Memory optimization: Memory-critical operation
 
 from .dynamic_precision import (

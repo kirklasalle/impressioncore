@@ -1,0 +1,142 @@
+# ImpressionCore — Docker Compose (Builder + Runtime + Frontends)
+# ===================================================================
+# Reproducible multi-service deployment for the Builder/Runtime dual
+# system described in docs/analysis_reports/impressioncore_full_audit.md
+# (Section 6.2, item #10).
+#
+# Services:
+#   builder-api        Flask Builder backend      (port 5000)
+#   runtime-api        FastAPI Runtime backend     (port 8000)
+#   builder-frontend   Vite/React Builder UI       (port 3000)
+#   runtime-frontend   Vite/React Runtime UI       (port 5173)
+#
+# IMPORTANT — hardware & platform scope:
+#   - This compose file targets the Linux container images. Windows-only
+#     hardware integrations (Kinect via comtypes/pywin32, WMI hardware
+#     detection, DirectShow webcam enumeration) are NOT available inside
+#     Linux containers and are automatically disabled via the existing
+#     graceful-degradation paths in src/orchestrator/orbcloud_vision.py.
+#     For full vision/audio hardware support, run natively on Windows
+#     using launch_builder.bat / launch_impressioncore.bat instead.
+#   - GPU/CUDA inference requires the NVIDIA Container Toolkit on the
+#     Docker host. Without it, remove the `deploy.resources.reservations`
+#     block below (or set `IMPRESSIONCORE_FORCE_CPU=1`) to run CPU-only.
+#   - F:\ drive model/checkpoint storage (see src/core/config/data_paths.py)
+#     is mounted read-write via the `impressioncore-data` bind mount below;
+#     adjust the host path to match your actual data drive location.
+#
+# Usage:
+#   docker compose up --build              # start everything
+#   docker compose up --build runtime-api  # start just the Runtime backend
+#   docker compose down                    # stop and remove containers
+
+services:
+  # ---------------------------------------------------------------------
+  # Builder System (Flask, port 5000) — model config & training orchestration
+  # ---------------------------------------------------------------------
+  builder-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+    image: impressioncore-python:latest
+    container_name: impressioncore-builder-api
+    command: ["python", "src/interfaces/web/server.py"]
+    ports:
+      - "5000:5000"
+    environment:
+      - IMPRESSIONCORE_API_KEY=${IMPRESSIONCORE_API_KEY:-}
+      - IMPRESSIONCORE_ALLOWED_ORIGINS=${IMPRESSIONCORE_ALLOWED_ORIGINS:-http://localhost:3000}
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY:-impressioncore-secret}
+      - IMPRESSIONCORE_FORCE_CPU=${IMPRESSIONCORE_FORCE_CPU:-0}
+    volumes:
+      - impressioncore-data:/data
+      - impressioncore-logs:/app/logs
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # ---------------------------------------------------------------------
+  # Runtime System (FastAPI, port 8000) — inference, session mgmt, vision/audio
+  # ---------------------------------------------------------------------
+  runtime-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.python
+    image: impressioncore-python:latest
+    container_name: impressioncore-runtime-api
+    command: ["python", "src/interfaces/triad_api.py"]
+    ports:
+      - "8000:8000"
+    environment:
+      - IMPRESSIONCORE_API_KEY=${IMPRESSIONCORE_API_KEY:-}
+      - IMPRESSIONCORE_ALLOWED_ORIGINS=${IMPRESSIONCORE_ALLOWED_ORIGINS:-http://localhost:5173}
+      - AGENT0CORE_LLM_BACKEND=${AGENT0CORE_LLM_BACKEND:-ollama}
+      - AGENT0CORE_DEBUG=${AGENT0CORE_DEBUG:-0}
+      - IMPRESSIONCORE_FORCE_CPU=${IMPRESSIONCORE_FORCE_CPU:-0}
+    volumes:
+      - impressioncore-data:/data
+      - impressioncore-logs:/app/logs
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # ---------------------------------------------------------------------
+  # Builder Frontend (Vite/React, port 3000)
+  # ---------------------------------------------------------------------
+  builder-frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+      args:
+        CLIENT_DIR: src/interfaces/builder_client
+    image: impressioncore-builder-frontend:latest
+    container_name: impressioncore-builder-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000
+    depends_on:
+      - builder-api
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------
+  # Runtime Frontend (Vite/React, port 5173)
+  # ---------------------------------------------------------------------
+  runtime-frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+      args:
+        CLIENT_DIR: src/interfaces/web_client
+    image: impressioncore-runtime-frontend:latest
+    container_name: impressioncore-runtime-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+    depends_on:
+      - runtime-api
+    restart: unless-stopped
+
+volumes:
+  impressioncore-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      # Adjust to your actual F:\ drive (or equivalent) data/model root —
+      # see src/core/config/data_paths.py for the expected directory layout
+      # (models/, data/, checkpoints/, etc.).
+      device: "${IMPRESSIONCORE_DATA_DRIVE:-./data}"
+  impressioncore-logs:
+    driver: local

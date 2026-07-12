@@ -6,7 +6,14 @@ import time
 from collections.abc import Callable
 
 import numpy as np
-import sounddevice as sd
+
+try:
+    import sounddevice as sd
+    HAS_SOUNDDEVICE = True
+except ImportError:
+    sd = None
+    HAS_SOUNDDEVICE = False
+    print("WARNING: sounddevice not installed. Live microphone capture will be disabled.")
 
 # Try importing faster_whisper, handle missing dep
 try:
@@ -26,8 +33,12 @@ class STTService:
         self.listen_thread = None
         self.process_thread = None
         self.whisper_available = HAS_WHISPER
+        self.sounddevice_available = HAS_SOUNDDEVICE
         self.model_loaded = False
         self.last_error: str | None = None
+
+        if not HAS_SOUNDDEVICE:
+            self.last_error = "sounddevice not installed"
 
         if HAS_WHISPER:
             try:
@@ -45,6 +56,7 @@ class STTService:
         """Returns STT capability and runtime status for API/UI surfaces."""
         return {
             "whisper_available": bool(self.whisper_available),
+            "sounddevice_available": bool(self.sounddevice_available),
             "model_loaded": bool(self.model_loaded),
             "running": bool(self.running),
             "queue_depth": len(self.audio_queue),
@@ -58,6 +70,11 @@ class STTService:
         """
         if self.running:
             return True
+
+        if not HAS_SOUNDDEVICE or sd is None:
+            self.last_error = "sounddevice dependency unavailable (install sounddevice)"
+            self.logger.error("Cannot start STT: sounddevice dependency unavailable.")
+            return False
 
         if not HAS_WHISPER:
             self.last_error = "Whisper dependency unavailable (install faster_whisper)"
@@ -96,6 +113,11 @@ class STTService:
 
     def _audio_loop(self, device_index):
         """Captures raw audio from sounddevice."""
+        if sd is None:
+            self.logger.error("Audio Input Error: sounddevice is unavailable")
+            self.running = False
+            return
+
         try:
             with sd.InputStream(samplerate=self.sample_rate,
                                 device=device_index,

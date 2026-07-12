@@ -272,7 +272,7 @@ Students should practice identifying this in real music.
 
 ### Implementation Details
 This implementation follows ImpressionCore architectural guidelines.
-All code is compliant with the Prime Directive and 7 Laws.
+All code is compliant with the Prime Directive and 10 Laws.
 
 ### Usage
 See the developer guide for detailed usage instructions.

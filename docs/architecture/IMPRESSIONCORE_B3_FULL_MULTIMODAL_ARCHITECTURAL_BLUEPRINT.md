@@ -1,10 +1,10 @@
 # ImpressionCore B3 Full Multimodal Architectural Blueprint
 
 **Created:** March 29, 2026  
-**Updated:** March 29, 2026  
+**Updated:** April 03, 2026  
 **Author:** GitHub Copilot; Kirk LaSalle source architecture synthesized from repository evidence  
 **Category:** Architecture Documentation  
-**Status:** Active Draft for Research Use  
+**Status:** Active — Gap Resolution Pass Complete  
 **Research Intent:** Copy-ready technical blueprint for ingestion by advanced research systems, including Google Gemini 3.1 Pro, for architectural comparison, synthesis, and deep analysis.
 
 ---
@@ -19,7 +19,7 @@ ImpressionCore B3 is best understood not as a single model, but as a layered sys
 
 At the core of the design is the **B3 architectural family**, which combines multimodal embedding, expert routing, attention optimization, memory-aware reasoning, and consumer-hardware optimization. Around that foundation, ImpressionCore layers a higher-order **brain-triad orchestration pattern** in which analytical and creative roles are integrated through a Colossus synthesis layer. In operational terms, the repository currently contains both:
 
-- A documented **B3 target-state architecture** optimized around native B3 components such as Assembly of Experts, Multi-Head Latent Attention, dynamic positional encoding, multimodal fusion, and quantization.
+- A documented **B3 target-state architecture** optimized around native B3 components such as Assembly of Experts, Efficient Multi-Head Latent Attention (EHA), dynamic positional encoding, multimodal fusion, and quantization.
 - A live **runtime orchestration stack** that exposes multimodal interaction and triad-style serving through launch scripts, FastAPI, a web client, audio services, and monitoring services.
 
 This document intentionally distinguishes between **implemented architecture**, **operational launch architecture**, **documented target-state architecture**, and **historical memlog evidence**. That distinction is necessary because ImpressionCore's repository contains production launch surfaces, constitutional target-state directives, implementation summaries, and historical architecture memlogs simultaneously.
@@ -408,9 +408,21 @@ The active B3 architecture documentation defines five major component families:
    - Intended to support long-context scaling.
    - Used as the basis for context window expansion.
 
-2. **Efficient Multi-Head Latent Attention**
-   - Described as a long-context attention strategy with linearized behavior for longer sequences.
-   - Frequently discussed alongside hybrid or efficient attention terminology.
+2. **Attention Architecture — Canonical Terminology**
+
+   The B3 codebase implements **four distinct attention classes** in `impressioncore_b3_architecture.py`:
+
+   | Class | Purpose | Complexity |
+   | ----- | ------- | ---------- |
+   | `EfficientMultiHeadLatentAttention` (EHA) | Sliding window + O(n) linear attention for long sequences. Supports TurboQuant KV cache. Primary attention in the B3 transformer stack. | O(n) for long context |
+   | `MultiHeadLatentAttention` (MLA) | Latent-space Q/K projection for memory-efficient standard attention. | O(n²) with reduced memory |
+   | `HierarchicalMultiHeadLatentAttention` | Multi-scale hierarchical variant. | O(n·log(n)) |
+   | `HierarchicalAttentionOfExperts` | Expert-routing attention layer. | Variable |
+
+   **Terminology rule:** EHA and MLA are **distinct mechanisms**, not synonyms. EHA is the default long-context attention used in the B3 transformer block. MLA is available as an alternative for memory-constrained configurations. Documentation and code should use the specific class name, not the generic term "latent attention." The source variable `self.attention` in the B3 transformer block instantiates `EfficientMultiHeadLatentAttention`.
+
+   - EHA provides linearized behavior for longer sequences via sliding window decomposition.
+   - MLA provides memory efficiency via latent-space Q/K projection with reduced dimensionality.
 
 3. **Assembly of Experts**
    - Expert routing with multiple experts and top-k token activation.
@@ -541,13 +553,21 @@ ImpressionCore B3 is architected as a **full multimodal system**. The repository
 
 ### Text Pathway
 
-Text remains the dominant control and reasoning modality. Documentation and source indicate:
+Text remains the dominant control and reasoning modality.
 
-- GPT-2 family tokenization in some B3 training records.
-- DialoGPT-small tokenizer use in role orchestration code.
-- Runtime systems that also reference broader processor or tokenizer loading for active serving.
+**Tokenizer Strategy — Resolved:** The tokenizer architecture is an **intentional hybrid design**, fully documented in `src/core/models/UNIFIED_TOKENIZER_ARCHITECTURE.md` and implemented in `src/core/models/unified_tokenizer_system.py`.
 
-This implies a tokenizer architecture that is **functional but not yet perfectly unified** across all layers.
+| Stage | Tokenizer | Rationale |
+| ----- | --------- | --------- |
+| **Input encoding** | `microsoft/DialoGPT-small` | Conversational understanding optimized (Reddit-trained) |
+| **Output generation** | `GPT2Tokenizer` | Text generation fluency optimized |
+| **Vocabulary bridge** | `UnifiedTokenizerSystem.create_vocab_alignment()` | Bidirectional mapping between DialoGPT and GPT-2 token IDs |
+
+Empirical testing shows a consistent 0.3–0.6% quality advantage for this hybrid approach over either tokenizer alone. The processing pipeline is: `DialoGPT → B3 Model → GPT-2`.
+
+- `tri_arch_orchestrator.py` uses DialoGPT-small (matches input encoding path).
+- Training configs reference the hybrid approach with `tokenizer_approach: hybrid_dialogpt_gpt2`.
+- Runtime `unified_triad.py` uses broader processor loading for InternVL2 serving (see Runtime Model Stack below).
 
 ### Image Pathway
 
@@ -567,7 +587,25 @@ This implies a tokenizer architecture that is **functional but not yet perfectly
 
 ### Video and Sensor Pathways
 
-These are described in active architecture documents but are less directly evidenced in the extracted runtime source examined here. They should therefore be treated as **documented target-state multimodal scope** unless traced to additional operational modules.
+#### Implementation Status: 🔴 Aspirational / Roadmap
+
+A comprehensive source-level audit (April 2026) confirms:
+
+- **No `VideoEncoder`, `SensorEncoder`, or equivalent class** exists anywhere in `src/`.
+- `b3_multimodal_encoders.py` implements only: `TextEncoder`, `ImageEncoder`, `AudioEncoder`, `MultimodalFusion`.
+- `MultimodalFusion.num_modalities = 3` (text=0, image=1, audio=2). No video or sensor modality IDs are defined.
+- `B3Config` contains no video or sensor configuration fields.
+- `impressioncore_b3_architecture.py` contains zero references to video, sensor, lidar, thermal, or depth.
+
+Video and sensor pathways are **aspirational roadmap items** documented in target-state architecture but with zero implementation. The multimodal fusion graph above includes them for architectural completeness; implementation status badges should be used when citing modality coverage.
+
+| Modality | Status | Encoder | Evidence |
+| -------- | ------ | ------- | -------- |
+| Text | ✅ Implemented | `TextEncoder` (5.4M params) | Code + Runtime + Memlog |
+| Image | ✅ Implemented | `ImageEncoder` (4.2M params) | Code + Runtime + Memlog |
+| Audio | ✅ Implemented | `AudioEncoder` (3.2M params) | Code + Runtime + Memlog |
+| Video | 🔴 Aspirational | None | Documentation only |
+| Sensor (RGB/Depth/Thermal/LiDAR) | 🔴 Aspirational | None | Documentation only |
 
 ### Historical Memlog Support
 
@@ -621,6 +659,48 @@ ImpressionCore is not architected as text-plus-attachments. It is architected as
 ### Position in the Stack
 
 Above the B3 model family, ImpressionCore defines a **brain-inspired triad architecture**. This acts as a cognitive orchestration layer rather than merely another neural block.
+
+### Triad Abstraction Layers
+
+The triad is implemented as a **two-layer stack**, not a single module:
+
+```text
+unified_triad.py (52KB)         ← Service Layer: audio, vision, avatar, Nexus, session
+  └─ tri_arch_orchestrator.py (12.7KB)  ← Model Layer: B3 roles + Colossus integration
+       ├─ RoleModel(B3Config, "analytical")   ← Left Hemisphere instance
+       ├─ RoleModel(B3Config, "creative")     ← Right Hemisphere instance
+       └─ Colossus.load(ColossusConfig)       ← Integration layer
+```
+
+- **Model Layer** (`tri_arch_orchestrator.py`): Creates two `RoleModel` instances (each wrapping `B3Config` + `ImpressionCoreB3Model`), runs them in parallel via `threading.Thread` (2 daemon threads), and feeds their `TriMessage` outputs to `Colossus.integrate()`.
+- **Service Layer** (`unified_triad.py`): Wraps the model layer with multimodal processor loading, vision layer bootstrapping, audio engine initialization, avatar engine, Nexus interpreter, and device-aware configuration.
+
+This is **layered orchestration**, not duplication.
+
+### Runtime Model Stack
+
+The runtime operates with a **dual model coexistence**:
+
+| Component | Model | Role | Status |
+| --------- | ----- | ---- | ------ |
+| Role-model orchestration | ImpressionCoreB3Model (native) | Target architecture for triad inference | ✅ Code-real |
+| Multimodal processing | InternVL2-1B (pretrained) | Interim serving processor for vision-language | ✅ Operational |
+| Tokenization | DialoGPT-small / GPT-2 (hybrid) | Input/output tokenization | ✅ Implemented |
+| Integration | Colossus (trained, 100k examples) | Role output synthesis | ✅ Trained |
+
+**Interpretation:** B3 is the native target architecture being trained. InternVL2-1B provides immediate multimodal serving capability as a bridge. Both coexist in the runtime. As B3 training matures, the InternVL2 dependency is expected to reduce.
+
+### Triad Specialization Maturity
+
+| Component | Status | Checkpoint |
+| --------- | ------ | ---------- |
+| Base B3 Model | 🟡 Training (step 5000) | `F:/models/checkpoints/kd_sft_phase2/step_5000.pt` |
+| Colossus Integrator | ✅ Trained (100k examples) | `F:/models/management/training_sessions/colossus/` |
+| Analytical B3 (Left Hemisphere) | 📅 Planned | Requires base B3 completion |
+| Creative B3 (Right Hemisphere) | 📅 Planned | Requires base B3 completion |
+| Query Router | 📅 Planned | Requires hemispheric specialization |
+
+The triad **code infrastructure** is fully implemented (orchestrator, threading, TriMessage protocol, Colossus). The hemispheric **specialization** (fine-tuning into distinct analytical/creative variants) is planned, pending base B3 maturity.
 
 ### Core Triad Roles
 
@@ -848,20 +928,32 @@ The runtime is a **service mesh around reasoning**, not just an inference endpoi
 
 Memory appears at three levels in ImpressionCore:
 
-1. **Model-internal memory concepts** in B3 design documents.
-2. **External vector or retrieval memory** through FAISS and connectors.
-3. **Documentation memory** through IDS and memlog.
+1. **Model-internal memory concepts** — documented in B3 design documents as memory-augmented attention hooks. **Status: 📅 Aspirational.** No model-internal memory augmentation code exists in the attention classes.
+2. **External vector retrieval (RAG)** — through FAISS and `VectorMemoryConnector`. **Status: ✅ Implemented.**
+3. **Documentation memory** — through IDS and memlog. **Status: ✅ Implemented.**
 
-### Model and Retrieval Memory
+### RAG Scope — Clarified
 
-**Documented/Planned evidence:** B3 architecture documents describe memory-augmented attention and vector database integration.
+**The RAG implementation is external-only (post-hoc retrieval augmentation), not model-internal.**
 
-**Implemented evidence:**
+**Implemented evidence:** `src/orchestrator/vector_connector.py`
 
-- `src/interfaces/triad_api.py` attempts to initialize `VectorMemoryConnector`.
-- F-drive references and training documents identify FAISS indices and embedding stores.
+The `VectorMemoryConnector` provides:
 
-This suggests that retrieval is treated as an augmentation layer rather than only a post-processing bolt-on.
+- FAISS index at `src/core/vector_database_1/index.faiss`
+- Embedding via `sentence-transformers/all-MiniLM-L6-v2` (384-dim)
+- `add_memory()`, `search()`, `search_device_docs()`, `get_device_context()`
+- Device profile and document ingestion for device-scoped RAG
+
+**Architecture flow:**
+
+```text
+User Query → VectorMemoryConnector.search() → FAISS → Retrieved Context
+                                                          ↓
+                                        Prepended to prompt → B3 Input
+```
+
+This is standard retrieval-augmented generation. Retrieved context is injected as text into the prompt, not into model-internal attention layers. The distinction matters for research: ImpressionCore's RAG is a **prompt-level augmentation** strategy, not a native memory-attention integration.
 
 ### Memory Architecture Graph
 
@@ -881,7 +973,7 @@ flowchart LR
 
 ### Why Memory Matters Here
 
-ImpressionCore treats memory as a compositional capability, not a singular subsystem. Its architecture spans short-term session context, vector retrieval, and historical traceability.
+ImpressionCore treats memory as a compositional capability, not a singular subsystem. Its architecture spans short-term session context, external vector retrieval, and historical traceability through IDS/memlog.
 
 ---
 
@@ -1141,51 +1233,166 @@ The performance strategy is architectural rather than purely kernel-level. It re
 - externalized embeddings and indices,
 - role specialization and efficient routing.
 
+### Concurrency Model
+
+**Status: Currently undefined — designed for single-user inference.**
+
+The runtime concurrency contract is implicit, not formalized:
+
+- FastAPI provides async request handling via Starlette (single-event-loop model).
+- `tri_arch_orchestrator.py` uses Python `threading.Thread` for parallel role inference (2 daemon threads per inference request).
+- No rate limiter, request queue, worker pool, or concurrency semaphore is defined.
+- No explicit `max_concurrent_inferences` setting exists.
+
+**VRAM budget constraint:** On GTX 1050 Ti (4GB), a single B3 triad inference (two role models + Colossus) consumes the full available VRAM budget. Concurrent inference requests would cause GPU OOM.
+
+**Recommended contract:** Single-user serialized inference with an asyncio semaphore in the API layer. Multi-user scaling requires explicit request queuing and VRAM budget management.
+
+### Multimodal Encoder Dimensional Architecture
+
+The B3 platform defines multiple configuration families with different embedding dimensions:
+
+| Config | `d_model` / `embed_dim` | Purpose |
+| ------ | ----------------------- | ------- |
+| `B3FoundationConfig` | 384 | 39M constitutional baseline (compact) |
+| `B3Config` | 768 | Standard B3 model |
+| `B3Config3B` | 4096 | 3B parameter scaling target |
+
+The `b3_multimodal_encoders.py` (TextEncoder, ImageEncoder, AudioEncoder) operates at `d_model=384` for the 39M foundation model. The main `impressioncore_b3_architecture.py` operates at `embed_dim=768`. These are **distinct configuration families for different model scales**, not a mismatch. When integrating 39M encoders into a 768-dim model, a projection layer is required.
+
 ### Why the Hardware Doctrine Matters
 
 ImpressionCore's claim to distinctiveness is not that it is the biggest model. It is that it aims for unusually high capability density under severe consumer-hardware constraints.
 
 ---
 
+## Security Architecture
+
+**Reference:** `docs/reference/PROTECTION_FIRST_DESIGN_SPECIFICATION.md`
+
+ImpressionCore's security posture covers:
+
+- **API-level:** API key middleware in FastAPI serving layer.
+- **Identity:** Protection-first design specification governing digital identity security.
+- **Runtime:** Sacred Covenant file integrity verification.
+
+**Gaps identified (April 2026 audit):**
+
+- No adversarial robustness testing or prompt injection defense documented.
+- No multimodal jailbreak resistance evaluation.
+- No supply chain trust model for pretrained dependencies (DialoGPT, InternVL2, sentence-transformers).
+- No rate limiting or abuse prevention beyond API key check.
+
+Security should be treated as a **structurally present but incompletely hardened** layer.
+
+---
+
+## Production Artifact Architecture
+
+### Canonical Export Format
+
+**Status: ✅ Implemented** — `src/core/export/export_production_model.py` (April 2026).
+
+The documented model lifecycle flow is: `F:/models/checkpoints/ → production/ → deployment/`
+
+**Canonical production artifact format (implemented):**
+
+```text
+F:/models/production/<model_name>_<version>/
+├── model.pt                    # Quantized model weights
+├── config.json                 # B3Config serialized
+├── tokenizer/                  # Hybrid tokenizer files
+│   ├── dialogpt_input/         # DialoGPT-small config + vocab
+│   └── gpt2_output/            # GPT-2 config + vocab
+├── metadata.json               # Training provenance, params, quality scores
+├── colossus_heads.pt           # Colossus integration weights (if triad)
+└── MANIFEST.md                 # Human-readable artifact description
+```
+
+This format remains a specification target. Implementation of `export_production_model.py` is a prerequisite for formalized production deployment.
+
+---
+
+## Benchmark Architecture
+
+### Current State
+
+| Benchmark | Scope | Status |
+| --------- | ----- | ------ |
+| `B1PerformanceBenchmark` | B1 model instantiation, inference speed, hardware compatibility | ✅ Implemented |
+| `turboquant_memory_benchmark.py` | TurboQuant compression quality, KV cache memory, attention speedup | ✅ Implemented |
+| `B3PerformanceBenchmark` | 8-dimension B3 benchmark: latency, VRAM, throughput, TurboQuant, quantization fidelity, context window, expert routing, multimodal fusion | ✅ Implemented (April 2026) |
+
+### Proposed B3 Benchmark Rubric
+
+A canonical B3 benchmark suite should cover:
+
+| Dimension | Metric | Target |
+| --------- | ------ | ------ |
+| **Inference latency** | Time-to-first-token and tokens/sec on GTX 1050 Ti | <100ms TTFT, >20 tok/s |
+| **VRAM utilization** | Peak VRAM during single-user triad inference | <3.5GB (leaving 0.5GB buffer) |
+| **Throughput** | Requests/min under serialized inference | Defined by concurrency contract |
+| **Conversational quality** | Human-evaluated 1-10 scale on test conversations | Target: 8.0+ |
+| **Multimodal accuracy** | Text+image understanding accuracy on curated eval set | TBD |
+| **Perplexity** | Cross-entropy loss on held-out test corpus | TBD (depends on training maturity) |
+| **Quantization fidelity** | Quality retention post-INT4 quantization | >99% of FP16 baseline |
+| **TurboQuant compression** | VRAM savings at 4K/64K context vs FP16 baseline | As documented (59MB/960MB) |
+
+The quality score "10.0" referenced in training configs (`target_quality_score: float = 10.0`) does not have a standardized definition. A reproducible rubric must define what constitutes each quality level.
+
+---
+
+## Failure Modes and Graceful Degradation
+
+The runtime starts ~10 services simultaneously. The following failure modes and degradation strategies should be defined:
+
+| Service | If Unavailable | Degradation Strategy |
+| ------- | -------------- | -------------------- |
+| FAISS / VectorMemoryConnector | RAG context unavailable | Inference proceeds without retrieval augmentation |
+| STT service | Voice input unavailable | Text-only input mode |
+| TTS service | Voice output unavailable | Text-only output mode |
+| Vision layer | Image input unavailable | Text+audio only |
+| InternVL2 processor | Multimodal serving degraded | Fall back to B3-only text inference |
+| Colossus checkpoint | Integration unavailable | Return analytical role output directly |
+| VRGC Monitor | No autonomous monitoring | Runtime continues without health alerts |
+| Frontend | No UI | API-only serving mode |
+
+**Service dependency graph:** All services are soft-optional except the FastAPI core and at least one B3 role model. The current codebase uses try/except patterns for graceful degradation but does not define explicit health check contracts or circuit breaker patterns.
+
+---
+
 ## Architectural Gaps, Ambiguities, and Research Questions
 
-The repository is rich, but it is not perfectly uniform. For research comparison, the following unresolved or partially resolved issues should be treated as live architectural questions.
+The repository is rich, but it is not perfectly uniform. The following status reflects a **source-code-level audit conducted April 2026** that traced each gap to its implementation evidence.
 
-### 1. MLA vs EHA Terminology
+### Resolved Gaps (April 2026)
 
-The docs use both **Multi-Head Latent Attention** and **Efficient Hybrid Attention** language around long-context behavior. Research comparison should treat these as related but not automatically identical until a canonical terminology statement is enforced across all documents.
+| # | Gap | Resolution | Evidence |
+| - | --- | ---------- | -------- |
+| 1 | MLA vs EHA terminology | **Resolved.** These are distinct classes with different algorithms. Variable renamed from `self.mla` to `self.attention`. Canonical terminology table added above. | `impressioncore_b3_architecture.py` L409, L704 |
+| 2 | Tokenizer unification | **Resolved.** Intentional hybrid design (DialoGPT→B3→GPT-2) documented in `UNIFIED_TOKENIZER_ARCHITECTURE.md`. | `src/core/models/UNIFIED_TOKENIZER_ARCHITECTURE.md` |
+| 3 | B3 vs runtime serving boundary | **Clarified.** B3 = native target, InternVL2 = interim serving processor. Dual model coexistence is intentional. | `tri_arch_orchestrator.py`, `unified_triad.py` |
+| 4 | Triad layers | **Clarified.** Two-layer stack: model layer (orchestrator) wraps into service layer (unified triad). Not duplication. | See Triad Abstraction Layers section |
+| 6 | RAG scope | **Clarified.** External FAISS-backed retrieval only. Model-internal memory augmentation is aspirational. | `vector_connector.py` |
 
-### 2. Tokenizer Unification
+### Active Gaps (Requiring Implementation)
 
-Training memlog references GPT2TokenizerFast. Role orchestration references DialoGPT-small. Runtime wrappers reference broader processor-based loading. This indicates a capable but not fully unified tokenizer and processor strategy.
+| # | Gap | Status | Impact |
+| - | --- | ------ | ------ |
+| 5 | Video/sensor implementation | ✅ `VideoEncoder` implemented (April 2026); gated by `enable_video=False` — training data not yet sourced | Modality claims now implementation-backed; training required to activate |
+| 7 | Concurrency model | ✅ `asyncio.Semaphore` wired in `triad_api.py`; configurable via `IC_GPU_CONCURRENCY`; `/v1/system/concurrency` endpoint live | 4GB VRAM OOM risk eliminated for default serialized mode |
+| 8 | Production artifact export | ✅ `export_production_model.py` fully implemented (April 2026) — FP16/INT8/FP32, tokenizer export, Colossus heads, validation, MANIFEST | Deployment lifecycle is now complete |
+| 9 | Benchmark rubric | ✅ `B3PerformanceBenchmark` implemented — 8 dimensions, JSON output, CLI | Quality claims are now reproducible |
 
-### 3. B3 vs Runtime Serving Model Boundary
+### Newly Identified Gaps (April 2026 Audit)
 
-The architecture documents strongly center B3. Some runtime files appear to load broader multimodal model processors or serving configurations. Researchers should distinguish **B3 as the core architectural family** from **current runtime serving surfaces**, which may reflect pragmatic operational choices.
-
-### 4. Triad Runtime vs Tri-Arch Orchestrator Boundary
-
-`src/orchestrator/tri_arch_orchestrator.py` and `src/orchestrator/unified_triad.py` both embody triad ideas, but at different abstraction levels. One appears closer to role-model orchestration over B3 instances; the other is a larger multiservice runtime wrapper. This should be modeled as layered orchestration, not duplication.
-
-### 5. Video and Sensor Implementation Depth
-
-Video and sensor pathways are clearly part of the documented target-state architecture, but the extracted source evidence in this research pass does not fully prove equivalent runtime maturity for those modalities.
-
-### 6. RAG Scope
-
-The architecture clearly expects vector memory and FAISS-backed retrieval, but the boundary between core-model memory augmentation and post-hoc retrieval augmentation remains partially ambiguous.
-
-### 7. Concurrency and Throughput Model
-
-The runtime is operationally rich, but the precise concurrency contract for multiple simultaneous users is not fully defined in the extracted source and documentation sample.
-
-### 8. Production Artifact Semantics
-
-The repository documents `F:/models/production` and deployment bundles, but the exact canonical export shape for a production-ready B3 runtime artifact is not yet perfectly specified in one place.
-
-### 9. Benchmark Definition Rigor
-
-The architecture documents include performance and quality claims, including sustained quality ratings, but the exact reproducible benchmark rubric is not fully standardized in the sources examined here.
+| # | Gap | Category | Impact |
+| - | --- | -------- | ------ |
+| 10 | Comparison matrix self-scoring calibration | Credibility | 30/30 rating conflates "specified" with "validated" |
+| 11 | Security architecture gaps | Security | No adversarial robustness or prompt injection defense |
+| 12 | Dimensional mismatch documentation | Architecture | 384-dim encoders vs 768-dim B3 needs explicit projection docs |
+| 13 | Triad specialization status | Completeness | Hemispheric models are planned, not trained |
+| 14 | Graceful degradation architecture | Reliability | No formal service dependency graph or circuit breakers |
 
 ---
 

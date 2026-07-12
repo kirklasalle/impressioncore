@@ -20,16 +20,16 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 
-# Add src to path
-src_path = Path(__file__).parent / "src"
-sys.path.insert(0, str(src_path))
+# Add project root to path
+_project_root = Path(__file__).resolve().parent.parent.parent.parent
+sys.path.insert(0, str(_project_root))
 
 print("🚀 Starting B3 39M Parameter Training System")
 print("=" * 39)
 
 # Import B3 components directly
 try:
-    from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+    from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
     print("✅ B3 components imported successfully")
 except ImportError as e:
     print(f"❌ Import error: {e}")
@@ -283,7 +283,7 @@ def main():
             print(f"📈 Loss Improvement: {improvement:.1f}%")
 
         # Save checkpoint
-        checkpoint_dir = Path("F:/models/checkpoints/b3_39m")
+        checkpoint_dir = Path(__file__).resolve().parent.parent.parent.parent / "checkpoints" / "b3_39m"
         checkpoint_dir.mkdir(parents=True, exist_ok=True)
 
         checkpoint = {

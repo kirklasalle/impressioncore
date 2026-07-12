@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.communication.serialization import MainClass
+from src.core.brain.communication.serialization import MainClass
 instance = MainClass()
 result = instance.process()
 ```

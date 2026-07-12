@@ -47,7 +47,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.model_utils import load_teacher_model_secure
+from src.core.utils.model_utils import load_teacher_model_secure
 teacher_model = load_teacher_model_secure("microsoft/DialoGPT-medium")
 ```
 

@@ -86,7 +86,7 @@ from functools import wraps
 
 from flask import flash, jsonify, redirect, render_template, request, session, url_for
 
-from .interfaces.web.routes import web
+from . import web
 
 logger = logging.getLogger(__name__)
 
@@ -107,8 +107,8 @@ def require_auth(f):
         - Memory-efficient implementation
         # Memory optimization: Memory-critical operation
         - Optimized for GTX 1050 Ti constraints
-
-    """    @wraps(f)
+    """
+    @wraps(f)
     def decorated(*args, **kwargs):
         """Check if user is logged in."""
         if 'user' not in session:

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.identity.biometrics import MainClass
+from src.core.identity.biometrics import MainClass
 instance = MainClass()
 result = instance.process()
 ```

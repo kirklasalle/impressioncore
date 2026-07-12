@@ -39,12 +39,18 @@ import time
 import traceback
 from collections import defaultdict
 
-# Setup enhanced logging
+# Setup enhanced logging.
+# NOTE: the log file path is anchored to the repo's conventional logs/
+# directory (created if needed) rather than the process's current working
+# directory — the previous relative-path FileHandler polluted the repo
+# root with a stray .log file on every import.
+_LOG_DIR = Path(__file__).resolve().parents[4] / "logs"
+_LOG_DIR.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(levelname)s | %(message)s',
     handlers=[
-        logging.FileHandler(f'b3_optimized_training_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'),
+        logging.FileHandler(str(_LOG_DIR / f'b3_optimized_training_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log')),
         logging.StreamHandler()
     ]
 )

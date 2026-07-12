@@ -4,8 +4,15 @@ import os
 import time
 from typing import Any
 
-import pythoncom
-import wmi
+try:
+    import pythoncom
+except ImportError:
+    pythoncom = None
+
+try:
+    import wmi
+except ImportError:
+    wmi = None
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +67,10 @@ class SensoryIntelligence:
 
     def _get_wmi(self):
         """Lazy init WMI with COM threading support. Re-inits on failure."""
+        if pythoncom is None or wmi is None:
+            logger.warning("SensoryIntelligence: Windows WMI dependencies are unavailable; hardware discovery is degraded.")
+            return None
+
         try:
             if self._wmi is None:
                 pythoncom.CoInitialize()

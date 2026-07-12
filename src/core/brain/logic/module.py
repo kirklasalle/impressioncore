@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brain.logic.module import LogicModuleError
+from src.core.brain.logic.module import LogicModuleError
 instance = LogicModuleError()
 result = instance.process()
 ```
@@ -59,8 +59,8 @@ import time
 from typing import Dict, Any, Optional, List, Tuple, Union, Callable
 import logging
 
-from core.log_manager import log_state_change, store_persistent_data, get_persistent_data
-from core.system.memory_config import get_optimal_batch_size, monitor_memory_usage
+from src.core.utils.log_manager import log_state_change, store_persistent_data, get_persistent_data
+from src.core.system.memory_config import get_optimal_batch_size, monitor_memory_usage
 # Memory optimization: Memory-critical operation
 
 # Configure logging

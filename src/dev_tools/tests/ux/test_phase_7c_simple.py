@@ -25,28 +25,28 @@ def test_phase_7c_imports():
     print("Testing Phase 7C imports...")
     
     try:
-        from core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
+        from src.core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
         print("✅ ML Adaptation Engine imported successfully")
     except ImportError as e:
         print(f"❌ ML Adaptation Engine import failed: {e}")
         return False
     
     try:
-        from core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
+        from src.core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
         print("✅ Feedback System imported successfully")
     except ImportError as e:
         print(f"❌ Feedback System import failed: {e}")
         return False
     
     try:
-        from core.ux.predictive_optimizer import PredictiveOptimizer
+        from src.core.ux.predictive_optimizer import PredictiveOptimizer
         print("✅ Predictive Optimizer imported successfully")
     except ImportError as e:
         print(f"❌ Predictive Optimizer import failed: {e}")
         return False
     
     try:
-        from core.ux.phase_7c_integration import AdaptiveLearningCoordinator
+        from src.core.ux.phase_7c_integration import AdaptiveLearningCoordinator
         print("✅ Phase 7C Integration imported successfully")
     except ImportError as e:
         print(f"❌ Phase 7C Integration import failed: {e}")
@@ -59,10 +59,10 @@ def test_phase_7c_instantiation():
     print("\nTesting Phase 7C component instantiation...")
     
     # Import components
-    from core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
-    from core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
-    from core.ux.predictive_optimizer import PredictiveOptimizer
-    from core.ux.phase_7c_integration import AdaptiveLearningCoordinator
+    from src.core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
+    from src.core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
+    from src.core.ux.predictive_optimizer import PredictiveOptimizer
+    from src.core.ux.phase_7c_integration import AdaptiveLearningCoordinator
     
     temp_dir = tempfile.mkdtemp()
     
@@ -114,10 +114,10 @@ def test_basic_functionality():
     """Test basic functionality of Phase 7C components."""
     print("\nTesting basic Phase 7C functionality...")
     
-    from core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
-    from core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
-    from core.ux.predictive_optimizer import PredictiveOptimizer
-    from core.ux.phase_7c_integration import AdaptiveLearningCoordinator
+    from src.core.ux.ml_adaptation import MLAdaptationEngine, UserBehaviorPattern
+    from src.core.ux.feedback_system import ComprehensiveFeedbackSystem, FeedbackType
+    from src.core.ux.predictive_optimizer import PredictiveOptimizer
+    from src.core.ux.phase_7c_integration import AdaptiveLearningCoordinator
     
     temp_dir = tempfile.mkdtemp()
     

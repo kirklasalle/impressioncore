@@ -18,11 +18,28 @@ export const PIPELINE_STEPS = [
     { num: 9, key: 'deployment', label: 'Deployment', icon: Rocket, route: '/deployment', desc: 'Package and deploy your model to production' },
 ];
 
-/** Knowledge & AI section */
-export const KNOWLEDGE_NAV = [
-    { key: 'uks', label: 'Knowledge Store', icon: Brain, route: '/knowledge' },
-    { key: 'rule_engine', label: 'Rule Engine', icon: Scale, route: '/rule-engine' },
-    { key: 'inheritance', label: 'Inheritance', icon: GitBranch, route: '/inheritance' },
+/**
+ * Harness section — post-build integration layer
+ *
+ * The 9-step Build Pipeline (PIPELINE_STEPS) creates the LLM.
+ * The Harness connects the trained model to structured knowledge, behavioral
+ * constraints, and real-world interfaces at inference time. These are optional
+ * because the LLM can also be used standalone via CLI or API key.
+ *
+ * All current Harness methods are UKS (Universal Knowledge Store) subsystems
+ * inspired by BrainSim III's graph of Things + Relationships.
+ *
+ * To add a new Harness method, append an entry with:
+ *   { key: 'unique_key', label: 'Display Name', icon: LucideIcon, route: '/route-path', desc: 'Short description' }
+ *
+ * Future candidates: RAG Pipeline, Tool-Use API, Multimodal Adapter, MCP Bridge
+ */
+export const HARNESS_SECTION_DESC = 'Connect your model to the world';
+
+export const HARNESS_NAV = [
+    { key: 'uks', label: 'Knowledge Store', icon: Brain, route: '/knowledge', desc: 'Manage structured knowledge facts that power inference' },
+    { key: 'rule_engine', label: 'Rule Engine', icon: Scale, route: '/rule-engine', desc: 'Define safety, behavior, and content filtering rules' },
+    { key: 'inheritance', label: 'Inheritance', icon: GitBranch, route: '/inheritance', desc: 'Configure knowledge hierarchy and module inheritance' },
 ];
 
 /** Advanced section */

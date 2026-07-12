@@ -69,7 +69,7 @@ sys.path.append(str(project_root))
 
 # Import GPU memory manager
 # Memory optimization: Memory-critical operation
-from core.utils.gpu_memory_manager import GPUMemoryManager
+from src.core.utils.gpu_memory_manager import GPUMemoryManager
 # Memory optimization: Memory-critical operation
 
 # Setup logging
@@ -371,9 +371,9 @@ def main():
         # Memory optimization: Device placement for memory management
         
         # Add necessary imports with proper serialization safety
-        from core.model import Model
+        from src.core.model import Model
         # Memory optimization: Explicit memory cleanup
-        from core.trainer import DistillationTrainer
+        from src.core.trainer import DistillationTrainer
         from torch.utils.data import DataLoader, Dataset, ConcatDataset
         from transformers import GPT2Tokenizer
         from src.config.config_manager import ConfigManager

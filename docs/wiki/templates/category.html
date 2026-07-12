@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+{% block description %}Browse {{ category.doc_count }} documents in the {{ category.name }} category{% endblock %}
+
+{% block content %}
+<div class="content-main" style="max-width:var(--content-max)">
+
+    <div class="category-hero card">
+        <nav class="breadcrumbs">
+            <a href="{{ root_path }}index.html">Home</a>
+            <span class="sep">›</span>
+            <span class="current">{{ category.name }}</span>
+        </nav>
+
+        <div class="hero-kicker">Category console</div>
+        <h1>{{ category.icon }} {{ category.name }}</h1>
+        <p style="color:var(--txt-secondary);margin-bottom:8px">{{ category.description }}</p>
+        <div class="hero-stats hero-stats-left">
+            <div class="hero-stat">
+                <div class="stat-value">{{ category.doc_count }}</div>
+                <div class="stat-label">Documents</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-value">{{ category_tags | length }}</div>
+                <div class="stat-label">Tags</div>
+            </div>
+        </div>
+        <div class="page-toolbar">
+            <a href="{{ root_path }}search.html?q={{ category.slug }}" class="btn btn-primary">Search this category</a>
+            <a href="{{ root_path }}index.html" class="btn btn-secondary">Back to wiki hub</a>
+        </div>
+    </div>
+
+    <!-- Tag Cloud -->
+    {% if category_tags %}
+    <div style="margin-bottom:24px">
+        <h3 style="font-size:.85rem;color:var(--txt-muted);margin-bottom:8px">Tags in this category</h3>
+        <div class="tag-cloud">
+            {% for tag in category_tags %}
+            <a href="{{ root_path }}search.html?q=tag%3A{{ tag }}" class="badge badge-default">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Filter Input -->
+    <div class="search-panel card-sm" style="margin-bottom:16px;max-width:460px">
+        <div class="feature-label">Filter documents</div>
+        <input type="text" id="docFilter" class="input-dark" placeholder="Filter documents in this category…" style="max-width:100%;
+      width:100%;
+      background:var(--ic-surface);
+      border:1px solid var(--ic-border);
+      border-radius:8px;
+      padding:8px 14px;
+      color:var(--txt-primary);
+      font-size:.85rem;
+      outline:none;">
+    </div>
+
+    <!-- Document List -->
+    <div class="doc-list card" id="docList">
+        {% for doc in category.docs %}
+        <a href="{{ root_path }}{{ category.slug }}/{{ doc.slug }}.html" class="doc-list-item"
+            data-title="{{ doc.title | lower }}" data-tags="{{ doc.tags | join(' ') | lower }}">
+            <span class="doc-title">{{ doc.title }}</span>
+            <span class="doc-tags">
+                {% for tag in doc.tags[:3] %}
+                <span class="badge badge-default">{{ tag }}</span>
+                {% endfor %}
+            </span>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('docFilter').addEventListener('input', function () {
+        var q = this.value.toLowerCase();
+        document.querySelectorAll('#docList .doc-list-item').forEach(function (el) {
+            var title = el.getAttribute('data-title') || '';
+            var tags = el.getAttribute('data-tags') || '';
+            el.style.display = (title.indexOf(q) !== -1 || tags.indexOf(q) !== -1) ? '' : 'none';
+        });
+    });
+</script>
+{% endblock %}

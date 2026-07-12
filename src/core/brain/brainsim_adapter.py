@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brainsim_adapter import BrainSimAdapter
+from src.core.brainsim_adapter import BrainSimAdapter
 instance = BrainSimAdapter()
 result = instance.process()
 ```

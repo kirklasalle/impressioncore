@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.memory.dynamic_manager import DynamicMemoryOptimizer
+from src.core.memory.dynamic_manager import DynamicMemoryOptimizer
 instance = DynamicMemoryOptimizer()
 result = instance.process()
 ```

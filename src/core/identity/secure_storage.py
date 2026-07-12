@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.identity.secure_storage import MainClass
+from src.core.identity.secure_storage import MainClass
 instance = MainClass()
 result = instance.process()
 ```

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.integration.__init__ import MainClass
+from src.core.integration.__init__ import MainClass
 instance = MainClass()
 result = instance.process()
 ```

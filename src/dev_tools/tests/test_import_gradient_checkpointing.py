@@ -54,10 +54,11 @@ Notes:
 """
 
 import sys
-sys.path.insert(0, 'd:\\Projects\\impressioncore\\src')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / 'src'))
 
 try:
-    from core.utils.gradient_checkpointing import apply_gradient_checkpointing
+    from src.core.utils.gradient_checkpointing import apply_gradient_checkpointing
     print("Import successful")
 except ImportError as e:
     print(f"Import failed: {e}")

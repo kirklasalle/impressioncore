@@ -167,7 +167,7 @@ def generate_completion_report():
     ))
 
     # Save report
-    project_root = Path("d:\\Projects\\impressioncore")
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
     reports_path = project_root / "src" / "memlog" / "b3_completion_reports"
     reports_path.mkdir(parents=True, exist_ok=True)
 

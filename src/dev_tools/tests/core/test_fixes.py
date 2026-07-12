@@ -21,12 +21,12 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
-from core.utils.memory_optimization.fused_attention import (
+from src.core.utils.memory_optimization.fused_attention import (
     FusedMultiHeadAttention,
     FusedCrossModalAttention,
     FusedExpertAttention
 )
-from core.utils.memory_optimization.quantization import (
+from src.core.utils.memory_optimization.quantization import (
     QuantizationManager,
     AdaptivePrecisionManager,
     EnhancedQuantizationManager,

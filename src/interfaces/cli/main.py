@@ -131,14 +131,14 @@ except ImportError as e:
 
 # Set up rich logging and enhancements
 try:
-    from core.utils.rich_enhancements import (  # noqa: F401
+    from src.core.utils.rich_enhancements import (  # noqa: F401
         create_header,
         print_error,
         print_info,
         print_success,
         print_warning,
     )
-    from core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_logging import setup_rich_logging
     logger = setup_rich_logging(__name__)
     create_header("ImpressionCore CLI")
     print_info("Rich logging and enhancements enabled.")
@@ -150,13 +150,13 @@ except ImportError as e:
 try:
     # Diagnostic log for import context in modal_engine
     print("[DIAG] Importing core.modal_engine ...")
-    from core.modal_engine import ModalityType  # noqa: F401
+    from src.core.modal_engine import ModalityType  # noqa: F401
     print("[DIAG] Imported core.modal_engine.ModalityType successfully.")
     # Memory optimization: Memory-critical operation
     # Import handlers from the new utility file, relative to src path
     from cli.cli_tokenizer_utils import handle_detokenize, handle_tokenize
 
-    from core.utils.hardware_detection import get_system_info, optimize_for_hardware
+    from src.core.utils.hardware_detection import get_system_info, optimize_for_hardware
     from models.memory_controller import get_memory_controller
 
 

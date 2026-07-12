@@ -24,8 +24,8 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from assistant.tasks.task_manager import TaskManager
 from assistant.tasks.models import TaskPriority
-from core.utils.rich_logging import setup_rich_logging
-from core.utils.rich_status_animation import StatusAnimation
+from src.core.utils.rich_logging import setup_rich_logging
+from src.core.utils.rich_status_animation import StatusAnimation
 
 
 class Phase8BDemo:

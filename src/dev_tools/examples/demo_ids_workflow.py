@@ -12,7 +12,7 @@ import os
 # Get the project root (two levels up from current file)
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.insert(0, os.path.join(project_root, 'src'))
-from core.utils.ids_tool_interface import IDSToolInterface, ids_enhance_search
+from src.core.utils.ids_tool_interface import IDSToolInterface, ids_enhance_search
 
 def demonstrate_workflow_integration():
     """Demonstrate real workflow scenarios."""

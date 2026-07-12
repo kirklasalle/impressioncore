@@ -46,7 +46,7 @@ from rich.prompt import Prompt
 from rich.table import Table
 from torch.utils.data import DataLoader, Dataset
 
-from core.utils.amp_utils import autocast_context, create_grad_scaler
+from src.core.utils.amp_utils import autocast_context, create_grad_scaler
 
 # Set encoding for Windows compatibility
 if sys.platform.startswith('win'):

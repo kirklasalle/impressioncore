@@ -8,7 +8,7 @@ This shim reduces churn until full Phase 2 consolidation.
 from __future__ import annotations
 
 try:  # Re-export primary symbols if available
-    from core.ai.inference.pipelines.multimodal_pipeline import (
+    from src.core.ai.inference.pipelines.multimodal_pipeline import (
         MultimodalPipeline,  # type: ignore
         create_pipeline,  # type: ignore
     )

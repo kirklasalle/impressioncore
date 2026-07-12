@@ -72,7 +72,7 @@ sys.path.append(str(project_root))
 
 # Import GPU utilities
 # Memory optimization: Memory-critical operation
-from core.gpu_utils import setup_cuda_environment, verify_cuda_installation, get_gpu_info
+from src.core.gpu_utils import setup_cuda_environment, verify_cuda_installation, get_gpu_info
 # Memory optimization: Memory-critical operation
 
 # Configure logging

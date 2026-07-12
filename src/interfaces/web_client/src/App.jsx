@@ -117,7 +117,7 @@ const NeuralSkeleton = memo(({ skeleton }) => {
                     cx={project('HEAD').x}
                     cy={project('HEAD').y}
                     r="5"
-                    fill="#a855f7" // Purple-500
+                    fill="#818cf8" // Purple-500
                     filter="url(#glow)"
                 />
             )}
@@ -270,7 +270,7 @@ const HappyFace = memo(({ expression, telemetry, talking }) => {
             {poses && poses.length > 0 && (
                 <div className="absolute top-2 right-2 flex flex-col gap-1 items-end pointer-events-none">
                     {poses.map(pose => (
-                        <div key={pose} className="bg-emerald-500/20 text-emerald-400 text-[7px] px-1.5 py-0.5 rounded border border-emerald-500/30 uppercase font-black tracking-widest animate-in slide-in-from-right-2 duration-300">
+                        <div key={pose} className="bg-accent-success/20 text-accent-success text-[7px] px-1.5 py-0.5 rounded border border-accent-success/30 uppercase font-black tracking-widest animate-in slide-in-from-right-2 duration-300">
                             {pose.replace("_", " ")}
                         </div>
                     ))}
@@ -289,11 +289,11 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
     const [isMinimized, setIsMinimized] = useState(false);
 
     return (
-        <div className="flex flex-col gap-3 bg-slate-900/80 p-3 rounded-lg border border-purple-900/40 shadow-lg shadow-purple-950/10 shrink-0 transition-all duration-300">
+        <div className="flex flex-col gap-3 bg-ic-surface/80 p-3 rounded-lg border border-accent-indigo/40 shadow-lg shadow-accent-indigo/10 shrink-0 transition-all duration-300">
             {/* Header with Toggle & Selection */}
-            <div className="flex flex-col gap-2 bg-black/40 p-1.5 rounded border border-purple-900/30">
+            <div className="flex flex-col gap-2 bg-black/40 p-1.5 rounded border border-accent-indigo/30">
                 <div className="flex justify-between items-center">
-                    <h3 className="text-[10px] text-purple-400 uppercase tracking-widest flex items-center gap-2 font-bold cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
+                    <h3 className="text-[10px] text-accent-indigo uppercase tracking-widest flex items-center gap-2 font-bold cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
                         <BrainCircuit className="w-3 h-3" /> Sensory Avatar
                         {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                     </h3>
@@ -301,8 +301,8 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
                         onClick={onToggle}
                         className={cn(
                             "px-2 py-0.5 rounded text-[9px] font-bold transition-all uppercase border",
-                            active ? "bg-purple-500/20 text-purple-400 border-purple-500/50 hover:bg-purple-500/30" :
-                                "bg-slate-800 text-slate-500 border-slate-700 hover:bg-slate-700 hover:text-slate-300"
+                            active ? "bg-accent-indigo/20 text-accent-indigo border-accent-indigo/50 hover:bg-accent-indigo/30" :
+                                "bg-ic-card text-txt-secondary border-ic-border hover:bg-ic-hover hover:text-txt-primary"
                         )}
                     >
                         {active ? "ON" : "OFF"}
@@ -310,12 +310,12 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
                 </div>
 
                 {!isMinimized && (
-                    <div className="flex items-center gap-2 mt-1 border-t border-purple-900/20 pt-1.5 animate-in slide-in-from-top-2 duration-300">
-                        <label className="text-[8px] text-purple-600 font-bold uppercase shrink-0">Selection:</label>
+                    <div className="flex items-center gap-2 mt-1 border-t border-accent-indigo/20 pt-1.5 animate-in slide-in-from-top-2 duration-300">
+                        <label className="text-[8px] text-accent-indigo font-bold uppercase shrink-0">Selection:</label>
                         <select
                             value={selectedAvatar}
                             onChange={(e) => onAvatarChange(e.target.value)}
-                            className="bg-black/60 border border-purple-900/30 text-[9px] text-purple-300 rounded px-1 py-0.5 flex-1 outline-none focus:border-purple-500"
+                            className="bg-black/60 border border-accent-indigo/30 text-[9px] text-accent-indigo rounded px-1 py-0.5 flex-1 outline-none focus:border-accent-indigo"
                         >
                             <option value="wireframe">Facial Wiremapping (Live)</option>
                             <option value="happyface">Happyface (Emoji)</option>
@@ -327,11 +327,11 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
             {/* Main Content (Minimized Hide) */}
             {!isMinimized && (
                 <div className="flex flex-col gap-3 animate-in fade-in duration-300">
-                    <div className="relative h-48 bg-black/60 rounded border border-purple-950/30 flex items-center justify-center overflow-hidden">
+                    <div className="relative h-48 bg-black/60 rounded border border-accent-indigo/30 flex items-center justify-center overflow-hidden">
                         {!active ? (
                             <div className="flex flex-col items-center gap-2 opacity-40">
-                                <ShieldCheck className="w-8 h-8 text-slate-700" />
-                                <span className="text-[9px] text-slate-600 uppercase tracking-widest font-bold">Avatar Standby</span>
+                                <ShieldCheck className="w-8 h-8 text-txt-muted" />
+                                <span className="text-[9px] text-txt-muted uppercase tracking-widest font-bold">Avatar Standby</span>
                             </div>
                         ) : selectedAvatar === 'happyface' ? (
                             <HappyFace expression={expression} telemetry={telemetry} talking={talking} />
@@ -347,15 +347,15 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
 
                                 {/* Engagement Scope Overlay (Preserved) */}
                                 <div className="absolute bottom-2 left-2 flex flex-col gap-1 z-10">
-                                    <span className="text-[8px] text-purple-400/60 uppercase font-bold tracking-tighter">Engagement Scope</span>
+                                    <span className="text-[8px] text-accent-indigo/60 uppercase font-bold tracking-tighter">Engagement Scope</span>
                                     <div className="flex items-center gap-1">
-                                        <div className="w-20 h-1 bg-slate-800 rounded-full overflow-hidden">
-                                            <div className="h-full bg-purple-500" style={{ width: `${(telemetry?.hcep?.interest_score ?? 0) * 100}%` }} />
+                                        <div className="w-20 h-1 bg-ic-card rounded-full overflow-hidden">
+                                            <div className="h-full bg-accent-indigo" style={{ width: `${(telemetry?.hcep?.interest_score ?? 0) * 100}%` }} />
                                         </div>
-                                        <span className="text-[8px] text-purple-300 font-mono">{(telemetry?.hcep?.interest_score ?? 0).toFixed(2)}</span>
+                                        <span className="text-[8px] text-accent-indigo font-mono">{(telemetry?.hcep?.interest_score ?? 0).toFixed(2)}</span>
                                     </div>
                                 </div>
-                                <div className="absolute top-2 right-2 text-[8px] text-cyan-500/40 font-mono uppercase z-10 flex flex-col items-end">
+                                <div className="absolute top-2 right-2 text-[8px] text-accent-cyan/40 font-mono uppercase z-10 flex flex-col items-end">
                                     <div>State: {telemetry?.hcep?.gaze_target_type ?? "IDLE"}</div>
                                     <div className="text-[7px] text-cyan-600/40">Gaze: {telemetry?.hcep?.user_gaze ?? "UNKNOWN"}</div>
                                 </div>
@@ -363,7 +363,7 @@ const AvatarPanel = memo(({ active, onToggle, telemetry, selectedAvatar, onAvata
                         )}
                     </div>
 
-                    <div className="text-[8px] text-slate-600 uppercase tracking-tighter text-center italic mt-1">
+                    <div className="text-[8px] text-txt-muted uppercase tracking-tighter text-center italic mt-1">
                         {active ? `Integrated Visualization: ${selectedAvatar === 'wireframe' ? 'Neural Skeleton' : 'Happyface'}` : "Enable Avatar to visualize system states"}
                     </div>
                 </div>
@@ -378,18 +378,18 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
 
     // Color standards for tracking states
     const qualityColors = {
-        EXCELLENT: "text-green-400 bg-green-500/10 border-green-500/30",
-        GOOD: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
-        FAIR: "text-yellow-400 bg-yellow-500/10 border-yellow-500/30",
-        LOW: "text-red-400 bg-red-500/10 border-red-500/30"
+        EXCELLENT: "text-accent-success bg-accent-success/10 border-green-500/30",
+        GOOD: "text-accent-cyan bg-accent-cyan/10 border-accent-cyan/30",
+        FAIR: "text-accent-warning bg-accent-warning/10 border-accent-warning/30",
+        LOW: "text-accent-danger bg-accent-danger/10 border-red-500/30"
     };
 
     const statusColors = {
-        SPATIAL_LOCK: "text-blue-400 bg-blue-500/20 border-blue-500/40",
-        VISUAL_ONLY: "text-green-400 bg-green-500/20 border-green-500/40",
-        AUDIO_ONLY: "text-orange-400 bg-orange-500/20 border-orange-500/40",
-        AMBIGUOUS_SENSORY: "text-yellow-400 bg-yellow-500/20 border-yellow-500/40",
-        SEARCHING: "text-slate-400 bg-slate-500/20 border-slate-500/40"
+        SPATIAL_LOCK: "text-accent-info bg-accent-info/20 border-blue-500/40",
+        VISUAL_ONLY: "text-accent-success bg-accent-success/20 border-accent-success/40",
+        AUDIO_ONLY: "text-accent-warning bg-accent-warning/20 border-accent-warning/40",
+        AMBIGUOUS_SENSORY: "text-accent-warning bg-accent-warning/20 border-accent-warning/40",
+        SEARCHING: "text-txt-secondary bg-txt-muted/20 border-txt-muted/40"
     };
 
     const confidence = data.confidence ?? 0;
@@ -409,12 +409,12 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
     };
 
     return (
-        <div className="flex flex-col gap-3 bg-slate-900/80 p-3 rounded-lg border border-cyan-900/40 shadow-lg shrink-0 transition-all duration-300">
+        <div className="flex flex-col gap-3 bg-ic-surface/80 p-3 rounded-lg border border-accent-cyan/40 shadow-lg shrink-0 transition-all duration-300">
             {/* Header with Status Badge and Controls */}
             <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
                 <div className="flex items-center gap-2">
-                    <div className={cn("w-2 h-2 rounded-full", confidence > 50 ? "bg-green-500 animate-pulse" : "bg-slate-500")} />
-                    <h3 className="text-[10px] text-cyan-400 uppercase tracking-widest font-bold flex items-center gap-2">
+                    <div className={cn("w-2 h-2 rounded-full", confidence > 50 ? "bg-accent-success animate-pulse" : "bg-txt-muted")} />
+                    <h3 className="text-[10px] text-accent-cyan uppercase tracking-widest font-bold flex items-center gap-2">
                         Tracking
                         {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                     </h3>
@@ -439,26 +439,26 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
                 <div className="flex flex-col gap-3 animate-in slide-in-from-top-2 duration-300">
 
                     {/* Track and Zoom Controls (Moved to top) */}
-                    <div className="flex items-center justify-between bg-black/40 rounded-md px-2 py-1.5 border border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]">
-                        <span className="text-[8px] text-cyan-500/70 uppercase font-bold">Active Tracking</span>
+                    <div className="flex items-center justify-between bg-black/40 rounded-md px-2 py-1.5 border border-accent-cyan/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]">
+                        <span className="text-[8px] text-accent-cyan/70 uppercase font-bold">Active Tracking</span>
                         <div className="flex items-center gap-3">
                             <label className="flex items-center gap-1.5 cursor-pointer group">
                                 <input
                                     type="checkbox"
                                     checked={trackingEnabled}
                                     onChange={() => onToggle?.('tracking')}
-                                    className="w-3 h-3 rounded border-cyan-900 bg-black text-cyan-600 focus:ring-0 focus:ring-offset-0"
+                                    className="w-3 h-3 rounded border-accent-cyan bg-black text-cyan-600 focus:ring-0 focus:ring-offset-0"
                                 />
-                                <span className="text-[9px] text-cyan-400 font-bold group-hover:text-cyan-300 transition-colors uppercase tracking-tighter">Motor</span>
+                                <span className="text-[9px] text-accent-cyan font-bold group-hover:text-accent-cyan transition-colors uppercase tracking-tighter">Motor</span>
                             </label>
                             <label className="flex items-center gap-1.5 cursor-pointer group">
                                 <input
                                     type="checkbox"
                                     checked={zoomEnabled}
                                     onChange={() => onToggle?.('zoom')}
-                                    className="w-3 h-3 rounded border-cyan-900 bg-black text-cyan-600 focus:ring-0 focus:ring-offset-0"
+                                    className="w-3 h-3 rounded border-accent-cyan bg-black text-cyan-600 focus:ring-0 focus:ring-offset-0"
                                 />
-                                <span className="text-[9px] text-cyan-400 font-bold group-hover:text-cyan-300 transition-colors uppercase tracking-tighter">Zoom</span>
+                                <span className="text-[9px] text-accent-cyan font-bold group-hover:text-accent-cyan transition-colors uppercase tracking-tighter">Zoom</span>
                             </label>
                         </div>
                     </div>
@@ -467,17 +467,17 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
                     {/* Confidence Meter */}
                     <div className="space-y-1">
                         <div className="flex justify-between items-center">
-                            <span className="text-[9px] text-slate-500 uppercase">Confidence</span>
+                            <span className="text-[9px] text-txt-secondary uppercase">Confidence</span>
                             <span className={cn("text-[11px] font-mono font-bold", qualityColors[quality]?.split(" ")[0])}>
                                 {confidence}%
                             </span>
                         </div>
-                        <div className="h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                        <div className="h-2 bg-ic-card rounded-full overflow-hidden border border-ic-border">
                             <div
                                 className={cn(
                                     "h-full transition-all duration-500 rounded-full",
                                     confidence >= 80 ? "bg-gradient-to-r from-green-600 to-green-400" :
-                                        confidence >= 60 ? "bg-gradient-to-r from-cyan-600 to-cyan-400" :
+                                        confidence >= 60 ? "bg-gradient-to-r from-accent-cyan to-cyan-400" :
                                             confidence >= 40 ? "bg-gradient-to-r from-yellow-600 to-yellow-400" :
                                                 "bg-gradient-to-r from-red-600 to-red-400"
                                 )}
@@ -488,8 +488,8 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
                             {(data.confidence_sources || []).map((src, i) => (
                                 <span key={i} className={cn(
                                     "text-[8px] px-1.5 py-0.5 rounded-full font-semibold",
-                                    src.startsWith("CAM") ? "bg-green-500/20 text-green-400 border border-green-500/30" :
-                                        "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+                                    src.startsWith("CAM") ? "bg-accent-success/20 text-accent-success border border-accent-success/30" :
+                                        "bg-accent-warning/20 text-accent-warning border border-accent-warning/30"
                                 )}>
                                     {src}
                                 </span>
@@ -499,39 +499,39 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
 
                     {/* Metrics Grid */}
                     <div className="grid grid-cols-4 gap-1.5">
-                        <div className="bg-black/40 p-1.5 rounded border border-cyan-900/20 text-center">
-                            <div className="text-[8px] text-slate-600 uppercase">Cameras</div>
-                            <div className="text-sm text-green-400 font-mono font-bold">{data.camera_count ?? 0}</div>
+                        <div className="bg-black/40 p-1.5 rounded border border-accent-cyan/20 text-center">
+                            <div className="text-[8px] text-txt-muted uppercase">Cameras</div>
+                            <div className="text-sm text-accent-success font-mono font-bold">{data.camera_count ?? 0}</div>
                         </div>
-                        <div className="bg-black/40 p-1.5 rounded border border-cyan-900/20 text-center">
-                            <div className="text-[8px] text-slate-600 uppercase">Faces</div>
-                            <div className="text-sm text-cyan-400 font-mono font-bold">{data.total_faces ?? 0}</div>
+                        <div className="bg-black/40 p-1.5 rounded border border-accent-cyan/20 text-center">
+                            <div className="text-[8px] text-txt-muted uppercase">Faces</div>
+                            <div className="text-sm text-accent-cyan font-mono font-bold">{data.total_faces ?? 0}</div>
                         </div>
-                        <div className="bg-black/40 p-1.5 rounded border border-cyan-900/20 text-center">
-                            <div className="text-[8px] text-slate-600 uppercase italic">K-IR Stream</div>
-                            <div className={cn("text-[10px] font-mono font-bold", data.ir_active ? "text-amber-400" : "text-slate-700")}>
+                        <div className="bg-black/40 p-1.5 rounded border border-accent-cyan/20 text-center">
+                            <div className="text-[8px] text-txt-muted uppercase italic">K-IR Stream</div>
+                            <div className={cn("text-[10px] font-mono font-bold", data.ir_active ? "text-accent-warning" : "text-txt-muted")}>
                                 {data.ir_active ? "LIVE" : "OFF"}
                             </div>
                         </div>
-                        <div className="bg-black/40 p-1.5 rounded border border-cyan-900/20 text-center relative overflow-hidden">
-                            <div className="text-[8px] text-slate-600 uppercase italic">K-Depth</div>
-                            <div className={cn("text-[10px] font-mono font-bold", data.depth_active ? "text-indigo-400" : "text-slate-700")}>
+                        <div className="bg-black/40 p-1.5 rounded border border-accent-cyan/20 text-center relative overflow-hidden">
+                            <div className="text-[8px] text-txt-muted uppercase italic">K-Depth</div>
+                            <div className={cn("text-[10px] font-mono font-bold", data.depth_active ? "text-accent-indigo" : "text-txt-muted")}>
                                 {data.depth_active ? "READY" : "OFF"}
                             </div>
-                            {data.depth_active && <div className="absolute inset-0 bg-indigo-500/5 animate-pulse pointer-events-none" />}
+                            {data.depth_active && <div className="absolute inset-0 bg-accent-indigo/5 animate-pulse pointer-events-none" />}
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-1.5 mt-[-4px]">
-                        <div className="bg-black/30 p-1 rounded border border-slate-800 flex justify-between items-center px-2">
-                            <span className="text-[7px] text-slate-600 uppercase">Audio Array</span>
-                            <span className={cn("text-[8px] font-bold", data.audio_array_active ? "text-orange-500" : "text-slate-700")}>
+                        <div className="bg-black/30 p-1 rounded border border-ic-border flex justify-between items-center px-2">
+                            <span className="text-[7px] text-txt-muted uppercase">Audio Array</span>
+                            <span className={cn("text-[8px] font-bold", data.audio_array_active ? "text-accent-warning" : "text-txt-muted")}>
                                 {data.audio_array_active ? "ACTIVE" : "INACTIVE"}
                             </span>
                         </div>
-                        <div className="bg-black/30 p-1 rounded border border-slate-800 flex justify-between items-center px-2">
-                            <span className="text-[7px] text-slate-600 uppercase">Spatial Lock</span>
-                            <span className={cn("text-[8px] font-bold", data.target_lock ? "text-blue-500" : "text-slate-700")}>
+                        <div className="bg-black/30 p-1 rounded border border-ic-border flex justify-between items-center px-2">
+                            <span className="text-[7px] text-txt-muted uppercase">Spatial Lock</span>
+                            <span className={cn("text-[8px] font-bold", data.target_lock ? "text-accent-info" : "text-txt-muted")}>
                                 {data.target_lock ? "SECURED" : "SEARCHING"}
                             </span>
                         </div>
@@ -539,17 +539,17 @@ const TrackingTelemetry = memo(({ data, trackingEnabled, zoomEnabled, onToggle, 
 
                     {/* Position Data */}
                     <div className="grid grid-cols-3 gap-1.5">
-                        <div className="bg-black/30 p-1.5 rounded border border-slate-800">
-                            <div className="text-[7px] text-slate-600 uppercase">X-Pos</div>
+                        <div className="bg-black/30 p-1.5 rounded border border-ic-border">
+                            <div className="text-[7px] text-txt-muted uppercase">X-Pos</div>
                             <div className="text-[10px] text-cyan-100 font-mono">{(data.pos?.[0] ?? 0).toFixed(3)}</div>
                         </div>
-                        <div className="bg-black/30 p-1.5 rounded border border-slate-800">
-                            <div className="text-[7px] text-slate-600 uppercase">Y-Pos</div>
+                        <div className="bg-black/30 p-1.5 rounded border border-ic-border">
+                            <div className="text-[7px] text-txt-muted uppercase">Y-Pos</div>
                             <div className="text-[10px] text-cyan-100 font-mono">{(data.pos?.[1] ?? 0).toFixed(3)}</div>
                         </div>
-                        <div className="bg-black/30 p-1.5 rounded border border-slate-800">
-                            <div className="text-[7px] text-slate-600 uppercase">Z-Depth</div>
-                            <div className="text-[10px] text-cyan-300 font-mono font-bold">{(data.pos?.[2] ?? 0).toFixed(2)}</div>
+                        <div className="bg-black/30 p-1.5 rounded border border-ic-border">
+                            <div className="text-[7px] text-txt-muted uppercase">Z-Depth</div>
+                            <div className="text-[10px] text-accent-cyan font-mono font-bold">{(data.pos?.[2] ?? 0).toFixed(2)}</div>
                         </div>
                     </div>
                 </div>
@@ -622,20 +622,20 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
 
     if (controllableCams.length === 0) {
         return (
-            <div className="flex flex-col gap-2 bg-slate-900/60 p-3 rounded-lg border border-slate-800 text-center opacity-50 select-none">
-                <h3 className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Motor Control</h3>
-                <div className="text-[9px] text-slate-600 italic py-4">No motorized devices detected.</div>
+            <div className="flex flex-col gap-2 bg-ic-surface/60 p-3 rounded-lg border border-ic-border text-center opacity-50 select-none">
+                <h3 className="text-[10px] text-txt-secondary uppercase tracking-widest font-bold">Motor Control</h3>
+                <div className="text-[9px] text-txt-muted italic py-4">No motorized devices detected.</div>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col gap-2 bg-slate-900/80 p-3 rounded-lg border border-fuchsia-900/40 shadow-lg shrink-0">
+        <div className="flex flex-col gap-2 bg-ic-surface/80 p-3 rounded-lg border border-accent-indigo/40 shadow-lg shrink-0">
             {/* Header & Selector */}
             <div className="flex justify-between items-center mb-1">
                 <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
-                    <div className={cn("w-2 h-2 rounded-full", connected ? "bg-fuchsia-500 animate-pulse" : "bg-slate-500")} />
-                    <h3 className="text-[10px] text-fuchsia-400 uppercase tracking-widest font-bold flex items-center gap-2">
+                    <div className={cn("w-2 h-2 rounded-full", connected ? "bg-accent-indigo animate-pulse" : "bg-txt-muted")} />
+                    <h3 className="text-[10px] text-accent-indigo uppercase tracking-widest font-bold flex items-center gap-2">
                         Motor Control
                         {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                     </h3>
@@ -644,7 +644,7 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
                     <select
                         value={targetId}
                         onChange={e => setTargetId(e.target.value)}
-                        className="bg-black/80 text-[9px] text-fuchsia-400 border border-fuchsia-900/50 rounded px-1.5 py-0.5 outline-none focus:border-fuchsia-400 max-w-[120px]"
+                        className="bg-black/80 text-[9px] text-accent-indigo border border-accent-indigo/50 rounded px-1.5 py-0.5 outline-none focus:border-accent-indigo max-w-[120px]"
                     >
                         {controllableCams.map(c => (
                             <option key={c.deviceId} value={c.vid_pid}>
@@ -660,7 +660,7 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
 
                     {/* Error Display */}
                     {error && (
-                        <div className="text-[9px] text-red-400 bg-red-500/10 border border-red-500/30 rounded px-2 py-1">
+                        <div className="text-[9px] text-accent-danger bg-accent-danger/10 border border-red-500/30 rounded px-2 py-1">
                             {error}
                         </div>
                     )}
@@ -671,7 +671,7 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
                         <button
                             onClick={() => movePTZ(0, LARGE_MOVE)}
                             disabled={loading}
-                            className="w-10 h-8 bg-fuchsia-900/30 hover:bg-fuchsia-800/50 border border-fuchsia-700/40 rounded text-fuchsia-400 text-xs font-bold transition-all disabled:opacity-50"
+                            className="w-10 h-8 bg-accent-indigo/30 hover:bg-accent-indigo/50 border border-accent-indigo/40 rounded text-accent-indigo text-xs font-bold transition-all disabled:opacity-50"
                         >
 
                         </button>
@@ -681,21 +681,21 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
                             <button
                                 onClick={() => movePTZ(-LARGE_MOVE, 0)}
                                 disabled={loading}
-                                className="w-10 h-8 bg-fuchsia-900/30 hover:bg-fuchsia-800/50 border border-fuchsia-700/40 rounded text-fuchsia-400 text-xs font-bold transition-all disabled:opacity-50"
+                                className="w-10 h-8 bg-accent-indigo/30 hover:bg-accent-indigo/50 border border-accent-indigo/40 rounded text-accent-indigo text-xs font-bold transition-all disabled:opacity-50"
                             >
 
                             </button>
                             <button
                                 onClick={resetPosition}
                                 disabled={loading}
-                                className="w-10 h-8 bg-cyan-900/30 hover:bg-cyan-800/50 border border-cyan-700/40 rounded text-cyan-400 text-[8px] font-bold transition-all disabled:opacity-50"
+                                className="w-10 h-8 bg-accent-cyan/30 hover:bg-cyan-800/50 border border-cyan-700/40 rounded text-accent-cyan text-[8px] font-bold transition-all disabled:opacity-50"
                             >
 
                             </button>
                             <button
                                 onClick={() => movePTZ(LARGE_MOVE, 0)}
                                 disabled={loading}
-                                className="w-10 h-8 bg-fuchsia-900/30 hover:bg-fuchsia-800/50 border border-fuchsia-700/40 rounded text-fuchsia-400 text-xs font-bold transition-all disabled:opacity-50"
+                                className="w-10 h-8 bg-accent-indigo/30 hover:bg-accent-indigo/50 border border-accent-indigo/40 rounded text-accent-indigo text-xs font-bold transition-all disabled:opacity-50"
                             >
 
                             </button>
@@ -705,7 +705,7 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
                         <button
                             onClick={() => movePTZ(0, -LARGE_MOVE)}
                             disabled={loading}
-                            className="w-10 h-8 bg-fuchsia-900/30 hover:bg-fuchsia-800/50 border border-fuchsia-700/40 rounded text-fuchsia-400 text-xs font-bold transition-all disabled:opacity-50"
+                            className="w-10 h-8 bg-accent-indigo/30 hover:bg-accent-indigo/50 border border-accent-indigo/40 rounded text-accent-indigo text-xs font-bold transition-all disabled:opacity-50"
                         >
 
                         </button>
@@ -713,13 +713,13 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
 
                     {/* Position Display */}
                     <div className="grid grid-cols-2 gap-1.5">
-                        <div className="bg-black/30 p-1.5 rounded border border-slate-800 text-center">
-                            <div className="text-[7px] text-slate-600 uppercase">Pan</div>
-                            <div className="text-[10px] text-fuchsia-300 font-mono">{position.pan.toFixed(0)}</div>
+                        <div className="bg-black/30 p-1.5 rounded border border-ic-border text-center">
+                            <div className="text-[7px] text-txt-muted uppercase">Pan</div>
+                            <div className="text-[10px] text-accent-indigo font-mono">{position.pan.toFixed(0)}</div>
                         </div>
-                        <div className="bg-black/30 p-1.5 rounded border border-slate-800 text-center">
-                            <div className="text-[7px] text-slate-600 uppercase">Tilt</div>
-                            <div className="text-[10px] text-fuchsia-300 font-mono">{position.tilt.toFixed(1)}</div>
+                        <div className="bg-black/30 p-1.5 rounded border border-ic-border text-center">
+                            <div className="text-[7px] text-txt-muted uppercase">Tilt</div>
+                            <div className="text-[10px] text-accent-indigo font-mono">{position.tilt.toFixed(1)}</div>
                         </div>
                     </div>
 
@@ -728,14 +728,14 @@ const PTZControlPanel = memo(({ devices = [], onMove }) => {
                         <button
                             onClick={() => movePTZ(-SMALL_MOVE, 0)}
                             disabled={loading}
-                            className="px-2 py-1 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/40 rounded text-slate-400 text-[8px] font-bold transition-all disabled:opacity-50"
+                            className="px-2 py-1 bg-ic-card/50 hover:bg-ic-hover/50 border border-ic-border/40 rounded text-txt-secondary text-[8px] font-bold transition-all disabled:opacity-50"
                         >
                             Fine
                         </button>
                         <button
                             onClick={() => movePTZ(SMALL_MOVE, 0)}
                             disabled={loading}
-                            className="px-2 py-1 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/40 rounded text-slate-400 text-[8px] font-bold transition-all disabled:opacity-50"
+                            className="px-2 py-1 bg-ic-card/50 hover:bg-ic-hover/50 border border-ic-border/40 rounded text-txt-secondary text-[8px] font-bold transition-all disabled:opacity-50"
                         >
                             Fine
                         </button>
@@ -786,15 +786,15 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
 
     const getEmotionColor = (emo) => {
         const colors = {
-            'HAPPY': 'text-yellow-400',
-            'SAD': 'text-blue-400',
-            'ANGRY': 'text-red-400',
-            'SURPRISE': 'text-purple-400',
-            'FEAR': 'text-indigo-400',
-            'DISGUST': 'text-green-400',
-            'NEUTRAL': 'text-slate-400'
+            'HAPPY': 'text-accent-warning',
+            'SAD': 'text-accent-info',
+            'ANGRY': 'text-accent-danger',
+            'SURPRISE': 'text-accent-indigo',
+            'FEAR': 'text-accent-indigo',
+            'DISGUST': 'text-accent-success',
+            'NEUTRAL': 'text-txt-secondary'
         };
-        return colors[emo] || 'text-slate-400';
+        return colors[emo] || 'text-txt-secondary';
     };
 
     return (
@@ -829,8 +829,8 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
                             "absolute inset-0 border-2 shadow-[0_0_15px_rgba(0,0,0,0.5)]",
                             !isLive && det.liveness ? "border-red-600 shadow-red-900/40 animate-pulse" :
                                 effectiveLock ? "border-blue-500 shadow-blue-500/20" :
-                                    color === "fuchsia" ? "border-fuchsia-500 shadow-fuchsia-500/20" :
-                                        "border-emerald-500 shadow-emerald-500/20"
+                                    color === "fuchsia" ? "border-accent-indigo shadow-accent-indigo/20" :
+                                        "border-accent-success shadow-emerald-500/20"
                         )}>
                             {/* Corner Accents */}
                             <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-white" />
@@ -846,10 +846,10 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
                         )}>
                             <div className={cn(
                                 "flex items-center gap-1.5 px-2 py-0.5 rounded-t text-[9px] font-bold uppercase tracking-tighter",
-                                !isLive && det.liveness ? "bg-red-600 text-white" :
+                                !isLive && det.liveness ? "bg-accent-danger text-white" :
                                     effectiveLock ? "bg-blue-600 text-white" :
-                                        color === "fuchsia" ? "bg-fuchsia-600 text-white" :
-                                            "bg-emerald-600 text-white"
+                                        color === "fuchsia" ? "bg-accent-indigo text-white" :
+                                            "bg-accent-success text-white"
                             )}>
                                 {effectiveLock && <Target className="w-2.5 h-2.5 animate-pulse" />}
                                 <span>{name}</span>
@@ -866,7 +866,7 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
                                 <div className="ml-auto flex items-center gap-1">
                                     <span className={cn(
                                         "w-1.5 h-1.5 rounded-full",
-                                        isLive ? "bg-emerald-500" : "bg-red-500 shadow-[0_0_5px_red]"
+                                        isLive ? "bg-accent-success" : "bg-accent-danger shadow-[0_0_5px_red]"
                                     )} title={isLive ? "Liveness Verified" : "SPOOF DETECTED"} />
                                     <span className="text-[7px] text-white/50">{isLive ? "LIVE" : "SPOOF"}</span>
                                 </div>
@@ -904,18 +904,18 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
                             <>
                                 {/* Visual Directional Indicator */}
                                 <div className="absolute -right-14 top-0 flex flex-col gap-1 pointer-events-none">
-                                    <div className="bg-black/80 backdrop-blur border border-emerald-500/30 rounded p-1 flex flex-col gap-0.5 min-w-[50px]">
+                                    <div className="bg-black/80 backdrop-blur border border-accent-success/30 rounded p-1 flex flex-col gap-0.5 min-w-[50px]">
                                         <div className="flex justify-between text-[7px]">
-                                            <span className="text-slate-500">P:</span>
-                                            <span className={cn("font-bold", Math.abs(det.head_pose.pitch) > 20 ? "text-yellow-400" : "text-emerald-400")}>{det.head_pose.pitch.toFixed(1)}</span>
+                                            <span className="text-txt-secondary">P:</span>
+                                            <span className={cn("font-bold", Math.abs(det.head_pose.pitch) > 20 ? "text-accent-warning" : "text-accent-success")}>{det.head_pose.pitch.toFixed(1)}</span>
                                         </div>
                                         <div className="flex justify-between text-[7px]">
-                                            <span className="text-slate-500">Y:</span>
-                                            <span className={cn("font-bold", Math.abs(det.head_pose.yaw) > 25 ? "text-yellow-400" : "text-emerald-400")}>{det.head_pose.yaw.toFixed(1)}</span>
+                                            <span className="text-txt-secondary">Y:</span>
+                                            <span className={cn("font-bold", Math.abs(det.head_pose.yaw) > 25 ? "text-accent-warning" : "text-accent-success")}>{det.head_pose.yaw.toFixed(1)}</span>
                                         </div>
                                         <div className="flex justify-between text-[7px]">
-                                            <span className="text-slate-500">R:</span>
-                                            <span className={cn("font-bold", Math.abs(det.head_pose.roll) > 15 ? "text-yellow-400" : "text-emerald-400")}>{det.head_pose.roll.toFixed(1)}</span>
+                                            <span className="text-txt-secondary">R:</span>
+                                            <span className={cn("font-bold", Math.abs(det.head_pose.roll) > 15 ? "text-accent-warning" : "text-accent-success")}>{det.head_pose.roll.toFixed(1)}</span>
                                         </div>
                                     </div>
 
@@ -929,7 +929,7 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
                                             }}
                                         >
                                             <div
-                                                className="w-0.5 h-4 bg-emerald-500 shadow-[0_0_8px_cyan]"
+                                                className="w-0.5 h-4 bg-accent-success shadow-[0_0_8px_cyan]"
                                                 style={{
                                                     transform: `rotateY(${det.head_pose.yaw}deg) rotateX(${det.head_pose.pitch}deg)`
                                                 }}
@@ -950,7 +950,7 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
             <div className="absolute top-2 right-2 flex flex-col items-end gap-1" >
                 <div className={cn(
                     "px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest border backdrop-blur-md",
-                    targetLock ? "bg-blue-500/20 text-blue-400 border-blue-500/50" : "bg-black/40 text-slate-400 border-white/10"
+                    targetLock ? "bg-accent-info/20 text-accent-info border-blue-500/50" : "bg-black/40 text-txt-secondary border-white/10"
                 )}>
                     {targetLock ? "Active Tracking" : "Scanning..."}
                 </div>
@@ -1233,9 +1233,9 @@ const SkeletonVisualizer = memo(({ skeleton, mode = 'overlay', showBadge = true 
             {/* Tracking Status Badge */}
             {
                 showBadge && (
-                    <div className="absolute top-2 left-2 z-30 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm px-2 py-1 rounded border border-cyan-500/40">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(34,211,238,0.8)]" />
-                        <span className="text-[9px] text-cyan-400 font-bold uppercase tracking-wider">
+                    <div className="absolute top-2 left-2 z-30 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm px-2 py-1 rounded border border-accent-cyan/40">
+                        <div className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse shadow-[0_0_6px_rgba(34,211,238,0.8)]" />
+                        <span className="text-[9px] text-accent-cyan font-bold uppercase tracking-wider">
                             Skeleton Tracked
                         </span>
                         <span className="text-[8px] text-cyan-600 font-mono ml-1">
@@ -1277,9 +1277,9 @@ const KinectControls = () => {
     };
 
     return (
-        <div className="bg-slate-900/80 p-3 rounded-lg border border-yellow-500/30 space-y-3 shadow-inner shadow-yellow-900/10">
+        <div className="bg-ic-surface/80 p-3 rounded-lg border border-accent-warning/30 space-y-3 shadow-inner shadow-accent-warning/10">
             <div className="flex justify-between items-center bg-black/40 p-1.5 rounded border border-yellow-900/30 mb-1">
-                <h3 className="text-[10px] text-yellow-400 uppercase tracking-widest flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
+                <h3 className="text-[10px] text-accent-warning uppercase tracking-widest flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
                     <Activity className="w-3 h-3" /> Kinect Streams
                     {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                 </h3>
@@ -1293,12 +1293,12 @@ const KinectControls = () => {
                             className={cn(
                                 "flex items-center justify-between px-2 py-1.5 rounded text-[10px] uppercase tracking-wide transition-all border",
                                 val
-                                    ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-300 hover:bg-yellow-500/30"
-                                    : "bg-slate-800/50 border-slate-700 text-slate-500 hover:bg-slate-800"
+                                    ? "bg-accent-warning/20 border-accent-warning/50 text-yellow-300 hover:bg-accent-warning/30"
+                                    : "bg-ic-card/50 border-ic-border text-txt-secondary hover:bg-ic-card"
                             )}
                         >
                             <span>{key}</span>
-                            <div className={cn("w-1.5 h-1.5 rounded-full", val ? "bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.8)]" : "bg-slate-600")} />
+                            <div className={cn("w-1.5 h-1.5 rounded-full", val ? "bg-accent-warning shadow-[0_0_5px_rgba(250,204,21,0.8)]" : "bg-ic-hover")} />
                         </button>
                     ))}
                 </div>
@@ -1356,19 +1356,19 @@ const OrbosVisionTrackingSystem = memo(({
     };
 
     return (
-        <div className="flex flex-col shrink-0 bg-slate-900/90 rounded-xl border border-cyan-500/30 shadow-2xl overflow-hidden transition-all duration-300">
+        <div className="flex flex-col shrink-0 bg-ic-surface/90 rounded-xl border border-accent-cyan/30 shadow-2xl overflow-hidden transition-all duration-300">
             {/* Main Header */}
             <div
-                className="p-3 bg-gradient-to-r from-cyan-900/40 to-slate-900 flex justify-between items-center cursor-pointer border-b border-cyan-500/20"
+                className="p-3 bg-gradient-to-r from-accent-cyan/40 to-ic-surface flex justify-between items-center cursor-pointer border-b border-accent-cyan/20"
                 onClick={() => setIsMinimized(!isMinimized)}
             >
                 <div className="flex items-center gap-2">
-                    <div className={cn("w-2 h-2 rounded-full", telemetry?.confidence > 50 ? "bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" : "bg-slate-600")} />
-                    <h2 className="text-[11px] font-black text-cyan-400 uppercase tracking-[0.2em]">
+                    <div className={cn("w-2 h-2 rounded-full", telemetry?.confidence > 50 ? "bg-accent-cyan animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" : "bg-ic-hover")} />
+                    <h2 className="text-[11px] font-black text-accent-cyan uppercase tracking-[0.2em]">
                         Orbos Vision Tracking System
                     </h2>
                 </div>
-                {isMinimized ? <ChevronDown className="w-4 h-4 text-cyan-500/50" /> : <ChevronUp className="w-4 h-4 text-cyan-500/50" />}
+                {isMinimized ? <ChevronDown className="w-4 h-4 text-accent-cyan/50" /> : <ChevronUp className="w-4 h-4 text-accent-cyan/50" />}
             </div>
 
             {!isMinimized && (
@@ -1376,18 +1376,18 @@ const OrbosVisionTrackingSystem = memo(({
 
                     {/* Section 1: Sensors & Streams */}
                     <div className="space-y-3">
-                        <div className="flex items-center gap-2 border-l-2 border-yellow-500 pl-2">
-                            <Layers className="w-3 h-3 text-yellow-500" />
-                            <h3 className="text-[9px] font-bold text-yellow-500/80 uppercase tracking-widest">Sensors & Streams</h3>
+                        <div className="flex items-center gap-2 border-l-2 border-accent-warning pl-2">
+                            <Layers className="w-3 h-3 text-accent-warning" />
+                            <h3 className="text-[9px] font-bold text-accent-warning/80 uppercase tracking-widest">Sensors & Streams</h3>
                         </div>
                         <KinectControls />
                     </div>
 
                     {/* Section 2: Precision Tracking */}
                     <div className="space-y-3">
-                        <div className="flex items-center gap-2 border-l-2 border-cyan-500 pl-2">
-                            <Activity className="w-3 h-3 text-cyan-500" />
-                            <h3 className="text-[9px] font-bold text-cyan-500/80 uppercase tracking-widest">Precision Tracking</h3>
+                        <div className="flex items-center gap-2 border-l-2 border-accent-cyan pl-2">
+                            <Activity className="w-3 h-3 text-accent-cyan" />
+                            <h3 className="text-[9px] font-bold text-accent-cyan/80 uppercase tracking-widest">Precision Tracking</h3>
                         </div>
                         <TrackingTelemetry
                             data={telemetry}
@@ -1400,26 +1400,26 @@ const OrbosVisionTrackingSystem = memo(({
 
                     {/* Section 3: Motorized Control */}
                     <div className="space-y-3">
-                        <div className="flex items-center gap-2 border-l-2 border-fuchsia-500 pl-2">
-                            <Cpu className="w-3 h-3 text-fuchsia-500" />
-                            <h3 className="text-[9px] font-bold text-fuchsia-500/80 uppercase tracking-widest">Motorized Control</h3>
+                        <div className="flex items-center gap-2 border-l-2 border-accent-indigo pl-2">
+                            <Cpu className="w-3 h-3 text-accent-indigo" />
+                            <h3 className="text-[9px] font-bold text-accent-indigo/80 uppercase tracking-widest">Motorized Control</h3>
                         </div>
                         <PTZControlPanel devices={devices.video} />
                     </div>
 
                     {/* Section 4: Kinect Fine-Tuning */}
                     <div className="space-y-4 pt-2 border-t border-white/5">
-                        <div className="flex items-center gap-2 border-l-2 border-emerald-500 pl-2">
-                            <Settings2 className="w-3 h-3 text-emerald-500" />
-                            <h3 className="text-[9px] font-bold text-emerald-500/80 uppercase tracking-widest">Kinect Fine-Tuning</h3>
+                        <div className="flex items-center gap-2 border-l-2 border-accent-success pl-2">
+                            <Settings2 className="w-3 h-3 text-accent-success" />
+                            <h3 className="text-[9px] font-bold text-accent-success/80 uppercase tracking-widest">Kinect Fine-Tuning</h3>
                         </div>
 
                         <div className="grid gap-3 px-1">
                             {/* Tilt Control */}
                             <div className="space-y-1.5">
-                                <div className="flex justify-between text-[8px] uppercase font-bold text-slate-500">
+                                <div className="flex justify-between text-[8px] uppercase font-bold text-txt-secondary">
                                     <span>Mechanical Tilt</span>
-                                    <span className="text-emerald-400">{skelParams.tilt}</span>
+                                    <span className="text-accent-success">{skelParams.tilt}</span>
                                 </div>
                                 <input
                                     type="range" min="-27" max="27" step="1"
@@ -1431,9 +1431,9 @@ const OrbosVisionTrackingSystem = memo(({
 
                             {/* Smoothing Control */}
                             <div className="space-y-1.5">
-                                <div className="flex justify-between text-[8px] uppercase font-bold text-slate-500">
+                                <div className="flex justify-between text-[8px] uppercase font-bold text-txt-secondary">
                                     <span>Skeleton Smoothing</span>
-                                    <span className="text-emerald-400">{Math.round(skelParams.smoothing * 100)}%</span>
+                                    <span className="text-accent-success">{Math.round(skelParams.smoothing * 100)}%</span>
                                 </div>
                                 <input
                                     type="range" min="0" max="1" step="0.01"
@@ -1445,9 +1445,9 @@ const OrbosVisionTrackingSystem = memo(({
 
                             {/* Jitter Radius */}
                             <div className="space-y-1.5">
-                                <div className="flex justify-between text-[8px] uppercase font-bold text-slate-500">
+                                <div className="flex justify-between text-[8px] uppercase font-bold text-txt-secondary">
                                     <span>Jitter Suppression</span>
-                                    <span className="text-emerald-400">{(skelParams.jitter * 100).toFixed(1)}cm</span>
+                                    <span className="text-accent-success">{(skelParams.jitter * 100).toFixed(1)}cm</span>
                                 </div>
                                 <input
                                     type="range" min="0" max="0.5" step="0.01"
@@ -1460,33 +1460,33 @@ const OrbosVisionTrackingSystem = memo(({
                     </div>
 
                     {/* Section 5: Hardware Performance */}
-                    <div className="space-y-3 pt-2 border-t border-white/5 bg-purple-500/5 -mx-3 px-3 pb-1">
+                    <div className="space-y-3 pt-2 border-t border-white/5 bg-accent-indigo/5 -mx-3 px-3 pb-1">
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2 border-l-2 border-purple-500 pl-2">
-                                <Zap className="w-3 h-3 text-purple-500" />
-                                <h3 className="text-[9px] font-bold text-purple-500/80 uppercase tracking-widest">Hardware Performance</h3>
+                            <div className="flex items-center gap-2 border-l-2 border-accent-indigo pl-2">
+                                <Zap className="w-3 h-3 text-accent-indigo" />
+                                <h3 className="text-[9px] font-bold text-accent-indigo/80 uppercase tracking-widest">Hardware Performance</h3>
                             </div>
-                            <span className="text-[8px] font-mono text-purple-400 animate-pulse">{telemetry?.performance?.global_fps || 0} FPS</span>
+                            <span className="text-[8px] font-mono text-accent-indigo animate-pulse">{telemetry?.performance?.global_fps || 0} FPS</span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2 text-[8px] font-mono">
                             <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span className="text-slate-500 uppercase">Process Latency</span>
+                                <span className="text-txt-secondary uppercase">Process Latency</span>
                                 <span className="text-white">{telemetry?.performance?.latency_ms || 0}ms</span>
                             </div>
                             <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span className="text-slate-500 uppercase">Active Streams</span>
+                                <span className="text-txt-secondary uppercase">Active Streams</span>
                             </div>
                         </div>
 
                         {telemetry?.performance?.fps && Object.entries(telemetry?.performance?.fps || {}).length > 0 && (
-                            <div className="bg-black/40 rounded p-1 mb-2 border border-cyan-900/30">
+                            <div className="bg-black/40 rounded p-1 mb-2 border border-accent-cyan/30">
                                 <label className="text-[8px] text-cyan-700 uppercase block mb-1">Stream Throttling (FPS)</label>
                                 <div className="flex flex-col gap-1">
                                     {Object.entries(telemetry?.performance?.fps || {}).map(([cid, fps]) => (
-                                        <div key={cid} className="bg-black/40 px-1.5 py-0.5 rounded border border-purple-900/40 flex gap-2 items-center">
-                                            <span className="text-slate-500 text-[7px] uppercase">CAM {cid}</span>
-                                            <span className="text-purple-400 font-bold">{fps}</span>
+                                        <div key={cid} className="bg-black/40 px-1.5 py-0.5 rounded border border-accent-indigo/40 flex gap-2 items-center">
+                                            <span className="text-txt-secondary text-[7px] uppercase">CAM {cid}</span>
+                                            <span className="text-accent-indigo font-bold">{fps}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -1630,9 +1630,9 @@ const AudioPanel = memo(({ telemetry }) => {
     const sttError = data?.stt?.last_error;
 
     return (
-        <div className="shrink-0 bg-slate-900/60 p-3 rounded-lg border border-emerald-500/20 space-y-3 shadow-inner shadow-emerald-950/20 mt-2">
-            <div className="flex justify-between items-center bg-black/40 p-1.5 rounded border border-emerald-900/30">
-                <h3 className="text-[10px] text-emerald-400 uppercase tracking-widest flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
+        <div className="shrink-0 bg-ic-surface/60 p-3 rounded-lg border border-accent-success/20 space-y-3 shadow-inner shadow-accent-success/20 mt-2">
+            <div className="flex justify-between items-center bg-black/40 p-1.5 rounded border border-accent-success/30">
+                <h3 className="text-[10px] text-accent-success uppercase tracking-widest flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
                     <Mic className="w-3 h-3" /> Acoustic Array
                     {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                 </h3>
@@ -1642,9 +1642,9 @@ const AudioPanel = memo(({ telemetry }) => {
                         disabled={isToggling}
                         className={cn(
                             "px-2 py-0.5 rounded text-[9px] font-bold transition-all uppercase border",
-                            isToggling ? "bg-slate-700 text-slate-400 border-slate-600 cursor-wait" :
-                                active ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/50 hover:bg-emerald-500/30" :
-                                    "bg-slate-800 text-slate-500 border-slate-700 hover:bg-slate-700 hover:text-slate-300"
+                            isToggling ? "bg-ic-hover text-txt-secondary border-ic-border cursor-wait" :
+                                active ? "bg-accent-success/20 text-accent-success border-accent-success/50 hover:bg-accent-success/30" :
+                                    "bg-ic-card text-txt-secondary border-ic-border hover:bg-ic-hover hover:text-txt-primary"
                         )}
                     >
                         {isToggling ? "WAIT" : active ? "ON" : "OFF"}
@@ -1655,26 +1655,26 @@ const AudioPanel = memo(({ telemetry }) => {
             {!isMinimized && (
                 <div className="space-y-3 animate-in slide-in-from-top-2 duration-300">
 
-                    <div className="bg-black/40 p-2 rounded border border-emerald-900/20 space-y-1">
+                    <div className="bg-black/40 p-2 rounded border border-accent-success/20 space-y-1">
                         <div className="flex justify-between items-center text-[8px] uppercase tracking-widest">
-                            <span className="text-emerald-500/80 font-bold">Whisper STT</span>
+                            <span className="text-accent-success/80 font-bold">Whisper STT</span>
                             <span className={cn(
                                 "px-1.5 py-0.5 rounded text-[8px] font-bold border",
                                 sttAvailable && sttModelLoaded
-                                    ? (sttRunning ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" : "bg-cyan-500/20 text-cyan-300 border-cyan-500/40")
-                                    : "bg-red-500/20 text-red-300 border-red-500/40"
+                                    ? (sttRunning ? "bg-accent-success/20 text-accent-success border-accent-success/40" : "bg-accent-cyan/20 text-accent-cyan border-accent-cyan/40")
+                                    : "bg-accent-danger/20 text-accent-danger border-red-500/40"
                             )}>
                                 {sttAvailable && sttModelLoaded ? (sttRunning ? "LISTENING" : "READY") : "UNAVAILABLE"}
                             </span>
                         </div>
-                        <div className="text-[8px] text-slate-500 break-words">
+                        <div className="text-[8px] text-txt-secondary break-words">
                             {sttError || (sttAvailable && sttModelLoaded ? "Whisper runtime online" : "Whisper dependency/model not ready")}
                         </div>
                     </div>
 
                     {/* Persistence Sensitivity Slider */}
-                    <div className="bg-black/40 p-2 rounded border border-emerald-900/20 space-y-1">
-                        <div className="flex justify-between items-center text-[8px] uppercase tracking-widest text-emerald-500/60 font-bold">
+                    <div className="bg-black/40 p-2 rounded border border-accent-success/20 space-y-1">
+                        <div className="flex justify-between items-center text-[8px] uppercase tracking-widest text-accent-success/60 font-bold">
                             <span>Compass Smoothing</span>
                             <span>{sensitivity}%</span>
                         </div>
@@ -1689,10 +1689,10 @@ const AudioPanel = memo(({ telemetry }) => {
                     </div>
 
                     {/* Spatial Compass */}
-                    <div className="relative h-48 bg-black/40 rounded border border-emerald-900/10 flex items-center justify-center overflow-hidden shrink-0">
+                    <div className="relative h-48 bg-black/40 rounded border border-accent-success/10 flex items-center justify-center overflow-hidden shrink-0">
                         {/* Angle Arc */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                            <div className="w-40 h-40 border border-emerald-500/30 rounded-full" />
+                            <div className="w-40 h-40 border border-accent-success/30 rounded-full" />
                         </div>
 
                         {/* Needle */}
@@ -1710,45 +1710,45 @@ const AudioPanel = memo(({ telemetry }) => {
                         </div>
 
                         {/* Center Dot */}
-                        <div className="w-3 h-3 bg-slate-700 rounded-full z-10 border border-emerald-500/50" />
+                        <div className="w-3 h-3 bg-ic-hover rounded-full z-10 border border-accent-success/50" />
 
                         {/* Readout */}
-                        <div className="absolute bottom-2 right-2 text-[10px] font-mono text-emerald-500/80 bg-black/50 px-1 rounded flex gap-2">
+                        <div className="absolute bottom-2 right-2 text-[10px] font-mono text-accent-success/80 bg-black/50 px-1 rounded flex gap-2">
                             <span>{angle.toFixed(0)}</span>
-                            <span className="text-slate-600 border-l border-slate-700 pl-2">FLOOR: {(stream?.noise_floor || 0).toFixed(4)}</span>
+                            <span className="text-txt-muted border-l border-ic-border pl-2">FLOOR: {(stream?.noise_floor || 0).toFixed(4)}</span>
                         </div>
 
                         {/* Spatial Lock Indicator */}
                         {targetLock && (
-                            <div className="absolute top-2 right-2 flex items-center gap-1 bg-cyan-500/20 px-1.5 py-0.5 rounded border border-cyan-500/40 animate-pulse">
-                                <ShieldCheck className="w-3 h-3 text-cyan-400" />
-                                <span className="text-[9px] text-cyan-300 font-bold tracking-widest uppercase">Target Sync</span>
+                            <div className="absolute top-2 right-2 flex items-center gap-1 bg-accent-cyan/20 px-1.5 py-0.5 rounded border border-accent-cyan/40 animate-pulse">
+                                <ShieldCheck className="w-3 h-3 text-accent-cyan" />
+                                <span className="text-[9px] text-accent-cyan font-bold tracking-widest uppercase">Target Sync</span>
                             </div>
                         )}
 
                         {/* Fusion Status Message */}
-                        <div className="absolute bottom-2 left-2 text-[8px] font-bold text-slate-500 uppercase tracking-tighter">
-                            AI Mode: <span className={cn(targetLock ? "text-cyan-400" : "text-slate-400")}>{statusMsg}</span>
+                        <div className="absolute bottom-2 left-2 text-[8px] font-bold text-txt-secondary uppercase tracking-tighter">
+                            AI Mode: <span className={cn(targetLock ? "text-accent-cyan" : "text-txt-secondary")}>{statusMsg}</span>
                         </div>
 
                         {/* VAD Indicator */}
                         {vad && (
-                            <div className="absolute top-2 left-2 flex items-center gap-1 bg-emerald-500/20 px-1.5 py-0.5 rounded border border-emerald-500/30">
-                                <Activity className="w-3 h-3 text-emerald-400 animate-pulse" />
-                                <span className="text-[9px] text-emerald-300 font-bold tracking-wider">SPEECH DETECTED</span>
+                            <div className="absolute top-2 left-2 flex items-center gap-1 bg-accent-success/20 px-1.5 py-0.5 rounded border border-accent-success/30">
+                                <Activity className="w-3 h-3 text-accent-success animate-pulse" />
+                                <span className="text-[9px] text-accent-success font-bold tracking-wider">SPEECH DETECTED</span>
                             </div>
                         )}
                     </div>
 
                     {/* Visualizer Canvas */}
-                    <div className="bg-black/50 rounded h-8 w-full border border-emerald-900/20 relative overflow-hidden">
-                        {!isVisualizing && <div className="absolute inset-0 flex items-center justify-center text-[9px] text-slate-600">Spectrogram Inactive</div>}
+                    <div className="bg-black/50 rounded h-8 w-full border border-accent-success/20 relative overflow-hidden">
+                        {!isVisualizing && <div className="absolute inset-0 flex items-center justify-center text-[9px] text-txt-muted">Spectrogram Inactive</div>}
                         <canvas ref={canvasRef} width={280} height={32} className="w-full h-full" />
                     </div>
 
                     {/* Audio Device Health List */}
-                    <div className="bg-black/40 rounded border border-emerald-900/10 overflow-hidden">
-                        <div className="bg-emerald-900/20 px-2 py-1 border-b border-emerald-900/20 text-[8px] font-bold text-emerald-400 uppercase tracking-widest">
+                    <div className="bg-black/40 rounded border border-accent-success/10 overflow-hidden">
+                        <div className="bg-accent-success/20 px-2 py-1 border-b border-accent-success/20 text-[8px] font-bold text-accent-success uppercase tracking-widest">
                             Subsystem Device Tree
                         </div>
                         <div className="p-1 space-y-0.5 max-h-[100px] overflow-y-auto custom-scrollbar">
@@ -1759,23 +1759,23 @@ const AudioPanel = memo(({ telemetry }) => {
                                 const isSpeaking = isActive && vad;
 
                                 return (
-                                    <div key={idx} className="flex justify-between items-center text-[7px] p-1 bg-black/20 rounded border border-white/5 group hover:bg-emerald-500/5 transition-colors">
+                                    <div key={idx} className="flex justify-between items-center text-[7px] p-1 bg-black/20 rounded border border-white/5 group hover:bg-accent-success/5 transition-colors">
                                         <div className="flex items-center gap-1.5 truncate pr-2">
                                             <div className={cn(
                                                 "w-1 h-1 rounded-full",
                                                 isSpeaking ? "bg-emerald-400 animate-pulse ring-2 ring-emerald-500/20" :
-                                                    isActive ? "bg-emerald-600" : "bg-slate-700"
+                                                    isActive ? "bg-accent-success" : "bg-ic-hover"
                                             )} />
-                                            <span className={cn("truncate", isActive ? "text-emerald-300" : "text-slate-500")}>
+                                            <span className={cn("truncate", isActive ? "text-accent-success" : "text-txt-secondary")}>
                                                 {dev.name.replace("Microphone (", "").replace(")", "")}
                                             </span>
                                         </div>
                                         <div className="flex gap-1 items-center shrink-0">
-                                            <span className="text-[6px] text-slate-600 font-mono uppercase">{dev.channels}CH</span>
+                                            <span className="text-[6px] text-txt-muted font-mono uppercase">{dev.channels}CH</span>
                                             <span className={cn(
                                                 "px-1 py-0.5 rounded-[2px] font-bold uppercase",
-                                                isSpeaking ? "bg-emerald-500 text-black" :
-                                                    isActive ? "bg-emerald-900/40 text-emerald-400" : "bg-slate-800 text-slate-600"
+                                                isSpeaking ? "bg-accent-success text-black" :
+                                                    isActive ? "bg-accent-success/40 text-accent-success" : "bg-ic-card text-txt-muted"
                                             )}>
                                                 {isSpeaking ? "LIVE" : isActive ? "WAIT" : "STBY"}
                                             </span>
@@ -1783,7 +1783,7 @@ const AudioPanel = memo(({ telemetry }) => {
                                     </div>
                                 );
                             }) : (
-                                <div className="text-center py-2 text-[8px] text-slate-700 italic">No audio hardware identified</div>
+                                <div className="text-center py-2 text-[8px] text-txt-muted italic">No audio hardware identified</div>
                             )}
                         </div>
                     </div>
@@ -1809,9 +1809,9 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
     // Live Telemetry Section
     const liveStats = telemetry ? [
-        { label: "CPU Usage", value: `${telemetry?.system?.cpu_percent || 0}%`, color: (telemetry?.system?.cpu_percent || 0) > 80 ? "text-red-400" : "text-lime-400" },
-        { label: "RAM Usage", value: `${telemetry?.system?.ram_percent || 0}%`, color: "text-cyan-400" },
-        { label: "Vision FPS", value: `${(telemetry?.vision?.fps || 0).toFixed(1)}`, color: "text-fuchsia-400" },
+        { label: "CPU Usage", value: `${telemetry?.system?.cpu_percent || 0}%`, color: (telemetry?.system?.cpu_percent || 0) > 80 ? "text-accent-danger" : "text-lime-400" },
+        { label: "RAM Usage", value: `${telemetry?.system?.ram_percent || 0}%`, color: "text-accent-cyan" },
+        { label: "Vision FPS", value: `${(telemetry?.vision?.fps || 0).toFixed(1)}`, color: "text-accent-indigo" },
     ] : [];
 
     // Comprehensive System Checks
@@ -1917,17 +1917,17 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
     const ComponentIcon = ({ health }) => {
         if (health === "HEALTHY" || health === "ACTIVE" || health === "NOMINAL")
-            return <CheckCircle2 className="w-4 h-4 text-green-500" />;
+            return <CheckCircle2 className="w-4 h-4 text-accent-success" />;
         if (health === "CONFLICT" || health === "DEGRADED")
-            return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
-        return <XCircle className="w-4 h-4 text-red-500" />;
+            return <AlertTriangle className="w-4 h-4 text-accent-warning" />;
+        return <XCircle className="w-4 h-4 text-accent-danger" />;
     };
 
     const CheckIcon = ({ status }) => {
-        if (status === 'PASS') return <CheckCircle2 className="w-4 h-4 text-green-500" />;
-        if (status === 'WARN') return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
-        if (status === 'LOADING') return <RefreshCw className="w-4 h-4 text-cyan-400 animate-spin" />;
-        return <XCircle className="w-4 h-4 text-red-500" />;
+        if (status === 'PASS') return <CheckCircle2 className="w-4 h-4 text-accent-success" />;
+        if (status === 'WARN') return <AlertTriangle className="w-4 h-4 text-accent-warning" />;
+        if (status === 'LOADING') return <RefreshCw className="w-4 h-4 text-accent-cyan animate-spin" />;
+        return <XCircle className="w-4 h-4 text-accent-danger" />;
     };
 
     const generateDebug = async () => {
@@ -1961,13 +1961,13 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
     return (
         <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-6 animate-in fade-in zoom-in duration-300">
-            <div className="bg-slate-950 border border-cyan-500/30 rounded-xl shadow-[0_0_50px_rgba(6,182,212,0.1)] w-full max-w-2xl overflow-hidden flex flex-col">
-                <div className="p-4 border-b border-cyan-900/50 bg-cyan-950/20 flex justify-between items-center">
+            <div className="bg-ic-bg border border-accent-cyan/30 rounded-xl shadow-[0_0_50px_rgba(6,182,212,0.1)] w-full max-w-2xl overflow-hidden flex flex-col">
+                <div className="p-4 border-b border-accent-cyan/50 bg-cyan-950/20 flex justify-between items-center">
                     <div className="flex items-center gap-3">
-                        <Activity className="w-6 h-6 text-cyan-400" />
+                        <Activity className="w-6 h-6 text-accent-cyan" />
                         <div>
                             <h2 className="text-lg font-bold text-white tracking-tight">ORBOS System Readiness Audit</h2>
-                            <p className="text-[10px] text-cyan-500/70 uppercase tracking-widest font-medium">Real-time Interface & Hardware Sync</p>
+                            <p className="text-[10px] text-accent-cyan/70 uppercase tracking-widest font-medium">Real-time Interface & Hardware Sync</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1976,28 +1976,28 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                                 onOpenConfiguration?.();
                                 onClose?.();
                             }}
-                            className="px-3 py-1.5 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 text-[10px] font-bold rounded-lg border border-indigo-600/30 transition-all flex items-center gap-2"
+                            className="px-3 py-1.5 bg-accent-indigo/20 hover:bg-accent-indigo/40 text-accent-indigo text-[10px] font-bold rounded-lg border border-accent-indigo/30 transition-all flex items-center gap-2"
                         >
                             <Settings className="w-3 h-3" /> CONFIGURATION
                         </button>
                         <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                            <X className="w-5 h-5 text-slate-400" />
+                            <X className="w-5 h-5 text-txt-secondary" />
                         </button>
                     </div>
                 </div>
 
                 {/* Live Telemetry Bar */}
                 {telemetry && (
-                    <div className="flex items-center justify-around bg-slate-950/80 p-3 border-b border-cyan-900/30 font-mono text-sm">
+                    <div className="flex items-center justify-around bg-ic-bg/80 p-3 border-b border-accent-cyan/30 font-mono text-sm">
                         {liveStats.map((stat, i) => (
                             <div key={i} className="flex flex-col items-center">
-                                <span className="text-slate-500 text-[10px] uppercase tracking-wider">{stat.label}</span>
+                                <span className="text-txt-secondary text-[10px] uppercase tracking-wider">{stat.label}</span>
                                 <span className={`font-bold ${stat.color}`}>{stat.value}</span>
                             </div>
                         ))}
                         <div className="flex flex-col items-center">
-                            <span className="text-slate-500 text-[10px] uppercase tracking-wider">Agents</span>
-                            <span className="text-amber-400 font-bold">{telemetry?.agent?.status || "IDLE"}</span>
+                            <span className="text-txt-secondary text-[10px] uppercase tracking-wider">Agents</span>
+                            <span className="text-accent-warning font-bold">{telemetry?.agent?.status || "IDLE"}</span>
                         </div>
                     </div>
                 )}
@@ -2006,12 +2006,12 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                     {/* Comprehensive Audit Checklist */}
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-l-2 border-white pl-3">System Readiness Checklist</h3>
+                            <h3 className="text-xs font-bold text-txt-secondary uppercase tracking-wider border-l-2 border-white pl-3">System Readiness Checklist</h3>
                             <div className="flex items-center gap-3 text-[10px]">
-                                <span className="text-green-500">{passCount} PASS</span>
-                                {warnCount > 0 && <span className="text-yellow-500">{warnCount} WARN</span>}
-                                {failCount > 0 && <span className="text-red-500">{failCount} FAIL</span>}
-                                {loadingCount > 0 && <span className="text-cyan-400">{loadingCount} LOADING</span>}
+                                <span className="text-accent-success">{passCount} PASS</span>
+                                {warnCount > 0 && <span className="text-accent-warning">{warnCount} WARN</span>}
+                                {failCount > 0 && <span className="text-accent-danger">{failCount} FAIL</span>}
+                                {loadingCount > 0 && <span className="text-accent-cyan">{loadingCount} LOADING</span>}
                             </div>
                         </div>
 
@@ -2021,27 +2021,27 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                                     key={check.id}
                                     className={cn(
                                         "p-3 rounded-lg border flex items-center justify-between",
-                                        check.status === 'PASS' ? "bg-green-500/5 border-green-500/20" :
-                                            check.status === 'WARN' ? "bg-yellow-500/5 border-yellow-500/20" :
-                                                check.status === 'LOADING' ? "bg-cyan-500/5 border-cyan-500/20" :
-                                                    "bg-red-500/5 border-red-500/20"
+                                        check.status === 'PASS' ? "bg-accent-success/5 border-green-500/20" :
+                                            check.status === 'WARN' ? "bg-accent-warning/5 border-accent-warning/20" :
+                                                check.status === 'LOADING' ? "bg-accent-cyan/5 border-accent-cyan/20" :
+                                                    "bg-accent-danger/5 border-red-500/20"
                                     )}
                                 >
                                     <div className="flex items-center gap-3">
                                         <CheckIcon status={check.status} />
                                         <div>
-                                            <div className="text-sm text-slate-200 font-medium">{check.label}</div>
+                                            <div className="text-sm text-txt-primary font-medium">{check.label}</div>
                                             {check.status !== 'PASS' && (
-                                                <div className="text-[10px] text-slate-500 mt-0.5">{check.fix}</div>
+                                                <div className="text-[10px] text-txt-secondary mt-0.5">{check.fix}</div>
                                             )}
                                         </div>
                                     </div>
                                     <div className={cn(
                                         "text-xs font-mono font-bold",
-                                        check.status === 'PASS' ? "text-green-400" :
-                                            check.status === 'WARN' ? "text-yellow-400" :
-                                                check.status === 'LOADING' ? "text-cyan-400" :
-                                                    "text-red-400"
+                                        check.status === 'PASS' ? "text-accent-success" :
+                                            check.status === 'WARN' ? "text-accent-warning" :
+                                                check.status === 'LOADING' ? "text-accent-cyan" :
+                                                    "text-accent-danger"
                                     )}>
                                         {check.value}
                                     </div>
@@ -2053,14 +2053,14 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                         {!allPassed && !issuesAcknowledged && (
                             <button
                                 onClick={() => setIssuesAcknowledged(true)}
-                                className="w-full mt-3 px-4 py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-400 text-xs font-bold rounded-lg border border-yellow-600/30 transition-all flex items-center justify-center gap-2"
+                                className="w-full mt-3 px-4 py-2 bg-accent-warning/20 hover:bg-accent-warning/40 text-accent-warning text-xs font-bold rounded-lg border border-accent-warning/30 transition-all flex items-center justify-center gap-2"
                             >
                                 <AlertTriangle className="w-4 h-4" />
                                 ACKNOWLEDGE ISSUES & PROCEED
                             </button>
                         )}
                         {issuesAcknowledged && (
-                            <div className="text-[10px] text-yellow-500/70 text-center italic">
+                            <div className="text-[10px] text-accent-warning/70 text-center italic">
                                 Issues acknowledged - you may proceed with degraded functionality
                             </div>
                         )}
@@ -2068,19 +2068,19 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
                     {/* Vision Section */}
                     <div className="space-y-3">
-                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-l-2 border-cyan-600 pl-3">Vision & Optics</h3>
+                        <h3 className="text-xs font-bold text-txt-secondary uppercase tracking-wider border-l-2 border-accent-cyan pl-3">Vision & Optics</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">Active Cameras</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">Active Cameras</span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-cyan-400 font-mono font-bold">{statusData?.components?.vision?.cameras_detected || 0}</span>
-                                    <Camera className="w-4 h-4 text-slate-500" />
+                                    <span className="text-accent-cyan font-mono font-bold">{statusData?.components?.vision?.cameras_detected || 0}</span>
+                                    <Camera className="w-4 h-4 text-txt-secondary" />
                                 </div>
                             </div>
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">Signal Health</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">Signal Health</span>
                                 <div className="flex items-center gap-2">
-                                    <span className={cn("text-xs font-bold", statusData?.components?.vision?.health === 'HEALTHY' ? "text-green-500" : "text-yellow-500")}>
+                                    <span className={cn("text-xs font-bold", statusData?.components?.vision?.health === 'HEALTHY' ? "text-accent-success" : "text-accent-warning")}>
                                         {statusData?.components?.vision?.health || "OFFLINE"}
                                     </span>
                                     {statusData?.components?.vision?.health && <ComponentIcon health={statusData.components.vision.health} />}
@@ -2090,14 +2090,14 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
                         {/* Conflicts */}
                         {statusData?.components?.vision?.conflicts && statusData.components.vision.conflicts.length > 0 && (
-                            <div className="bg-yellow-500/5 border border-yellow-500/20 p-3 rounded-lg space-y-2">
-                                <div className="flex items-center gap-2 text-yellow-500">
+                            <div className="bg-accent-warning/5 border border-accent-warning/20 p-3 rounded-lg space-y-2">
+                                <div className="flex items-center gap-2 text-accent-warning">
                                     <Zap className="w-3 h-3" />
                                     <span className="text-[10px] font-bold uppercase">Hardware Advisories Detected</span>
                                 </div>
                                 {statusData.components.vision.conflicts.map((c, i) => (
-                                    <div key={i} className="text-xs text-slate-400 bg-black/40 p-2 rounded">
-                                        <span className="text-yellow-400/80 font-medium">{c.device}:</span> {c.reason}
+                                    <div key={i} className="text-xs text-txt-secondary bg-black/40 p-2 rounded">
+                                        <span className="text-accent-warning/80 font-medium">{c.device}:</span> {c.reason}
                                     </div>
                                 ))}
                             </div>
@@ -2106,89 +2106,89 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
 
                     {/* Intelligence Section */}
                     <div className="space-y-3">
-                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-l-2 border-purple-600 pl-3">Neural Core</h3>
+                        <h3 className="text-xs font-bold text-txt-secondary uppercase tracking-wider border-l-2 border-accent-indigo pl-3">Neural Core</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">LLM Status</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">LLM Status</span>
                                 <div className="flex items-center gap-2">
-                                    <span className={cn("font-bold text-xs flex items-center gap-2", statusData?.components?.intelligence?.status.startsWith("ACTIVE") ? "text-purple-400" : "text-yellow-400")}>
+                                    <span className={cn("font-bold text-xs flex items-center gap-2", statusData?.components?.intelligence?.status.startsWith("ACTIVE") ? "text-accent-indigo" : "text-accent-warning")}>
                                         {statusData?.components?.intelligence?.status !== "ACTIVE" && <RefreshCw className="w-3 h-3 animate-spin" />}
                                         {statusData?.components?.intelligence?.status || "STANDBY"}
                                     </span>
-                                    <BrainCircuit className="w-4 h-4 text-slate-500" />
+                                    <BrainCircuit className="w-4 h-4 text-txt-secondary" />
                                 </div>
                             </div>
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">Active Model</span>
-                                <span className="text-xs text-slate-400 font-mono truncate max-w-[120px]">{statusData?.components?.intelligence?.model}</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">Active Model</span>
+                                <span className="text-xs text-txt-secondary font-mono truncate max-w-[120px]">{statusData?.components?.intelligence?.model}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Sensory Section */}
                     <div className="space-y-3">
-                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-l-2 border-emerald-600 pl-3">Acoustics & PnP</h3>
+                        <h3 className="text-xs font-bold text-txt-secondary uppercase tracking-wider border-l-2 border-accent-success pl-3">Acoustics & PnP</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">Microphone Array</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">Microphone Array</span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-emerald-400 font-mono font-bold">{statusData?.components?.sensory?.microphones || 0}</span>
-                                    <Mic className="w-4 h-4 text-slate-500" />
+                                    <span className="text-accent-success font-mono font-bold">{statusData?.components?.sensory?.microphones || 0}</span>
+                                    <Mic className="w-4 h-4 text-txt-secondary" />
                                 </div>
                             </div>
-                            <div className="bg-slate-900/40 p-3 rounded-lg border border-slate-800 flex items-center justify-between">
-                                <span className="text-sm text-slate-300">PnP Inventory Size</span>
-                                <span className="text-emerald-400 font-mono font-bold">{statusData?.components?.sensory?.pnp_inventory_size || 0}</span>
+                            <div className="bg-ic-surface/40 p-3 rounded-lg border border-ic-border flex items-center justify-between">
+                                <span className="text-sm text-txt-primary">PnP Inventory Size</span>
+                                <span className="text-accent-success font-mono font-bold">{statusData?.components?.sensory?.pnp_inventory_size || 0}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Trace Route Logic Integration */}
                     <div className="space-y-3">
-                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-l-2 border-slate-600 pl-3">Hardware Trace Route</h3>
-                        <div className="bg-black/60 p-4 rounded-lg border border-slate-800 font-mono text-[10px] space-y-1.5 max-h-40 overflow-y-auto custom-scrollbar">
+                        <h3 className="text-xs font-bold text-txt-secondary uppercase tracking-wider border-l-2 border-ic-border pl-3">Hardware Trace Route</h3>
+                        <div className="bg-black/60 p-4 rounded-lg border border-ic-border font-mono text-[10px] space-y-1.5 max-h-40 overflow-y-auto custom-scrollbar">
                             {statusData?.trace?.length > 0 ? (
                                 statusData.trace.map((t, i) => (
                                     <div key={i} className="flex gap-2">
-                                        <span className="text-slate-600">[{new Date(t.timestamp * 1000).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}]</span>
+                                        <span className="text-txt-muted">[{new Date(t.timestamp * 1000).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}]</span>
                                         <span className={cn(
-                                            t.level === "ERROR" ? "text-red-500" :
-                                                t.level === "WARNING" ? "text-yellow-500" :
-                                                    t.message.includes("SUCCESS") ? "text-emerald-400" : "text-cyan-400/80"
+                                            t.level === "ERROR" ? "text-accent-danger" :
+                                                t.level === "WARNING" ? "text-accent-warning" :
+                                                    t.message.includes("SUCCESS") ? "text-accent-success" : "text-accent-cyan/80"
                                         )}>
                                             {t.message}
                                         </span>
                                     </div>
                                 ))
                             ) : (
-                                <div className="text-slate-600 italic">Waiting for telemetry scan...</div>
+                                <div className="text-txt-muted italic">Waiting for telemetry scan...</div>
                             )}
                         </div>
                     </div>
 
                     {/* Debug Console Dropdown */}
                     {debugConsole && (
-                        <div className="bg-black/80 border border-yellow-500/30 p-4 rounded-lg space-y-2 animate-in slide-in-from-top duration-300">
-                            <div className="flex justify-between items-center text-yellow-500 mb-2">
+                        <div className="bg-black/80 border border-accent-warning/30 p-4 rounded-lg space-y-2 animate-in slide-in-from-top duration-300">
+                            <div className="flex justify-between items-center text-accent-warning mb-2">
                                 <div className="flex items-center gap-2">
                                     <Terminal className="w-4 h-4" />
                                     <span className="text-xs font-bold uppercase tracking-widest">Debug Output Console</span>
                                 </div>
                                 <button onClick={() => setDebugConsole(null)} className="text-[10px] hover:text-white uppercase font-bold">Close Console</button>
                             </div>
-                            <div className="bg-slate-900 p-3 rounded font-mono text-[10px] text-emerald-400 overflow-x-auto max-h-48 whitespace-pre border border-emerald-900/30">
+                            <div className="bg-ic-surface p-3 rounded font-mono text-[10px] text-accent-success overflow-x-auto max-h-48 whitespace-pre border border-accent-success/30">
                                 {JSON.stringify(debugConsole.data, null, 2)}
                             </div>
                             <div className="flex justify-between items-center gap-4">
-                                <div className="text-[9px] text-slate-500 italic">
-                                    File saved to: <span className="text-cyan-500">{debugConsole.file_path}</span>
+                                <div className="text-[9px] text-txt-secondary italic">
+                                    File saved to: <span className="text-accent-cyan">{debugConsole.file_path}</span>
                                 </div>
                                 <button
                                     onClick={() => {
                                         navigator.clipboard.writeText(JSON.stringify(debugConsole.data, null, 2));
                                         alert("Debug info copied to clipboard.");
                                     }}
-                                    className="px-3 py-1 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 text-[9px] font-bold rounded uppercase border border-yellow-600/30"
+                                    className="px-3 py-1 bg-accent-warning/20 hover:bg-accent-warning/40 text-accent-warning text-[9px] font-bold rounded uppercase border border-accent-warning/30"
                                 >
                                     Copy to Clipboard
                                 </button>
@@ -2197,11 +2197,11 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                     )}
                 </div>
 
-                <div className="p-4 bg-slate-900/50 border-t border-slate-800 flex flex-col gap-3">
+                <div className="p-4 bg-ic-surface/50 border-t border-ic-border flex flex-col gap-3">
                     {/* Loading Progress */}
-                    <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-ic-card h-1.5 rounded-full overflow-hidden">
                         <div
-                            className="bg-cyan-500 h-full transition-all duration-1000 ease-out"
+                            className="bg-accent-cyan h-full transition-all duration-1000 ease-out"
                             style={{
                                 width: `${[
                                     statusData?.components?.vision?.health === 'HEALTHY' || statusData?.components?.vision?.health === 'ACTIVE',
@@ -2212,10 +2212,10 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                         />
                     </div>
 
-                    <div className="flex justify-between items-center text-[10px] text-slate-500">
+                    <div className="flex justify-between items-center text-[10px] text-txt-secondary">
                         <div className="flex items-center gap-2">
                             <div className={cn("w-1.5 h-1.5 rounded-full animate-pulse",
-                                statusData?.loading_phase === "READY" ? "bg-emerald-500" : "bg-yellow-500"
+                                statusData?.loading_phase === "READY" ? "bg-accent-success" : "bg-accent-warning"
                             )} />
                             <span>{statusData?.loading_phase === "READY" ? "SYSTEM READY" : "INITIALIZING MODULES..."}</span>
                         </div>
@@ -2226,8 +2226,8 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                                 className={cn(
                                     "px-4 py-2 text-[10px] font-bold rounded-lg border transition-all flex items-center gap-2",
                                     isRefreshing
-                                        ? "bg-cyan-600/40 text-cyan-300 border-cyan-500/50 cursor-wait"
-                                        : "bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-400 border-cyan-600/30"
+                                        ? "bg-accent-cyan/40 text-accent-cyan border-accent-cyan/50 cursor-wait"
+                                        : "bg-accent-cyan/20 hover:bg-accent-cyan/40 text-accent-cyan border-accent-cyan/30"
                                 )}
                             >
                                 <RefreshCw className={cn("w-3 h-3", isRefreshing && "animate-spin")} />
@@ -2235,9 +2235,9 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                             </button>
                             <button
                                 onClick={generateDebug}
-                                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold rounded-lg border border-slate-700 transition-all flex items-center gap-2"
+                                className="px-4 py-2 bg-ic-card hover:bg-ic-hover text-txt-primary text-[10px] font-bold rounded-lg border border-ic-border transition-all flex items-center gap-2"
                             >
-                                <ScrollText className="w-3 h-3 text-yellow-500" /> GENERATE DEBUG LOGS
+                                <ScrollText className="w-3 h-3 text-accent-warning" /> GENERATE DEBUG LOGS
                             </button>
                             <button
                                 onClick={async () => {
@@ -2251,15 +2251,15 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                                         }
                                     }
                                 }}
-                                className="px-4 py-2 bg-red-900/40 hover:bg-red-600/60 text-red-200 text-[10px] font-bold rounded-lg border border-red-800/50 transition-all flex items-center gap-2"
+                                className="px-4 py-2 bg-accent-danger/40 hover:bg-accent-danger/60 text-accent-danger text-[10px] font-bold rounded-lg border border-accent-danger/50 transition-all flex items-center gap-2"
                             >
-                                <Power className="w-3 h-3 text-red-400" /> SHUTDOWN SYSTEM
+                                <Power className="w-3 h-3 text-accent-danger" /> SHUTDOWN SYSTEM
                             </button>
                             <button
                                 onClick={onClose}
                                 className={cn(
                                     "px-6 py-2 font-bold rounded-lg transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed",
-                                    canProceed ? "bg-cyan-600 hover:bg-cyan-500 text-white" : "bg-slate-700 text-slate-400"
+                                    canProceed ? "bg-accent-cyan hover:bg-accent-cyan text-white" : "bg-ic-hover text-txt-secondary"
                                 )}
                                 disabled={!canProceed}
                             >
@@ -2270,7 +2270,7 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                                     onOpenConfiguration?.();
                                     onClose?.();
                                 }}
-                                className="px-4 py-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 text-[10px] font-bold rounded-lg border border-indigo-600/30 transition-all flex items-center gap-2"
+                                className="px-4 py-2 bg-accent-indigo/20 hover:bg-accent-indigo/40 text-accent-indigo text-[10px] font-bold rounded-lg border border-accent-indigo/30 transition-all flex items-center gap-2"
                             >
                                 <Settings className="w-3 h-3" /> CONFIGURATION
                             </button>
@@ -2286,23 +2286,23 @@ const IntelligencePanel = memo(({ status }) => {
     const [isMinimized, setIsMinimized] = useState(false);
 
     if (!status) return (
-        <div className="bg-slate-900/50 p-3 rounded border border-slate-800 animate-pulse text-[10px] text-slate-500 text-center shrink-0">
+        <div className="bg-ic-surface/50 p-3 rounded border border-ic-border animate-pulse text-[10px] text-txt-secondary text-center shrink-0">
             Initializing Intelligence Layer...
         </div>
     );
 
     return (
-        <div className="flex flex-col gap-3 bg-slate-900/80 p-3 rounded border border-indigo-900/30 shadow-lg shadow-indigo-950/10 shrink-0 transition-all duration-300">
+        <div className="flex flex-col gap-3 bg-ic-surface/80 p-3 rounded border border-accent-indigo/30 shadow-lg shadow-accent-indigo/10 shrink-0 transition-all duration-300">
             {/* Header */}
-            <div className="flex justify-between items-center border-b border-indigo-900/20 pb-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
-                <h3 className="text-[10px] text-indigo-400 uppercase tracking-widest font-bold flex items-center gap-2">
+            <div className="flex justify-between items-center border-b border-accent-indigo/20 pb-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
+                <h3 className="text-[10px] text-accent-indigo uppercase tracking-widest font-bold flex items-center gap-2">
                     <Brain className="w-3 h-3" /> Neural Status
                     {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                 </h3>
                 {!isMinimized && (
                     <div className="flex items-center gap-1.5">
-                        <div className={cn("w-1.5 h-1.5 rounded-full", status.status === "ACTIVE" ? "bg-indigo-500 animate-pulse" : "bg-yellow-500")} />
-                        <span className="text-[9px] text-indigo-500 font-bold uppercase">
+                        <div className={cn("w-1.5 h-1.5 rounded-full", status.status === "ACTIVE" ? "bg-accent-indigo animate-pulse" : "bg-accent-warning")} />
+                        <span className="text-[9px] text-accent-indigo font-bold uppercase">
                             {status.loading_phase === "READY" ? status.status : (status.loading_phase || status.status)}
                         </span>
                     </div>
@@ -2313,8 +2313,8 @@ const IntelligencePanel = memo(({ status }) => {
                 <div className="flex flex-col gap-2 animate-in slide-in-from-top-2 duration-300">
                     {/* Active Core Info */}
                     <div>
-                        <label className="text-[9px] text-slate-500 uppercase block mb-0.5">Active Core</label>
-                        <div className="text-[11px] text-indigo-100 font-medium truncate bg-black/40 p-1.5 rounded border border-indigo-900/10">
+                        <label className="text-[9px] text-txt-secondary uppercase block mb-0.5">Active Core</label>
+                        <div className="text-[11px] text-indigo-100 font-medium truncate bg-black/40 p-1.5 rounded border border-accent-indigo/10">
                             {status.model_name || status.model || "Unknown Model"}
                         </div>
                     </div>
@@ -2322,32 +2322,32 @@ const IntelligencePanel = memo(({ status }) => {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-2 gap-2">
                         <div>
-                            <label className="text-[8px] text-slate-500 uppercase block">Quantization</label>
-                            <span className="text-[10px] text-slate-300 font-bold">{status.quantization || "N/A"}</span>
+                            <label className="text-[8px] text-txt-secondary uppercase block">Quantization</label>
+                            <span className="text-[10px] text-txt-primary font-bold">{status.quantization || "N/A"}</span>
                         </div>
                         <div>
-                            <label className="text-[8px] text-slate-500 uppercase block">Compute Device</label>
-                            <span className="text-[10px] text-slate-300 font-bold uppercase">{status.device || "CPU"}</span>
+                            <label className="text-[8px] text-txt-secondary uppercase block">Compute Device</label>
+                            <span className="text-[10px] text-txt-primary font-bold uppercase">{status.device || "CPU"}</span>
                         </div>
                     </div>
 
                     {/* VRAM & Load */}
-                    <div className="space-y-1.5 pt-1 border-t border-indigo-900/10">
+                    <div className="space-y-1.5 pt-1 border-t border-accent-indigo/10">
                         <div className="flex justify-between items-center">
-                            <label className="text-[9px] text-slate-500 uppercase">VRAM Allocation</label>
-                            <span className="text-[9px] text-indigo-300 font-mono">
+                            <label className="text-[9px] text-txt-secondary uppercase">VRAM Allocation</label>
+                            <span className="text-[9px] text-accent-indigo font-mono">
                                 {(status.vram_allocated_gb || 0).toFixed(2)} / {(status.vram_reserved_gb || 0).toFixed(2)} GB
                             </span>
                         </div>
-                        <div className="w-full bg-slate-800/50 h-1 rounded-full overflow-hidden">
+                        <div className="w-full bg-ic-card/50 h-1 rounded-full overflow-hidden">
                             <div
-                                className="bg-indigo-500 h-full transition-all duration-1000"
+                                className="bg-accent-indigo h-full transition-all duration-1000"
                                 style={{ width: `${Math.min(100, ((status.vram_allocated_gb || 0) / (status.vram_reserved_gb || 10)) * 100)}%` }}
                             />
                         </div>
                     </div>
 
-                    <div className="text-[8px] text-slate-600 flex justify-between italic">
+                    <div className="text-[8px] text-txt-muted flex justify-between italic">
                         <span>Precision: Half-Float (FP16)</span>
                         <span>Load: {status.simultaneous_load ? 'SIMUL' : 'SEQ'}</span>
                     </div>
@@ -2372,9 +2372,9 @@ const FaceManagementPanel = memo(({
     const [isMinimized, setIsMinimized] = useState(false);
 
     return (
-        <div className="flex flex-col gap-3 bg-slate-900/80 p-3 rounded-lg border border-cyan-900/40 shadow-lg shrink-0 transition-all duration-300">
+        <div className="flex flex-col gap-3 bg-ic-surface/80 p-3 rounded-lg border border-accent-cyan/40 shadow-lg shrink-0 transition-all duration-300">
             <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
-                <h3 className="text-[10px] text-cyan-400 uppercase tracking-widest font-bold flex items-center gap-2">
+                <h3 className="text-[10px] text-accent-cyan uppercase tracking-widest font-bold flex items-center gap-2">
                     <ShieldCheck className="w-3 h-3" /> Identity Management
                     {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                 </h3>
@@ -2383,21 +2383,21 @@ const FaceManagementPanel = memo(({
             {!isMinimized && (
                 <div className="flex flex-col gap-3 animate-in fade-in duration-300">
                     {/* Enrollment Form */}
-                    <div className="bg-black/40 p-2 rounded border border-cyan-500/20 space-y-2">
-                        <label className="text-[8px] text-cyan-500 uppercase font-bold">New Citizen Enrollment</label>
+                    <div className="bg-black/40 p-2 rounded border border-accent-cyan/20 space-y-2">
+                        <label className="text-[8px] text-accent-cyan uppercase font-bold">New Citizen Enrollment</label>
                         <div className="flex flex-col gap-2">
                             <input
                                 type="text"
                                 placeholder="Full Name"
                                 value={enrollName}
                                 onChange={e => setEnrollName(e.target.value)}
-                                className="bg-slate-950 border border-cyan-900/50 rounded px-2 py-1 text-[10px] text-cyan-100 outline-none focus:border-cyan-500"
+                                className="bg-ic-bg border border-accent-cyan/50 rounded px-2 py-1 text-[10px] text-cyan-100 outline-none focus:border-accent-cyan"
                             />
                             <div className="flex gap-2">
                                 <select
                                     value={enrollRole}
                                     onChange={e => setEnrollRole(e.target.value)}
-                                    className="bg-slate-950 border border-cyan-900/50 rounded px-2 py-1 text-[10px] text-cyan-300 outline-none flex-1"
+                                    className="bg-ic-bg border border-accent-cyan/50 rounded px-2 py-1 text-[10px] text-accent-cyan outline-none flex-1"
                                 >
                                     <option value="user">User</option>
                                     <option value="admin">Administrator</option>
@@ -2406,7 +2406,7 @@ const FaceManagementPanel = memo(({
                                 <button
                                     onClick={onEnroll}
                                     disabled={isEnrolling || !enrollName.trim()}
-                                    className="bg-cyan-600 hover:bg-cyan-500 disabled:opacity-50 text-white text-[9px] font-bold px-3 py-1 rounded transition-all uppercase"
+                                    className="bg-accent-cyan hover:bg-accent-cyan disabled:opacity-50 text-white text-[9px] font-bold px-3 py-1 rounded transition-all uppercase"
                                 >
                                     {isEnrolling ? "Capturing..." : "Enroll"}
                                 </button>
@@ -2415,9 +2415,9 @@ const FaceManagementPanel = memo(({
                         {enrollStatus && (
                             <div className={cn(
                                 "text-[8px] p-1 rounded border text-center font-bold uppercase",
-                                enrollStatus.type === 'error' ? "bg-red-900/20 border-red-500/50 text-red-400" :
-                                    enrollStatus.type === 'success' ? "bg-green-900/20 border-green-500/50 text-green-400" :
-                                        "bg-cyan-900/20 border-cyan-500/50 text-cyan-400"
+                                enrollStatus.type === 'error' ? "bg-accent-danger/20 border-red-500/50 text-accent-danger" :
+                                    enrollStatus.type === 'success' ? "bg-green-900/20 border-green-500/50 text-accent-success" :
+                                        "bg-accent-cyan/20 border-accent-cyan/50 text-accent-cyan"
                             )}>
                                 {enrollStatus.msg}
                             </div>
@@ -2426,12 +2426,12 @@ const FaceManagementPanel = memo(({
 
                     {/* Face List */}
                     <div className="space-y-1 max-h-48 overflow-y-auto custom-scrollbar">
-                        {faces.length === 0 && <div className="text-[8px] text-slate-600 italic text-center p-2">No identities enrolled.</div>}
+                        {faces.length === 0 && <div className="text-[8px] text-txt-muted italic text-center p-2">No identities enrolled.</div>}
                         {faces.map(face => (
-                            <div key={face.id} className="group bg-black/20 border border-slate-800 rounded p-2 flex justify-between items-center hover:border-cyan-900/40 transition-all">
+                            <div key={face.id} className="group bg-black/20 border border-ic-border rounded p-2 flex justify-between items-center hover:border-accent-cyan/40 transition-all">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] text-cyan-100 font-bold">{face.name}</span>
-                                    <span className="text-[8px] text-slate-500 uppercase tracking-tighter">
+                                    <span className="text-[8px] text-txt-secondary uppercase tracking-tighter">
                                         {face.role}  {face.embedding_count} Samples
                                     </span>
                                 </div>
@@ -2439,14 +2439,14 @@ const FaceManagementPanel = memo(({
                                     <button
                                         onClick={() => onAddSample(face.id)}
                                         title="Add Training Sample"
-                                        className="p-1 hover:bg-cyan-500/20 text-cyan-500 rounded transition-colors"
+                                        className="p-1 hover:bg-accent-cyan/20 text-accent-cyan rounded transition-colors"
                                     >
                                         <RefreshCw className="w-3 h-3" />
                                     </button>
                                     <button
                                         onClick={() => onDelete(face.id)}
                                         title="Delete Identity"
-                                        className="p-1 hover:bg-red-500/20 text-red-500 rounded transition-colors"
+                                        className="p-1 hover:bg-accent-danger/20 text-accent-danger rounded transition-colors"
                                     >
                                         <Trash2 className="w-3 h-3" />
                                     </button>
@@ -3306,15 +3306,15 @@ function App() {
                     height: 1080,
                     transform: `scale(${scale})`,
                 }}
-                className="flex flex-col shrink-0 bg-black text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-100 overflow-hidden shadow-2xl origin-center"
+                className="flex flex-col shrink-0 bg-black text-txt-primary font-sans selection:bg-accent-cyan/30 selection:text-cyan-100 overflow-hidden shadow-2xl origin-center"
             >
                 {/* Agent0Core Command Center - Top of Page */}
-                <div className="w-full border-b border-cyan-900/50 bg-slate-950/90 backdrop-blur shrink-0">
+                <div className="w-full border-b border-accent-cyan/50 bg-ic-bg/90 backdrop-blur shrink-0">
                     <IntelligencePanel status={modelStatus} />
                     <div className="flex justify-end px-4 pb-3">
                         <button
                             onClick={() => setActivePage(activePage === 'main' ? 'config' : 'main')}
-                            className="px-3 py-1.5 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 text-[10px] font-bold rounded-lg border border-indigo-600/30 transition-all flex items-center gap-2 uppercase tracking-wider"
+                            className="px-3 py-1.5 bg-accent-indigo/20 hover:bg-accent-indigo/40 text-accent-indigo text-[10px] font-bold rounded-lg border border-accent-indigo/30 transition-all flex items-center gap-2 uppercase tracking-wider"
                         >
                             <Settings className="w-3 h-3" /> {activePage === 'main' ? 'Configuration' : 'Back To Main'}
                         </button>
@@ -3327,42 +3327,42 @@ function App() {
                         {/* Left Sidebar: Vision & Hardware Controls */}
                         <div
                             style={{ width: sidebarWidth }}
-                            className="shrink-0 h-full border-r border-cyan-900/50 flex flex-col bg-slate-950/80 backdrop-blur relative transition-[width] duration-0 ease-linear"
+                            className="shrink-0 h-full border-r border-accent-cyan/50 flex flex-col bg-ic-bg/80 backdrop-blur relative transition-[width] duration-0 ease-linear"
                         >
                             {/* Resizer Handle */}
                             <div
-                                className="absolute top-0 -right-1 w-2 h-full cursor-col-resize z-50 hover:bg-cyan-500/20 active:bg-cyan-500/50 transition-colors"
+                                className="absolute top-0 -right-1 w-2 h-full cursor-col-resize z-50 hover:bg-accent-cyan/20 active:bg-accent-cyan/50 transition-colors"
                                 onMouseDown={() => {
                                     isResizing.current = 'sidebar1';
                                     document.body.style.cursor = 'col-resize';
                                 }}
                             />
 
-                            <div className="p-4 border-b border-cyan-900/30 flex items-center gap-3 bg-black/40">
+                            <div className="p-4 border-b border-accent-cyan/30 flex items-center gap-3 bg-black/40">
                                 <div className="relative">
                                     <div className="w-8 h-8 rounded bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.5)]">
                                         <BrainCircuit className="text-white w-5 h-5" />
                                     </div>
-                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-black animate-pulse" />
+                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-accent-success rounded-full border-2 border-black animate-pulse" />
                                 </div>
                                 <div>
                                     <h1 className="font-bold text-lg tracking-tight text-white leading-none">
-                                        Impression<span className="text-cyan-400">Core</span>
+                                        Impression<span className="text-accent-cyan">Core</span>
                                     </h1>
                                     <div className="flex items-center gap-1.5 mt-0.5">
-                                        <span className="text-[9px] uppercase tracking-widest text-cyan-600 font-bold bg-cyan-950/50 px-1 rounded border border-cyan-900/30">
+                                        <span className="text-[9px] uppercase tracking-widest text-cyan-600 font-bold bg-cyan-950/50 px-1 rounded border border-accent-cyan/30">
                                             {systemStatus.loading_phase === "READY" ? "Neural Link Active" : systemStatus.loading_phase}
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="px-4 py-2 border-b border-cyan-900/20 flex flex-col gap-2 bg-black/20">
+                            <div className="px-4 py-2 border-b border-accent-cyan/20 flex flex-col gap-2 bg-black/20">
                                 <button
                                     onClick={() => setShowStatus(true)}
-                                    className="w-full py-1.5 bg-slate-800/40 hover:bg-slate-700/60 text-[9px] text-slate-300 rounded border border-slate-700/50 flex items-center justify-center gap-2 transition-all uppercase tracking-widest font-bold"
+                                    className="w-full py-1.5 bg-ic-card/40 hover:bg-ic-hover/60 text-[9px] text-txt-primary rounded border border-ic-border/50 flex items-center justify-center gap-2 transition-all uppercase tracking-widest font-bold"
                                 >
-                                    <Activity className="w-3 h-3 text-cyan-500" /> Run System Audit
+                                    <Activity className="w-3 h-3 text-accent-cyan" /> Run System Audit
                                 </button>
 
                                 <button
@@ -3380,9 +3380,9 @@ function App() {
                                             }
                                         }
                                     }}
-                                    className="w-full py-1.5 bg-red-950/20 hover:bg-red-900/40 text-[9px] text-red-400/80 rounded border border-red-900/30 flex items-center justify-center gap-2 transition-all uppercase tracking-widest font-bold"
+                                    className="w-full py-1.5 bg-red-950/20 hover:bg-accent-danger/40 text-[9px] text-accent-danger/80 rounded border border-accent-danger/30 flex items-center justify-center gap-2 transition-all uppercase tracking-widest font-bold"
                                 >
-                                    <Zap className="w-3 h-3 text-red-500" /> System Shutdown
+                                    <Zap className="w-3 h-3 text-accent-danger" /> System Shutdown
                                 </button>
                             </div>
 
@@ -3390,9 +3390,9 @@ function App() {
                                 {/* IntelligencePanel moved to page top */}
 
                                 {/* Device Selectors */}
-                                <div className="flex flex-col gap-2 bg-slate-900/80 p-2 rounded border border-slate-800 shrink-0">
+                                <div className="flex flex-col gap-2 bg-ic-surface/80 p-2 rounded border border-ic-border shrink-0">
                                     <div className="flex justify-between items-center">
-                                        <h3 className="text-[10px] text-slate-500 uppercase tracking-wider flex items-center gap-2">
+                                        <h3 className="text-[10px] text-txt-secondary uppercase tracking-wider flex items-center gap-2">
                                             <Settings className="w-3 h-3" /> Hardware Configuration
                                         </h3>
                                         <button
@@ -3406,23 +3406,23 @@ function App() {
                                                     addLog("ERROR", `Hot-Swap Failed: ${e.message}`);
                                                 }
                                             }}
-                                            className="text-[9px] bg-cyan-900/40 hover:bg-cyan-700/50 px-2 py-0.5 rounded border border-cyan-800 transition-colors"
+                                            className="text-[9px] bg-accent-cyan/40 hover:bg-cyan-700/50 px-2 py-0.5 rounded border border-cyan-800 transition-colors"
                                         >
                                             Refresh
                                         </button>
                                     </div>
 
                                     <div className="flex flex-col gap-1">
-                                        <label className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider flex justify-between">
+                                        <label className="text-[10px] text-accent-cyan font-bold uppercase tracking-wider flex justify-between">
                                             Primary Camera
                                             {selectedCam && (selectedCam.includes('106') || selectedCam.includes('IR')) &&
-                                                <span className="text-[9px] text-red-400 bg-red-900/30 px-1 rounded border border-red-800 animate-pulse">IR NIGHT VISION</span>
+                                                <span className="text-[9px] text-accent-danger bg-accent-danger/30 px-1 rounded border border-accent-danger animate-pulse">IR NIGHT VISION</span>
                                             }
                                         </label>
                                         <select
                                             value={selectedCam}
                                             onChange={e => setSelectedCam(e.target.value)}
-                                            className="bg-slate-950 border border-cyan-500/50 text-xs text-cyan-100 rounded p-2 focus:border-cyan-400 outline-none shadow-[0_0_10px_rgba(6,182,212,0.2)] font-bold mb-2"
+                                            className="bg-ic-bg border border-accent-cyan/50 text-xs text-cyan-100 rounded p-2 focus:border-accent-cyan outline-none shadow-[0_0_10px_rgba(6,182,212,0.2)] font-bold mb-2"
                                         >
                                             {devices.video.length === 0 && <option value="">No Cameras Found</option>}
                                             {devices.video.map(d => (
@@ -3433,7 +3433,7 @@ function App() {
 
                                     <div className="flex flex-col gap-1">
                                         <label className="text-[10px] text-cyan-700">Secondary Camera</label>
-                                        <select value={selectedCam2} onChange={e => setSelectedCam2(e.target.value)} className="bg-black border border-cyan-900/50 text-xs text-cyan-100 rounded p-1 focus:border-cyan-500 outline-none">
+                                        <select value={selectedCam2} onChange={e => setSelectedCam2(e.target.value)} className="bg-black border border-accent-cyan/50 text-xs text-cyan-100 rounded p-1 focus:border-accent-cyan outline-none">
                                             <option value="">None</option>
                                             {devices.video.map(d => (
                                                 <option key={d.deviceId} value={d.deviceId}>{d.label || `Camera ${d.deviceId.slice(0, 5)}`}</option>
@@ -3443,16 +3443,16 @@ function App() {
 
                                     <div className="flex flex-col gap-1">
                                         <label className="text-[10px] text-cyan-700">Microphone Input</label>
-                                        <select value={selectedMic} onChange={e => setSelectedMic(e.target.value)} className="bg-black border border-cyan-900/50 text-xs text-cyan-100 rounded p-1 focus:border-cyan-500 outline-none">
+                                        <select value={selectedMic} onChange={e => setSelectedMic(e.target.value)} className="bg-black border border-accent-cyan/50 text-xs text-cyan-100 rounded p-1 focus:border-accent-cyan outline-none">
                                             {devices.audio.length === 0 && <option value="">No Microphones Found</option>}
                                             {devices.audio.map(d => (
                                                 <option key={d.deviceId} value={d.deviceId}>{d.label || `Mic ${d.deviceId.slice(0, 5)}`}</option>
                                             ))}
                                         </select>
-                                        <div className="text-[9px] text-slate-500 italic">* Web Speech API selection is browser-dependent.</div>
+                                        <div className="text-[9px] text-txt-secondary italic">* Web Speech API selection is browser-dependent.</div>
                                     </div>
 
-                                    <div className="mt-2 border-t border-slate-800 pt-2">
+                                    <div className="mt-2 border-t border-ic-border pt-2">
                                         <button
                                             onClick={async () => {
                                                 try {
@@ -3475,9 +3475,9 @@ function App() {
                                                     addLog("DIAGNOSTIC", `Failed to reach backend verify module: ${e.message}`);
                                                 }
                                             }}
-                                            className="w-full text-[9px] bg-cyan-900/20 hover:bg-cyan-900/40 border border-cyan-800/50 p-1.5 rounded flex items-center justify-center gap-1 uppercase tracking-tighter transition-all"
+                                            className="w-full text-[9px] bg-accent-cyan/20 hover:bg-accent-cyan/40 border border-cyan-800/50 p-1.5 rounded flex items-center justify-center gap-1 uppercase tracking-tighter transition-all"
                                         >
-                                            <ShieldCheck className="w-3 h-3 text-cyan-500" /> Verify Interface Integrity
+                                            <ShieldCheck className="w-3 h-3 text-accent-cyan" /> Verify Interface Integrity
                                         </button>
                                     </div>
 
@@ -3500,9 +3500,9 @@ function App() {
                                 {/* IntelligencePanel moved to top */}
 
                                 {/* System Logs */}
-                                <div className="h-96 bg-black/40 rounded border border-slate-800 p-2 overflow-hidden flex flex-col shrink-0">
-                                    <h3 className="text-[10px] text-slate-500 mb-2 flex items-center gap-2 uppercase tracking-wider"><ScrollText className="w-3 h-3" /> System Logs</h3>
-                                    <div className="flex-1 overflow-y-auto font-mono text-[10px] text-slate-400 space-y-1 select-text custom-scrollbar">
+                                <div className="h-96 bg-black/40 rounded border border-ic-border p-2 overflow-hidden flex flex-col shrink-0">
+                                    <h3 className="text-[10px] text-txt-secondary mb-2 flex items-center gap-2 uppercase tracking-wider"><ScrollText className="w-3 h-3" /> System Logs</h3>
+                                    <div className="flex-1 overflow-y-auto font-mono text-[10px] text-txt-secondary space-y-1 select-text custom-scrollbar">
                                         {logs.map((log, i) => (
                                             <div key={i} className="break-all border-b border-white/5 pb-1 last:border-0">{log}</div>
                                         ))}
@@ -3515,20 +3515,20 @@ function App() {
                         {/* Second Left Sidebar: Real-time Analytics & Sensory Data */}
                         <div
                             style={{ width: sidebar2Width }}
-                            className="shrink-0 h-full border-r border-cyan-900/50 flex flex-col bg-slate-950/40 backdrop-blur relative transition-[width] duration-0 ease-linear"
+                            className="shrink-0 h-full border-r border-accent-cyan/50 flex flex-col bg-ic-bg/40 backdrop-blur relative transition-[width] duration-0 ease-linear"
                         >
                             {/* Resizer Handle */}
                             <div
-                                className="absolute top-0 -right-1 w-2 h-full cursor-col-resize z-50 hover:bg-cyan-500/20 active:bg-cyan-500/50 transition-colors"
+                                className="absolute top-0 -right-1 w-2 h-full cursor-col-resize z-50 hover:bg-accent-cyan/20 active:bg-accent-cyan/50 transition-colors"
                                 onMouseDown={() => {
                                     isResizing.current = 'sidebar2';
                                     document.body.style.cursor = 'col-resize';
                                 }}
                             />
 
-                            <div className="p-4 border-b border-cyan-900/10 flex items-center gap-3 bg-black/20">
-                                <Activity className="w-5 h-5 text-cyan-500" />
-                                <h2 className="font-bold text-xs uppercase tracking-widest text-slate-400">Sensory Analytics</h2>
+                            <div className="p-4 border-b border-accent-cyan/10 flex items-center gap-3 bg-black/20">
+                                <Activity className="w-5 h-5 text-accent-cyan" />
+                                <h2 className="font-bold text-xs uppercase tracking-widest text-txt-secondary">Sensory Analytics</h2>
                             </div>
 
                             <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-4 flex flex-col gap-4 select-none">
@@ -3548,17 +3548,17 @@ function App() {
 
                     {/* Middle: Main Chat Area */}
                     <div className={cn(
-                        "flex-1 flex flex-col relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-black overflow-hidden",
+                        "flex-1 flex flex-col relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-ic-surface to-black overflow-hidden",
                         activePage !== 'main' && "hidden"
                     )}>
 
                         {/* Visual Sensory Header (Relocated) */}
-                        <div className="flex gap-4 p-4 border-b border-cyan-900/30 bg-black/40 backdrop-blur shrink-0 overflow-x-auto overflow-y-hidden custom-scrollbar min-h-[180px] resize-y">
+                        <div className="flex gap-4 p-4 border-b border-accent-cyan/30 bg-black/40 backdrop-blur shrink-0 overflow-x-auto overflow-y-hidden custom-scrollbar min-h-[180px] resize-y">
                             {/* Primary Feed (Alpha) */}
                             <div className="flex-1 min-w-[300px] flex flex-col gap-1">
                                 <div className="flex items-center justify-between w-full">
                                     <div className="flex items-center gap-2">
-                                        <div className={cn("w-2 h-2 rounded-full", visionActive ? "bg-green-500 animate-pulse" : "bg-red-500")} />
+                                        <div className={cn("w-2 h-2 rounded-full", visionActive ? "bg-accent-success animate-pulse" : "bg-accent-danger")} />
                                         <h3 className="text-[10px] text-cyan-600 uppercase tracking-wider font-bold">Vision Alpha</h3>
                                     </div>
                                     {/* Stream Quality Selector */}
@@ -3568,8 +3568,8 @@ function App() {
                                             className={cn(
                                                 "text-[8px] font-bold uppercase px-1.5 py-0.5 rounded border transition-colors",
                                                 showFps
-                                                    ? "bg-emerald-600/30 text-emerald-400 border-emerald-500/50"
-                                                    : "bg-black/60 text-slate-500 border-slate-700/50 hover:text-cyan-400"
+                                                    ? "bg-accent-success/30 text-accent-success border-accent-success/50"
+                                                    : "bg-black/60 text-txt-secondary border-ic-border/50 hover:text-accent-cyan"
                                             )}
                                             title="Toggle FPS Counter"
                                         >
@@ -3578,7 +3578,7 @@ function App() {
                                         <select
                                             value={streamPreset}
                                             onChange={(e) => setStreamPreset(e.target.value)}
-                                            className="bg-black/80 text-[9px] text-cyan-500 border border-cyan-900/50 rounded px-1.5 py-0.5 outline-none focus:border-cyan-400"
+                                            className="bg-black/80 text-[9px] text-accent-cyan border border-accent-cyan/50 rounded px-1.5 py-0.5 outline-none focus:border-accent-cyan"
                                             title="Stream Quality"
                                         >
                                             {Object.entries(STREAM_PRESETS).map(([key, preset]) => (
@@ -3587,7 +3587,7 @@ function App() {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="relative rounded-lg overflow-hidden border border-cyan-800 bg-black h-full aspect-video mx-auto shadow-lg shadow-cyan-950/20">
+                                <div className="relative rounded-lg overflow-hidden border border-cyan-800 bg-black h-full aspect-video mx-auto shadow-lg shadow-accent-cyan/20">
                                     {hasPrimaryVisionFeed ? (
                                         <div className="w-full h-full relative group">
                                             <img
@@ -3623,7 +3623,7 @@ function App() {
                                                     {/* Mode Toggle Button */}
                                                     <button
                                                         onClick={() => setSkeletonMode(prev => prev === 'overlay' ? '3D' : 'overlay')}
-                                                        className="absolute bottom-4 right-4 z-50 p-2 bg-cyan-950/80 border border-cyan-500/50 rounded text-cyan-400 hover:bg-cyan-900 transition-colors shadow-lg pointer-events-auto"
+                                                        className="absolute bottom-4 right-4 z-50 p-2 bg-cyan-950/80 border border-accent-cyan/50 rounded text-accent-cyan hover:bg-accent-cyan transition-colors shadow-lg pointer-events-auto"
                                                         title="Toggle Skeleton Mode"
                                                     >
                                                         <Layers className="w-4 h-4" />
@@ -3632,19 +3632,19 @@ function App() {
                                                 </div>
                                             )}
 
-                                            <div className="absolute inset-x-0 bottom-0 p-1 bg-black/60 text-[8px] text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity text-center pointer-events-none z-20">
+                                            <div className="absolute inset-x-0 bottom-0 p-1 bg-black/60 text-[8px] text-accent-cyan opacity-0 group-hover:opacity-100 transition-opacity text-center pointer-events-none z-20">
                                                 Primary Feed (Alpha)
                                             </div>
 
                                             {/* FPS Counter Overlay */}
                                             {showFps && (
                                                 <div className="absolute top-1.5 left-1.5 z-40 pointer-events-none">
-                                                    <div className="bg-black/80 backdrop-blur-sm border border-emerald-500/30 rounded px-2 py-0.5 flex items-center gap-1.5">
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                                        <span className="text-[10px] font-mono font-bold text-emerald-400">
+                                                    <div className="bg-black/80 backdrop-blur-sm border border-accent-success/30 rounded px-2 py-0.5 flex items-center gap-1.5">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-accent-success animate-pulse" />
+                                                        <span className="text-[10px] font-mono font-bold text-accent-success">
                                                             {telemetry?.performance?.global_fps || 0} FPS
                                                         </span>
-                                                        <span className="text-[8px] font-mono text-slate-500">
+                                                        <span className="text-[8px] font-mono text-txt-secondary">
                                                             {telemetry?.performance?.latency_ms || 0}ms
                                                         </span>
                                                     </div>
@@ -3654,11 +3654,11 @@ function App() {
                                     ) : selectedCam ? (
                                         <video ref={videoRef} autoPlay muted className="w-full h-full object-cover" />
                                     ) : (
-                                        <div className="w-full h-full flex items-center justify-center bg-slate-950/80">
+                                        <div className="w-full h-full flex items-center justify-center bg-ic-bg/80">
                                             <div className="text-center px-4">
                                                 <Camera className="w-8 h-8 mx-auto mb-2 text-cyan-700" />
-                                                <div className="text-[11px] uppercase tracking-wider text-cyan-500 font-bold">No Primary Feed Selected</div>
-                                                <div className="text-[10px] text-slate-500 mt-1">Choose a primary camera in Configuration.</div>
+                                                <div className="text-[11px] uppercase tracking-wider text-accent-cyan font-bold">No Primary Feed Selected</div>
+                                                <div className="text-[10px] text-txt-secondary mt-1">Choose a primary camera in Configuration.</div>
                                             </div>
                                         </div>
                                     )}
@@ -3670,10 +3670,10 @@ function App() {
                                 selectedCam2 && (
                                     <div className="flex-1 min-w-[300px] flex flex-col gap-1">
                                         <div className="flex items-center gap-2">
-                                            <div className={cn("w-2 h-2 rounded-full", visionActive2 ? "bg-fuchsia-500 animate-pulse" : "bg-red-500")} />
-                                            <h3 className="text-[10px] text-fuchsia-600 uppercase tracking-wider font-bold">Vision Beta</h3>
+                                            <div className={cn("w-2 h-2 rounded-full", visionActive2 ? "bg-accent-indigo animate-pulse" : "bg-accent-danger")} />
+                                            <h3 className="text-[10px] text-accent-indigo uppercase tracking-wider font-bold">Vision Beta</h3>
                                         </div>
-                                        <div className="relative rounded-lg overflow-hidden border border-fuchsia-900/50 bg-black h-full aspect-video mx-auto shadow-lg shadow-fuchsia-950/20">
+                                        <div className="relative rounded-lg overflow-hidden border border-accent-indigo/50 bg-black h-full aspect-video mx-auto shadow-lg shadow-accent-indigo/20">
                                             {hasSecondaryVisionFeed ? (
                                                 <div className="w-full h-full relative group">
                                                     <img
@@ -3694,16 +3694,16 @@ function App() {
                                                         }}
                                                     />
 
-                                                    <div className="absolute inset-x-0 bottom-0 p-1 bg-black/60 text-[8px] text-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity text-center pointer-events-none z-20">
+                                                    <div className="absolute inset-x-0 bottom-0 p-1 bg-black/60 text-[8px] text-accent-indigo opacity-0 group-hover:opacity-100 transition-opacity text-center pointer-events-none z-20">
                                                         Secondary Feed (Beta)
                                                     </div>
 
                                                     {/* FPS Counter Overlay (Beta) */}
                                                     {showFps && (
                                                         <div className="absolute top-1.5 left-1.5 z-40 pointer-events-none">
-                                                            <div className="bg-black/80 backdrop-blur-sm border border-fuchsia-500/30 rounded px-2 py-0.5 flex items-center gap-1.5">
-                                                                <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 animate-pulse" />
-                                                                <span className="text-[10px] font-mono font-bold text-fuchsia-400">
+                                                            <div className="bg-black/80 backdrop-blur-sm border border-accent-indigo/30 rounded px-2 py-0.5 flex items-center gap-1.5">
+                                                                <div className="w-1.5 h-1.5 rounded-full bg-accent-indigo animate-pulse" />
+                                                                <span className="text-[10px] font-mono font-bold text-accent-indigo">
                                                                     {telemetry?.performance?.global_fps || 0} FPS
                                                                 </span>
                                                             </div>
@@ -3711,11 +3711,11 @@ function App() {
                                                     )}
                                                 </div>
                                             ) : (
-                                                <div className="w-full h-full flex items-center justify-center bg-slate-950/80">
+                                                <div className="w-full h-full flex items-center justify-center bg-ic-bg/80">
                                                     <div className="text-center px-4">
-                                                        <Camera className="w-7 h-7 mx-auto mb-2 text-fuchsia-700" />
-                                                        <div className="text-[10px] uppercase tracking-wider text-fuchsia-500 font-bold">Secondary Feed Standby</div>
-                                                        <div className="text-[9px] text-slate-500 mt-1">Select a secondary camera in Configuration.</div>
+                                                        <Camera className="w-7 h-7 mx-auto mb-2 text-accent-indigo" />
+                                                        <div className="text-[10px] uppercase tracking-wider text-accent-indigo font-bold">Secondary Feed Standby</div>
+                                                        <div className="text-[9px] text-txt-secondary mt-1">Select a secondary camera in Configuration.</div>
                                                     </div>
                                                 </div>
                                             )}
@@ -3731,7 +3731,7 @@ function App() {
                                     {/* Avatar Snapshot (Assistant) */}
                                     {msg.role === 'assistant' && (
                                         <div className="flex gap-2 mb-1 flex-wrap justify-start">
-                                            <div className="border-4 border-yellow-500/30 rounded-lg overflow-hidden shadow-lg w-[160px] h-[120px] relative bg-black/20 shrink-0">
+                                            <div className="border-4 border-accent-warning/30 rounded-lg overflow-hidden shadow-lg w-[160px] h-[120px] relative bg-black/20 shrink-0">
                                                 <HappyFace
                                                     expression={msg.affective_state || 'NEUTRAL'}
                                                     telemetry={{ pos: [0, 0] }}
@@ -3747,7 +3747,7 @@ function App() {
                                             {msg.snapshot_urls.map((url, i) => (
                                                 <div
                                                     key={i}
-                                                    className="border-2 border-cyan-500/30 rounded-lg overflow-hidden cursor-zoom-in hover:border-cyan-400 transition-colors shadow-lg max-w-[160px]"
+                                                    className="border-2 border-accent-cyan/30 rounded-lg overflow-hidden cursor-zoom-in hover:border-cyan-400 transition-colors shadow-lg max-w-[160px]"
                                                     onClick={() => setLightboxImage(url)}
                                                 >
                                                     <img src={url} alt={`Vision Snapshot ${i}`} className="w-full h-auto" />
@@ -3756,7 +3756,7 @@ function App() {
                                         </div>
                                     ) : msg.snapshot_url && (
                                         <div
-                                            className="border-4 border-cyan-500/30 rounded-lg overflow-hidden cursor-zoom-in hover:border-cyan-400 transition-colors shadow-lg max-w-[200px]"
+                                            className="border-4 border-accent-cyan/30 rounded-lg overflow-hidden cursor-zoom-in hover:border-cyan-400 transition-colors shadow-lg max-w-[200px]"
                                             onClick={() => setLightboxImage(msg.snapshot_url)}
                                         >
                                             <img src={msg.snapshot_url} alt="Vision Snapshot" className="w-full h-auto" />
@@ -3765,7 +3765,7 @@ function App() {
 
                                     <div className={cn(
                                         "p-4 rounded-lg border backdrop-blur-md shadow-lg",
-                                        msg.role === 'user' ? "bg-cyan-950/30 border-cyan-500/30 text-cyan-50" : "bg-slate-900/50 border-white/10 text-slate-200"
+                                        msg.role === 'user' ? "bg-cyan-950/30 border-accent-cyan/30 text-cyan-50" : "bg-ic-surface/50 border-white/10 text-txt-primary"
                                     )}>
                                         {msg.content}
 
@@ -3775,7 +3775,7 @@ function App() {
                                                 className="mt-4 rounded-lg overflow-hidden border-2 border-indigo-500/50 cursor-pointer hover:border-indigo-400 transition-all shadow-xl shadow-indigo-500/10"
                                                 onClick={() => setLightboxImage(msg.generated_image_url)}
                                             >
-                                                <div className="bg-indigo-500/10 px-2 py-1 text-[8px] uppercase tracking-widest text-indigo-400 font-bold border-b border-indigo-500/20">
+                                                <div className="bg-accent-indigo/10 px-2 py-1 text-[8px] uppercase tracking-widest text-accent-indigo font-bold border-b border-indigo-500/20">
                                                     Synthesized Imagery
                                                 </div>
                                                 <img src={msg.generated_image_url} alt="AI Generated" className="w-full h-auto" />
@@ -3786,7 +3786,7 @@ function App() {
                                         {msg.audio_url && (
                                             <div className={cn(
                                                 "mt-3 pt-2 border-t",
-                                                msg.role === 'user' ? "border-cyan-500/20" : "border-white/10"
+                                                msg.role === 'user' ? "border-accent-cyan/20" : "border-white/10"
                                             )}>
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <Volume2 className="w-3 h-3 opacity-60" />
@@ -3813,7 +3813,7 @@ function App() {
                                 </div>
                             ))}
                             {isProcessing && (
-                                <div className="self-start p-4 rounded-lg bg-slate-900/50 border border-white/10 text-slate-400 animate-pulse font-mono flex items-center gap-2">
+                                <div className="self-start p-4 rounded-lg bg-ic-surface/50 border border-white/10 text-txt-secondary animate-pulse font-mono flex items-center gap-2">
                                     <RefreshCw className="w-4 h-4 animate-spin" /> Processing Neural Streams...
                                 </div>
                             )}
@@ -3821,12 +3821,12 @@ function App() {
                         </div>
 
                         {/* Input Bar */}
-                        <div className="p-4 border-t border-cyan-900/30 bg-black/60 backdrop-blur shrink-0">
+                        <div className="p-4 border-t border-accent-cyan/30 bg-black/60 backdrop-blur shrink-0">
                             <div className="max-w-4xl mx-auto flex gap-4 items-center">
                                 <button
                                     onClick={toggleVoice}
                                     className={cn("p-3 rounded-full transition-all border",
-                                        isListening ? "bg-green-500/20 border-green-500 text-green-500 animate-pulse" : "bg-cyan-900/20 border-cyan-700 text-cyan-400 hover:bg-cyan-900/40"
+                                        isListening ? "bg-accent-success/20 border-green-500 text-accent-success animate-pulse" : "bg-accent-cyan/20 border-cyan-700 text-accent-cyan hover:bg-accent-cyan/40"
                                     )}
                                 >
                                     <Mic className="w-6 h-6" />
@@ -3839,13 +3839,13 @@ function App() {
                                     onChange={e => setInputText(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && handleSend()}
                                     placeholder="Message ImpressionCore..."
-                                    className="flex-1 bg-slate-900/50 border border-cyan-900/50 rounded-lg px-4 py-3 focus:outline-none focus:border-cyan-500 transition-colors"
+                                    className="flex-1 bg-ic-surface/50 border border-accent-cyan/50 rounded-lg px-4 py-3 focus:outline-none focus:border-accent-cyan transition-colors"
                                 />
 
                                 <button
                                     onClick={() => handleSend()}
                                     disabled={isProcessing}
-                                    className="p-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg disabled:opacity-50 transition-colors"
+                                    className="p-3 bg-accent-cyan hover:bg-accent-cyan text-white rounded-lg disabled:opacity-50 transition-colors"
                                 >
                                     <Send className="w-6 h-6" />
                                 </button>
@@ -3854,48 +3854,48 @@ function App() {
                     </div>
 
                     <div className={cn(
-                        "flex-1 min-h-0 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-black overflow-hidden p-6 gap-4",
+                        "flex-1 min-h-0 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-ic-surface to-black overflow-hidden p-6 gap-4",
                         activePage !== 'config' && "hidden"
                     )}>
-                        <div className="bg-slate-900/60 border border-indigo-900/40 rounded-xl p-5 shadow-lg shadow-indigo-950/20 shrink-0">
+                        <div className="bg-ic-surface/60 border border-accent-indigo/40 rounded-xl p-5 shadow-lg shadow-accent-indigo/20 shrink-0">
                             <h2 className="text-xl font-bold text-white mb-2">Configuration Control Center</h2>
-                            <p className="text-slate-300 text-xs">
+                            <p className="text-txt-primary text-xs">
                                 Hardware routing, sensory diagnostics, and operational tuning are active on this page.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-3 gap-4 flex-1 min-h-0">
-                            <div className="bg-slate-950/60 border border-slate-800 rounded-lg p-4">
-                                <div className="text-[10px] uppercase tracking-wider text-cyan-500 mb-2">Vision</div>
+                            <div className="bg-ic-bg/60 border border-ic-border rounded-lg p-4">
+                                <div className="text-[10px] uppercase tracking-wider text-accent-cyan mb-2">Vision</div>
                                 <div className="text-sm text-white font-semibold">{systemStatus?.components?.vision?.health || 'OFFLINE'}</div>
-                                <div className="text-[11px] text-slate-400 mt-1">{systemStatus?.components?.vision?.cameras_detected || 0} camera(s) detected</div>
+                                <div className="text-[11px] text-txt-secondary mt-1">{systemStatus?.components?.vision?.cameras_detected || 0} camera(s) detected</div>
                             </div>
-                            <div className="bg-slate-950/60 border border-slate-800 rounded-lg p-4">
-                                <div className="text-[10px] uppercase tracking-wider text-purple-400 mb-2">Neural Core</div>
+                            <div className="bg-ic-bg/60 border border-ic-border rounded-lg p-4">
+                                <div className="text-[10px] uppercase tracking-wider text-accent-indigo mb-2">Neural Core</div>
                                 <div className="text-sm text-white font-semibold">{systemStatus?.components?.intelligence?.status || 'STANDBY'}</div>
-                                <div className="text-[11px] text-slate-400 mt-1 truncate">{systemStatus?.components?.intelligence?.model || 'No model loaded'}</div>
+                                <div className="text-[11px] text-txt-secondary mt-1 truncate">{systemStatus?.components?.intelligence?.model || 'No model loaded'}</div>
                             </div>
-                            <div className="bg-slate-950/60 border border-slate-800 rounded-lg p-4">
-                                <div className="text-[10px] uppercase tracking-wider text-emerald-400 mb-2">Audio</div>
+                            <div className="bg-ic-bg/60 border border-ic-border rounded-lg p-4">
+                                <div className="text-[10px] uppercase tracking-wider text-accent-success mb-2">Audio</div>
                                 <div className="text-sm text-white font-semibold">{systemStatus?.components?.sensory?.microphones || 0} mic(s)</div>
-                                <div className="text-[11px] text-slate-400 mt-1">PnP inventory: {systemStatus?.components?.sensory?.pnp_inventory_size || 0}</div>
+                                <div className="text-[11px] text-txt-secondary mt-1">PnP inventory: {systemStatus?.components?.sensory?.pnp_inventory_size || 0}</div>
                                 <div className="text-[11px] mt-1">
-                                    <span className="text-slate-500">Whisper STT:</span>{" "}
-                                    <span className={cn(sttHealth?.available && sttHealth?.model_loaded ? "text-emerald-400" : "text-red-400")}>
+                                    <span className="text-txt-secondary">Whisper STT:</span>{" "}
+                                    <span className={cn(sttHealth?.available && sttHealth?.model_loaded ? "text-accent-success" : "text-accent-danger")}>
                                         {sttHealth?.available && sttHealth?.model_loaded ? (sttHealth?.running ? "Listening" : "Ready") : "Unavailable"}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-black/40 border border-slate-800 rounded-lg p-4 text-xs text-slate-400 shrink-0">
+                        <div className="bg-black/40 border border-ic-border rounded-lg p-4 text-xs text-txt-secondary shrink-0">
                             Keep Main focused on conversation flow; use Configuration for device changes and diagnostics.
                         </div>
                     </div>
 
                     {/* Right Sidebar: History & Archiving */}
                     <div className={cn(
-                        "w-80 shrink-0 border-l border-cyan-900/50 flex flex-col bg-slate-950 p-4 gap-4 overflow-hidden",
+                        "w-80 shrink-0 border-l border-accent-cyan/50 flex flex-col bg-ic-bg p-4 gap-4 overflow-hidden",
                         activePage !== 'main' && "hidden"
                     )}>
 
@@ -3912,32 +3912,32 @@ function App() {
 
                         <button
                             onClick={handleNewChat}
-                            className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg flex items-center justify-center gap-2 transition-all font-bold shadow-lg shadow-cyan-900/20 shrink-0"
+                            className="w-full py-3 bg-accent-cyan hover:bg-accent-cyan text-white rounded-lg flex items-center justify-center gap-2 transition-all font-bold shadow-lg shadow-accent-cyan/20 shrink-0"
                         >
                             <Send className="w-4 h-4" /> Initialize New Pathway
                         </button>
 
-                        <div className="bg-slate-900/50 p-2 rounded border border-cyan-900/30 shrink-0">
-                            <h3 className="text-[10px] text-cyan-500 mb-1 uppercase tracking-wider flex items-center justify-between">
+                        <div className="bg-ic-surface/50 p-2 rounded border border-accent-cyan/30 shrink-0">
+                            <h3 className="text-[10px] text-accent-cyan mb-1 uppercase tracking-wider flex items-center justify-between">
                                 <span>Whisper STT</span>
                                 <span className={cn(
                                     "text-[9px] font-bold",
-                                    sttHealth?.available && sttHealth?.model_loaded ? "text-emerald-400" : "text-red-400"
+                                    sttHealth?.available && sttHealth?.model_loaded ? "text-accent-success" : "text-accent-danger"
                                 )}>
                                     {sttHealth?.available && sttHealth?.model_loaded ? (isListening ? "LISTENING" : "READY") : "OFFLINE"}
                                 </span>
                             </h3>
-                            <p className="text-[9px] text-slate-500 truncate">
+                            <p className="text-[9px] text-txt-secondary truncate">
                                 {sttHealth?.last_error || (sttHealth?.available && sttHealth?.model_loaded ? "Local Whisper engine operational" : "Whisper dependency/model unavailable")}
                             </p>
                         </div>
 
-                        <div className="flex-1 min-h-0 flex flex-col gap-2 border-t border-slate-800 pt-4 overflow-hidden">
-                            <h3 className="text-[10px] text-slate-500 uppercase tracking-wider flex items-center gap-2">
+                        <div className="flex-1 min-h-0 flex flex-col gap-2 border-t border-ic-border pt-4 overflow-hidden">
+                            <h3 className="text-[10px] text-txt-secondary uppercase tracking-wider flex items-center gap-2">
                                 <Layers className="w-3 h-3" /> Temporal Archive
                             </h3>
                             <div className="flex-1 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
-                                {sessions.length === 0 && <div className="text-[10px] text-slate-600 italic p-2">No history found.</div>}
+                                {sessions.length === 0 && <div className="text-[10px] text-txt-muted italic p-2">No history found.</div>}
                                 {sessions.map(s => (
                                     <div
                                         key={s.id}
@@ -3945,12 +3945,12 @@ function App() {
                                         className={cn(
                                             "group relative p-2 rounded border cursor-pointer transition-all",
                                             currentSessionId === s.id
-                                                ? "bg-cyan-900/30 border-cyan-500/50 shadow-inner shadow-cyan-500/10"
-                                                : "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/60"
+                                                ? "bg-accent-cyan/30 border-accent-cyan/50 shadow-inner shadow-accent-cyan/10"
+                                                : "bg-ic-surface/40 border-ic-border hover:border-ic-border hover:bg-ic-surface/60"
                                         )}
                                     >
                                         <div className="text-[11px] text-cyan-100 font-medium truncate pr-4">{s.title || "Untitled Chat"}</div>
-                                        <div className="text-[9px] text-slate-500 flex justify-between mt-1">
+                                        <div className="text-[9px] text-txt-secondary flex justify-between mt-1">
                                             <span>{s.message_count} msgs</span>
                                             <span>{new Date(s.updated_at).toLocaleDateString()}</span>
                                         </div>
@@ -3960,7 +3960,7 @@ function App() {
                                                 e.stopPropagation();
                                                 handleDeleteSession(e, s.id);
                                             }}
-                                            className="absolute top-1.5 right-1.5 text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all p-1.5 rounded-md z-20"
+                                            className="absolute top-1.5 right-1.5 text-txt-secondary hover:text-accent-danger hover:bg-accent-danger/10 transition-all p-1.5 rounded-md z-20"
                                             title="Delete Session"
                                         >
                                             <Trash2 className="w-4 h-4" />
@@ -3971,16 +3971,16 @@ function App() {
                         </div>
 
                         {/* Hemisphere Monitors */}
-                        <div className="flex flex-col gap-2 shrink-0 border-t border-slate-800 pt-4">
-                            <div className="bg-slate-900/50 p-2 rounded border border-cyan-900/30">
+                        <div className="flex flex-col gap-2 shrink-0 border-t border-ic-border pt-4">
+                            <div className="bg-ic-surface/50 p-2 rounded border border-accent-cyan/30">
                                 <h3 className="text-[10px] text-cyan-600 mb-1 flex items-center gap-2"><Terminal className="w-3 h-3" /> LEFT HEMISPHERE</h3>
                                 <p className="text-xs text-cyan-100/80 leading-relaxed max-h-24 overflow-y-auto custom-scrollbar">
                                     {monitors.left_hemisphere}
                                 </p>
                             </div>
-                            <div className="bg-slate-900/50 p-2 rounded border border-fuchsia-900/30 shadow-[inset_0_0_10px_rgba(217,70,239,0.05)]">
-                                <h3 className="text-[10px] text-fuchsia-400 mb-1 flex items-center gap-2 font-bold"><Activity className="w-3 h-3" /> RIGHT HEMISPHERE</h3>
-                                <p className="text-xs text-fuchsia-100/80 leading-relaxed max-h-24 overflow-y-auto custom-scrollbar italic">
+                            <div className="bg-ic-surface/50 p-2 rounded border border-accent-indigo/30 shadow-[inset_0_0_10px_rgba(217,70,239,0.05)]">
+                                <h3 className="text-[10px] text-accent-indigo mb-1 flex items-center gap-2 font-bold"><Activity className="w-3 h-3" /> RIGHT HEMISPHERE</h3>
+                                <p className="text-xs text-txt-primary/80 leading-relaxed max-h-24 overflow-y-auto custom-scrollbar italic">
                                     {monitors.right_hemisphere}
                                 </p>
                             </div>
@@ -3988,11 +3988,11 @@ function App() {
 
                         {/* Thought Stream (Nexus Reasoning) */}
                         {/* Thought Stream (Nexus Reasoning) */}
-                        <div className="h-96 bg-black/60 rounded border border-cyan-500/30 p-2 overflow-hidden flex flex-col shrink-0">
-                            <h3 className="text-[10px] text-cyan-400 mb-2 flex items-center gap-2 uppercase tracking-widest animate-pulse">
+                        <div className="h-96 bg-black/60 rounded border border-accent-cyan/30 p-2 overflow-hidden flex flex-col shrink-0">
+                            <h3 className="text-[10px] text-accent-cyan mb-2 flex items-center gap-2 uppercase tracking-widest animate-pulse">
                                 <Terminal className="w-3 h-3" /> Neural Thought Stream
                             </h3>
-                            <div className="flex-1 overflow-y-auto font-mono text-[10px] text-lime-400/90 space-y-1.5 select-text custom-scrollbar bg-slate-950/50 p-1 rounded shadow-inner">
+                            <div className="flex-1 overflow-y-auto font-mono text-[10px] text-lime-400/90 space-y-1.5 select-text custom-scrollbar bg-ic-bg/50 p-1 rounded shadow-inner">
                                 {thoughtStream.length === 0 && <div className="text-cyan-900 italic">Waiting for neural activity...</div>}
                                 {thoughtStream.map((reason, i) => (
                                     <div key={i} className="leading-tight border-l-2 border-lime-900/50 pl-2 py-0.5 hover:bg-lime-900/10 transition-colors">
@@ -4025,7 +4025,7 @@ function App() {
                                     <img
                                         src={lightboxImage}
                                         alt="Full Resolution Snapshot"
-                                        className="max-w-full max-h-full object-contain rounded border border-cyan-500/30 shadow-[0_0_50px_rgba(6,182,212,0.15)]"
+                                        className="max-w-full max-h-full object-contain rounded border border-accent-cyan/30 shadow-[0_0_50px_rgba(6,182,212,0.15)]"
                                     />
                                     <button
                                         className="absolute top-4 right-4 text-white/50 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-2"

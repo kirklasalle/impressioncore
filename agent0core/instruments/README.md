@@ -36,4 +36,4 @@ Usage: Called when agent needs to review code quality.
 
 ## Prime Directive Compliance
 
-All instruments must comply with the 7 Laws. The governance layer validates instrument actions before execution.
+All instruments must comply with the 10 Laws. The governance layer validates instrument actions before execution.

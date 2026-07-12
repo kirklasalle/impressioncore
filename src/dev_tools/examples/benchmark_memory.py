@@ -73,16 +73,16 @@ project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
 
 # Import components
-from core.model import Model, ModelConfig
+from src.core.model import Model, ModelConfig
 # Memory optimization: Explicit memory cleanup
-from core.gpu_utils import (
+from src.core.gpu_utils import (
 # Memory optimization: Memory-critical operation
     get_device, clear_gpu_memory, get_memory_info, 
     # Memory optimization: Device placement for memory management
     MemoryTracker, get_optimal_batch_size
     # Memory optimization: Memory-critical operation
 )
-from core.memory_optimization import (
+from src.core.memory_optimization import (
 # Memory optimization: Memory-critical operation
     memory_efficient_inference, optimize_transformer_model, 
     # Memory optimization: Memory-critical operation

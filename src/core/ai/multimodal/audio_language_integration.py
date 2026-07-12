@@ -44,13 +44,13 @@ except ImportError:
 # Advanced utilities integration
 ADVANCED_UTILS_AVAILABLE = False
 try:
-    from core.utils.gpu_memory_manager import GPUMemoryManager
-    from core.utils.rich_enhancements import create_header, print_info, print_success, print_warning
-    from core.utils.rich_logging import RichLogger
-    from core.utils.rich_status_animation import StatusAnimation
-    from src.dev_tools.performance_optimizer import PerformanceOptimizer
-    from src.dev_tools.memory_manager import MemoryManager
-    from core.utils.benchmarking import PerformanceBenchmark
+    from src.core.utils.gpu_memory_manager import GPUMemoryManager
+    from src.core.utils.rich_enhancements import create_header, print_info, print_success, print_warning
+    from src.core.utils.rich_logging import RichLogger
+    from src.core.utils.rich_status_animation import StatusAnimation
+    from dev_tools.performance_optimizer import PerformanceOptimizer
+    from dev_tools.memory_manager import MemoryManager
+    from src.core.utils.benchmarking import PerformanceBenchmark
     ADVANCED_UTILS_AVAILABLE = True
     logging.info("✅ Advanced utilities available for Audio-Language Integration")
 except ImportError as e:

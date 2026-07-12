@@ -3,7 +3,11 @@ import time
 from typing import Any
 
 import numpy as np
-import sounddevice as sd
+
+try:
+    import sounddevice as sd
+except ImportError:
+    sd = None
 
 from src.orchestrator.system_logger import log_event
 
@@ -52,6 +56,9 @@ class AudioEngine:
 
     def verify_device_health(self, index: int, duration: float = 0.3) -> dict[str, Any]:
         """Performs a transient capture to verify real-time data flow."""
+        if sd is None:
+            return {"status": "UNAVAILABLE", "error": "sounddevice not installed", "rms": 0}
+
         try:
             device = next((d for d in self.devices if d["index"] == index), None)
             if not device:
@@ -86,6 +93,9 @@ class AudioEngine:
         """Scans for Audio Devices using SoundDevice."""
         print("[AudioEngine] Scanning devices via PortAudio/WASAPI...")
         devs = []
+        if sd is None:
+            return []
+
         try:
             raw = sd.query_devices()
         except Exception:
@@ -171,6 +181,11 @@ class AudioEngine:
             time.sleep(0.05)
 
     def start_stream(self, device_index: int):
+        if sd is None:
+            print("[AudioEngine] Start Error: sounddevice not installed")
+            self.active = False
+            return False
+
         try:
             device = next((d for d in self.devices if d["index"] == device_index), None)
             if not device:

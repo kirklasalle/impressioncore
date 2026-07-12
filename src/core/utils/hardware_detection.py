@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.hardware_detection import MainClass
+from src.core.utils.hardware_detection import MainClass
 instance = MainClass()
 result = instance.process()
 ```

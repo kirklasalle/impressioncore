@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_utils import LayerManager
+from src.core.utils.memory_utils import LayerManager
 instance = LayerManager()
 result = instance.process()
 ```

@@ -1,21 +1,27 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Boxes, Cpu, Save, Loader2 } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, CardTitle, Input, Select, Toggle, ProgressBar, StatCard, Badge } from '../components/ui';
-import { configureModel } from '../lib/api';
+import { configureModel, getModelConfig } from '../lib/api';
 import { formatNumber, estimateParams, estimateVRAM } from '../lib/utils';
 import { MODEL_PRESETS, PRECISION_OPTIONS, VRAM_TARGET_GB } from '../lib/constants';
 import toast from 'react-hot-toast';
 
 export default function ModelDefinitionPage() {
     const [config, setConfig] = useState({
-        architecture: 'transformer', preset: 'small',
-        layers: 12, hiddenSize: 768, heads: 12,
-        contextWindow: 2048, vocabSize: 32000,
-        precision: 'fp16', activation: 'gelu',
+        architecture: 'transformer', preset: 'custom',
+        layers: 8, hiddenSize: 768, heads: 12,
+        intermediateSize: 3072, contextWindow: 4096,
+        vocabSize: 50257, precision: 'fp16', activation: 'gelu',
         flashAttention: true, rope: true,
     });
     const [saving, setSaving] = useState(false);
+
+    useEffect(() => {
+        getModelConfig().then(({ data }) => {
+            if (data.success && data.config) setConfig((prev) => ({ ...prev, ...data.config }));
+        }).catch(() => { });
+    }, []);
 
     const update = (key, val) => {
         const next = { ...config, [key]: val };
@@ -66,10 +72,13 @@ export default function ModelDefinitionPage() {
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <Input label="Attention Heads" type="number" value={config.heads} onChange={(e) => update('heads', +e.target.value)} />
-                                <Input label="Context Window" type="number" value={config.contextWindow} onChange={(e) => update('contextWindow', +e.target.value)} />
+                                <Input label="Intermediate Size" type="number" value={config.intermediateSize} onChange={(e) => update('intermediateSize', +e.target.value)} />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
+                                <Input label="Context Window" type="number" value={config.contextWindow} onChange={(e) => update('contextWindow', +e.target.value)} />
                                 <Input label="Vocab Size" type="number" value={config.vocabSize} onChange={(e) => update('vocabSize', +e.target.value)} />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
                                 <Select label="Precision" options={PRECISION_OPTIONS} value={config.precision} onChange={(e) => update('precision', e.target.value)} />
                             </div>
                             <Select label="Activation Function" options={[
@@ -98,6 +107,7 @@ export default function ModelDefinitionPage() {
                             <div className="flex justify-between text-sm"><span className="text-txt-muted">Architecture</span><span className="text-txt-primary font-mono">{config.architecture}</span></div>
                             <div className="flex justify-between text-sm"><span className="text-txt-muted">Layers × Heads</span><span className="text-txt-primary font-mono">{config.layers} × {config.heads}</span></div>
                             <div className="flex justify-between text-sm"><span className="text-txt-muted">Hidden Size</span><span className="text-txt-primary font-mono">{formatNumber(config.hiddenSize)}</span></div>
+                            <div className="flex justify-between text-sm"><span className="text-txt-muted">Intermediate Size</span><span className="text-txt-primary font-mono">{formatNumber(config.intermediateSize)}</span></div>
                             <div className="flex justify-between text-sm"><span className="text-txt-muted">Context Window</span><span className="text-txt-primary font-mono">{formatNumber(config.contextWindow)}</span></div>
                             <div className="flex justify-between text-sm"><span className="text-txt-muted">Precision</span><span className="text-txt-primary font-mono">{config.precision.toUpperCase()}</span></div>
                             <div className="border-t border-ic-border my-3" />

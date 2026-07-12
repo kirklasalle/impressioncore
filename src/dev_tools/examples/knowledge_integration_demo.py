@@ -63,10 +63,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Try to import core components
 try:
-    from core.knowledge.uks import UniversalKnowledgeStore
-    from core.knowledge.node import KnowledgeNode
-    from core.brainsim import BrainSim
-    from core.knowledge_integration import (
+    from src.core.knowledge.uks import UniversalKnowledgeStore
+    from src.core.knowledge.node import KnowledgeNode
+    from src.core.brainsim import BrainSim
+    from src.core.knowledge_integration import (
         KnowledgeIntegration, get_knowledge_integration,
         query_and_reason, add_knowledge, explore_concept
     )

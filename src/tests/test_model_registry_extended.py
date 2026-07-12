@@ -3,7 +3,7 @@
 import pytest
 
 pytest.importorskip("core.models", reason="core.models not available in current path layout")
-from core.models.registry import get_model, list_models
+from src.core.models.registry import get_model, list_models
 
 
 def test_b2_factory_available():

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.integration.brainsim_connector import BrainSimConnector
+from src.core.integration.brainsim_connector import BrainSimConnector
 instance = BrainSimConnector()
 result = instance.process()
 ```

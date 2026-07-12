@@ -4,7 +4,7 @@ ImpressionCore: Enhanced Logging
 
 Module for enhanced logging functionality in the ImpressionCore framework.
 
-File: core\utils\enhanced_logging.py
+File: core/utils/enhanced_logging.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.enhanced_logging import MemoryEfficientProgress
+from src.core.utils.enhanced_logging import MemoryEfficientProgress
 instance = MemoryEfficientProgress()
 result = instance.process()
 ```
@@ -350,42 +350,7 @@ class MemoryTracker:
             else:
                 console.print(table)
         else:
-            print("\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\enhanced_logging.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
-\n\n===== Memory Usage Summary =====")
+            print("\n\n===== Memory Usage Summary =====")
             # Memory optimization: Memory-critical operation
             print(f"Peak VRAM:     {summary['peak_vram_gb']:.2f} GB")
             print(f"Current VRAM:  {summary['current_vram_gb']:.2f} GB")

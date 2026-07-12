@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.benchmarking import ModelBenchmark
+from src.core.utils.benchmarking import ModelBenchmark
 instance = ModelBenchmark()
 result = instance.process()
 ```

@@ -70,11 +70,17 @@ from tqdm import tqdm
 import time
 from pathlib import Path
 
-from ..core.config import ModelConfig, TrainingConfig
-from ..core.model import ImpressionCoreModel
-# Memory optimization: Explicit memory cleanup
-from ..core.dual_shadow import DualShadowModel
-from ..utils.checkpoint_utils import save_checkpoint, load_checkpoint
+try:
+    from core.config import ModelConfig, TrainingConfig
+    from core.model import ImpressionCoreModel
+    from core.dual_shadow import DualShadowModel
+    from utils.checkpoint_utils import save_checkpoint, load_checkpoint
+except ImportError:
+    from ..core.config import ModelConfig, TrainingConfig
+    from ..core.model import ImpressionCoreModel
+    # Memory optimization: Explicit memory cleanup
+    from ..core.dual_shadow import DualShadowModel
+    from ..utils.checkpoint_utils import save_checkpoint, load_checkpoint
 
 logger = logging.getLogger(__name__)
 

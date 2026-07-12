@@ -57,7 +57,7 @@ import sys
 sys.path.insert(0, 'd:/Projects/impressioncore/src')
 
 try:
-    from core.utils.attention_utils import setup_attention_chunking
+    from src.core.utils.attention_utils import setup_attention_chunking
     print("setup_attention_chunking is accessible")
 except ImportError as e:
     print(f"ImportError: {e}")

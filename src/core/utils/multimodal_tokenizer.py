@@ -4,7 +4,7 @@ ImpressionCore: Multimodal Tokenizer
 
 Module for multimodal tokenizer functionality in the ImpressionCore framework.
 
-File: core\utils\multimodal_tokenizer.py
+File: core/utils/multimodal_tokenizer.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.multimodal_tokenizer import MultimodalTokenizer
+from src.core.utils.multimodal_tokenizer import MultimodalTokenizer
 instance = MultimodalTokenizer()
 result = instance.process()
 ```
@@ -131,7 +131,7 @@ class MultimodalTokenizer:
 """
 ImpressionCore - Brain-Inspired Multimodal AI Framework
 
-File: src\core\utils\multimodal_tokenizer.py
+File: src/core/utils/multimodal_tokenizer.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-25
 Modified: 2025-05-25

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.checkpoint_utils import MainClass
+from src.core.utils.checkpoint_utils import MainClass
 instance = MainClass()
 result = instance.process()
 ```

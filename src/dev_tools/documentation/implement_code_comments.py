@@ -58,11 +58,11 @@ src_path = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(src_path))
 
 try:
-    from core.utils.rich_enhancements import (
+    from src.core.utils.rich_enhancements import (
         console, create_table, add_table_row, display_table,
         create_progress, create_status
     )
-    from core.utils.rich_logging import get_logger
+    from src.core.utils.rich_logging import get_logger
     RICH_AVAILABLE = True
 except ImportError:
     print("Rich enhancements not available, using basic output")

@@ -1,152 +1,301 @@
 #!/usr/bin/env python3
+"""Web Search MCP — stdio JSON-RPC server.
 
+This is a hand-rolled stdio MCP server (matching the protocol shape used by
+the sibling impressioncore-vrgc server) that exposes the existing
+`utils.search.perform_search` + `utils.citation.generate_citations`
+pipeline as a single MCP tool: `web_search`.
+
+The previous `server.py` ran a FastAPI/uvicorn HTTP service on port 8765,
+which is incompatible with Prism's stdio MCP transport. The original is
+preserved at `server_uvicorn_backup.py`.
+"""
+
+import asyncio
 import json
-import time
 import logging
-import datetime
-from typing import Dict, List, Optional, Any
+import os
+import sys
+from typing import Any, Dict
 
-import uvicorn
-from fastapi import FastAPI, HTTPException, Request, Response, Depends
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+# Make sure relative imports work when launched from any cwd.
+HERE = os.path.dirname(os.path.abspath(__file__))
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
 
-from utils.search import perform_search
-from utils.citation import generate_citations
+from utils.search import perform_search  # type: ignore  # noqa: E402
+from utils.citation import generate_citations  # type: ignore  # noqa: E402
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    stream=sys.stderr,
 )
 logger = logging.getLogger("web-search-mcp")
 
-# Load configuration
+CONFIG_PATH = os.path.join(HERE, "config.json")
 try:
-    with open('config.json', 'r') as f:
-        config = json.load(f)
-except Exception as e:
-    logger.error(f"Failed to load configuration: {e}")
-    config = {
-        "server": {"host": "0.0.0.0", "port": 8765},
-        "search": {"default_num_results": 5, "max_num_results": 10},
-        "rate_limit": {"requests_per_minute": 10}
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        CONFIG = json.load(f)
+except Exception as exc:  # pragma: no cover - best-effort defaults
+    logger.error("Failed to load config.json: %s", exc)
+    CONFIG = {
+        "search": {
+            "default_num_results": 5,
+            "max_num_results": 10,
+            "safe_search": True,
+            "timeout": 30,
+        }
     }
 
-# Initialize FastAPI
-app = FastAPI(
-    title="Web Search MCP Server",
-    description="MCP server for web search with citations",
-    version="1.0.0",
-)
+SEARCH_CFG = CONFIG.get("search", {})
+DEFAULT_NUM = int(SEARCH_CFG.get("default_num_results", 5))
+MAX_NUM = int(SEARCH_CFG.get("max_num_results", 10))
+SAFE_SEARCH = bool(SEARCH_CFG.get("safe_search", True))
+TIMEOUT = int(SEARCH_CFG.get("timeout", 30))
 
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+SERVER_INFO = {
+    "name": "web-search-mcp",
+    "version": "1.1.0",
+}
 
-# Rate limiting implementation
-class RateLimiter:
-    def __init__(self, requests_per_minute: int):
-        self.requests_per_minute = requests_per_minute
-        self.request_times = []
-    
-    def is_rate_limited(self) -> bool:
-        current_time = time.time()
-        # Remove requests older than 1 minute
-        self.request_times = [t for t in self.request_times if current_time - t < 60]
-        
-        if len(self.request_times) >= self.requests_per_minute:
-            return True
-        
-        self.request_times.append(current_time)
-        return False
+TOOLS = [
+    {
+        "name": "web_search",
+        "description": (
+            "Perform a DuckDuckGo web search and optionally generate "
+            "citations for each result."
+        ),
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Search query string.",
+                },
+                "num_results": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": MAX_NUM,
+                    "default": DEFAULT_NUM,
+                    "description": f"Number of results to return (1-{MAX_NUM}).",
+                },
+                "require_citations": {
+                    "type": "boolean",
+                    "default": True,
+                    "description": "Whether to enrich results with citations.",
+                },
+            },
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "google_search",
+        "description": (
+            "Perform a Google web search and optionally generate "
+            "citations for each result. Automatically falls back to "
+            "DuckDuckGo search to ensure result delivery."
+        ),
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Search query string.",
+                },
+                "num_results": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": MAX_NUM,
+                    "default": DEFAULT_NUM,
+                    "description": f"Number of results to return (1-{MAX_NUM}).",
+                },
+                "require_citations": {
+                    "type": "boolean",
+                    "default": True,
+                    "description": "Whether to enrich results with citations.",
+                },
+            },
+            "required": ["query"],
+        },
+    }
+]
 
-rate_limiter = RateLimiter(config["rate_limit"]["requests_per_minute"])
 
-# Define request/response models
-class SearchRequest(BaseModel):
-    query: str = Field(..., description="The search query")
-    num_results: Optional[int] = Field(
-        default=config["search"]["default_num_results"],
-        le=config["search"]["max_num_results"],
-        description="Number of results to return"
+async def _run_web_search(args: Dict[str, Any]) -> Dict[str, Any]:
+    query = str(args.get("query", "")).strip()
+    if not query:
+        raise ValueError("'query' is required and must be a non-empty string")
+    num_results = int(args.get("num_results", DEFAULT_NUM))
+    num_results = max(1, min(num_results, MAX_NUM))
+    require_citations = bool(args.get("require_citations", True))
+
+    results = await perform_search(
+        query=query,
+        num_results=num_results,
+        safe_search=SAFE_SEARCH,
+        timeout=TIMEOUT,
     )
-    require_citations: Optional[bool] = Field(
-        default=True,
-        description="Whether to generate citations for results"
-    )
+    if require_citations:
+        results = await generate_citations(results)
 
-class SearchResult(BaseModel):
-    title: str
-    content: str
-    url: str
-    citation: Optional[str] = None
-
-class SearchResponse(BaseModel):
-    results: List[SearchResult]
-    metadata: Dict[str, Any]
-
-# Define API endpoints
-@app.get("/")
-async def root():
     return {
-        "name": "Web Search MCP Server",
-        "version": "1.0.0",
-        "status": "running"
+        "query": query,
+        "result_count": len(results),
+        "results": results,
     }
 
-@app.post("/search", response_model=SearchResponse)
-async def search(request: SearchRequest):
-    # Check rate limit
-    if rate_limiter.is_rate_limited():
-        raise HTTPException(status_code=429, detail="Rate limit exceeded")
-    
-    logger.info(f"Search request received: {request.query}")
-    
-    try:
-        # Perform the search
-        search_results = await perform_search(
-            query=request.query,
-            num_results=request.num_results,
-            safe_search=config["search"]["safe_search"],
-            timeout=config["search"]["timeout"]
-        )
-        
-        # Generate citations if required
-        if request.require_citations:
-            search_results = await generate_citations(search_results)
-        
-        # Create response
-        response = SearchResponse(
-            results=search_results,
-            metadata={
-                "query": request.query,
-                "timestamp": datetime.datetime.now().isoformat(),
-                "result_count": len(search_results)
-            }
-        )
-        
-        return response
-    
-    except Exception as e:
-        logger.error(f"Error processing search: {e}")
-        raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
+async def _run_google_search(args: Dict[str, Any]) -> Dict[str, Any]:
+    query = str(args.get("query", "")).strip()
+    if not query:
+        raise ValueError("'query' is required and must be a non-empty string")
+    num_results = int(args.get("num_results", DEFAULT_NUM))
+    num_results = max(1, min(num_results, MAX_NUM))
+    require_citations = bool(args.get("require_citations", True))
+
+    results = []
+    
+    # Try actual Google search first (via googlesearch-python)
+    try:
+        from googlesearch import search
+        google_res = list(search(query, num_results=num_results, advanced=True))
+        if google_res:
+            for r in google_res:
+                results.append({
+                    "title": getattr(r, "title", "No Title"),
+                    "content": getattr(r, "description", "No content available"),
+                    "url": getattr(r, "url", ""),
+                    "citation": None
+                })
+    except Exception as e:
+        logger.warning(f"Google search library failed: {e}")
+
+    # Fall back to DuckDuckGo search if Google failed/returned no results
+    if not results:
+        logger.info("Google search failed or returned no results. Falling back to DuckDuckGo search.")
+        results = await perform_search(
+            query=query,
+            num_results=num_results,
+            safe_search=SAFE_SEARCH,
+            timeout=TIMEOUT,
+        )
+
+    if require_citations:
+        results = await generate_citations(results)
+
+    return {
+        "query": query,
+        "result_count": len(results),
+        "results": results,
+    }
+
+
+def _ok(req_id: Any, result: Any) -> Dict[str, Any]:
+    return {"jsonrpc": "2.0", "id": req_id, "result": result}
+
+
+def _err(req_id: Any, code: int, message: str) -> Dict[str, Any]:
+    return {
+        "jsonrpc": "2.0",
+        "id": req_id,
+        "error": {"code": code, "message": message},
+    }
+
+
+async def _handle(request: Dict[str, Any]) -> Dict[str, Any] | None:
+    method = request.get("method")
+    req_id = request.get("id")
+    params = request.get("params") or {}
+
+    if method == "initialize":
+        return _ok(
+            req_id,
+            {
+                "protocolVersion": "2024-11-05",
+                "capabilities": {"tools": {"listChanged": False}},
+                "serverInfo": SERVER_INFO,
+            },
+        )
+
+    if isinstance(method, str) and method.startswith("notifications/"):
+        # Notifications carry no id and require no response.
+        return None
+
+    if method == "tools/list":
+        return _ok(req_id, {"tools": TOOLS})
+
+    if method == "tools/call":
+        tool_name = params.get("name")
+        arguments = params.get("arguments") or {}
+        if tool_name not in ["web_search", "google_search"]:
+            return _err(req_id, -32601, f"Unknown tool: {tool_name}")
+        try:
+            if tool_name == "web_search":
+                payload = await _run_web_search(arguments)
+            else:
+                payload = await _run_google_search(arguments)
+            return _ok(
+                req_id,
+                {
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": json.dumps(payload, ensure_ascii=False),
+                        }
+                    ],
+                    "isError": False,
+                },
+            )
+        except Exception as exc:  # noqa: BLE001
+            logger.exception(f"{tool_name} failed")
+            return _ok(
+                req_id,
+                {
+                    "content": [
+                        {"type": "text", "text": f"{tool_name} error: {exc}"}
+                    ],
+                    "isError": True,
+                },
+            )
+
+    if method == "ping":
+        return _ok(req_id, {})
+
+    return _err(req_id, -32601, f"Method not found: {method}")
+
+
+async def _main() -> None:
+    logger.info("web-search-mcp stdio server starting")
+    loop = asyncio.get_running_loop()
+    while True:
+        line = await loop.run_in_executor(None, sys.stdin.readline)
+        if not line:
+            logger.info("stdin closed; exiting")
+            return
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            request = json.loads(line)
+        except json.JSONDecodeError as exc:
+            sys.stdout.write(
+                json.dumps(_err(None, -32700, f"Parse error: {exc}")) + "\n"
+            )
+            sys.stdout.flush()
+            continue
+        try:
+            response = await _handle(request)
+        except Exception as exc:  # noqa: BLE001
+            logger.exception("handler crashed")
+            response = _err(request.get("id"), -32603, f"Internal error: {exc}")
+        if response is not None:
+            sys.stdout.write(json.dumps(response, ensure_ascii=False) + "\n")
+            sys.stdout.flush()
+
 
 if __name__ == "__main__":
-    logger.info(f"Starting Web Search MCP Server on {config['server']['host']}:{config['server']['port']}")
-    uvicorn.run(
-        "server:app", 
-        host=config["server"]["host"], 
-        port=config["server"]["port"],
-        reload=config["server"].get("debug", False)
-    )
+    try:
+        asyncio.run(_main())
+    except KeyboardInterrupt:
+        pass

@@ -44,7 +44,7 @@ from pathlib import Path
 
 # Import ImpressionCore utilities
 try:
-    from core.utils import RICH_AVAILABLE, RichEnhancer, StatusAnimator, setup_rich_logger
+    from src.core.utils import RICH_AVAILABLE, RichEnhancer, StatusAnimator, setup_rich_logger
 except ImportError:
     print("[WARNING] ImpressionCore rich utilities not available. Using fallback logging.")
     import logging

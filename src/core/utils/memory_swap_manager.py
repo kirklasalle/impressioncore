@@ -4,7 +4,7 @@ ImpressionCore: Memory Swap Manager
 
 Module for memory swap manager functionality in the ImpressionCore framework.
 
-File: core\utils\memory_swap_manager.py
+File: core/utils/memory_swap_manager.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_swap_manager import MemorySwapManager
+from src.core.utils.memory_swap_manager import MemorySwapManager
 instance = MemorySwapManager()
 result = instance.process()
 ```
@@ -88,24 +88,6 @@ class MemorySwapManager:
     """
     
     def __init__(
-        """
-        
-    __init__ function for processing.
-    
-    Args:
-        self, vram_target_usage, enable_monitoring, device, use_pinned_memory, swap_immediately: Function parameters
-        # Memory optimization: Device placement for memory management
-    
-    Returns:
-        Processed result
-    
-    Memory Usage:
-    # Memory optimization: Memory-critical operation
-        - Memory-efficient implementation
-        # Memory optimization: Memory-critical operation
-        - Optimized for GTX 1050 Ti constraints
-    
-        """
         self,
         vram_target_usage: float = 0.8,
         enable_monitoring: bool = False,
@@ -664,38 +646,3 @@ def tensor_to_cpu_with_grad(tensor: torch.Tensor, use_pinned: bool = False) -> t
         cpu_tensor.grad = cpu_grad
     
     return cpu_tensor
-\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\memory_swap_manager.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""

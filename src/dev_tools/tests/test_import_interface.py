@@ -54,10 +54,12 @@ Notes:
 """
 
 import sys
-sys.path.insert(0, 'd:\\Projects\\impressioncore\\src')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 try:
-    from interface.text_generation import TextGenerator
+    from core.ai.generation.text_generation import TextGenerationInterface
+    from training.models.text.text_generator import TextGenerator
     print("Import successful")
 except ImportError as e:
     print(f"Import failed: {e}")

@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.memory_optimization import ParallelLinear
+from src.core.memory_optimization import ParallelLinear
 instance = ParallelLinear()
 result = instance.process()
 ```

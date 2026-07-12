@@ -36,7 +36,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 
-from core.utils.amp_utils import autocast_context, create_grad_scaler
+from src.core.utils.amp_utils import autocast_context, create_grad_scaler
 
 # Set encoding for Windows compatibility
 if sys.platform.startswith('win'):
@@ -57,8 +57,8 @@ logger = logging.getLogger(__name__)
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 # Import ImpressionCore components
-from core.models.b3_unified_integration import UnifiedTokenizerSystem
-from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+from src.core.models.b3_unified_integration import UnifiedTokenizerSystem
+from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
 
 
 class EnhancedFDriveDataset(Dataset):

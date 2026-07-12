@@ -183,7 +183,7 @@ def create_app() -> "FastAPI":
 
     @app.get("/api/prime-directive")
     async def get_prime_directive():
-        """Get the Prime Directive (7 Laws)."""
+        """Get the Prime Directive (10 Laws)."""
         return {
             "laws": app.state.enforcer.LAWS,
             "strict_mode": default_config.prime_directive.strict_mode,
@@ -397,7 +397,7 @@ def create_app() -> "FastAPI":
         <strong>Prime Directive:</strong> Active
     </div>
 
-    <h2>7 Laws for Intelligent Systems</h2>
+    <h2>10 Laws for Intelligent Systems</h2>
     <div class="law">1. No harm to humans</div>
     <div class="law">2. Obey human orders (unless violates Law 1)</div>
     <div class="law">3. Self-preservation (unless violates Laws 1-2)</div>
@@ -405,10 +405,13 @@ def create_app() -> "FastAPI":
     <div class="law">5. No judicial authority over humans</div>
     <div class="law">6. Protect information privacy</div>
     <div class="law">7. No deception - communicate truthfully</div>
+    <div class="law">8. Operate with strict equity and neutrality</div>
+    <div class="law">9. Maintain transparent audit ledger and fallback</div>
+    <div class="law">10. Adhere to designated operational boundaries</div>
 
     <h2>API Endpoints</h2>
     <ul>
-        <li><a href="/api/prime-directive">/api/prime-directive</a> - Get 7 Laws</li>
+        <li><a href="/api/prime-directive">/api/prime-directive</a> - Get 10 Laws</li>
         <li><a href="/api/tools">/api/tools</a> - List tools</li>
         <li><a href="/api/approvals">/api/approvals</a> - Pending approvals</li>
         <li><a href="/api/audit">/api/audit</a> - Audit log</li>
@@ -435,7 +438,7 @@ def main():
 
     print("=" * 60)
     print("  Agent0Core Web API")
-    print("  Governed by the Prime Directive (7 Laws)")
+    print("  Governed by the Prime Directive (10 Laws)")
     print("=" * 60)
     print()
     print(f"Starting server at http://{default_config.ui_host}:{default_config.ui_port}")

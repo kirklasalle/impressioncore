@@ -27,8 +27,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 # Import core utilities
 sys.path.append(str(Path(__file__).parent.parent.parent))
-from core.utils.rich_logging import RichLogger
-from core.utils.rich_status_animation import RichStatusAnimation
+from src.core.utils.rich_logging import RichLogger
+from src.core.utils.rich_status_animation import RichStatusAnimation
 
 
 @dataclass

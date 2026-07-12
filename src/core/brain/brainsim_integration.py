@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.brainsim_integration import MockBrainSimClient
+from src.core.brainsim_integration import MockBrainSimClient
 instance = MockBrainSimClient()
 result = instance.process()
 ```

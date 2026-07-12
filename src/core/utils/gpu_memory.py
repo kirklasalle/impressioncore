@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""
+r"""
 ImpressionCore: Gpu Memory
 
 Module for gpu memory functionality in the ImpressionCore framework.
 
-File: core\utils\gpu_memory.py
+File: core/utils/gpu_memory.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.gpu_memory import MainClass
+from src.core.utils.gpu_memory import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -419,11 +419,11 @@ if __name__ == "__main__":
         else:
             print(f"{key}: {value}")
     
-    print("\n#!/usr/bin/env python3
+    print(r'''#!/usr/bin/env python3
 """
 ImpressionCore - Brain-Inspired Multimodal AI Framework
 
-File: src\core\utils\gpu_memory.py
+File: src/core/utils/gpu_memory.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-25
 Modified: 2025-05-25
@@ -454,7 +454,9 @@ Examples:
 Notes:
 # TODO: Add any relevant notes.
 """
-\n\nOptimized Settings:")
+
+
+Optimized Settings:''')
     settings = optimize_for_available_memory()
     # Memory optimization: Memory-critical operation
     for key, value in settings.items():

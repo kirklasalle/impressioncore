@@ -158,13 +158,127 @@
     }
   });
 
-  document.getElementById('training-form').addEventListener('submit', function (e) {
-    document.getElementById('training-status').textContent = 'Training...';
-    document.getElementById('training-status').style.color = 'var(--accent-success)';
+  let pollTimer = null;
+  let lastLogIdx = 0;
+
+  function addLog(msg) {
+    const log = document.getElementById('training-log');
+    log.innerHTML += '<div>[' + new Date().toLocaleTimeString() + '] ' + msg + '</div>';
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function updateUI(data) {
+    const statusEl = document.getElementById('training-status');
+    const epochEl = document.getElementById('current-epoch');
+    const lossEl = document.getElementById('current-loss');
+    const vramEl = document.getElementById('vram-usage');
+
+    if (data.running) {
+      statusEl.textContent = 'Training...';
+      statusEl.style.color = 'var(--accent-success)';
+    } else if (data.error) {
+      statusEl.textContent = 'Error';
+      statusEl.style.color = '#ef4444';
+    } else if (data.step > 0) {
+      statusEl.textContent = 'Complete';
+      statusEl.style.color = 'var(--accent-primary)';
+    }
+
+    epochEl.textContent = data.epoch + ' / ' + data.total_epochs;
+    if (data.loss > 0) lossEl.textContent = data.loss.toFixed(4);
+    if (data.vram > 0) vramEl.textContent = data.vram.toFixed(2) + ' GB';
+
+    if (data.logs && data.logs.length > lastLogIdx) {
+      const logEl = document.getElementById('training-log');
+      for (let i = lastLogIdx; i < data.logs.length; i++) {
+        logEl.innerHTML += '<div>' + data.logs[i] + '</div>';
+      }
+      lastLogIdx = data.logs.length;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    if (data.step > 0 && data.loss > 0) {
+      const labels = lossChart.data.labels;
+      if (!labels.length || labels[labels.length - 1] !== data.step) {
+        labels.push(data.step);
+        lossChart.data.datasets[0].data.push(data.loss);
+        if (labels.length > 200) {
+          labels.shift();
+          lossChart.data.datasets[0].data.shift();
+        }
+        lossChart.update('none');
+      }
+    }
+
+    if (!data.running && pollTimer) {
+      clearInterval(pollTimer);
+      pollTimer = null;
+      document.getElementById('startBtn').disabled = false;
+      document.getElementById('stopBtn').disabled = true;
+    }
+  }
+
+  function startPolling() {
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(async function () {
+      try {
+        const resp = await fetch('/api/v1/builder/training/status');
+        if (resp.ok) updateUI(await resp.json());
+      } catch (e) { /* ignore transient fetch errors */ }
+    }, 2000);
+  }
+
+  document.getElementById('training-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const config = {
+      epochs: form.epochs.value,
+      batchSize: form.batchSize.value,
+      learningRate: form.learningRate.value,
+      warmupSteps: form.warmupSteps.value,
+      scheduler: form.scheduler.value,
+      precision: form.precision.value,
+      gradCheckpoint: form.gradCheckpoint.checked,
+    };
+
     document.getElementById('startBtn').disabled = true;
     document.getElementById('stopBtn').disabled = false;
-    const log = document.getElementById('training-log');
-    log.innerHTML += '<div>[' + new Date().toLocaleTimeString() + '] Training started...</div>';
+    lastLogIdx = 0;
+    lossChart.data.labels = [];
+    lossChart.data.datasets[0].data = [];
+    lossChart.update('none');
+    addLog('Sending training request...');
+
+    try {
+      const resp = await fetch('/api/v1/builder/training/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(config),
+      });
+      const result = await resp.json();
+      if (result.success) {
+        addLog('Training started on server');
+        startPolling();
+      } else {
+        addLog('Failed: ' + (result.error || 'Unknown error'));
+        document.getElementById('startBtn').disabled = false;
+        document.getElementById('stopBtn').disabled = true;
+      }
+    } catch (err) {
+      addLog('Request failed: ' + err.message);
+      document.getElementById('startBtn').disabled = false;
+      document.getElementById('stopBtn').disabled = true;
+    }
+  });
+
+  document.getElementById('stopBtn').addEventListener('click', async function () {
+    addLog('Stopping training...');
+    try {
+      await fetch('/api/v1/builder/training/stop', { method: 'POST' });
+      addLog('Stop signal sent');
+    } catch (err) {
+      addLog('Stop request failed: ' + err.message);
+    }
   });
 </script>
 {% endblock %}

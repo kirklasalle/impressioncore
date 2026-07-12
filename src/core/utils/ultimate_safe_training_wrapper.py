@@ -25,10 +25,10 @@ import threading
 # Add ImpressionCore modules to path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from core.utils.safe_training_launcher import SafeTrainingLauncher
-from core.utils.training_checkpoint import TrainingCheckpoint, TrainingRecovery
-from core.utils.rich_logging import RichLogger
-from core.utils.rich_status_animation import RichStatusAnimation
+from src.core.utils.safe_training_launcher import SafeTrainingLauncher
+from src.core.utils.training_checkpoint import TrainingCheckpoint, TrainingRecovery
+from src.core.utils.rich_logging import RichLogger
+from src.core.utils.rich_status_animation import RichStatusAnimation
 
 
 class UltimateSafeTrainingWrapper:

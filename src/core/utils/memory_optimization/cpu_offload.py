@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_optimization.cpu_offload import OffloadConfig
+from src.core.utils.memory_optimization.cpu_offload import OffloadConfig
 instance = OffloadConfig()
 result = instance.process()
 ```

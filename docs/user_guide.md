@@ -3,10 +3,13 @@
 ---
 
 ## 1. Introduction & Overview
+
 ImpressionCore is a brain-inspired, privacy-first digital twin AI. It features modular cognitive architecture, secure memory, and lifelong learning. See [impressioncore_b1_architecture.md](impressioncore_b1_architecture.md) for diagrams and technical details.
 
 <a name="system-requirements"></a>
+
 ### System Requirements
+
 - Minimum GPU: NVIDIA GTX 1050 Ti (4GB VRAM)
 - CPU: Intel Core i5 4460 @ 3.20GHz or better
 - RAM: 16GB (32GB recommended)
@@ -15,6 +18,7 @@ ImpressionCore is a brain-inspired, privacy-first digital twin AI. It features m
 - Disk: 20GB free space
 
 ## 2. System & Environment Setup
+
 - **System Requirements:** See [System Requirements](#system-requirements).
 - **Installation:** Follow the steps for prerequisites, cloning, and Python environment setup.
 - **GPU Setup:** See [GPU_SETUP.md](GPU_SETUP.md).
@@ -23,17 +27,59 @@ ImpressionCore is a brain-inspired, privacy-first digital twin AI. It features m
 - **Troubleshooting:** Use memlog and [troubleshoot.bat](../troubleshoot.bat) for diagnostics.
 
 ## 3. Data Preparation
-- **Supported Data:** Text, images, structured data.
+
+- **Supported Data:** Text, images, audio, structured data.
 - **Steps:** Ingest → validate → preprocess.
 - **Tools:** Use the web UI or CLI for data upload and inspection.
 - **References:** See [modal_engine_tokenizer_integration.md](modal_engine_tokenizer_integration.md).
 
+### 3.1 Audio Data Support
+
+ImpressionCore includes a world-class audio processing pipeline built on `librosa`, `torchaudio`, and `soundfile`.
+
+**Supported Formats:** WAV, MP3, FLAC, OGG, AIFF
+
+**Feature Extraction Capabilities:**
+
+- **MFCC** (Mel-Frequency Cepstral Coefficients) — compact speech representation
+- **Mel Spectrogram** — frequency-domain analysis optimized for human perception
+- **Chroma Features** — harmonic/tonal content analysis
+- **Tonnetz** — tonal centroid features for music and speech prosody
+- **Spectral Contrast** — spectral peak vs. valley analysis
+- **Zero-Crossing Rate** — signal periodicity detection
+- **Voice Activity Detection (VAD)** — speech segment isolation
+
+**Hardware Constraints (GTX 1050 Ti / 4GB VRAM):**
+
+- Maximum audio duration: 30 seconds per chunk (configurable)
+- Chunk-based processing for longer audio files (streaming mode)
+- All feature extraction runs on CPU (zero VRAM impact)
+- `torchaudio` transforms leverage CUDA when beneficial
+
+**Advanced Capabilities:**
+
+- Audio-Language Integration for cross-modal understanding
+- Emotion recognition from speech features
+- Speaker identification pipeline
+- Real-time audio streaming support (planned)
+
+**Installation:**
+
+```bash
+pip install librosa soundfile audioread
+pip install torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+**References:** See [audio_processor.md](developer/components/audio_processor.md) for developer details.
+
 ## 4. Tokenization
+
 - **Options:** BPE for text, custom for images.
 - **Training:** Train or load tokenizers as needed.
 - **Memory Efficiency:** See [memory_efficient_tokenization.md](memory_efficient_tokenization.md).
 
 ## 5. Model Definition
+
 - **Template:** Select ImpressionCore-b1 in the UI.
 - **Parameters:** Context window, memory, precision.
 - **Advanced:** Enable Mixture of Experts, LoRA if available.
@@ -41,11 +87,13 @@ ImpressionCore is a brain-inspired, privacy-first digital twin AI. It features m
 - **References:** [model_architecture.md](model_architecture.md).
 
 ## 6. Training
+
 - **Configuration:** Set up training in the UI.
 - **Monitoring:** Use UI or terminal for progress.
 - **Checkpoints:** Saved automatically. See [CHECKPOINT_MANAGEMENT.md](CHECKPOINT_MANAGEMENT.md).
 
 <a name="evaluation"></a>
+
 ## 7. Evaluation
 
 - **Metrics:** Perplexity, BLEU, ROUGE.

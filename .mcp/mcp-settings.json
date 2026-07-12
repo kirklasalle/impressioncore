@@ -70,6 +70,16 @@
       "env": {
         "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
       }
+    },
+    "loc-mcp-server": {
+      "command": "python",
+      "args": [
+        "D:\\Projects\\impressioncore\\.mcp\\loc-mcp-server\\server.py"
+      ],
+      "cwd": "D:\\Projects\\impressioncore\\.mcp\\loc-mcp-server",
+      "env": {
+        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
+      }
     }
   }
 }

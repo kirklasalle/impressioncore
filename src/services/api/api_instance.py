@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.api_instance import ImpressionCoreAPI
+from src.core.api_instance import ImpressionCoreAPI
 instance = ImpressionCoreAPI()
 result = instance.process()
 ```

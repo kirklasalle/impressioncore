@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.exceptions.__init__ import ModelLoadError
+from src.core.exceptions.__init__ import ModelLoadError
 instance = ModelLoadError()
 result = instance.process()
 ```

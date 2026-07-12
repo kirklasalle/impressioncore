@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.log_manager import MainClass
+from src.core.log_manager import MainClass
 instance = MainClass()
 result = instance.process()
 ```

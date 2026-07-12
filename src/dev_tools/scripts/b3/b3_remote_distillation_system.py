@@ -35,7 +35,7 @@ sys.path.append(str(Path(__file__).parent / "src"))
 
 # Import F:/models management system
 try:
-    from core.models.management.f_models_manager import FModelsManager
+    from src.core.models.management.f_models_manager import FModelsManager
     MODELS_MANAGER_AVAILABLE = True
 except ImportError:
     MODELS_MANAGER_AVAILABLE = False

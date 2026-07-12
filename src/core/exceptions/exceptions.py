@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.exceptions import OutOfMemoryError
+from src.core.exceptions import OutOfMemoryError
 instance = OutOfMemoryError()
 result = instance.process()
 ```

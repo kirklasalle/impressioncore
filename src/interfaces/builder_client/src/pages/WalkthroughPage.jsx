@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ChevronRight, CheckCircle2, Circle, HardDrive, RefreshCw, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, ChevronRight, CheckCircle2, Circle, HardDrive, RefreshCw, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContentArea from '../components/layout/ContentArea';
 import { Card, Badge, StatCard, Input } from '../components/ui';
@@ -10,12 +10,14 @@ import {
     getBuilderStorageStatus,
     runBuilderStorageRetention,
 } from '../lib/api';
+import useWalkthroughProgress from '../hooks/useWalkthroughProgress';
 
 export default function WalkthroughPage() {
-    const [currentStep, setCurrentStep] = useState(0);
-    const [completed, setCompleted] = useState(new Set());
+    const { currentStep, setCurrentStep, completed, markDone, resetProgress, allComplete } = useWalkthroughProgress();
     const [features, setFeatures] = useState(null);
     const [storage, setStorage] = useState(null);
+    const [storageLoading, setStorageLoading] = useState(false);
+    const [storageError, setStorageError] = useState(null);
     const [retentionResult, setRetentionResult] = useState(null);
     const [targetFreeGb, setTargetFreeGb] = useState(95);
     const [loading, setLoading] = useState(false);
@@ -31,34 +33,38 @@ export default function WalkthroughPage() {
         return { total, active, stub };
     }, [features]);
 
+    const loadStorageData = async () => {
+        setStorageLoading(true);
+        setStorageError(null);
+        try {
+            const storageRes = await getBuilderStorageStatus();
+            setStorage(storageRes.data);
+        } catch (err) {
+            console.error('[Walkthrough] storage load failed', err);
+            setStorageError(err?.code === 'ECONNABORTED' ? 'Storage scan timed out — F:/ drive has many files.' : 'Failed to load storage status.');
+        } finally {
+            setStorageLoading(false);
+        }
+    };
+
     const loadBuilderData = async () => {
         setLoading(true);
         try {
-            const [featuresRes, storageRes] = await Promise.all([
-                getBuilderFeatures(),
-                getBuilderStorageStatus(),
-            ]);
+            const featuresRes = await getBuilderFeatures();
             setFeatures(featuresRes.data);
-            setStorage(storageRes.data);
         } catch (err) {
-            console.error('[Walkthrough] load failed', err);
+            console.error('[Walkthrough] features load failed', err);
         } finally {
             setLoading(false);
         }
+        void loadStorageData();
     };
 
     useEffect(() => {
         void loadBuilderData();
     }, []);
 
-    const markDone = (idx) => {
-        setCompleted((prev) => {
-            const next = new Set(prev);
-            next.add(idx);
-            return next;
-        });
-        if (idx < PIPELINE_STEPS.length - 1) setCurrentStep(idx + 1);
-    };
+    // markDone provided by useWalkthroughProgress hook (persists to localStorage + backend)
 
     const runRetention = async (enforce = false) => {
         setRetentionBusy(true);
@@ -90,37 +96,64 @@ export default function WalkthroughPage() {
             <Card className="mb-8">
                 <div className="flex items-center justify-between gap-4 mb-4">
                     <div>
-                        <h2 className="text-lg font-bold text-txt-primary flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-txt-primary flex items-center gap-2" title="Manage storage on the F:/ drive used by the Builder for training data, model weights, and checkpoints.">
                             <HardDrive size={18} className="text-accent-cyan" />
                             Builder F:/ Storage Control
                         </h2>
-                        <p className="text-xs text-txt-muted mt-1">Tied directly into Builder APIs for `F:/data` and `F:/models` operations.</p>
+                        <p className="text-xs text-txt-muted mt-1" title="The Builder reads and writes to F:/data (datasets) and F:/models (weights, checkpoints, exports).">Tied directly into Builder APIs for `F:/data` and `F:/models` operations.</p>
                     </div>
-                    <button className="btn-secondary" onClick={() => void loadBuilderData()} disabled={loading}>
-                        <RefreshCw size={14} className={loading ? 'animate-spin' : ''} /> Refresh
+                    <button className="btn-secondary" onClick={() => void loadStorageData()} disabled={storageLoading} title="Re-scan the F:/ drive to get the latest total, used, and free space values.">
+                        <RefreshCw size={14} className={storageLoading ? 'animate-spin' : ''} /> Refresh
                     </button>
                 </div>
 
+                {storageError && (
+                    <div className="flex items-center gap-2 mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm">
+                        <AlertTriangle size={16} className="shrink-0" />
+                        <span className="flex-1">{storageError}</span>
+                        <button className="btn-secondary text-xs px-2 py-1" onClick={() => void loadStorageData()} disabled={storageLoading}>
+                            Retry
+                        </button>
+                    </div>
+                )}
+
+                {storageLoading && !storage && (
+                    <div className="flex items-center gap-2 mb-4 text-sm text-txt-muted">
+                        <RefreshCw size={14} className="animate-spin text-accent-cyan" />
+                        Scanning F:/ drive...
+                    </div>
+                )}
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                    <StatCard label="Drive Total (GB)" value={storage?.drive?.total_gb ?? '—'} />
-                    <StatCard label="Drive Used (GB)" value={storage?.drive?.used_gb ?? '—'} />
-                    <StatCard label="Drive Free (GB)" value={storage?.drive?.free_gb ?? '—'} />
-                    <StatCard label="Contract" value={storage?.contract?.has_data && storage?.contract?.has_models ? 'PASS' : 'CHECK'} />
+                    <div title="Total capacity of the F:/ drive in gigabytes. This is the full physical or partition size.">
+                        <StatCard label="Drive Total (GB)" value={storage?.drive?.total_gb ?? '—'} />
+                    </div>
+                    <div title="Space currently consumed on F:/ by datasets, models, checkpoints, logs, and other Builder artifacts.">
+                        <StatCard label="Drive Used (GB)" value={storage?.drive?.used_gb ?? '—'} />
+                    </div>
+                    <div title="Available free space on F:/. If this drops below your target, run retention to reclaim space.">
+                        <StatCard label="Drive Free (GB)" value={storage?.drive?.free_gb ?? '—'} />
+                    </div>
+                    <div title="PASS = F:/data and F:/models directories both exist and are accessible. CHECK = one or both are missing.">
+                        <StatCard label="Contract" value={storage?.contract?.has_data && storage?.contract?.has_models ? 'PASS' : 'CHECK'} />
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-                    <Input
-                        label="Target Free Space (GB)"
-                        type="number"
-                        min="10"
-                        step="1"
-                        value={targetFreeGb}
-                        onChange={(event) => setTargetFreeGb(event.target.value)}
-                    />
-                    <button className="btn-secondary" disabled={retentionBusy} onClick={() => void runRetention(false)}>
+                    <div title="Set the minimum free space you want on F:/. Retention will remove old artifacts until this target is met.">
+                        <Input
+                            label="Target Free Space (GB)"
+                            type="number"
+                            min="10"
+                            step="1"
+                            value={targetFreeGb}
+                            onChange={(event) => setTargetFreeGb(event.target.value)}
+                        />
+                    </div>
+                    <button className="btn-secondary" disabled={retentionBusy} onClick={() => void runRetention(false)} title="Dry-run: shows which files would be deleted and how much space would be reclaimed — nothing is removed.">
                         <ShieldCheck size={14} /> Preview Retention
                     </button>
-                    <button className="btn-primary" disabled={retentionBusy} onClick={() => void runRetention(true)}>
+                    <button className="btn-primary" disabled={retentionBusy} onClick={() => void runRetention(true)} title="Permanently delete old checkpoints and artifacts on F:/ until target free space is reached. Not reversible.">
                         <ShieldCheck size={14} /> Enforce Retention
                     </button>
                 </div>
@@ -128,13 +161,19 @@ export default function WalkthroughPage() {
                 {retentionResult && (
                     <div className="mt-4 p-4 rounded-xl bg-ic-surface border border-ic-border">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <Badge variant={retentionResult.mode === 'enforce' ? 'warning' : 'info'}>
-                                Mode: {retentionResult.mode}
-                            </Badge>
-                            <Badge variant="cyan">Reclaimed: {retentionResult.reclaimed_gb} GB</Badge>
-                            <Badge variant="success">Free Now: {retentionResult.after?.free_gb} GB</Badge>
+                            <span title="dry-run = preview only, no files deleted. enforce = files were permanently removed.">
+                                <Badge variant={retentionResult.mode === 'enforce' ? 'warning' : 'info'}>
+                                    Mode: {retentionResult.mode}
+                                </Badge>
+                            </span>
+                            <span title="Total gigabytes freed (or projected to be freed in dry-run mode) by the retention policy.">
+                                <Badge variant="cyan">Reclaimed: {retentionResult.reclaimed_gb} GB</Badge>
+                            </span>
+                            <span title="Current free space on F:/ after retention ran. Compare with your target to verify the goal was met.">
+                                <Badge variant="success">Free Now: {retentionResult.after?.free_gb} GB</Badge>
+                            </span>
                         </div>
-                        <p className="text-xs text-txt-muted">
+                        <p className="text-xs text-txt-muted" title="Shortfall = GB still needed. Candidates = files eligible for removal. Processed = files actually evaluated.">
                             Shortfall: {retentionResult.shortfall_gb} GB · Candidates: {retentionResult.plan_candidates} · Processed: {retentionResult.processed_candidates}
                         </p>
                     </div>
@@ -205,10 +244,20 @@ export default function WalkthroughPage() {
                                     <Link to={step.route} className="btn-primary">
                                         Open {step.label} <ChevronRight size={16} />
                                     </Link>
-                                    <button onClick={() => markDone(i)} className="btn-secondary">
-                                        <CheckCircle2 size={16} /> Mark Complete
-                                    </button>
+                                    {!completed.has(i) && (
+                                        <button onClick={() => markDone(i)} className="btn-secondary">
+                                            <CheckCircle2 size={16} /> Mark Complete
+                                        </button>
+                                    )}
                                 </div>
+                                {allComplete && (
+                                    <div className="mt-4 p-4 rounded-xl bg-accent-success/10 border border-accent-success/30 flex items-center justify-between">
+                                        <span className="text-sm font-medium text-accent-success">All steps complete!</span>
+                                        <button onClick={resetProgress} className="btn-secondary text-xs">
+                                            <RefreshCw size={14} /> Reset Walkthrough
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </Card>

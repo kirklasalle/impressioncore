@@ -321,7 +321,7 @@ class ProductionTrainerLauncher:
             
             # Create model and test forward pass
             from models.impressioncore_b1.unified_model import ImpressionCoreB1Model
-            from core.config.model_config import ModelConfig
+            from src.core.config.model_config import ModelConfig
             
             model_config = ModelConfig(
                 hidden_size=self.config.model_dim,

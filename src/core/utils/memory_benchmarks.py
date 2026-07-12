@@ -4,7 +4,7 @@ ImpressionCore: Memory Benchmarks
 
 Module for memory benchmarks functionality in the ImpressionCore framework.
 
-File: core\utils\memory_benchmarks.py
+File: core/utils/memory_benchmarks.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.memory_benchmarks import MainClass
+from src.core.utils.memory_benchmarks import MainClass
 instance = MainClass()
 result = instance.process()
 ```
@@ -324,42 +324,7 @@ def create_benchmark_visualizations(results_df: pd.DataFrame, output_dir: str, t
 
     # Generate optimization recommendation summary
     with open(os.path.join(output_dir, "optimization_recommendations.md"), "w") as f:
-        f.write(f"# Memory Optimization Recommendations\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\memory_benchmarks.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
-\n\n")
+        f.write(f"# Memory Optimization Recommendations\n\n\n")
         # Memory optimization: Memory-critical operation
         f.write(f"Based on benchmarks run on {datetime.datetime.now().strftime('%Y-%m-%d')}\n\n")
 

@@ -22,7 +22,7 @@ async def main():
     """Main CLI entry point."""
     print("=" * 60)
     print("  Agent0Core - ImpressionCore Agentic Intelligence Layer")
-    print("  Governed by the Prime Directive (7 Laws)")
+    print("  Governed by the Prime Directive (10 Laws)")
     print("=" * 60)
     print()
 

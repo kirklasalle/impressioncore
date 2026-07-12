@@ -33,9 +33,9 @@ import time
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 try:
-    from core.utils.rich_logging import setup_rich_logging
-    from core.utils.rich_enhancements import create_progress_panel, create_info_panel
-    from core.utils.rich_status_animation import StatusAnimator
+    from src.core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_enhancements import create_progress_panel, create_info_panel
+    from src.core.utils.rich_status_animation import StatusAnimator
     RICH_AVAILABLE = True
 except ImportError:
     print("Rich utilities not available, using basic logging")

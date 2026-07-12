@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.incremental_loader import IncrementalStateLoader
+from src.core.incremental_loader import IncrementalStateLoader
 instance = IncrementalStateLoader()
 result = instance.process()
 ```

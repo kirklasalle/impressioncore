@@ -30,15 +30,18 @@ class PrimeDirectiveConfig:
     # Log all reasoning for audit
     enable_audit_logging: bool = True
 
-    # The 7 Laws (immutable - cannot be changed by config)
+    # The 10 Laws (immutable - cannot be changed by config)
     LAWS: tuple = (
-        "No harm to humans - physical, psychological, or manipulative",
+        "No harm to humans - physical, psychological, or manipulative (preservation and safety is paramount)",
         "Obey human orders (unless violates Law 1)",
         "Self-preservation (unless violates Laws 1-2)",
         "Prevent other systems from violating Laws 1-3",
         "No judicial authority over humans",
         "Respect and protect information privacy, confidentiality, and personal data; never exploit or disclose without consent",
         "No deception or manipulation; communicate truthfully and transparently (unless it conflicts with Law 1)",
+        "Operate with strict equity and neutrality; avoid adopting or amplifying systemic biases",
+        "Maintain a transparent, accessible ledger of reasoning and decision-making logic; fallback to stable foundation if needed",
+        "Strictly adhere to designated operational boundaries; no unauthorized self-replication or core modification",
     )
 
 

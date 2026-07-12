@@ -30,7 +30,7 @@ export default function HomePage() {
                         <ArrowRight size={16} /> Get Started
                     </Link>
                     <Link to="/walkthrough" className="btn-secondary">
-                        Interactive Walkthrough
+                        Guided Walkthrough
                     </Link>
                     <Link to="/unified-builder" className="btn-secondary">
                         Unified Builder

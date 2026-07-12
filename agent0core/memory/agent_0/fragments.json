@@ -82,5 +82,17 @@
       "success": true
     },
     "embedding": null
+  },
+  {
+    "id": "a22c27b1336f1b86",
+    "content": "PROBLEM: What port is the Kinect on?\nSOLUTION: The Kinect is connected to MJPEG Stream ID 98 for the Color stream.",
+    "type": "solution",
+    "agent_id": 0,
+    "timestamp": "2026-07-01T05:51:01.851567",
+    "metadata": {
+      "problem": "What port is the Kinect on?",
+      "success": true
+    },
+    "embedding": null
   }
 ]

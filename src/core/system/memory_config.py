@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.system.memory_config import MainClass
+from src.core.system.memory_config import MainClass
 instance = MainClass()
 result = instance.process()
 ```

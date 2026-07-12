@@ -114,8 +114,8 @@ def main():
     try:
         # Import necessary modules
         from transformers import GPT2Tokenizer
-        from core.config import ConfigManager
-        from core.model import ImpressionCoreModel
+        from src.core.config import ConfigManager
+        from src.core.model import ImpressionCoreModel
         # Memory optimization: Explicit memory cleanup
         
         # Check if model path exists

@@ -50,7 +50,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.integration.feature_fusion import FeatureFusion
+from src.core.integration.feature_fusion import FeatureFusion
 instance = FeatureFusion()
 result = instance.process()
 ```

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}{{ doc.title }}{% endblock %}
+{% block description %}{{ doc.snippet }}{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-main">
+
+        <div class="page-header-card card">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="{{ root_path }}index.html">Home</a>
+                <span class="sep">›</span>
+                <a href="{{ root_path }}{{ doc.category_slug }}/index.html">{{ doc.category_name }}</a>
+                <span class="sep">›</span>
+                <span class="current">{{ doc.title | truncate(50) }}</span>
+            </nav>
+
+            <div class="hero-kicker">Document console</div>
+            <h1 style="margin-bottom:8px">{{ doc.title }}</h1>
+            {% if doc.snippet %}
+            <p class="hero-subtitle" style="margin:0 0 18px;max-width:720px;text-align:left">{{ doc.snippet }}</p>
+            {% endif %}
+
+            <!-- Metadata Bar -->
+            <div class="meta-bar">
+                {% if doc.status %}
+                <span class="meta-label">Status:</span>
+                <span
+                    class="badge badge-{% if doc.status == 'Active' %}success{% elif doc.status == 'Draft' %}warning{% else %}default{% endif %}">{{
+                    doc.status }}</span>
+                <span class="meta-sep"></span>
+                {% endif %}
+                {% if doc.updated %}
+                <span class="meta-label">Updated:</span>
+                <span style="color:var(--txt-secondary);font-size:.82rem">{{ doc.updated }}</span>
+                <span class="meta-sep"></span>
+                {% endif %}
+                {% if doc.source_path %}
+                <span class="meta-label">Source:</span>
+                <code style="font-size:.72rem">{{ doc.source_path }}</code>
+                {% endif %}
+            </div>
+
+            <!-- Tags -->
+            {% if doc.tags %}
+            <div class="tag-cloud" style="margin-bottom:8px">
+                {% for tag in doc.tags %}
+                <a href="{{ root_path }}search.html?q=tag%3A{{ tag }}" class="badge badge-cyan">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="page-toolbar">
+                <a href="{{ root_path }}{{ doc.category_slug }}/index.html" class="btn btn-secondary">Open category</a>
+                {% if doc.tags %}
+                <a href="{{ root_path }}search.html?q=tag%3A{{ doc.tags[0] }}" class="btn btn-secondary">Related
+                    docs</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="doc-body card doc-body-shell">
+            {{ doc.html_content }}
+        </article>
+
+        <!-- Prev / Next -->
+        <nav class="page-nav">
+            {% if prev_doc %}
+            <a href="{{ root_path }}{{ doc.category_slug }}/{{ prev_doc.slug }}.html" class="prev">
+                <span class="nav-label">← Previous</span>
+                <span class="nav-title">{{ prev_doc.title | truncate(40) }}</span>
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+            {% if next_doc %}
+            <a href="{{ root_path }}{{ doc.category_slug }}/{{ next_doc.slug }}.html" class="next">
+                <span class="nav-label">Next →</span>
+                <span class="nav-title">{{ next_doc.title | truncate(40) }}</span>
+            </a>
+            {% endif %}
+        </nav>
+
+    </div>
+
+    <!-- Right-side TOC -->
+    {% if toc_items %}
+    <aside class="page-toc" id="pageToc">
+        <div class="page-toc-title">On This Page</div>
+        {% for item in toc_items %}
+        <a href="#{{ item.id }}" class="toc-{{ item.tag }}" data-target="{{ item.id }}">{{ item.text | truncate(35)
+            }}</a>
+        {% endfor %}
+    </aside>
+    {% endif %}
+</div>
+{% endblock %}

@@ -65,7 +65,7 @@ project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
 
 # Import rich logging utilities
-from core.rich_logging import (
+from src.core.rich_logging import (
     setup_rich_logging,
     create_progress_bar,
     log_memory_usage,

@@ -93,13 +93,33 @@ import torch
 from flask import Blueprint, current_app, jsonify, render_template
 from flask_sock import Sock
 
-from ...models.utils.memory_optimization import MemoryEfficientInference, optimize_for_low_vram
+import os
+from src.training.models.utils.memory_optimization import MemoryEfficientInference, optimize_for_low_vram
 
 # Memory optimization: Memory-critical operation
-from ...utils.checkpoint_utils import list_checkpoints
-from ...utils.hardware_utils import get_gpu_info
+from src.core.utils.gpu_utils import get_gpu_info
 
-# Memory optimization: Memory-critical operation
+def list_checkpoints(checkpoint_dir):
+    checkpoint_dir = Path(checkpoint_dir)
+    if not checkpoint_dir.exists():
+        return []
+    items = []
+    for name in sorted(os.listdir(checkpoint_dir)):
+        fpath = checkpoint_dir / name
+        if fpath.is_file() and name.endswith('.pt'):
+            stat = fpath.stat()
+            # Clean name/id
+            ckpt_id = name
+            if ckpt_id.endswith('.pt'):
+                ckpt_id = ckpt_id[:-3]
+            items.append({
+                'id': ckpt_id,
+                'name': name,
+                'path': str(fpath),
+                'size_mb': round(stat.st_size / (1024 * 1024), 2),
+                'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
+            })
+    return items
 
 logger = logging.getLogger(__name__)
 

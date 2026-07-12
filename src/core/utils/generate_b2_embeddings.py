@@ -43,11 +43,11 @@ import soundfile as sf
 import torch
 from PIL import Image
 
-from core.ai.preprocessing.audio_processor import AudioProcessor
-from core.ai.preprocessing.image_processor import ImageProcessor
+from src.core.ai.preprocessing.audio_processor import AudioProcessor
+from src.core.ai.preprocessing.image_processor import ImageProcessor
 
 # --- Real B2 Model and Preprocessing Imports ---
-from core.kernel.b2_multimodal_model import B2MultimodalModel
+from src.core.kernel.b2_multimodal_model import B2MultimodalModel
 
 
 def load_b2_embedding_model(device='cuda' if torch.cuda.is_available() else 'cpu'):  # noqa: B008

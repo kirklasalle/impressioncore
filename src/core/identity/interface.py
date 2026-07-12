@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.identity.interface import AdvancedModelBuilderInterface
+from src.core.identity.interface import AdvancedModelBuilderInterface
 instance = AdvancedModelBuilderInterface()
 result = instance.process()
 ```

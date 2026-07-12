@@ -32,7 +32,7 @@ def test_b3_initialization():
 
     try:
         # Import B3 architecture
-        from core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
+        from src.core.models.impressioncore_b3_architecture import B3Config, ImpressionCoreB3Model
 
         # Check CUDA availability
         print(f"🎮 CUDA Available: {torch.cuda.is_available()}")

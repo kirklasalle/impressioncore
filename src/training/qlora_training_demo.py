@@ -31,9 +31,9 @@ from datetime import datetime
 
 # Import ImpressionCore components
 try:
-    from core.utils.rich_logging import setup_rich_logging
-    from core.utils.rich_enhancements import create_panel
-    from core.utils.rich_status_animation import StatusAnimation as StatusAnimator
+    from src.core.utils.rich_logging import setup_rich_logging
+    from src.core.utils.rich_enhancements import create_panel
+    from src.core.utils.rich_status_animation import StatusAnimation as StatusAnimator
     from models.trainer import ModelTrainer, TrainingConfig
     from models.qlora import QLoRAConfig, QLoRAModel
     IMPORTS_AVAILABLE = True

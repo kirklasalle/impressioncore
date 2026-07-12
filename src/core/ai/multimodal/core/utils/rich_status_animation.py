@@ -32,7 +32,7 @@ Stub for core.ai.multimodal.core.utils.rich_status_animation
 Re-exports core.utils.rich_status_animation for advanced utility compatibility.
 """
 try:
-    from core.utils.rich_status_animation import *
+    from src.core.utils.rich_status_animation import *
 except ImportError:
     # Provide a minimal fallback if rich_status_animation is unavailable
     def animate_status(message, status="info"):

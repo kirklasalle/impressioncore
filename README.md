@@ -1,4 +1,4 @@
-﻿# ImpressionCore: World-First AI Democratization Platform
+# ImpressionCore: World-First AI Democratization Platform
 
 **🏆 Historic Achievement: GPU Knowledge Distillation on Consumer Hardware**  
 **� B3 Multimodal Architecture with Brain-Triad Cognitive Orchestration**  
@@ -461,7 +461,7 @@ Agent0Core is ImpressionCore's autonomous intelligence layer, integrating the [A
 
 ### **Governance**
 
-All agents are governed by the **7 Laws for Intelligent Systems** defined in `Prime_Directive.txt`. These laws are immutable and embedded in every agent prompt.
+All agents are governed by the **10 Laws for Intelligent Systems** defined in `Prime_Directive.txt`. These laws are immutable and embedded in every agent prompt.
 
 ### **Capabilities**
 

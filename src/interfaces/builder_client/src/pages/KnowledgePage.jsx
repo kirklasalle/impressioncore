@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Database, Plus, Search, BookOpen, Loader2, Trash2 } from 'lucide-react';
 import ContentArea from '../components/layout/ContentArea';
+import HarnessPageHeader from '../components/layout/HarnessPageHeader';
+import TemplateGallery from '../components/harness/TemplateGallery';
 import { Card, CardTitle, Input, Badge, StatCard } from '../components/ui';
-import { addFact, queryKnowledge } from '../lib/api';
+import { listFacts, addFact, deleteFact, queryKnowledge } from '../lib/api';
+import { KNOWLEDGE_PACKS } from '../lib/harnessTemplates';
 import toast from 'react-hot-toast';
+
+const STORAGE_KEY = 'ic_applied_knowledge_packs';
 
 export default function KnowledgePage() {
     const [facts, setFacts] = useState([]);
@@ -11,21 +16,34 @@ export default function KnowledgePage() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [searching, setSearching] = useState(false);
+    const [appliedPacks, setAppliedPacks] = useState(() => {
+        try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); }
+        catch { return new Set(); }
+    });
+    const [applyingId, setApplyingId] = useState(null);
+
+    // Load persisted facts on mount
+    useEffect(() => {
+        listFacts().then(({ data }) => {
+            if (data.success) setFacts(data.facts);
+        }).catch(() => { });
+    }, []);
 
     const handleAddFact = async () => {
         if (!newFact.subject || !newFact.predicate || !newFact.object) {
             return toast.error('Subject, Predicate, and Object are required');
         }
         try {
-            await addFact(newFact);
-            setFacts((p) => [...p, { ...newFact, id: Date.now() }]);
-            setNewFact({ subject: '', predicate: '', object: '', source: '' });
-            toast.success('Fact added');
-        } catch {
-            // Local-only fallback
-            setFacts((p) => [...p, { ...newFact, id: Date.now() }]);
-            setNewFact({ subject: '', predicate: '', object: '', source: '' });
-            toast.success('Fact added (local)');
+            const { data } = await addFact(newFact);
+            if (data.success) {
+                setFacts((p) => [...p, data.fact]);
+                setNewFact({ subject: '', predicate: '', object: '', source: '' });
+                toast.success('Fact added');
+            } else {
+                toast.error(data.error || 'Failed to add fact');
+            }
+        } catch (err) {
+            toast.error(err.response?.data?.error || 'Failed to add fact');
         }
     };
 
@@ -36,7 +54,7 @@ export default function KnowledgePage() {
             const { data } = await queryKnowledge(query);
             setResults(data.results || []);
         } catch {
-            // Filter local facts
+            // Fallback: filter local facts
             const q = query.toLowerCase();
             setResults(facts.filter((f) =>
                 f.subject.toLowerCase().includes(q) ||
@@ -48,10 +66,71 @@ export default function KnowledgePage() {
         }
     };
 
-    const removeFact = (id) => setFacts((p) => p.filter((f) => f.id !== id));
+    const removeFact = async (id) => {
+        try {
+            await deleteFact(id);
+            setFacts((p) => p.filter((f) => f.id !== id));
+        } catch {
+            setFacts((p) => p.filter((f) => f.id !== id));
+        }
+    };
+
+    // Apply a knowledge pack — adds facts, skipping duplicates
+    const applyPack = async (pack) => {
+        setApplyingId(pack.id);
+        const existingKeys = new Set(facts.map((f) => `${f.subject}|${f.predicate}|${f.object}`));
+        let added = 0;
+        try {
+            for (const fact of pack.facts) {
+                const key = `${fact.subject}|${fact.predicate}|${fact.object}`;
+                if (existingKeys.has(key)) continue;
+                const { data } = await addFact(fact);
+                if (data.success) {
+                    setFacts((p) => [...p, data.fact]);
+                    existingKeys.add(key);
+                    added++;
+                }
+            }
+            const next = new Set([...appliedPacks, pack.id]);
+            setAppliedPacks(next);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]));
+            toast.success(`Applied "${pack.name}" — ${added} new facts added`);
+        } catch (err) {
+            toast.error(`Error applying pack: ${err.message}`);
+        } finally {
+            setApplyingId(null);
+        }
+    };
 
     return (
         <ContentArea title="Universal Knowledge Store" subtitle="Manage structured knowledge facts that power the AI.">
+            <HarnessPageHeader
+                section="Harness · Universal Knowledge Store"
+                description="The Universal Knowledge Store (UKS) is the persistent, structured knowledge graph at the heart of the ImpressionCore Harness. It stores facts as Subject → Predicate → Object triples — a pattern inspired by BrainSim III's graph of Things and Relationships. At inference time, these facts are retrieved and injected into the model's context, giving your LLM access to grounded, structured knowledge without retraining."
+                capabilities={[
+                    'Add structured knowledge facts (Subject → Predicate → Object)',
+                    'Query the knowledge base with natural language search',
+                    'Track fact sources for provenance and auditability',
+                    'Delete outdated or incorrect knowledge entries',
+                    'View real-time statistics on your knowledge graph',
+                    'Facts augment LLM context automatically at inference time',
+                ]}
+                builderContext="This is an optional post-build step. After completing the 9-step Build Pipeline (Introduction through Deployment), use the Knowledge Store to equip your trained model with structured facts it can reference during inference. Your model can also be used standalone via CLI or API key without UKS integration."
+                reference="The UKS is a graph of nodes (Things) connected by edges (Relationships). Each Relationship has a source, target, and type — all of which are Things. This enables rich semantic representation of real-world knowledge with inheritance and exception support."
+            />
+
+            <TemplateGallery
+                title="Knowledge Packs"
+                description="One-click curated fact sets — instantly populate your knowledge store with structured domain knowledge."
+                templates={KNOWLEDGE_PACKS}
+                onApply={applyPack}
+                appliedIds={appliedPacks}
+                loadingId={applyingId}
+                variant="additive"
+                itemLabel="facts"
+                itemCount={(t) => t.facts.length}
+            />
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Add Facts */}
                 <div className="space-y-4">

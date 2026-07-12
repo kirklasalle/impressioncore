@@ -35,12 +35,19 @@ Simple working version with distillation capture
 import os
 from datetime import datetime
 
+import pytest
 import torch
 from transformers import AutoModel, CLIPModel, Wav2Vec2Model
 
 
+@pytest.mark.integration
+@pytest.mark.slow
 def test_safetensors_loading():
-    """Test the safetensors workaround for PyTorch 2.5.1+cu121"""
+    """Test the safetensors workaround for PyTorch 2.5.1+cu121.
+
+    Marked integration+slow: downloads multiple pretrained models
+    (DialoGPT, CLIP, Wav2Vec2) from HuggingFace Hub over the network.
+    """
 
     print("🔧 Testing Safetensors Workaround for PyTorch 2.5.1+cu121")
     print("=" * 60)

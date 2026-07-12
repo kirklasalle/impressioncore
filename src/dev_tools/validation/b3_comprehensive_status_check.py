@@ -231,7 +231,7 @@ def comprehensive_system_check():
     ))
 
     # Save status report
-    project_root = Path("d:\\Projects\\impressioncore")
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
     reports_path = project_root / "src" / "memlog" / "system_status_checks"
     reports_path.mkdir(parents=True, exist_ok=True)
 

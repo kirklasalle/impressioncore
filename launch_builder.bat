@@ -2,7 +2,7 @@
 setlocal EnableExtensions EnableDelayedExpansion
 
 :: ================================================================
-::  ImpressionCore Model Builder — Launcher
+::  ImpressionCore Model Builder -- Launcher
 ::  Created: February 21, 2026
 ::  Author: Kirk LaSalle
 ::
@@ -23,15 +23,22 @@ set "PORT=5000"
 set "URL=http://127.0.0.1:%PORT%"
 
 echo.
-echo  ===================================================================
-echo    ___ __  __ ____  ____  _____ ____ ____ ___ ___  _   _
-echo   ^|_ _^|  \/  ^|  _ \^|  _ \^| ____/ ___/ ___^|_ _/ _ \^| \ ^| ^|
-echo    ^| ^|^| ^|\/^| ^| ^|_) ^| ^|_) ^|  _^| \___ \___ \^| ^| ^| ^| ^|  \^| ^|
-echo    ^| ^|^| ^|  ^| ^|  __/^|  _ ^<^| ^|___ ___) ^|__) ^| ^| ^|_^| ^| ^|\  ^|
-echo   ^|___^|_^|  ^|_^|_^|   ^|_^| \_\_____^|____/____/___\___/^|_^| \_^|
+echo  ==============================================================================
+echo  ------------------------------------------------------------------------------
+echo   ___ __  __ ____  ____  _____ ____ ____ ___ ___  _   _  ____ ___  ____  _____
+echo   ^|_ _^|  \/  ^|  _ \^|  _ \^| ____/ ___/ ___^|_ _/ _ \^| \ ^| ^|/ ___/ _ \^|  _ \^| ____^|
+echo    ^| ^|^| ^|\/^| ^| ^|_) ^| ^|_) ^|  _^| \___ \___ \^| ^| ^| ^| ^|  \^| ^| ^|  ^| ^| ^| ^| ^|_) ^|  _^|
+echo    ^| ^|^| ^|  ^| ^|  __/^|  _ ^<^| ^|___ ___) ^|__) ^| ^| ^|_^| ^| ^|\  ^| ^|__^| ^|_^| ^|  _ ^<^| ^|___
+echo   ^|___^|_^|  ^|_^|_^|   ^|_^| \_\_____^|____/____/___\___/^|_^| \_^|\____\___/^|_^| \_\_____^|
 echo.
-echo   Model Builder - World Class Dark Theme UI
-echo  ===================================================================
+echo  ------------------------------------------------------------------------------
+echo  ==============================================================================
+echo.
+echo  The ImpressionCore Model Builder 
+echo  - Digital Security and Privacy control through AI Democritization
+echo  - Digital Impression of Human, Plant, Animal, Geoligical, etc. 
+echo  - Human support, safety and protection guided by, the 10 laws and framework. 
+echo  ==============================================================================
 echo.
 
 :: ------------------------------------------------------------------
@@ -50,14 +57,14 @@ if not exist "%PYTHON%" (
 
 :: Activate the environment for subsequent commands
 call "%VENV%\Scripts\activate.bat"
-echo        OK — %VENV% activated
+echo        OK -- %VENV% activated
 
 :: ------------------------------------------------------------------
 :: CHECK 2: Python version
 :: ------------------------------------------------------------------
 echo  [2/7] Checking Python version...
 for /f "tokens=*" %%v in ('python --version 2^>^&1') do set "PYVER=%%v"
-echo        OK — %PYVER%
+echo        OK -- %PYVER%
 
 :: ------------------------------------------------------------------
 :: CHECK 3: Core dependencies
@@ -91,9 +98,9 @@ if defined MISSING (
         pause
         exit /b 1
     )
-    echo        OK — Missing packages installed
+    echo        OK -- Missing packages installed
 ) else (
-    echo        OK — flask, flask-cors, jinja2, werkzeug, torch
+    echo        OK -- flask, flask-cors, jinja2, werkzeug, torch
 )
 
 :: ------------------------------------------------------------------
@@ -101,7 +108,7 @@ if defined MISSING (
 :: ------------------------------------------------------------------
 echo  [4/7] Checking GPU availability...
 for /f "tokens=*" %%g in ('python -c "import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU-only (no CUDA)')" 2^>^&1') do set "GPU=%%g"
-echo        OK — %GPU%
+echo        OK -- %GPU%
 
 :: ------------------------------------------------------------------
 :: CHECK 5: Server entry point exists
@@ -114,7 +121,7 @@ if not exist "%SERVER%" (
     pause
     exit /b 1
 )
-echo        OK — %SERVER%
+echo        OK -- %SERVER%
 
 :: ------------------------------------------------------------------
 :: CHECK 6: Compile Python bytecode (pre-warm)
@@ -122,7 +129,7 @@ echo        OK — %SERVER%
 echo  [6/7] Compiling Python bytecode...
 python -m compileall -q src\interfaces\web\ >nul 2>&1
 python -m compileall -q src\core\utils\ >nul 2>&1
-echo        OK — bytecode compiled
+echo        OK -- bytecode compiled
 
 :: ------------------------------------------------------------------
 :: CHECK 7: React Builder client (builder_client)
@@ -130,7 +137,7 @@ echo        OK — bytecode compiled
 echo  [7/7] Checking React Builder client...
 set "BUILDER_CLIENT=src\interfaces\builder_client"
 if exist "%BUILDER_CLIENT%\dist\index.html" (
-    echo        OK — production build found
+    echo        OK -- production build found
 ) else if exist "%BUILDER_CLIENT%\package.json" (
     echo        dist/ not found — building React client...
     where npm >nul 2>&1
@@ -146,14 +153,14 @@ if exist "%BUILDER_CLIENT%\dist\index.html" (
         echo        Running production build...
         call npx vite build >nul 2>&1
         if exist "dist\index.html" (
-            echo        OK — React client built successfully
+            echo        OK -- React client built successfully
         ) else (
-            echo        [WARN] Build failed — React UI unavailable
+            echo        [WARN] Build failed -- React UI unavailable
         )
         popd
     )
 ) else (
-    echo        [SKIP] builder_client not found — using Jinja templates only
+    echo        [SKIP] builder_client not found -- using Jinja templates only
 )
 
 :: ------------------------------------------------------------------
@@ -183,7 +190,7 @@ if not errorlevel 1 (
         echo  Stopping process !PORT_PID! ...
         taskkill /PID !PORT_PID! /F >nul 2>&1
         timeout /t 2 /nobreak >nul
-        echo        OK — previous process stopped
+        echo        OK -- previous process stopped
     ) else (
         echo.
         echo  Aborting. Stop the existing process on port %PORT% first.
@@ -199,8 +206,8 @@ echo  Starting ImpressionCore Model Builder on port %PORT%...
 echo  Press Ctrl+C to stop the server.
 echo.
 
-:: Set PYTHONPATH to src/ so imports resolve correctly
-set "PYTHONPATH=%REPO_ROOT%src"
+:: Set PYTHONPATH to repo root so "from src.*" imports resolve correctly
+set "PYTHONPATH=%REPO_ROOT%"
 
 :: Open browser after a short delay (background)
 start "" /b cmd /c "timeout /t 3 /nobreak >nul && start "" %URL%"

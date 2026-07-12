@@ -79,7 +79,7 @@ class B2ToB3MigrationSystem:
         self.start_time = time.time()
 
         # Paths
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent.parent
         self.b2_analysis_path = self.project_root / "b2_analysis"
         self.b3_enhanced_path = self.project_root / "b3_enhanced"
         self.migration_reports_path = self.project_root / "src" / "memlog" / "b2_to_b3_migration"

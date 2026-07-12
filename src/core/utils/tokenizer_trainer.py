@@ -4,7 +4,7 @@ ImpressionCore: Tokenizer Trainer
 
 Module for tokenizer trainer functionality in the ImpressionCore framework.
 
-File: core\utils\tokenizer_trainer.py
+File: core/utils/tokenizer_trainer.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
 Modified: 2025-05-24
@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.tokenizer_trainer import TokenizerTrainer
+from src.core.utils.tokenizer_trainer import TokenizerTrainer
 instance = TokenizerTrainer()
 result = instance.process()
 ```
@@ -137,42 +137,7 @@ if __name__ == "__main__":
 
     # Create a dummy dataset file
     with open(dataset_path, "w") as f:
-        f.write("This is a test corpus.\n#!/usr/bin/env python3
-"""
-ImpressionCore - Brain-Inspired Multimodal AI Framework
-
-File: src\core\utils\tokenizer_trainer.py
-Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
-Created: 2025-05-25
-Modified: 2025-05-25
-Version: 1.0.0
-
-Authors:
-- Kirk LaSalle & GitHub Copilot
-
-License: MIT
-Copyright (c) 2025 ImpressionCore Team
-
-Tags: [core, utils]
-Dependencies: [] # TODO: Auto-detect or allow manual input
-Hardware Target: NVIDIA GTX 1050 Ti (4GB VRAM)
-
-Description:
-# TODO: Add a brief description of this file's purpose.
-
-Design Philosophy:
-# TODO: Add design philosophy if applicable.
-
-Memory Considerations:
-# TODO: Document any specific memory considerations for this file.
-
-Examples:
-# TODO: Provide usage examples if applicable.
-
-Notes:
-# TODO: Add any relevant notes.
-"""
-\n\nIt contains multiple lines of text.\n")
+        f.write("This is a test corpus.\n\n\nIt contains multiple lines of text.\n")
 
     # Create output directory if it doesn't exist
     os.makedirs(output_path, exist_ok=True)

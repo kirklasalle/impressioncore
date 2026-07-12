@@ -62,6 +62,7 @@ class TestRootCleanliness:
         "data",
         "production_packages",
         "rag_library",
+        "docker",
         ".agent",
         ".cache",
         # Ghost dirs (recreated by VS Code / tooling; harmless when empty)
@@ -76,9 +77,21 @@ class TestRootCleanliness:
     }
 
     def test_no_loose_python_scripts(self, project_root: Path):
-        """No stray .py files in root (except manage_f_models.py)."""
+        """No stray .py files in root, other than approved launcher/shims.
+
+        Each allowed shim delegates to a canonical implementation under
+        ``src/`` (see the docstring of each file for its delegation target)
+        and exists only because it is a documented user-facing entry point
+        (e.g. ``docs/user_guide/*.md`` instructs users to run
+        ``python run_server.py`` from the repo root).
+        """
         py_files = {f.name for f in project_root.glob("*.py")}
-        allowed = {"manage_f_models.py"}
+        allowed = {
+            "manage_f_models.py",
+            "main.py",  # shim -> src/main.py
+            "run_server.py",  # shim -> src/services/sse/run_server.py
+            "build_cli_automation.py",  # shim -> src/dev_tools/automation/build_cli_automation.py
+        }
         stray = py_files - allowed
         assert not stray, f"Stray root .py files found: {stray}"
 

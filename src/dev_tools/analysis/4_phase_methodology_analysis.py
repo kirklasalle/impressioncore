@@ -60,7 +60,7 @@ class FourPhaseTrainingAnalysis:
 
     def __init__(self):
         self.console = Console()
-        self.project_root = Path("d:\\Projects\\impressioncore")
+        self.project_root = Path(__file__).resolve().parent.parent.parent.parent
         self.analysis_path = self.project_root / "src" / "memlog" / "4_phase_methodology_analysis"
         self.analysis_path.mkdir(parents=True, exist_ok=True)
 

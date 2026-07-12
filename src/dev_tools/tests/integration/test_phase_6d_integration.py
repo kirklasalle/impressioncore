@@ -29,11 +29,11 @@ import os
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from api.extended_context_api import ExtendedContextAPI, create_extended_context_app
-from core.ux.user_experience_features import (
+from src.core.ux.user_experience_features import (
     AdaptiveOptimizer, ProgressiveGenerator, UserControlPanel
 )
 from tests.realworld.testing_scenarios import RealWorldTestingFramework
-from core.utils.rich_logging import setup_rich_logging
+from src.core.utils.rich_logging import setup_rich_logging
 
 # Setup logging
 logger = setup_rich_logging(__name__)

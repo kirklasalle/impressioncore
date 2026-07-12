@@ -66,11 +66,11 @@ project_root = Path(__file__).parent.parent
 if str(project_root) not in sys.path:
     sys.path.append(str(project_root))
 
-from core.model import IMpressionCoreModel, ModelConfig
+from src.core.model import IMpressionCoreModel, ModelConfig
 # Memory optimization: Explicit memory cleanup
-from core.gpu_utils import get_device, clear_gpu_memory, MemoryTracker
+from src.core.gpu_utils import get_device, clear_gpu_memory, MemoryTracker
 # Memory optimization: Device placement for memory management
-from core.memory_optimization import memory_efficient_inference
+from src.core.memory_optimization import memory_efficient_inference
 # Memory optimization: Memory-critical operation
 from transformers import AutoTokenizer, GPT2LMHeadModel, GPT2Tokenizer
 

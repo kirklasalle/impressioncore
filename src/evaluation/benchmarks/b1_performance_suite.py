@@ -19,9 +19,9 @@ import psutil
 import torch
 
 try:  # Adjusted import paths may change after full refactor
-    from core.utils.rich_enhancements import EnhancedDisplay  # type: ignore
-    from core.utils.rich_logging import setup_rich_logging  # type: ignore
-    from core.utils.rich_status_animation import StatusAnimation  # type: ignore
+    from src.core.utils.rich_enhancements import EnhancedDisplay  # type: ignore
+    from src.core.utils.rich_logging import setup_rich_logging  # type: ignore
+    from src.core.utils.rich_status_animation import StatusAnimation  # type: ignore
     RICH_AVAILABLE = True
 except ImportError:
     RICH_AVAILABLE = False

@@ -31,4 +31,4 @@
 Stub for core.ai.multimodal.core.utils.rich_enhancements
 Re-exports core.utils.rich_enhancements for advanced utility imports.
 """
-from core.utils.rich_enhancements import *
+from src.core.utils.rich_enhancements import *

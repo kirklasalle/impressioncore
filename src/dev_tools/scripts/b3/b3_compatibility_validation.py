@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 # Import B3 architecture
 try:
-    from core.models.impressioncore_b3_architecture import (
+    from src.core.models.impressioncore_b3_architecture import (
         B3Config,
         ImpressionCoreB3Model,
         memory_profile,

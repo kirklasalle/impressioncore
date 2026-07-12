@@ -28,11 +28,11 @@ The Brain-Triad is ImpressionCore's revolutionary AI architecture inspired by hu
 
 The Brain-Triad mirrors the lateralization of human cognition:
 
-| Component | Human Analog | Function |
-|-----------|--------------|----------|
-| Left Hemisphere | Left Brain | Analytical, logical, structured reasoning |
-| Right Hemisphere | Right Brain | Creative, intuitive, holistic thinking |
-| Colossus | Corpus Callosum | Integration and synthesis of both perspectives |
+| Component        | Human Analog    | Function                                       |
+| ---------------- | --------------- | ---------------------------------------------- |
+| Left Hemisphere  | Left Brain      | Analytical, logical, structured reasoning      |
+| Right Hemisphere | Right Brain     | Creative, intuitive, holistic thinking         |
+| Colossus         | Corpus Callosum | Integration and synthesis of both perspectives |
 
 ### Design Principles
 
@@ -291,11 +291,11 @@ flowchart LR
 
 ### Memory Modes
 
-| Mode | Description | VRAM Usage |
-|------|-------------|------------|
-| Simultaneous | All models in VRAM | ~3.4GB |
-| Sequential | Load/unload as needed | ~2.5GB |
-| Quantized | 4-bit weights | ~1.8GB |
+| Mode         | Description           | VRAM Usage |
+| ------------ | --------------------- | ---------- |
+| Simultaneous | All models in VRAM    | ~3.4GB     |
+| Sequential   | Load/unload as needed | ~2.5GB     |
+| Quantized    | 4-bit weights         | ~1.8GB     |
 
 ---
 
@@ -347,12 +347,12 @@ voice_config = {
 
 ### Health Metrics
 
-| Metric | Target | Alert Threshold |
-|--------|--------|-----------------|
-| Response Time | <2s | >5s |
-| Synthesis Confidence | >0.8 | <0.5 |
-| VRAM Usage | <3.5GB | >3.8GB |
-| Error Rate | <1% | >5% |
+| Metric               | Target | Alert Threshold |
+| -------------------- | ------ | --------------- |
+| Response Time        | <2s    | >5s             |
+| Synthesis Confidence | >0.8   | <0.5            |
+| VRAM Usage           | <3.5GB | >3.8GB          |
+| Error Rate           | <1%    | >5%             |
 
 ---
 
@@ -390,6 +390,6 @@ voice_config = {
 
 ## 📜 Changelog
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | 2025-12-25 | Initial architecture documentation |
+| Version | Date       | Changes                            |
+| ------- | ---------- | ---------------------------------- |
+| 1.0.0   | 2025-12-25 | Initial architecture documentation |

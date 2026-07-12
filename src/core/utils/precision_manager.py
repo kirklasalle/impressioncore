@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.precision_manager import PrecisionMode
+from src.core.utils.precision_manager import PrecisionMode
 instance = PrecisionMode()
 result = instance.process()
 ```

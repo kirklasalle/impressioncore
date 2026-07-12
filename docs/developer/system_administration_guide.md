@@ -215,6 +215,20 @@ docker-compose up -d
 # Check service status
 docker-compose ps
 docker-compose logs impressioncore
+
+### Docker environment variables
+- `IMPRESSIONCORE_API_KEY` — required for authenticated API endpoints
+- `IMPRESSIONCORE_DATA_DRIVE` — host path used by `docker-compose.yml` for persistent storage volumes
+- `IMPRESSIONCORE_FORCE_CPU` — set to `1` to force CPU-only execution when no GPU is available
+
+Example `.env` entries:
+
+```env
+IMPRESSIONCORE_API_KEY=your-secure-api-key
+IMPRESSIONCORE_DATA_DRIVE=D:/Projects/impressioncore/data
+IMPRESSIONCORE_FORCE_CPU=0
+```
+
 ```
 
 ## Configuration Management

@@ -12,7 +12,15 @@ import sys
 import pytest
 
 
+@pytest.mark.integration
+@pytest.mark.slow
 def test_metadata_columns_present(tmp_path):
+    """Marked integration+slow: build_table() -> get_model() transitively
+    instantiates real model bridges (e.g. B3UnifiedBridge), which download
+    pretrained tokenizer/model weights (GPT-2) from HuggingFace Hub over the
+    network. Not mocked at the registry layer, so this is not a fast unit
+    test despite only asserting on generated markdown content.
+    """
     # Resolve paths relative to this file, not cwd
     _test_dir = os.path.dirname(os.path.abspath(__file__))
     _repo_root = os.path.abspath(os.path.join(_test_dir, '..', '..'))

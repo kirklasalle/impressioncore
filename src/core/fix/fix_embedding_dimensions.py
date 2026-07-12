@@ -53,8 +53,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.progress import BarColumn, Progress, TextColumn, TimeElapsedColumn
 
-from core.utils.device_manager import DeviceManager
-from core.utils.rich_logging import RichLogger
+from src.core.utils.device_manager import DeviceManager
+from src.core.utils.rich_logging import RichLogger
 
 
 class FixedEmbeddingProcessor:

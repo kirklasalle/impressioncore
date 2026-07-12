@@ -41,7 +41,7 @@ TODO:
 Examples:
 ```python
 # Basic usage example
-from core.utils.rich_enhancements import FallbackConsole
+from src.core.utils.rich_enhancements import FallbackConsole
 instance = FallbackConsole()
 result = instance.process()
 ```
@@ -54,6 +54,7 @@ Notes:
 """
 
 import os
+import re
 import sys
 import time
 import logging
@@ -144,7 +145,7 @@ class FallbackConsole:
         self.width = 80
     
     def print(self, *args, **kwargs):
-        """Print text to console."""
+        """Print text to console, stripping Rich markup tags."""
         # Extract text from Rich objects if present
         text = ""
         for arg in args:
@@ -157,6 +158,8 @@ class FallbackConsole:
                     text += str(arg)
             else:
                 text += str(arg)
+        # Strip Rich markup tags like [bold green]...[/bold green]
+        text = re.sub(r'\[/?[a-zA-Z][a-zA-Z0-9_ ]*\]', '', text)
         print(text)
     
     def rule(self, title=None, **kwargs):
