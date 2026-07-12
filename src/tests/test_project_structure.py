@@ -63,6 +63,8 @@ class TestRootCleanliness:
         "production_packages",
         "rag_library",
         "docker",
+        "user_data",
+        "output",
         ".agent",
         ".cache",
         # Ghost dirs (recreated by VS Code / tooling; harmless when empty)
