@@ -246,9 +246,9 @@ omit = [
 ]
 
 [tool.coverage.report]
-fail_under = 8            # ratchet: 0.96% → 1.59% (Phase 6) → 8.20% measured (2026-07-01, was falsely 1.59%
-                           # because 7 test-collection errors from syntax corruption were silently excluding
-                           # ~180 files from ever running); target 10% next, matches CI gate
+fail_under = 9            # ratchet: 0.96% → 1.59% → 8.20% → 9.01% → 9.25% (2026-07-12)
+                           # 522 tests passing, 59 new tests added for config, CORS, runtime mode,
+                           # api_state, config_manager; target 10% next, matches CI gate
 show_missing = true
 skip_empty = true
 
