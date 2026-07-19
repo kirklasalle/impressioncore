@@ -280,3 +280,206 @@ async def process_multimodal(request: GenerateRequest):
         async with api_state._gpu_lock:
             api_state._gpu_active_count -= 1
             api_state._gpu_total_served += 1
+
+
+async def run_generation_task(payload: dict, queue: asyncio.Queue):
+    """
+    Runs the generation pipeline to completion in the background to ensure data security.
+    Feeds chunks and events back to the websocket queue.
+    """
+    try:
+        # 1. Acquire GPU Semaphore
+        try:
+            await asyncio.wait_for(api_state._gpu_semaphore.acquire(), timeout=30.0)
+        except asyncio.TimeoutError:
+            async with api_state._gpu_lock:
+                api_state._gpu_total_rejected += 1
+            await queue.put({"event": "error", "message": "GPU concurrency limit reached - request timed out after 30s"})
+            return
+
+        async with api_state._gpu_lock:
+            api_state._gpu_active_count += 1
+
+        prompt = payload.get("prompt")
+        image_base64 = payload.get("image_base64")
+        snapshots = payload.get("snapshots")
+        session_id = payload.get("session_id")
+        voice_enabled = payload.get("voice_enabled", True)
+        avatar_mode_preference = payload.get("avatar_mode_preference")
+        audio_mode_preference = payload.get("audio_mode_preference")
+
+        await queue.put({"event": "status", "text": "Analyzing query via Left Brain (Logic)..."})
+
+        # Decodes images
+        sensory_data = {}
+        if image_base64 and cv2 is not None:
+            try:
+                img_str = image_base64
+                if "," in img_str:
+                    img_str = img_str.split(",")[1]
+                img_bytes = base64.b64decode(img_str)
+                nparr = np.frombuffer(img_bytes, np.uint8)
+                img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+                if img is not None:
+                    sensory_data['vision_frames'] = {0: img}
+            except Exception as e:
+                log_event("API-STREAM", f"Image Decode Error: {e}", level="WARNING")
+
+        if snapshots and cv2 is not None:
+            try:
+                if 'vision_frames' not in sensory_data:
+                    sensory_data['vision_frames'] = {}
+                for i, snap_str in enumerate(snapshots):
+                    if "," in snap_str:
+                        snap_str = snap_str.split(",")[1]
+                    snap_bytes = base64.b64decode(snap_str)
+                    nparr = np.frombuffer(snap_bytes, np.uint8)
+                    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+                    if img is not None:
+                        sensory_data['vision_frames'][i] = img
+            except Exception as e:
+                log_event("API-STREAM", f"Snapshots Decode Error: {e}", level="WARNING")
+
+        # Load session history
+        history = []
+        if session_id:
+            try:
+                session_data = session_manager.get_session(session_id)
+                if session_data:
+                    history = session_data.get("messages", [])
+                session_manager.add_message(session_id, "user", prompt)
+            except Exception as e:
+                log_event("API-STREAM", f"Session Load/Save Error (Non-Fatal): {e}", level="WARNING")
+
+        # Execute LLM Generation inside a threadpool executor to not block the main event loop
+        result = await asyncio.to_thread(
+            api_state.triad_instance.generate,
+            prompt,
+            sensory_data,
+            history
+        )
+
+        resp_left = result['internal_monitors']['left_hemisphere']
+        resp_right = result['internal_monitors']['right_hemisphere']
+        resp_colossus = result['response']
+
+        await queue.put({"event": "left_thought", "text": resp_left})
+        await queue.put({"event": "right_thought", "text": resp_right})
+        await queue.put({"event": "status", "text": "Synthesizing response via Colossus..."})
+
+        # Stream Colossus response word-by-word
+        words = resp_colossus.split(" ")
+        for i, word in enumerate(words):
+            token = (" " if i > 0 else "") + word
+            await queue.put({"event": "token", "text": token})
+            await asyncio.sleep(0.015)  # Fast, smooth typing effect
+
+        # Handle Audio Generation (TTS)
+        audio_url = None
+        native_audio = None
+        if voice_enabled:
+            try:
+                await asyncio.to_thread(api_state.triad_instance.speak, resp_colossus, False)
+                audio_url = getattr(api_state.triad_instance, 'last_audio_url', '/audio/last_speech.mp3')
+            except Exception as e:
+                log_event("API-STREAM", f"TTS Generation Error: {e}", level="WARNING")
+
+        # Save to DB / Vector DB
+        snapshot_url = result.get('snapshot_url')
+        snapshot_urls = result.get('snapshot_urls', [])
+        generated_image_url = result.get('generated_image_url')
+        
+        if session_id:
+            if api_state.vector_memory:
+                try:
+                    description_text = resp_colossus[:500] if resp_colossus else "Visual snapshot captured."
+                    await asyncio.to_thread(api_state.vector_memory.add_memory, description_text, snapshot_url)
+                except Exception as e:
+                    log_event("API-STREAM", f"Vector DB Insert Error: {e}", level="WARNING")
+
+            try:
+                session = session_manager.get_session(session_id)
+                if session and session.get("messages"):
+                    last_msg = session["messages"][-1]
+                    if last_msg["role"] == "user":
+                        last_msg["snapshot_url"] = snapshot_url
+                        last_msg["snapshot_urls"] = snapshot_urls
+                        session_manager.save_session(session_id, session)
+            except Exception as e:
+                log_event("API-STREAM", f"Session Persistence Error: {e}", level="WARNING")
+
+            try:
+                session_manager.add_message(
+                    session_id,
+                    "assistant",
+                    resp_colossus,
+                    audio_url=audio_url,
+                    generated_image_url=generated_image_url
+                )
+            except Exception as e:
+                log_event("API-STREAM", f"Session Persistence Error (Assistant Response): {e}", level="WARNING")
+
+        # Send final completion event
+        await queue.put({
+            "event": "done",
+            "response": resp_colossus,
+            "monitors": result['internal_monitors'],
+            "nexus_logs": result.get('nexus_logs', []),
+            "snapshot_url": snapshot_url,
+            "snapshot_urls": snapshot_urls,
+            "generated_image_url": generated_image_url,
+            "audio_url": audio_url,
+            "native_audio": native_audio,
+            "affective_state": result.get('affective_state', 'NEUTRAL'),
+            "status": "TRIAD_COMPLETE"
+        })
+
+    except Exception as e:
+        log_event("API-STREAM", f"Background generation task error: {e}", level="ERROR")
+        await queue.put({"event": "error", "message": str(e)})
+    finally:
+        api_state._gpu_semaphore.release()
+        async with api_state._gpu_lock:
+            api_state._gpu_active_count -= 1
+            api_state._gpu_total_served += 1
+
+
+@router.websocket("/v1/chat/stream")
+async def chat_stream(websocket: WebSocket):
+    """
+    WebSocket streaming endpoint. Streams token-by-token reasoning/thought logs.
+    Runs generation to completion in the background to ensure session history integrity.
+    """
+    await websocket.accept()
+    log_event("API-STREAM", "Client connected to chat stream websocket.")
+    
+    # 1. Handshake payload
+    try:
+        payload = await websocket.receive_json()
+    except Exception as e:
+        log_event("API-STREAM", f"WebSocket handshake payload parse error: {e}", level="WARNING")
+        await websocket.close(code=1003)
+        return
+
+    queue = asyncio.Queue()
+    # Spawn background worker so that even if the client disconnects, the task runs to completion
+    bg_task = asyncio.create_task(run_generation_task(payload, queue))
+    api_state.last_bg_task = bg_task
+
+    try:
+        while True:
+            event = await queue.get()
+            await websocket.send_json(event)
+            queue.task_done()
+            
+            # Stop if we hit terminal event
+            if event.get("event") in ("done", "error"):
+                break
+    except Exception as e:
+        log_event("API-STREAM", f"WebSocket connection interrupted mid-generation: {e}. Session integrity guaranteed by background completion.")
+    finally:
+        # Ensure WebSocket is closed
+        try:
+            await websocket.close()
+        except Exception:
+            pass

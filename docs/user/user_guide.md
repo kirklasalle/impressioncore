@@ -506,3 +506,13 @@ print(f"Memory peak: {stats.peak_memory_gb:.2f}GB")
 **Last Updated**: 2025-06-03  
 **Version**: 2.0.0  
 **Authors**: Kirk LaSalle, GitHub Copilot
+
+---
+
+## 2026-2027 Execution Alignment
+
+For active delivery priorities and planned user-facing improvements, see:
+
+- ../process/EXECUTION_APPENDIX_2026_2027.md
+
+This includes B-series offering hardening, Builder and Dashboard continuity updates, and staged C1 Colossus rollout governance.

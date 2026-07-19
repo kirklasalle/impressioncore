@@ -12,6 +12,23 @@
 
 # Changelog
 
+## [Unreleased] - 2026-07-18
+
+### Added
+
+- Added canonical execution backlog: `docs/process/EXECUTION_APPENDIX_2026_2027.md`.
+- Added roadmap execution extensions in `docs/development_roadmap.md` and `docs/process/development_roadmap.md`.
+- Added PRD delivery addenda in `docs/prd.md` and `docs/reference/prd.md`.
+- Added user/developer guide execution alignment updates.
+- Added next-steps execution addenda in `docs/next_steps.md` and `docs/process/next_steps.md`.
+
+### Documentation
+
+- Added documentation index and IDS MCP synchronization requirements for major doc changes.
+- Added immediate execution window alignment in canonical roadmap, next-steps, and PRD documents.
+- Converted roadmap, next-steps, and PRD mirror files to pointer-only mode.
+- Updated mirror synchronization checklist status for pointer-only transitions.
+
 ## [Unreleased] - 2025-05-17
 
 ### Fixed

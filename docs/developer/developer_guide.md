@@ -978,6 +978,35 @@ For the most up-to-date API documentation, see the auto-generated docs in `docs/
 ## 16.6 TurboQuant KV Cache Compression (ICLR 2026)
 
 - **Paper:** arXiv:2504.19874 (Google Research) — "TurboQuant: Online Vector Quantization for KV Cache Compression"
+
+---
+
+# 17. 2026-2027 Developer Delivery Playbook
+
+Canonical backlog source:
+
+- ../process/EXECUTION_APPENDIX_2026_2027.md
+
+## Active Engineering Priorities
+
+1. Replace heuristic model-stage detection with explicit offering metadata manifests.
+2. Normalize Builder, Runtime, and Dashboard contracts for B-series offerings.
+3. Implement runtime native B-series inference path with fallback policy.
+4. Stage C1 Colossus integration in observe-first governance mode.
+5. Raise automated quality gates (tests, schema validation, security checks).
+
+## Documentation and IDS Requirements
+
+After major engineering or documentation updates:
+
+1. Update docs/DOCUMENTATION_INDEX.md.
+2. Validate IDS MCP docs and configuration in .mcp/ids-mcp/README.md.
+3. Verify user-level IDS guidance in docs/reference/mcp_server/IDS_MCP_USER_GUIDE.md.
+
+## Release Discipline
+
+Use M1/M2/M3 milestone gates from the execution appendix for release readiness decisions.
+
 - **Two-stage algorithm:** Stage 1 (PolarQuant) applies random rotation via fast Walsh-Hadamard transform, mapping to Beta distribution, then scalar quantization. Stage 2 (QJL) applies 1-bit Johnson-Lindenstrauss projection on the residual for unbiased inner product estimation.
 - **Default: 3.5 bits/channel** — zero accuracy loss on standard benchmarks. Aggressive mode: 2.5 bits/channel.
 - **Training-free:** No fine-tuning required; works as a drop-in replacement during inference.

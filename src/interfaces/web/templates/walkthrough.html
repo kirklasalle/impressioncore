@@ -54,7 +54,18 @@
     </div>
 </div>
 
-<div class="card" id="resourcesCard">
+<div class="card" id="offeringSelectionCard">
+    <div class="section-subtitle">Offering Selection</div>
+    <p>Select a B-series offering to carry forward into Builder defaults.</p>
+    <div class="quick-actions">
+        <button class="btn btn-outline-primary offering-btn" data-offering="b1_39m">B1 Hope 39M</button>
+        <button class="btn btn-outline-primary offering-btn" data-offering="b2_50m">B2 Insight 50M</button>
+        <button class="btn btn-outline-primary offering-btn" data-offering="b3_504m">B3 Apex 504M</button>
+    </div>
+    <div id="offeringStatus" style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.9rem;"></div>
+</div>
+
+<div class="card" id="resourcesLinksCard">
     <div class="section-subtitle">Related Resources</div>
     <div class="resource-links">
         <a href="/documentation" class="btn-link">
@@ -351,6 +362,31 @@
                 console.error('Error in evaluation:', error.message || error);
                 terminal.output.innerHTML += `<div class="terminal-line error">Error: ${error.message || 'Unknown error'}</div>`;
             });
+    });
+
+    document.querySelectorAll('.offering-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            const selectedOffering = btn.getAttribute('data-offering');
+            const statusEl = document.getElementById('offeringStatus');
+            document.querySelectorAll('.offering-btn').forEach((b) => b.classList.remove('btn-primary'));
+            document.querySelectorAll('.offering-btn').forEach((b) => b.classList.add('btn-outline-primary'));
+            btn.classList.remove('btn-outline-primary');
+            btn.classList.add('btn-primary');
+            statusEl.textContent = 'Saving selection...';
+            try {
+                const response = await fetch('/api/v1/builder/walkthrough/progress', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ selected_offering: selectedOffering }),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to save selection');
+                }
+                statusEl.textContent = `Selected offering: ${selectedOffering}`;
+            } catch (error) {
+                statusEl.textContent = `Could not save offering selection: ${error.message}`;
+            }
+        });
     });
 
     // Initialize first step

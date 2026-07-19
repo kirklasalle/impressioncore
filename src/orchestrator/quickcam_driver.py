@@ -20,6 +20,23 @@ try:
     _HAS_COMTYPES = True
 except ImportError:
     _HAS_COMTYPES = False
+    from ctypes import POINTER, byref, c_void_p, cast
+    class IUnknown:
+        pass
+    COMMETHOD = lambda *args, **kwargs: (lambda func: func)
+    class GUID(ctypes.Structure):
+        _fields_ = [
+            ("Data1", ctypes.c_ulong),
+            ("Data2", ctypes.c_ushort),
+            ("Data3", ctypes.c_ushort),
+            ("Data4", ctypes.c_ubyte * 8)
+        ]
+    class HRESULT:
+        pass
+    class VARIANT:
+        pass
+    ICreateDevEnum = None
+    ICaptureGraphBuilder2 = None
 
 logger = logging.getLogger(__name__)
 

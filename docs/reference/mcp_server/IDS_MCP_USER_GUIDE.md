@@ -76,6 +76,15 @@ The ImpressionCore IDS MCP Server provides a unified, tag-based documentation an
 - **Update Dependencies**: Periodically update Python packages for security and compatibility.
 - **Backup**: Regularly back up `/docs/` and `.mcp/ids-mcp/` directories.
 
+### 2026-2027 Documentation Control Workflow
+
+For the active delivery cycle, include these checks after major documentation changes:
+
+1. Refresh `docs/DOCUMENTATION_INDEX.md` entries impacted by roadmap/PRD/guide updates.
+2. Confirm execution backlog visibility from `docs/process/EXECUTION_APPENDIX_2026_2027.md`.
+3. Run IDS queries to verify discoverability of updated files.
+4. Record any indexing issues in process docs before release tagging.
+
 ---
 
 ## Integration with ImpressionCore Documentation System

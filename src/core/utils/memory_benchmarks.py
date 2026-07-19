@@ -55,6 +55,7 @@ Notes:
 
 import os
 import datetime
+from typing import Optional
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -423,7 +424,6 @@ if __name__ == "__main__":
     original_optimizations = OPTIMIZATIONS.copy()
 
     # Replace with filtered configs for the benchmark
-    global BENCHMARK_CONFIGS, OPTIMIZATIONS
     BENCHMARK_CONFIGS = filtered_configs
     OPTIMIZATIONS = filtered_optimizations
 

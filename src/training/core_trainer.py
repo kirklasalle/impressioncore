@@ -69,105 +69,125 @@ from src.training.models.architectures.b1.impressioncore_b1 import ImpressionCor
 
 logger = logging.getLogger(__name__)
 
-def start_training(training_config_path: str):
+class DummyMultimodalDataset(torch.utils.data.Dataset):
+    """Dummy dataset yielding multimodal text/image embeddings and labels for testing."""
+    def __init__(self, dataset_config, model_arch_config, split="train"):
+        self.text_dim = model_arch_config.get('text_model', {}).get('embedding_dim', 128)
+        self.image_dim = model_arch_config.get('image_model', {}).get('embedding_dim', 128)
+        self.num_classes = model_arch_config.get('output_params', {}).get('num_classes', 10)
+        self.size = 20  # Keep it small for quick training/testing runs
+        
+    def __len__(self):
+        return self.size
+        
+    def __getitem__(self, idx):
+        text_embeds = torch.randn(self.text_dim)
+        image_embeds = torch.randn(self.image_dim)
+        label = torch.randint(0, self.num_classes, (1,)).item()
+        return text_embeds, image_embeds, label
+
+
+def start_training(config_or_path, api=None):
     """
     Starts the model training process based on the provided training configuration.
-    # Memory optimization: Explicit memory cleanup
+    Supports either a path to a YAML configuration file or a config dictionary.
 
     Args:
-        training_config_path (str): Path to the training configuration YAML file.
+        config_or_path (str | dict): Path to training config YAML or direct config dict.
+        api (Optional): ImpressionCore API instance (passed for compatibility).
     """
-    logger.info(f"Starting training process with config: {training_config_path}")
-    
-    try:
-        with open(training_config_path, 'r') as f:
-            config = yaml.safe_load(f)
-        logger.info(f"Successfully loaded training configuration: {config}")
-    except FileNotFoundError:
-        logger.error(f"Training configuration file not found: {training_config_path}")
-        return
-    except yaml.YAMLError as e:
-        logger.error(f"Error parsing training configuration file: {e}")
-        return
-    except Exception as e:
-        logger.error(f"An unexpected error occurred while loading training config: {e}")
-        return
+    if isinstance(config_or_path, dict):
+        config = config_or_path
+        logger.info("Starting training process with provided config dict")
+    else:
+        logger.info(f"Starting training process with config path: {config_or_path}")
+        try:
+            with open(config_or_path, 'r') as f:
+                config = yaml.safe_load(f)
+            logger.info(f"Successfully loaded training configuration: {config}")
+        except FileNotFoundError:
+            logger.error(f"Training configuration file not found: {config_or_path}")
+            return False
+        except yaml.YAMLError as e:
+            logger.error(f"Error parsing training configuration file: {e}")
+            return False
+        except Exception as e:
+            logger.error(f"An unexpected error occurred while loading training config: {e}")
+            return False
 
     # --- 1. Set up environment and seed ---
     seed = config.get("seed", 42)
     torch.manual_seed(seed)
     if torch.cuda.is_available():
-    # Memory optimization: CUDA operations for GPU acceleration
         torch.cuda.manual_seed_all(seed)
-        # Memory optimization: CUDA operations for GPU acceleration
     logger.info(f"Set random seed to {seed}")
 
     device_str = config.get("device", "cuda" if torch.cuda.is_available() else "cpu")
-    # Memory optimization: CUDA operations for GPU acceleration
     device = torch.device(device_str)
-    # Memory optimization: Device placement for memory management
     logger.info(f"Using device: {device}")
-    # Memory optimization: Device placement for memory management
 
     # --- 2. Load Model Architecture ---
-    # Memory optimization: Explicit memory cleanup
-    # This will be expanded significantly
     model_arch_path = config.get("model_architecture_config")
     if not model_arch_path:
         logger.error("model_architecture_config not specified in training config.")
-        return
+        return False
     
-    # Assuming model_arch_path is relative to project root, make it absolute if needed
-    # For now, assume it's correctly specified.
+    # Path correction for Windows/cross-platform compatibility
+    if not os.path.exists(model_arch_path):
+        basename = os.path.basename(model_arch_path)
+        alt_paths = [
+            os.path.join("src", "core", "config", basename),
+            os.path.join("d:\\Projects\\impressioncore\\src\\core\\config", basename),
+            os.path.join(os.path.dirname(__file__), "..", "core", "config", basename)
+        ]
+        resolved = False
+        for path in alt_paths:
+            if os.path.exists(path):
+                model_arch_path = path
+                resolved = True
+                break
+        if not resolved:
+            logger.error(f"Model architecture config not found at original or alt paths. Original: {model_arch_path}")
+            return False
+
     logger.info(f"Loading model architecture from: {model_arch_path}")
-    # Memory optimization: Explicit memory cleanup
-    # model_architecture = model_management.define_model_from_config(model_arch_path) # This prints, we need the dict
     try:
         with open(model_arch_path, 'r') as f:
             model_architecture = yaml.safe_load(f)
         logger.info("Model architecture loaded successfully.")
-        # Memory optimization: Explicit memory cleanup
-        # print(f"Model Architecture: {model_architecture}") # For debugging
-        # Memory optimization: Explicit memory cleanup
     except Exception as e:
         logger.error(f"Failed to load model architecture: {e}")
-        # Memory optimization: Explicit memory cleanup
-        return
+        return False
 
     # --- 3. Instantiate Model ---
-    # Memory optimization: Explicit memory cleanup
     try:
         model = ImpressionCoreB1Model(model_architecture).to(device)
-        # Memory optimization: Device placement for memory management
         logger.info(f"Model '{model_architecture.get('model_name', 'N/A')}' instantiated successfully on {device}.")
-        # Memory optimization: Device placement for memory management
-        # Log model structure (optional, can be verbose)
-        # Memory optimization: Explicit memory cleanup
-        # logger.debug(f"Model structure: {model}")
-        # Memory optimization: Explicit memory cleanup
     except Exception as e:
         logger.error(f"Failed to instantiate model: {e}")
-        return    # --- 4. Setup Datasets and Dataloaders ---
+        return False
+
+    # --- 4. Setup Datasets and Dataloaders ---
     dataset_config = config.get("dataset", {})
     training_params_config = config.get("training_params", {})
     logger.info(f"Setting up dataset with config: {dataset_config}")
     try:
-        # TODO: Implement DummyMultimodalDataset
-        logger.warning("Dataset functionality not yet implemented - using placeholder")
-        # train_dataset = DummyMultimodalDataset(dataset_config=dataset_config, model_arch_config=model_architecture, split="train")
-        # train_dataloader = torch.utils.data.DataLoader(
-        #     train_dataset,
-        #     batch_size=training_params_config.get("batch_size", 1),
-        #     shuffle=True,
-        #     num_workers=training_params_config.get("dataloader_num_workers", 0), # Add num_workers
-        #     pin_memory=training_params_config.get("dataloader_pin_memory", True if device.type == 'cuda' else False) # Add pin_memory
-        #     # Memory optimization: Device placement for memory management
-        # )
-        # logger.info(f"Successfully created DataLoader for training. Batch size: {training_params_config.get('batch_size', 1)}, Num samples: {len(train_dataset)}")
-        return  # Early return for now until dataset is implemented
+        train_dataset = DummyMultimodalDataset(
+            dataset_config=dataset_config,
+            model_arch_config=model_architecture,
+            split="train"
+        )
+        train_dataloader = torch.utils.data.DataLoader(
+            train_dataset,
+            batch_size=training_params_config.get("batch_size", 1),
+            shuffle=True,
+            num_workers=training_params_config.get("dataloader_num_workers", 0),
+            pin_memory=training_params_config.get("dataloader_pin_memory", True if device.type == 'cuda' else False)
+        )
+        logger.info(f"Successfully created DataLoader for training. Batch size: {training_params_config.get('batch_size', 1)}, Num samples: {len(train_dataset)}")
     except Exception as e:
         logger.error(f"Failed to setup dataset/dataloader: {e}")
-        return
+        return False
 
     # --- 5. Initialize Optimizer and LR Scheduler ---
     training_params = config.get("training_params", {})
@@ -318,6 +338,7 @@ def start_training(training_config_path: str):
                 logger.error(f"Failed to save checkpoint at epoch {epoch+1}: {e_save}")
 
     logger.info("Training process completed.")
+    return True
 
 if __name__ == '__main__':
     # Basic logging setup for standalone testing

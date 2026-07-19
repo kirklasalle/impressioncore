@@ -1,8 +1,15 @@
-import wmi
+try:
+    import wmi
+    _WMI_AVAILABLE = True
+except ImportError:
+    _WMI_AVAILABLE = False
 
 
 def identify_devices():
     print("--- ImpressionCore: Comprehensive PnP Device Scan ---")
+    if not _WMI_AVAILABLE:
+        print("WMI diagnostics are only supported on Windows systems.")
+        return
     c = wmi.WMI()
 
     # 1. Search for everything related to "Camera", "Video", "PlayStation", "Sony", "Logitech"

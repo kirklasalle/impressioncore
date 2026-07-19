@@ -15,8 +15,48 @@
             <div class="mb-4">
                 <h3>Model Templates</h3>
                 <p>Select a template to get started with pre-configured model architecture</p>
-                
+
                 <div class="template-gallery">
+                    <div class="template-card" data-template-id="b1_39m">
+                        <div class="template-card-header">
+                            <i class="bi bi-stars"></i>
+                            <h4>B1 Hope 39M</h4>
+                        </div>
+                        <div class="template-card-body">
+                            <p>Foundational offering tuned for low-VRAM iteration and baseline conversational
+                                reliability.</p>
+                        </div>
+                        <div class="template-card-footer">
+                            <span><i class="bi bi-gpu-card"></i> Target: 39M params</span>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template-id="b2_50m">
+                        <div class="template-card-header">
+                            <i class="bi bi-lightning-charge"></i>
+                            <h4>B2 Insight 50M</h4>
+                        </div>
+                        <div class="template-card-body">
+                            <p>Intermediate offering for stronger reasoning and alignment experiments.</p>
+                        </div>
+                        <div class="template-card-footer">
+                            <span><i class="bi bi-gpu-card"></i> Target: 50M params</span>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template-id="b3_504m">
+                        <div class="template-card-header">
+                            <i class="bi bi-diagram-3"></i>
+                            <h4>B3 Apex 504M</h4>
+                        </div>
+                        <div class="template-card-body">
+                            <p>Large-scale offering mapped to the B3/phase-2 checkpoint family for advanced runs.</p>
+                        </div>
+                        <div class="template-card-footer">
+                            <span><i class="bi bi-gpu-card"></i> Target: 504M params</span>
+                        </div>
+                    </div>
+
                     <!-- Template cards will be dynamically populated -->
                     <div class="template-card" data-template-id="transformer-base">
                         <div class="template-card-header">
@@ -30,7 +70,7 @@
                             <span><i class="bi bi-gpu-card"></i> Min: 4GB VRAM</span>
                         </div>
                     </div>
-                    
+
                     <div class="template-card" data-template-id="diffusion-basic">
                         <div class="template-card-header">
                             <i class="bi bi-images"></i>
@@ -45,11 +85,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="parameter-configuration">
                 <h3>Model Configuration</h3>
                 <p>Adjust parameters to customize your model</p>
-                
+
                 <!-- Model Parameters -->
                 <div class="parameter-group">
                     <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#modelParams">
@@ -61,29 +101,35 @@
                         <div class="parameter-item">
                             <div class="parameter-label">
                                 <label for="hidden_size">Hidden Size</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Larger values increase model capacity but require more memory"></i>
+                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
+                                    title="Larger values increase model capacity but require more memory"></i>
                             </div>
                             <div class="description">Hidden dimension size of the transformer model</div>
                             <div class="parameter-controls">
-                                <input type="range" class="form-range" id="hidden_size_range" min="128" max="2048" step="128" value="768">
-                                <input type="number" class="form-control" id="hidden_size" min="128" max="2048" step="128" value="768">
+                                <input type="range" class="form-range" id="hidden_size_range" min="128" max="4096"
+                                    step="128" value="768">
+                                <input type="number" class="form-control" id="hidden_size" min="128" max="4096"
+                                    step="128" value="768">
                             </div>
                             <div class="parameter-impact">
                                 <span class="impact-indicator impact-high">High Training Impact</span>
                                 <span class="impact-indicator impact-high">High Hardware Impact</span>
                             </div>
                         </div>
-                        
+
                         <!-- Num Layers parameter -->
                         <div class="parameter-item">
                             <div class="parameter-label">
                                 <label for="num_layers">Number of Layers</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip" title="More layers allow for processing more complex patterns"></i>
+                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
+                                    title="More layers allow for processing more complex patterns"></i>
                             </div>
                             <div class="description">Number of transformer layers (encoder/decoder blocks)</div>
                             <div class="parameter-controls">
-                                <input type="range" class="form-range" id="num_layers_range" min="1" max="24" step="1" value="12">
-                                <input type="number" class="form-control" id="num_layers" min="1" max="24" step="1" value="12">
+                                <input type="range" class="form-range" id="num_layers_range" min="1" max="24" step="1"
+                                    value="12">
+                                <input type="number" class="form-control" id="num_layers" min="1" max="24" step="1"
+                                    value="12">
                             </div>
                             <div class="parameter-impact">
                                 <span class="impact-indicator impact-high">High Training Impact</span>
@@ -92,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Training Parameters -->
                 <div class="parameter-group">
                     <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#trainingParams">
@@ -104,28 +150,34 @@
                         <div class="parameter-item">
                             <div class="parameter-label">
                                 <label for="learning_rate">Learning Rate</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Controls how quickly the model adapts to the training data"></i>
+                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
+                                    title="Controls how quickly the model adapts to the training data"></i>
                             </div>
                             <div class="description">Learning rate for optimizer</div>
                             <div class="parameter-controls">
-                                <input type="range" class="form-range" id="learning_rate_range" min="-6" max="-3" step="0.1" value="-4.3">
-                                <input type="number" class="form-control" id="learning_rate" min="0.000001" max="0.001" step="0.00001" value="0.00005">
+                                <input type="range" class="form-range" id="learning_rate_range" min="-6" max="-3"
+                                    step="0.1" value="-4.3">
+                                <input type="number" class="form-control" id="learning_rate" min="0.000001" max="0.001"
+                                    step="0.00001" value="0.00005">
                             </div>
                             <div class="parameter-impact">
                                 <span class="impact-indicator impact-high">High Training Impact</span>
                             </div>
                         </div>
-                        
+
                         <!-- Batch Size parameter -->
                         <div class="parameter-item">
                             <div class="parameter-label">
                                 <label for="batch_size">Batch Size</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Larger batch sizes can speed up training but require more memory"></i>
+                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
+                                    title="Larger batch sizes can speed up training but require more memory"></i>
                             </div>
                             <div class="description">Number of examples processed together</div>
                             <div class="parameter-controls">
-                                <input type="range" class="form-range" id="batch_size_range" min="1" max="128" step="1" value="16">
-                                <input type="number" class="form-control" id="batch_size" min="1" max="128" step="1" value="16">
+                                <input type="range" class="form-range" id="batch_size_range" min="1" max="128" step="1"
+                                    value="16">
+                                <input type="number" class="form-control" id="batch_size" min="1" max="128" step="1"
+                                    value="16">
                             </div>
                             <div class="parameter-impact">
                                 <span class="impact-indicator impact-high">High Training Impact</span>
@@ -134,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Advanced Parameters -->
                 <div class="parameter-group">
                     <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#advancedParams">
@@ -146,19 +198,21 @@
                         <div class="parameter-item">
                             <div class="parameter-label">
                                 <label for="attention_dropout">Attention Dropout</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip" title="Helps prevent overfitting in attention mechanism"></i>
+                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
+                                    title="Helps prevent overfitting in attention mechanism"></i>
                             </div>
                             <div class="description">Dropout probability for attention weights</div>
                             <div class="parameter-controls">
-                                <input type="range" class="form-range" id="attention_dropout_range" min="0" max="0.5" step="0.05" value="0.1">
-                                <input type="number" class="form-control" id="attention_dropout" min="0" max="0.5" step="0.05" value="0.1">
+                                <input type="range" class="form-range" id="attention_dropout_range" min="0" max="0.5"
+                                    step="0.05" value="0.1">
+                                <input type="number" class="form-control" id="attention_dropout" min="0" max="0.5"
+                                    step="0.05" value="0.1">
                             </div>
                             <div class="parameter-impact">
                                 <span class="impact-indicator impact-low">Low Training Impact</span>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -208,11 +262,11 @@
                     </div>
                 </div>
             </div>
-                
-                <!-- Configuration Preview -->
-                <div class="config-preview">
-                    <h4>Configuration Preview</h4>
-                    <pre id="config-json">
+
+            <!-- Configuration Preview -->
+            <div class="config-preview">
+                <h4>Configuration Preview</h4>
+                <pre id="config-json">
 {
   "model": {
     "hidden_size": 768,
@@ -227,20 +281,19 @@
   }
 }
                     </pre>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button class="btn btn-outline-secondary" id="reset-config">
-                        <i class="bi bi-arrow-counterclockwise"></i> Reset to Defaults
-                    </button>
-                    <button class="btn btn-primary" id="start-training">
-                        <i class="bi bi-play-fill"></i> Start Training
-                    </button>
-                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-outline-secondary" id="reset-config">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reset to Defaults
+                </button>
+                <button class="btn btn-primary" id="start-training">
+                    <i class="bi bi-play-fill"></i> Start Training
+                </button>
             </div>
         </div>
-        
+
         <!-- Training Panel -->
         <div class="training-panel">
             <div class="training-controls">
@@ -261,10 +314,10 @@
                     </button>
                 </div>
             </div>
-            
+
             <div class="training-status">
                 <h3>Training Progress</h3>
-                
+
                 <div class="progress-container">
                     <div class="d-flex justify-content-between mb-1">
                         <span>Progress:</span>
@@ -278,7 +331,7 @@
                         <span id="progress-eta">ETA: --:--:--</span>
                     </div>
                 </div>
-                
+
                 <div class="metrics-container">
                     <div class="metric-card">
                         <h4>Loss</h4>
@@ -297,15 +350,15 @@
                         <div class="value" id="metric-vram">-</div>
                     </div>
                 </div>
-                
+
                 <div class="chart-container">
                     <canvas id="loss-chart"></canvas>
                 </div>
-                
+
                 <div class="log-viewer">
                     <div class="log-entry info">[System] Training logs will appear here</div>
                 </div>
-                
+
                 <div class="hardware-info">
                     <div class="hardware-metric">
                         <i class="bi bi-gpu-card"></i>
@@ -327,260 +380,330 @@
 
 <!-- JavaScript for Unified Builder Interface -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-    
-    // Template selection
-    const templateCards = document.querySelectorAll('.template-card');
-    templateCards.forEach(card => {
-        card.addEventListener('click', function() {
-            templateCards.forEach(c => c.classList.remove('selected'));
-            this.classList.add('selected');
-            
-            // Load template configuration
-            const templateId = this.getAttribute('data-template-id');
-            loadTemplateConfig(templateId);
-        });
-    });
-    
-    // Connect range inputs with number inputs
-    const rangeInputs = document.querySelectorAll('input[type="range"]');
-    rangeInputs.forEach(range => {
-        const paramId = range.id.replace('_range', '');
-        const numberInput = document.getElementById(paramId);
-        
-        range.addEventListener('input', function() {
-            if (this.id === 'learning_rate_range') {
-                // Handle log scale for learning rate
-                numberInput.value = Math.pow(10, parseFloat(this.value)).toFixed(8);
-            } else {
-                numberInput.value = this.value;
+    document.addEventListener('DOMContentLoaded', function () {
+        let selectedPresetId = 'custom';
+        const OFFERING_PRESETS = {
+            b1_39m: {
+                model: { hidden_size: 768, num_layers: 8, learning_rate: 0.00005, batch_size: 1, attention_dropout: 0.1 },
+                backend: { preset: 'b1_39m', architecture: 'transformer', layers: 8, hiddenSize: 768, heads: 12, intermediateSize: 3072, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+                training: { epochs: 3, batchSize: 1, learningRate: 0.00005, warmupSteps: 100, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 8, maxSteps: 0 }
+            },
+            b2_50m: {
+                model: { hidden_size: 832, num_layers: 10, learning_rate: 0.00004, batch_size: 1, attention_dropout: 0.1 },
+                backend: { preset: 'b2_50m', architecture: 'transformer', layers: 10, hiddenSize: 832, heads: 13, intermediateSize: 3328, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+                training: { epochs: 3, batchSize: 1, learningRate: 0.00004, warmupSteps: 150, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 10, maxSteps: 0 }
+            },
+            b3_504m: {
+                model: { hidden_size: 3072, num_layers: 24, learning_rate: 0.00002, batch_size: 1, attention_dropout: 0.1 },
+                backend: { preset: 'b3_504m', architecture: 'transformer', layers: 24, hiddenSize: 3072, heads: 24, intermediateSize: 12288, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
+                training: { epochs: 2, batchSize: 1, learningRate: 0.00002, warmupSteps: 300, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 16, maxSteps: 0 }
             }
-            updateConfigPreview();
+        };
+
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
         });
-        
-        if (numberInput) {
-            numberInput.addEventListener('change', function() {
-                if (range.id === 'learning_rate_range') {
+
+        // Template selection
+        const templateCards = document.querySelectorAll('.template-card');
+        templateCards.forEach(card => {
+            card.addEventListener('click', function () {
+                templateCards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+
+                // Load template configuration
+                const templateId = this.getAttribute('data-template-id');
+                loadTemplateConfig(templateId);
+            });
+        });
+
+        // Connect range inputs with number inputs
+        const rangeInputs = document.querySelectorAll('input[type="range"]');
+        rangeInputs.forEach(range => {
+            const paramId = range.id.replace('_range', '');
+            const numberInput = document.getElementById(paramId);
+
+            range.addEventListener('input', function () {
+                if (this.id === 'learning_rate_range') {
                     // Handle log scale for learning rate
-                    const logValue = Math.log10(parseFloat(this.value));
-                    range.value = logValue;
+                    numberInput.value = Math.pow(10, parseFloat(this.value)).toFixed(8);
                 } else {
-                    range.value = this.value;
+                    numberInput.value = this.value;
                 }
                 updateConfigPreview();
             });
-        }
-    });
-    
-    // Function to load template configuration
-    function loadTemplateConfig(templateId) {
-        // In a real implementation, this would fetch the template from the server
-        console.log(`Loading template: ${templateId}`);
-        
-        // For demonstration, we'll simulate loading the transformer-base template
-        if (templateId === 'transformer-base') {
-            document.getElementById('hidden_size').value = 768;
-            document.getElementById('hidden_size_range').value = 768;
-            document.getElementById('num_layers').value = 12;
-            document.getElementById('num_layers_range').value = 12;
-            document.getElementById('learning_rate').value = 0.00005;
-            document.getElementById('learning_rate_range').value = -4.3; // log10(0.00005)
-            document.getElementById('batch_size').value = 16;
-            document.getElementById('batch_size_range').value = 16;
-            document.getElementById('attention_dropout').value = 0.1;
-            document.getElementById('attention_dropout_range').value = 0.1;
-        } else if (templateId === 'diffusion-basic') {
-            document.getElementById('hidden_size').value = 512;
-            document.getElementById('hidden_size_range').value = 512;
-            document.getElementById('num_layers').value = 8;
-            document.getElementById('num_layers_range').value = 8;
-            document.getElementById('learning_rate').value = 0.0001;
-            document.getElementById('learning_rate_range').value = -4.0; // log10(0.0001)
-            document.getElementById('batch_size').value = 8;
-            document.getElementById('batch_size_range').value = 8;
-            document.getElementById('attention_dropout').value = 0.1;
-            document.getElementById('attention_dropout_range').value = 0.1;
-        }
-        
-        updateConfigPreview();
-    }
-    
-    // Function to update configuration preview
-    function updateConfigPreview() {
-        const config = {
-            model: {
-                hidden_size: parseInt(document.getElementById('hidden_size').value),
-                num_layers: parseInt(document.getElementById('num_layers').value),
-                num_heads: parseInt(document.getElementById('hidden_size').value / 64), // Typically hidden_size / 64
-                intermediate_size: parseInt(document.getElementById('hidden_size').value * 4) // Typically 4 * hidden_size
-            },
-            training: {
-                learning_rate: parseFloat(document.getElementById('learning_rate').value),
-                batch_size: parseInt(document.getElementById('batch_size').value),
-                epochs: 3
-            },
-            advanced: {
-                attention_dropout: parseFloat(document.getElementById('attention_dropout').value)
+
+            if (numberInput) {
+                numberInput.addEventListener('change', function () {
+                    if (range.id === 'learning_rate_range') {
+                        // Handle log scale for learning rate
+                        const logValue = Math.log10(parseFloat(this.value));
+                        range.value = logValue;
+                    } else {
+                        range.value = this.value;
+                    }
+                    updateConfigPreview();
+                });
             }
-        };
-        
-        document.getElementById('config-json').textContent = JSON.stringify(config, null, 2);
-    }
-    
-    // Initialize loss chart
-    const ctx = document.getElementById('loss-chart').getContext('2d');
-    const lossChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Training Loss',
-                data: [],
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Training Loss'
+        });
+
+        // Function to load template configuration
+        function loadTemplateConfig(templateId) {
+            // In a real implementation, this would fetch the template from the server
+            console.log(`Loading template: ${templateId}`);
+
+            const offering = OFFERING_PRESETS[templateId];
+            if (offering) {
+                selectedPresetId = templateId;
+                document.getElementById('hidden_size').value = offering.model.hidden_size;
+                document.getElementById('hidden_size_range').value = offering.model.hidden_size;
+                document.getElementById('num_layers').value = offering.model.num_layers;
+                document.getElementById('num_layers_range').value = offering.model.num_layers;
+                document.getElementById('learning_rate').value = offering.model.learning_rate;
+                document.getElementById('learning_rate_range').value = Math.log10(offering.model.learning_rate);
+                document.getElementById('batch_size').value = offering.model.batch_size;
+                document.getElementById('batch_size_range').value = offering.model.batch_size;
+                document.getElementById('attention_dropout').value = offering.model.attention_dropout;
+                document.getElementById('attention_dropout_range').value = offering.model.attention_dropout;
+                persistOfferingSelection(templateId);
+                syncPresetToBackend(offering.backend, offering.training);
+                updateConfigPreview();
+                return;
+            }
+
+            selectedPresetId = 'custom';
+
+            // For demonstration, we'll simulate loading the transformer-base template
+            if (templateId === 'transformer-base') {
+                document.getElementById('hidden_size').value = 768;
+                document.getElementById('hidden_size_range').value = 768;
+                document.getElementById('num_layers').value = 12;
+                document.getElementById('num_layers_range').value = 12;
+                document.getElementById('learning_rate').value = 0.00005;
+                document.getElementById('learning_rate_range').value = -4.3; // log10(0.00005)
+                document.getElementById('batch_size').value = 16;
+                document.getElementById('batch_size_range').value = 16;
+                document.getElementById('attention_dropout').value = 0.1;
+                document.getElementById('attention_dropout_range').value = 0.1;
+            } else if (templateId === 'diffusion-basic') {
+                document.getElementById('hidden_size').value = 512;
+                document.getElementById('hidden_size_range').value = 512;
+                document.getElementById('num_layers').value = 8;
+                document.getElementById('num_layers_range').value = 8;
+                document.getElementById('learning_rate').value = 0.0001;
+                document.getElementById('learning_rate_range').value = -4.0; // log10(0.0001)
+                document.getElementById('batch_size').value = 8;
+                document.getElementById('batch_size_range').value = 8;
+                document.getElementById('attention_dropout').value = 0.1;
+                document.getElementById('attention_dropout_range').value = 0.1;
+            }
+
+            updateConfigPreview();
+        }
+
+        function persistOfferingSelection(presetId) {
+            fetch('/api/v1/builder/walkthrough/progress', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ selected_offering: presetId }),
+            }).catch((error) => {
+                console.warn('Unable to persist offering selection', error);
+            });
+        }
+
+        async function syncPresetToBackend(modelConfig, trainingConfig) {
+            try {
+                await fetch('/api/v1/builder/model/configure', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(modelConfig),
+                });
+                await fetch('/api/v1/builder/training/configure', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(trainingConfig),
+                });
+            } catch (error) {
+                console.warn('Unable to sync preset to backend', error);
+            }
+        }
+
+        // Function to update configuration preview
+        function updateConfigPreview() {
+            const isOfferingPreset = Object.prototype.hasOwnProperty.call(OFFERING_PRESETS, selectedPresetId);
+            const presetHeads = isOfferingPreset ? OFFERING_PRESETS[selectedPresetId].backend.heads : null;
+            const config = {
+                model: {
+                    preset: selectedPresetId,
+                    hidden_size: parseInt(document.getElementById('hidden_size').value),
+                    num_layers: parseInt(document.getElementById('num_layers').value),
+                    num_heads: presetHeads || parseInt(document.getElementById('hidden_size').value / 64),
+                    intermediate_size: parseInt(document.getElementById('hidden_size').value * 4) // Typically 4 * hidden_size
                 },
+                training: {
+                    learning_rate: parseFloat(document.getElementById('learning_rate').value),
+                    batch_size: parseInt(document.getElementById('batch_size').value),
+                    epochs: 3
+                },
+                advanced: {
+                    attention_dropout: parseFloat(document.getElementById('attention_dropout').value)
+                }
+            };
+
+            document.getElementById('config-json').textContent = JSON.stringify(config, null, 2);
+        }
+
+        // Initialize loss chart
+        const ctx = document.getElementById('loss-chart').getContext('2d');
+        const lossChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Training Loss',
+                    data: [],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: false
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Training Loss'
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
                 }
             }
-        }
-    });
-    
-    // Training control buttons
-    document.getElementById('start-training-btn').addEventListener('click', function() {
-        // This would call the API to start training
-        console.log('Starting training...');
-        
-        // Update UI
-        this.disabled = true;
-        document.getElementById('pause-training-btn').disabled = false;
-        document.getElementById('stop-training-btn').disabled = false;
-        document.getElementById('save-checkpoint-btn').disabled = false;
-        
-        // Simulate training progress
-        simulateTraining();
-    });
-    
-    // Simulate training progress for demonstration
-    function simulateTraining() {
-        const progressFill = document.querySelector('.progress-fill');
-        const progressPercentage = document.getElementById('progress-percentage');
-        const progressStep = document.getElementById('progress-step');
-        const progressEta = document.getElementById('progress-eta');
-        const metricLoss = document.getElementById('metric-loss');
-        const metricLr = document.getElementById('metric-lr');
-        const metricTimePerStep = document.getElementById('metric-time-per-step');
-        const metricVram = document.getElementById('metric-vram');
-        const logViewer = document.querySelector('.log-viewer');
-        
-        let progress = 0;
-        let step = 0;
-        const totalSteps = 1000;
-        let loss = 4.5;
-        
-        const interval = setInterval(() => {
-            step += 1;
-            progress = (step / totalSteps) * 100;
-            
-            progressFill.style.width = `${progress}%`;
-            progressPercentage.textContent = `${progress.toFixed(1)}%`;
-            progressStep.textContent = `Step ${step}/${totalSteps}`;
-            
-            const remainingSteps = totalSteps - step;
-            const secondsRemaining = remainingSteps * 0.5; // Assuming 0.5s per step
-            const hours = Math.floor(secondsRemaining / 3600);
-            const minutes = Math.floor((secondsRemaining % 3600) / 60);
-            const seconds = Math.floor(secondsRemaining % 60);
-            progressEta.textContent = `ETA: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            // Update metrics
-            loss = loss * 0.99; // Simulate decreasing loss
-            metricLoss.textContent = loss.toFixed(4);
-            metricLr.textContent = '5.0e-5';
-            metricTimePerStep.textContent = '0.5s';
-            metricVram.textContent = '3.2GB';
-            
-            // Update chart
-            lossChart.data.labels.push(step);
-            lossChart.data.datasets[0].data.push(loss);
-            if (lossChart.data.labels.length > 20) {
-                lossChart.data.labels.shift();
-                lossChart.data.datasets[0].data.shift();
-            }
-            lossChart.update();
-            
-            // Add log entry
-            if (step % 10 === 0) {
+        });
+
+        // Training control buttons
+        document.getElementById('start-training-btn').addEventListener('click', function () {
+            // This would call the API to start training
+            console.log('Starting training...');
+
+            // Update UI
+            this.disabled = true;
+            document.getElementById('pause-training-btn').disabled = false;
+            document.getElementById('stop-training-btn').disabled = false;
+            document.getElementById('save-checkpoint-btn').disabled = false;
+
+            // Simulate training progress
+            simulateTraining();
+        });
+
+        // Simulate training progress for demonstration
+        function simulateTraining() {
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercentage = document.getElementById('progress-percentage');
+            const progressStep = document.getElementById('progress-step');
+            const progressEta = document.getElementById('progress-eta');
+            const metricLoss = document.getElementById('metric-loss');
+            const metricLr = document.getElementById('metric-lr');
+            const metricTimePerStep = document.getElementById('metric-time-per-step');
+            const metricVram = document.getElementById('metric-vram');
+            const logViewer = document.querySelector('.log-viewer');
+
+            let progress = 0;
+            let step = 0;
+            const totalSteps = 1000;
+            let loss = 4.5;
+
+            const interval = setInterval(() => {
+                step += 1;
+                progress = (step / totalSteps) * 100;
+
+                progressFill.style.width = `${progress}%`;
+                progressPercentage.textContent = `${progress.toFixed(1)}%`;
+                progressStep.textContent = `Step ${step}/${totalSteps}`;
+
+                const remainingSteps = totalSteps - step;
+                const secondsRemaining = remainingSteps * 0.5; // Assuming 0.5s per step
+                const hours = Math.floor(secondsRemaining / 3600);
+                const minutes = Math.floor((secondsRemaining % 3600) / 60);
+                const seconds = Math.floor(secondsRemaining % 60);
+                progressEta.textContent = `ETA: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Update metrics
+                loss = loss * 0.99; // Simulate decreasing loss
+                metricLoss.textContent = loss.toFixed(4);
+                metricLr.textContent = '5.0e-5';
+                metricTimePerStep.textContent = '0.5s';
+                metricVram.textContent = '3.2GB';
+
+                // Update chart
+                lossChart.data.labels.push(step);
+                lossChart.data.datasets[0].data.push(loss);
+                if (lossChart.data.labels.length > 20) {
+                    lossChart.data.labels.shift();
+                    lossChart.data.datasets[0].data.shift();
+                }
+                lossChart.update();
+
+                // Add log entry
+                if (step % 10 === 0) {
+                    const logEntry = document.createElement('div');
+                    logEntry.className = 'log-entry info';
+                    logEntry.textContent = `[Step ${step}] Loss: ${loss.toFixed(4)}, LR: 5.0e-5`;
+                    logViewer.appendChild(logEntry);
+                    logViewer.scrollTop = logViewer.scrollHeight;
+                }
+
+                if (step >= totalSteps) {
+                    clearInterval(interval);
+                    document.getElementById('start-training-btn').disabled = false;
+                    document.getElementById('pause-training-btn').disabled = true;
+                    document.getElementById('stop-training-btn').disabled = true;
+
+                    const logEntry = document.createElement('div');
+                    logEntry.className = 'log-entry info';
+                    logEntry.textContent = `[System] Training completed successfully`;
+                    logViewer.appendChild(logEntry);
+                    logViewer.scrollTop = logViewer.scrollHeight;
+                }
+            }, 500);
+
+            // Handle pause button
+            document.getElementById('pause-training-btn').addEventListener('click', function () {
+                clearInterval(interval);
+                this.disabled = true;
+                document.getElementById('start-training-btn').disabled = false;
+
                 const logEntry = document.createElement('div');
                 logEntry.className = 'log-entry info';
-                logEntry.textContent = `[Step ${step}] Loss: ${loss.toFixed(4)}, LR: 5.0e-5`;
+                logEntry.textContent = `[System] Training paused at step ${step}`;
                 logViewer.appendChild(logEntry);
                 logViewer.scrollTop = logViewer.scrollHeight;
-            }
-            
-            if (step >= totalSteps) {
+            });
+
+            // Handle stop button
+            document.getElementById('stop-training-btn').addEventListener('click', function () {
                 clearInterval(interval);
                 document.getElementById('start-training-btn').disabled = false;
                 document.getElementById('pause-training-btn').disabled = true;
-                document.getElementById('stop-training-btn').disabled = true;
-                
+                this.disabled = true;
+                document.getElementById('save-checkpoint-btn').disabled = true;
+
                 const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry info';
-                logEntry.textContent = `[System] Training completed successfully`;
+                logEntry.className = 'log-entry warning';
+                logEntry.textContent = `[System] Training stopped at step ${step}`;
                 logViewer.appendChild(logEntry);
                 logViewer.scrollTop = logViewer.scrollHeight;
-            }
-        }, 500);
-        
-        // Handle pause button
-        document.getElementById('pause-training-btn').addEventListener('click', function() {
-            clearInterval(interval);
-            this.disabled = true;
-            document.getElementById('start-training-btn').disabled = false;
-            
-            const logEntry = document.createElement('div');
-            logEntry.className = 'log-entry info';
-            logEntry.textContent = `[System] Training paused at step ${step}`;
-            logViewer.appendChild(logEntry);
-            logViewer.scrollTop = logViewer.scrollHeight;
-        });
-        
-        // Handle stop button
-        document.getElementById('stop-training-btn').addEventListener('click', function() {
-            clearInterval(interval);
-            document.getElementById('start-training-btn').disabled = false;
-            document.getElementById('pause-training-btn').disabled = true;
-            this.disabled = true;
-            document.getElementById('save-checkpoint-btn').disabled = true;
-            
-            const logEntry = document.createElement('div');
-            logEntry.className = 'log-entry warning';
-            logEntry.textContent = `[System] Training stopped at step ${step}`;
-            logViewer.appendChild(logEntry);
-            logViewer.scrollTop = logViewer.scrollHeight;
-        });
-    }
-    
-    // Select the first template by default
-    if (templateCards.length > 0) {
-        templateCards[0].click();
-    }
-});
+            });
+        }
+
+        // Select the first template by default
+        if (templateCards.length > 0) {
+            templateCards[0].click();
+        }
+    });
 </script>
 {% endblock %}

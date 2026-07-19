@@ -451,6 +451,20 @@ ImpressionCore operates under the **Sacred Covenant** - an unbreakable commitmen
 - **Autonomous Ecosystems**: Self-managing AI infrastructure and optimization
 - **Federated Intelligence**: Distributed multi-node AI networks on consumer hardware
 
+### **2026-2027 Execution Priorities (Active)**
+
+This repository now tracks the active delivery backlog in:
+
+- docs/process/EXECUTION_APPENDIX_2026_2027.md
+
+Primary priorities:
+
+1. B-series offering hardening (B1 39M, B2 50M, B3 504M) with explicit metadata manifests
+2. Builder API parity and retirement of simulation-only training paths
+3. Runtime native B-series inference path with managed fallback
+4. Brain-Triad C1 integration in staged governance modes (observe -> assist -> enforce)
+5. Security, documentation, and quality gate uplift for release readiness
+
 ---
 
 ## � **Agent0Core — Agentic Intelligence Layer**

@@ -51,6 +51,43 @@ Note: These items are mirrored within their respective categories below. This se
 
 ---
 
+## 2026-2027 Active Execution Documentation Control
+
+Canonical execution backlog:
+
+- docs/process/EXECUTION_APPENDIX_2026_2027.md
+- docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md
+- docs/process/MIRROR_SYNC_CHECKLIST_20260718.md
+
+Documentation control set for this cycle:
+
+1. Core planning and product docs:
+
+- docs/development_roadmap.md
+- docs/process/development_roadmap.md
+- docs/prd.md
+- docs/reference/prd.md
+
+1. User and developer guidance:
+
+- docs/user_guide.md
+- docs/user/user_guide.md
+- docs/user_guide/user_guide.md
+- docs/developer/developer_guide.md
+
+1. IDS MCP documentation and operational references:
+
+- .mcp/ids-mcp/README.md
+- docs/reference/mcp_server/IDS_MCP_USER_GUIDE.md
+
+Operational policy:
+
+- After major updates in the control set, refresh this index and validate IDS MCP server search/status behavior.
+- Follow canonical vs mirror mapping in docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md.
+- Update docs/process/MIRROR_SYNC_CHECKLIST_20260718.md for each canonical-change cycle.
+
+---
+
 ## Archive
 
 **🗄️ FULLY PRESERVED - All deprecated, legacy, and superseded files are archived here for traceability and compliance.**
@@ -269,7 +306,6 @@ src/archive/archive/scripts/utilities/setup_f_models_structure.py
 
   *Integration specifications for Agent0Core to operate RLM training infrastructure*
   *Tags: #agent0core #rlm #training #integration #triad_api*
-
 
 ## User Documentation
 

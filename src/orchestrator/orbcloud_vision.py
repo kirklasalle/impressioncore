@@ -11,11 +11,21 @@ from collections import deque
 from datetime import datetime
 from typing import Any
 
-import comtypes  # Required for threaded COM access (pygrabber)
+try:
+    import comtypes  # Required for threaded COM access (pygrabber)
+    COMTYPES_AVAILABLE = True
+except ImportError:
+    comtypes = None
+    COMTYPES_AVAILABLE = False
 import cv2
 import numpy as np
 import torch
-import wmi
+try:
+    import wmi
+    WMI_AVAILABLE = True
+except ImportError:
+    wmi = None
+    WMI_AVAILABLE = False
 
 from src.orchestrator.system_logger import log_event
 
@@ -187,7 +197,7 @@ class OrbCloudVision:
         # Hardware Intelligence State
         self.hw_intel_file = "logs/hardware_intelligence.json"
         os.makedirs("logs", exist_ok=True)
-        self.wmi = wmi.WMI()
+        self.wmi = wmi.WMI() if WMI_AVAILABLE and wmi is not None else None
 
         # Tracking & Smoothing State
         self.tracking_enabled = True # Always-on background tracking
@@ -299,10 +309,11 @@ class OrbCloudVision:
     def open(self, audio_engine=None):
         """Initializes all detected cameras using Sensory Intelligence Discovery."""
         # Fix for "CoInitialize has not been called" in threaded context
-        try:
-            comtypes.CoInitialize()
-        except Exception as e:
-            sensory_intel.log_trace(f"CoInitialize warning: {e}", level="WARNING")
+        if COMTYPES_AVAILABLE and comtypes is not None:
+            try:
+                comtypes.CoInitialize()
+            except Exception as e:
+                sensory_intel.log_trace(f"CoInitialize warning: {e}", level="WARNING")
 
         sensory_intel.log_trace("Opening vision layer (Sensory Discovery Mode)...")
 

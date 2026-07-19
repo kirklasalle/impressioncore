@@ -1,9 +1,39 @@
 import sys
 from pathlib import Path
+import ctypes
 
-import wmi
-from comtypes import *
-from comtypes.automation import VARIANT
+try:
+    import wmi
+    WMI_AVAILABLE = True
+except ImportError:
+    wmi = None
+    WMI_AVAILABLE = False
+
+try:
+    from comtypes import *
+    from comtypes.automation import VARIANT
+    COMTYPES_AVAILABLE = True
+except ImportError:
+    COMTYPES_AVAILABLE = False
+    class IUnknown:
+        pass
+    COMMETHOD = lambda *args, **kwargs: (lambda func: func)
+    class GUID(ctypes.Structure):
+        _fields_ = [
+            ("Data1", ctypes.c_ulong),
+            ("Data2", ctypes.c_ushort),
+            ("Data3", ctypes.c_ushort),
+            ("Data4", ctypes.c_ubyte * 8)
+        ]
+    class HRESULT:
+        pass
+    class VARIANT:
+        pass
+    c_void_p = ctypes.c_void_p
+    c_ulong = ctypes.c_ulong
+    byref = ctypes.byref
+    cast = ctypes.cast
+    POINTER = ctypes.POINTER
 
 # Add project root to PYTHONPATH
 sys.path.append(str(Path(__file__).parent.parent.parent))
@@ -63,7 +93,7 @@ class WindowsSensoryDiscovery:
     """
 
     def __init__(self):
-        self.wmi = wmi.WMI()
+        self.wmi = wmi.WMI() if WMI_AVAILABLE and wmi is not None else None
         self.devices = []
 
     def scan_cameras(self):
@@ -126,6 +156,8 @@ class WindowsSensoryDiscovery:
 
     def correlate_with_pnp(self):
         """Matches DirectShow names with WMI PnP entities to identify hardware types."""
+        if not self.wmi:
+            return self.devices
         pnp_entities = self.wmi.Win32_PnPEntity()
 
         for dev in self.devices:

@@ -328,7 +328,7 @@ Document Control:
 
 - Version: 4.0.0
 - Status: Approved
-- Next Review: September 10, 2025
+- Next Review: August 18, 2026
 - Approval Authority: Product Management
 - Distribution: Engineering, Product, Executive
 
@@ -387,3 +387,42 @@ Operational notes:
 
 - After major documentation or configuration changes, run IDS index rebuild and system validation
 - Maintain header compliance across 2,400+ files; track compliance rate as a KPI
+
+### Appendix E: 2026-2027 Execution Addendum (Normative)
+
+Canonical backlog source:
+
+- docs/process/EXECUTION_APPENDIX_2026_2027.md
+
+Normative requirements:
+
+1. B-series model offerings must be represented by explicit metadata manifests, not path heuristics.
+2. Builder/Runtime/Dashboard contracts must expose stable offering identifiers and schema-validated payloads.
+3. C1 Colossus progression must use staged governance (observe, assist, enforce) with complete audit traces.
+4. Documentation updates that affect operations must include:
+
+- docs/DOCUMENTATION_INDEX.md refresh
+- IDS MCP server documentation sync (.mcp/ids-mcp/README.md and docs/reference/mcp_server/IDS_MCP_USER_GUIDE.md)
+
+1. Milestone delivery follows M1/M2/M3 definitions in the execution appendix.
+
+### Appendix F: Immediate Execution Priorities (2026-07-18 to 2026-08-01)
+
+This appendix defines immediate execution priorities for the current delivery window and is subordinate to the canonical execution appendix.
+
+Priority items:
+
+1. WS1 offering manifest hardening with startup schema validation.
+2. WS3 Builder live API parity and simulation-path retirement.
+3. WS4 native-first B-series runtime path with managed fallback.
+4. WS6 security stabilization quick wins (constant-time key checks, path cleanup start).
+5. WS5 quality gate uplift to first 10% threshold on priority packages.
+6. WS7 canonical documentation control cycle with mirror checklist updates.
+
+Window acceptance requirements:
+
+1. Builder/API discovery returns manifest-backed offering metadata.
+2. Builder smoke tests pass under low-VRAM profile.
+3. Native inference route and fallback route both pass integration checks.
+4. Security preflight checks pass for modified modules.
+5. Documentation control set remains synchronized through IDS-indexed references.

@@ -1,5 +1,10 @@
 # ImpressionCore User Guide (Updated 2025-04-22)
 
+## Source of Truth Notice
+
+This file is a mirror. Canonical user guide: docs/user/user_guide.md.
+Sync policy: docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md.
+
 ---
 
 ## 1. Introduction & Overview
@@ -203,3 +208,22 @@ pip install torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 - For tool usage, see [user_guide_tools.md](user_guide_tools.md).
 - Always cross-reference with implementation docs and update as features change.
+
+---
+
+## 2026-2027 User Workflow Updates
+
+Primary planning source for upcoming user-facing changes:
+
+- process/EXECUTION_APPENDIX_2026_2027.md
+
+What users should expect next:
+
+1. Canonical B-series offering selection in Builder (B1 39M, B2 50M, B3 504M).
+2. Clear model provenance and integrity workflows (manifest + hash verification).
+3. Improved Builder-to-Dashboard continuity for checkpoint discovery and stage labeling.
+4. Staged triad experience maturity as C1 Colossus moves from architecture governance to controlled runtime usage.
+
+Documentation operations note:
+
+- After major guide updates, refresh docs/DOCUMENTATION_INDEX.md and confirm IDS MCP search health.

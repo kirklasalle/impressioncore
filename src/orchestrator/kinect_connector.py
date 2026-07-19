@@ -4,12 +4,38 @@ import logging
 import os
 import threading
 import time
-from ctypes import wintypes
 from typing import Any
+
+try:
+    from ctypes import wintypes
+except ImportError:
+    class MockWinTypes:
+        DWORD = ctypes.c_ulong
+        HANDLE = ctypes.c_void_p
+        UINT = ctypes.c_uint
+    wintypes = MockWinTypes()
+
+if not hasattr(ctypes, "WinDLL"):
+    ctypes.WinDLL = lambda *args, **kwargs: None
+if not hasattr(ctypes, "windll"):
+    class MockWinDll:
+        kernel32 = type("MockKernel32", (), {"CreateEventA": lambda *args: None})()
+    ctypes.windll = MockWinDll()
 
 import cv2
 import numpy as np
-from comtypes import COMMETHOD, GUID, HRESULT, IUnknown
+
+try:
+    from comtypes import COMMETHOD, GUID, HRESULT, IUnknown
+    COMTYPES_AVAILABLE = True
+except ImportError:
+    COMTYPES_AVAILABLE = False
+    class IUnknown:
+        pass
+    COMMETHOD = lambda *args, **kwargs: (lambda func: func)
+    GUID = lambda *args, **kwargs: None
+    class HRESULT:
+        pass
 
 logger = logging.getLogger(__name__)
 

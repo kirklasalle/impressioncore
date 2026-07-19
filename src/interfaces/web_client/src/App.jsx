@@ -3089,90 +3089,239 @@ function App() {
         setIsProcessing(true);
         addLog("NEXUS", `Sending: "${text.substring(0, 15)}..."`);
 
-        try {
-            const snapshots = captureFrames();
-            // Legacy support: use first snapshot as primary image_base64
-            const primaryImage = snapshots.length > 0 ? snapshots[0] : null;
+        const snapshots = captureFrames();
+        const primaryImage = snapshots.length > 0 ? snapshots[0] : null;
 
-            let sessionId = currentSessionId;
-            if (!sessionId) {
+        let sessionId = currentSessionId;
+        if (!sessionId) {
+            try {
                 // Auto-create session on first send if none active
                 const sRes = await axios.post(SESSIONS_API);
                 // Handle raw string response (UUID) vs Object
                 sessionId = (typeof sRes.data === 'string') ? sRes.data : sRes.data.id;
                 setCurrentSessionId(sessionId);
                 addLog("SYSTEM", `New Session Created: ${sessionId.slice(0, 8)}`);
+            } catch (err) {
+                console.error("Session creation failed, using temporary session", err);
+                sessionId = "temp-fallback-session";
             }
+        }
 
-            const payload = {
-                prompt: text,
-                voice_enabled: true,
-                image_base64: primaryImage, // For backwards compatibility
-                snapshots: snapshots,       // New multi-image support
-                session_id: sessionId,
-                user_audio_url: userAudio  // Send STT audio URL for session persistence
-            };
+        const payload = {
+            prompt: text,
+            voice_enabled: true,
+            image_base64: primaryImage, // For backwards compatibility
+            snapshots: snapshots,       // New multi-image support
+            session_id: sessionId,
+            user_audio_url: userAudio  // Send STT audio URL for session persistence
+        };
 
-            const response = await axios.post(API_URL, payload);
+        const performFallbackPost = async (errorReason) => {
+            addLog("SYSTEM", `WS Stream Unavailable (${errorReason}). Falling back to HTTP POST...`);
+            try {
+                const response = await axios.post(API_URL, payload);
 
-            const { response: botText, monitors: newMonitors, audio_url, snapshot_url, snapshot_urls, affective_state } = response.data;
+                const { response: botText, monitors: newMonitors, audio_url, snapshot_url, snapshot_urls, affective_state } = response.data;
 
-            if (affective_state) setCurrentExpression(affective_state);
-            setMonitors(newMonitors);
-            addLog("NEXUS", `Response Received: ${botText.substring(0, 20)}...`);
-            fetchSessions();
+                if (affective_state) setCurrentExpression(affective_state);
+                setMonitors(newMonitors);
+                addLog("NEXUS", `Response Received via HTTP: ${botText.substring(0, 20)}...`);
+                fetchSessions();
 
-            if (snapshot_url || (snapshot_urls && snapshot_urls.length > 0)) {
-                const fullSnapshotUrl = snapshot_url ? `${API_BASE}${snapshot_url}` : null;
-                const fullSnapshotUrls = (snapshot_urls || []).map(url => `${API_BASE}${url}`);
+                if (snapshot_url || (snapshot_urls && snapshot_urls.length > 0)) {
+                    const fullSnapshotUrl = snapshot_url ? `${API_BASE}${snapshot_url}` : null;
+                    const fullSnapshotUrls = (snapshot_urls || []).map(url => `${API_BASE}${url}`);
 
-                setMessages(prev => prev.map((m, i) =>
-                    i === prev.length - 1 ? {
-                        ...m,
-                        snapshot_url: fullSnapshotUrl,
-                        snapshot_urls: fullSnapshotUrls
-                    } : m
-                ));
-            }
+                    setMessages(prev => prev.map((m, i) =>
+                        i === prev.length - 1 ? {
+                            ...m,
+                            snapshot_url: fullSnapshotUrl,
+                            snapshot_urls: fullSnapshotUrls
+                        } : m
+                    ));
+                }
 
-            const audioFullUrl = audio_url ? `${API_BASE}${audio_url}?t=${new Date().getTime()}` : null;
-            const botMsg = {
-                role: 'assistant',
-                content: botText,
-                timestamp: new Date(),
-                audio_url: audioFullUrl,
-                affective_state: affective_state,
-                // AI-Generated images (from model) live here. 
-                // Sensory snapshots (from cameras) live on the User message.
-                generated_image_url: response.data.generated_image_url ? `${API_BASE}${response.data.generated_image_url}` : null
-            };
-            setMessages(prev => [...prev, botMsg]);
-
-            if (response.data.nexus_logs) {
-                setThoughtStream(prev => [...prev.slice(-49), ...response.data.nexus_logs]);
-            }
-
-            if (audio_url) {
-                const timestamp = new Date().getTime();
-                const fullUrl = `${API_BASE}${audio_url}?t=${timestamp}`;
-                addLog("AUDIO", `Buffering Audio...`);
-                const audio = new Audio(fullUrl);
-                audio.oncanplaythrough = () => {
-                    addLog("AUDIO", "Playing Audio.");
-                    audio.play().catch(e => addLog("AUDIO", `Play Error: ${e.message}`));
+                const audioFullUrl = audio_url ? `${API_BASE}${audio_url}?t=${new Date().getTime()}` : null;
+                const botMsg = {
+                    role: 'assistant',
+                    content: botText,
+                    timestamp: new Date(),
+                    audio_url: audioFullUrl,
+                    affective_state: affective_state,
+                    generated_image_url: response.data.generated_image_url ? `${API_BASE}${response.data.generated_image_url}` : null
                 };
-                audio.onerror = (e) => addLog("AUDIO", `Load Error: ${e.message}`);
+                setMessages(prev => [...prev.filter(m => !m.streaming), botMsg]);
+
+                if (response.data.nexus_logs) {
+                    setThoughtStream(prev => [...prev.slice(-49), ...response.data.nexus_logs]);
+                }
+
+                if (audio_url) {
+                    const timestamp = new Date().getTime();
+                    const fullUrl = `${API_BASE}${audio_url}?t=${timestamp}`;
+                    addLog("AUDIO", `Buffering Audio...`);
+                    const audio = new Audio(fullUrl);
+                    audio.oncanplaythrough = () => {
+                        addLog("AUDIO", "Playing Audio.");
+                        audio.play().catch(e => addLog("AUDIO", `Play Error: ${e.message}`));
+                    };
+                    audio.onerror = (e) => addLog("AUDIO", `Load Error: ${e.message}`);
+                }
+
+            } catch (error) {
+                console.error("Error during HTTP fallback:", error);
+                addLog("SYSTEM", `API Error: ${error.message}`);
+                const errorMsg = { role: 'system', content: `Error: ${error.message}`, timestamp: new Date() };
+                setMessages(prev => [...prev.filter(m => !m.streaming), errorMsg]);
+            } finally {
+                setIsProcessing(false);
             }
+        };
+
+        // Initialize streaming placeholder in messages list
+        const placeholderId = Date.now();
+        setMessages(prev => [
+            ...prev,
+            {
+                id: placeholderId,
+                role: 'assistant',
+                content: '',
+                timestamp: new Date(),
+                streaming: true
+            }
+        ]);
+
+        let ws = null;
+        let wsTimeout = null;
+        let wsConnected = false;
+        let botTextAccumulated = '';
+
+        try {
+            const wsUrl = `${API_WS_BASE}/v1/chat/stream`;
+            ws = new WebSocket(wsUrl);
+
+            // 1.5s Handshake Timeout fallback
+            wsTimeout = setTimeout(() => {
+                if (!wsConnected) {
+                    addLog("SYSTEM", "WebSocket handshake timed out (1.5s).");
+                    try { ws.close(); } catch (_) {}
+                    performFallbackPost("Handshake Timeout");
+                }
+            }, 1500);
+
+            ws.onopen = () => {
+                wsConnected = true;
+                clearTimeout(wsTimeout);
+                addLog("SYSTEM", "WebSocket streaming session opened. Transmitting payload...");
+                ws.send(JSON.stringify(payload));
+            };
+
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    
+                    if (data.event === 'status') {
+                        addLog("SYSTEM", `[STATUS] ${data.text}`);
+                    } 
+                    else if (data.event === 'left_thought') {
+                        setMonitors(prev => ({ ...prev, left_hemisphere: data.text }));
+                        setThoughtStream(prev => [...prev.slice(-49), `[LEFT] ${data.text}`]);
+                    } 
+                    else if (data.event === 'right_thought') {
+                        setMonitors(prev => ({ ...prev, right_hemisphere: data.text }));
+                        setThoughtStream(prev => [...prev.slice(-49), `[RIGHT] ${data.text}`]);
+                    } 
+                    else if (data.event === 'token') {
+                        botTextAccumulated += data.text;
+                        setMessages(prev => prev.map(m => 
+                            m.id === placeholderId ? { ...m, content: botTextAccumulated } : m
+                        ));
+                    } 
+                    else if (data.event === 'done') {
+                        addLog("NEXUS", "Stream complete.");
+                        const finalResponse = data.response;
+                        const affective_state = data.affective_state;
+                        const audio_url = data.audio_url;
+                        const generated_image_url = data.generated_image_url;
+                        
+                        if (affective_state) setCurrentExpression(affective_state);
+                        fetchSessions();
+
+                        if (data.snapshot_url || (data.snapshot_urls && data.snapshot_urls.length > 0)) {
+                            const fullSnapshotUrl = data.snapshot_url ? `${API_BASE}${data.snapshot_url}` : null;
+                            const fullSnapshotUrls = (data.snapshot_urls || []).map(url => `${API_BASE}${url}`);
+
+                            setMessages(prev => prev.map((m, i) => {
+                                if (i === prev.length - 2 && m.role === 'user') {
+                                    return {
+                                        ...m,
+                                        snapshot_url: fullSnapshotUrl,
+                                        snapshot_urls: fullSnapshotUrls
+                                    };
+                                }
+                                return m;
+                            }));
+                        }
+
+                        const audioFullUrl = audio_url ? `${API_BASE}${audio_url}?t=${new Date().getTime()}` : null;
+                        
+                        setMessages(prev => prev.map(m => 
+                            m.id === placeholderId ? {
+                                ...m,
+                                content: finalResponse || botTextAccumulated,
+                                audio_url: audioFullUrl,
+                                affective_state: affective_state,
+                                generated_image_url: generated_image_url ? `${API_BASE}${generated_image_url}` : null,
+                                streaming: false
+                            } : m
+                        ));
+
+                        if (audio_url) {
+                            const timestamp = new Date().getTime();
+                            const fullUrl = `${API_BASE}${audio_url}?t=${timestamp}`;
+                            addLog("AUDIO", `Buffering Audio...`);
+                            const audio = new Audio(fullUrl);
+                            audio.oncanplaythrough = () => {
+                                addLog("AUDIO", "Playing Audio.");
+                                audio.play().catch(e => addLog("AUDIO", `Play Error: ${e.message}`));
+                            };
+                            audio.onerror = (e) => addLog("AUDIO", `Load Error: ${e.message}`);
+                        }
+                        
+                        try { ws.close(); } catch (_) {}
+                        setIsProcessing(false);
+                    } 
+                    else if (data.event === 'error') {
+                        addLog("SYSTEM", `WebSocket Stream Error: ${data.text}`);
+                        try { ws.close(); } catch (_) {}
+                        performFallbackPost(data.text);
+                    }
+                } catch (e) {
+                    console.error("Error processing WebSocket message:", e);
+                }
+            };
+
+            ws.onerror = (error) => {
+                console.error("WebSocket Error during stream:", error);
+                if (!wsConnected) {
+                    clearTimeout(wsTimeout);
+                    performFallbackPost("WebSocket Error");
+                }
+            };
+
+            ws.onclose = () => {
+                if (wsConnected) {
+                    addLog("SYSTEM", "WebSocket stream connection closed.");
+                    setIsProcessing(false);
+                }
+            };
 
         } catch (error) {
-            console.error("Error:", error);
-            addLog("SYSTEM", `API Error: ${error.message}`);
-            const errorMsg = { role: 'system', content: `Error: ${error.message}`, timestamp: new Date() };
-            setMessages(prev => [...prev, errorMsg]);
-        } finally {
-            setIsProcessing(false);
+            console.error("Failed to establish WebSocket stream:", error);
+            performFallbackPost(error.message);
         }
     };
+
 
     const cycleCameraMode = async () => {
         if (!selectedCam.startsWith("BRAIN_")) return;
@@ -3768,6 +3917,9 @@ function App() {
                                         msg.role === 'user' ? "bg-cyan-950/30 border-accent-cyan/30 text-cyan-50" : "bg-ic-surface/50 border-white/10 text-txt-primary"
                                     )}>
                                         {msg.content}
+                                        {msg.streaming && (
+                                            <span className="inline-block w-1.5 h-4 bg-accent-cyan ml-1 animate-pulse" />
+                                        )}
 
                                         {/* AI-Generated Imagery (Explicitly requested from model) */}
                                         {msg.generated_image_url && (

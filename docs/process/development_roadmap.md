@@ -12,7 +12,7 @@
 
 ## ImpressionCore-b1 Development Roadmap
 
-Last Updated: June 1, 2025  
+Last Updated: July 18, 2026  
 Responsible: GitHub Copilot & Kirk LaSalle
 
 ## Updated: May 30, 2025
@@ -197,3 +197,48 @@ To contribute to ImpressionCore-b1 development:
 2. Check the [open issues](https://github.com/impressioncore/impressioncore-b1/issues)
 3. Set up a development environment following the [setup guide](/docs/development_setup.md)
 4. Submit pull requests with memory optimization priority
+
+---
+
+## 2026-2027 Execution Extension
+
+## 2026-07-18 Immediate Execution Window (Now -> 14 Days)
+
+Execution owner: ImpressionCore Core Team  
+Tracking baseline: docs/process/EXECUTION_APPENDIX_2026_2027.md
+
+1. WS1 manifest hardening (B-series offerings): add explicit offering manifest for discovered artifacts; add startup validation for missing/invalid schema; acceptance check is manifest-backed offering metadata in Builder/API discovery.
+
+1. WS3 Builder parity hardening: remove remaining simulation-only training pathways from active UI actions; ensure start/pause/stop/checkpoint operations are API-backed; acceptance check is passing route smoke tests under low-VRAM profile.
+
+1. WS4 native runtime bootstrap: implement native-first routing path for B-series model loading; keep policy-controlled fallback path available and observable; acceptance check is one end-to-end native inference test and one fallback test passing.
+
+1. WS6 security quick wins: enforce constant-time API key comparisons; begin hardcoded-path removal pass in runtime/service layers; acceptance check is passing security preflight checks for updated modules.
+
+1. WS5 quality gate step-up: enforce first coverage lift gate to 10% on priority packages; complete active-path stub/empty file cleanup pass; acceptance check is CI gate blocks for below-threshold pull requests.
+
+1. WS7 documentation control cycle: run canonical update cycle first, then mirror updates; update docs/process/MIRROR_SYNC_CHECKLIST_20260718.md per cycle; acceptance check is synchronized documentation index and IDS references.
+
+Reporting cadence for this window:
+
+- Daily: status notes on blocked/unblocked work items.
+- Weekly: execution delta update against M1 exit criteria.
+
+Canonical backlog document:
+
+- docs/process/EXECUTION_APPENDIX_2026_2027.md
+
+Execution focus summary:
+
+1. Productize B-series offering lifecycle with explicit metadata manifests.
+2. Complete Builder hardening and remove UI training simulation divergence.
+3. Add Runtime native B-series path with policy-controlled fallback.
+4. Stage C1 Colossus integration through observe/assist/enforce rollout.
+5. Close security and quality debt with coverage and CI gate increases.
+6. Enforce canonical-vs-mirror documentation governance using docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md.
+
+Milestones:
+
+- M1 (0-30 days): offering manifests, Builder API parity, security quick wins.
+- M2 (31-60 days): native runtime beta, C1 observe mode, debt cleanup.
+- M3 (61-90 days): C1 assist pilot, benchmark publication, release-candidate docs.

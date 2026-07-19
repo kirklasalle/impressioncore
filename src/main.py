@@ -75,6 +75,7 @@ import os
 import sys
 import time  # Added for duration calculation
 from pathlib import Path
+from typing import Union
 
 import yaml
 
@@ -252,8 +253,9 @@ try:
     # from models.memory_controller import get_memory_controller # SystemMonitor/API might handle aspects of this
     from interfaces.cli.model_management import define_model_from_config
     from training.core_trainer import start_training
+    from src.core.models.registry import download_model_checkpoint
     # from core.api_instance import ImpressionCoreAPI # Import the actual API when available
-    log_event_main("core_module_import", "success", {"modules": ["ModalityType", "hardware_detection", "model_management", "core_trainer", "core_evaluator"]})
+    log_event_main("core_module_import", "success", {"modules": ["ModalityType", "hardware_detection", "model_management", "core_trainer", "core_evaluator", "download_model_checkpoint"]})
 
     # --- Advanced Utilities Import (Optional) ---
     advanced_utils_available = False
@@ -532,14 +534,30 @@ def main_cli_entry(): # Renamed to avoid conflict with module-level 'main' name 
     define_model_parser = subparsers.add_parser("define_model", help="Define/load a model architecture from a configuration file.")
     define_model_parser.add_argument("--config", required=True, help="Path to the model architecture YAML configuration file (e.g., configs/impressioncore_b1_arch.yaml)")
 
-    # Train Model command
-    train_model_parser = subparsers.add_parser("train_model", help="Train a model using a specified training configuration.")
-    train_model_parser.add_argument("--config", required=True, help="Path to the training YAML configuration file (e.g., configs/impressioncore_b1_train.yaml)")
+    # Train Model command (supports alias: train)
+    train_model_parser = subparsers.add_parser("train_model", aliases=["train"], help="Train a model using a specified training configuration or preset.")
+    train_model_parser.add_argument("--config", help="Path to the training YAML configuration file (e.g., configs/impressioncore_b1_train.yaml)")
+    train_model_parser.add_argument("--preset", help="Name of a training preset to run (e.g., conversational_ai, smoke_test, distillation)")
+    train_model_parser.add_argument("--device", help="Force training on a specific device (e.g., cpu, cuda)")
 
     # Evaluate Model command
     evaluate_model_parser = subparsers.add_parser("evaluate_model", help="Evaluate a trained model using a specified evaluation configuration and checkpoint.")
     evaluate_model_parser.add_argument("--config", required=True, help="Path to the evaluation YAML configuration file (e.g., configs/impressioncore_b1_eval.yaml)")
     evaluate_model_parser.add_argument("--checkpoint", help="Optional: Path to a specific model checkpoint (.pth file) to evaluate. Overrides checkpoint_path in config if provided.")
+
+    # Registry command
+    registry_parser = subparsers.add_parser("registry", help="Model registry management")
+    registry_subparsers = registry_parser.add_subparsers(dest="registry_command", help="Registry command to execute")
+
+    registry_download_parser = registry_subparsers.add_parser("download", help="Download a model checkpoint from Hugging Face Hub")
+    registry_download_parser.add_argument("--repo-id", required=True, help="HF Repository ID (e.g., lyog/impressioncore-b1)")
+    registry_download_parser.add_argument("--filename", required=True, help="Filename to download (e.g., config.json)")
+    registry_download_parser.add_argument("--retries", type=int, default=3, help="Max backoff retries")
+
+    registry_upload_parser = registry_subparsers.add_parser("upload", help="Upload a model checkpoint to Hugging Face Hub")
+    registry_upload_parser.add_argument("--repo-id", required=True, help="HF Repository ID")
+    registry_upload_parser.add_argument("--filepath", required=True, help="Local filepath to upload")
+    registry_upload_parser.add_argument("--filename", required=True, help="Target remote filename")
 
 
     # Parse arguments
@@ -600,46 +618,65 @@ def main_cli_entry(): # Renamed to avoid conflict with module-level 'main' name 
             exit_code = 1
         if system_monitor:
             system_monitor.log_resource_usage(force_log=True, context_message="After Define Model")
-    elif args.command == "train_model":
-        log_event_main("command_handle", "progress", {"command": "train_model", "args": vars(args)})
+    elif args.command in ("train_model", "train"):
+        log_event_main("command_handle", "progress", {"command": args.command, "args": vars(args)})
         start_time = time.perf_counter()
         if system_monitor:
             system_monitor.log_resource_usage(force_log=True, context_message="Before Train Model")
-            # VRAM check could be done here if config implies GPU usage
-            # For now, start_training itself will read its config and can perform detailed checks
-            # Example: Check if config specifies GPU and then call:
-            # with open(args.config, 'r') as f_cfg: train_cfg = yaml.safe_load(f_cfg)
-            # if train_cfg.get("device", "cpu") == "cuda":
-            #     if not system_monitor.check_vram_availability(required_gb=train_cfg.get("system_oversight",{}).get("adaptive_memory_management_threshold_gb", 2.0)):
-            #         print_error("Insufficient VRAM for training based on config. Aborting.")
-            #         # log and exit
-            #         # ...
-            pass # Placeholder for more detailed pre-check based on train_config
 
         try:
-            success = start_training(args.config, api) # Pass the actual api instance
-            if success:
-                duration_ms = (time.perf_counter() - start_time) * 1000
-                log_event_main("command_handle", "success", {"command": "train_model", "config_path": args.config}, duration_ms=duration_ms)
-                exit_code = 0
+            config_to_use = None
+            preset_name = getattr(args, "preset", None)
+            config_path = getattr(args, "config", None)
+            device_override = getattr(args, "device", None)
+
+            if preset_name:
+                from src.core.config.presets import PRESETS
+                if preset_name not in PRESETS:
+                    print_error(f"Unknown preset '{preset_name}'. Available presets: {list(PRESETS.keys())}")
+                    exit_code = 1
+                else:
+                    config_to_use = PRESETS[preset_name].copy()
+                    if device_override:
+                        config_to_use["device"] = device_override
+                    log_event_main("command_handle", "info", {"message": f"Using training preset: {preset_name}"})
+            elif config_path:
+                if device_override:
+                    with open(config_path, 'r') as f:
+                        cfg_dict = yaml.safe_load(f)
+                    cfg_dict["device"] = device_override
+                    config_to_use = cfg_dict
+                else:
+                    config_to_use = config_path
             else:
-                duration_ms = (time.perf_counter() - start_time) * 1000
-                log_event_main("command_handle", "failure", {"command": "train_model", "config_path": args.config}, error_message="Training process reported failure.", duration_ms=duration_ms)
+                print_error("Error: Either --config or --preset must be specified for training.")
                 exit_code = 1
+                success = False
+
+            if config_to_use is not None:
+                success = start_training(config_to_use, api)
+                if success:
+                    duration_ms = (time.perf_counter() - start_time) * 1000
+                    log_event_main("command_handle", "success", {"command": args.command, "config": str(config_to_use)}, duration_ms=duration_ms)
+                    exit_code = 0
+                else:
+                    duration_ms = (time.perf_counter() - start_time) * 1000
+                    log_event_main("command_handle", "failure", {"command": args.command, "config": str(config_to_use)}, error_message="Training process reported failure.", duration_ms=duration_ms)
+                    exit_code = 1
         except FileNotFoundError as e:
             print_error(f"Configuration file not found: {e.filename}")
             duration_ms = (time.perf_counter() - start_time) * 1000
-            log_event_main("command_handle", "failure", {"command": "train_model", "config_path": args.config}, error_message=f"Configuration file not found: {e.filename}", duration_ms=duration_ms)
+            log_event_main("command_handle", "failure", {"command": args.command, "config_path": args.config}, error_message=f"Configuration file not found: {e.filename}", duration_ms=duration_ms)
             exit_code = 1
         except yaml.YAMLError as e:
-            print_error(f"Error parsing YAML configuration file {args.config}: {e}")
+            print_error(f"Error parsing YAML configuration file: {e}")
             duration_ms = (time.perf_counter() - start_time) * 1000
-            log_event_main("command_handle", "failure", {"command": "train_model", "config_path": args.config}, error_message=f"YAML parsing error: {e}", duration_ms=duration_ms)
+            log_event_main("command_handle", "failure", {"command": args.command, "config_path": args.config}, error_message=f"YAML parsing error: {e}", duration_ms=duration_ms)
             exit_code = 1
         except Exception as e:
             print_error(f"An unexpected error occurred during model training: {e}")
             duration_ms = (time.perf_counter() - start_time) * 1000
-            log_event_main("command_handle", "failure", {"command": "train_model", "config_path": args.config}, error_message=str(e), duration_ms=duration_ms)
+            log_event_main("command_handle", "failure", {"command": args.command, "config_path": getattr(args, "config", None)}, error_message=str(e), duration_ms=duration_ms)
             exit_code = 1
         if system_monitor:
             system_monitor.log_resource_usage(force_log=True, context_message="After Train Model")
@@ -703,6 +740,51 @@ def main_cli_entry(): # Renamed to avoid conflict with module-level 'main' name 
             exit_code = 1
         if system_monitor:
             system_monitor.log_resource_usage(force_log=True, context_message="After Evaluate Model")
+    elif args.command == "registry":
+        log_event_main("command_handle", "progress", {"command": "registry", "args": vars(args)})
+        start_time = time.perf_counter()
+        
+        if not args.registry_command:
+            registry_parser.print_help()
+            exit_code = 1
+        elif args.registry_command == "download":
+            try:
+                print_info(f"Downloading checkpoint: {args.filename} from repository: {args.repo_id}")
+                path = download_model_checkpoint(args.repo_id, args.filename, max_retries=args.retries)
+                print_success(f"Successfully obtained checkpoint path: {path}")
+                duration_ms = (time.perf_counter() - start_time) * 1000
+                log_event_main("command_handle", "success", {"command": "registry_download", "repo_id": args.repo_id, "filename": args.filename, "local_path": str(path)}, duration_ms=duration_ms)
+                exit_code = 0
+            except Exception as e:
+                print_error(f"Error during registry download: {e}")
+                duration_ms = (time.perf_counter() - start_time) * 1000
+                log_event_main("command_handle", "failure", {"command": "registry_download", "repo_id": args.repo_id, "filename": args.filename}, error_message=str(e), duration_ms=duration_ms)
+                exit_code = 1
+        elif args.registry_command == "upload":
+            try:
+                print_info(f"Uploading file: {args.filepath} to repository: {args.repo_id} as: {args.filename}")
+                # Use huggingface_hub to upload if available, else warn
+                try:
+                    from huggingface_hub import HfApi
+                    api_client = HfApi()
+                    api_client.upload_file(
+                        path_or_fileobj=args.filepath,
+                        path_in_repo=args.filename,
+                        repo_id=args.repo_id,
+                        repo_type="model"
+                    )
+                    print_success("Upload completed successfully via huggingface_hub.")
+                    duration_ms = (time.perf_counter() - start_time) * 1000
+                    log_event_main("command_handle", "success", {"command": "registry_upload", "repo_id": args.repo_id, "filepath": args.filepath, "filename": args.filename}, duration_ms=duration_ms)
+                    exit_code = 0
+                except ImportError:
+                    print_error("huggingface_hub library is not installed. Upload requires 'pip install huggingface_hub'.")
+                    exit_code = 1
+            except Exception as e:
+                print_error(f"Error during registry upload: {e}")
+                duration_ms = (time.perf_counter() - start_time) * 1000
+                log_event_main("command_handle", "failure", {"command": "registry_upload", "repo_id": args.repo_id, "filepath": args.filepath}, error_message=str(e), duration_ms=duration_ms)
+                exit_code = 1
 
     # Ensure logs are flushed before exiting
     if file_event_logger_main:

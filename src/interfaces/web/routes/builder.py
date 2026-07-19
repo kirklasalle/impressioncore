@@ -14,6 +14,7 @@ from pathlib import Path
 from flask import Blueprint, current_app, request, jsonify, render_template, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 
+from src.core.config.presets import get_builder_offering_presets
 from src.core.utils.rich_logging import get_rich_logger
 from src.core.utils.tokenizer_utils import generate_text, load_generative_model_and_tokenizer
 
@@ -38,6 +39,32 @@ _inference_settings = {}
 _walkthrough_progress = {}
 builder_client_assets = os.path.join(builder_client_dist, 'assets')
 _analysis_thread = None
+_OFFERING_PRESETS = get_builder_offering_presets()
+
+
+def _offering_summary(preset_id):
+    preset = _OFFERING_PRESETS.get(preset_id)
+    if not preset:
+        return None
+    return {
+        'id': preset.get('id', preset_id),
+        'stage': preset.get('stage'),
+        'name': preset.get('name'),
+        'target_params_m': preset.get('target_params_m'),
+    }
+
+
+def _infer_offering_from_path(path_value):
+    """Best-effort offering hint used by Builder and dashboard consumers."""
+    raw = str(path_value or '')
+    lowered = raw.lower()
+    if 'b3_hope_v1' in lowered or '39m' in lowered:
+        return _offering_summary('b1_39m')
+    if '50m' in lowered:
+        return _offering_summary('b2_50m')
+    if 'kd_sft_phase2' in lowered or 'step_5000.pt' in lowered or '504m' in lowered or '506m' in lowered:
+        return _offering_summary('b3_504m')
+    return None
 
 # Custom serve page helper
 def _serve_page(filename):
@@ -146,7 +173,7 @@ def api_models_available():
                     except OSError:
                         continue
                     size_mb = round(stat.st_size / (1024*1024), 1)
-                    models.append({
+                    entry = {
                         'id': fid,
                         'name': f'{pt_file.stem} ({size_mb} MB)',
                         'type': 'checkpoint',
@@ -156,7 +183,11 @@ def api_models_available():
                         'provider': 'local_checkpoint',
                         'size_mb': size_mb,
                         'last_modified': stat.st_mtime,
-                    })
+                    }
+                    offering_hint = _infer_offering_from_path(pt_file)
+                    if offering_hint:
+                        entry['offering'] = offering_hint
+                    models.append(entry)
         except OSError:
             pass
         # Subdirectories
@@ -186,6 +217,9 @@ def api_models_available():
                         }
                         if config_info:
                             entry['config_info'] = config_info
+                        offering_hint = _infer_offering_from_path(child)
+                        if offering_hint:
+                            entry['offering'] = offering_hint
                         models.append(entry)
                 else:
                     _scan_dir(child, depth - 1)
@@ -209,7 +243,7 @@ def api_models_available():
                         except OSError:
                             continue
                         size_mb = round(stat.st_size / (1024*1024), 1)
-                        models.append({
+                        entry = {
                             'id': fid,
                             'name': f'{pt_file.stem} ({size_mb} MB)',
                             'type': 'checkpoint',
@@ -219,7 +253,11 @@ def api_models_available():
                             'provider': 'local_checkpoint',
                             'size_mb': size_mb,
                             'last_modified': stat.st_mtime,
-                        })
+                        }
+                        offering_hint = _infer_offering_from_path(pt_file)
+                        if offering_hint:
+                            entry['offering'] = offering_hint
+                        models.append(entry)
             except OSError:
                 pass
             # Subdirectories (except builder_client, already scanned)
@@ -247,6 +285,9 @@ def api_models_available():
                                 }
                                 if config_info:
                                     entry['config_info'] = config_info
+                                offering_hint = _infer_offering_from_path(child)
+                                if offering_hint:
+                                    entry['offering'] = offering_hint
                                 models.append(entry)
                         else:
                             _scan_dir(child)
@@ -254,7 +295,29 @@ def api_models_available():
                 pass
 
     _module_logger.info('models/available: found %d models', len(models))
-    return jsonify({'models': models})
+    return jsonify({
+        'models': models,
+        'offering_presets': [_offering_summary(k) for k in ('b1_39m', 'b2_50m', 'b3_504m')],
+    })
+
+
+@builder_bp.route('/api/v1/builder/model/presets', methods=['GET'])
+def builder_model_presets():
+    """Return canonical B-series offering presets for Builder clients."""
+    ordered = []
+    for preset_id in ('b1_39m', 'b2_50m', 'b3_504m'):
+        preset = _OFFERING_PRESETS.get(preset_id)
+        if not preset:
+            continue
+        ordered.append({
+            'id': preset.get('id', preset_id),
+            'stage': preset.get('stage'),
+            'name': preset.get('name'),
+            'target_params_m': preset.get('target_params_m'),
+            'model': preset.get('model', {}),
+            'training': preset.get('training', {}),
+        })
+    return jsonify({'success': True, 'presets': ordered})
 
 # --- Walkthrough Section ---
 @builder_bp.route('/chat', methods=['POST'])
@@ -984,6 +1047,15 @@ def builder_model_configure():
         return jsonify({'success': True, 'config': dict(_model_definition)})
 
     data = request.get_json(silent=True) or {}
+    merged_input = dict(data)
+    preset_id = data.get('preset')
+    if preset_id and preset_id != 'custom':
+        if preset_id not in _OFFERING_PRESETS:
+            return jsonify({'success': False, 'errors': [f'Unknown preset: {preset_id}']}), 400
+        preset_model = _OFFERING_PRESETS[preset_id].get('model', {})
+        merged_input = dict(preset_model)
+        merged_input.update(data)
+        merged_input['preset'] = preset_id
 
     # Validate required numeric fields
     field_ranges = {
@@ -994,7 +1066,7 @@ def builder_model_configure():
     }
     errors = []
     for field, (lo, hi) in field_ranges.items():
-        val = data.get(field)
+        val = merged_input.get(field)
         if val is not None:
             try:
                 val = int(val)
@@ -1003,19 +1075,19 @@ def builder_model_configure():
             except (TypeError, ValueError):
                 errors.append(f'{field} must be an integer')
 
-    if data.get('hiddenSize') and data.get('heads'):
+    if merged_input.get('hiddenSize') and merged_input.get('heads'):
         try:
-            if int(data['hiddenSize']) % int(data['heads']) != 0:
+            if int(merged_input['hiddenSize']) % int(merged_input['heads']) != 0:
                 errors.append('hiddenSize must be divisible by heads')
         except (TypeError, ValueError):
             pass
 
     valid_archs = ('transformer', 'mamba', 'rwkv')
-    if data.get('architecture') and data['architecture'] not in valid_archs:
+    if merged_input.get('architecture') and merged_input['architecture'] not in valid_archs:
         errors.append(f'architecture must be one of {valid_archs}')
 
     valid_precisions = ('fp32', 'fp16', 'bf16', 'int8')
-    if data.get('precision') and data['precision'] not in valid_precisions:
+    if merged_input.get('precision') and merged_input['precision'] not in valid_precisions:
         errors.append(f'precision must be one of {valid_precisions}')
 
     if errors:
@@ -1023,8 +1095,18 @@ def builder_model_configure():
 
     # Persist
     for key in _model_definition:
-        if key in data:
-            _model_definition[key] = data[key]
+        if key in merged_input:
+            _model_definition[key] = merged_input[key]
+
+    if not _model_definition.get('preset'):
+        _model_definition['preset'] = 'custom'
+
+    if preset_id and preset_id != 'custom':
+        preset_training = _OFFERING_PRESETS[preset_id].get('training', {})
+        for key, value in preset_training.items():
+            if key in _training_config and key not in data:
+                _training_config[key] = value
+        _save_training_config(_training_config)
 
     # Save to disk
     _save_model_config(_model_definition)
@@ -1050,6 +1132,7 @@ def builder_model_configure():
     return jsonify({
         'success': True,
         'config': dict(_model_definition),
+        'offering': _offering_summary(_model_definition.get('preset')),
         'estimates': {
             'total_params': total_params,
             'vram_gb': vram_gb,
