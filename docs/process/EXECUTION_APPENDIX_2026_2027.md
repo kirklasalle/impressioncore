@@ -69,7 +69,7 @@ This appendix is the canonical execution backlog for the next delivery cycle. It
 2. [x] Bind start/pause/stop/checkpoint actions to live Builder API responses only.
 3. [x] Add full checkpoint browser with offering labels and integrity hashes (implemented cached background SHA-256 and preset mapping).
 4. [x] Add form-side and server-side schema validation parity (locked architectural inputs in UI on preset selection, validated limits and exact matches in POST /configure).
-5. Add smoke tests for all Builder routes under low-VRAM profile.
+5. [x] Add smoke tests for all Builder routes under low-VRAM profile (implemented in test_builder_smoke.py with CUDA/VRAM mocking).
 
 ### WS3 Exit Criteria
 
