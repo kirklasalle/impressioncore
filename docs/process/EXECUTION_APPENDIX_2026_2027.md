@@ -65,9 +65,9 @@ This appendix is the canonical execution backlog for the next delivery cycle. It
 
 ### WS3 Delivery Tasks
 
-1. Remove/retire training simulation paths in unified builder UI.
-2. Bind start/pause/stop/checkpoint actions to live Builder API responses only.
-3. Add full checkpoint browser with offering labels and integrity hashes.
+1. [x] Remove/retire training simulation paths in unified builder UI.
+2. [x] Bind start/pause/stop/checkpoint actions to live Builder API responses only.
+3. [x] Add full checkpoint browser with offering labels and integrity hashes (implemented cached background SHA-256 and preset mapping).
 4. Add form-side and server-side schema validation parity.
 5. Add smoke tests for all Builder routes under low-VRAM profile.
 

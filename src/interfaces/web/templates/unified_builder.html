@@ -587,7 +587,6 @@
 
         // Training control buttons
         document.getElementById('start-training-btn').addEventListener('click', function () {
-            // This would call the API to start training
             console.log('Starting training...');
 
             // Update UI
@@ -596,12 +595,14 @@
             document.getElementById('stop-training-btn').disabled = false;
             document.getElementById('save-checkpoint-btn').disabled = false;
 
-            // Simulate training progress
-            simulateTraining();
+            // Start API-backed training
+            startTraining();
         });
 
-        // Simulate training progress for demonstration
-        function simulateTraining() {
+        // API-backed training flow (WS3: replaces simulation path)
+        let _trainingPollInterval = null;
+
+        async function startTraining() {
             const progressFill = document.querySelector('.progress-fill');
             const progressPercentage = document.getElementById('progress-percentage');
             const progressStep = document.getElementById('progress-step');
@@ -612,91 +613,145 @@
             const metricVram = document.getElementById('metric-vram');
             const logViewer = document.querySelector('.log-viewer');
 
-            let progress = 0;
-            let step = 0;
-            const totalSteps = 1000;
-            let loss = 4.5;
+            function addLog(msg, level = 'info') {
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${level}`;
+                entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                logViewer.appendChild(entry);
+                logViewer.scrollTop = logViewer.scrollHeight;
+            }
 
-            const interval = setInterval(() => {
-                step += 1;
-                progress = (step / totalSteps) * 100;
+            // Collect current config
+            const config = JSON.parse(document.getElementById('config-json').textContent);
+            addLog(`Starting training with preset: ${config.model.preset || 'custom'}...`);
 
-                progressFill.style.width = `${progress}%`;
-                progressPercentage.textContent = `${progress.toFixed(1)}%`;
-                progressStep.textContent = `Step ${step}/${totalSteps}`;
+            // Attempt to start via API
+            try {
+                const startResp = await fetch('/api/v1/pipeline/process', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'start_training', config }),
+                });
+                const startData = await startResp.json();
 
-                const remainingSteps = totalSteps - step;
-                const secondsRemaining = remainingSteps * 0.5; // Assuming 0.5s per step
-                const hours = Math.floor(secondsRemaining / 3600);
-                const minutes = Math.floor((secondsRemaining % 3600) / 60);
-                const seconds = Math.floor(secondsRemaining % 60);
-                progressEta.textContent = `ETA: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                // Update metrics
-                loss = loss * 0.99; // Simulate decreasing loss
-                metricLoss.textContent = loss.toFixed(4);
-                metricLr.textContent = '5.0e-5';
-                metricTimePerStep.textContent = '0.5s';
-                metricVram.textContent = '3.2GB';
-
-                // Update chart
-                lossChart.data.labels.push(step);
-                lossChart.data.datasets[0].data.push(loss);
-                if (lossChart.data.labels.length > 20) {
-                    lossChart.data.labels.shift();
-                    lossChart.data.datasets[0].data.shift();
-                }
-                lossChart.update();
-
-                // Add log entry
-                if (step % 10 === 0) {
-                    const logEntry = document.createElement('div');
-                    logEntry.className = 'log-entry info';
-                    logEntry.textContent = `[Step ${step}] Loss: ${loss.toFixed(4)}, LR: 5.0e-5`;
-                    logViewer.appendChild(logEntry);
-                    logViewer.scrollTop = logViewer.scrollHeight;
-                }
-
-                if (step >= totalSteps) {
-                    clearInterval(interval);
+                if (!startResp.ok || startData.error) {
+                    addLog(`Pipeline unavailable: ${startData.error || startData.message || 'Unknown error'}. Configure and initialize the training pipeline first.`, 'warning');
                     document.getElementById('start-training-btn').disabled = false;
                     document.getElementById('pause-training-btn').disabled = true;
                     document.getElementById('stop-training-btn').disabled = true;
-
-                    const logEntry = document.createElement('div');
-                    logEntry.className = 'log-entry info';
-                    logEntry.textContent = `[System] Training completed successfully`;
-                    logViewer.appendChild(logEntry);
-                    logViewer.scrollTop = logViewer.scrollHeight;
+                    return;
                 }
-            }, 500);
+
+                addLog('Training started — polling for progress...');
+            } catch (err) {
+                addLog(`Cannot reach training API: ${err.message}. Ensure the Builder server is running.`, 'warning');
+                document.getElementById('start-training-btn').disabled = false;
+                document.getElementById('pause-training-btn').disabled = true;
+                document.getElementById('stop-training-btn').disabled = true;
+                return;
+            }
+
+            // Poll training status
+            _trainingPollInterval = setInterval(async () => {
+                try {
+                    const resp = await fetch('/api/v1/pipeline/status');
+                    const data = await resp.json();
+
+                    if (data.status === 'error' || data.status === 'unavailable') {
+                        addLog(`Training status: ${data.message || data.status}`, 'warning');
+                        clearInterval(_trainingPollInterval);
+                        document.getElementById('start-training-btn').disabled = false;
+                        document.getElementById('pause-training-btn').disabled = true;
+                        document.getElementById('stop-training-btn').disabled = true;
+                        return;
+                    }
+
+                    const stats = data.stats || {};
+                    const progress = stats.progress || 0;
+                    const step = stats.step || 0;
+                    const totalSteps = stats.total_steps || 0;
+                    const loss = stats.loss;
+                    const lr = stats.learning_rate;
+                    const timePerStep = stats.time_per_step;
+                    const vramUsage = stats.vram_usage;
+
+                    progressFill.style.width = `${progress}%`;
+                    progressPercentage.textContent = `${progress.toFixed(1)}%`;
+                    progressStep.textContent = `Step ${step}/${totalSteps}`;
+
+                    if (loss !== undefined) metricLoss.textContent = parseFloat(loss).toFixed(4);
+                    if (lr !== undefined) metricLr.textContent = parseFloat(lr).toExponential(1);
+                    if (timePerStep !== undefined) metricTimePerStep.textContent = `${parseFloat(timePerStep).toFixed(2)}s`;
+                    if (vramUsage !== undefined) metricVram.textContent = vramUsage;
+
+                    // Update chart
+                    if (loss !== undefined) {
+                        lossChart.data.labels.push(step);
+                        lossChart.data.datasets[0].data.push(parseFloat(loss));
+                        if (lossChart.data.labels.length > 50) {
+                            lossChart.data.labels.shift();
+                            lossChart.data.datasets[0].data.shift();
+                        }
+                        lossChart.update();
+                    }
+
+                    // ETA
+                    if (totalSteps > 0 && timePerStep) {
+                        const remaining = (totalSteps - step) * parseFloat(timePerStep);
+                        const h = Math.floor(remaining / 3600);
+                        const m = Math.floor((remaining % 3600) / 60);
+                        const s = Math.floor(remaining % 60);
+                        progressEta.textContent = `ETA: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                    }
+
+                    // Log periodic updates
+                    if (step > 0 && step % 10 === 0) {
+                        addLog(`Step ${step}: loss=${loss !== undefined ? parseFloat(loss).toFixed(4) : '?'}`);
+                    }
+
+                    // Completed
+                    if (progress >= 100 || stats.completed) {
+                        clearInterval(_trainingPollInterval);
+                        addLog('Training completed successfully!');
+                        document.getElementById('start-training-btn').disabled = false;
+                        document.getElementById('pause-training-btn').disabled = true;
+                        document.getElementById('stop-training-btn').disabled = true;
+                    }
+                } catch (pollErr) {
+                    addLog(`Status poll error: ${pollErr.message}`, 'warning');
+                }
+            }, 2000);
 
             // Handle pause button
-            document.getElementById('pause-training-btn').addEventListener('click', function () {
-                clearInterval(interval);
+            document.getElementById('pause-training-btn').addEventListener('click', async function () {
+                clearInterval(_trainingPollInterval);
                 this.disabled = true;
                 document.getElementById('start-training-btn').disabled = false;
-
-                const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry info';
-                logEntry.textContent = `[System] Training paused at step ${step}`;
-                logViewer.appendChild(logEntry);
-                logViewer.scrollTop = logViewer.scrollHeight;
+                try {
+                    await fetch('/api/v1/pipeline/process', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'pause_training' }),
+                    });
+                } catch (_) {}
+                addLog('Training paused');
             });
 
             // Handle stop button
-            document.getElementById('stop-training-btn').addEventListener('click', function () {
-                clearInterval(interval);
+            document.getElementById('stop-training-btn').addEventListener('click', async function () {
+                clearInterval(_trainingPollInterval);
                 document.getElementById('start-training-btn').disabled = false;
                 document.getElementById('pause-training-btn').disabled = true;
                 this.disabled = true;
                 document.getElementById('save-checkpoint-btn').disabled = true;
-
-                const logEntry = document.createElement('div');
-                logEntry.className = 'log-entry warning';
-                logEntry.textContent = `[System] Training stopped at step ${step}`;
-                logViewer.appendChild(logEntry);
-                logViewer.scrollTop = logViewer.scrollHeight;
+                try {
+                    await fetch('/api/v1/pipeline/process', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'stop_training' }),
+                    });
+                } catch (_) {}
+                addLog('Training stopped', 'warning');
             });
         }
 

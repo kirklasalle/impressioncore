@@ -1237,25 +1237,92 @@ def builder_training_stop():
         _training_state['running'] = False
     return jsonify({'success': True, 'message': 'Training stopped' if was_running else 'No training was running'})
 
+import hashlib
+
+_CHECKPOINT_META_FILE = os.path.join(project_root, 'data/knowledge/builder_checkpoint_meta.json')
+_hash_lock = threading.Lock()
+_active_hash_threads = {}
+
+def _load_checkpoint_meta():
+    try:
+        if os.path.exists(_CHECKPOINT_META_FILE):
+            with open(_CHECKPOINT_META_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {}
+
+def _save_checkpoint_meta(meta):
+    try:
+        os.makedirs(os.path.dirname(_CHECKPOINT_META_FILE), exist_ok=True)
+        with open(_CHECKPOINT_META_FILE, 'w', encoding='utf-8') as f:
+            json.dump(meta, f, indent=2)
+    except Exception:
+        pass
+
+def _calculate_hash_background(fpath, expected_mtime, expected_size):
+    def _run():
+        h = hashlib.sha256()
+        try:
+            with open(fpath, 'rb') as f:
+                while chunk := f.read(65536):
+                    h.update(chunk)
+            digest = h.hexdigest()
+            with _hash_lock:
+                meta = _load_checkpoint_meta()
+                meta[fpath] = {
+                    'sha256': digest,
+                    'mtime': expected_mtime,
+                    'size': expected_size
+                }
+                _save_checkpoint_meta(meta)
+        except Exception:
+            pass
+        finally:
+            with _hash_lock:
+                _active_hash_threads.pop(fpath, None)
+
+    with _hash_lock:
+        if fpath in _active_hash_threads:
+            return
+        t = threading.Thread(target=_run, daemon=True)
+        _active_hash_threads[fpath] = t
+        t.start()
+
 def _get_checkpoint_dir():
     """Return the configured checkpoint directory from persisted training config."""
     return _training_config.get('checkpointDir', 'F:\\models\\checkpoints')
 
 @builder_bp.route('/api/v1/builder/training/checkpoints')
 def builder_training_checkpoints():
-    """List saved training checkpoints."""
+    """List saved training checkpoints with offering labels and integrity hashes."""
     ckpt_dir = _get_checkpoint_dir()
     os.makedirs(ckpt_dir, exist_ok=True)
     items = []
+    meta = _load_checkpoint_meta()
     for name in sorted(os.listdir(ckpt_dir)):
         fpath = os.path.join(ckpt_dir, name)
         if os.path.isfile(fpath) and name.endswith('.pt'):
             stat = os.stat(fpath)
+            size_mb = round(stat.st_size / (1024 * 1024), 2)
+            mtime = stat.st_mtime
+            
+            # Check cached hash
+            cached = meta.get(fpath)
+            sha256 = "calculating..."
+            if cached and cached.get('mtime') == mtime and cached.get('size') == stat.st_size:
+                sha256 = cached.get('sha256')
+            else:
+                _calculate_hash_background(fpath, mtime, stat.st_size)
+                
+            offering = _infer_offering_from_path(name)
             items.append({
                 'name': name,
                 'path': fpath,
-                'size_mb': round(stat.st_size / (1024 * 1024), 2),
-                'modified': stat.st_mtime,
+                'size_mb': size_mb,
+                'modified': mtime,
+                'sha256': sha256,
+                'offering': offering
             })
     return jsonify({'success': True, 'checkpoints': items, 'directory': ckpt_dir})
 
