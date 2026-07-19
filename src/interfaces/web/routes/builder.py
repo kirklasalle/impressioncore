@@ -1052,6 +1052,27 @@ def builder_model_configure():
     if preset_id and preset_id != 'custom':
         if preset_id not in _OFFERING_PRESETS:
             return jsonify({'success': False, 'errors': [f'Unknown preset: {preset_id}']}), 400
+        
+        # Enforce exact preset values for model architecture (WS3 Task 4 parity)
+        preset_model = _OFFERING_PRESETS[preset_id].get('model', {})
+        for key, val in preset_model.items():
+            if key in data and key != 'preset':
+                try:
+                    # Compare as integers/floats if possible to avoid type diff issues
+                    incoming = float(data[key]) if isinstance(val, (int, float)) else str(data[key])
+                    preset_val = float(val) if isinstance(val, (int, float)) else str(val)
+                    if incoming != preset_val:
+                        return jsonify({
+                            'success': False,
+                            'errors': [f"Cannot override preset '{preset_id}' parameter '{key}' (expected {val}, got {data[key]}). Select 'custom' configuration to edit architecture."]
+                        }), 400
+                except (ValueError, TypeError):
+                    if data[key] != val:
+                        return jsonify({
+                            'success': False,
+                            'errors': [f"Cannot override preset '{preset_id}' parameter '{key}' (expected {val}, got {data[key]}). Select 'custom' configuration to edit architecture."]
+                        }), 400
+
         preset_model = _OFFERING_PRESETS[preset_id].get('model', {})
         merged_input = dict(preset_model)
         merged_input.update(data)

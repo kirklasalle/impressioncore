@@ -449,9 +449,40 @@
             }
         });
 
+        // Form-side validation locking parity helper (WS3 Task 4)
+        function toggleInputsLock(isLocked) {
+            const inputs = [
+                'hidden_size', 'hidden_size_range',
+                'num_layers', 'num_layers_range',
+                'learning_rate', 'learning_rate_range',
+                'batch_size', 'batch_size_range',
+                'attention_dropout', 'attention_dropout_range'
+            ];
+            inputs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.disabled = isLocked;
+            });
+
+            const configHeader = document.querySelector('#parameter-configuration h3');
+            if (configHeader) {
+                let badge = document.getElementById('preset-lock-badge');
+                if (isLocked) {
+                    if (!badge) {
+                        badge = document.createElement('span');
+                        badge.id = 'preset-lock-badge';
+                        badge.className = 'badge bg-warning ms-2 fs-6';
+                        badge.style.verticalAlign = 'middle';
+                        badge.innerHTML = '<i class="bi bi-lock-fill"></i> Preset Locked';
+                        configHeader.appendChild(badge);
+                    }
+                } else {
+                    if (badge) badge.remove();
+                }
+            }
+        }
+
         // Function to load template configuration
         function loadTemplateConfig(templateId) {
-            // In a real implementation, this would fetch the template from the server
             console.log(`Loading template: ${templateId}`);
 
             const offering = OFFERING_PRESETS[templateId];
@@ -470,19 +501,20 @@
                 persistOfferingSelection(templateId);
                 syncPresetToBackend(offering.backend, offering.training);
                 updateConfigPreview();
+                toggleInputsLock(true);
                 return;
             }
 
             selectedPresetId = 'custom';
+            toggleInputsLock(false);
 
-            // For demonstration, we'll simulate loading the transformer-base template
             if (templateId === 'transformer-base') {
                 document.getElementById('hidden_size').value = 768;
                 document.getElementById('hidden_size_range').value = 768;
                 document.getElementById('num_layers').value = 12;
                 document.getElementById('num_layers_range').value = 12;
                 document.getElementById('learning_rate').value = 0.00005;
-                document.getElementById('learning_rate_range').value = -4.3; // log10(0.00005)
+                document.getElementById('learning_rate_range').value = -4.3;
                 document.getElementById('batch_size').value = 16;
                 document.getElementById('batch_size_range').value = 16;
                 document.getElementById('attention_dropout').value = 0.1;
@@ -493,7 +525,7 @@
                 document.getElementById('num_layers').value = 8;
                 document.getElementById('num_layers_range').value = 8;
                 document.getElementById('learning_rate').value = 0.0001;
-                document.getElementById('learning_rate_range').value = -4.0; // log10(0.0001)
+                document.getElementById('learning_rate_range').value = -4.0;
                 document.getElementById('batch_size').value = 8;
                 document.getElementById('batch_size_range').value = 8;
                 document.getElementById('attention_dropout').value = 0.1;
