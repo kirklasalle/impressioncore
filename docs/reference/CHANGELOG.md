@@ -19,11 +19,16 @@
 - WS1: Added `src/core/config/offering_manifest.py` — offering preset schema validator with startup validation.
 - WS1: Added 43 new tests for offering preset schema and manifest validation (`test_offering_presets.py`, `test_offering_manifest.py`).
 - WS5: Ratcheted coverage gate from 9% to 10% — M1 quality gate target reached. 649+ tests collected.
+- WS4: Integrated GGUF model supervisor (`LlamaCppSupervisor`) and 22-task background periodic monitoring agent (`GuardianAgent`) into Python core (`agent0core/core/`).
+- WS4: Exposed supervisor and guardian routes via FastAPI server in `agent0core/api.py`, including slots management, model loading/unloading, and task control (run/toggle).
+- WS4: Upgraded `agent0core/ui/index.html` to a premium space-themed Glassmorphism dashboard featuring real-time telemetry, model load controls, task controls, and real-time logs.
+- WS5: Created unit test suite in `src/tests/test_agent0_guardian.py` verifying slots config, task toggling, and direct self-healing. Passed all 5 tests.
 
 ### Security
 
 - WS6: Replaced placeholder API key verification in `src/services/text_generation/api.py` with `hmac.compare_digest` constant-time comparison.
 - WS6: Added development/production mode split — auth bypassed when `IMPRESSIONCORE_API_KEY` env var is not set.
+- WS6: Integrated directive integrity self-healing in GuardianAgent to restore active directives from backups on detection of modification or missing files.
 
 ### Documentation
 

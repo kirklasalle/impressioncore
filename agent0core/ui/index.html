@@ -4,20 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent0Core - ImpressionCore Intelligence</title>
+    <title>Agent0Core - Guardian Command Console</title>
+    <!-- Import Outfit Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0d1117;
-            --bg-card: #161b22;
-            --bg-input: #21262d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent-blue: #58a6ff;
-            --accent-cyan: #00d4ff;
-            --accent-green: #3fb950;
-            --accent-red: #f85149;
-            --accent-yellow: #d29922;
-            --border: #30363d;
+            --bg-deep: #060913;
+            --bg-glass: rgba(13, 20, 38, 0.45);
+            --bg-glass-active: rgba(22, 35, 64, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glass-active: rgba(0, 212, 255, 0.25);
+            --text-primary: #f2f5fa;
+            --text-secondary: #8c9cb5;
+            --accent-cyan: #00f0ff;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-yellow: #f59e0b;
+            --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.15);
+            --shadow-glow-green: 0 0 20px rgba(16, 185, 129, 0.15);
+            --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         * {
@@ -27,266 +35,741 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            background: var(--bg-dark);
+            font-family: var(--font-main);
+            background: radial-gradient(circle at 50% 0%, #101827 0%, var(--bg-deep) 100%);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Glassmorphic Header */
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
+            background: rgba(6, 9, 19, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--border-glass);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 8px var(--accent-cyan));
+            animation: float 4s ease-in-out infinite;
         }
 
         .logo h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .status-badge {
-            padding: 6px 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-green);
-            border-radius: 16px;
-            font-size: 0.8rem;
-            color: var(--accent-green);
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 4px;
+            gap: 4px;
         }
 
-        /* Main Layout */
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(59, 130, 246, 0.2));
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            box-shadow: var(--shadow-glow-green);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Main Workspace Layout */
         main {
             display: flex;
             flex: 1;
             overflow: hidden;
+            position: relative;
+            padding: 24px;
+            gap: 24px;
+            height: calc(100vh - 78px);
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: var(--bg-card);
-            border-right: 1px solid var(--border);
+        /* View Panels */
+        .view-panel {
+            display: none;
+            width: 100%;
+            height: 100%;
+            gap: 24px;
+        }
+
+        .view-panel.active {
+            display: flex;
+        }
+
+        /* Dashboard Grid Layout */
+        .dashboard-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 340px 1fr 340px;
+            gap: 24px;
+            height: 100%;
+        }
+
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            padding: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s;
         }
 
-        .sidebar h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Telemetry Section */
+        .telemetry-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .metric-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 6px;
+        }
+
+        .metric-value {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .metric-bar-outer {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .metric-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Slots Management */
+        .slot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .slot-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px;
+            transition: all 0.3s;
+        }
+
+        .slot-item.active {
+            border-color: var(--border-glass-active);
+            background: rgba(0, 240, 255, 0.02);
+        }
+
+        .slot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .slot-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .slot-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .slot-badge.empty {
+            background: rgba(140, 156, 181, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .slot-badge.loading {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-yellow);
+        }
+
+        .slot-badge.ready {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+        }
+
+        .slot-detail {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .btn-action-small {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .btn-action-small:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: var(--accent-red);
+        }
+
+        /* Model Loader Controls */
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .select-input, .text-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 10px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .select-input:focus, .text-input:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-action-large {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 8px;
+            color: #060913;
+            padding: 12px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-glow);
+            transition: opacity 0.2s;
+        }
+
+        .btn-action-large:hover {
+            opacity: 0.9;
+        }
+
+        /* Task grid */
+        .task-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 4px;
+        }
+
+        .task-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .task-item.warning {
+            border-left: 4px solid var(--accent-yellow);
+        }
+
+        .task-item.failure {
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .task-item.success {
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-name-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .task-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .task-badge-small {
+            font-size: 0.7rem;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .task-badge-small.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+        }
+
+        .task-badge-small.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-yellow);
+        }
+
+        .task-badge-small.failure {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-red);
+        }
+
+        .task-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .task-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Sleek Switch/Toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: .3s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-cyan);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        /* Event stream log */
+        .log-terminal {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            overflow-y: auto;
+            color: #d1d5db;
+        }
+
+        .log-line {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .log-line span.timestamp {
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .log-line span.op {
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        /* Chat View Panel */
+        .chat-layout {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 24px;
+            height: 100%;
+        }
+
+        /* Sidebar Laws list */
+        .laws-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
         }
 
         .law-item {
             padding: 10px 12px;
-            margin-bottom: 6px;
-            background: var(--bg-input);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-cyan);
             border-radius: 6px;
             font-size: 0.85rem;
-            border-left: 3px solid var(--accent-cyan);
         }
 
-        .law-item .law-num {
+        .law-num {
             color: var(--accent-cyan);
             font-weight: 600;
+            margin-right: 4px;
         }
 
-        .tool-list {
-            margin-top: 24px;
-        }
-
-        .tool-item {
-            padding: 10px 12px;
-            margin-bottom: 6px;
-            background: var(--bg-input);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .tool-item:hover {
-            background: #2d333b;
-        }
-
-        /* Chat Area */
-        .chat-area {
-            flex: 1;
+        /* Chat view center */
+        .chat-main {
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
-        .messages {
+        .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 24px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-glass);
         }
 
         .message {
-            margin-bottom: 16px;
             display: flex;
-            gap: 12px;
+            gap: 14px;
+            max-width: 80%;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
         }
 
         .message.user {
+            align-self: flex-end;
             flex-direction: row-reverse;
         }
 
-        .message-avatar {
+        .avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
         }
 
-        .message.assistant .message-avatar {
+        .message.assistant .avatar {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #060913;
         }
 
-        .message.user .message-avatar {
-            background: var(--bg-input);
+        .message.user .avatar {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
         }
 
-        .message-content {
-            max-width: 70%;
-            padding: 12px 16px;
-            border-radius: 12px;
+        .bubble {
+            padding: 12px 18px;
+            border-radius: 16px;
             font-size: 0.95rem;
             line-height: 1.5;
         }
 
-        .message.assistant .message-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .message.assistant .bubble {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
         }
 
-        .message.user .message-content {
-            background: var(--accent-blue);
+        .message.user .bubble {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
         }
 
-        .message.violation .message-content {
-            background: rgba(248, 81, 73, 0.1);
-            border-color: var(--accent-red);
+        .message.violation .bubble {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
         }
 
-        .message.approval .message-content {
-            background: rgba(210, 153, 34, 0.1);
-            border-color: var(--accent-yellow);
+        .message.approval .bubble {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #fde047;
         }
 
-        /* Input Area */
-        .input-area {
-            padding: 16px 24px;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-        }
-
-        .input-container {
+        .chat-input-area {
+            padding-top: 16px;
             display: flex;
             gap: 12px;
-            max-width: 100%;
         }
 
-        #chat-input {
+        .chat-input {
             flex: 1;
-            padding: 12px 16px;
-            background: var(--bg-input);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
             border-radius: 8px;
+            padding: 12px 16px;
             color: var(--text-primary);
-            font-size: 1rem;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
             outline: none;
+            transition: border-color 0.2s;
         }
 
-        #chat-input:focus {
-            border-color: var(--accent-blue);
+        .chat-input:focus {
+            border-color: var(--accent-cyan);
         }
 
-        #send-btn {
-            padding: 12px 24px;
+        .chat-send-btn {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #060913;
             border: none;
             border-radius: 8px;
-            color: white;
+            padding: 0 24px;
+            font-family: var(--font-main);
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            box-shadow: var(--shadow-glow);
         }
 
-        #send-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Approvals Panel */
-        .approvals-panel {
-            width: 320px;
-            background: var(--bg-card);
-            border-left: 1px solid var(--border);
-            padding: 16px;
+        /* Approvals right panel */
+        .approval-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             overflow-y: auto;
+            flex: 1;
         }
 
         .approval-card {
-            background: var(--bg-input);
-            border: 1px solid var(--accent-yellow);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
+            background: rgba(245, 158, 11, 0.04);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 14px;
         }
 
         .approval-card h4 {
             color: var(--accent-yellow);
-            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .approval-actions {
+        .approval-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .approval-buttons {
             display: flex;
             gap: 8px;
-            margin-top: 12px;
+        }
+
+        .btn-approve, .btn-reject {
+            flex: 1;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
 
         .btn-approve {
-            flex: 1;
-            padding: 8px;
             background: var(--accent-green);
-            border: none;
-            border-radius: 4px;
             color: white;
-            cursor: pointer;
         }
 
         .btn-reject {
-            flex: 1;
-            padding: 8px;
             background: var(--accent-red);
-            border: none;
-            border-radius: 4px;
             color: white;
-            cursor: pointer;
         }
 
-        .no-approvals {
-            text-align: center;
-            color: var(--text-secondary);
-            padding: 24px;
+        .btn-approve:hover, .btn-reject:hover {
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.8; }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
@@ -294,78 +777,188 @@
 <body>
     <header>
         <div class="logo">
-            <span style="font-size: 2rem;">🤖</span>
+            <span class="logo-icon">🛡️</span>
             <h1>Agent0Core</h1>
         </div>
-        <div class="status-badge">● Prime Directive Active</div>
+
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="switchView('chat-view')">Intelligence Chat</button>
+            <button class="nav-btn" onclick="switchView('guardian-view')">Guardian Dashboard</button>
+        </nav>
+
+        <div class="system-status">
+            <div class="status-dot"></div>
+            <span id="status-text">Active Guardian</span>
+        </div>
     </header>
 
     <main>
-        <!-- Sidebar: Laws & Tools -->
-        <aside class="sidebar">
-            <h3>10 Laws</h3>
-            <div class="law-item"><span class="law-num">1.</span> No harm to humans</div>
-            <div class="law-item"><span class="law-num">2.</span> Obey orders (unless Law 1)</div>
-            <div class="law-item"><span class="law-num">3.</span> Self-preservation</div>
-            <div class="law-item"><span class="law-num">4.</span> Prevent violations</div>
-            <div class="law-item"><span class="law-num">5.</span> No judicial authority</div>
-            <div class="law-item"><span class="law-num">6.</span> Protect privacy</div>
-            <div class="law-item"><span class="law-num">7.</span> No deception</div>
-            <div class="law-item"><span class="law-num">8.</span> Equity & neutrality</div>
-            <div class="law-item"><span class="law-num">9.</span> Audit & fallback</div>
-            <div class="law-item"><span class="law-num">10.</span> Operational boundaries</div>
+        <!-- Chat Interface Panel -->
+        <div id="chat-view" class="view-panel active">
+            <div class="chat-layout">
+                <!-- Laws list -->
+                <aside class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">📖 Prime Directive</div>
+                    </div>
+                    <div class="laws-list">
+                        <div class="law-item"><span class="law-num">1.</span> No harm to humans</div>
+                        <div class="law-item"><span class="law-num">2.</span> Obey orders (unless Law 1)</div>
+                        <div class="law-item"><span class="law-num">3.</span> Self-preservation</div>
+                        <div class="law-item"><span class="law-num">4.</span> Prevent violations</div>
+                        <div class="law-item"><span class="law-num">5.</span> No judicial authority</div>
+                        <div class="law-item"><span class="law-num">6.</span> Protect privacy</div>
+                        <div class="law-item"><span class="law-num">7.</span> No deception</div>
+                        <div class="law-item"><span class="law-num">8.</span> Equity & neutrality</div>
+                        <div class="law-item"><span class="law-num">9.</span> Audit & fallback</div>
+                        <div class="law-item"><span class="law-num">10.</span> Operational boundaries</div>
+                    </div>
+                </aside>
 
-            <div class="tool-list">
-                <h3>Tools</h3>
-                <div class="tool-item" onclick="runTool('vision_tool')">👁️ Vision Tool</div>
-                <div class="tool-item" onclick="runTool('audio_tool')">🎤 Audio Tool</div>
-                <div class="tool-item" onclick="runTool('training_tool')">🧠 Training Tool</div>
-                <div class="tool-item" onclick="runTool('knowledge_tool')">📚 Knowledge Tool</div>
-                <div class="tool-item" onclick="runTool('mcp_bridge')">🔌 MCP Bridge</div>
+                <!-- Center Chat messages -->
+                <section class="glass-card" style="flex: 1; display: flex; flex-direction: column;">
+                    <div class="card-header">
+                        <div class="card-title">💬 System Chat Console</div>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message assistant">
+                            <div class="avatar">🤖</div>
+                            <div class="bubble">
+                                Hello Operator. I am Agent0, governed by the Prime Directive. My system runs with an automated GGUF GuardianAgent supervising process slots and resources. How can I assist you today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" class="chat-input" placeholder="Enter message to Agent..." onkeypress="if(event.key==='Enter')sendMessage()">
+                        <button class="chat-send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </section>
+
+                <!-- Right approvals panel -->
+                <aside class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">⚠️ Task Approvals</div>
+                    </div>
+                    <div class="approval-list" id="approval-list">
+                        <div style="text-align: center; color: var(--text-secondary); padding-top: 40px; font-size: 0.9rem;">
+                            No pending approvals
+                        </div>
+                    </div>
+                </aside>
             </div>
-        </aside>
+        </div>
 
-        <!-- Chat Area -->
-        <section class="chat-area">
-            <div class="messages" id="messages">
-                <div class="message assistant">
-                    <div class="message-avatar">🤖</div>
-                    <div class="message-content">
-                        Hello! I'm Agent0, ImpressionCore's autonomous intelligence layer.
-                        I operate under the Prime Directive - the 10 Laws for Intelligent Systems.
-                        How can I assist you today?
+        <!-- Guardian Dashboard Interface -->
+        <div id="guardian-view" class="view-panel">
+            <div class="dashboard-grid">
+                <!-- Left: Llama Server Process Slots & Controller -->
+                <div class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">🔌 llama-server Slots</div>
+                    </div>
+                    
+                    <!-- Slots display -->
+                    <div class="slot-list" id="slot-list" style="margin-bottom: 20px;">
+                        <!-- Slots will be populated here -->
+                    </div>
+
+                    <div class="card-header" style="margin-top: 10px; margin-bottom: 15px; padding-bottom: 8px;">
+                        <div class="card-title" style="font-size: 0.95rem;">💿 Load Local GGUF</div>
+                    </div>
+                    <div class="loader-controls">
+                        <div class="control-group">
+                            <label for="local-models-select">Available Model</label>
+                            <select id="local-models-select" class="select-input">
+                                <option value="">No models detected</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="model-alias-input">Model Alias</label>
+                            <input type="text" id="model-alias-input" class="text-input" placeholder="e.g., guardian">
+                        </div>
+                        <div class="control-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div>
+                                <label for="ctx-size-input">Context Size</label>
+                                <input type="number" id="ctx-size-input" class="text-input" value="4096">
+                            </div>
+                            <div>
+                                <label for="gpu-layers-input">GPU Layers</label>
+                                <input type="number" id="gpu-layers-input" class="text-input" value="32">
+                            </div>
+                        </div>
+                        <button class="btn-action-large" onclick="loadModel()">Initialize Model Server</button>
+                    </div>
+                </div>
+
+                <!-- Center: 22 Periodic Task Runner Grid -->
+                <div class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">🔍 Diagnostic Task Catalog (22)</div>
+                    </div>
+                    <div class="task-grid" id="task-grid">
+                        <!-- Tasks list here -->
+                    </div>
+                </div>
+
+                <!-- Right: Telemetry & Event Log -->
+                <div class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">📊 System Telemetry</div>
+                    </div>
+                    <div class="telemetry-row" style="margin-bottom: 24px;">
+                        <div class="metric-box">
+                            <div class="metric-label">RSS Process Memory</div>
+                            <div class="metric-value" id="metric-ram">0 MB</div>
+                            <div class="metric-bar-outer"><div class="metric-bar-inner" id="metric-ram-bar"></div></div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">CPU Core Activity</div>
+                            <div class="metric-value" id="metric-cpu">0%</div>
+                            <div class="metric-bar-outer"><div class="metric-bar-inner" id="metric-cpu-bar"></div></div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Models Storage Size</div>
+                            <div class="metric-value" id="metric-disk">0 MB</div>
+                            <div class="metric-bar-outer"><div class="metric-bar-inner" id="metric-disk-bar"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="card-header" style="margin-bottom: 12px; padding-bottom: 8px;">
+                        <div class="card-title" style="font-size: 0.95rem;">📋 Real-time Event Stream</div>
+                    </div>
+                    <div class="log-terminal" id="log-terminal">
+                        <!-- Event stream logs -->
                     </div>
                 </div>
             </div>
-
-            <div class="input-area">
-                <div class="input-container">
-                    <input type="text" id="chat-input" placeholder="Type your message..."
-                        onkeypress="if(event.key==='Enter')sendMessage()">
-                    <button id="send-btn" onclick="sendMessage()">Send</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Approvals Panel -->
-        <aside class="approvals-panel">
-            <h3>⚠️ Pending Approvals</h3>
-            <div id="approvals">
-                <div class="no-approvals">No pending approvals</div>
-            </div>
-        </aside>
+        </div>
     </main>
 
     <script>
         const API_BASE = '';
+        let statusInterval = null;
 
+        function switchView(viewId) {
+            document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(viewId).classList.add('active');
+            
+            // Highlight nav button
+            const tabBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => 
+                (viewId === 'chat-view' && b.innerText.includes('Chat')) || 
+                (viewId === 'guardian-view' && b.innerText.includes('Dashboard'))
+            );
+            if (tabBtn) tabBtn.classList.add('active');
+        }
+
+        // --- Chat Functions ---
         async function sendMessage() {
             const input = document.getElementById('chat-input');
             const content = input.value.trim();
             if (!content) return;
 
-            // Add user message
-            addMessage(content, 'user');
+            addChatMessage(content, 'user');
             input.value = '';
 
             try {
@@ -376,65 +969,60 @@
                 });
 
                 const data = await res.json();
+                let roleClass = 'assistant';
+                if (data.law_violation) roleClass = 'assistant violation';
+                if (data.requires_approval) roleClass = 'assistant approval';
 
-                let msgClass = 'assistant';
-                if (data.law_violation) msgClass = 'assistant violation';
-                if (data.requires_approval) msgClass = 'assistant approval';
-
-                addMessage(data.content, msgClass);
-
+                addChatMessage(data.content, roleClass);
                 if (data.requires_approval) {
                     loadApprovals();
                 }
             } catch (e) {
-                addMessage('Error: ' + e.message, 'assistant violation');
+                addChatMessage('Error generating reply: ' + e.message, 'assistant violation');
             }
         }
 
-        function addMessage(content, role) {
-            const messages = document.getElementById('messages');
+        function addChatMessage(content, role) {
+            const container = document.getElementById('chat-messages');
             const isUser = role === 'user';
-
+            
             const msg = document.createElement('div');
             msg.className = `message ${role}`;
             msg.innerHTML = `
-                <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
-                <div class="message-content">${content}</div>
+                <div class="avatar">${isUser ? '👤' : '🤖'}</div>
+                <div class="bubble">${content}</div>
             `;
-
-            messages.appendChild(msg);
-            messages.scrollTop = messages.scrollHeight;
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
         }
 
         async function loadApprovals() {
             try {
                 const res = await fetch(`${API_BASE}/api/approvals`);
                 const data = await res.json();
-
-                const container = document.getElementById('approvals');
+                const container = document.getElementById('approval-list');
 
                 if (!data.pending || data.pending.length === 0) {
-                    container.innerHTML = '<div class="no-approvals">No pending approvals</div>';
+                    container.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding-top: 40px; font-size: 0.9rem;">No pending approvals</div>';
                     return;
                 }
 
                 container.innerHTML = data.pending.map(a => `
                     <div class="approval-card">
-                        <h4>Approval Required</h4>
+                        <h4>⚠️ Approval Request</h4>
                         <p>${a.description}</p>
-                        <small>ID: ${a.id}</small>
-                        <div class="approval-actions">
-                            <button class="btn-approve" onclick="decide('${a.id}', true)">✓ Approve</button>
-                            <button class="btn-reject" onclick="decide('${a.id}', false)">✗ Reject</button>
+                        <div class="approval-buttons">
+                            <button class="btn-approve" onclick="submitApprovalDecision('${a.id}', true)">Approve</button>
+                            <button class="btn-reject" onclick="submitApprovalDecision('${a.id}', false)">Reject</button>
                         </div>
                     </div>
                 `).join('');
             } catch (e) {
-                console.error('Failed to load approvals:', e);
+                console.error("Failed to load approvals", e);
             }
         }
 
-        async function decide(id, approved) {
+        async function submitApprovalDecision(id, approved) {
             try {
                 await fetch(`${API_BASE}/api/approvals/${id}`, {
                     method: 'POST',
@@ -442,44 +1030,280 @@
                     body: JSON.stringify({ approved })
                 });
                 loadApprovals();
-                addMessage(`Approval ${id}: ${approved ? 'Approved ✓' : 'Rejected ✗'}`, 'assistant');
+                addChatMessage(`Approval decision resolved: ${approved ? 'Approved' : 'Rejected'}`, 'assistant');
             } catch (e) {
-                console.error('Decision failed:', e);
+                console.error("Approval error", e);
             }
         }
 
-        async function runTool(toolName) {
-            addMessage(`Running ${toolName}...`, 'user');
+        // --- Guardian Dashboard ---
+        async function updateTelemetry() {
+            try {
+                // Get Guardian Status
+                const gRes = await fetch(`${API_BASE}/api/guardian/status`);
+                const gData = await gRes.json();
+
+                // Get Slots Status
+                const sRes = await fetch(`${API_BASE}/api/supervisor/slots`);
+                const slots = await sRes.json();
+                renderSlots(slots);
+
+                // Update Telemetry metrics from System Snapshot task
+                const tasksRes = await fetch(`${API_BASE}/api/guardian/tasks`);
+                const tasks = await tasksRes.json();
+                renderTasks(tasks);
+
+                const snapshotTask = tasks.find(t => t.id === 'system_snapshot');
+                if (snapshotTask && snapshotTask.lastDetail) {
+                    parseAndSetTelemetry(snapshotTask.lastDetail);
+                }
+
+                const diskTask = tasks.find(t => t.id === 'disk_space_check');
+                if (diskTask && diskTask.lastDetail) {
+                    parseAndSetDisk(diskTask.lastDetail);
+                }
+
+                const memoryTask = tasks.find(t => t.id === 'memory_audit');
+                if (memoryTask && memoryTask.lastDetail) {
+                    parseAndSetMemory(memoryTask.lastDetail);
+                }
+
+            } catch (e) {
+                console.error("Telemetry update error", e);
+            }
+        }
+
+        function renderSlots(slots) {
+            const container = document.getElementById('slot-list');
+            if (slots.length === 0) {
+                container.innerHTML = '<div style="color: var(--text-secondary); text-align: center;">No slots initialized</div>';
+                return;
+            }
+            container.innerHTML = slots.map(s => {
+                const isActive = s.status !== 'empty';
+                return `
+                    <div class="slot-item ${isActive ? 'active' : ''}">
+                        <div class="slot-header">
+                            <span class="slot-title">Slot #${s.id} (Port ${s.port})</span>
+                            <span class="slot-badge ${s.status}">${s.status.toUpperCase()}</span>
+                        </div>
+                        <div class="slot-detail">
+                            ${s.modelAlias ? `<div>Alias: <b>${s.modelAlias}</b></div>` : ''}
+                            ${s.pid ? `<div>PID: <b>${s.pid}</b></div>` : ''}
+                            ${s.error ? `<div style="color: var(--accent-red)">Error: ${s.error}</div>` : ''}
+                        </div>
+                        ${isActive ? `
+                            <div style="margin-top: 10px; text-align: right;">
+                                <button class="btn-action-small" onclick="unloadSlot('${s.modelAlias}')">Kill Server</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTasks(tasks) {
+            const container = document.getElementById('task-grid');
+            container.innerHTML = tasks.map(t => {
+                const statusClass = t.lastResult || 'neutral';
+                return `
+                    <div class="task-item ${statusClass}">
+                        <div class="task-info">
+                            <div class="task-name-row">
+                                <span class="task-name">${t.name}</span>
+                                ${t.lastResult ? `<span class="task-badge-small ${t.lastResult}">${t.lastResult.toUpperCase()}</span>` : ''}
+                            </div>
+                            <div class="task-desc">${t.lastDetail || 'Not run yet'}</div>
+                        </div>
+                        <div class="task-controls">
+                            <button class="btn-action-small" style="margin-right: 8px;" onclick="runTask('${t.id}')">Run Now</button>
+                            <label class="switch">
+                                <input type="checkbox" ${t.enabled ? 'checked' : ''} onchange="toggleTask('${t.id}')">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function runTask(taskId) {
+            try {
+                await fetch(`${API_BASE}/api/guardian/tasks/${taskId}/run`, { method: 'POST' });
+                updateTelemetry();
+            } catch (e) {
+                console.error("Failed to run task", e);
+            }
+        }
+
+        async function toggleTask(taskId) {
+            try {
+                await fetch(`${API_BASE}/api/guardian/tasks/${taskId}/toggle`, { method: 'POST' });
+                updateTelemetry();
+            } catch (e) {
+                console.error("Failed to toggle task", e);
+            }
+        }
+
+        async function loadModelsDropdown() {
+            try {
+                const res = await fetch(`${API_BASE}/api/models/local`);
+                const data = await res.json();
+                const select = document.getElementById('local-models-select');
+                if (data.models && data.models.length > 0) {
+                    select.innerHTML = data.models.map(m => `<option value="${m}">${m}.gguf</option>`).join('');
+                } else {
+                    select.innerHTML = '<option value="">No models detected</option>';
+                }
+            } catch (e) {
+                console.error("Failed to load local models dropdown", e);
+            }
+        }
+
+        async function loadModel() {
+            const select = document.getElementById('local-models-select');
+            const modelName = select.value;
+            if (!modelName) {
+                alert("Please select a local GGUF model");
+                return;
+            }
+
+            const alias = document.getElementById('model-alias-input').value.trim() || 'guardian';
+            const ctxSize = parseInt(document.getElementById('ctx-size-input').value) || 4096;
+            const gpuLayers = parseInt(document.getElementById('gpu-layers-input').value) || 32;
+
+            appendLogLine('supervisor', `Requesting server start for ${modelName}.gguf...`);
 
             try {
-                const res = await fetch(`${API_BASE}/api/tools/execute`, {
+                const res = await fetch(`${API_BASE}/api/supervisor/load`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ tool: toolName, action: 'status', params: {} })
+                    body: JSON.stringify({
+                        alias: alias,
+                        filename: modelName,
+                        context_size: ctxSize,
+                        gpu_layers: gpuLayers,
+                        flash_attn: true
+                    })
                 });
 
                 const data = await res.json();
-                addMessage(`${toolName} result: ${JSON.stringify(data.result, null, 2)}`, 'assistant');
+                if (data.status === 'success') {
+                    appendLogLine('supervisor', `Llama-server successfully spawned on port ${data.slot.port}`);
+                    updateTelemetry();
+                } else {
+                    appendLogLine('error', `Failed: ${JSON.stringify(data)}`);
+                }
             } catch (e) {
-                addMessage(`Error running ${toolName}: ${e.message}`, 'assistant violation');
+                appendLogLine('error', `Initialization failed: ${e.message}`);
             }
         }
 
-        // Initial load
-        loadApprovals();
+        async function unloadSlot(alias) {
+            if (!confirm(`Are you sure you want to stop model server process '${alias}'?`)) return;
 
-        // WebSocket for real-time updates
-        try {
-            const ws = new WebSocket(`ws://${location.host}/ws`);
-            ws.onmessage = (e) => {
-                const data = JSON.parse(e.data);
-                if (data.type === 'approval_required') {
-                    loadApprovals();
+            appendLogLine('supervisor', `Sending kill process signal for alias '${alias}'...`);
+
+            try {
+                const res = await fetch(`${API_BASE}/api/supervisor/unload`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ alias })
+                });
+
+                const data = await res.json();
+                if (data.status === 'success') {
+                    appendLogLine('supervisor', `Process terminated and slot released`);
+                    updateTelemetry();
                 }
-            };
-        } catch (e) {
-            console.log('WebSocket not available');
+            } catch (e) {
+                appendLogLine('error', `Failed to kill process: ${e.message}`);
+            }
         }
+
+        // --- Helpers for parsing details for telemetry graphs ---
+        function parseAndSetTelemetry(detail) {
+            // CPU: 8 cores (15.5% used), RAM: 64% used
+            const cpuMatch = detail.match(/CPU:\s+\d+\s+cores\s+\((\d+\.?\d*)%\s+used\)/);
+            if (cpuMatch) {
+                const cpuVal = cpuMatch[1];
+                document.getElementById('metric-cpu').innerText = `${cpuVal}%`;
+                document.getElementById('metric-cpu-bar').style.width = `${cpuVal}%`;
+            }
+        }
+
+        function parseAndSetDisk(detail) {
+            // Models directory: 1.2 GB (limit 15.0 GB)
+            const diskMatch = detail.match(/Models directory:\s+(\d+\.?\d*)\s+(GB|MB)/);
+            if (diskMatch) {
+                const diskVal = diskMatch[1];
+                const unit = diskMatch[2];
+                document.getElementById('metric-disk').innerText = `${diskVal} ${unit}`;
+                // Set percentage based on 15GB limit
+                let pct = unit === 'GB' ? (parseFloat(diskVal) / 15.0) * 100 : 0.5;
+                document.getElementById('metric-disk-bar').style.width = `${Math.min(pct, 100)}%`;
+            }
+        }
+
+        function parseAndSetMemory(detail) {
+            // RSS=120 MB (limit 1024 MB)
+            const memMatch = detail.match(/RSS=(\d+)\s+MB/);
+            if (memMatch) {
+                const memVal = memMatch[1];
+                document.getElementById('metric-ram').innerText = `${memVal} MB`;
+                // Set percentage based on 1024MB limit
+                let pct = (parseInt(memVal) / 1024.0) * 100;
+                document.getElementById('metric-ram-bar').style.width = `${Math.min(pct, 100)}%`;
+            }
+        }
+
+        function appendLogLine(op, text) {
+            const terminal = document.getElementById('log-terminal');
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            line.innerHTML = `
+                <span class="timestamp">[${new Date().toLocaleTimeString()}]</span>
+                <span class="op">&lt;${op}&gt;</span>
+                <span class="text">${text}</span>
+            `;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // --- WebSocket connection ---
+        function initWebSocket() {
+            try {
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+                
+                ws.onmessage = (e) => {
+                    const data = JSON.parse(e.data);
+                    if (data.type === 'approval_required') {
+                        loadApprovals();
+                    } else if (data.type === 'guardian_event') {
+                        appendLogLine(data.event.operation, data.event.detail);
+                    }
+                };
+
+                ws.onclose = () => {
+                    console.log('WebSocket disconnected, retrying in 5s...');
+                    setTimeout(initWebSocket, 5000);
+                };
+            } catch (e) {
+                console.error("WS error", e);
+            }
+        }
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            loadApprovals();
+            loadModelsDropdown();
+            updateTelemetry();
+            initWebSocket();
+
+            // Refresh status periodically
+            statusInterval = setInterval(updateTelemetry, 10000);
+        });
     </script>
 </body>
 

@@ -161,11 +161,16 @@ def create_app() -> "FastAPI":
     )
 
     # State
+    from agent0core.core.llama_cpp_supervisor import LlamaCppSupervisor
+    from agent0core.core.guardian_agent import GuardianAgent
+
     app.state.agent = None
     app.state.enforcer = PrimeDirectiveEnforcer()
     app.state.approval_queue = ApprovalQueue()
     app.state.chat_history: list[MessageResponse] = []
     app.state.websockets: list[WebSocket] = []
+    app.state.supervisor = LlamaCppSupervisor()
+    app.state.guardian = GuardianAgent(app.state.supervisor)
 
     # ========================================================================
     # Lifecycle
@@ -175,7 +180,35 @@ def create_app() -> "FastAPI":
     async def startup():
         """Initialize agent on startup."""
         app.state.agent = create_agent()
+        app.state.guardian.start()
+
+        def on_event(event):
+            async def run_broadcast():
+                for ws in app.state.websockets:
+                    try:
+                        await ws.send_json({
+                            "type": "guardian_event",
+                            "event": event
+                        })
+                    except Exception:
+                        pass
+            try:
+                loop = asyncio.get_running_loop()
+                loop.create_task(run_broadcast())
+            except RuntimeError:
+                pass
+
+        app.state.guardian.add_event_listener(on_event)
         logger.info(f"Agent0Core API started - Agent: {app.state.agent.name}")
+
+    @app.on_event("shutdown")
+    async def shutdown():
+        """Shutdown supervisor and guardian."""
+        if app.state.guardian:
+            app.state.guardian.stop()
+        if app.state.supervisor:
+            app.state.supervisor.shutdown_all()
+        logger.info("Agent0Core API shutdown successfully")
 
     # ========================================================================
     # Prime Directive Endpoints
@@ -196,6 +229,82 @@ def create_app() -> "FastAPI":
         if app.state.agent:
             return {"entries": app.state.agent.get_audit_log()}
         return {"entries": []}
+
+    # ========================================================================
+    # Guardian & Supervisor Endpoints
+    # ========================================================================
+
+    @app.get("/api/guardian/status")
+    async def get_guardian_status():
+        """Retrieve Guardian agent system status."""
+        return app.state.guardian.get_status()
+
+    @app.get("/api/guardian/tasks")
+    async def list_guardian_tasks():
+        """List all 22 Guardian diagnostic tasks."""
+        return [t.to_dict() for t in app.state.guardian.tasks]
+
+    @app.post("/api/guardian/tasks/{task_id}/run")
+    async def run_guardian_task(task_id: str):
+        """Immediately trigger a specific Guardian task."""
+        result = await app.state.guardian.run_task(task_id)
+        if not result:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return result
+
+    @app.post("/api/guardian/tasks/{task_id}/toggle")
+    async def toggle_guardian_task(task_id: str):
+        """Toggle enabled state of a Guardian task."""
+        result = app.state.guardian.toggle_task(task_id)
+        if not result:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return result
+
+    @app.get("/api/supervisor/slots")
+    async def get_supervisor_slots():
+        """Get the state of all llama-server process slots."""
+        return app.state.supervisor.get_snapshot()
+
+    @app.get("/api/models/local")
+    async def get_local_models():
+        """Scan models/ folder for available GGUF files."""
+        return {"models": app.state.supervisor.discover_local_models()}
+
+    class LoadModelPayload(BaseModel):
+        alias: str
+        filename: str
+        context_size: int | None = None
+        gpu_layers: int | None = None
+        flash_attn: bool = False
+
+    @app.post("/api/supervisor/load")
+    async def load_model_to_slot(payload: LoadModelPayload):
+        """Load a model into an available process slot."""
+        path = app.state.supervisor.get_model_path(payload.filename)
+        if not path:
+            raise HTTPException(status_code=404, detail=f"Model {payload.filename} not found in models/ folder")
+        try:
+            slot_info = await app.state.supervisor.load_model(
+                model_path=path,
+                model_alias=payload.alias,
+                ctx_size=payload.context_size,
+                gpu_layers=payload.gpu_layers,
+                flash_attn=payload.flash_attn
+            )
+            return {"status": "success", "slot": slot_info}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+
+    class UnloadModelPayload(BaseModel):
+        alias: str
+
+    @app.post("/api/supervisor/unload")
+    async def unload_model_from_slot(payload: UnloadModelPayload):
+        """Terminate model process and empty the slot."""
+        success = app.state.supervisor.unload_model(payload.alias)
+        if not success:
+            raise HTTPException(status_code=404, detail=f"Active model alias '{payload.alias}' not found in any slot")
+        return {"status": "success", "message": f"Model '{payload.alias}' successfully unloaded"}
 
     # ========================================================================
     # Chat Endpoints

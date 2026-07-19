@@ -402,12 +402,94 @@ class OpenAIBackend(LLMBackend):
         }
 
 
+class LlamaCppBackend(LLMBackend):
+    """
+    Connects to llama-server spawned by LlamaCppSupervisor.
+    """
+
+    name = "llama_cpp"
+    description = "Local llama-server (via LlamaCppSupervisor)"
+
+    def __init__(self, port: int = 8081, base_url: str = "http://localhost"):
+        self.port = port
+        self.base_url = base_url
+        logger.info(f"LlamaCppBackend created, targeting {base_url}:{port}")
+
+    async def generate(
+        self,
+        prompt: str,
+        system_prompt: str = "",
+        history: list[dict[str, str]] | None = None
+    ) -> str:
+        """Generate using llama-server OpenAPI endpoint."""
+        try:
+            import aiohttp
+
+            # Build messages
+            messages = []
+            if system_prompt:
+                messages.append({"role": "system", "content": system_prompt})
+
+            if history:
+                for msg in history[-10:]:
+                    messages.append({
+                        "role": msg.get("role", "user"),
+                        "content": msg.get("content", "")
+                    })
+
+            messages.append({"role": "user", "content": prompt})
+
+            url = f"{self.base_url}:{self.port}/v1/chat/completions"
+
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    url,
+                    json={
+                        "messages": messages,
+                        "stream": False,
+                        "temperature": 0.7,
+                        "max_tokens": 1024
+                    },
+                    timeout=aiohttp.ClientTimeout(total=90)
+                ) as resp:
+                    if resp.status == 200:
+                        data = await resp.json()
+                        return data.get("choices", [{}])[0].get("message", {}).get("content", "")
+                    else:
+                        err_text = await resp.text()
+                        return f"llama-server error: {resp.status} - {err_text}"
+        except ImportError:
+            return "Error: aiohttp not installed for LlamaCppBackend"
+        except Exception as e:
+            logger.error(f"LlamaCppBackend error: {e}")
+            return f"Error connecting to llama-server on port {self.port}: {e}"
+
+    def is_available(self) -> bool:
+        # Check if port is listening
+        try:
+            import socket
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.settimeout(1.0)
+                return s.connect_ex(("127.0.0.1", self.port)) == 0
+        except Exception:
+            return False
+
+    def get_info(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "description": self.description,
+            "port": self.port,
+            "available": self.is_available()
+        }
+
+
 # Registry of available backends
 BACKEND_REGISTRY: dict[str, type] = {
     "triad": TriadBackend,
     "b3_native": B3NativeBackend,
     "ollama": OllamaBackend,
     "openai": OpenAIBackend,
+    "llama_cpp": LlamaCppBackend,
 }
 
 
@@ -416,7 +498,7 @@ def get_backend(name: str, **kwargs) -> LLMBackend:
     Get a backend instance by name.
 
     Args:
-        name: Backend name (triad, ollama, openai)
+        name: Backend name (triad, ollama, openai, llama_cpp)
         **kwargs: Backend-specific configuration
 
     Returns:
@@ -436,3 +518,4 @@ def list_backends() -> list[dict[str, str]]:
         {"name": name, "description": cls.description}
         for name, cls in BACKEND_REGISTRY.items()
     ]
+
