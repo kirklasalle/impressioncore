@@ -12,6 +12,24 @@
 
 # Changelog
 
+## [Unreleased] - 2026-07-19
+
+### Added
+
+- WS1: Added `src/core/config/offering_manifest.py` — offering preset schema validator with startup validation.
+- WS1: Added 43 new tests for offering preset schema and manifest validation (`test_offering_presets.py`, `test_offering_manifest.py`).
+- WS5: Ratcheted coverage gate from 9% to 10% — M1 quality gate target reached. 649+ tests collected.
+
+### Security
+
+- WS6: Replaced placeholder API key verification in `src/services/text_generation/api.py` with `hmac.compare_digest` constant-time comparison.
+- WS6: Added development/production mode split — auth bypassed when `IMPRESSIONCORE_API_KEY` env var is not set.
+
+### Documentation
+
+- Updated SAP Status Audit with current session progress.
+- Updated canonical changelog with M1 execution deliverables.
+
 ## [Unreleased] - 2026-07-18
 
 ### Added

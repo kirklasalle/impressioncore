@@ -246,9 +246,9 @@ omit = [
 ]
 
 [tool.coverage.report]
-fail_under = 9            # ratchet: 0.96% → 1.59% → 8.20% → 9.01% → 9.25% (2026-07-12)
-                           # 522 tests passing, 59 new tests added for config, CORS, runtime mode,
-                           # api_state, config_manager; target 10% next, matches CI gate
+fail_under = 10           # ratchet: 0.96% → 1.59% → 8.20% → 9.01% → 9.25% → 10% (2026-07-18)
+                           # 649+ tests collected, 43 new WS1/WS5 tests added for offering manifest
+                           # schema validation and preset verification; M1 quality gate target reached
 show_missing = true
 skip_empty = true
 

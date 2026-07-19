@@ -152,12 +152,36 @@ def get_service() -> TextGenerationService:
 
 
 async def verify_api_key(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """Verify API key (placeholder for production implementation)."""
-    # TODO: Implement actual API key verification
-    if credentials and credentials.credentials:
-        # Placeholder verification
-        return credentials.credentials
-    return None
+    """Verify API key using constant-time comparison.
+
+    Reads the expected key from IMPRESSIONCORE_API_KEY environment variable.
+    When no env var is set, authentication is bypassed (development mode).
+    """
+    import hmac
+    import os
+
+    expected_key = os.environ.get("IMPRESSIONCORE_API_KEY", "")
+
+    # Development mode: no key configured → skip auth
+    if not expected_key:
+        if credentials and credentials.credentials:
+            return credentials.credentials
+        return None
+
+    # Production mode: require valid key with constant-time comparison
+    if not credentials or not credentials.credentials:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="API key required",
+        )
+
+    if not hmac.compare_digest(credentials.credentials, expected_key):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid API key",
+        )
+
+    return credentials.credentials
 
 
 # API Endpoints
