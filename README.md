@@ -191,9 +191,9 @@ ImpressionCore features a state-of-the-art **Glassmorphism Web Builder & Live Vi
 
 ---
 
-## 📸 **Actual ImpressionCore Builder Screenshots**
+## 📸 **Actual ImpressionCore Builder & Runtime Screenshots**
 
-Here is the live ImpressionCore Model Builder interface in production:
+Here is the live ImpressionCore Model Builder & Runtime environment in production:
 
 ### **1. Unified Builder & Live Hardware Configuration**
 *Live hardware preflight, GPU memory allocation, and pipeline step controller (`http://127.0.0.1:5000/unified_builder`):*
@@ -222,38 +222,22 @@ Here is the live ImpressionCore Model Builder interface in production:
 
 ![ImpressionCore PyTorch Code Mapper](docs/assets/builder_live_code_mapper.png)
 
----
+### **6. Live Model Chat & Conversational Interface**
+*Live model assistant interface for querying architecture parameters, monitoring training, and running prompts:*
 
-## 🖥️ **Actual ImpressionCore Desktop Application Screenshots**
+![ImpressionCore Model Chat Interface](docs/assets/builder_live_chat.png)
 
-Here is the full-stack ImpressionCore Desktop runtime application in operation:
+### **7. Interactive Configuration & VRAM Optimization**
+*Dynamic parameter sliders for hidden size, layers, and context length with real-time hardware impact scoring:*
 
-### **1. ImpressionCore Desktop Environment**
-*Full multi-panel operator desktop environment with live sensory controls, telemetry, and neural thought monitoring:*
+![ImpressionCore Interactive Configuration](docs/assets/builder_live_interactive_config.png)
 
-![ImpressionCore Application Desktop](docs/assets/screenshot19-Desktop-screenshot.png)
-
-### **2. Live LLM Reasoning & Triad Dialogue**
-*Desktop snapshot of real-time conversational inference and cognitive triad integration:*
-
-![ImpressionCore Desktop LLM Dialogue](docs/assets/screenshot30-snapshot-LLMresponse.png)
-
-### **3. Real-Time Neural Thought Stream**
-*Live stream of internal cognitive associations, episodic memories, and reasoning tokens:*
-
-![ImpressionCore Neural Thought Stream](docs/assets/screenshot31-neural-thought-stream.png)
-
-### **4. Real-Time Digital Twin Avatar Synthesis**
-*Real-time facial rendering, Audio2Face synthesis, and audio-reactive avatar feedback:*
-
-![ImpressionCore Digital Twin Avatar](docs/assets/screenshot36-avatar-response-01.png)
-
-### **5. Multimodal Vision, Depth & Sensor Tracking**
+### **8. Multimodal Vision, Depth & Sensor Tracking**
 *Sensor fusion tracking array incorporating camera streams, depth sensors, and spatial acoustic positioning:*
 
 ![ImpressionCore Multimodal Vision Tracking](docs/assets/screenshot53-frontend-kinect.png)
 
-### **6. Consumer Hardware Validation (<4GB VRAM on GTX 1050 Ti)**
+### **9. Consumer Hardware Validation (<4GB VRAM on GTX 1050 Ti)**
 *Task Manager verification proving stable GPU memory utilization under the 4GB budget during training and inference:*
 
 ![ImpressionCore GPU Performance Screenshot](docs/assets/TaskManager-GPU_Performance_Screenshot.png)

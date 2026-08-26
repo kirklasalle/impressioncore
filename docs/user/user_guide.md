@@ -92,6 +92,8 @@ Navigate to **Data Preparation** (`/data-prep`):
 2. Click **Scan Directory** to index total files, byte counts, and encoding validation.
 3. Verify that your text files are UTF-8 encoded and formatted for sequence learning.
 
+![Live Data Preparation Interface](../assets/builder_live_data_prep.png)
+
 ---
 
 ### Step 4: Tokenizer Configuration
@@ -155,11 +157,9 @@ Navigate to **Checkpoints** (`/checkpoints`):
 Navigate to **Inference / Chat** (`/inference` or `/chat`):
 1. Select your trained checkpoint or active model.
 2. Set Generation Parameters: `Temperature=0.7`, `Top-P=0.90`, `Max Tokens=128`.
-3. Receive real-time generated responses and monitor the internal neural thought stream.
+3. Receive real-time generated responses from your locally distilled model.
 
-![ImpressionCore Desktop LLM Dialogue](../assets/screenshot30-snapshot-LLMresponse.png)
-
-![ImpressionCore Neural Thought Stream](../assets/screenshot31-neural-thought-stream.png)
+![Live Model Chat Interface](../assets/builder_live_chat.png)
 
 ---
 
@@ -172,21 +172,13 @@ Navigate to **Deployment** (`/deployment`):
 
 ---
 
-## 🖥️ 5. ImpressionCore Application Desktop & Multimodal Sensors
+## 🖥️ 5. Multimodal Sensor Tracking & Cognitive Orchestration
 
-The ImpressionCore Desktop runtime delivers real-time conversational intelligence, digital twin avatars, and sensor tracking:
+The ImpressionCore runtime delivers multimodal sensor tracking, audio-language integration, and spatial depth positioning:
 
-![ImpressionCore Application Desktop](../assets/screenshot19-Desktop-screenshot.png)
-
-### Real-Time Digital Twin Avatar & Speech Synthesis
-![ImpressionCore Digital Twin Avatar](../assets/screenshot36-avatar-response-01.png)
-
-### Multimodal Vision, Depth & Sensor Tracking
 ![ImpressionCore Multimodal Vision Tracking](../assets/screenshot53-frontend-kinect.png)
 
----
-
-## 🧠 6. Brain-Triad Cognitive Orchestration & Governance
+### Brain-Triad Cognitive Orchestration & Governance
 
 ![ImpressionCore Brain-Triad Cognitive Orchestration](../assets/cognitive_triad_orchestration.png)
 
@@ -199,7 +191,7 @@ ImpressionCore's Brain-Triad operates with three distinct computational planes:
 
 ---
 
-## 💻 7. Automated Python Verification Runner
+## 💻 6. Automated Python Verification Runner
 
 You can execute the entire 9-step pipeline automatically with a single command:
 ```powershell
@@ -209,7 +201,7 @@ This script exercises all APIs, defines the model, trains it, runs inference, be
 
 ---
 
-## 📚 8. Related Documentation
+## 📚 7. Related Documentation
 
 - **[Architecture Blueprint](../developer/ARCHITECTURE.md)**
 - **[Model Developer Guide](../developer/model_developer_guide.md)**
