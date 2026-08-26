@@ -19,12 +19,14 @@ from pathlib import Path
 AGENT0CORE_ROOT = Path(__file__).parent
 PROJECT_ROOT = AGENT0CORE_ROOT.parent
 PRIME_DIRECTIVE_PATH = PROJECT_ROOT / "Prime_Directive.txt"
+if not PRIME_DIRECTIVE_PATH.exists():
+    PRIME_DIRECTIVE_PATH = PROJECT_ROOT / "Permanent_Active_Directives.txt"
 MCP_CONFIG_PATH = PROJECT_ROOT / ".mcp" / "mcp-settings.json"
 
 # Verify Prime Directive exists
 if not PRIME_DIRECTIVE_PATH.exists():
     raise FileNotFoundError(
-        f"Prime Directive not found at {PRIME_DIRECTIVE_PATH}. "
+        f"Prime Directive not found at {PROJECT_ROOT / 'Permanent_Active_Directives.txt'}. "
         "Agent0Core requires the Prime Directive for ethical governance."
     )
 

@@ -83,7 +83,52 @@ Notes:
 
 import logging
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
+
+def validate_config(config):
+    """Validate model configuration parameters."""
+    errors = []
+    required = ['numLayers', 'hiddenSize', 'numHeads', 'ffnDim', 'dropoutRate', 'maxSeqLength', 'enableLoRA']
+    for field in required:
+        if field not in config:
+            errors.append(f"Missing required field: {field}")
+    if errors:
+        return {'isValid': False, 'message': '; '.join(errors)}
+        
+    # Check ranges
+    if not (1 <= config['numLayers'] <= 48):
+        errors.append("Layers must be 1-48")
+    if config['hiddenSize'] % 64 != 0:
+        errors.append("Hidden size must be multiple of 64")
+    if not (1 <= config['numHeads'] <= 32):
+        errors.append("Heads must be 1-32")
+    if config['ffnDim'] % 128 != 0:
+        errors.append("FFN dimension must be multiple of 128")
+    if not (0 <= config['dropoutRate'] <= 1):
+        errors.append("Dropout rate must be 0-1")
+    if config['maxSeqLength'] % 128 != 0:
+        errors.append("Seq length must be multiple of 128")
+        
+    if errors:
+        return {'isValid': False, 'message': '; '.join(errors)}
+    return {'isValid': True}
+
+def calculate_memory_requirement(config):
+    """Estimate model memory requirements in bytes."""
+    hidden_size = config.get('hiddenSize', 768)
+    num_layers = config.get('numLayers', 12)
+    ffn_dim = config.get('ffnDim', 3072)
+    seq_length = config.get('maxSeqLength', 1024)
+    
+    params = (4 * hidden_size * hidden_size + 2 * hidden_size * ffn_dim) * num_layers + seq_length * hidden_size
+    memory_bytes = params * 4
+    if config.get('enableLoRA', False):
+        memory_bytes += (hidden_size * 8 * 2) * num_layers * 4
+    return memory_bytes
+
+def process_model_update(message):
+    """Process real-time model updates over WebSocket."""
+    return f"Processed: {message}"
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -173,7 +218,7 @@ def init_model_definition(app, sock):
         try:
             return jsonify({
                 'status': 'success',
-                'templates': MODEL_TEMPLATES
+                'templates': current_app.config.get('MODEL_TEMPLATES', {})
             })
         except Exception as e:
             logger.error(f"Template retrieval error: {e!s}")

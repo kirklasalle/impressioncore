@@ -4,8 +4,13 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-# Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# Add project root and src to path
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+SRC_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if SRC_ROOT not in sys.path:
+    sys.path.insert(0, SRC_ROOT)
 
 # 1. Save originals, mock heavy dependencies for import, then restore
 _mock_keys = [

@@ -3,48 +3,261 @@
 {% block title %}Model Architecture Visualization{% endblock %}
 
 {% block styles %}
+<!-- Vis.js network visualization library -->
+<script src="{{ url_for('static', filename='js/vendor/vis-network.min.js') }}"></script>
+
+<!-- 3D Force Graph library -->
+<script src="{{ url_for('static', filename='js/vendor/3d-force-graph.min.js') }}"></script>
+
+<!-- Chart.js library -->
+<script src="{{ url_for('static', filename='js/vendor/chart.min.js') }}"></script>
+
+<!-- Prism.js Syntax Highlighter CSS & JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/prism-tomorrow.min.css') }}">
+<script src="{{ url_for('static', filename='js/vendor/prism.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/prism-python.min.js') }}"></script>
+
 <style>
     .visualization-container {
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        padding: 15px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 0;
         margin-top: 15px;
-        min-height: 400px;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .visualization-container.loading::after {
+        content: '';
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--border-color);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        z-index: 10;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .controls-card {
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .controls-card .card-header,
+    .viz-panel .card-header,
+    .info-card .card-header,
+    .inspector-card .card-header {
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.85rem 1.25rem;
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    .memory-tag {
+        font-size: 0.75rem;
+        color: #0a0e17;
+        padding: 2px 10px;
+        border-radius: 10px;
+        background-color: var(--accent-success);
+        font-weight: 700;
+    }
+
+    /* Tabs formatting */
+    .nav-tabs {
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .nav-tabs .nav-link {
+        color: var(--text-muted) !important;
+        border: 1px solid transparent !important;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.6rem 1.2rem;
+        transition: var(--transition);
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: var(--text-primary) !important;
+        background-color: rgba(56, 189, 248, 0.05) !important;
+        border-color: transparent !important;
+    }
+
+    .nav-tabs .nav-link.active {
+        color: var(--accent-primary) !important;
+        background-color: var(--bg-secondary) !important;
+        border-color: var(--border-color) var(--border-color) transparent !important;
+    }
+
+    /* Form element overrides for dark theme */
+    .form-select,
+    .form-control,
+    .form-select option,
+    select option {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    .form-select,
+    .form-control {
+        border-color: var(--border-color) !important;
+    }
+
+    .form-select:focus,
+    .form-control:focus {
+        background-color: var(--bg-card) !important;
+        color: var(--text-primary) !important;
+        border-color: var(--accent-primary) !important;
+        box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.16) !important;
+    }
+
+    .form-check-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--accent-primary);
+        border-color: var(--accent-primary);
+    }
+
+    /* Table overrides for dark theme to guarantee readability */
+    .table {
+        color: var(--text-primary) !important;
+        background-color: transparent !important;
+        --bs-table-bg: transparent !important;
+        border-color: var(--border-color) !important;
+    }
+
+    .table th {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        font-size: 0.82rem;
+        border-color: var(--border-color) !important;
+        background-color: var(--bg-secondary) !important;
+        --bs-table-bg: var(--bg-secondary) !important;
+    }
+
+    .table td {
+        color: var(--text-secondary) !important;
+        border-color: var(--border-color) !important;
+        background-color: transparent !important;
+        --bs-table-bg: transparent !important;
+        font-size: 0.875rem;
+        padding: 0.6rem 0.85rem;
+    }
+
+    .info-card ul li {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .card-footer {
+        background: var(--bg-secondary) !important;
+        border-top: 1px solid var(--border-color) !important;
+        padding: 0.85rem 1.25rem;
+    }
+
+    /* Vis.js network tooltip customization */
+    div.vis-tooltip {
+        background-color: #0f172a !important;
+        border: 1px solid var(--border-accent) !important;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif !important;
+        padding: 8px 12px !important;
+        border-radius: var(--radius-sm) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Interactive Graph controls overlay */
+    .graph-controls {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        z-index: 5;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid var(--border-color);
+        padding: 5px 10px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        gap: 8px;
+    }
+
+    .graph-controls button {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: 4px;
+        transition: var(--transition);
     }
-    
-    .visualization-container.loading {
-        background-image: url('/static/img/loading-spinner.gif');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 50px;
+
+    .graph-controls button:hover {
+        color: var(--accent-primary);
+        background: var(--bg-hover);
     }
-    
-    .controls-card {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    /* Code Mapper styles */
+    pre[class*="language-"] {
+        margin: 0 !important;
+        padding: 1.2rem !important;
+        border-radius: 0 0 var(--radius-sm) var(--radius-sm) !important;
+        background: #0d1117 !important;
+        border: none !important;
+        max-height: 480px;
+        overflow-y: auto;
     }
-    
-    .visualization-image {
-        max-width: 100%;
-        max-height: 800px;
+
+    /* Shape Tracer flow items */
+    .shape-flow-item {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: var(--transition);
     }
-    
-    .memory-tag {
+
+    .shape-flow-item:hover {
+        border-color: var(--border-accent);
+        background: var(--bg-hover);
+    }
+
+    .shape-flow-arrow {
+        text-align: center;
+        margin-bottom: 10px;
+        color: var(--accent-primary);
+        font-size: 1.1rem;
+    }
+
+    .badge-shape {
+        background: var(--accent-primary);
+        color: #0a0e17;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
         font-size: 0.8rem;
-        color: #fff;
-        padding: 2px 8px;
-        border-radius: 10px;
-        background-color: #28a745;
-    }
-    
-    .memory-tag.medium {
-        background-color: #ffc107;
-    }
-    
-    .memory-tag.high {
-        background-color: #dc3545;
+        padding: 4px 8px;
+        border-radius: 4px;
     }
 </style>
 {% endblock %}
@@ -57,9 +270,9 @@
             <li class="breadcrumb-item active" aria-current="page">Model Architecture</li>
         </ol>
     </nav>
-    
+
     <h1 class="mb-3">Model Architecture Visualization</h1>
-    
+
     <div class="row">
         <!-- Controls Panel -->
         <div class="col-lg-3">
@@ -68,7 +281,7 @@
                     <span>Controls</span>
                     <span class="memory-tag low">Low VRAM</span>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="padding: 1.25rem;">
                     <form id="architecture-form">
                         <div class="mb-3">
                             <label for="model-select" class="form-label">Select Model</label>
@@ -79,7 +292,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Visualization Type</label>
                             <div class="form-check">
@@ -95,91 +308,202 @@
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="show-parameters" checked>
                                 <label class="form-check-label" for="show-parameters">Show Parameter Counts</label>
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary w-100">Generate Visualization</button>
                     </form>
                 </div>
             </div>
-            
+
             <!-- Memory Information Card -->
-            <div class="card mt-3">
+            <div class="card info-card mt-3">
                 <div class="card-header">Memory Information</div>
-                <div class="card-body">
-                    <p class="mb-2"><i class="fas fa-info-circle me-2"></i>Architecture visualization is optimized for low memory usage and is suitable for systems with limited VRAM (4GB).</p>
+                <div class="card-body" style="padding: 1.25rem;">
+                    <p class="mb-2"><i class="fas fa-info-circle me-2" style="color: var(--accent-primary);"></i>Architecture visualization is optimized for low memory usage and is suitable for systems with limited VRAM (4GB).</p>
                     <ul class="list-unstyled mb-0">
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Static representation</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>No forward pass required</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i>Efficient graph layout algorithm</li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--accent-success);"></i>Interactive graph exploration</li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--accent-success);"></i>Selectable 2D/3D presentations</li>
+                        <li><i class="fas fa-check-circle me-2" style="color: var(--accent-success);"></i>Live PyTorch code mapping</li>
                     </ul>
                 </div>
             </div>
         </div>
-        
-        <!-- Visualization Panel -->
-        <div class="col-lg-9">
-            <div class="card">
-                <div class="card-header">Visualization</div>
-                <div class="card-body">
+
+        <!-- Visualization Canvas (Left) -->
+        <div class="col-lg-5">
+            <div class="card viz-panel h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Visualization</span>
+                    <!-- View toggle tabs -->
+                    <ul class="nav nav-tabs border-0" id="viz-mode-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="mode-2d-tab" data-bs-toggle="tab" type="button" role="tab">2D Flow</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mode-3d-tab" data-bs-toggle="tab" type="button" role="tab">3D Orbit</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body p-0 position-relative">
                     <div id="visualization-container" class="visualization-container">
-                        <div class="text-center text-muted">
-                            <i class="fas fa-project-diagram fa-4x mb-3"></i>
-                            <p>Select a model and click "Generate Visualization" to create an architecture diagram.</p>
+                        <!-- Placeholder -->
+                        <div class="text-center w-100" style="color: var(--text-muted); position: absolute; top: 40%;" id="placeholder-content">
+                            <i class="fas fa-project-diagram fa-4x mb-3" style="opacity: 0.5;"></i>
+                            <p>Select a model and click "Generate Visualization".</p>
                         </div>
+                        
+                        <!-- 2D Canvas Container -->
+                        <div id="2d-graph" style="width: 100%; height: 100%;"></div>
+                        
+                        <!-- 3D Canvas Container -->
+                        <div id="3d-graph" style="width: 100%; height: 100%;" class="d-none"></div>
                     </div>
-                    
-                    <div class="mt-3 d-none" id="visualization-details">
-                        <h4>Model Details</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Total Parameters:</th>
-                                        <td id="total-params">-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Trainable Parameters:</th>
-                                        <td id="trainable-params">-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Model Type:</th>
-                                        <td id="model-type">-</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <table class="table table-sm">
-                                    <tr>
-                                        <th>Layers:</th>
-                                        <td id="layer-count">-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Memory Efficient:</th>
-                                        <td id="memory-efficient">-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Input Shapes:</th>
-                                        <td id="input-shapes">-</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+
+                    <!-- Graph manipulation overlay buttons -->
+                    <div class="graph-controls d-none" id="graph-controls-panel">
+                        <button id="zoom-in-btn" title="Zoom In"><i class="fas fa-plus"></i></button>
+                        <button id="zoom-out-btn" title="Zoom Out"><i class="fas fa-minus"></i></button>
+                        <button id="fit-btn" title="Fit to Screen"><i class="fas fa-expand"></i></button>
+                        <button id="physics-toggle-btn" title="Toggle Physics Animation"><i class="fas fa-pause"></i></button>
                     </div>
                 </div>
-                
+
                 <div class="card-footer d-flex justify-content-between">
                     <button class="btn btn-secondary" id="download-btn" disabled>
-                        <i class="fas fa-download me-1"></i> Download
+                        <i class="fas fa-download me-1"></i> Save Image
                     </button>
                     <button class="btn btn-info" id="details-btn" disabled>
                         <i class="fas fa-info-circle me-1"></i> Export Details
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Inspector Panel (Right) -->
+        <div class="col-lg-4">
+            <div class="card inspector-card h-100">
+                <div class="card-header p-0">
+                    <ul class="nav nav-tabs border-0" id="inspector-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#tab-details" type="button" role="tab">Details</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="code-tab" data-bs-toggle="tab" data-bs-target="#tab-code" type="button" role="tab">Code Mapper</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tracer-tab" data-bs-toggle="tab" data-bs-target="#tab-tracer" type="button" role="tab">Shape Tracer</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#tab-charts" type="button" role="tab">Footprint</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-body" style="padding: 1.25rem;">
+                    <div class="tab-content" id="inspector-tab-content">
+                        
+                        <!-- TAB 1: MODEL DETAILS -->
+                        <div class="tab-pane fade show active" id="tab-details" role="tabpanel">
+                            <div id="details-content-empty" class="text-center py-5" style="color: var(--text-muted);">
+                                <i class="fas fa-info-circle fa-2x mb-2" style="opacity: 0.5;"></i>
+                                <p>Generate a visualization to load model specifications.</p>
+                            </div>
+                            
+                            <div class="d-none" id="details-content-loaded">
+                                <h4 class="mb-3" id="inspector-model-name" style="color: var(--text-primary); font-weight: 700;">-</h4>
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <th>Total Parameters:</th>
+                                            <td id="total-params">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Trainable Parameters:</th>
+                                            <td id="trainable-params">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Model Type:</th>
+                                            <td id="model-type">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Layers Count:</th>
+                                            <td id="layer-count">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th>VRAM Profile:</th>
+                                            <td>Yes (Flash Attention)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <h5 class="mt-4 mb-2" style="color: var(--text-primary); font-weight: 600; font-size: 0.9rem;">Submodules</h5>
+                                <div style="max-height: 220px; overflow-y: auto;">
+                                    <table class="table table-sm table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Module</th>
+                                                <th>Type</th>
+                                                <th>Parameters</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="submodule-table-body">
+                                            <!-- Dynamically populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 2: CODE MAPPER -->
+                        <div class="tab-pane fade" id="tab-code" role="tabpanel">
+                            <div id="code-content-empty" class="text-center py-5" style="color: var(--text-muted);">
+                                <i class="fas fa-code fa-2x mb-2" style="opacity: 0.5;"></i>
+                                <p>Model definition snippet will load here.</p>
+                            </div>
+                            <div class="d-none" id="code-content-loaded">
+                                <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color);">
+                                    <pre class="line-numbers"><code class="language-python" id="pytorch-code-container"># PyTorch Model Definition</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 3: SHAPE TRACER -->
+                        <div class="tab-pane fade" id="tab-tracer" role="tabpanel">
+                            <h5 class="mb-3" style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">Interactive Dimension flow</h5>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label class="form-label" style="font-size:0.75rem;">Batch Size</label>
+                                    <input type="number" class="form-control" id="trace-batch" value="8" min="1">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" style="font-size:0.75rem;">Seq Length</label>
+                                    <input type="number" class="form-control" id="trace-seq" value="1024" min="1">
+                                </div>
+                            </div>
+
+                            <div style="max-height: 400px; overflow-y: auto; padding-right: 5px;" id="tracer-flow-container">
+                                <!-- Dynamic tracer steps -->
+                            </div>
+                        </div>
+
+                        <!-- TAB 4: FOOTPRINT CHART -->
+                        <div class="tab-pane fade" id="tab-charts" role="tabpanel">
+                            <div id="chart-content-empty" class="text-center py-5" style="color: var(--text-muted);">
+                                <i class="fas fa-chart-bar fa-2x mb-2" style="opacity: 0.5;"></i>
+                                <p>Parameter footprint chart will load here.</p>
+                            </div>
+                            <div class="d-none" id="chart-content-loaded" style="position: relative; height: 420px; width: 100%;">
+                                <canvas id="parameter-chart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,31 +516,77 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('architecture-form');
         const vizContainer = document.getElementById('visualization-container');
+        const placeholder = document.getElementById('placeholder-content');
         const downloadBtn = document.getElementById('download-btn');
         const detailsBtn = document.getElementById('details-btn');
-        const detailsSection = document.getElementById('visualization-details');
-        
+        const graphControls = document.getElementById('graph-controls-panel');
+
+        // Toggle elements
+        const detailsEmpty = document.getElementById('details-content-empty');
+        const detailsLoaded = document.getElementById('details-content-loaded');
+        const codeEmpty = document.getElementById('code-content-empty');
+        const codeLoaded = document.getElementById('code-content-loaded');
+        const chartEmpty = document.getElementById('chart-content-empty');
+        const chartLoaded = document.getElementById('chart-content-loaded');
+
+        // View Mode tabs
+        const mode2dTab = document.getElementById('mode-2d-tab');
+        const mode3dTab = document.getElementById('mode-3d-tab');
+        const container2D = document.getElementById('2d-graph');
+        const container3D = document.getElementById('3d-graph');
+
+        // Tracer inputs
+        const traceBatchInput = document.getElementById('trace-batch');
+        const traceSeqInput = document.getElementById('trace-seq');
+
+        let summaryData = null;
+        let network2D = null;
+        let network3D = null;
+        let chartInstance = null;
+        let activeMode = '2d';
+        let physicsEnabled = true;
+
+        // Mode Switching
+        mode2dTab.addEventListener('click', function() {
+            activeMode = '2d';
+            container2D.classList.remove('d-none');
+            container3D.classList.add('d-none');
+            graphControls.classList.remove('d-none');
+            if (network2D) network2D.fit();
+        });
+
+        mode3dTab.addEventListener('click', function() {
+            activeMode = '3d';
+            container2D.classList.add('d-none');
+            container3D.classList.remove('d-none');
+            graphControls.classList.add('d-none'); // 3D has native mouse zoom
+            if (network3D) {
+                // Trigger resizing calculation for Three.js
+                network3D.width(container3D.clientWidth);
+                network3D.height(container3D.clientHeight);
+            }
+        });
+
         // Form submission handler
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form values
+
             const modelId = document.getElementById('model-select').value;
             const vizType = document.querySelector('input[name="viz-type"]:checked').value;
             const showParams = document.getElementById('show-parameters').checked;
-            
+
             if (!modelId) {
                 alert('Please select a model');
                 return;
             }
-            
+
             // Show loading state
-            vizContainer.innerHTML = '';
+            placeholder.classList.add('d-none');
             vizContainer.classList.add('loading');
             downloadBtn.disabled = true;
             detailsBtn.disabled = true;
-            detailsSection.classList.add('d-none');
-            
+            graphControls.classList.add('d-none');
+
             // Send request to API
             fetch('/api/visualization/architecture', {
                 method: 'POST',
@@ -231,52 +601,430 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Remove loading state
                 vizContainer.classList.remove('loading');
-                
+
                 if (data.error) {
-                    vizContainer.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                    vizContainer.innerHTML = `<div class="alert alert-danger" style="width:100%; margin: 20px;">${data.error}</div>`;
                     return;
                 }
-                
-                // Display the visualization
-                vizContainer.innerHTML = `<img src="${data.image_url}" class="visualization-image" alt="Model Architecture">`;
-                
-                // Enable download button
+
+                summaryData = data.summary;
+
+                // 1. Render 2D Vis.js Graph
+                render2DGraph(data.summary, vizType === 'simplified', showParams);
+
+                // 2. Render 3D Force Graph
+                render3DGraph(data.summary, vizType === 'simplified');
+
+                // 3. Populate Details tab
+                populateDetails(data.summary);
+
+                // 4. Populate Code snippet tab
+                populateCodeSnippet(data.summary.pytorch_code);
+
+                // 5. Build parameter chart
+                buildParameterChart(data.summary.layers);
+
+                // 6. Trace Shapes
+                runShapeTracer();
+
+                // Enable layout buttons
                 downloadBtn.disabled = false;
                 detailsBtn.disabled = false;
+
+                // Show details layout
+                document.getElementById('total-params').textContent = data.summary.total_params ? data.summary.total_params.toLocaleString() : '-';
+                document.getElementById('trainable-params').textContent = data.summary.trainable_params ? data.summary.trainable_params.toLocaleString() : '-';
+                document.getElementById('model-type').textContent = data.summary.model_type || '-';
+                document.getElementById('layer-count').textContent = data.summary.layer_count || '-';
                 
-                // Show details section with placeholder data
-                // In a real implementation, this would be populated with actual model details
-                document.getElementById('total-params').textContent = '125.4M';
-                document.getElementById('trainable-params').textContent = '125.4M (100%)';
-                document.getElementById('model-type').textContent = 'Transformer (Decoder-only)';
-                document.getElementById('layer-count').textContent = '12 transformer blocks';
-                document.getElementById('memory-efficient').textContent = 'Yes (Flash Attention)';
-                document.getElementById('input-shapes').textContent = '[batch_size, sequence_length]';
-                detailsSection.classList.remove('d-none');
+                // Show control overlay if 2D active
+                if (activeMode === '2d') {
+                    graphControls.classList.remove('d-none');
+                }
             })
             .catch(error => {
                 vizContainer.classList.remove('loading');
-                vizContainer.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+                vizContainer.innerHTML = `<div class="alert alert-danger" style="width:100%; margin: 20px;">Error generating architecture: ${error.message}</div>`;
             });
         });
-        
-        // Download button handler
-        downloadBtn.addEventListener('click', function() {
-            const img = vizContainer.querySelector('img');
-            if (img) {
-                const a = document.createElement('a');
-                a.href = img.src;
-                a.download = 'model_architecture.png';
-                a.click();
+
+        // 2D Flow Render
+        function render2DGraph(summary, isSimplified, showParams) {
+            container2D.innerHTML = '';
+            const nodes = [];
+            const edges = [];
+
+            const colors = {
+                inputOutput: { background: '#0ea5e9', border: '#38bdf8', highlight: { background: '#38bdf8', border: '#0ea5e9' } },
+                embedding: { background: '#6366f1', border: '#818cf8', highlight: { background: '#818cf8', border: '#6366f1' } },
+                block: { background: '#8b5cf6', border: '#a78bfa', highlight: { background: '#a78bfa', border: '#8b5cf6' } },
+                subBlock: { background: '#10b981', border: '#34d399', highlight: { background: '#34d399', border: '#10b981' } },
+                norm: { background: '#d97706', border: '#fbbf24', highlight: { background: '#fbbf24', border: '#d97706' } },
+                default: { background: '#475569', border: '#94a3b8', highlight: { background: '#94a3b8', border: '#475569' } }
+            };
+
+            nodes.push({
+                id: 'input',
+                label: 'Input Tokens\n[batch_size, seq_len]',
+                color: colors.inputOutput,
+                shape: 'box',
+                font: { color: '#ffffff', size: 12, face: 'Inter' }
+            });
+
+            let lastNodeId = 'input';
+            const layers = summary.layers || [];
+
+            if (isSimplified) {
+                layers.forEach((layer, idx) => {
+                    const nodeId = `layer_${idx}`;
+                    let nodeColor = colors.default;
+
+                    if (layer.name.includes('embedding')) nodeColor = colors.embedding;
+                    else if (layer.name.includes('block') || layer.name.includes('layer')) nodeColor = colors.block;
+                    else if (layer.name.includes('norm')) nodeColor = colors.norm;
+                    else if (layer.name.includes('head')) nodeColor = colors.inputOutput;
+
+                    nodes.push({
+                        id: nodeId,
+                        label: `${layer.name}\n(${layer.type})` + (showParams && layer.params ? `\nParams: ${layer.params.toLocaleString()}` : ''),
+                        color: nodeColor,
+                        shape: 'box',
+                        font: { color: '#ffffff', size: 11, face: 'Inter' },
+                        title: `<b>Layer:</b> ${layer.name}<br><b>Params:</b> ${layer.params ? layer.params.toLocaleString() : '0'}`
+                    });
+
+                    edges.push({ from: lastNodeId, to: nodeId, arrows: 'to', color: { color: '#475569' } });
+                    lastNodeId = nodeId;
+                });
+            } else {
+                let blockIndex = 0;
+                layers.forEach((layer) => {
+                    if (layer.name.includes('embedding') || layer.name.includes('proj')) {
+                        const nodeId = layer.name;
+                        nodes.push({
+                            id: nodeId,
+                            label: `${layer.name}\n(${layer.type})` + (showParams && layer.params ? `\nParams: ${layer.params.toLocaleString()}` : ''),
+                            color: colors.embedding,
+                            shape: 'box',
+                            font: { color: '#ffffff', size: 11, face: 'Inter' }
+                        });
+                        edges.push({ from: lastNodeId, to: nodeId, arrows: 'to', color: { color: '#475569' } });
+                        lastNodeId = nodeId;
+                    } else if (layer.name.includes('blocks') || layer.type.includes('TransformerBlock')) {
+                        const bId = `block_${blockIndex}`;
+                        nodes.push({
+                            id: bId,
+                            label: `Block ${blockIndex}\n(Transformer)`,
+                            color: colors.block,
+                            shape: 'ellipse',
+                            font: { color: '#ffffff', size: 12, face: 'Inter', bold: true }
+                        });
+                        edges.push({ from: lastNodeId, to: bId, arrows: 'to', color: { color: '#38bdf8' } });
+
+                        // Subnode details showing folding
+                        const norm1Id = `${bId}_norm1`;
+                        nodes.push({ id: norm1Id, label: 'LayerNorm 1', color: colors.norm, shape: 'box', font: { color: '#ffffff', size: 10, face: 'Inter' } });
+                        edges.push({ from: bId, to: norm1Id, arrows: 'to', color: { color: '#6366f1' } });
+
+                        const attnId = `${bId}_attn`;
+                        nodes.push({ id: attnId, label: 'Attention', color: colors.subBlock, shape: 'box', font: { color: '#ffffff', size: 10, face: 'Inter' } });
+                        edges.push({ from: norm1Id, to: attnId, arrows: 'to', color: { color: '#10b981' } });
+
+                        const add1Id = `${bId}_add1`;
+                        nodes.push({ id: add1Id, label: '+', color: colors.inputOutput, shape: 'circle', font: { color: '#ffffff', size: 10, face: 'Inter', bold: true } });
+                        edges.push({ from: attnId, to: add1Id, arrows: 'to', color: { color: '#10b981' } });
+                        edges.push({ from: bId, to: add1Id, arrows: 'to', color: { color: '#818cf8', opacity: 0.5 }, dashes: true });
+
+                        const norm2Id = `${bId}_norm2`;
+                        nodes.push({ id: norm2Id, label: 'LayerNorm 2', color: colors.norm, shape: 'box', font: { color: '#ffffff', size: 10, face: 'Inter' } });
+                        edges.push({ from: add1Id, to: norm2Id, arrows: 'to', color: { color: '#6366f1' } });
+
+                        const mlpId = `${bId}_mlp`;
+                        nodes.push({ id: mlpId, label: 'MLP FFN', color: colors.subBlock, shape: 'box', font: { color: '#ffffff', size: 10, face: 'Inter' } });
+                        edges.push({ from: norm2Id, to: mlpId, arrows: 'to', color: { color: '#10b981' } });
+
+                        const add2Id = `${bId}_add2`;
+                        nodes.push({ id: add2Id, label: '+', color: colors.inputOutput, shape: 'circle', font: { color: '#ffffff', size: 10, face: 'Inter', bold: true } });
+                        edges.push({ from: mlpId, to: add2Id, arrows: 'to', color: { color: '#10b981' } });
+                        edges.push({ from: add1Id, to: add2Id, arrows: 'to', color: { color: '#818cf8', opacity: 0.5 }, dashes: true });
+
+                        lastNodeId = add2Id;
+                        blockIndex++;
+                    } else {
+                        const nodeId = layer.name;
+                        let nodeColor = colors.default;
+                        if (layer.name.includes('norm')) nodeColor = colors.norm;
+                        if (layer.name.includes('head')) nodeColor = colors.inputOutput;
+
+                        nodes.push({
+                            id: nodeId,
+                            label: `${layer.name}\n(${layer.type})` + (showParams && layer.params ? `\nParams: ${layer.params.toLocaleString()}` : ''),
+                            color: nodeColor,
+                            shape: 'box',
+                            font: { color: '#ffffff', size: 11, face: 'Inter' }
+                        });
+                        edges.push({ from: lastNodeId, to: nodeId, arrows: 'to', color: { color: '#475569' } });
+                        lastNodeId = nodeId;
+                    }
+                });
+            }
+
+            nodes.push({
+                id: 'output',
+                label: 'Output Logits\n[batch_size, seq_len, vocab_size]',
+                color: colors.inputOutput,
+                shape: 'box',
+                font: { color: '#ffffff', size: 12, face: 'Inter' }
+            });
+            edges.push({ from: lastNodeId, to: 'output', arrows: 'to', color: { color: '#38bdf8' } });
+
+            const data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+            const options = {
+                nodes: { borderWidth: 2, shadow: { enabled: true, color: 'rgba(0,0,0,0.5)', size: 4 } },
+                edges: { smooth: { type: 'cubicBezier', forceDirection: 'vertical', roundness: 0.5 }, shadow: { enabled: true, color: 'rgba(0,0,0,0.3)' } },
+                layout: { hierarchical: { direction: 'UD', sortMethod: 'directed', nodeSpacing: 180, levelSeparation: 130 } },
+                physics: { hierarchicalRepulsion: { nodeDistance: 220 }, stabilization: { iterations: 100 } },
+                interaction: { hover: true, tooltipDelay: 200 }
+            };
+
+            network2D = new vis.Network(container2D, data, options);
+        }
+
+        // 3D Force Graph Render
+        function render3DGraph(summary, isSimplified) {
+            container3D.innerHTML = '';
+            
+            const gData = { nodes: [], links: [] };
+            
+            // Add input
+            gData.nodes.push({ id: 'input', name: 'Input Tokens', group: 1, val: 5 });
+            let lastId = 'input';
+            
+            summary.layers.forEach((layer, idx) => {
+                const nodeId = `layer_${idx}`;
+                let group = 2; // Embeddings
+                
+                if (layer.name.includes('block')) group = 3; // Block
+                else if (layer.name.includes('norm')) group = 4; // Norm
+                else if (layer.name.includes('head')) group = 5; // Head
+                
+                gData.nodes.push({
+                    id: nodeId,
+                    name: `${layer.name} (${layer.type})\nParams: ${layer.params ? layer.params.toLocaleString() : '0'}`,
+                    group: group,
+                    val: layer.params ? Math.max(3, Math.log10(layer.params)) : 3
+                });
+                
+                gData.links.push({ source: lastId, target: nodeId });
+                lastId = nodeId;
+            });
+            
+            gData.nodes.push({ id: 'output', name: 'Output Logits', group: 1, val: 5 });
+            gData.links.push({ source: lastId, target: 'output' });
+            
+            // Instantiate 3D force graph
+            network3D = ForceGraph3D()(container3D)
+                .graphData(gData)
+                .width(container3D.clientWidth)
+                .height(container3D.clientHeight)
+                .backgroundColor('#111827')
+                .nodeAutoColorBy('group')
+                .nodeVal('val')
+                .linkDirectionalParticles(2)
+                .linkDirectionalParticleSpeed(0.005)
+                .linkLabel('name')
+                .nodeLabel('name');
+        }
+
+        // Details Populator
+        function populateDetails(summary) {
+            detailsEmpty.classList.add('d-none');
+            detailsLoaded.classList.remove('d-none');
+
+            document.getElementById('inspector-model-name').textContent = summary.model_name;
+
+            const tbody = document.getElementById('submodule-table-body');
+            tbody.innerHTML = '';
+
+            summary.layers.forEach(layer => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${layer.name}</strong></td>
+                        <td>${layer.type}</td>
+                        <td>${layer.params ? layer.params.toLocaleString() : '0'}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Code Snippet Populator
+        function populateCodeSnippet(code) {
+            codeEmpty.classList.add('d-none');
+            codeLoaded.classList.remove('d-none');
+
+            const container = document.getElementById('pytorch-code-container');
+            container.textContent = code;
+            Prism.highlightElement(container);
+        }
+
+        // Parameter Size Footprint Chart builder
+        function buildParameterChart(layers) {
+            chartEmpty.classList.add('d-none');
+            chartLoaded.classList.remove('d-none');
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('parameter-chart').getContext('2d');
+            const labels = layers.map(l => l.name);
+            const data = layers.map(l => l.params || 0);
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Parameters count',
+                        data: data,
+                        backgroundColor: '#6366f1',
+                        borderColor: '#818cf8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8', font: { size: 9 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Shape Tracer Flow Calculator
+        function runShapeTracer() {
+            if (!summaryData) return;
+
+            const batch = parseInt(traceBatchInput.value) || 8;
+            const seq = parseInt(traceSeqInput.value) || 1024;
+            const dim = 768; // Standard dimension
+            const vocab = 50257;
+
+            const tracerContainer = document.getElementById('tracer-flow-container');
+            tracerContainer.innerHTML = '';
+
+            // Step 1: Input
+            addTracerStep(tracerContainer, 'Input Tokens', 'Input Tensor', `[${batch}, ${seq}]`, 'fas fa-arrow-right');
+
+            // Step 2: Embeddings
+            addTracerStep(tracerContainer, 'token_embedding', 'Embedding Layer', `[${batch}, ${seq}, ${dim}]`, 'fas fa-project-diagram');
+
+            // Step 3: Projection
+            addTracerStep(tracerContainer, 'position_embedding', 'Positional Bias Add', `[${batch}, ${seq}, ${dim}]`, 'fas fa-plus');
+
+            // Step 4: Blocks loop
+            let currentShape = `[${batch}, ${seq}, ${dim}]`;
+            summaryData.layers.forEach(layer => {
+                if (layer.name.includes('block')) {
+                    addTracerStep(tracerContainer, layer.name, 'Transformer Block', currentShape, 'fas fa-sync-alt');
+                }
+            });
+
+            // Step 5: Norm
+            addTracerStep(tracerContainer, 'norm', 'LayerNorm', `[${batch}, ${seq}, ${dim}]`, 'fas fa-compress-alt');
+
+            // Step 6: LM Head Output
+            addTracerStep(tracerContainer, 'lm_head', 'LM Output Head', `[${batch}, ${seq}, ${vocab}]`, 'fas fa-sign-out-alt');
+        }
+
+        function addTracerStep(container, title, subtitle, shape, icon) {
+            container.innerHTML += `
+                <div class="shape-flow-item">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3 text-center" style="width: 24px; color: var(--accent-primary);"><i class="${icon}"></i></div>
+                        <div>
+                            <div style="font-weight:700; color: var(--text-primary); font-size: 0.85rem;">${title}</div>
+                            <div style="color: var(--text-muted); font-size: 0.72rem;">${subtitle}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="badge-shape">${shape}</span>
+                    </div>
+                </div>
+                <div class="shape-flow-arrow"><i class="fas fa-chevron-down"></i></div>
+            `;
+        }
+
+        // Live update tracer shapes
+        traceBatchInput.addEventListener('input', runShapeTracer);
+        traceSeqInput.addEventListener('input', runShapeTracer);
+
+        // Zoom/Pan overrides
+        document.getElementById('zoom-in-btn').addEventListener('click', function() {
+            if (network2D) network2D.moveTo({ scale: network2D.getScale() * 1.2 });
+        });
+
+        document.getElementById('zoom-out-btn').addEventListener('click', function() {
+            if (network2D) network2D.moveTo({ scale: network2D.getScale() / 1.2 });
+        });
+
+        document.getElementById('fit-btn').addEventListener('click', function() {
+            if (network2D) network2D.fit();
+        });
+
+        document.getElementById('physics-toggle-btn').addEventListener('click', function() {
+            if (network2D) {
+                physicsEnabled = !physicsEnabled;
+                network2D.setOptions({ physics: { enabled: physicsEnabled } });
+                this.innerHTML = physicsEnabled ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
             }
         });
-        
-        // Details button handler
+
+        // Save canvas/image download handler
+        downloadBtn.addEventListener('click', function() {
+            if (activeMode === '2d') {
+                const canvas = container2D.querySelector('canvas');
+                if (canvas) {
+                    const a = document.createElement('a');
+                    a.href = canvas.toDataURL("image/png");
+                    a.download = `${summaryData.model_name}_architecture_2d.png`;
+                    a.click();
+                }
+            } else if (activeMode === '3d') {
+                // Take 3D Canvas screen snapshot
+                const canvas = container3D.querySelector('canvas');
+                if (canvas) {
+                    const a = document.createElement('a');
+                    a.href = canvas.toDataURL("image/png");
+                    a.download = `${summaryData.model_name}_architecture_3d.png`;
+                    a.click();
+                }
+            }
+        });
+
+        // Export details download handler
         detailsBtn.addEventListener('click', function() {
-            // This would download a detailed JSON or PDF report in a real implementation
-            alert('The detailed architecture report would be downloaded here.');
+            if (!summaryData) return;
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(summaryData, null, 2));
+            const a = document.createElement('a');
+            a.setAttribute("href", dataStr);
+            a.setAttribute("download", `${summaryData.model_name}_architecture_report.json`);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
         });
     });
 </script>

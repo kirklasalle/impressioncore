@@ -164,16 +164,20 @@ class User:
         """
         self.authentication_factors.append(factor)
 
-# Example usage
+# Example usage / local testing
 if __name__ == "__main__":
+    import secrets
+    # Use environment-provided password or generate a one-time cryptographic secret
+    test_password = os.getenv("IMPRESSIONCORE_TEST_PASSWORD", secrets.token_urlsafe(16))
     user = User(
-        username="testuser",
-        password="password123",
-        email="test@example.com",
+        username=os.getenv("IMPRESSIONCORE_TEST_USER", "testuser"),
+        password=test_password,
+        email=os.getenv("IMPRESSIONCORE_TEST_EMAIL", "test@example.com"),
         personal_data={"name": "Test User", "date_of_birth": "1990-01-01"}
     )
 
     print(f"User ID: {user.user_id}")
     print(f"Username: {user.username}")
     print(f"Password hash: {user.password_hash}")
-    print(f"Password verification: {user.verify_password('password123')}")
+    print(f"Password verification: {user.verify_password(test_password)}")
+

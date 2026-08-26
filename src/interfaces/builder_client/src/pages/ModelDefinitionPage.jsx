@@ -63,7 +63,18 @@ export default function ModelDefinitionPage() {
                                     { value: 'mamba', label: 'Mamba (SSM)' },
                                     { value: 'rwkv', label: 'RWKV' },
                                 ]} value={config.architecture} onChange={(e) => update('architecture', e.target.value)} />
-                                <Select label="Model Size Preset" options={Object.keys(MODEL_PRESETS).map((k) => ({ value: k, label: k.charAt(0).toUpperCase() + k.slice(1) }))}
+                                <Select label="Model Size Preset" options={[
+                                    { value: 'b1_39m', label: 'B1 Hope 39M (Edge SLM)' },
+                                    { value: 'b2_50m', label: 'B2 Insight 50M' },
+                                    { value: 'b3_504m', label: 'B3 Apex 504M' },
+                                    { value: 'b3_3b', label: 'B3 Ultra 3B MoE' },
+                                    { value: 'nano', label: 'Nano (Edge Starter)' },
+                                    { value: 'micro', label: 'Micro (Efficient)' },
+                                    { value: 'small', label: 'Small (Standard)' },
+                                    { value: 'medium', label: 'Medium (High Capacity)' },
+                                    { value: 'large', label: 'Large (Server Grade)' },
+                                    { value: 'custom', label: 'Custom Architecture' },
+                                ]}
                                     value={config.preset} onChange={(e) => update('preset', e.target.value)} />
                             </div>
                             <div className="grid grid-cols-2 gap-4">

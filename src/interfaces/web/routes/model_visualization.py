@@ -85,7 +85,7 @@ import logging
 import os
 
 import torch
-from flask import Blueprint, jsonify, render_template, request, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, url_for
 
 from src.dev_tools.visualization.activation_maps import ActivationVisualizer
 from src.dev_tools.visualization.architecture_graph import ModelArchitectureGraph
@@ -114,29 +114,44 @@ attention_visualizer = AttentionVisualizer(output_dir=os.path.join(visualization
 architecture_visualizer = ModelArchitectureGraph(output_dir=os.path.join(visualization_dir, "architecture"))
 activation_visualizer = ActivationVisualizer(output_dir=os.path.join(visualization_dir, "activations"))
 
+def _available_models_for_route(route_name: str):
+    available_models = list_available_models()
+    logger.info(
+        "[TRACE] %s loaded %s visualization model options: %s",
+        route_name,
+        len(available_models),
+        [model.get("id") for model in available_models],
+    )
+    return available_models
+
 @model_viz.route('/visualization')
 def visualization_dashboard():
     """Render the main visualization dashboard."""
-    available_models = list_available_models()
+    available_models = _available_models_for_route('visualization_dashboard')
     return render_template('visualization/dashboard.html', models=available_models)
+
+@model_viz.route('/visualizations')
+def visualizations_redirect():
+    """Redirect plural URL to singular visualization dashboard."""
+    return redirect(url_for('model_viz.visualization_dashboard'))
 
 @model_viz.route('/visualization/architecture')
 def model_architecture():
     """Render the model architecture visualization interface."""
     # Memory optimization: Explicit memory cleanup
-    available_models = list_available_models()
+    available_models = _available_models_for_route('model_architecture')
     return render_template('visualization/architecture.html', models=available_models)
 
 @model_viz.route('/visualization/attention')
 def attention_visualization():
     """Render the attention visualization interface."""
-    available_models = list_available_models()
+    available_models = _available_models_for_route('attention_visualization')
     return render_template('visualization/attention.html', models=available_models)
 
 @model_viz.route('/visualization/activations')
 def activation_visualization():
     """Render the activation visualization interface."""
-    available_models = list_available_models()
+    available_models = _available_models_for_route('activation_visualization')
     return render_template('visualization/activations.html', models=available_models)
 
 @model_viz.route('/visualization/memory')
@@ -145,7 +160,7 @@ def memory_visualization():
 # Memory optimization: Memory-critical operation
     """Render the memory usage visualization interface."""
     # Memory optimization: Memory-critical operation
-    available_models = list_available_models()
+    available_models = _available_models_for_route('memory_visualization')
     return render_template('visualization/memory.html', models=available_models)
     # Memory optimization: Memory-critical operation
 
@@ -153,49 +168,143 @@ def memory_visualization():
 def generate_architecture_visualization():
     """
     Generate and return model architecture visualization.
-    # Memory optimization: Explicit memory cleanup
 
     Expected payload:
     {
         "model_id": "model_name",
-        "simplify": true/false
+        "simplify": true/false,
+        "show_parameters": true/false
     }
     """
     data = request.json
 
     if not data or "model_id" not in data:
         return jsonify({"error": "Model ID is required"}), 400
-        # Memory optimization: Explicit memory cleanup
 
     model_id = data["model_id"]
     simplify = data.get("simplify", True)
+    show_params = data.get("show_parameters", True)
 
     try:
-        # Load model
+        # Load model (creates a dynamic fallback if no .pt file exists)
         model = get_model(model_id)
-        # Memory optimization: Explicit memory cleanup
         if model is None:
-        # Memory optimization: Explicit memory cleanup
-            return jsonify({"error": f"Model {model_id} not found"}), 404
-            # Memory optimization: Explicit memory cleanup
+            return jsonify({"error": f"Model '{model_id}' could not be loaded. Ensure the model exists."}), 404
 
-        # Generate visualization
-        architecture_visualizer.generate_architecture_graph(
-            model=model,
-            simplify=simplify,
-            save_path=os.path.join(visualization_dir, f"{model_id}_architecture.png")
-        )
+        # Build a model summary from the actual PyTorch model
+        total_params = sum(p.numel() for p in model.parameters())
+        trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        layer_info = []
+        for name, module in model.named_children():
+            child_params = sum(p.numel() for p in module.parameters())
+            layer_info.append({
+                "name": name,
+                "type": module.__class__.__name__,
+                "params": child_params
+            })
 
-        # Return path to image
-        result = {
-            "image_url": url_for('static', filename=f"visualizations/{model_id}_architecture.png"),
-            "model_id": model_id
+        # Generate custom PyTorch code representation dynamically
+        code_lines = [
+            "import torch",
+            "import torch.nn as nn",
+            "",
+            f"class {model.__class__.__name__}(nn.Module):",
+            "    def __init__(self):",
+            "        super().__init__()"
+        ]
+        
+        # Add dynamic submodule representation
+        for name, module in model.named_children():
+            if name == 'blocks' and hasattr(module, '__len__'):
+                code_lines.append(f"        # Stack of {len(module)} transformer layers")
+                if len(module) > 0:
+                    block_module = module[0]
+                    code_lines.append(f"        self.blocks = nn.ModuleList([")
+                    code_lines.append(f"            {block_module.__class__.__name__}(")
+                    code_lines.append(f"                dim=768,")
+                    code_lines.append(f"                num_heads=12,")
+                    code_lines.append(f"                dropout=0.1")
+                    code_lines.append(f"            ) for _ in range({len(module)})")
+                    code_lines.append(f"        ])")
+            elif name == 'position_embedding':
+                code_lines.append(f"        self.position_embedding = nn.Parameter(torch.randn(1, 1024, 768))")
+            elif name == 'token_embedding':
+                code_lines.append(f"        self.token_embedding = nn.Embedding(50257, 768)")
+            elif name == 'norm':
+                code_lines.append(f"        self.norm = nn.LayerNorm(768)")
+            elif name == 'lm_head':
+                code_lines.append(f"        self.lm_head = nn.Linear(768, 50257, bias=False)")
+            else:
+                code_lines.append(f"        self.{name} = {module.__class__.__name__}()")
+                
+        code_lines.append("")
+        code_lines.append("    def forward(self, x):")
+        code_lines.append("        # x: input token tensor [batch_size, seq_len]")
+        code_lines.append("        seq_len = x.size(1)")
+        code_lines.append("        ")
+        code_lines.append("        # 1. Embed tokens")
+        code_lines.append("        h = self.token_embedding(x)")
+        code_lines.append("        ")
+        code_lines.append("        # 2. Add position embeddings")
+        code_lines.append("        h = h + self.position_embedding[:, :seq_len, :]")
+        code_lines.append("        ")
+        code_lines.append("        # 3. Process through Transformer layers")
+        code_lines.append("        for block in self.blocks:")
+        code_lines.append("            h = block(h)")
+        code_lines.append("        ")
+        code_lines.append("        # 4. Final normalization and language modeling head")
+        code_lines.append("        h = self.norm(h)")
+        code_lines.append("        logits = self.lm_head(h)")
+        code_lines.append("        return logits")
+        
+        pytorch_code = "\n".join(code_lines)
+
+        summary = {
+            "model_name": model_id,
+            "model_type": model.__class__.__name__,
+            "total_params": total_params,
+            "trainable_params": trainable_params,
+            "layer_count": len(layer_info),
+            "input_shapes": "[batch_size, sequence_length]",
+            "layers": layer_info,
+            "pytorch_code": pytorch_code
         }
+
+        # Try to generate an image visualization
+        # Save into the Flask static directory so the URL resolves correctly
+        import flask
+        static_viz_dir = os.path.join(flask.current_app.static_folder, "visualizations")
+        os.makedirs(static_viz_dir, exist_ok=True)
+        save_path = os.path.join(static_viz_dir, f"{model_id}_architecture.png")
+
+        image_url = None
+        try:
+            architecture_visualizer.generate_architecture_graph(
+                model=model,
+                simplify=simplify,
+                save_path=save_path
+            )
+            image_url = url_for('static', filename=f"visualizations/{model_id}_architecture.png")
+            logger.info(f"Architecture visualization saved to {save_path}")
+        except Exception as viz_err:
+            logger.warning(f"Image generation failed for {model_id}, returning summary only: {viz_err}")
+
+        result = {
+            "model_id": model_id,
+            "summary": summary
+        }
+        if image_url:
+            result["image_url"] = image_url
+
+        # Clean up model from memory
+        del model
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         return jsonify(result)
 
     except Exception as e:
-        logger.error(f"Error generating architecture visualization: {e}")
+        logger.error(f"Error generating architecture visualization: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
 @model_viz.route('/api/visualization/attention', methods=['POST'])

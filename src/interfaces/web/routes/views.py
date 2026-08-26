@@ -376,7 +376,7 @@ def documentation():
 @web.route('/development_roadmap')
 @require_auth
 def development_roadmap():
-    return render_template('advanced/development_roadmap.html')
+    return render_template('development_roadmap.html')
 
 # Placeholder UKS routes
 @web.route('/uks/load', methods=['GET'])

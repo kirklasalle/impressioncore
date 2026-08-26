@@ -197,10 +197,10 @@ class PrimeDirectiveEnforcer:
     def _load_directive(self):
         """Load the Prime Directive document."""
         directive_path = Path(__file__).parent.parent.parent / "Prime_Directive.txt"
+        if not directive_path.exists():
+            directive_path = Path(__file__).parent.parent.parent / "Permanent_Active_Directives.txt"
         if directive_path.exists():
             self.directive_text = directive_path.read_text(encoding="utf-8")
-            # Note: Using print to avoid uvicorn logging conflict on Python 3.14
-            # print(f"[GOVERNANCE] Prime Directive loaded from {directive_path}")
         else:
             print(f"[GOVERNANCE] WARNING: Prime Directive not found at {directive_path}")
             self.directive_text = None

@@ -55,6 +55,16 @@ from datetime import datetime
 from typing import Optional
 
 
+def _configure_stream_for_unicode(stream) -> None:
+    """Best-effort UTF-8 configuration for Windows console logging."""
+    reconfigure = getattr(stream, "reconfigure", None)
+    if callable(reconfigure):
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (OSError, ValueError):
+            pass
+
+
 class RichLogger:
     """
     Rich logging implementation for ImpressionCore
@@ -76,6 +86,8 @@ class RichLogger:
         # Clear existing handlers
         self.logger.handlers.clear()
         
+        _configure_stream_for_unicode(sys.stdout)
+
         # Console handler
         console_handler = logging.StreamHandler(sys.stdout)
         console_format = logging.Formatter(
@@ -88,7 +100,7 @@ class RichLogger:
         # File handler if specified
         if log_file:
             log_file.parent.mkdir(parents=True, exist_ok=True)
-            file_handler = logging.FileHandler(log_file)
+            file_handler = logging.FileHandler(log_file, encoding="utf-8")
             file_format = logging.Formatter(
                 '[%(asctime)s] %(name)s - %(levelname)s - %(message)s',
                 datefmt='%Y-%m-%d %H:%M:%S'

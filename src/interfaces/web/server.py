@@ -12,6 +12,7 @@ import sys
 import warnings
 import json
 import threading
+import time
 from pathlib import Path
 
 # Suppress pynvml deprecation FutureWarning (internal to PyTorch, cosmetic only)
@@ -25,7 +26,7 @@ src_path = os.path.join(project_root, 'src')
 if src_path not in sys.path:
     sys.path.insert(0, src_path)
 
-from flask import Flask, jsonify, render_template, request, send_from_directory
+from flask import Flask, jsonify, render_template, request, send_from_directory, g
 from flask_cors import CORS
 
 from src.core.utils.rich_logging import get_rich_logger
@@ -60,24 +61,39 @@ except ImportError as e:
     web_blueprint = None
 
 def create_app() -> Flask:
-    logger = get_rich_logger(__name__)
+    log_dir = Path(project_root) / 'logs'
+    log_dir.mkdir(parents=True, exist_ok=True)
+    logger = get_rich_logger(__name__, log_file=log_dir / 'web_server.log')
     
     # Enforce data drive availability on startup
     from src.core.config.data_paths import enforce_data_drive
     enforce_data_drive()
     app = Flask(__name__)
-    app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'impressioncore-secret')
+    import secrets
+    app.secret_key = os.environ.get('FLASK_SECRET_KEY') or secrets.token_hex(32)
     
     # Enable CORS for API endpoints
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-    # Prevent stale HTML on hard refresh
+    # Request Trace hooks
+    @app.before_request
+    def before_request():
+        g.start_time = time.time()
+        logger.info(f"Trace Request: {request.remote_addr} - {request.method} {request.url} - Query: {dict(request.args)}")
+
+    # Prevent stale HTML on hard refresh and log trace response
     @app.after_request
-    def set_cache_headers(response):
+    def after_request_handler(response):
         if response.content_type and 'text/html' in response.content_type:
             response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
             response.headers['Pragma'] = 'no-cache'
             response.headers['Expires'] = '0'
+        
+        duration = ""
+        if hasattr(g, 'start_time'):
+            duration = f" in {((time.time() - g.start_time) * 1000):.2f}ms"
+        
+        logger.info(f"Trace Response: {request.method} {request.path} -> Status {response.status_code}{duration}")
         return response
 
     builder_client_dist = os.path.join(project_root, 'src', 'interfaces', 'builder_client', 'dist')
@@ -134,7 +150,8 @@ def create_app() -> Flask:
                         methods=rule.methods,
                         defaults=rule.defaults,
                     )
-        logger.info("✅ All route blueprints registered successfully")
+        route_count = len(list(app.url_map.iter_rules()))
+        logger.info(f"All route blueprints registered successfully ({route_count} routes)")
 
     return app
 

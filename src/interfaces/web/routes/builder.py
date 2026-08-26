@@ -362,13 +362,26 @@ def walkthrough_gpu_check():
         gpu_info = {
             'available': gpu_available,
             'device_name': torch.cuda.get_device_name(0) if gpu_available else 'N/A',
-            'vram_total': f"{torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB" if gpu_available else 'N/A',
+            'vram_total': f"{torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB" if gpu_available else 'N/A',
             'cuda_version': torch.version.cuda or 'N/A',
             'pytorch_version': torch.__version__
         }
-        return jsonify({'success': True, 'gpu': gpu_info})
+        return jsonify({
+            'success': True,
+            'gpu': gpu_info,
+            'data': {
+                'command_output': f"GPU available: {gpu_info['available']}\nDevice: {gpu_info['device_name']}\nVRAM: {gpu_info['vram_total']}\nCUDA: {gpu_info['cuda_version']}\nPyTorch: {gpu_info['pytorch_version']}"
+            }
+        })
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e), 'gpu': {'available': False}})
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'gpu': {'available': False},
+            'data': {
+                'command_output': f"Error during GPU verification: {e}"
+            }
+        })
 
 @builder_bp.route('/api/v1/walkthrough/action/dependency_check', methods=['GET', 'POST'])
 def walkthrough_dependency_check():
@@ -387,7 +400,15 @@ def walkthrough_dependency_check():
         except ImportError:
             deps[dep] = {'installed': False, 'version': None}
     all_ok = all(d['installed'] for d in deps.values())
-    return jsonify({'success': True, 'all_installed': all_ok, 'dependencies': deps})
+    dep_summary = "\n".join([f" - {k}: {'OK (v' + v['version'] + ')' if v['installed'] else 'MISSING'}" for k, v in deps.items()])
+    return jsonify({
+        'success': True,
+        'all_installed': all_ok,
+        'dependencies': deps,
+        'data': {
+            'command_output': f"Checking required environment libraries...\n{dep_summary}\n\nEnvironment status: {'READY' if all_ok else 'INCOMPLETE'}"
+        }
+    })
 
 @builder_bp.route('/api/v1/walkthrough/action/config_check', methods=['GET', 'POST'])
 def walkthrough_config_check():
@@ -400,7 +421,13 @@ def walkthrough_config_check():
         'context_window': data.get('context_window', 128000),
         'valid': True
     }
-    return jsonify({'success': True, 'config': config})
+    return jsonify({
+        'success': True,
+        'config': config,
+        'data': {
+            'command_output': f"Checking model configurations...\n - Target Model: {config['model']}\n - Hardware Profile: {config['hardware_target']}\n - Floating Point Precision: {config['precision']}\n - Context Window Size: {config['context_window']}\nConfiguration validation result: OK"
+        }
+    })
 
 @builder_bp.route('/api/v1/walkthrough/action/data_check', methods=['GET', 'POST'])
 def walkthrough_data_check():
@@ -415,7 +442,10 @@ def walkthrough_data_check():
         'success': True,
         'data_ready': len(files_found) > 0,
         'files_found': len(files_found),
-        'sample_files': files_found[:5]
+        'sample_files': files_found[:5],
+        'data': {
+            'command_output': f"Scanning data directories...\n - Uploads found: {len(files_found)} files\n - Dataset sample: {', '.join(files_found[:5]) if files_found else 'None'}\nData validation result: {'OK' if files_found else 'WARNING: No data files detected'}"
+        }
     })
 
 @builder_bp.route('/api/v1/system/status')

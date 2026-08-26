@@ -56,11 +56,15 @@ export const ADVANCED_NAV = [
 
 /** Model architecture presets */
 export const MODEL_PRESETS = {
-    'nano': { layers: 6, hiddenSize: 384, heads: 6, contextWindow: 512, vocabSize: 32000 },
-    'micro': { layers: 12, hiddenSize: 512, heads: 8, contextWindow: 1024, vocabSize: 32000 },
-    'small': { layers: 12, hiddenSize: 768, heads: 12, contextWindow: 2048, vocabSize: 32000 },
-    'medium': { layers: 24, hiddenSize: 1024, heads: 16, contextWindow: 4096, vocabSize: 50257 },
-    'large': { layers: 36, hiddenSize: 1536, heads: 16, contextWindow: 8192, vocabSize: 50257 },
+    'b1_39m': { layers: 8, hiddenSize: 768, heads: 12, intermediateSize: 3072, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+    'b2_50m': { layers: 10, hiddenSize: 832, heads: 13, intermediateSize: 3328, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+    'b3_504m': { layers: 24, hiddenSize: 3072, heads: 24, intermediateSize: 12288, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
+    'b3_3b': { layers: 32, hiddenSize: 4096, heads: 32, intermediateSize: 16384, contextWindow: 8192, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
+    'nano': { layers: 6, hiddenSize: 384, heads: 6, intermediateSize: 1536, contextWindow: 512, vocabSize: 32000, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+    'micro': { layers: 12, hiddenSize: 512, heads: 8, intermediateSize: 2048, contextWindow: 1024, vocabSize: 32000, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+    'small': { layers: 12, hiddenSize: 768, heads: 12, intermediateSize: 3072, contextWindow: 2048, vocabSize: 32000, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
+    'medium': { layers: 24, hiddenSize: 1024, heads: 16, intermediateSize: 4096, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
+    'large': { layers: 36, hiddenSize: 1536, heads: 16, intermediateSize: 6144, contextWindow: 8192, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
     'custom': null,
 };
 

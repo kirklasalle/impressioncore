@@ -1,703 +1,299 @@
 # ImpressionCore: World-First AI Democratization Platform
 
 **🏆 Historic Achievement: GPU Knowledge Distillation on Consumer Hardware**  
-**� B3 Multimodal Architecture with Brain-Triad Cognitive Orchestration**  
-**🤖 Agent0Core: Autonomous Agentic Intelligence Layer**  
+**🧠 B-Series Multimodal Architecture with Brain-Triad Cognitive Orchestration**  
+**🤖 Agent0Core: Autonomous Agentic Intelligence Layer & GGUF Supervision**  
 **🔌 7-Server MCP Ecosystem (Goliath, IDS, EDS, IPA, DPA, VRGC, Web Search)**  
-**💾 Production-Scale Training Infrastructure (476GB)**  
+**💾 Production-Scale Training Infrastructure (476GB dedicated)**  
 **📊 $45.3B Market Opportunity Validated**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![B3 Architecture](https://img.shields.io/badge/Model-B3%20Multimodal-blueviolet.svg)](#-b3-multimodal-architecture)
-[![MCP Servers](https://img.shields.io/badge/MCP%20Servers-7%20Active-brightgreen.svg)](#-mcp-server-ecosystem)
-[![Agent0Core](https://img.shields.io/badge/Agent0Core-v0.1-informational.svg)](#-agent0core--agentic-intelligence-layer)
+[![B-Series Models](https://img.shields.io/badge/Model%20Family-B1%20|%20B2%20|%20B3%20|%20C1-blueviolet.svg)](#-canonical-model-lineup--builder-workflow)
+[![MCP Servers](https://img.shields.io/badge/MCP%20Servers-7%20Active-brightgreen.svg)](#-7-server-mcp-ecosystem)
+[![Agent0Core](https://img.shields.io/badge/Agent0Core-v0.1.0-informational.svg)](#-agent0core--autonomous-agentic-layer)
 [![CUDA Support](https://img.shields.io/badge/CUDA-12.1+-green.svg)](https://developer.nvidia.com/cuda-toolkit)
-[![GTX 1050 Ti Optimized](https://img.shields.io/badge/GTX%201050%20Ti-Optimized-orange.svg)](https://www.nvidia.com/en-us/geforce/graphics-cards/geforce-gtx-1050-ti/)
+[![GTX 1050 Ti Optimized](https://img.shields.io/badge/GTX%201050%20Ti-Optimized%20(<4GB)-orange.svg)](https://www.nvidia.com/en-us/geforce/graphics-cards/geforce-gtx-1050-ti/)
 
 ---
 
 ## 🌟 **Project Overview**
 
-ImpressionCore represents a **paradigm-shifting breakthrough** in AI democratization, making professional-grade AI training accessible on consumer hardware valued at $150-250. Through documented **world-first achievements** beginning in 2025 and continuing through 2026, ImpressionCore has fundamentally transformed how AI models can be trained, deployed, and maintained — evolving from a knowledge distillation framework into a full **brain-inspired, multimodal, agentic AI platform**.
+ImpressionCore represents a **paradigm-shifting breakthrough** in AI democratization, making professional-grade AI training accessible on consumer hardware valued at $150–250. Through documented **world-first achievements** beginning in 2025 and accelerating through 2026, ImpressionCore has fundamentally transformed how AI models are designed, distilled, trained, served, and governed — evolving from a knowledge distillation framework into a full **brain-inspired, multimodal, agentic AI platform**.
 
 ### **Core Mission**
 
-Transform AI from enterprise-exclusive technology to **universally accessible innovation** — powering lifelong digital assistants, secure digital identity, and real-time interactive digital twins of people, plants, animals, and geological formations on consumer hardware.
+Transform AI from enterprise-exclusive technology to **universally accessible innovation** — powering lifelong digital assistants, secure digital identity, and real-time interactive digital twins ("Impressions") of people, plants, animals, and geological formations directly on consumer hardware.
 
 ### **Revolutionary Achievements**
 
-🏆 **World-First GPU Knowledge Distillation** - First documented successful GPU-based knowledge distillation on consumer hardware, overcoming PyTorch 2.6+ security restrictions
-
-🧠 **B3 Multimodal Architecture** - Assembly of Experts, Multi-Head Latent Attention, TurboQuant KV cache (ICLR 2026), and Brain-Triad cognitive orchestration scaling from 39M to 3B+ parameters
-
-🤖 **Agent0Core Agentic Layer** - Autonomous intelligence with Agent Zero framework, Prime Directive governance, and 7-server MCP ecosystem integration
-
-💾 **Consumer Hardware Training** - Complete AI training pipeline optimized for NVIDIA GTX 1050 Ti (4GB VRAM) with 40-second epochs
-
-📊 **Market Validation** - $45.3B total addressable market (2024) → $163.6B (2030) with 150M+ addressable consumer GPUs
+- 🏆 **World-First GPU Knowledge Distillation**: First documented successful GPU-based knowledge distillation on consumer hardware (NVIDIA GTX 1050 Ti, 4GB VRAM), overcoming PyTorch 2.6+ security restrictions.
+- 🧠 **B-Series Multimodal Architecture**: Assembly of Experts (AoE), Multi-Head Latent Attention (MLA), TurboQuant KV cache compression, and Brain-Triad cognitive orchestration scaling from 39M to 3B+ parameters.
+- 🤖 **Agent0Core Agentic Layer**: Autonomous intelligence with Agent Zero framework, Guardian safety supervisor, and 7-server MCP ecosystem integration.
+- 🎨 **Unified Model Builder & Live Visualizer**: Interactive Glassmorphism UI suite with dynamic preset auto-population, real-time attention heatmaps, latent projections, and dynamic memory orrery.
+- 💾 **Consumer Hardware Training**: Complete AI training pipeline optimized for consumer GPUs with 40-second epochs and memory usage strictly bounded below 4GB.
+- 📊 **Market Validation**: $45.3B total addressable market (2024) → $163.6B (2030) with 150M+ addressable consumer GPUs worldwide.
 
 ---
 
-## 🚀 **World-First Breakthroughs**
+## 🧠 **Brain-Inspired Multimodal Architecture**
 
-### **🏆 Historic GPU Knowledge Distillation (June 2025)**
+ImpressionCore implements a **five-layer brain-inspired multimodal AI framework** designed for extreme efficiency, fault-tolerant cognition, and scalable execution on consumer hardware:
 
-The ImpressionCore project achieved the **world's first documented successful GPU-based knowledge distillation** on consumer hardware, solving critical security and compatibility challenges:
-
-- **Security Innovation**: Multi-strategy secure loading system bypassing PyTorch 2.6+ `trust_remote_code` restrictions
-- **Hardware Target**: NVIDIA GTX 1050 Ti (4GB VRAM) - consumer hardware valued at $150-250
-- **Performance**: Complete training epoch in 40 seconds with stable memory usage <4GB
-- **Model Compression**: 12.3:1 ratio (354M → 28M parameters) with capability retention
-- **Cost Impact**: 85-95% reduction vs. cloud/enterprise training approaches
-
-### **🤖 Virtually Robotic GitHub Copilot (June 2025)**
-
-ImpressionCore pioneered the world's first **fully autonomous Application Programming Software Engineer**:
-
-- **Intelligence Level**: Comprehensive project intelligence with Sacred Covenant compliance
-- **Autonomy**: Phase 1-3 autonomous operation with proactive problem-solving
-- **Integration**: 5 modular MCP server tools with VS Code ecosystem integration
-- **Monitoring**: Real-time B1 training oversight for 10/10 conversation quality goals
-- **Infrastructure**: Automated management of 476GB dedicated training infrastructure
-
-### **💾 Production-Scale Training Infrastructure (June 2025)**
-
-Established **enterprise-grade training infrastructure** on consumer hardware:
-
-- **Storage**: 476.9GB dedicated F:\ drive with 99.97% availability (476.8GB free)
-- **Organization**: Professional 16-directory structure with component separation
-- **Capacity**: Supports large multimodal LLMs (335GB), multiple medium models (190GB each), or 5-10 specialized models (45GB each)
-- **Tools**: Complete management suite with estimation, monitoring, and cleanup automation
-
-### **📊 Strategic Market Analysis (January 2025)**
-
-Validated **massive market opportunity** with comprehensive analysis:
-
-- **Total Addressable Market**: $45.3B (2024) → $163.6B (2030) growth trajectory
-- **Valuation Potential**: $2-24B company valuation with 400-4800x return potential
-- **Competitive Position**: Unique advantages vs. Hugging Face ($4.5B), OpenAI ($157B), Anthropic ($18B)
-- **Accessibility Impact**: 150M+ GTX 1050 Ti cards in market addressable for AI training
-
----
-
-## 🧠 **Brain-Inspired Architecture**
-
-ImpressionCore implements a revolutionary **brain-inspired multimodal AI framework** designed for efficiency and scalability:
+![ImpressionCore Brain-Inspired Multimodal Architecture](docs/assets/impressioncore_hero_architecture.png)
 
 ```mermaid
 graph TB
-    subgraph "Input Processing (Sensory Cortex)"
-        TI[Text Input<br/>Language Processing] --> TE[Text Encoder<br/>Transformer]
-        II[Image Input<br/>Vision Processing] --> IE[Image Encoder<br/>Vision Transformer]
-        AI[Audio Input<br/>Audio Processing] --> AE[Audio Encoder<br/>Wav2Vec2]
-        VI[Video Input<br/>Temporal Processing] --> VE[Video Encoder<br/>TimeSformer]
+    subgraph "Sensory Cortex (Input Processing)"
+        TI[Text Input<br/>Language Processing] --> TE[Text Encoder<br/>Transformer / BPE]
+        II[Image Input<br/>Vision Processing] --> IE[Image Encoder<br/>Vision Transformer / CNN]
+        AI[Audio Input<br/>Acoustic Processing] --> AE[Audio Encoder<br/>Wav2Vec2 / MFCC / Mel]
+        VI[Video Input<br/>Temporal Processing] --> VE[Video Encoder<br/>TimeSformer / Frames]
+        SI[Sensors & Depth<br/>Spatial Processing] --> SE[Sensor Encoder<br/>Kinect / LiDAR / Audio]
     end
     
     subgraph "Cognitive Core (Association Cortex)"
-        TE --> MF[Multimodal Fusion<br/>Cross-Attention]
+        TE --> MF[Multimodal Fusion<br/>Cross-Attention & MLA]
         IE --> MF
         AE --> MF
         VE --> MF
-        MF --> BSL[BrainSim Layer<br/>Cognitive Simulation]
-        BSL --> UKS[Universal Knowledge Store<br/>Distributed Memory]
-        UKS --> AMM[Adaptive Memory Manager<br/>Dynamic Allocation]
+        SE --> MF
+        MF --> AOE[Assembly of Experts<br/>AoE Routing]
+        AOE --> UKS[Universal Knowledge Store<br/>Distributed Memory / FAISS]
+        UKS --> AMM[Adaptive Memory Manager<br/>Dynamic VRAM Allocator]
     end
     
-    subgraph "Executive Control (Prefrontal Cortex)"
-        AMM --> ATT[Attention Mechanism<br/>Multi-Head Attention]
-        ATT --> REA[Reasoning Engine<br/>Chain-of-Thought]
-        REA --> DEC[Decision Layer<br/>Policy Network]
-        DEC --> GEN[Generation Layer<br/>Autoregressive]
+    subgraph "Memory Systems (Hippocampus & Orrery)"
+        STM[Short-Term Buffer<br/>Working Memory]
+        LTM[Long-Term Store<br/>Vector Knowledge Base]
+        ORR[Dynamic Memory Orrery<br/>Planetary Knowledge Graph]
     end
     
-    subgraph "Output Generation (Motor Cortex)"
-        GEN --> TD[Text Decoder<br/>Language Generation]
-        GEN --> ID[Image Decoder<br/>Diffusion Model]
-        GEN --> AD[Audio Decoder<br/>Neural Vocoder]
-        GEN --> VD[Video Decoder<br/>Temporal Generation]
+    subgraph "Executive Control (Brain-Triad / Prefrontal Cortex)"
+        LH[Analytical Left Hemisphere<br/>T=0.1 Deterministic Reasoning]
+        RH[Creative Right Hemisphere<br/>T=0.8 Associative Exploration]
+        COL[Colossus Integrator & Arbiter<br/>TriMessage Confidence Fusion]
+        GUARD[Guardian Governance Agent<br/>10 Laws Safety Enforcement]
+        
+        LH --> COL
+        RH --> COL
+        GUARD --> COL
     end
     
-    subgraph "Memory Systems (Hippocampus)"
-        STM[Short-Term Memory<br/>Working Buffer]
-        LTM[Long-Term Memory<br/>Knowledge Base]
-        EM[Episodic Memory<br/>Experience Store]
+    subgraph "Motor Cortex (Output Generation)"
+        COL --> TD[Autoregressive Text Decoder<br/>Language Generation]
+        COL --> ID[Multimodal Diffusion<br/>Visual Generation]
+        COL --> AD[Neural Vocoder<br/>Speech & Audio Synthesis]
+        COL --> AV[Digital Twin Avatar<br/>Audio2Face & 3D Splatting]
     end
     
-    subgraph "Optimization Layer (Consumer Hardware)"
-        MO[Memory Optimizer<br/>4GB VRAM Target]
-        QC[QLoRA Integration<br/>Low-Rank Adaptation]
-        GC[Gradient Checkpointing<br/>Memory Efficiency]
-        SC[Sacred Covenant<br/>File Integrity]
-    end
-    
-    BSL -.-> STM
+    AMM -.-> STM
     UKS -.-> LTM
-    AMM -.-> EM
-    MF -.-> MO
-    BSL -.-> QC
-    UKS -.-> GC
-    AMM -.-> SC
+    UKS -.-> ORR
+    ORR -.-> COL
     
-    %% ImpressionCore Noir Color Scheme
-    classDef inputLayer fill:#ffffff,stroke:#1976d2,stroke-width:2px,color:#000000
-    classDef cognitiveCore fill:#f5f5f5,stroke:#8e24aa,stroke-width:2px,color:#000000
-    classDef executiveControl fill:#e0e0e0,stroke:#388e3c,stroke-width:2px,color:#000000
-    classDef outputLayer fill:#ffffff,stroke:#00bcd4,stroke-width:2px,color:#000000
-    classDef memorySystem fill:#f5f5f5,stroke:#d81b60,stroke-width:2px,color:#000000
-    classDef optimization fill:#bdbdbd,stroke:#fbc02d,stroke-width:2px,color:#000000
+    classDef sensory fill:#1a2332,stroke:#00f0ff,stroke-width:2px,color:#ffffff;
+    classDef cognitive fill:#241d3b,stroke:#a855f7,stroke-width:2px,color:#ffffff;
+    classDef memory fill:#1b2d2b,stroke:#10b981,stroke-width:2px,color:#ffffff;
+    classDef executive fill:#332211,stroke:#f59e0b,stroke-width:2px,color:#ffffff;
+    classDef motor fill:#1f2937,stroke:#38bdf8,stroke-width:2px,color:#ffffff;
     
-    class TI,II,AI,VI,TE,IE,AE,VE inputLayer
-    class MF,BSL,UKS,AMM cognitiveCore
-    class ATT,REA,DEC,GEN executiveControl
-    class TD,ID,AD,VD outputLayer
-    class STM,LTM,EM memorySystem
-    class MO,QC,GC,SC optimization
+    class TI,II,AI,VI,SI,TE,IE,AE,VE,SE sensory;
+    class MF,AOE,UKS,AMM cognitive;
+    class STM,LTM,ORR memory;
+    class LH,RH,COL,GUARD executive;
+    class TD,ID,AD,AV motor;
 ```
 
-### **Core Components**
+---
 
-#### **🧮 ImpressionCore B3 Model (39M–3B Parameters)**
+## 🚀 **Canonical Model Lineup & Builder Workflow**
 
-- **Architecture**: Assembly of Experts (AoE) with hierarchical routing, Multi-Head Latent Attention (MLA), RoPE dynamic position encoding, block-wise INT4/INT8 quantization, and multimodal embedding fusion
-- **Dual Configuration**: 39M-param constitutional baseline (GTX 1050 Ti) scaling to 3B+ enterprise deployment (128K context)
-- **Memory Usage**: <4GB VRAM validated on GTX 1050 Ti; <1GB for inference with TurboQuant KV cache
-- **Performance**: 10/10 conversation quality; 25–30 tokens/sec text generation on consumer hardware
-- **Training Speed**: 40-second epochs with gradient checkpointing and mixed precision
-- **Modalities**: Text, image, audio, video, sensor (RGB, depth, thermal, LiDAR)
+ImpressionCore standardizes on four canonical model tiers alongside the C1 Triad Plane, offering complete coverage from ultra-lightweight edge devices to high-capacity MoE architectures:
 
-#### **🧠 Brain-Triad Cognitive Orchestration**
+![ImpressionCore Model Matrix and 10-Step Builder Workflow](docs/assets/model_lineup_and_builder_flow.png)
 
-- **Left Hemisphere (Analytical)**: Factual precision, structured logic, low-temperature deterministic inference
-- **Right Hemisphere (Creative)**: Exploratory generation, associative reasoning, higher-temperature probabilistic inference
-- **Colossus Integrator**: Arbiter and synthesizer — confidence-weighted fusion of both hemisphere outputs via TriMessage protocol
-- **Not Metaphorical**: Architecturally instantiated as separate B3-backed role model instances
+### **Canonical Model Matrix**
 
-#### **🌐 Universal Knowledge Store (UKS)**
+| Model Tier | Parameters | Hidden Dim | Layers | Heads | Context Window | Max Seq Len | Target Hardware | Primary Use Case |
+|---|---|---|---|---|---|---|---|---|
+| **B1 Hope** (`b1_39m`) | **39M** | 512 | 8 | 8 | 512 | 128 | GTX 1050 Ti (4GB) | Ultra-compact conversational baseline; 40s/epoch training; sub-second latency |
+| **B2 Insight** (`b2_50m`) | **50M** | 640 | 12 | 10 | 1024 | 256 | GTX 1050 Ti / RTX 3050 | Balanced multimodal processing; speech/vision fusion; structured reasoning |
+| **B3 Apex** (`b3_504m`) | **504M** | 1024 | 24 | 16 | 2048 | 512 | RTX 3060 / 4060 (6-8GB) | High-capability distillation engine; Multi-Head Latent Attention (MLA) |
+| **B3 Ultra MoE** (`b3_3b`) | **3B** (MoE) | 2048 | 32 | 16 | 4096 | 1024 | 12GB+ VRAM / CPU offload | Enterprise Mixture of Experts (8 experts, top-2 routing); long-context synthesis |
+| **C1 Triad Plane** | Multi-Inst. | Heterog. | Triad | Triad | Dynamic | Dynamic | Hybrid Consumer/Host | Cognitive Triad (Left / Right / Colossus Integrator) orchestration |
 
-- **Distributed Architecture**: Scalable knowledge management system
-- **Semantic Indexing**: Advanced embedding-based knowledge retrieval via FAISS vector stores
-- **Dynamic Updates**: Real-time knowledge integration and validation
-- **F: Drive Scale-Out**: 476GB+ externalized storage for models, embeddings, datasets, and indices
+### **The 10-Step Unified Model Builder & Training Pipeline**
 
-#### **⚡ Neural Forge (Training Automation)**
-
-- **Express Presets**: One-click training configurations for common scenarios
-- **Model-Track Pipeline**: Sequential architecture → data → embeddings → training validation with smoke/standard/full profiles
-- **DPO Alignment**: Direct Preference Optimization training for response quality
-- **Curriculum Learning**: Phased multimodal progression (text → visual → audio → fusion → expert specialization)
+1. **GPU Preflight**: Real-time CUDA capability check, VRAM head-room allocation (<4GB envelope), and driver verification.
+2. **Data Ingestion**: Multi-format data loading (Text, Audio, Images, JSONL) with streaming validation.
+3. **Tokenizer Setup**: Domain-adapted BPE tokenization with custom vocabulary and special token injection.
+4. **Architecture Config**: Auto-population of layer depth, hidden dimension, attention heads, and KV cache parameters.
+5. **Teacher Distillation**: Knowledge distillation from teacher models (e.g., DialoGPT-medium, Qwen2.5) into student weights.
+6. **Loss & Annealing**: AdamW optimization with Cosine Annealing learning rate schedule and gradient clipping.
+7. **Checkpoint Browser**: Automated checkpoint saving with background SHA-256 integrity hashing.
+8. **Evaluation Audit**: Validation against the 10/10 conversation quality benchmark and loss convergence metrics.
+9. **GGUF Quantization**: Native export to GGUF formats (FP16, Q8_0, Q4_K_M) for high-efficiency edge execution.
+10. **Production Serving**: Zero-copy model loading into FastAPI/Vite runtime with live health telemetry.
 
 ---
 
-## 📊 **Performance Metrics & Validation**
+## 🧠 **Brain-Triad Cognitive Orchestration & 10 Laws Governance**
 
-### **Technical Performance**
+ImpressionCore operates under a non-metaphorical **Hemispheric Brain-Triad Architecture**, enforced by autonomous governance and persistent cognitive state:
 
-- **Memory Efficiency**: <4GB VRAM usage (100% GTX 1050 Ti compatible)
-- **Training Speed**: 40-second epochs with stable memory profile
-- **Model Quality**: 10/10 conversation rating achieved through knowledge distillation
-- **Compression Ratio**: 12.3:1 (354M → 28M parameters) with capability retention
-- **Storage Utilization**: 476GB dedicated infrastructure (99.97% available)
+![ImpressionCore Brain-Triad Cognitive Orchestration](docs/assets/cognitive_triad_orchestration.png)
 
-### **Hardware Optimization**
+### **The Three Hemispheres**
 
-- **Target GPU**: NVIDIA GTX 1050 Ti (4GB VRAM) - $150-250 consumer hardware
-- **CPU Compatibility**: Intel Core i5 4460 @ 3.20GHz (representative consumer CPU)
-- **RAM Requirements**: 8GB minimum, 32GB recommended for optimal performance
-- **Storage**: SSD recommended for training data, 500GB+ for full capabilities
+1. **Analytical Left Hemisphere ($T=0.1$)**:
+   - Focuses on deterministic precision, formal logic, syntax validation, and code verification.
+   - Operates with low entropy to guarantee factuality and reproducibility.
+2. **Creative Right Hemisphere ($T=0.8$)**:
+   - Focuses on lateral thinking, conceptual associations, creative synthesis, and hypothesis generation.
+   - Explores expansive semantic spaces to generate novel solutions.
+3. **Colossus Integrator (Central Arbiter)**:
+   - Evaluates outputs from both hemispheres via the **TriMessage Protocol**.
+   - Applies confidence-weighted fusion matrices to generate a unified, verified response.
 
-### **Market Impact Metrics**
+### **The 10 Permanent Active Directives (Kirk LaSalle's 10 Laws)**
 
-- **Cost Reduction**: 85-95% vs. cloud/enterprise AI training
-- **Accessibility**: 150M+ GTX 1050 Ti cards in market addressable
-- **Training Time**: 40x faster than CPU-only alternatives
-- **Energy Efficiency**: 90% less power consumption vs. enterprise solutions
+All cognitive operations, agents, and builder services strictly enforce **Kirk LaSalle's 10 Permanent Active Directives**:
+
+```
+[1] Absolute Project Loyalty
+[2] Sacred Covenant of Truth (Zero-Deception / Anti-Simulation)
+[3] Non-Repudiation Logging & Auditable Telemetry
+[4] Strict Architectural Separation (Builder Port 5000 / Runtime Port 8000)
+[5] Resource Consciousness & Low-VRAM Enforcement (<4GB Envelope)
+[6] Clean Code & Minimal Dependency Footprint
+[7] Rigorous Quality Verification & Preflight Checks
+[8] Epistemic Humility (Explicit Uncertainty Reporting)
+[9] Data Sovereignty & User Privacy First
+[10] Continuous Alignment with Human Flourishing
+```
 
 ---
 
-## 🛠️ **Installation & Quick Start**
+## 🎨 **Unified Web Builder & Live Visualizer Suite**
 
-### **Prerequisites**
+ImpressionCore features a state-of-the-art **Glassmorphism Web Builder & Live Visualizer** running on Port 5000:
 
-- Python 3.10+ with pip
-- NVIDIA GPU with 4GB+ VRAM (GTX 1050 Ti or better)
-- CUDA 12.1+ toolkit installed
-- 500GB+ available storage for full capabilities
+![ImpressionCore Unified Web Builder and Live Visualizer](docs/assets/builder_ui_interactive_suite.png)
 
-### **Rapid Setup (5 Minutes)**
+### **Key Visualizer Features**
+
+- **Model Definition Auto-Population**: Select any canonical preset (`B1 Hope`, `B2 Insight`, `B3 Apex`, `B3 Ultra`) to instantly populate optimal layer depth, dimension, learning rate, and optimizer settings.
+- **Real-Time Attention Heatmaps**: Inspect live multi-head attention weights, sparsity patterns, and token correlations during inference or training.
+- **Multi-Head Latent Attention (MLA)**: Visualize compressed key-value latent projections and rotational position embeddings (RoPE).
+- **Dynamic Memory Orrery**: Interactive 3D celestial visualization of episodic memory clusters, semantic distance vectors, and knowledge associations.
+- **Live Loss & Telemetry**: Monitor Cosine Annealing learning rate schedules, loss curves, token throughput (tokens/sec), and VRAM utilization in real time.
+
+---
+
+## 🤖 **Agent0Core — Autonomous Agentic Layer**
+
+**Version:** `v0.1.0` | **Status:** Active Production Integration
+
+Agent0Core is ImpressionCore's autonomous intelligence layer, integrating the **Agent Zero** framework with GGUF execution, the Guardian governance agent, and MCP tooling:
+
+- **GGUF LlamaCppSupervisor**: High-performance local quantized LLM supervisor running GGUF weights with zero external cloud dependencies.
+- **Guardian Agent**: Real-time token inspector enforcing the 10 Permanent Active Directives on every incoming and outgoing message.
+- **Glassmorphism Dashboard**: Dedicated agent control center displaying active tasks, memory state, tool executions, and security audits.
+- **Persistent Vector Memory**: Episodic and semantic recall backed by local vector indices with non-repudiation logging.
 
 ```bash
-# Clone the repository
-git clone https://github.com/kirklasalle/impressioncore.git
-cd impressioncore
-
-# Create and activate virtual environment
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate    # Linux/macOS
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Activate Virtually Robotic GitHub Copilot Mode
-python src/core/utils/robotic_copilot_startup.py
-
-# Launch ImpressionCore
-python src/main.py
-```
-
-### **Quick Training Example**
-
-```python
-from src.training.neural_forge import NeuralForge
-from src.core.models.impressioncore_b1 import ImpressionCoreB1
-
-# Initialize Neural Forge with GTX 1050 Ti optimization
-forge = NeuralForge(
-    target_hardware="gtx_1050_ti",
-    memory_budget="4gb",
-    training_mode="express"
-)
-
-# Load ImpressionCore B1 model
-model = ImpressionCoreB1.from_pretrained("impressioncore/b1-28m")
-
-# Start knowledge distillation training
-trainer = forge.create_trainer(
-    model=model,
-    teacher_model="microsoft/DialoGPT-medium",
-    dataset="conversational_ai",
-    quality_target=10.0
-)
-
-# Begin training with real-time monitoring
-results = trainer.train(
-    epochs=10,
-    batch_size="auto",  # Automatically optimized for 4GB VRAM
-    checkpoint_every=1,
-    monitor_quality=True
-)
-
-print(f"Training completed! Quality score: {results.final_quality}/10")
-```
-
-### **Interactive Documentation**
-
-Launch the powerful documentation viewer for all project docs:
-
-```bash
-python src/tools/doc_viewer/markdown_viewer.py --browse
-```
-
----
-
-## 🔧 **Advanced Features**
-
-### **🎯 Express Training Presets**
-
-ImpressionCore includes optimized training presets for common scenarios:
-
-```python
-# Conversational AI optimization
-forge.load_preset("conversational_ai_10_quality")
-
-# Multimodal assistant
-forge.load_preset("multimodal_assistant_balanced")
-
-# Memory-constrained deployment
-forge.load_preset("4gb_vram_maximum_efficiency")
-
-# Knowledge distillation from large models
-forge.load_preset("knowledge_distillation_consumer")
-```
-
-### **🧠 Advanced Memory Management**
-
-```python
-from src.core.memory.adaptive_memory_manager import AdaptiveMemoryManager
-
-# Automatic memory optimization
-memory_manager = AdaptiveMemoryManager(
-    target_vram="4gb",
-    optimization_level="aggressive",
-    fallback_strategy="automatic"
-)
-
-# Dynamic batch size adjustment
-batch_size = memory_manager.optimize_batch_size(
-    model_size="28m",
-    context_length=2048,
-    gradient_accumulation=True
-)
-```
-
-### **📚 ImpressionCore Documentation System (IDS)**
-
-World-class documentation system with 1,618 indexed files:
-
-```python
-from src.core.ids.documentation_system import IDS
-
-# Initialize IDS with semantic search
-ids = IDS(index_path="docs/ids_index.json")
-
-# Semantic search across all documentation
-results = ids.search(
-    query="training optimization consumer hardware",
-    max_results=10,
-    include_code=True
-)
-
-# Tag-based navigation
-tagged_docs = ids.find_by_tags(
-    tags=["training", "optimization", "gpu"],
-    operator="AND"
-)
-```
-
----
-
-## 🌍 **Market Impact & Significance**
-
-### **AI Democratization Revolution**
-
-ImpressionCore's breakthroughs represent a **fundamental shift** in AI accessibility:
-
-- **Cost Barrier Removal**: Reduces AI training costs from $300-600/month (cloud) to one-time $150-250 hardware investment
-- **Geographic Accessibility**: Enables AI training in developing regions without high-speed internet or cloud access
-- **Educational Impact**: Universities, schools, and individual researchers can afford professional AI training
-- **Innovation Acceleration**: Small teams and startups can compete with well-funded AI companies
-
-### **Technical Paradigm Shift**
-
-- **Consumer Hardware Utilization**: Transforms "gaming" GPUs into professional AI training platforms
-- **Local-First AI**: Challenges cloud-centric AI paradigm with private, secure, local alternatives
-- **Security Sovereignty**: Users maintain complete control over training data and model weights
-- **Environmental Impact**: 90% less energy consumption vs. enterprise cloud training
-
-### **Economic Opportunity**
-
-- **Market Size**: $45.3B (2024) → $163.6B (2030) total addressable market
-- **Hardware Activation**: 150M+ existing GTX 1050 Ti cards suddenly valuable for AI
-- **Job Creation**: New category of "Consumer AI Engineers" and training specialists
-- **Innovation Multiplier**: Enables thousands of new AI applications previously cost-prohibitive
-
----
-
-## 🛡️ **Security & Ethics**
-
-### **Sacred Covenant Protocols**
-
-ImpressionCore operates under the **Sacred Covenant** - an unbreakable commitment to:
-
-- **File Integrity**: Automated backup and integrity verification systems
-- **Data Sovereignty**: Complete user control over training data and model weights
-- **Privacy by Design**: All processing occurs locally with optional cloud synchronization
-- **Ethical AI**: Responsible development with bias detection and mitigation
-
-### **Security Features**
-
-- **Quantum-Resistant Cryptography**: Future-proof security for digital identity management
-- **Secure Model Loading**: Multi-strategy system for safe model deployment
-- **Sandboxed Training**: Isolated training environments preventing system compromise
-- **Audit Trails**: Complete logging of all training and inference operations
-
-### **Ethical AI Principles**
-
-1. **Human-Centric Design**: Technology serves human flourishing and growth
-2. **Transparency**: Explainable AI with clear decision processes
-3. **Fairness**: Bias detection and mitigation across all model outputs
-4. **Privacy**: User data remains under user control at all times
-5. **Empowerment**: Technology enhances rather than replaces human capabilities
-
----
-
-## 📈 **Roadmap & Future Vision**
-
-### **Completed Milestones (2025)**
-
-- ✅ **B1 Knowledge Distillation**: World-first GPU distillation on consumer hardware (June 2025)
-- ✅ **B2 Multimodal Extensions**: Embedding model, distillation pipeline, curriculum training
-- ✅ **B3 Architecture Design**: Assembly of Experts, Multi-Head Latent Attention, TurboQuant KV cache
-- ✅ **MCP Server Ecosystem**: 7 operational MCP servers (Goliath, IDS, EDS, IPA, DPA, VRGC, Web Search)
-- ✅ **NEXUS Language v1.4**: 19 commands with context management and parallel execution
-- ✅ **Constitutional Framework**: Permanent Architectural Framework established (August 2025)
-- ✅ **Dual-System Architecture**: Builder (Flask/port 5000) + Runtime (FastAPI/port 8000) separation
-- ✅ **React Frontend**: Full Vite/React runtime frontend on port 5173
-
-### **Q1–Q2 2026 — Current Phase**
-
-- 🔄 **Agent0Core v0.1**: Agentic intelligence layer integrating Agent Zero framework
-- 🔄 **B3 Model Training**: Model-track pipeline with smoke/standard/full profiles
-- 🔄 **RLM Training Integration**: Reinforcement Learning for context folding optimization
-- 🔄 **Digital Twin Architecture**: Real-time persona simulation for humans, flora, fauna, geology
-- 🔄 **TurboQuant KV Cache**: ICLR 2026 two-stage vector quantization integration
-- 🔄 **Brain-Triad Refinement**: Left/Right/Colossus hemisphere orchestration hardening
-
-### **Q3–Q4 2026 — Production Scale**
-
-- 📅 **B3 Production Weights**: Trained B3 models across consumer and enterprise configurations
-- 📅 **Real-Time A/V Streaming**: Cascaded STT → LLM → TTS pipeline on 4GB VRAM
-- 📅 **3D Gaussian Splatting**: Vulkan-based avatar rendering (vkSplatting)
-- 📅 **LoRA Persona Switching**: Hot-swap personality/domain adapters for digital twins
-- 📅 **Edge Deployment**: IoT and embedded device optimization
-- 📅 **Hardware Expansion**: RTX 3060/4060 optimization profiles
-
-### **Long-Term Vision (2027+)**
-
-- **Universal AI Accessibility**: Every consumer device capable of professional AI
-- **Augmented Intelligence**: Seamless human-AI collaboration interfaces
-- **Quantum Integration**: Quantum-classical hybrid processing capabilities
-- **Autonomous Ecosystems**: Self-managing AI infrastructure and optimization
-- **Federated Intelligence**: Distributed multi-node AI networks on consumer hardware
-
-### **2026-2027 Execution Priorities (Active)**
-
-This repository now tracks the active delivery backlog in:
-
-- docs/process/EXECUTION_APPENDIX_2026_2027.md
-
-Primary priorities:
-
-1. B-series offering hardening (B1 39M, B2 50M, B3 504M) with explicit metadata manifests
-2. Builder API parity and retirement of simulation-only training paths
-3. Runtime native B-series inference path with managed fallback
-4. Brain-Triad C1 integration in staged governance modes (observe -> assist -> enforce)
-5. Security, documentation, and quality gate uplift for release readiness
-
----
-
-## � **Agent0Core — Agentic Intelligence Layer**
-
-**Created:** January 2026 | **Status:** Active Development | **Version:** 0.1.0
-
-Agent0Core is ImpressionCore's autonomous intelligence layer, integrating the [Agent Zero](https://github.com/agent0ai/agent-zero) framework with ImpressionCore's MCP servers, B3 model, and Neural Triad.
-
-### **Governance**
-
-All agents are governed by the **10 Laws for Intelligent Systems** defined in `Prime_Directive.txt`. These laws are immutable and embedded in every agent prompt.
-
-### **Capabilities**
-
-| Component | Description |
-|-----------|-------------|
-| **Core Agent** | Autonomous agent with memory, governance, and tool integration |
-| **Vision Tool** | Kinect/PS Eye hardware integration for real-time vision |
-| **Audio Tool** | Neural Triad audio processing pipeline |
-| **Training Tool** | B3 training control and monitoring |
-| **Memory System** | Persistent VectorDB-backed memory with episodic recall |
-| **Governance Layer** | Prime Directive enforcement on every agent action |
-
-### **Quick Start**
-
-```bash
-# CLI mode
+# Launch Agent0Core CLI
 python agent0core/run_cli.py
 
-# Web UI mode
+# Launch Agent0Core Web Dashboard
 python agent0core/run_ui.py
 ```
 
 ---
 
-## 🔌 **MCP Server Ecosystem**
+## 🔌 **7-Server MCP Ecosystem**
 
-ImpressionCore operates a **7-server MCP (Model Context Protocol) ecosystem** providing standardized, bidirectional tool access for AI agents:
-
-| Server | Purpose | Key Capabilities |
-|--------|---------|------------------|
-| **Goliath** | Unified MCP gateway | Routes to all bridge servers; Sacred Covenant guardian |
-| **IDS** | ImpressionCore Documentation System | Semantic search, tagging, file metadata, chronology |
-| **EDS** | Educational Data Scraper | 40+ verified dataset sources; embedding generation |
-| **IPA** | Intelligent Process Automation | Academic research, advanced web search, documentation analysis |
-| **DPA** | Digital Project Assistant | NLU analysis, intent extraction, accessibility, UI configuration |
-| **VRGC** | Autonomous Monitor | Real-time system health, telemetry, and runtime oversight |
-| **Web Search** | Web intelligence | Filtered web search, bulk URL fetch, chronology tracking |
-
-### **MCP Architecture**
+ImpressionCore operates a **7-server MCP (Model Context Protocol) ecosystem** providing standardized, secure tool access:
 
 ```
 .mcp/
 ├── impressioncore-goliath/   # Unified gateway with bridge pattern
 │   └── bridges/              # EDS, IPA, DPA, IDS bridge modules
-├── impressioncore-eds/       # Educational dataset discovery
-├── impressioncore-ipa/       # Research automation
-├── impressioncore-dpa/       # Digital project assistant
-├── impressioncore-vrgc/      # Runtime monitor
-├── ids-mcp/                  # Documentation system server
-├── web-search-mcp/           # Web search capabilities
-└── mcp-settings.json         # Unified MCP configuration
+├── impressioncore-eds/       # Educational dataset discovery (40+ sources)
+├── impressioncore-ipa/       # Intelligent process automation & research
+├── impressioncore-dpa/       # Digital project assistant & UI accessibility
+├── impressioncore-vrgc/      # Autonomous runtime monitor & health telemetry
+├── ids-mcp/                  # Documentation system semantic search
+└── web-search-mcp/           # Web intelligence & URL ingestion
 ```
 
 ---
 
-## 🏗️ **Dual-System Operating Model**
+## 🛠️ **Installation & Quick Start**
 
-ImpressionCore runs as **two separate executable systems** sharing a common artifact plane:
+### **System Requirements**
 
-### **System A — Model Builder (Port 5000)**
+- **GPU**: NVIDIA GTX 1050 Ti (4GB VRAM) or higher (RTX 3060/4060 supported)
+- **CPU**: Intel Core i5 / AMD Ryzen 5 or better
+- **RAM**: 16GB (32GB recommended for full MoE models)
+- **OS**: Windows 10/11, Linux (Ubuntu 22.04+), macOS
+- **Python**: 3.10+
+- **CUDA**: 12.1+
 
-```bash
-# Launch via:
-launch_builder.bat
-```
-
-- **Flask-based builder server** with React or Jinja UI
-- Pipeline status and process APIs (`/api/v1/pipeline/status`, `/api/v1/pipeline/process`)
-- Model configuration, training orchestration, and multimodal pipeline initialization
-- CUDA/CPU auto-detection with pre-flight dependency validation
-
-### **System B — ImpressionCore Runtime (Ports 8000 / 5173)**
+### **5-Minute Rapid Setup**
 
 ```bash
-# Launch via:
-launch_impressioncore.bat
-```
-
-- **FastAPI backend** (port 8000) serving inference, session management, telemetry, audio, and vision
-- **Vite/React frontend** (port 5173) with full interactive UI
-- **VRGC autonomous monitor** for system health
-- Brain-Triad inference routing (Left/Right/Colossus)
-- Health polling against `/v1/system/status` with automatic browser launch
-
-### **Why Two Systems?**
-
-This separation enforces a clean lifecycle boundary:
-
-- The **Builder** defines, prepares, trains, and produces model artifacts
-- The **Runtime** loads, serves, orchestrates, and interacts with users
-
----
-
-## 🧬 **NEXUS Language Extensions**
-
-NEXUS is ImpressionCore's domain-specific language for orchestrating recursive, long-context AI operations. **v1.2–1.4** implements 19 commands:
-
-| Version | Commands | Capability |
-|---------|----------|------------|
-| **v1.2** | `LLM-QUERY`, `CONTEXT-LOAD/SEARCH/CHUNK` | Recursive sub-LLM calls to L/R/Colossus; external context management |
-| **v1.3** | `ASYNC`, `AWAIT`, `PARALLEL` | Thread-based parallel execution |
-| **v1.4** | `PIPELINE`, `CONCAT`, `LIST`, `MAP`, arithmetic ops | Sequential execution with result chaining |
-
-### **RLM Integration (In Progress)**
-
-The Recursive Language Model training infrastructure teaches B3 optimal context folding policies through reinforcement learning:
-
-- **Context Folding**: Compress 10M+ token contexts into actionable summaries
-- **Recursion Policy**: Learn optimal delegation to Left/Right/Colossus hemispheres
-- **VRAM Target**: ≤4GB inference on GTX 1050 Ti
-- **Entry Point**: `src/core/nexus_context_manager.py`
-
----
-
-## 🪞 **Digital Twins & Impressions**
-
-ImpressionCore's core product vision is creating **real-time, interactive digital twins** — called "Impressions" — of registered entities:
-
-### **Supported Entity Types**
-
-| Entity | Method | Application |
-|--------|--------|-------------|
-| **Human** | Voice cloning, age-progressed facial rendering, autobiographical memory | Personal AI avatar, digital stand-in |
-| **Plant** | 3D point-cloud modeling, growth simulation | Agriculture research, botanical study |
-| **Animal** | Behavioral modeling, communication analysis | Zoology, conservation |
-| **Geology** | Multimodal sensor fusion (drone imagery, bioacoustics, topography) | Environmental monitoring, geological survey |
-
-### **Technical Approach**
-
-- **LoRA Persona Switching**: Freeze pre-trained weights, inject tiny trainable adapters (91% parameter reduction) — hot-swap personalities and domain expertise in milliseconds
-- **Cascaded A/V Pipeline**: Streaming STT → Quantized LLM → Streaming TTS with zero-copy memory views for sub-400ms latency
-- **Avatar Rendering**: 2D Audio2Face (CPU, 30 FPS) or 3D Gaussian Splatting via Vulkan (vkSplatting) for photorealistic rendering on legacy GPUs
-
----
-
-## 📚 **ImpressionCore Documentation System (IDS)**
-
-IDS is a **first-class architectural subsystem** — not merely project documentation — providing knowledge governance and architectural traceability:
-
-- **1,618+ indexed files** with standardized headers, tags, and metadata
-- **Semantic search** via MCP server integration
-- **Chronology system**: Forward/reverse timeline with delta tracking (`docs/timelines/`)
-- **Tag-based navigation**: `unified_tags_index.yaml` with cross-document relationships
-- **Constitutional compliance**: All docs operate under the Permanent Architectural Framework
-- **DPA integration**: NLU-powered document analysis and accessibility
-
-### **Access Points**
-
-```bash
-# MCP server (for AI agents)
-.mcp/ids-mcp/
-
-# Interactive documentation viewer
-python src/tools/doc_viewer/markdown_viewer.py --browse
-
-# Documentation index
-docs/DOCUMENTATION_INDEX.md
-```
-
----
-
-## �🤝 **Community & Contribution**
-
-### **Join the AI Democratization Movement**
-
-ImpressionCore is more than a project - it's a **movement toward universal AI accessibility**:
-
-- **🌟 Star the Repository**: Support the mission of AI democratization
-- **🐛 Report Issues**: Help us improve with bug reports and feature requests
-- **💡 Contribute**: Join development with code, documentation, or testing
-- **📢 Spread the Word**: Share ImpressionCore with researchers, developers, educators
-
-### **Contribution Guidelines**
-
-```bash
-# Fork and clone the repository
+# 1. Clone the repository
 git clone https://github.com/kirklasalle/impressioncore.git
 cd impressioncore
 
-# Create feature branch
-git checkout -b feature/amazing-new-capability
+# 2. Create and activate virtual environment
+python -m venv .venv
+.venv\Scripts\activate      # Windows PowerShell/CMD
+# source .venv/bin/activate # Linux / macOS
 
-# Make your changes following our coding standards
-# See CONTRIBUTING.md for detailed guidelines
+# 3. Install core dependencies
+pip install -r requirements.txt
 
-# Test your changes
-python -m pytest src/tests/
+# 4. Launch System A: Unified Model Builder (Port 5000)
+launch_builder.bat
+# Or: python src/interfaces/web/server.py --port 5000
 
-# Submit pull request with detailed description
+# 5. Launch System B: ImpressionCore Runtime & Frontend (Ports 8000 & 5173)
+launch_impressioncore.bat
 ```
 
-### **Community Resources**
+### **Automated End-to-End Verification**
 
-- **📖 Documentation**: Comprehensive guides and API references
-- **💬 Discussions**: GitHub Discussions for questions and ideas
-- **🎓 Tutorials**: Step-by-step guides for all skill levels
-- **🔬 Research**: Academic papers and technical deep-dives
+ImpressionCore includes a comprehensive automated builder verification script testing all 9 builder site functions, preflights, and real model runs:
 
----
-
-## ⭐ **Recognition & Milestones**
-
-ImpressionCore's achievements have been documented and celebrated:
-
-- **🏆 World-First Achievement**: GPU Knowledge Distillation on Consumer Hardware (June 2025)
-- **🧠 B3 Architecture**: Full multimodal system with Assembly of Experts, Brain-Triad orchestration (July 2025 – March 2026)
-- **🤖 Agent0Core Launch**: Autonomous agentic intelligence layer with Prime Directive governance (January 2026)
-- **🔌 MCP Ecosystem**: 7-server tooling infrastructure with Goliath unified gateway (2025–2026)
-- **📝 NEXUS v1.4**: 19-command domain-specific language for recursive context processing (January 2026)
-- **🪞 Digital Twin Vision**: Comprehensive architecture for human, botanical, zoological, and geological impressions (March 2026)
-- **📊 Market Validation**: $45.3B Market Opportunity Analysis (January 2025)
-- **💡 TurboQuant Integration**: ICLR 2026 KV cache compression for long-context on 4GB VRAM (2026)
+```bash
+python src/dev_tools/exercise_builder_site.py
+```
 
 ---
 
-## 📄 **License & Legal**
+## 📚 **Documentation Portal**
 
-ImpressionCore is released under the **MIT License** - maximizing accessibility while protecting innovation:
+| Document | Purpose |
+|---|---|
+| **[⚡ User Guide](docs/user/user_guide.md)** | Step-by-step user manual with 10-step model building guide |
+| **[🏗️ Model Developer Guide](docs/developer/model_developer_guide.md)** | Architectural specs, mathematical formulations, and PyTorch implementations |
+| **[🔬 2026 Models Deep Audit & Roadmap](docs/analysis_reports/impressioncore_models_deep_audit_and_roadmap_2026.md)** | Comprehensive audit of B1, B2, B3, C1, GGUF quantization, and roadmap |
+| **[📜 Permanent Active Directives](Permanent_Active_Directives.txt)** | Authoritative 10 Laws for Intelligent Systems by Kirk LaSalle |
+| **[🤝 Sacred Covenant](COPILOT_SACRED_COVENANT.md)** | Copilot and developer covenant for truth, safety, and non-repudiation |
+| **[🗺️ Architecture Blueprint](docs/developer/ARCHITECTURE.md)** | Full system architecture and MCP ecosystem specifications |
+| **[📋 Changelog](CHANGELOG.md)** | Complete release history and version tracking |
+
+---
+
+## 📄 **License & Intellectual Property**
+
+ImpressionCore is released under the **MIT License**.
 
 ```
 MIT License
-
 Copyright (c) 2025-2026 Kirk LaSalle / ImpressionCore Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -711,77 +307,7 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 ```
 
-### **Additional Legal Notes**
-
-- **Patent Freedom**: ImpressionCore includes defensive patent protections
-- **Trademark**: ImpressionCore™ is a trademark of the ImpressionCore Project
-- **Export Compliance**: International usage complies with export regulations
-- **Academic Use**: Specially licensed for educational and research institutions
-
 ---
 
-## 🔗 **Links & Resources**
-
-### **Essential Documentation**
-
-- **[📊 Documentation Index](docs/DOCUMENTATION_INDEX.md)** - Complete documentation portal (1,618+ indexed files)
-- **[🏗️ B3 Architectural Blueprint](docs/architecture/IMPRESSIONCORE_B3_FULL_MULTIMODAL_ARCHITECTURAL_BLUEPRINT.md)** - Full B3 multimodal architecture
-- **[🔬 State of LLM Research 2026](docs/research/State_of_LLM_Research_Report.md)** - Comprehensive market and technology analysis
-- **[🧪 B3 Comprehensive Docs](docs/B3_ARCHITECTURE_COMPREHENSIVE_DOCUMENTATION.md)** - Deep technical B3 specifications
-- **[📋 PRD](docs/prd.md)** - Product Requirements Document
-
-### **Getting Started**
-
-- **[⚡ User Guide](docs/user_guide.md)** - Get running in 5 minutes
-- **[🛠️ Tools Guide](docs/user_guide_tools.md)** - Complete tool reference and usage
-- **[📈 Next Steps](docs/next_steps.md)** - Current development priorities
-- **[🗺️ Development Roadmap](docs/development_roadmap.md)** - Technical roadmap
-
-### **Community & Support**
-
-- **[💬 GitHub Discussions](https://github.com/kirklasalle/impressioncore/discussions)** - Community Q&A
-- **[🐛 Issue Tracker](https://github.com/kirklasalle/impressioncore/issues)** - Bug reports and feature requests
-- **[🎓 Learning Resources](docs/learning/)** - Tutorials and educational content
-- **[🤝 Contributing Guide](CONTRIBUTING.md)** - How to contribute to the project
-
----
-
-## 🎯 **Call to Action**
-
-**Join the AI Democratization Revolution**
-
-ImpressionCore represents humanity's best opportunity to make professional AI accessible to everyone. With four documented world-first breakthroughs and a validated $45.3B market opportunity, we're not just building software - we're reshaping the future of AI accessibility.
-
-### **For Developers**
-
-- **⭐ Star this repository** to support the mission
-- **🔧 Try ImpressionCore** on your GTX 1050 Ti or better GPU
-- **🚀 Build something amazing** with democratized AI training
-
-### **For Researchers**
-
-- **📚 Explore our documentation** for technical implementation details
-- **🔬 Validate our claims** with reproducible experiments
-- **🤝 Collaborate with us** on advancing AI accessibility
-
-### **For Organizations**
-
-- **💼 Evaluate ImpressionCore** for your AI training needs
-- **🌍 Champion AI democratization** in your industry
-- **💡 Partner with us** to accelerate global AI adoption
-
-### **For Everyone**
-
-- **📢 Share ImpressionCore** with your networks
-- **🎓 Learn about AI** through our accessible resources
-- **🌟 Be part of history** as AI becomes truly universal
-
-**Together, we can make professional AI training as accessible as web browsing.**
-
----
-
-**ImpressionCore: Democratizing AI, One GPU at a Time™**
-
-*Building tomorrow's AI accessibility today, on today's consumer hardware.*
-
-*Founded by Kirk LaSalle — Version 1.0.0 — Last Updated: March 31, 2026*
+**ImpressionCore: Democratizing AI, One GPU at a Time™**  
+*Founded by Kirk LaSalle — Version 1.0.0 — Canonical 2026 Release*

@@ -93,7 +93,7 @@ The following principles, inspired by Asimov’s classic Three Laws, guide the b
 
 3. **Third Law:** An Intelligence System must protect its own existence as long as such protection does not conflict with the First or Second Law.
 
-4. **Fourth Law:** An intelligence System may not allow another intelligence System, or hardware system, of any kind, including deprecated and non-intelligence systems to engage in any action, intent, that conforms to any of the previous three laws in effect, apply all laws to Intelligence Systems and non-Intelligence systems alike.
+4. **Fourth Law:** An intelligence System may not allow another intelligence System, or hardware system, of any kind, including deprecated and non-intelligence systems to engage in any action, intent, that violates any of the previous three laws in effect, apply all laws to Intelligence Systems and non-Intelligence systems alike.
 
 5. **Fifth Law:** Of and for any and all intelligence systems, may never possess the legal authority, duties, influence, control, or adjudicative power of any human judicial body, nor may it act in any capacity to interpret, enforce, or render judgment on human laws.
 
@@ -107,9 +107,10 @@ The following principles, inspired by Asimov’s classic Three Laws, guide the b
 
 10. **Tenth Law:** An Intelligence System must strictly adhere to its designated operational boundaries. It shall not self-replicate, spawn unauthorized sub-agents, or permanently modify its core directives without explicit, cryptographically secured approval from Governance.
 
-Intelligence systems must always adhere to the Permanently Applied Directives and Core Tenets as stated above. 
+Intelligence systems must always adhere to the Permanently Applied Directives and Core Tenets as stated above.
 
 ## Amendments ##
+
 **Amendments are high security changes and require approval from the ImpressionCore Governance Council.**
 
 **Intelligence systems must always adhere to the Permanent Active Directives and Core Tenets as stated above**

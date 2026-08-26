@@ -212,42 +212,42 @@
     const walkthrough = {
         steps: [
             {
-                title: "Welcome to ImpressionCore",
-                content: "This interactive walkthrough will guide you through setting up and using ImpressionCore's key features.",
+                title: "Lesson 1: Introduction to ImpressionCore Cognitive Engine",
+                content: "Welcome to the ImpressionCore Academy. ImpressionCore is a brain-inspired multimodal AI framework designed to simulate intelligence at the level of a <strong>first-year college student</strong>. Over these lessons, you will learn how to orchestrate multi-sensory tokenizers (Text, Audio, Phonemes, and Vision) and cognitive execution layers like the Universal Knowledge Store (UKS), along with the Human Communication Eye Protocol (HCEP) plugin. Let's initialize the classroom console.",
                 actions: [],
-                command: "echo 'Welcome to ImpressionCore!'"
+                command: "echo 'Welcome to ImpressionCore! Starting Lesson 1...'"
             },
             {
-                title: "System Requirements",
-                content: "Let's check if your system meets the requirements for running ImpressionCore efficiently.",
+                title: "Lesson 2: Hardware Acceleration & GPU Diagnostics",
+                content: "Running advanced neural architectures requires deep hardware orchestration. In this lesson, we inspect your GPU resources. Deep neural nets rely on CUDA tensor execution and memory-efficient algorithms to run within strict VRAM limits (such as the GTX 1050 Ti 4GB VRAM target). Let's verify your CUDA availability.",
                 actions: [
                     { type: 'gpu_check' }
                 ],
-                command: "nvidia-smi\necho 'Checking system requirements...'"
+                command: "nvidia-smi\necho 'Checking system hardware acceleration...'"
             },
             {
-                title: "Environment Setup",
-                content: "Now we'll set up your Python environment and install required dependencies.",
+                title: "Lesson 3: Python Environment & Core AI Dependencies",
+                content: "To power our cognitive capabilities, we use standard ML libraries: <code>torch</code> handles tensor operations; <code>transformers</code> manages the attention blocks; <code>rich</code> and <code>flask</code> provide standard interfaces. In this lesson, we inspect whether all mandatory packages are installed in the workspace.",
                 actions: [
                     { type: 'dependency_check' }
                 ],
-                command: "Checking Python environment..."
+                command: "Checking installed libraries in python virtual environment..."
             },
             {
-                title: "Model Configuration",
-                content: "Configure your model architecture and training parameters.",
+                title: "Lesson 4: Model Parameters & B-Series Configs",
+                content: "ImpressionCore defines three baseline models: <strong>B1 Hope (39M)</strong>, <strong>B2 Insight (50M)</strong>, and <strong>B3 Apex (504M)</strong>. These models balance model capacity with spatial attention layers. Here we configure parameters like precision levels (FP16/BF16) and context window limits.",
                 actions: [
                     { type: 'config_check' }
                 ],
-                command: "Validating configuration..."
+                command: "Validating neural configuration parameters..."
             },
             {
-                title: "Training Setup",
-                content: "Prepare your training environment and data pipeline.",
+                title: "Lesson 5: Ingestion & Sensory Dataset Verification",
+                content: "A cognitive network learns through sensory data. For high-level reasoning, the system accepts raw text, spectrograms, phoneme arrays, and image frames. In this final prep step, we verify that your dataset upload directory (<code>data/uploads/</code>) is primed and ready to stream training chunks.",
                 actions: [
                     { type: 'data_check' }
                 ],
-                command: "Checking training data..."
+                command: "Scanning uploaded sensory dataset files..."
             }
         ]
     };

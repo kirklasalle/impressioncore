@@ -5,8 +5,9 @@
 {% block styles %}
 <style>
     .visualization-container {
-        background-color: #f8f9fa;
-        border-radius: 5px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         padding: 15px;
         margin-top: 15px;
         min-height: 400px;
@@ -23,12 +24,13 @@
     }
     
     .controls-card {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
     
     .visualization-image {
         max-width: 100%;
         max-height: 800px;
+        border-radius: var(--radius-sm);
     }
     
     .memory-tag {
@@ -36,50 +38,62 @@
         color: #fff;
         padding: 2px 8px;
         border-radius: 10px;
-        background-color: #28a745;
+        background-color: var(--accent-success);
     }
     
     .memory-tag.medium {
-        background-color: #ffc107;
+        background-color: var(--accent-warning);
+        color: #0a0e17;
     }
     
     .memory-tag.high {
-        background-color: #dc3545;
+        background-color: var(--accent-danger);
     }
     
     .memory-stat {
-        border-radius: 5px;
+        border-radius: var(--radius-sm);
         padding: 15px;
         margin-bottom: 15px;
-        background-color: #f8f9fa;
-        border-left: 4px solid #6c757d;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--text-muted);
     }
     
     .memory-stat h5 {
         margin-bottom: 10px;
-        color: #495057;
+        color: var(--text-primary);
     }
     
     .memory-stat.vram {
-        border-left-color: #007bff;
+        border-left-color: var(--accent-primary);
     }
     
     .memory-stat.ram {
-        border-left-color: #28a745;
+        border-left-color: var(--accent-success);
     }
     
     .memory-stat.cpu {
-        border-left-color: #fd7e14;
+        border-left-color: var(--accent-warning);
     }
     
     .memory-value {
         font-size: 1.5rem;
         font-weight: bold;
+        color: var(--text-primary);
     }
     
     .progress {
         height: 15px;
         margin-top: 10px;
+        background-color: var(--bg-primary);
+    }
+
+    /* Override dropdown select option colors for high contrast */
+    .form-select,
+    .form-select option,
+    select option {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
     }
 </style>
 {% endblock %}
@@ -206,7 +220,7 @@
                         <h4>Memory Breakdown</h4>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
-                                <thead class="table-light">
+                                <thead style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
                                     <tr>
                                         <th>Component</th>
                                         <th>Memory Usage</th>

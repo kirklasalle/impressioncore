@@ -45,7 +45,7 @@
     <span class="d-block mt-2"><b>Memory Optimization:</b> Every component is engineered for low VRAM usage, enabling complex AI on affordable hardware. See <a href="/documentation">Documentation Index</a> for in-depth technical details.</span>
   </p>
   <div class="alert alert-success mt-3" role="alert">
-    <b>Interactive Architecture:</b> <span>Explore the architecture diagram above. Hover or tap on each module for a tooltip with a summary and direct links to relevant documentation. For a 3D interactive version, <a href="https://impressioncore.org/3d-architecture" target="_blank">view the 3D diagram</a> (opens in new tab).</span>
+    <b>Interactive Architecture:</b> <span>Explore the architecture diagram above. Hover or tap on each module for a tooltip with a summary and direct links to relevant documentation. For a 3D interactive version, <a href="{{ url_for('model_viz.model_architecture') }}" target="_blank">view the 3D diagram</a> (opens in new tab).</span>
   </div>
 </div>
 
@@ -83,7 +83,7 @@
     <li><b>Optimized for Consumer GPUs:</b> Run complex models on affordable hardware (GTX 1050 Ti+), with VRAM-aware scheduling and memory optimization.</li>
     <li><b>Rich Visualizations:</b> Interactive diagrams, 3D architecture viewers, and cloud plots to support decision-making and onboarding.</li>
   </ul>
-  <div class="alert alert-warning mt-2">New: <b>3D Interactive Diagrams</b> and <b>Animated Cloud Plots</b> are now available in the <a href="/visualizations">Visualizations Gallery</a>. These tools help you explore model internals, training progress, and architecture in real time.</div>
+  <div class="alert alert-warning mt-2">New: <b>3D Interactive Diagrams</b> and <b>Animated Cloud Plots</b> are now available in the <a href="{{ url_for('model_viz.visualization_dashboard') }}">Visualizations Gallery</a>. These tools help you explore model internals, training progress, and architecture in real time.</div>
 </div>
 
 <div class="card mb-4">
@@ -112,7 +112,7 @@ impressioncore/
     <h2>Next Steps</h2>
     <p>Ready to start building? Begin with the <b>System Requirements</b> section to configure your development environment. For a guided onboarding, follow the sidebar steps in order, or jump to any section as needed. <br>
     <b>Decision Support:</b> Throughout the workflow, look for <span style="color:#007bff;">callouts</span> and <span style="color:#28a745;">interactive diagrams</span> that provide context, best practices, and links to relevant documentation. <br>
-    <b>Visualizations:</b> Explore the <a href="/visualizations">Visualizations Gallery</a> for 3D diagrams, animated cloud plots, and architecture explorers to deepen your understanding.</p>
+    <b>Visualizations:</b> Explore the <a href="{{ url_for('model_viz.visualization_dashboard') }}">Visualizations Gallery</a> for 3D diagrams, animated cloud plots, and architecture explorers to deepen your understanding.</p>
     <a href="{{ url_for('system_requirements') }}" class="btn btn-primary" role="button">
         <i class="fas fa-arrow-right"></i> Continue to System Requirements
     </a>
@@ -140,6 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ImpressionCore Introduction: Inline Documentation
   - This template is synchronized with DOCUMENTATION_INDEX.md and the IDS documentation system.
   - For the latest onboarding, architecture, and workflow details, always cross-reference the documentation index.
-  - For advanced visualizations, see /visualizations and the static/img/ directory.
+  - For advanced visualizations, see the <a href="{{ url_for('model_viz.visualization_dashboard') }}">visualization dashboard</a> and the static/img/ directory.
   - For technical support, see the sidebar or /documentation.
 -->

@@ -109,7 +109,8 @@ def create_app():
                 static_folder='static',
                 template_folder='templates')
 
+    import secrets
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable cache during development
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key')
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
 
     return app

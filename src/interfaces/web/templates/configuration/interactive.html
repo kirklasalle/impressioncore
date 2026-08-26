@@ -5,37 +5,39 @@
 {% block styles %}
 <style>
     .config-card {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         margin-bottom: 20px;
     }
     
     .config-panel {
-        background-color: #f8f9fa;
-        border-radius: 5px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         padding: 20px;
         margin-bottom: 20px;
     }
     
     .memory-bar {
         height: 25px;
-        background-color: #e9ecef;
-        border-radius: 5px;
+        background-color: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         margin-bottom: 5px;
     }
     
     .memory-bar .bar {
         height: 100%;
-        border-radius: 5px;
-        background-color: #007bff;
+        border-radius: var(--radius-sm);
+        background-color: var(--accent-primary);
         transition: width 0.3s ease;
     }
     
     .memory-bar .bar.warning {
-        background-color: #ffc107;
+        background-color: var(--accent-warning);
     }
     
     .memory-bar .bar.danger {
-        background-color: #dc3545;
+        background-color: var(--accent-danger);
     }
     
     .preset-btn {
@@ -45,15 +47,16 @@
     
     .feature-toggle {
         padding: 15px;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         margin-bottom: 10px;
-        background-color: #f8f9fa;
+        background-color: var(--bg-secondary);
+        transition: var(--transition);
     }
     
     .feature-toggle.active {
-        border-color: #28a745;
-        background-color: #f8fff9;
+        border-color: var(--accent-success);
+        background-color: rgba(52, 211, 153, 0.04);
     }
     
     .config-section {
@@ -62,18 +65,29 @@
     
     .param-description {
         font-size: 0.85rem;
-        color: #6c757d;
+        color: var(--text-muted);
     }
     
     .config-summary {
-        background-color: #f8f9fa;
-        border-left: 4px solid #007bff;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-primary);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
         padding: 15px;
         margin-top: 20px;
+        color: var(--text-primary);
     }
     
     .alert-limited-vram {
-        border-left: 4px solid #dc3545;
+        border-left: 4px solid var(--accent-danger);
+    }
+
+    /* Override dropdown select option colors for high contrast */
+    .form-select,
+    .form-select option,
+    select option {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
     }
 </style>
 {% endblock %}

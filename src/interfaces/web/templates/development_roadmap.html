@@ -1,6 +1,262 @@
 {% extends 'base.html' %}
-{% block title %}Development Roadmap{% endblock %}
+{% block title %}ImpressionCore Development Roadmap{% endblock %}
+
 {% block content %}
-<h2>Development Roadmap</h2>
-<p>This is a placeholder for the Development Roadmap page. Add roadmap details here.</p>
+<style>
+    .roadmap-header {
+        margin-bottom: 2.5rem;
+    }
+    .roadmap-subtitle {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+    .timeline {
+        position: relative;
+        padding-left: 3rem;
+        margin-top: 2rem;
+    }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, #38bdf8 0%, #1e293b 100%);
+    }
+    .timeline-node {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+    .timeline-node::before {
+        content: '';
+        position: absolute;
+        left: -33px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: var(--bg-card);
+        border: 3px solid #38bdf8;
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+    .timeline-node.completed::before {
+        background-color: #22c55e;
+        border-color: #22c55e;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+    .timeline-node.planned::before {
+        background-color: var(--bg-card);
+        border-color: #64748b;
+        box-shadow: none;
+    }
+    .roadmap-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .roadmap-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        border-color: rgba(56, 189, 248, 0.3);
+    }
+    .node-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .node-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .node-title i {
+        color: #38bdf8;
+    }
+    .node-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        letter-spacing: 0.05em;
+    }
+    .badge-completed {
+        background-color: rgba(34, 197, 94, 0.1);
+        color: #4ade80;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    .badge-active {
+        background-color: rgba(56, 189, 248, 0.1);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .badge-planned {
+        background-color: rgba(100, 116, 139, 0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+    .node-desc {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    .features-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+    .feature-item i {
+        font-size: 0.75rem;
+    }
+    .feature-item.checked i {
+        color: #22c55e;
+    }
+    .feature-item.pending i {
+        color: #38bdf8;
+    }
+    .feature-item.upcoming i {
+        color: #64748b;
+    }
+</style>
+
+<div class="roadmap-header">
+    <h1><i class="fas fa-road" style="color: #38bdf8; margin-right: 0.5rem;"></i> Development Roadmap</h1>
+    <p class="roadmap-subtitle">
+        Tracing the cognitive evolution of ImpressionCore toward a first-year college student level intelligence. Reconciling text, audio, phoneme, streaming, video, and tool-calling capabilities under a unified, brain-inspired execution framework.
+    </p>
+</div>
+
+<div class="timeline">
+    <!-- Milestone 1 -->
+    <div class="timeline-node completed">
+        <div class="roadmap-card">
+            <div class="node-header">
+                <div class="node-title">
+                    <i class="fas fa-font"></i>
+                    Milestone 1: Foundational Text &amp; Tokenizer Setup
+                </div>
+                <span class="node-badge badge-completed">Completed / Active</span>
+            </div>
+            <p class="node-desc">
+                Establishing the baseline transformer code base, tokenization pipelines, model configuration presets (B1 Hope, B2 Insight, B3 Apex), and multi-checkpoint weight saving.
+            </p>
+            <div class="features-list">
+                <div class="feature-item checked"><i class="fas fa-check-circle"></i> PyTorch B-series model layouts</div>
+                <div class="feature-item checked"><i class="fas fa-check-circle"></i> Interactive Web Builder UI</div>
+                <div class="feature-item checked"><i class="fas fa-check-circle"></i> GPU / CUDA diagnostic setup</div>
+                <div class="feature-item checked"><i class="fas fa-check-circle"></i> Text dataset loading &amp; tokenization</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone 2 -->
+    <div class="timeline-node">
+        <div class="roadmap-card">
+            <div class="node-header">
+                <div class="node-title">
+                    <i class="fas fa-brain"></i>
+                    Milestone 2: UKS &amp; Cognitive Inheritance Integration
+                </div>
+                <span class="node-badge badge-active">Active Development</span>
+            </div>
+            <p class="node-desc">
+                Integrating the Universal Knowledge Store (UKS) with the rule engine and class-based inheritances. Bridging declarative logic with neural weight processing for semantic reasoning.
+            </p>
+            <div class="features-list">
+                <div class="feature-item pending"><i class="fas fa-circle-notch fa-spin"></i> Universal Knowledge Graph</div>
+                <div class="feature-item pending"><i class="fas fa-circle-notch fa-spin"></i> Dynamic Rule Injector</div>
+                <div class="feature-item pending"><i class="fas fa-circle-notch fa-spin"></i> Cognitive Class Inheritances</div>
+                <div class="feature-item checked"><i class="fas fa-check-circle"></i> UKS visual setup template</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone 3 -->
+    <div class="timeline-node planned">
+        <div class="roadmap-card">
+            <div class="node-header">
+                <div class="node-title">
+                    <i class="fas fa-volume-up"></i>
+                    Milestone 3: Streaming Audio &amp; Phoneme Sequences
+                </div>
+                <span class="node-badge badge-planned">Planned (Q4 2026)</span>
+            </div>
+            <p class="node-desc">
+                Adding real-time streaming audio interfaces, phoneme representations, text-to-speech (TTS) synthesis, and speech-to-text (STT) parsing to build multimodal auditory capabilities.
+            </p>
+            <div class="features-list">
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Streaming Audio Tokenizer</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Phoneme Alignment Model</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Real-time TTS/STT pipelines</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Auditory latency optimizer</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone 4 -->
+    <div class="timeline-node planned">
+        <div class="roadmap-card">
+            <div class="node-header">
+                <div class="node-title">
+                    <i class="fas fa-video"></i>
+                    Milestone 4: Image &amp; Video Diffusion Loops
+                </div>
+                <span class="node-badge badge-planned">Planned (Q1 2027)</span>
+            </div>
+            <p class="node-desc">
+                Expanding spatial-temporal comprehension with visual diffusion capabilities. Allowing ImpressionCore to process video frames, generate images, and trace dynamic object changes.
+            </p>
+            <div class="features-list">
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Video Frame Tokenizer</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Text-to-Video Diffusion loop</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Spatial attention tracer</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Generative visual test benches</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone 5 -->
+    <div class="timeline-node planned">
+        <div class="roadmap-card">
+            <div class="node-header">
+                <div class="node-title">
+                    <i class="fas fa-cogs"></i>
+                    Milestone 5: Tool Calling, BrainSim &amp; HCEP Plugin Integration
+                </div>
+                <span class="node-badge badge-planned">Planned (Q2 2027)</span>
+            </div>
+            <p class="node-desc">
+                Releasing full tool-calling support, BrainSim simulated loops, and integration wrappers for the Human Communication Eye Protocol (HCEP) plugin. Enabling off-axis gaze parallax co-registration, social triangle detection, and eye contact mode classification.
+            </p>
+            <div class="features-list">
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> HCEP Plugin Connector</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> BrainSim firing state loop</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Function schemas &amp; API runners</div>
+                <div class="feature-item upcoming"><i class="far fa-circle"></i> Closed-loop task harness</div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

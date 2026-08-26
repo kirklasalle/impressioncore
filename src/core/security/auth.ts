@@ -43,15 +43,27 @@ export const AuthService = {
         logger.info(`Authentication attempt for user ${email}`);
 
         // In a real implementation, this would validate credentials against a database
-        // Here we're simulating authentication (NEVER store passwords like this in production)
-        const simulatedUsers: Record<string, { id: string; password: string; name: string; roles: string[] }> = {
-            'user@example.com': { id: 'user-1', password: 'password123', name: 'Test User', roles: ['user'] },
-            'admin@example.com': { id: 'admin-1', password: 'admin123', name: 'Admin User', roles: ['user', 'admin'] },
+        // Resolve credentials from environment variables for test/dev environments
+        const isProduction = process.env.NODE_ENV === 'production';
+        const userPass = process.env.AUTH_DEFAULT_USER_PASSWORD;
+        const adminPass = process.env.AUTH_DEFAULT_ADMIN_PASSWORD;
+
+        if (isProduction && (!userPass || !adminPass)) {
+            logger.error('Authentication attempt rejected: Mock credentials are not configured in production environment');
+            return {
+                success: false,
+                error: 'Authentication service requires production identity store',
+            };
+        }
+
+        const simulatedUsers: Record<string, { id: string; password?: string; name: string; roles: string[] }> = {
+            'user@example.com': { id: 'user-1', password: userPass || 'DevOnlyUser_ChangeInEnv!', name: 'Test User', roles: ['user'] },
+            'admin@example.com': { id: 'admin-1', password: adminPass || 'DevOnlyAdmin_ChangeInEnv!', name: 'Admin User', roles: ['user', 'admin'] },
         };
 
         const userRecord = simulatedUsers[email];
 
-        if (!userRecord || userRecord.password !== password) {
+        if (!userRecord || !userRecord.password || userRecord.password !== password) {
             logger.warn(`Failed authentication for ${email}`);
             return {
                 success: false,

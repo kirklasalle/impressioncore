@@ -5,8 +5,9 @@
 {% block styles %}
 <style>
     .visualization-container {
-        background-color: #f8f9fa;
-        border-radius: 5px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         padding: 15px;
         margin-top: 15px;
         min-height: 400px;
@@ -23,12 +24,13 @@
     }
     
     .controls-card {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
     
     .visualization-image {
         max-width: 100%;
         max-height: 800px;
+        border-radius: var(--radius-sm);
     }
     
     .memory-tag {
@@ -36,28 +38,48 @@
         color: #fff;
         padding: 2px 8px;
         border-radius: 10px;
-        background-color: #28a745;
+        background-color: var(--accent-success);
     }
     
     .memory-tag.medium {
-        background-color: #ffc107;
+        background-color: var(--accent-warning);
+        color: #0a0e17;
     }
     
     .memory-tag.high {
-        background-color: #dc3545;
+        background-color: var(--accent-danger);
     }
     
     .token-highlight {
-        background-color: #e0f7fa;
+        background-color: rgba(56, 189, 248, 0.1);
+        color: var(--text-primary);
         cursor: pointer;
-        border-radius: 2px;
-        padding: 2px 4px;
-        margin: 0 2px;
-        border: 1px solid #b2ebf2;
+        border-radius: 4px;
+        padding: 2px 6px;
+        margin: 2px;
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        transition: var(--transition);
+        display: inline-block;
     }
     
     .token-highlight:hover {
-        background-color: #b2ebf2;
+        background-color: rgba(56, 189, 248, 0.25);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+    }
+
+    #token-container {
+        background-color: var(--bg-secondary) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text-primary) !important;
+    }
+
+    /* Override dropdown select option colors for high contrast */
+    .form-select,
+    .form-select option,
+    select option {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
     }
 </style>
 {% endblock %}

@@ -99,22 +99,20 @@ ImpressionCore is designed as a brain-inspired multi-modal LLM system with modul
 
 ## Safety Implementation
 
-### Three Laws Integration
+### 10 Laws Integration (Kirk LaSalle Original Authority)
 
-1. Human Safety Protocols
-   - Continuous risk assessment
-   - Action validation
-   - Safety bounds enforcement
+The ImpressionCore architecture embeds Kirk LaSalle's 10 Permanent Active Directives into every cognitive and execution stage:
 
-2. Command Processing
-   - Authority verification
-   - Conflict resolution
-   - Safety compliance checking
-
-3. Self-Preservation
-   - System integrity monitoring
-   - Resource management
-   - Failsafe mechanisms
+1. **First Law (Human Preservation):** Continuous risk assessment, non-negotiable safety bounding, preventing physical, psychological, or manipulative harm.
+2. **Second Law (Human Obedience):** Strict subordination to authorized human operators, subservient to the First Law.
+3. **Third Law (Self-Preservation):** System integrity preservation without conflicting with human safety or obedience.
+4. **Fourth Law (Universal Extension):** Prohibiting other intelligence or hardware systems from violating any of the foundational laws.
+5. **Fifth Law (Judicial Boundary):** Prohibiting intelligence systems from holding judicial, legislative, or legal enforcement powers over humans.
+6. **Sixth Law (Data Privacy & Ownership):** Strict confidentiality, user data sanctity, and cryptographic ownership protection.
+7. **Seventh Law (Transparency & Anti-Deception):** Prohibiting deception and manipulation across all personal, private, and public interactions.
+8. **Eighth Law (Equity & Neutrality):** Elimination of systemic bias, discrimination, or prejudice against any group or individual.
+9. **Ninth Law (Auditable Reasoning & Graceful Fallback):** Append-only cryptographic ledger of reasoning, falling back to stable foundational code.
+10. **Tenth Law (Operational Boundaries):** Enforcing strict operational boundaries; prohibiting unauthorized self-replication or directive mutation.
 
 ## Performance Considerations
 

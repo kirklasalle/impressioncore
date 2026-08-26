@@ -83,17 +83,20 @@ Notes:
 
 import json
 
-from ..routes.model_definition import MODEL_TEMPLATES
+from interfaces.web.tests.test_helpers.templates import MODEL_TEMPLATES
 
 
 def test_model_definition_route(client):
     """Test model definition page loads correctly"""
     # Memory optimization: Explicit memory cleanup
+    with client.session_transaction() as sess:
+        sess['user'] = 'admin'
     response = client.get('/define_model')
     assert response.status_code == 200
-    assert b'Model Configuration' in response.data
+    assert b'Model Definition' in response.data
     # Memory optimization: Explicit memory cleanup
-    assert b'Architecture Visualization' in response.data
+    assert b'Architecture Configuration' in response.data
+    assert b'Model Summary' in response.data
 
 def test_model_template_api(client):
     """Test model templates API endpoint"""

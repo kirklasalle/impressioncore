@@ -205,7 +205,7 @@ from agent0core.config import default_config as agent_config
 async def verify_api_key(request: Request, call_next):
     public_paths = [
         "/", "/docs", "/openapi.json", "/system_monitor.html",
-        "/favicon.ico", "/v1/system/status", "/v1/telemetry/stream"
+        "/favicon.ico", "/v1/telemetry/stream"
     ]
     if request.url.path in public_paths or request.url.path.startswith("/static") or request.method == "OPTIONS":
         return await call_next(request)

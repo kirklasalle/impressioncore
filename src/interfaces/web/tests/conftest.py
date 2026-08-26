@@ -89,14 +89,16 @@ from flask import Flask
 from flask_sock import Sock
 
 # Fix import path for absolute imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from .interfaces.web.routes.model_definition_init import register_model_definition
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+from interfaces.web.routes.model_definition_init import register_model_definition
 
 
 @pytest.fixture
 def app():
     """Create test application instance"""
-    app = Flask(__name__)
+    template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../templates'))
+    static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../static'))
+    app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
     app.config['TESTING'] = True
     app.config['SERVER_NAME'] = 'localhost:5000'
 
@@ -118,10 +120,46 @@ def app():
         }
     }
 
+    app.secret_key = 'test-secret-key'
+
     # Register model definition routes without modifying existing ones
     # Memory optimization: Explicit memory cleanup
+    from interfaces.web.routes import web as web_blueprint
+    from interfaces.web.routes.configuration import config_bp
+    from interfaces.web.routes.tokenizer_training import tokenizer_training_bp
+    from interfaces.web.routes.model_visualization import model_viz as model_viz_bp
+    from interfaces.web.routes.training_visualization import training_viz as training_viz_bp
+    from interfaces.web.routes.deployment import deployment_bp
+    from interfaces.web.routes.training_routes import training_bp
+    from interfaces.web.routes.metrics import metrics_bp
+    from interfaces.web.routes.builder import builder_bp
+    from interfaces.web.routes.builder_views import builder_views_bp
+
     with app.app_context():
         register_model_definition(app, sock)
+        app.register_blueprint(web_blueprint)
+        app.register_blueprint(config_bp)
+        app.register_blueprint(tokenizer_training_bp)
+        app.register_blueprint(model_viz_bp)
+        app.register_blueprint(training_viz_bp)
+        app.register_blueprint(deployment_bp)
+        app.register_blueprint(training_bp)
+        app.register_blueprint(metrics_bp)
+        app.register_blueprint(builder_bp)
+        app.register_blueprint(builder_views_bp)
+
+        # Alias blueprint endpoints to unprefixed names for legacy templates
+        for rule in app.url_map.iter_rules():
+            if '.' in rule.endpoint:
+                alias = rule.endpoint.split('.', 1)[1]
+                if alias not in app.view_functions:
+                    app.add_url_rule(
+                        rule.rule,
+                        endpoint=alias,
+                        view_func=app.view_functions[rule.endpoint],
+                        methods=rule.methods,
+                        defaults=rule.defaults,
+                    )
 
     return app
 

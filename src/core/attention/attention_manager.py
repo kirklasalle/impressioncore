@@ -60,7 +60,7 @@ import math
 import logging
 import time
 
-from src.modules.attention.sparse_attention_temp import (
+from src.core.attention.sparse_attention_temp import (
     LocalAttention,
     MemoryEfficientAttention, 
     # Memory optimization: Memory-critical operation
