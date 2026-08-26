@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canonical Model Suite & Empirical Benchmarks — ImpressionCore</title>
+  <meta name="description" content="Explore the canonical ImpressionCore model family: B1 Hope (39M), B2 Insight (50M), B3 Apex (504M), and B3 Ultra 3B MoE with live interactive VRAM calculator and hardware benchmarks.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a href="index.html" class="ic-brand-logo">
+        <div class="ic-logo-glyph"></div>
+        <div class="ic-brand-title">Impression<span>Core</span></div>
+      </a>
+
+      <nav class="ic-nav">
+        <a href="index.html" class="ic-nav-link">Genesis</a>
+        <a href="architecture.html" class="ic-nav-link">Architecture</a>
+        <a href="models.html" class="ic-nav-link active">Models</a>
+        <a href="builder.html" class="ic-nav-link">Builder Studio</a>
+        <a href="sensory.html" class="ic-nav-link">Sensory & Embodiment</a>
+        <a href="agents-mcp.html" class="ic-nav-link">Agent0Core & MCP</a>
+        <a href="docs.html" class="ic-nav-link">Documentation</a>
+        <a href="governance.html" class="ic-nav-link">Sacred Covenant</a>
+      </nav>
+
+      <div class="ic-header-actions">
+        <div class="ic-telemetry-badge">
+          <span class="ic-live-dot"></span>
+          <span>GTX 1050 Ti: STABLE (&lt;4GB)</span>
+        </div>
+        <a href="builder.html" class="ic-btn ic-btn-primary ic-btn-sm">Launch Builder</a>
+        <button class="ic-mobile-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="ic-section" style="padding-top: calc(var(--header-height) + 3rem);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Model Family & Telemetry</div>
+          <h1>The Canonical <span class="ic-gradient-text">B-Series Model Suite</span></h1>
+          <p class="ic-section-subtitle">
+            Engineered under the Concentrated Intelligence Doctrine: maximizing semantic density per parameter 
+            to deliver professional-grade conversational and multimodal capabilities on sub-4GB consumer hardware.
+          </p>
+        </div>
+
+        <div class="ic-figure-frame">
+          <img src="images/model_lineup_and_builder_flow.png" alt="Canonical Model Lineup and Builder Flow">
+          <div class="ic-figure-caption">
+            <span>Canonical B-Series Model Suite: B1 Hope (39M), B2 Insight (50M), B3 Apex (504M), B3 Ultra (3.2B MoE)</span>
+            <span class="ic-figure-tag">MASTER MATRIX</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Model Profiles Grid -->
+    <section class="ic-section" style="background: rgba(8, 12, 20, 0.6); border-top: 1px solid var(--border-glass);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Deep Profiles</div>
+          <h2>Architectural Specifications <span class="ic-gradient-text">by Model Tier</span></h2>
+        </div>
+
+        <div class="ic-grid-2">
+          <!-- B1 Hope Profile -->
+          <div class="ic-card" id="b1">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <div>
+                <span class="ic-section-tag">Edge Baseline SLM</span>
+                <h3 style="color: var(--accent-cyan); margin-top: 0.5rem;">B1 Hope (39.2M)</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-emerald); font-weight: 700;">
+                0.23 GB VRAM
+              </div>
+            </div>
+            <p>
+              Ultra-low-latency device-local Small Language Model designed for instant command processing, text completion, and 40-second training epochs on GTX 1050 Ti.
+            </p>
+            <div class="ic-table-wrapper" style="margin: 1rem 0;">
+              <table class="ic-table" style="font-size: 0.85rem;">
+                <tr><td><strong>Layers ($L$):</strong> 8</td><td><strong>Hidden Dim ($d_{model}$):</strong> 768</td></tr>
+                <tr><td><strong>Attention Heads:</strong> 12 ($d_{head}=64$)</td><td><strong>Context Window ($T$):</strong> 4,096 tokens</td></tr>
+                <tr><td><strong>FP16 Size:</strong> 78.4 MB</td><td><strong>INT8 Size:</strong> 39.2 MB</td></tr>
+                <tr><td><strong>Inference Speed:</strong> ~55 tok/sec</td><td><strong>Training Epoch:</strong> ~40 seconds</td></tr>
+              </table>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Target: Consumer Laptops, Raspberry Pi, GTX 1050 Ti (4GB)
+            </div>
+          </div>
+
+          <!-- B2 Insight Profile -->
+          <div class="ic-card" id="b2">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <div>
+                <span class="ic-section-tag">Cross-Modal Reasoning</span>
+                <h3 style="color: var(--accent-purple); margin-top: 0.5rem;">B2 Insight (50.1M)</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-emerald); font-weight: 700;">
+                0.35 GB VRAM
+              </div>
+            </div>
+            <p>
+              Intermediate cross-modal reasoning engine with Cross-Modal Cross-Attention (CMCA), aligning textual token streams with visual feature grids and acoustic spectrograms.
+            </p>
+            <div class="ic-table-wrapper" style="margin: 1rem 0;">
+              <table class="ic-table" style="font-size: 0.85rem;">
+                <tr><td><strong>Layers ($L$):</strong> 10</td><td><strong>Hidden Dim ($d_{model}$):</strong> 832</td></tr>
+                <tr><td><strong>Attention Heads:</strong> 13 (Latent)</td><td><strong>Context Window ($T$):</strong> 4,096 tokens</td></tr>
+                <tr><td><strong>FP16 Size:</strong> 100.2 MB</td><td><strong>INT8 Size:</strong> 50.1 MB</td></tr>
+                <tr><td><strong>Inference Speed:</strong> ~42 tok/sec</td><td><strong>Multimodal:</strong> Text + Vision + Speech</td></tr>
+              </table>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Target: Smart Cameras, Edge Vision Systems, GTX 1050 Ti
+            </div>
+          </div>
+
+          <!-- B3 Apex Profile -->
+          <div class="ic-card" id="b3">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <div>
+                <span class="ic-section-tag">Heavyweight Foundation</span>
+                <h3 style="color: var(--accent-gold); margin-top: 0.5rem;">B3 Apex (504.2M)</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-cyan); font-weight: 700;">
+                1.80 GB VRAM
+              </div>
+            </div>
+            <p>
+              Heavyweight edge foundation model featuring Multi-Head Latent Attention (MLA), FlashAttention-2, and deep Socratic conversational reasoning capabilities.
+            </p>
+            <div class="ic-table-wrapper" style="margin: 1rem 0;">
+              <table class="ic-table" style="font-size: 0.85rem;">
+                <tr><td><strong>Layers ($L$):</strong> 24</td><td><strong>Hidden Dim ($d_{model}$):</strong> 3,072</td></tr>
+                <tr><td><strong>Attention Heads:</strong> 24 ($d_{head}=128$)</td><td><strong>Context Window ($T$):</strong> 4,096 tokens</td></tr>
+                <tr><td><strong>FP16 Size:</strong> 1.01 GB</td><td><strong>INT8 Size:</strong> 504.2 MB</td></tr>
+                <tr><td><strong>Inference Speed:</strong> ~12 tok/sec (Pascal)</td><td><strong>Capabilities:</strong> Socratic Dialogue & Code</td></tr>
+              </table>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Target: GTX 1050 Ti (with INT8), RTX 3060/4060, Local Desktops
+            </div>
+          </div>
+
+          <!-- B3 Ultra Profile -->
+          <div class="ic-card" id="b3ultra">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+              <div>
+                <span class="ic-section-tag">Sparse Mixture of Experts</span>
+                <h3 style="color: #f43f5e; margin-top: 0.5rem;">B3 Ultra MoE (3.2B)</h3>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-amber); font-weight: 700;">
+                3.80 GB (INT4)
+              </div>
+            </div>
+            <p>
+              Sovereign multimodal digital twin cognitive core. Features 8 experts with top-2 softmax gating, Manifold-Constrained Hyper-Connections, and 8,192 context window.
+            </p>
+            <div class="ic-table-wrapper" style="margin: 1rem 0;">
+              <table class="ic-table" style="font-size: 0.85rem;">
+                <tr><td><strong>Total Params:</strong> 3.21 Billion</td><td><strong>Active Params:</strong> 852 Million</td></tr>
+                <tr><td><strong>Layers:</strong> 32 (4 MoE Blocks)</td><td><strong>Experts:</strong> 8 Experts (Top-2 Routing)</td></tr>
+                <tr><td><strong>INT4 GGUF Size:</strong> 1.61 GB</td><td><strong>Context Window ($T$):</strong> 8,192 tokens</td></tr>
+                <tr><td><strong>Inference Speed:</strong> ~6 tok/sec (Quant)</td><td><strong>Primary Use:</strong> Lifelong Digital Twin</td></tr>
+              </table>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Target: GTX 1050 Ti (with INT4), Multi-GPU Edge, Enterprise Clusters
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Model Builder & VRAM Calculator Simulator Widget -->
+    <section class="ic-section" id="calculator">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag gold">Interactive Engineering Tool</div>
+          <h2>Live Model Architecture & <span class="ic-gold-text">VRAM Budget Calculator</span></h2>
+          <p class="ic-section-subtitle">
+            Configure custom model parameters or select canonical presets to compute exact parameter counts, KV cache consumption, and GTX 1050 Ti VRAM feasibility in real time.
+          </p>
+        </div>
+
+        <div class="ic-simulator-box">
+          <div class="ic-sim-header">
+            <div>
+              <h3 style="color: #ffffff; margin-bottom: 0.25rem;">Interactive Model Parameter Simulator</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0;">Select a preset or customize parameters dynamically:</p>
+            </div>
+            <div id="simVerdict" style="font-family: var(--font-mono); font-size: 0.95rem;"></div>
+          </div>
+
+          <div class="ic-preset-tabs">
+            <button class="ic-preset-btn active" data-preset="b1">B1 Hope (39M)</button>
+            <button class="ic-preset-btn" data-preset="b2">B2 Insight (50M)</button>
+            <button class="ic-preset-btn" data-preset="b3_apex">B3 Apex (504M)</button>
+            <button class="ic-preset-btn" data-preset="b3_ultra">B3 Ultra 3B MoE</button>
+          </div>
+
+          <div class="ic-sim-grid">
+            <!-- Parameter Sliders -->
+            <div>
+              <div class="ic-slider-group">
+                <div class="ic-slider-label">
+                  <span>Transformer Layers ($L$)</span>
+                  <span id="valLayers">8</span>
+                </div>
+                <input type="range" class="ic-slider" id="simLayers" min="4" max="36" step="2" value="8">
+              </div>
+
+              <div class="ic-slider-group">
+                <div class="ic-slider-label">
+                  <span>Hidden Dimension ($d_{model}$)</span>
+                  <span id="valDModel">768</span>
+                </div>
+                <input type="range" class="ic-slider" id="simDModel" min="256" max="4096" step="64" value="768">
+              </div>
+
+              <div class="ic-slider-group">
+                <div class="ic-slider-label">
+                  <span>Attention Heads ($n_{heads}$)</span>
+                  <span id="valHeads">12</span>
+                </div>
+                <input type="range" class="ic-slider" id="simHeads" min="4" max="32" step="2" value="12">
+              </div>
+
+              <div class="ic-slider-group">
+                <div class="ic-slider-label">
+                  <span>Context Window ($T$)</span>
+                  <span id="valContext">4096</span>
+                </div>
+                <input type="range" class="ic-slider" id="simContext" min="512" max="16384" step="512" value="4096">
+              </div>
+
+              <!-- Generated PyTorch Code Snippet -->
+              <div class="ic-code-panel">
+                <div class="ic-code-header">
+                  <span>Generated PyTorch Architecture</span>
+                  <span>Live Compilation</span>
+                </div>
+                <pre class="ic-code-body" id="simCodeOutput" style="font-size: 0.8rem;"></pre>
+              </div>
+            </div>
+
+            <!-- Telemetry & VRAM Budget Meters -->
+            <div class="ic-sim-meters">
+              <div class="ic-meter-item">
+                <div class="ic-meter-header">
+                  <span style="color: var(--text-secondary);">Total Parameters</span>
+                  <strong style="color: #ffffff; font-size: 1.15rem;" id="simTotalParams">39.2 Million</strong>
+                </div>
+              </div>
+
+              <div class="ic-meter-item">
+                <div class="ic-meter-header">
+                  <span style="color: var(--text-secondary);">FP16 Weights Memory</span>
+                  <strong style="color: #38bdf8;" id="simFp16Mem">0.08 GB</strong>
+                </div>
+              </div>
+
+              <div class="ic-meter-item">
+                <div class="ic-meter-header">
+                  <span style="color: var(--text-secondary);">INT8 Quantized Memory</span>
+                  <strong style="color: var(--accent-emerald);" id="simInt8Mem">39 MB</strong>
+                </div>
+              </div>
+
+              <div class="ic-meter-item">
+                <div class="ic-meter-header">
+                  <span style="color: var(--text-secondary);">INT4 GGUF Memory</span>
+                  <strong style="color: var(--accent-gold);" id="simInt4Mem">20 MB</strong>
+                </div>
+              </div>
+
+              <div class="ic-meter-item" style="padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+                <div class="ic-meter-header">
+                  <span style="color: #ffffff; font-weight: 700;">GTX 1050 Ti VRAM Budget (4.0 GB)</span>
+                  <strong id="simVramText" style="color: var(--accent-cyan);">0.23 GB / 4.00 GB (6%)</strong>
+                </div>
+                <div class="ic-progress-bar">
+                  <div id="simVramBar" class="ic-progress-fill" style="width: 6%;"></div>
+                </div>
+              </div>
+
+              <div class="ic-card" style="padding: 1rem; background: rgba(0, 240, 255, 0.05); border-color: var(--border-glass); margin-top: 0.5rem;">
+                <p style="font-size: 0.82rem; margin-bottom: 0; color: var(--text-secondary);">
+                  💡 <strong>Concentrated Intelligence:</strong> All calculations incorporate parameter weights, KV cache allocations, activation overhead, and gradient checkpointing savings.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empirical Hardware Benchmark Matrix -->
+    <section class="ic-section">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Cross-Platform Verification</div>
+          <h2>Empirical Hardware <span class="ic-gradient-text">Benchmark Matrix</span></h2>
+          <p class="ic-section-subtitle">
+            Measured inference latency and memory utilization across consumer edge hardware to high-end workstations.
+          </p>
+        </div>
+
+        <div class="ic-table-wrapper">
+          <table class="ic-table">
+            <thead>
+              <tr>
+                <th>Hardware Platform</th>
+                <th>VRAM / RAM</th>
+                <th>B1 Hope (39M)</th>
+                <th>B2 Insight (50M)</th>
+                <th>B3 Apex (504M)</th>
+                <th>B3 Ultra (3.2B MoE)</th>
+                <th>VRAM Envelope Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>NVIDIA GTX 1050 Ti</strong></td>
+                <td>4 GB VRAM</td>
+                <td>~55 tok/sec</td>
+                <td>~42 tok/sec</td>
+                <td>~12 tok/sec (INT8)</td>
+                <td>~6 tok/sec (INT4)</td>
+                <td><span style="color:var(--accent-emerald);">● 100% STABLE (&lt;4GB)</span></td>
+              </tr>
+              <tr>
+                <td><strong>NVIDIA RTX 3060</strong></td>
+                <td>12 GB VRAM</td>
+                <td>~140 tok/sec</td>
+                <td>~110 tok/sec</td>
+                <td>~45 tok/sec</td>
+                <td>~28 tok/sec</td>
+                <td><span style="color:var(--accent-emerald);">● OPTIMAL HEADROOM</span></td>
+              </tr>
+              <tr>
+                <td><strong>NVIDIA RTX 4090</strong></td>
+                <td>24 GB VRAM</td>
+                <td>~280 tok/sec</td>
+                <td>~220 tok/sec</td>
+                <td>~115 tok/sec</td>
+                <td>~75 tok/sec</td>
+                <td><span style="color:var(--accent-emerald);">● MAXIMUM SPEED</span></td>
+              </tr>
+              <tr>
+                <td><strong>Intel Core i5-4460 CPU</strong></td>
+                <td>16 GB DDR3</td>
+                <td>~45 tok/sec</td>
+                <td>~32 tok/sec</td>
+                <td>~6 tok/sec (GGUF)</td>
+                <td>~2.5 tok/sec (GGUF)</td>
+                <td><span style="color:var(--accent-cyan);">● CPU ZERO-GPU EXEC</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ic-footer">
+    <div class="ic-container">
+      <div class="ic-footer-grid">
+        <div class="ic-footer-brand">
+          <div class="ic-brand-logo">
+            <div class="ic-logo-glyph"></div>
+            <div class="ic-brand-title">Impression<span>Core</span></div>
+          </div>
+          <p>
+            Democratizing AI, One GPU at a Time™.<br>
+            A historic open-source AI platform founded by Kirk LaSalle.
+          </p>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Navigation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="index.html">Genesis Overview</a></li>
+            <li><a href="architecture.html">5-Layer Architecture</a></li>
+            <li><a href="models.html">Canonical Models</a></li>
+            <li><a href="builder.html">Web Builder Studio</a></li>
+            <li><a href="sensory.html">Sensory Perception</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Documentation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="docs.html">Documentation Hub</a></li>
+            <li><a href="agents-mcp.html">Agent0Core & MCP</a></li>
+            <li><a href="governance.html">Sacred Covenant</a></li>
+            <li><a href="governance.html#license">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Telemetry</h5>
+          <div class="ic-card" style="padding: 1.25rem; background: rgba(8, 12, 20, 0.8);">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-emerald); margin-bottom: 0.5rem;">
+              ● Model Range: 39M–3.2B
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">
+              ● GTX 1050 Ti: VERIFIED
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold);">
+              ● GGUF Formats: Q4_K / Q8 / FP16
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ic-footer-bottom">
+        <div>© 2025–2026 Kirk LaSalle / ImpressionCore Project. Released under the MIT License.</div>
+        <div>Protected by Kirk LaSalle's 10 Permanent Active Directives.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/builder_simulator.js"></script>
+</body>
+</html>

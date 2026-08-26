@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5-Layer Brain-Inspired Multimodal Architecture — ImpressionCore</title>
+  <meta name="description" content="Explore ImpressionCore's revolutionary 5-layer brain-inspired multimodal architecture, Hemispheric Brain-Triad cognitive orchestration, Multi-Head Latent Attention (MLA), and Assembly of Experts (AoE).">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a href="index.html" class="ic-brand-logo">
+        <div class="ic-logo-glyph"></div>
+        <div class="ic-brand-title">Impression<span>Core</span></div>
+      </a>
+
+      <nav class="ic-nav">
+        <a href="index.html" class="ic-nav-link">Genesis</a>
+        <a href="architecture.html" class="ic-nav-link active">Architecture</a>
+        <a href="models.html" class="ic-nav-link">Models</a>
+        <a href="builder.html" class="ic-nav-link">Builder Studio</a>
+        <a href="sensory.html" class="ic-nav-link">Sensory & Embodiment</a>
+        <a href="agents-mcp.html" class="ic-nav-link">Agent0Core & MCP</a>
+        <a href="docs.html" class="ic-nav-link">Documentation</a>
+        <a href="governance.html" class="ic-nav-link">Sacred Covenant</a>
+      </nav>
+
+      <div class="ic-header-actions">
+        <div class="ic-telemetry-badge">
+          <span class="ic-live-dot"></span>
+          <span>GTX 1050 Ti: STABLE (&lt;4GB)</span>
+        </div>
+        <a href="builder.html" class="ic-btn ic-btn-primary ic-btn-sm">Launch Builder</a>
+        <button class="ic-mobile-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section Header Hero -->
+    <section class="ic-section" style="padding-top: calc(var(--header-height) + 3rem);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Biological Computing Blueprint</div>
+          <h1>The 5-Layer <span class="ic-gradient-text">Brain-Inspired Architecture</span></h1>
+          <p class="ic-section-subtitle">
+            ImpressionCore models human and biological cognition through a structured five-layer hierarchy: 
+            moving from sensory perception to associative cognition, planetary memory orreries, hemispheric executive control, and embodied motor output.
+          </p>
+        </div>
+
+        <div class="ic-figure-frame">
+          <img src="images/impressioncore_hero_architecture.png" alt="ImpressionCore 5-Layer Brain-Inspired Architecture Diagram">
+          <div class="ic-figure-caption">
+            <span>The Canonical Five-Layer Multimodal Stack: Sensory Cortex → Cognitive Core → Memory Orrery → Brain-Triad → Motor Cortex</span>
+            <span class="ic-figure-tag">FIGURE 1.0 • SYSTEM TOPOLOGY</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep-Dive into the 5 Cognitive Layers -->
+    <section class="ic-section" id="5layers" style="background: rgba(8, 12, 20, 0.6); border-top: 1px solid var(--border-glass);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Layer Specifications</div>
+          <h2>Deconstructing the <span class="ic-gradient-text">Cognitive Hierarchy</span></h2>
+        </div>
+
+        <div class="ic-grid-2">
+          <div class="ic-card">
+            <div class="ic-section-tag">Layer 1: Input Plane</div>
+            <h3 style="color: var(--accent-cyan);">Sensory Cortex (Input Processing)</h3>
+            <p>
+              Perceives the external physical and semantic world through specialized modality-specific tokenizers and neural encoders:
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+              <li><strong>Text Processing:</strong> Byte-Pair Encoding (BPE) with custom vocabulary (50,257 tokens).</li>
+              <li><strong>Vision Processing:</strong> Vision Transformer (ViT-B/32) and CNN patch tokenizers for continuous visual grids.</li>
+              <li><strong>Acoustic Processing:</strong> Wav2Vec2 and Mel-spectrogram temporal audio feature extraction.</li>
+              <li><strong>3D Spatial Depth:</strong> Real-time RGB-D point clouds and skeletal joint tracking via Microsoft Kinect.</li>
+            </ul>
+          </div>
+
+          <div class="ic-card">
+            <div class="ic-section-tag">Layer 2: Association Plane</div>
+            <h3 style="color: var(--accent-purple);">Cognitive Core (Association Cortex)</h3>
+            <p>
+              Performs cross-modal latent projection and sparse expert routing to bind disparate sensory streams into unified concepts:
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+              <li><strong>Cross-Modal Latent Projections:</strong> Cross-Attention matrices projecting vision and audio into text token spaces.</li>
+              <li><strong>Multi-Head Latent Attention (MLA):</strong> Low-rank key-value projections saving 75% memory bandwidth.</li>
+              <li><strong>Assembly of Experts (AoE):</strong> 4 specialized sub-networks dynamically gated by task complexity.</li>
+            </ul>
+          </div>
+
+          <div class="ic-card">
+            <div class="ic-section-tag">Layer 3: Memory Plane</div>
+            <h3 style="color: var(--accent-emerald);">Memory Systems (Hippocampus & Orrery)</h3>
+            <p>
+              Combines short-term working context with long-term episodic recall and cosmic associative knowledge graphs:
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+              <li><strong>Short-Term Working Buffer:</strong> Sliding-window attention cache for immediate conversational context.</li>
+              <li><strong>Long-Term Vector Store:</strong> Persistent FAISS / SQLite vector databases for episodic personal recall.</li>
+              <li><strong>Dynamic Memory Orrery:</strong> 3D celestial knowledge graph mapping semantic distance vectors.</li>
+            </ul>
+          </div>
+
+          <div class="ic-card">
+            <div class="ic-section-tag">Layer 4: Executive Plane</div>
+            <h3 style="color: var(--accent-gold);">Executive Control (Brain-Triad / PFC)</h3>
+            <p>
+              Arbitrates reasoning through dual hemispheric generation overseen by constitutional alignment:
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+              <li><strong>Analytical Left Hemisphere:</strong> Low-entropy deterministic logic ($T=0.1$) for code, math, and syntax.</li>
+              <li><strong>Creative Right Hemisphere:</strong> Expansive associative synthesis ($T=0.8$) for metaphor, emotion, and creativity.</li>
+              <li><strong>Colossus Central Arbiter:</strong> Confidence-weighted fusion validating compliance with Kirk LaSalle's 10 Laws.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ic-card" style="margin-top: 2rem; border-color: rgba(244, 63, 94, 0.4);">
+          <div class="ic-section-tag" style="color: #f43f5e; border-color: rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.08);">Layer 5: Output Plane</div>
+          <h3 style="color: #f43f5e);">Motor Cortex & Sovereign Digital Twin</h3>
+          <p>
+            Transforms unified cognitive states into real-world embodied outputs: autoregressive text tokens, high-fidelity neural speech synthesis with emotional prosody, and real-time 3D avatar animations ("Impressions") of humans, plants, animals, and geological formations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hemispheric Brain-Triad & TriMessage Protocol -->
+    <section class="ic-section" id="triad">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag gold">Cognitive Orchestration</div>
+          <h2>The Hemispheric <span class="ic-gold-text">Brain-Triad Architecture</span></h2>
+          <p class="ic-section-subtitle">
+            Rather than relying on single-temperature stochastic generation, ImpressionCore partitions cognition into specialized hemispheres arbitrated by the Colossus Integrator.
+          </p>
+        </div>
+
+        <div class="ic-figure-frame">
+          <img src="images/cognitive_triad_orchestration.png" alt="ImpressionCore Brain-Triad Cognitive Orchestration Diagram">
+          <div class="ic-figure-caption">
+            <span>TriMessage Protocol: Analytical Left ($T=0.1$) + Creative Right ($T=0.8$) → Colossus Arbiter (Confidence-Weighted Fusion)</span>
+            <span class="ic-figure-tag">FIGURE 2.0 • TRIAD ORCHESTRATION</span>
+          </div>
+        </div>
+
+        <div class="ic-grid-3">
+          <div class="ic-card">
+            <h4 style="color: var(--text-cyan);">🧠 Analytical Left Hemisphere</h4>
+            <p><strong>Temperature:</strong> $T = 0.1$</p>
+            <p>
+              Operates in a near-zero entropy state. Responsible for formal logical deduction, code synthesis, mathematical validation, and grammatical verification. Guarantees factual reproducibility.
+            </p>
+          </div>
+
+          <div class="ic-card">
+            <h4 style="color: var(--accent-gold);">🎨 Creative Right Hemisphere</h4>
+            <p><strong>Temperature:</strong> $T = 0.8$</p>
+            <p>
+              Operates in an expansive associative state. Responsible for lateral thinking, empathetic prosody, novel hypothesis generation, and semantic exploration across disparate knowledge domains.
+            </p>
+          </div>
+
+          <div class="ic-card">
+            <h4 style="color: #ffffff;">⚖️ Colossus Central Arbiter</h4>
+            <p><strong>Protocol:</strong> TriMessage Consensus</p>
+            <p>
+              Evaluates both hemispheric candidate vectors through a confidence matrix, verifies compliance with the 10 Laws via the Guardian agent, and issues a unified, non-repudiated response.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-Head Latent Attention & Mathematical Formulations -->
+    <section class="ic-section" id="mla" style="background: rgba(8, 12, 20, 0.6); border-top: 1px solid var(--border-glass);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Attention Innovations</div>
+          <h2>Multi-Head Latent Attention <span class="ic-gradient-text">(MLA) & Low-VRAM Math</span></h2>
+          <p class="ic-section-subtitle">
+            How ImpressionCore achieves massive context lengths on a 4GB graphics card by compressing KV cache tensors into low-rank latent representations.
+          </p>
+        </div>
+
+        <div class="ic-grid-2" style="align-items: center;">
+          <div class="ic-figure-frame">
+            <img src="images/muti_head_latent_attention.png" alt="Multi-Head Latent Attention MLA Architecture">
+            <div class="ic-figure-caption">
+              <span>Multi-Head Latent Attention: Low-Rank Key-Value Projections with Decoupled Rotary Position Embedding</span>
+              <span class="ic-figure-tag">FIGURE 3.0 • MLA MECHANICS</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="ic-card" style="margin-bottom: 1.5rem;">
+              <h4 style="color: var(--accent-cyan);">The KV Cache Bandwidth Problem</h4>
+              <p>
+                In standard Multi-Head Attention (MHA), storing Key-Value tensors for long context windows ($T=4096$) requires gigabytes of memory, causing instant out-of-memory (OOM) failures on 4GB consumer cards.
+              </p>
+            </div>
+
+            <div class="ic-card">
+              <h4 style="color: var(--accent-gold);">The ImpressionCore MLA Solution</h4>
+              <p>
+                MLA projects keys and values into a shared compressed latent vector $c_t^{KV} \in \mathbb{R}^{d_c}$ where $d_c \ll n_{heads} \cdot d_{head}$.
+              </p>
+              <div class="ic-code-panel" style="margin: 1rem 0;">
+                <div class="ic-code-body" style="font-size: 0.82rem;">
+                  c_t^{KV} = W^{DKV} h_t \quad \text{(Low-Rank Latent Compression)}<br>
+                  k_t^{C} = W^{UK} c_t^{KV}, \quad v_t = W^{UV} c_t^{KV}<br>
+                  k_t = [k_t^{C}, \text{RoPE}(W^{KR} h_t)] \quad \text{(Decoupled RoPE)}
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--accent-emerald);">
+                ✅ Result: 75% reduction in KV cache memory bandwidth with zero loss in linguistic fidelity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assembly of Experts Sparse Routing -->
+    <section class="ic-section">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Sparse Scaling</div>
+          <h2>Assembly of Experts <span class="ic-gradient-text">(AoE) Subsystem</span></h2>
+          <p class="ic-section-subtitle">
+            Specialized neural modularity: scaling parameter capacity without multiplying runtime compute cost.
+          </p>
+        </div>
+
+        <div class="ic-grid-4">
+          <div class="ic-card">
+            <h4 style="color: #38bdf8;">Expert 0: Logical</h4>
+            <p style="font-size: 0.9rem;">Specialized feed-forward network optimized for formal logic, algorithmic problem-solving, and deterministic execution.</p>
+          </div>
+          <div class="ic-card">
+            <h4 style="color: #fbbf24;">Expert 1: Creative</h4>
+            <p style="font-size: 0.9rem;">Trained on rich metaphor, creative writing, conceptual analogies, and intuitive linguistic extrapolation.</p>
+          </div>
+          <div class="ic-card">
+            <h4 style="color: #a7f3d0;">Expert 2: Empathy</h4>
+            <p style="font-size: 0.9rem;">Specialized in emotional prosody, conversational nuances, supportive dialogue, and interpersonal alignment.</p>
+          </div>
+          <div class="ic-card">
+            <h4 style="color: #c084fc;">Expert 3: Analytic</h4>
+            <p style="font-size: 0.9rem;">Structured data extraction, numerical computation, code parsing, and factual cross-referencing.</p>
+          </div>
+        </div>
+
+        <div class="ic-code-panel" style="margin-top: 2.5rem;">
+          <div class="ic-code-header">
+            <span>src/core/models/b3_foundation.py — Assembly of Experts Router</span>
+            <span>PyTorch Architecture</span>
+          </div>
+          <div class="ic-code-body">
+<span class="kw">class</span> <span class="cls">MixtureOfExpertsRouter</span>(nn.Module):
+    <span class="kw">def</span> <span class="cls">__init__</span>(self, config: B3FoundationConfig):
+        super().<span class="cls">__init__</span>()
+        self.gate = nn.Linear(config.d_model, config.num_experts, bias=<span class="kw">False</span>)
+        self.top_k = config.num_active_experts  <span class="cmt"># Top-2 routing</span>
+
+    <span class="kw">def</span> <span class="cls">forward</span>(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        logits = self.gate(x)
+        weights, indices = torch.topk(F.softmax(logits, dim=-1), self.top_k, dim=-1)
+        weights = weights / weights.sum(dim=-1, keepdim=<span class="kw">True</span>)  <span class="cmt"># Normalize top-k</span>
+        <span class="kw">return</span> weights, indices, self.compute_auxiliary_loss(logits)
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ic-footer">
+    <div class="ic-container">
+      <div class="ic-footer-grid">
+        <div class="ic-footer-brand">
+          <div class="ic-brand-logo">
+            <div class="ic-logo-glyph"></div>
+            <div class="ic-brand-title">Impression<span>Core</span></div>
+          </div>
+          <p>
+            Democratizing AI, One GPU at a Time™.<br>
+            A historic open-source AI platform founded by Kirk LaSalle.
+          </p>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Navigation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="index.html">Genesis Overview</a></li>
+            <li><a href="architecture.html">5-Layer Architecture</a></li>
+            <li><a href="models.html">Canonical Models</a></li>
+            <li><a href="builder.html">Web Builder Studio</a></li>
+            <li><a href="sensory.html">Sensory Perception</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Documentation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="docs.html">Documentation Hub</a></li>
+            <li><a href="agents-mcp.html">Agent0Core & MCP</a></li>
+            <li><a href="governance.html">Sacred Covenant</a></li>
+            <li><a href="governance.html#license">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Telemetry</h5>
+          <div class="ic-card" style="padding: 1.25rem; background: rgba(8, 12, 20, 0.8);">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-emerald); margin-bottom: 0.5rem;">
+              ● 5-Layer Stack: ACTIVE
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">
+              ● MLA Compression: 75%
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold);">
+              ● Triad Protocol: ENFORCED
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ic-footer-bottom">
+        <div>© 2025–2026 Kirk LaSalle / ImpressionCore Project. Released under the MIT License.</div>
+        <div>Protected by Kirk LaSalle's 10 Permanent Active Directives.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

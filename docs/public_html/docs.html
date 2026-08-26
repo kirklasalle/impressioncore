@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation Hub & IDS Semantic Explorer — ImpressionCore</title>
+  <meta name="description" content="Search over 1,600 ImpressionCore documentation topics, PyTorch code tutorials, API specifications, and quickstart installation guides.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a href="index.html" class="ic-brand-logo">
+        <div class="ic-logo-glyph"></div>
+        <div class="ic-brand-title">Impression<span>Core</span></div>
+      </a>
+
+      <nav class="ic-nav">
+        <a href="index.html" class="ic-nav-link">Genesis</a>
+        <a href="architecture.html" class="ic-nav-link">Architecture</a>
+        <a href="models.html" class="ic-nav-link">Models</a>
+        <a href="builder.html" class="ic-nav-link">Builder Studio</a>
+        <a href="sensory.html" class="ic-nav-link">Sensory & Embodiment</a>
+        <a href="agents-mcp.html" class="ic-nav-link">Agent0Core & MCP</a>
+        <a href="docs.html" class="ic-nav-link active">Documentation</a>
+        <a href="governance.html" class="ic-nav-link">Sacred Covenant</a>
+      </nav>
+
+      <div class="ic-header-actions">
+        <div class="ic-telemetry-badge">
+          <span class="ic-live-dot"></span>
+          <span>IDS: 1,618 TOPICS INDEXED</span>
+        </div>
+        <a href="builder.html" class="ic-btn ic-btn-primary ic-btn-sm">Launch Builder</a>
+        <button class="ic-mobile-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Docs Hero & Search Bar -->
+    <section class="ic-section" style="padding-top: calc(var(--header-height) + 3rem); padding-bottom: 3rem;">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Knowledge Portal</div>
+          <h1>Documentation Hub & <span class="ic-gradient-text">IDS Semantic Explorer</span></h1>
+          <p class="ic-section-subtitle">
+            Instant client-side semantic search across over 1,600 indexed documentation files, architectural contracts, PyTorch implementation guides, and hardware telemetry records.
+          </p>
+        </div>
+
+        <!-- Real-Time Search Bar -->
+        <div class="ic-search-wrap">
+          <span class="ic-search-icon">🔍</span>
+          <input type="text" id="docSearchInput" class="ic-search-input" placeholder="Search architecture, models, 10 laws, GTX 1050 Ti, MCP servers, PyTorch code...">
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="ic-doc-category-pills">
+          <button class="ic-pill-btn active" data-cat="All">All Topics</button>
+          <button class="ic-pill-btn" data-cat="Architecture">Architecture</button>
+          <button class="ic-pill-btn" data-cat="Models">Canonical Models</button>
+          <button class="ic-pill-btn" data-cat="Builder">Builder Studio</button>
+          <button class="ic-pill-btn" data-cat="Sensory">Sensory & Robotics</button>
+          <button class="ic-pill-btn" data-cat="Agent0Core">Agent0Core & MCP</button>
+          <button class="ic-pill-btn" data-cat="Governance">Governance & 10 Laws</button>
+        </div>
+
+        <!-- Real-Time Search Results Grid -->
+        <div id="docSearchResults" class="ic-grid-3"></div>
+      </div>
+    </section>
+
+    <!-- 5-Minute Rapid Setup & Installation Guide -->
+    <section class="ic-section" id="quickstart" style="background: rgba(8, 12, 20, 0.6); border-top: 1px solid var(--border-glass);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag gold">Developer Quickstart</div>
+          <h2>5-Minute <span class="ic-gold-text">Rapid Setup Guide</span></h2>
+          <p class="ic-section-subtitle">
+            Get the entire ImpressionCore Model Builder and Runtime running locally on Windows, Linux, or macOS in 5 simple commands.
+          </p>
+        </div>
+
+        <div class="ic-grid-2" style="align-items: center; margin-bottom: 2rem;">
+          <div>
+            <div class="ic-card" style="margin-bottom: 1.5rem;">
+              <h4 style="color: var(--accent-cyan);">1. Clone & Setup Virtual Environment</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Requires Python 3.10+ and CUDA 12.1+ (optional for GPU acceleration):</p>
+              <div class="ic-code-panel" style="margin: 0.5rem 0;">
+                <pre class="ic-code-body" style="font-size: 0.82rem;">
+git clone https://github.com/kirklasalle/impressioncore.git
+cd impressioncore
+python -m venv .venv
+.venv\Scripts\activate      <span class="cmt"># Windows</span>
+<span class="cmt"># source .venv/bin/activate # Linux / macOS</span>
+pip install -r requirements.txt</pre>
+              </div>
+            </div>
+
+            <div class="ic-card">
+              <h4 style="color: var(--accent-gold);">2. Launch System A & System B</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Launch the Model Builder on Port 5000 and Runtime on Port 8000:</p>
+              <div class="ic-code-panel" style="margin: 0.5rem 0;">
+                <pre class="ic-code-body" style="font-size: 0.82rem;">
+<span class="cmt"># Launch Unified Model Builder (Port 5000)</span>
+launch_builder.bat
+
+<span class="cmt"># Launch ImpressionCore Runtime (Port 8000 / 5173)</span>
+launch_impressioncore.bat</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="ic-figure-frame">
+            <img src="images/builder_live_system_requirements.png" alt="ImpressionCore Live System Requirements Checker">
+            <div class="ic-figure-caption">
+              <span>Automated System Requirements & Compatibility Checker</span>
+              <span class="ic-figure-tag">HARDWARE AUDIT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automated Testing & CI/CD Verification -->
+    <section class="ic-section">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Quality Assurance</div>
+          <h2>Automated Verification & <span class="ic-gradient-text">CI/CD Testing</span></h2>
+          <p class="ic-section-subtitle">
+            ImpressionCore includes a comprehensive automated builder verification script testing all 9 builder site functions, preflights, and real model runs.
+          </p>
+        </div>
+
+        <div class="ic-code-panel" style="max-width: 800px; margin: 0 auto 2.5rem auto;">
+          <div class="ic-code-header">
+            <span>Terminal / Command Prompt</span>
+            <span>Comprehensive Test Suite</span>
+          </div>
+          <pre class="ic-code-body">
+<span class="cmt"># Run the full automated Builder verification suite:</span>
+python src/dev_tools/exercise_builder_site.py
+
+<span class="cmt"># Run PyTest unit tests across core modules:</span>
+pytest tests/ -v
+          </pre>
+        </div>
+
+        <div class="ic-grid-3">
+          <div class="ic-card">
+            <h4 style="color: var(--accent-emerald);">✅ Preflight Checks</h4>
+            <p style="font-size: 0.9rem;">Automated CUDA driver checks, device memory queries, and PyTorch 2.6+ bypass validation.</p>
+          </div>
+          <div class="ic-card">
+            <h4 style="color: var(--accent-cyan);">✅ Model Contract Audits</h4>
+            <p style="font-size: 0.9rem;">Forward pass verification for B1 39M, B2 50M, and B3 504M architectures with zero NaN gradients.</p>
+          </div>
+          <div class="ic-card">
+            <h4 style="color: var(--accent-gold);">✅ Non-Repudiation Logs</h4>
+            <p style="font-size: 0.9rem;">Automated SHA-256 checkpoint hashing ensuring exact mathematical reproducibility.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ic-footer">
+    <div class="ic-container">
+      <div class="ic-footer-grid">
+        <div class="ic-footer-brand">
+          <div class="ic-brand-logo">
+            <div class="ic-logo-glyph"></div>
+            <div class="ic-brand-title">Impression<span>Core</span></div>
+          </div>
+          <p>
+            Democratizing AI, One GPU at a Time™.<br>
+            A historic open-source AI platform founded by Kirk LaSalle.
+          </p>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Navigation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="index.html">Genesis Overview</a></li>
+            <li><a href="architecture.html">5-Layer Architecture</a></li>
+            <li><a href="models.html">Canonical Models</a></li>
+            <li><a href="builder.html">Web Builder Studio</a></li>
+            <li><a href="sensory.html">Sensory Perception</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Documentation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="docs.html">Documentation Hub</a></li>
+            <li><a href="agents-mcp.html">Agent0Core & MCP</a></li>
+            <li><a href="governance.html">Sacred Covenant</a></li>
+            <li><a href="governance.html#license">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Telemetry</h5>
+          <div class="ic-card" style="padding: 1.25rem; background: rgba(8, 12, 20, 0.8);">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-emerald); margin-bottom: 0.5rem;">
+              ● IDS Search: REAL-TIME
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">
+              ● Quickstart: TESTED
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold);">
+              ● PyTorch 2.6+: VERIFIED
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ic-footer-bottom">
+        <div>© 2025–2026 Kirk LaSalle / ImpressionCore Project. Released under the MIT License.</div>
+        <div>Protected by Kirk LaSalle's 10 Permanent Active Directives.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/doc_search.js"></script>
+</body>
+</html>

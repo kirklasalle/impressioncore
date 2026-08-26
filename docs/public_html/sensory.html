@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensory Cortex & Physical Embodiment — ImpressionCore</title>
+  <meta name="description" content="Explore ImpressionCore's sensory cortex: Kinect 3D spatial depth point clouds, multi-channel acoustic beamforming arrays, pan-tilt-zoom camera tracking, and real-time neural thought streams.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="ic-header">
+    <div class="ic-container ic-header-inner">
+      <a href="index.html" class="ic-brand-logo">
+        <div class="ic-logo-glyph"></div>
+        <div class="ic-brand-title">Impression<span>Core</span></div>
+      </a>
+
+      <nav class="ic-nav">
+        <a href="index.html" class="ic-nav-link">Genesis</a>
+        <a href="architecture.html" class="ic-nav-link">Architecture</a>
+        <a href="models.html" class="ic-nav-link">Models</a>
+        <a href="builder.html" class="ic-nav-link">Builder Studio</a>
+        <a href="sensory.html" class="ic-nav-link active">Sensory & Embodiment</a>
+        <a href="agents-mcp.html" class="ic-nav-link">Agent0Core & MCP</a>
+        <a href="docs.html" class="ic-nav-link">Documentation</a>
+        <a href="governance.html" class="ic-nav-link">Sacred Covenant</a>
+      </nav>
+
+      <div class="ic-header-actions">
+        <div class="ic-telemetry-badge">
+          <span class="ic-live-dot"></span>
+          <span>Sensors: FUSED & ONLINE</span>
+        </div>
+        <a href="builder.html" class="ic-btn ic-btn-primary ic-btn-sm">Launch Builder</a>
+        <button class="ic-mobile-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sensory Hero -->
+    <section class="ic-section" style="padding-top: calc(var(--header-height) + 3rem);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Embodied Multimodal Intelligence</div>
+          <h1>Sensory Cortex & <span class="ic-gradient-text">Physical Embodiment</span></h1>
+          <p class="ic-section-subtitle">
+            True intelligence cannot exist in a disembodied text vacuum. ImpressionCore anchors cognitive forward passes 
+            directly into the physical world through 3D depth point clouds, spatial acoustic arrays, robotic pan-tilt tracking, and continuous neural thought telemetry.
+          </p>
+        </div>
+
+        <div class="ic-figure-frame" id="kinect">
+          <img src="images/screenshot53-frontend-kinect.png" alt="Microsoft Kinect 3D Spatial Depth and Tracking Interface">
+          <div class="ic-figure-caption">
+            <span>Microsoft Kinect 3D Spatial Depth Perception: Real-Time RGB-D Point Cloud & Skeletal Joint Tracking</span>
+            <span class="ic-figure-tag">FIGURE 5.0 • SENSORY FUSION</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Perception Modules Grid -->
+    <section class="ic-section" style="background: rgba(8, 12, 20, 0.6); border-top: 1px solid var(--border-glass);">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Multimodal Perception Suite</div>
+          <h2>Anchoring AI into <span class="ic-gradient-text">Real-World Physics</span></h2>
+        </div>
+
+        <!-- 1. Kinect 3D Spatial Perception -->
+        <div class="ic-grid-2" style="margin-bottom: 3.5rem; align-items: center;">
+          <div>
+            <span class="ic-section-tag">3D Depth & Spatial Volumetrics</span>
+            <h3 style="color: var(--accent-cyan);">Kinect RGB-D Spatial Point Cloud Fusion</h3>
+            <p>
+              By fusing color video with infrared structured light depth arrays, ImpressionCore constructs dynamic 3D spatial point clouds of the user's physical environment.
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem;">
+              <li><strong>Skeletal Landmark Tracking:</strong> 25-joint 3D skeletal kinematic estimation for posture and gesture recognition.</li>
+              <li><strong>Spatial Proximity Gating:</strong> Dynamic attention weighting based on physical distance and gaze vector alignment.</li>
+              <li><strong>Zero-Cloud Edge Processing:</strong> Runs 30 FPS depth processing entirely on local CPU and GPU shaders.</li>
+            </ul>
+          </div>
+          <div class="ic-figure-frame">
+            <img src="images/screenshot55-frontend-kinect-tracking-01.png" alt="Kinect Real-Time Skeletal Tracking">
+            <div class="ic-figure-caption">
+              <span>Live Kinematic Tracking: Human Skeletal Joints & Spatial Gaze Coordinates</span>
+              <span class="ic-figure-tag">RGB-D TRACKING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Spatial Acoustics & Beamforming Array -->
+        <div class="ic-grid-2" id="audio" style="margin-bottom: 3.5rem; align-items: center;">
+          <div class="ic-figure-frame">
+            <img src="images/screenshot26-tracking-and-accoustics.png" alt="Spatial Acoustics and Tracking Interface">
+            <div class="ic-figure-caption">
+              <span>Multi-Channel Acoustic Beamforming: Spatial Direction-of-Arrival (DOA) Tracking</span>
+              <span class="ic-figure-tag">ACOUSTIC ARRAY</span>
+            </div>
+          </div>
+          <div>
+            <span class="ic-section-tag gold">Acoustic Localization</span>
+            <h3 style="color: var(--accent-gold);">Multi-Channel Acoustic Beamforming</h3>
+            <p>
+              Integrating 4-channel microphone arrays (PlayStation Eye, boundary arrays) to calculate acoustic Direction-of-Arrival (DOA) in real time.
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem;">
+              <li><strong>Spatial Speaker Isolation:</strong> Steers acoustic beamformer toward active speaker, isolating voice from ambient noise.</li>
+              <li><strong>Acoustic-Visual Cross-Validation:</strong> Correlates audio arrival vectors with Kinect visual bounding boxes.</li>
+              <li><strong>Emotional Prosody Extraction:</strong> Continuous pitch, energy, and timbre analysis feeding the Right Hemisphere.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Robotic Vision & QuickCam Tracking -->
+        <div class="ic-grid-2" style="margin-bottom: 3.5rem; align-items: center;">
+          <div>
+            <span class="ic-section-tag">Robotic Actuation</span>
+            <h3 style="color: var(--accent-purple);">Robotic Vision & DirectShow Control</h3>
+            <p>
+              ImpressionCore controls motorized pan-tilt-zoom robotic cameras (QuickCam Orbit) with native DirectShow driver hooks, locking onto physical focal points autonomously.
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem;">
+              <li><strong>Automated Mechanical PTZ:</strong> Smooth motorized panning and tilting tracking user movement across physical rooms.</li>
+              <li><strong>Sub-Millisecond Driver Polling:</strong> Direct Windows DirectShow COM hooks bypassing high-latency middleware.</li>
+            </ul>
+          </div>
+          <div class="ic-figure-frame">
+            <img src="images/[Neural] QuickCam Orbit [DSHOW].png" alt="QuickCam Orbit Neural DirectShow Driver Hook">
+            <div class="ic-figure-caption">
+              <span>DirectShow Neural Hook: Motorized PTZ Tracking & Coordinate Lock</span>
+              <span class="ic-figure-tag">ROBOTIC VISION</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Neural Thought Stream & Prosodic Avatar Responses -->
+        <div class="ic-grid-2" style="align-items: center;">
+          <div class="ic-figure-frame">
+            <img src="images/screenshot31-neural-thought-stream.png" alt="ImpressionCore Real-Time Neural Thought Stream">
+            <div class="ic-figure-caption">
+              <span>Continuous Neural Thought Stream: Live Token Probability & Cognitive Latency</span>
+              <span class="ic-figure-tag">THOUGHT STREAM</span>
+            </div>
+          </div>
+          <div>
+            <span class="ic-section-tag">Continuous Cognition</span>
+            <h3 style="color: #f43f5e;">Real-Time Thought Streams & Avatar Prosody</h3>
+            <p>
+              ImpressionCore continuously updates a live neural thought stream, exposing intermediate token probability distributions, attention entropy, and emotional prosody sync.
+            </p>
+            <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1.5rem;">
+              <li><strong>Non-Blocking Sensory Ingestion:</strong> Continuous async ring buffers preventing GPU stalls during heavy I/O.</li>
+              <li><strong>Synchronized Speech & Face Avatar:</strong> Neural vocoder driving real-time 3D facial blendshapes and phoneme visemes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Avatar Prosody Showcase -->
+    <section class="ic-section">
+      <div class="ic-container">
+        <div class="ic-section-header">
+          <div class="ic-section-tag">Digital Twin Embodiment</div>
+          <h2>Avatar Response & <span class="ic-gradient-text">Emotional Prosody</span></h2>
+          <p class="ic-section-subtitle">
+            Synchronizing cognitive output with lifelike vocal prosody and expressive visual presence.
+          </p>
+        </div>
+
+        <div class="ic-figure-frame" style="max-width: 950px; margin: 0 auto 2rem auto;">
+          <img src="images/screenshot36-avatar-response-01.png" alt="ImpressionCore Avatar Conversational Response and Prosody">
+          <div class="ic-figure-caption">
+            <span>Conversational Avatar: Real-Time Prosodic Vocal Synthesis & Responsive Visual Blendshapes</span>
+            <span class="ic-figure-tag">DIGITAL TWIN AVATAR</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="agents-mcp.html" class="ic-btn ic-btn-primary">Explore Agent0Core & MCP Tools →</a>
+          <a href="governance.html" class="ic-btn ic-btn-gold">View Digital Twin Philosophy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="ic-footer">
+    <div class="ic-container">
+      <div class="ic-footer-grid">
+        <div class="ic-footer-brand">
+          <div class="ic-brand-logo">
+            <div class="ic-logo-glyph"></div>
+            <div class="ic-brand-title">Impression<span>Core</span></div>
+          </div>
+          <p>
+            Democratizing AI, One GPU at a Time™.<br>
+            A historic open-source AI platform founded by Kirk LaSalle.
+          </p>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Navigation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="index.html">Genesis Overview</a></li>
+            <li><a href="architecture.html">5-Layer Architecture</a></li>
+            <li><a href="models.html">Canonical Models</a></li>
+            <li><a href="builder.html">Web Builder Studio</a></li>
+            <li><a href="sensory.html">Sensory Perception</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Documentation</h5>
+          <ul class="ic-footer-links">
+            <li><a href="docs.html">Documentation Hub</a></li>
+            <li><a href="agents-mcp.html">Agent0Core & MCP</a></li>
+            <li><a href="governance.html">Sacred Covenant</a></li>
+            <li><a href="governance.html#license">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="ic-footer-col">
+          <h5>Telemetry</h5>
+          <div class="ic-card" style="padding: 1.25rem; background: rgba(8, 12, 20, 0.8);">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-emerald); margin-bottom: 0.5rem;">
+              ● Kinect RGB-D: ACTIVE
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">
+              ● Acoustic DOA: TRACKING
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold);">
+              ● PTZ DirectShow: LOCKED
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ic-footer-bottom">
+        <div>© 2025–2026 Kirk LaSalle / ImpressionCore Project. Released under the MIT License.</div>
+        <div>Protected by Kirk LaSalle's 10 Permanent Active Directives.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
