@@ -1,18 +1,18 @@
-# ImpressionCore: World-First AI Democratization Platform
+# ImpressionCore: Sovereign AI Democratization Platform
 
-**🏆 Historic Achievement: GPU Knowledge Distillation on Consumer Hardware**  
-**🧠 B-Series Multimodal Architecture with Brain-Triad Cognitive Orchestration**  
-**🤖 Agent0Core: Autonomous Agentic Intelligence Layer & GGUF Supervision**  
-**🔌 7-Server MCP Ecosystem (Goliath, IDS, EDS, IPA, DPA, VRGC, Web Search)**  
-**💾 Production-Scale Training Infrastructure (476GB dedicated)**  
-**📊 $45.3B Market Opportunity Validated**
+> **"Democratizing AI, One GPU at a Time™"**  
+> **Official Public Portal:** [https://kirklasalle.github.io/impressioncore/](https://kirklasalle.github.io/impressioncore/)  
+> **Grand Market Intelligence & Global Analysis:** [`docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md`](file:///d:/Projects/impressioncore/docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md)  
+> **Commercial & Dual-Tier Licensing:** [`docs/COMMERCIAL_LICENSING.md`](file:///d:/Projects/impressioncore/docs/COMMERCIAL_LICENSING.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Live Website](https://img.shields.io/badge/Live%20Portal-GitHub%20Pages-00f0ff.svg)](https://kirklasalle.github.io/impressioncore/)
+[![License: MIT](https://img.shields.io/badge/License-MIT%20(B--Series)-yellow.svg)](LICENSE)
+[![Commercial Tier](https://img.shields.io/badge/Commercial%20Tier-C1%20Colossus%20%26%20Forward-ffd700.svg)](docs/COMMERCIAL_LICENSING.md)
+[![10 Laws Governance](https://img.shields.io/badge/Governance-10%20Laws%20Enforced-10b981.svg)](docs/public_html/governance.html)
+[![Sponsor Kirk LaSalle](https://img.shields.io/badge/Sponsor-%241%20Sovereign%20Pledge-ea4aaa.svg)](https://github.com/sponsors/kirklasalle)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![B-Series Models](https://img.shields.io/badge/Model%20Family-B1%20|%20B2%20|%20B3%20|%20C1-blueviolet.svg)](#-canonical-model-lineup--builder-workflow)
+[![B-Series Models](https://img.shields.io/badge/Model%20Family-B1%20|%20B2%20|%20B3%20|%20B3%20Ultra-blueviolet.svg)](#-canonical-model-lineup--builder-workflow)
 [![MCP Servers](https://img.shields.io/badge/MCP%20Servers-7%20Active-brightgreen.svg)](#-7-server-mcp-ecosystem)
-[![Agent0Core](https://img.shields.io/badge/Agent0Core-v0.1.0-informational.svg)](#-agent0core--autonomous-agentic-layer)
-[![CUDA Support](https://img.shields.io/badge/CUDA-12.1+-green.svg)](https://developer.nvidia.com/cuda-toolkit)
 [![GTX 1050 Ti Optimized](https://img.shields.io/badge/GTX%201050%20Ti-Optimized%20(<4GB)-orange.svg)](https://www.nvidia.com/en-us/geforce/graphics-cards/geforce-gtx-1050-ti/)
 
 ---
