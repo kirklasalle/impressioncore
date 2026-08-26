@@ -174,11 +174,12 @@ graph TD
     end
 ```
 
-### 1. The Canonical B-Series Model Suite
-* **B1 Hope (39.2M parameters):** 8 layers, $d_{model}=768$, 12 heads, 4096 context. VRAM footprint: **0.23 GB (INT8)**. Ultra-lightweight conversational backbone.
-* **B2 Insight (50.1M parameters):** 10 layers, $d_{model}=832$, 13 heads, 4096 context. VRAM footprint: **0.35 GB (INT8)**. Multimodal sensory alignment engine.
-* **B3 Apex (504.2M parameters):** 24 layers, $d_{model}=3072$, 24 heads, 4096 context. VRAM footprint: **1.80 GB (INT8)**. High-density logical reasoning engine.
-* **B3 Ultra MoE (3.21B parameters):** 32 layers (4 MoE blocks), 8 Experts (Top-2 routing), 8192 context. Active parameters: **852M**. VRAM footprint: **3.80 GB (INT4 GGUF)**. State-of-the-art consumer frontier intelligence.
+### 1. The Canonical B-Series Suite (Open-Source Community MIT) & C-Series (Commercial)
+* **B1 Hope (39.2M parameters) [Open Source MIT]:** 8 layers, $d_{model}=768$, 12 heads, 4096 context. VRAM footprint: **0.23 GB (INT8)**. Ultra-lightweight conversational backbone.
+* **B2 Insight (50.1M parameters) [Open Source MIT]:** 10 layers, $d_{model}=832$, 13 heads, 4096 context. VRAM footprint: **0.35 GB (INT8)**. Multimodal sensory alignment engine.
+* **B3 Apex (504.2M parameters) [Open Source MIT]:** 24 layers, $d_{model}=3072$, 24 heads, 4096 context. VRAM footprint: **1.80 GB (INT8)**. High-density logical reasoning engine.
+* **B3 Ultra MoE (3.21B parameters) [Open Source MIT]:** 32 layers (4 MoE blocks), 8 Experts (Top-2 routing), 8192 context. Active parameters: **852M**. VRAM footprint: **3.80 GB (INT4 GGUF)**. State-of-the-art consumer frontier intelligence.
+* **C1 Colossus & Forward [Commercial & Enterprise Tier]:** Multi-node, cluster-scaled commercial foundation models. Powers enterprise knowledge distillation, datacenter deployments (RTX 4090, H100, AMD Instinct, Intel Gaudi), commercial SLA warranties, and serves as the architectural core for **ImpressionCore-S1 (The Sovereign AI Operating System)**.
 
 ### 2. Multi-Head Latent Attention (MLA)
 By projecting Query, Key, and Value representations into compressed low-rank latent vectors:
@@ -227,24 +228,29 @@ ImpressionCore provides the industry's only **Dual-Layer Constitutional Architec
 
 ---
 
-## 7. Go-To-Market (GTM) Strategy & Financial Valuation
+## 7. Go-To-Market (GTM) Strategy & Dual-Tier Financial Valuation
 
 ```mermaid
 gantt
     title ImpressionCore 3-Year Commercial & Open-Source Roadmap
     dateFormat  YYYY-MM-DD
     section Phase 1: Open Source & Community
-    Public Repo Launch & MIT License           :done, 2026-08-26, 30d
+    Public Repo Launch & MIT B-Series Suite    :done, 2026-08-26, 30d
+    $1 Sovereign AI Supporter Campaign         :2026-09-01, 60d
     Developer Evangelism & Hackathons          :2026-09-25, 90d
     Seed Capitalization ($2M-$5M)              :2026-10-01, 120d
     section Phase 2: Commercial Expansion
-    Enterprise Distillation Studio Licensing   :2027-02-01, 180d
+    C1 Colossus Enterprise Distillation Studio :2027-02-01, 180d
     Hardware OEM Partnerships (NVIDIA/Intel)   :2027-05-01, 180d
     Series A Growth ($15M-$30M)                :2027-08-01, 120d
     section Phase 3: Sovereign AI Leadership
     ImpressionCore-S1 AI Operating System      :2028-01-01, 240d
     Global Enterprise Edge Deployments         :2028-06-01, 180d
 ```
+
+### The Two-Tier Revenue Engine
+1. **Tier 1 (Community & Developer Sovereignty):** The entire B-Series suite (B1, B2, B3, B3 Ultra), Port 5000 Web Model Builder, and 7-server MCP suite are 100% free under the MIT License. Monetized via the voluntary **$1+ Sovereign AI Supporter Pledge** (GitHub Sponsors / Ko-fi), pre-packaged 1-click Windows binaries, and community donations.
+2. **Tier 2 (Enterprise & Commercial Scale):** Starting with **C1 Colossus and forward**, enterprise models are commercially licensed. Revenue streams include enterprise distillation licensing ($2,500–$25,000/mo per cluster), custom low-VRAM corporate model training, commercial SLA warranties, and hardware OEM bundling.
 
 ### Valuation Modeling & Revenue Projections
 
