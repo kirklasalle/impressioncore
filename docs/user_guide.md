@@ -37,6 +37,12 @@ ImpressionCore is a **brain-inspired, multimodal, agentic AI platform** engineer
 | **Operating System** | Windows 10/11 64-bit, Ubuntu 22.04+, macOS 12+ | Windows 11 Pro / Ubuntu 24.04 LTS |
 | **Python & CUDA** | Python 3.10+ with CUDA 12.1+ / PyTorch 2.6+ | Python 3.11 with CUDA 12.4+ |
 
+### Hardware Verification on Consumer GPU (GTX 1050 Ti)
+
+ImpressionCore guarantees zero out-of-memory errors on 4GB VRAM hardware during active distillation and training:
+
+![ImpressionCore TaskManager Performance Proof](assets/TaskManager-GPU_Performance_Screenshot.png)
+
 ---
 
 ## 🚀 3. Canonical Model Offerings & Preset Matrix
@@ -55,9 +61,7 @@ ImpressionCore provides 4 official canonical model configurations alongside the 
 
 ---
 
-## 🛠️ 4. The 10-Step Model Building & Training Pipeline
-
-![ImpressionCore Unified Web Builder and Live Visualizer](assets/builder_ui_interactive_suite.png)
+## 🛠️ 4. The 10-Step Model Building & Training Pipeline (With Live UI Walkthrough)
 
 ### Step 1: Launch the Model Builder Server
 Launch the local web server using the Windows batch launcher or Python:
@@ -69,6 +73,8 @@ Launch the local web server using the Windows batch launcher or Python:
 python src/interfaces/web/server.py --port 5000
 ```
 Open your browser at **[http://127.0.0.1:5000](http://127.0.0.1:5000)** and log in with default development credentials (`admin` / `admin`).
+
+![Live Unified Builder Interface](assets/builder_live_unified_builder_top.png)
 
 ---
 
@@ -109,9 +115,20 @@ Navigate to **Model Definition** (`/model-definition`):
    - Observe the **VRAM Estimation Bar**: It confirms whether the model fits inside the 4.0 GB budget of a GTX 1050 Ti.
 3. Click **Save Configuration** to persist your model definition.
 
+![Live Model Definition & Parameters](assets/builder_live_architecture_details.png)
+
 ---
 
-### Step 6: Training & Distillation Pipeline
+### Step 6: Live 3D Architecture & Tensor Inspection
+Inspect the internal network structure using the 3D Orbit and Tensor Shape Tracer:
+
+![Live 3D Architecture Orbit](assets/builder_live_architecture_orbit.png)
+
+![Live Tensor Shape Tracer](assets/builder_live_shape_tracer.png)
+
+---
+
+### Step 7: Training & Distillation Pipeline
 Navigate to **Training** (`/training`):
 1. **Configure Hyperparameters:**
    - **Epochs:** 2–10
@@ -121,34 +138,28 @@ Navigate to **Training** (`/training`):
    - **Checkpoint Directory:** `models/checkpoints` or `F:\models\checkpoints`
 2. Click **Start Training**:
    - The builder launches the background training worker.
-   - Monitor the real-time telemetry: **Loss Curve** (converging from ~5.0 down below 1.0), **VRAM Consumption**, and **Step Progress**.
+   - Monitor real-time telemetry: **Loss Curve**, **VRAM Consumption**, and **Step Progress**.
+
+![Live Training Telemetry](assets/builder_live_training_progress.png)
 
 ---
 
-### Step 7: Checkpoint Verification & Integrity Hashing
+### Step 8: Checkpoint Verification & Integrity Hashing
 Navigate to **Checkpoints** (`/checkpoints`):
 1. Verify that model weights (`model.pt`, `checkpoint_epoch_*.pt`) are saved.
 2. Check SHA-256 file integrity, parameter counts, and creation timestamps.
 
 ---
 
-### Step 8: Live Inference & Interactive Chat
+### Step 9: Live Inference & Interactive Chat
 Navigate to **Inference / Chat** (`/inference` or `/chat`):
 1. Select your trained checkpoint or active model.
-2. Set Generation Parameters:
-   - **Temperature:** `0.7`
-   - **Top-P:** `0.90`
-   - **Max Tokens:** `128`
-3. Enter a prompt to verify generation:
-   > *"ImpressionCore digital identity and cognitive architecture represents"*
-4. Receive the real-time generated response and verify latency metrics.
+2. Set Generation Parameters: `Temperature=0.7`, `Top-P=0.90`, `Max Tokens=128`.
+3. Receive real-time generated responses and monitor the internal neural thought stream.
 
----
+![ImpressionCore Desktop LLM Dialogue](assets/screenshot30-snapshot-LLMresponse.png)
 
-### Step 9: Benchmark Evaluation Suite
-Navigate to **Evaluation** (`/evaluation`):
-1. Select evaluation metrics: `Accuracy`, `Perplexity`, `BLEU`, `ROUGE-L`, `F1 Score`, `Latency`.
-2. Click **Run Evaluation** to score your model against validation datasets.
+![ImpressionCore Neural Thought Stream](assets/screenshot31-neural-thought-stream.png)
 
 ---
 
@@ -161,7 +172,21 @@ Navigate to **Deployment** (`/deployment`):
 
 ---
 
-## 🧠 5. Brain-Triad Cognitive Orchestration & Governance
+## 🖥️ 5. ImpressionCore Application Desktop & Multimodal Sensors
+
+The ImpressionCore Desktop runtime delivers real-time conversational intelligence, digital twin avatars, and sensor tracking:
+
+![ImpressionCore Application Desktop](assets/screenshot19-Desktop-screenshot.png)
+
+### Real-Time Digital Twin Avatar & Speech Synthesis
+![ImpressionCore Digital Twin Avatar](assets/screenshot36-avatar-response-01.png)
+
+### Multimodal Vision, Depth & Sensor Tracking
+![ImpressionCore Multimodal Vision Tracking](assets/screenshot53-frontend-kinect.png)
+
+---
+
+## 🧠 6. Brain-Triad Cognitive Orchestration & Governance
 
 ![ImpressionCore Brain-Triad Cognitive Orchestration](assets/cognitive_triad_orchestration.png)
 
@@ -174,7 +199,7 @@ ImpressionCore's Brain-Triad operates with three distinct computational planes:
 
 ---
 
-## 💻 6. Automated Python Verification Runner
+## 💻 7. Automated Python Verification Runner
 
 You can execute the entire 9-step pipeline automatically with a single command:
 ```powershell
@@ -184,7 +209,7 @@ This script exercises all APIs, defines the model, trains it, runs inference, be
 
 ---
 
-## 📚 7. Related Documentation
+## 📚 8. Related Documentation
 
 - **[Architecture Blueprint](developer/ARCHITECTURE.md)**
 - **[Model Developer Guide](developer/model_developer_guide.md)**

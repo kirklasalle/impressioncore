@@ -179,7 +179,7 @@ All cognitive operations, agents, and builder services strictly enforce **Kirk L
 
 ImpressionCore features a state-of-the-art **Glassmorphism Web Builder & Live Visualizer** running on Port 5000:
 
-![ImpressionCore Unified Web Builder and Live Visualizer](docs/assets/builder_ui_interactive_suite.png)
+![ImpressionCore Unified Web Builder and Live Visualizer Concept](docs/assets/builder_ui_interactive_suite.png)
 
 ### **Key Visualizer Features**
 
@@ -188,6 +188,75 @@ ImpressionCore features a state-of-the-art **Glassmorphism Web Builder & Live Vi
 - **Multi-Head Latent Attention (MLA)**: Visualize compressed key-value latent projections and rotational position embeddings (RoPE).
 - **Dynamic Memory Orrery**: Interactive 3D celestial visualization of episodic memory clusters, semantic distance vectors, and knowledge associations.
 - **Live Loss & Telemetry**: Monitor Cosine Annealing learning rate schedules, loss curves, token throughput (tokens/sec), and VRAM utilization in real time.
+
+---
+
+## 📸 **Actual ImpressionCore Builder Screenshots**
+
+Here is the live ImpressionCore Model Builder interface in production:
+
+### **1. Unified Builder & Live Hardware Configuration**
+*Live hardware preflight, GPU memory allocation, and pipeline step controller (`http://127.0.0.1:5000/unified_builder`):*
+
+![ImpressionCore Live Unified Builder](docs/assets/builder_live_unified_builder_top.png)
+
+### **2. 3D Architectural Orbit & Dynamic Visualization**
+*Interactive 3D node orbit visualizer illustrating neural connectivity, layer transitions, and tensor activations:*
+
+![ImpressionCore 3D Architecture Orbit](docs/assets/builder_live_architecture_orbit.png)
+
+### **3. Live Model Definition & Preset Selector**
+*Selecting canonical presets with live parameter auto-population and GTX 1050 Ti VRAM budget bar:*
+
+![ImpressionCore Model Definition Parameters](docs/assets/builder_live_architecture_details.png)
+
+### **4. Real-Time Training Progress & Telemetry**
+*Active training monitor with live loss convergence, learning rate annealing, step progress, and checkpoint status:*
+
+![ImpressionCore Live Training Progress](docs/assets/builder_live_training_progress.png)
+
+### **5. Tensor Shape Tracer & PyTorch Code Mapper**
+*Deep introspection tools tracing forward tensor dimensions and mapping live architecture layers to underlying PyTorch source code:*
+
+![ImpressionCore Tensor Shape Tracer](docs/assets/builder_live_shape_tracer.png)
+
+![ImpressionCore PyTorch Code Mapper](docs/assets/builder_live_code_mapper.png)
+
+---
+
+## 🖥️ **Actual ImpressionCore Desktop Application Screenshots**
+
+Here is the full-stack ImpressionCore Desktop runtime application in operation:
+
+### **1. ImpressionCore Desktop Environment**
+*Full multi-panel operator desktop environment with live sensory controls, telemetry, and neural thought monitoring:*
+
+![ImpressionCore Application Desktop](docs/assets/screenshot19-Desktop-screenshot.png)
+
+### **2. Live LLM Reasoning & Triad Dialogue**
+*Desktop snapshot of real-time conversational inference and cognitive triad integration:*
+
+![ImpressionCore Desktop LLM Dialogue](docs/assets/screenshot30-snapshot-LLMresponse.png)
+
+### **3. Real-Time Neural Thought Stream**
+*Live stream of internal cognitive associations, episodic memories, and reasoning tokens:*
+
+![ImpressionCore Neural Thought Stream](docs/assets/screenshot31-neural-thought-stream.png)
+
+### **4. Real-Time Digital Twin Avatar Synthesis**
+*Real-time facial rendering, Audio2Face synthesis, and audio-reactive avatar feedback:*
+
+![ImpressionCore Digital Twin Avatar](docs/assets/screenshot36-avatar-response-01.png)
+
+### **5. Multimodal Vision, Depth & Sensor Tracking**
+*Sensor fusion tracking array incorporating camera streams, depth sensors, and spatial acoustic positioning:*
+
+![ImpressionCore Multimodal Vision Tracking](docs/assets/screenshot53-frontend-kinect.png)
+
+### **6. Consumer Hardware Validation (<4GB VRAM on GTX 1050 Ti)**
+*Task Manager verification proving stable GPU memory utilization under the 4GB budget during training and inference:*
+
+![ImpressionCore GPU Performance Screenshot](docs/assets/TaskManager-GPU_Performance_Screenshot.png)
 
 ---
 
@@ -278,7 +347,7 @@ python src/dev_tools/exercise_builder_site.py
 
 | Document | Purpose |
 |---|---|
-| **[⚡ User Guide](docs/user/user_guide.md)** | Step-by-step user manual with 10-step model building guide |
+| **[⚡ User Guide](docs/user/user_guide.md)** | Step-by-step user manual with 10-step model building guide and live UI screenshots |
 | **[🏗️ Model Developer Guide](docs/developer/model_developer_guide.md)** | Architectural specs, mathematical formulations, and PyTorch implementations |
 | **[🔬 2026 Models Deep Audit & Roadmap](docs/analysis_reports/impressioncore_models_deep_audit_and_roadmap_2026.md)** | Comprehensive audit of B1, B2, B3, C1, GGUF quantization, and roadmap |
 | **[📜 Permanent Active Directives](Permanent_Active_Directives.txt)** | Authoritative 10 Laws for Intelligent Systems by Kirk LaSalle |
