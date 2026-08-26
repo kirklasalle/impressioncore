@@ -103,6 +103,13 @@ const DOC_INDEX = [
     link: "governance.html#10laws"
   },
   {
+    title: "Grand Market Intelligence & Global Competitive Analysis (2026–2030)",
+    category: "Architecture",
+    tags: ["market", "strategy", "competitive-analysis", "tam", "sam", "som", "ollama", "vllm", "phi-4", "gemma", "deepseek-r1", "edge-ai", "investment"],
+    snippet: "World-class market intelligence comparing ImpressionCore to Ollama, vLLM, Llama.cpp, Phi-4, Gemma, and DeepSeek-R1. $279B TAM breakdown and 95.8% cost savings.",
+    link: "docs.html#quickstart"
+  },
+  {
     title: "The Seventh Law: Truth, Transparency & Anti-Deception",
     category: "Governance",
     tags: ["truth", "seventh-law", "anti-deception", "transparency", "zero-manipulation"],
