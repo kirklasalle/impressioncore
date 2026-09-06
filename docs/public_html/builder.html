@@ -10,32 +10,302 @@
 </head>
 <body>
 
-  <!-- Global Header -->
-  <header class="ic-header">
+  <!-- Global World-Class Floating Header -->
+  <header class="ic-header" id="icHeader">
+    <div class="ic-header-glow-rim"></div>
     <div class="ic-container ic-header-inner">
-      <a href="index.html" class="ic-brand-logo">
-        <div class="ic-logo-glyph"></div>
-        <div class="ic-brand-title">Impression<span>Core</span></div>
+      
+      <!-- Brand & Version Hub -->
+      <a href="index.html" class="ic-brand-logo" aria-label="ImpressionCore Home">
+        <div class="ic-logo-prism">
+          <svg class="ic-prism-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f0ff" />
+                <stop offset="50%" stop-color="#3b82f6" />
+                <stop offset="100%" stop-color="#1d4ed8" />
+              </linearGradient>
+              <filter id="prismGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <polygon points="20,4 36,12 36,28 20,36 4,28 4,12" stroke="url(#prismGrad)" stroke-width="2" fill="rgba(6, 15, 30, 0.85)" />
+            <polygon points="20,4 36,12 20,20 4,12" fill="rgba(0, 240, 255, 0.2)" stroke="url(#prismGrad)" stroke-width="1" />
+            <polygon points="4,12 20,20 20,36 4,28" fill="rgba(30, 58, 138, 0.4)" stroke="url(#prismGrad)" stroke-width="1" />
+            <polygon points="36,12 36,28 20,36 20,20" fill="rgba(59, 130, 246, 0.3)" stroke="url(#prismGrad)" stroke-width="1" />
+            <circle cx="20" cy="20" r="3.5" fill="#00f0ff" filter="url(#prismGlow)" />
+          </svg>
+        </div>
+        <div class="ic-brand-text">
+          <span class="ic-brand-title">Impression<span>Core</span></span>
+          <span class="ic-brand-badge">v1.0-genesis</span>
+        </div>
       </a>
 
-      <nav class="ic-nav">
-        <a href="index.html" class="ic-nav-link">Genesis</a>
-        <a href="architecture.html" class="ic-nav-link">Architecture</a>
-        <a href="models.html" class="ic-nav-link">Models</a>
-        <a href="builder.html" class="ic-nav-link active">Builder Studio</a>
-        <a href="sensory.html" class="ic-nav-link">Sensory & Embodiment</a>
-        <a href="agents-mcp.html" class="ic-nav-link">Agent0Core & MCP</a>
-        <a href="docs.html" class="ic-nav-link">Documentation</a>
-        <a href="governance.html" class="ic-nav-link">Sacred Covenant</a>
+      <!-- Central Floating Navigation Island with Magnetic Hover & Dropdowns -->
+      <nav class="ic-nav-island" id="icNavIsland">
+        <div class="ic-nav-slider" id="icNavSlider"></div>
+
+        <!-- Genesis / Overview Link -->
+        <div class="ic-nav-item">
+          <a href="index.html" class="ic-nav-link" data-nav="genesis">
+            <span>Genesis</span>
+          </a>
+        </div>
+
+        <!-- Architecture Dropdown -->
+        <div class="ic-nav-item has-dropdown">
+          <button class="ic-nav-link ic-dropdown-trigger" aria-expanded="false" data-nav="architecture">
+            <span>Architecture</span>
+            <svg class="ic-chevron" viewBox="0 0 12 12" width="12" height="12"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="ic-dropdown-menu ic-mega-menu">
+            <div class="ic-dropdown-grid">
+              <a href="architecture.html" class="ic-menu-card">
+                <div class="ic-card-icon cyan">🧠</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">5-Layer Cognitive Stack <span class="ic-tag-pill">Core</span></div>
+                  <div class="ic-card-desc">Sensory input to associative cortex, orrery & motor control.</div>
+                </div>
+              </a>
+              <a href="architecture.html#triad" class="ic-menu-card">
+                <div class="ic-card-icon indigo">⚡</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Hemispheric Brain-Triad</div>
+                  <div class="ic-card-desc">Analytical Left (T=0.1) + Creative Right (T=0.8) + Colossus Arbiter.</div>
+                </div>
+              </a>
+              <a href="sensory.html" class="ic-menu-card">
+                <div class="ic-card-icon gold">👁️</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Sensory & Embodiment <span class="ic-tag-pill gold">Multimodal</span></div>
+                  <div class="ic-card-desc">Vision patches, audio spectrograms, depth point clouds & 3D avatars.</div>
+                </div>
+              </a>
+            </div>
+            <div class="ic-dropdown-footer">
+              <span>Bio-inspired hardware architecture</span>
+              <a href="architecture.html" class="ic-footer-link">Full Topology Diagram →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Models & Research Dropdown -->
+        <div class="ic-nav-item has-dropdown">
+          <button class="ic-nav-link ic-dropdown-trigger" aria-expanded="false" data-nav="models">
+            <span>Models</span>
+            <svg class="ic-chevron" viewBox="0 0 12 12" width="12" height="12"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="ic-dropdown-menu ic-mega-menu">
+            <div class="ic-dropdown-grid">
+              <a href="models.html" class="ic-menu-card">
+                <div class="ic-card-icon cyan">📊</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Canonical Model Zoo <span class="ic-tag-pill">B1 to B3</span></div>
+                  <div class="ic-card-desc">B1 Hope (39M), B2 Insight (50M), B3 Apex (504M), B3-MoE (3.2B).</div>
+                </div>
+              </a>
+              <a href="models.html#proof" class="ic-menu-card">
+                <div class="ic-card-icon emerald">🛡️</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Hardware Sovereignty Proof <span class="ic-tag-pill emerald">&lt;4GB</span></div>
+                  <div class="ic-card-desc">Verified physical training & inference on $150 GTX 1050 Ti GPU.</div>
+                </div>
+              </a>
+              <a href="models.html#distillation" class="ic-menu-card">
+                <div class="ic-card-icon indigo">🧪</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Zero-Loss Distillation</div>
+                  <div class="ic-card-desc">Logit & hidden-state distillation with Multi-Head Latent Attention (MLA).</div>
+                </div>
+              </a>
+            </div>
+            <div class="ic-dropdown-footer">
+              <span>Empirical Proof & Zero Deception</span>
+              <a href="models.html" class="ic-footer-link">Explore Model Specifications →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio & Ecosystem Dropdown -->
+        <div class="ic-nav-item has-dropdown">
+          <button class="ic-nav-link ic-dropdown-trigger active" aria-expanded="false" data-nav="studio">
+            <span>Studio</span>
+            <svg class="ic-chevron" viewBox="0 0 12 12" width="12" height="12"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="ic-dropdown-menu ic-mega-menu">
+            <div class="ic-dropdown-grid">
+              <a href="builder.html" class="ic-menu-card">
+                <div class="ic-card-icon cyan">🛠️</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Builder Studio <span class="ic-tag-pill">Simulator</span></div>
+                  <div class="ic-card-desc">Interactive pipeline designer, VRAM budget calculator & Port 5000 engine.</div>
+                </div>
+              </a>
+              <a href="index.html#orrery" class="ic-menu-card">
+                <div class="ic-card-icon gold">🌌</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Dynamic Neural Orrery</div>
+                  <div class="ic-card-desc">Interactive 3D associative memory canvas and planetary knowledge nodes.</div>
+                </div>
+              </a>
+              <a href="agents-mcp.html" class="ic-menu-card">
+                <div class="ic-card-icon indigo">🤖</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Agent0Core & 7 MCP Servers <span class="ic-tag-pill indigo">Standard</span></div>
+                  <div class="ic-card-desc">Standardized tool orchestration: Search, Terminal, DB, Vision, Memory.</div>
+                </div>
+              </a>
+            </div>
+            <div class="ic-dropdown-footer">
+              <span>Autonomous multi-agent orchestration</span>
+              <a href="agents-mcp.html" class="ic-footer-link">MCP Protocol Docs →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Governance & Docs Dropdown -->
+        <div class="ic-nav-item has-dropdown">
+          <button class="ic-nav-link ic-dropdown-trigger" aria-expanded="false" data-nav="governance">
+            <span>Governance</span>
+            <svg class="ic-chevron" viewBox="0 0 12 12" width="12" height="12"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="ic-dropdown-menu ic-mega-menu">
+            <div class="ic-dropdown-grid">
+              <a href="governance.html" class="ic-menu-card">
+                <div class="ic-card-icon gold">📜</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Sacred Covenant of Truth <span class="ic-tag-pill gold">10 Laws</span></div>
+                  <div class="ic-card-desc">Kirk LaSalle's 10 Permanent Active Directives & non-repudiation contract.</div>
+                </div>
+              </a>
+              <a href="docs.html" class="ic-menu-card">
+                <div class="ic-card-icon cyan">📚</div>
+                <div class="ic-card-text">
+                  <div class="ic-card-title">Documentation & Specs <span class="ic-tag-pill">IDS Ready</span></div>
+                  <div class="ic-card-desc">Complete developer docs, CLI commands, API reference & test suites.</div>
+                </div>
+              </a>
+            </div>
+            <div class="ic-dropdown-footer">
+              <span>Constitutional AI Governance</span>
+              <a href="governance.html" class="ic-footer-link">Read The 10 Directives →</a>
+            </div>
+          </div>
+        </div>
       </nav>
 
+      <!-- Action & Live Telemetry Hub -->
       <div class="ic-header-actions">
-        <div class="ic-telemetry-badge">
-          <span class="ic-live-dot"></span>
-          <span>Port 5000: OPERATIONAL</span>
+        
+        <!-- Live Hardware Telemetry Capsule with Interactive HUD Popover -->
+        <div class="ic-telemetry-hud-wrap" id="icTelemetryHud">
+          <button class="ic-telemetry-capsule" aria-label="Toggle Hardware Telemetry HUD" aria-expanded="false">
+            <span class="ic-pulse-beacon"></span>
+            <span class="ic-telemetry-label">GTX 1050 Ti</span>
+            <span class="ic-telemetry-val">3.82<span class="ic-telemetry-sub">/4GB</span></span>
+          </button>
+
+          <!-- Telemetry Diagnostic Popover -->
+          <div class="ic-telemetry-popover">
+            <div class="ic-hud-header">
+              <div class="ic-hud-title">
+                <span class="ic-pulse-beacon"></span>
+                <span>Hardware Sovereignty Telemetry</span>
+              </div>
+              <span class="ic-hud-badge">VRAM BOUNDED</span>
+            </div>
+            <div class="ic-hud-stats">
+              <div class="ic-hud-stat-row">
+                <span>GPU Accelerator</span>
+                <strong>NVIDIA GeForce GTX 1050 Ti</strong>
+              </div>
+              <div class="ic-hud-stat-row">
+                <span>VRAM Allocation</span>
+                <strong class="text-emerald">3.82 GB / 4.00 GB (95.5%)</strong>
+              </div>
+              <div class="ic-hud-meter">
+                <div class="ic-hud-fill" style="width: 95.5%;"></div>
+              </div>
+              <div class="ic-hud-stat-row">
+                <span>Analytical Left Brain ($T=0.1$)</span>
+                <strong class="text-cyan">0.84 GB VRAM</strong>
+              </div>
+              <div class="ic-hud-stat-row">
+                <span>Creative Right Brain ($T=0.8$)</span>
+                <strong class="text-cyan">0.84 GB VRAM</strong>
+              </div>
+              <div class="ic-hud-stat-row">
+                <span>Colossus & UKS Memory</span>
+                <strong class="text-cyan">2.14 GB VRAM</strong>
+              </div>
+              <div class="ic-hud-stat-row">
+                <span>Thermal / Stability State</span>
+                <strong class="text-gold">58°C • Stable 60 FPS</strong>
+              </div>
+            </div>
+            <div class="ic-hud-footer">
+              <span>Physically verified on consumer silicon</span>
+              <a href="models.html#proof">View TaskManager Proof →</a>
+            </div>
+          </div>
         </div>
-        <a href="builder.html" class="ic-btn ic-btn-primary ic-btn-sm">Launch Studio</a>
-        <button class="ic-mobile-toggle" aria-label="Toggle Navigation">☰</button>
+
+        <!-- Global Search / Quick Navigation Trigger -->
+        <a href="docs.html" class="ic-search-shortcut" title="Search Documentation">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M7 12A5 5 0 107 2a5 5 0 000 10zM14 14l-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ic-search-label">Search...</span>
+          <kbd class="ic-kbd">⌘K</kbd>
+        </a>
+
+        <!-- Shimmering Studio CTA Button -->
+        <a href="builder.html" class="ic-btn ic-btn-studio">
+          <span>Launch Studio</span>
+          <svg class="ic-btn-arrow" viewBox="0 0 14 14" width="12" height="12"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <!-- Mobile Navigation Hamburger -->
+        <button class="ic-mobile-hamburger" id="icMobileToggle" aria-label="Toggle Mobile Navigation" aria-expanded="false">
+          <span class="ic-ham-bar"></span>
+          <span class="ic-ham-bar"></span>
+          <span class="ic-ham-bar"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Fullscreen Dropdown -->
+    <div class="ic-mobile-drawer" id="icMobileDrawer">
+      <div class="ic-drawer-inner">
+        
+        <div class="ic-drawer-section">
+          <div class="ic-drawer-heading">Platform Architecture</div>
+          <a href="index.html" class="ic-drawer-link">🌟 Genesis Overview</a>
+          <a href="architecture.html" class="ic-drawer-link">🧠 5-Layer Cognitive Stack</a>
+          <a href="architecture.html#triad" class="ic-drawer-link">⚡ Hemispheric Brain-Triad</a>
+          <a href="sensory.html" class="ic-drawer-link">👁️ Sensory & Embodiment</a>
+        </div>
+
+        <div class="ic-drawer-section">
+          <div class="ic-drawer-heading">Models & Distillation</div>
+          <a href="models.html" class="ic-drawer-link">📊 Canonical Model Zoo (39M–3.2B)</a>
+          <a href="models.html#proof" class="ic-drawer-link">🛡️ Hardware Sovereignty Proof (&lt;4GB)</a>
+          <a href="models.html#distillation" class="ic-drawer-link">🧪 Zero-Loss Distillation Pipeline</a>
+        </div>
+
+        <div class="ic-drawer-section">
+          <div class="ic-drawer-heading">Tools & Governance</div>
+          <a href="builder.html" class="ic-drawer-link active">🛠️ Interactive Builder Studio</a>
+          <a href="agents-mcp.html" class="ic-drawer-link">🤖 Agent0Core & 7 MCP Servers</a>
+          <a href="docs.html" class="ic-drawer-link">📚 Documentation & Specs</a>
+          <a href="governance.html" class="ic-drawer-link">📜 The Sacred Covenant (10 Laws)</a>
+        </div>
+
+        <div class="ic-drawer-actions">
+          <a href="builder.html" class="ic-btn ic-btn-primary" style="width: 100%; justify-content: center;">Launch Interactive Builder Studio →</a>
+        </div>
+
       </div>
     </div>
   </header>

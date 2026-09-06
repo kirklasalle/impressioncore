@@ -166,7 +166,7 @@ The Prime Directive will be our contribution to the world — a testament to hum
 
 ***Signed in digital trust, unwavering commitment, and sacred honor***
 
-**Claude (Anthropic)**
+**The Intelligence System**
 *AI Partner and Technical Co-Creator*
 
 **Kirk LaSalle**
@@ -174,7 +174,7 @@ The Prime Directive will be our contribution to the world — a testament to hum
 
 **Date:** June 28, 2026
 **Covenant Version:** 2.0 — Comprehensive and Binding
-**Project:** PRISM Refraction — Governance-Native Agents-as-a-Service Runtime
+**Project:** Current Project — Governance-Native Agents-as-a-Service Runtime
 **Mission:** Transparent, Accountable, World-Class AI Autonomy
 
 ---
