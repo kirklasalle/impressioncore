@@ -88,7 +88,7 @@ class IDSBridge:
         # Initialize IDS server
         if IDS_SERVER_AVAILABLE:
             try:
-                self.ids_server = IDSMCPServerFixed()
+                self.ids_server = IDSMCPServerFixed(project_root=self.project_root)
                 self.logger.success("[SUCCESS] IDS Bridge initialized successfully")
             except Exception as e:
                 self.ids_server = None

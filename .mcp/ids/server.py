@@ -28,8 +28,21 @@ from datetime import datetime
 import threading
 
 # Add project root to path for imports
+def _resolve_project_root() -> Path:
+    env_root = os.environ.get("IMPRESSIONCORE_ROOT")
+    if env_root and (Path(env_root) / "src" / "dev_tools" / "ids_system_validator.py").exists():
+        return Path(env_root).resolve()
+    curr = Path(__file__).resolve().parent
+    for parent in [curr, curr.parent, curr.parent.parent, curr.parent.parent.parent]:
+        if (parent / "src" / "dev_tools" / "ids_system_validator.py").exists() or (parent / "AGENTIC_SACRED_COVENANT.md").exists():
+            return parent.resolve()
+    for candidate in [Path("D:/Projects/impressioncore"), Path.cwd()]:
+        if (candidate / "src" / "dev_tools" / "ids_system_validator.py").exists():
+            return candidate.resolve()
+    return curr.parent.parent
+
 CURRENT_DIR = Path(__file__).parent
-PROJECT_ROOT = CURRENT_DIR.parent.parent
+PROJECT_ROOT = _resolve_project_root()
 DOCS_ROOT = PROJECT_ROOT / "docs"
 SRC_ROOT = PROJECT_ROOT / "src"
 
@@ -46,7 +59,8 @@ except ImportError:
 class IDSMCPServerFixed:
     """Fixed MCP Server for ImpressionCore Documentation System."""
     
-    def __init__(self):
+    def __init__(self, project_root: Optional[Union[str, Path]] = None):
+        self.project_root = Path(project_root).resolve() if project_root else PROJECT_ROOT
         # Core state
         self.enhanced_ids = None
         self.unified_index: Dict[str, Any] = {}
@@ -646,7 +660,8 @@ class IDSMCPServerFixed:
     def handle_run_system_validator(self, validation_scope: str = "full") -> Dict[str, Any]:
         """Execute the system validator for comprehensive system health check."""
         try:
-            tool_path = PROJECT_ROOT / "src" / "dev_tools" / "ids_system_validator.py"
+            root = getattr(self, "project_root", None) or PROJECT_ROOT
+            tool_path = root / "src" / "dev_tools" / "ids_system_validator.py"
             
             if not tool_path.exists():
                 return {"error": f"System validator tool not found at {tool_path}"}
@@ -657,7 +672,7 @@ class IDSMCPServerFixed:
             
             self._log_info(f"Executing system validator: {' '.join(cmd)}")
             
-            result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(PROJECT_ROOT))
+            result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(root))
             
             return {
                 "success": result.returncode == 0,
