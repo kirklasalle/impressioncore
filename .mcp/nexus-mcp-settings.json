@@ -1,0 +1,108 @@
+{
+  "nexusMcpFleet": {
+    "operator": "Kirk LaSalle",
+    "version": "2.0.0",
+    "fleet_root": "D:\\Projects\\.mcp",
+    "python_executable": "G:\\Program Files\\Python314\\python.exe",
+    "covenant_enforcement": "STRICT_GOVERNANCE"
+  },
+  "mcpServers": {
+    "goliath": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\goliath\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\goliath",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "GOLIATH_DEBUG": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\goliath;D:\\Projects\\.mcp"
+      }
+    },
+    "ids": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\ids\\server_ai_enhanced.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\ids",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\ids;D:\\Projects\\.mcp"
+      }
+    },
+    "eds": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\eds\\server_enhanced.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\eds",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\eds;D:\\Projects\\.mcp"
+      }
+    },
+    "ipa": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\ipa\\server_ultimate.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\ipa",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\ipa;D:\\Projects\\.mcp"
+      }
+    },
+    "vrgc": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\vrgc\\server_enhanced.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\vrgc",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\vrgc;D:\\Projects\\.mcp"
+      }
+    },
+    "dpa": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\dpa\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\dpa",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\dpa;D:\\Projects\\.mcp"
+      }
+    },
+    "web-search": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\web-search\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\web-search",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\web-search;D:\\Projects\\.mcp"
+      }
+    },
+    "loc": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\loc\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\loc",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\loc;D:\\Projects\\.mcp"
+      }
+    }
+  }
+}

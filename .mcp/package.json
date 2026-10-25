@@ -1,50 +1,61 @@
 {
-  "name": "impressioncore-educational-scraper",
-  "version": "1.0.0",
-  "description": "License-compliant educational content scraper for ImpressionCore training data",
-  "author": "ImpressionCore Team",
-  "license": "MIT",
-  "main": "server.py",
-  "dependencies": {
-    "requests": "^2.31.0",
-    "beautifulsoup4": "^4.12.0",
-    "wikipedia": "^1.4.0",
-    "arxiv": "^2.1.0",
-    "mcp": "^1.0.0",
-    "aiohttp": "^3.9.0",
-    "feedparser": "^6.0.0"
+  "name": "mcp-enterprise-fleet",
+  "version": "2.0.0",
+  "description": "Enterprise-grade, project-agnostic Model Context Protocol (MCP) tooling fleet governed by the Agentic Sacred Covenant and Prime Directive.",
+  "author": "Kirk LaSalle",
+  "homepage": "https://github.com/kirklasalle/.mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirklasalle/.mcp.git"
   },
-  "mcp": {
-    "server": {
-      "command": "python",
-      "args": ["server.py"],
-      "env": {}
+  "scripts": {
+    "test": "python -c \"import importlib; print('Fleet OK')\"",
+    "start:goliath": "python goliath/server.py",
+    "start:ids": "python ids/server_ai_enhanced.py",
+    "start:eds": "python eds/server_enhanced.py",
+    "start:ipa": "python ipa/server_ultimate.py",
+    "start:vrgc": "python vrgc/server_enhanced.py",
+    "start:dpa": "python dpa/server.py",
+    "start:web-search": "python web-search/server.py",
+    "start:loc": "python loc/server.py"
+  },
+  "servers": {
+    "goliath": {
+      "path": "goliath/server.py",
+      "description": "Unified orchestration gateway, 7-bridge multiplexer, and persistent swarm memory"
+    },
+    "ids": {
+      "path": "ids/server_ai_enhanced.py",
+      "description": "Intelligent documentation system, GraphRAG knowledge graph, and code intelligence"
+    },
+    "eds": {
+      "path": "eds/server_enhanced.py",
+      "description": "Educational data scraper, academic research crawler, and multi-modal curator"
+    },
+    "ipa": {
+      "path": "ipa/server_ultimate.py",
+      "description": "Intelligent processing assistant, advanced search operator engine, and deep research"
+    },
+    "vrgc": {
+      "path": "vrgc/server_enhanced.py",
+      "description": "Virtually Robotic GitHub Copilot (VRGC) SAPR intelligence, self-healing code, and hardware optimizer"
+    },
+    "dpa": {
+      "path": "dpa/server.py",
+      "description": "Digital project assistant, natural language understanding, accessibility, and task management"
+    },
+    "web-search": {
+      "path": "web-search/server.py",
+      "description": "High-throughput search broker with Google and DuckDuckGo engine fallback"
+    },
+    "loc": {
+      "path": "loc/server.py",
+      "description": "Library of Congress catalog, Chronicling America newspapers, and legislative records research"
     }
   },
-  "tools": [
-    {
-      "name": "scrape_mit_ocw",
-      "description": "Scrape MIT OpenCourseWare content (Creative Commons licensed)"
-    },
-    {
-      "name": "scrape_wikipedia_educational",
-      "description": "Extract educational Wikipedia articles (CC-BY-SA licensed)"
-    },
-    {
-      "name": "scrape_arxiv_papers",
-      "description": "Get educational arXiv papers (open access)"
-    },
-    {
-      "name": "scrape_government_educational",
-      "description": "Access US government educational resources (public domain)"
-    },
-    {
-      "name": "scrape_khan_academy_cc",
-      "description": "Access Khan Academy Creative Commons content"
-    },
-    {
-      "name": "validate_license_compliance",
-      "description": "Validate that scraped content is license-compliant"
-    }
-  ]
+  "governance": {
+    "covenant": "AGENTIC_SACRED_COVENANT.md",
+    "prime_directive": "AGENTIC_PRIME_DIRECTIVE.md",
+    "active_directives": "Permanent_Active_Directives.txt"
+  }
 }

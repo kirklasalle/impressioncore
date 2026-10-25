@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-enterprise-fleet"
+version = "2.0.0"
+description = "Enterprise-grade, governance-native Model Context Protocol (MCP) tooling fleet."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Kirk LaSalle", email = "kirk@.nexus" }
+]
+keywords = [
+    "model-context-protocol",
+    "mcp",
+    "ai-agents",
+    "claude-desktop",
+    "antigravity-ide",
+    "cursor",
+    "swarm-memory",
+    "agentic-governance"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "aiohttp>=3.9.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "networkx>=3.0",
+    "psutil>=5.9.0",
+    "typing_extensions>=4.8.0",
+]
+
+[project.optional-dependencies]
+ai = [
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/kirklasalle/.mcp"
+Documentation = "https://github.com/kirklasalle/.mcp/tree/main/docs"
+Repository = "https://github.com/kirklasalle/.mcp.git"
+Issues = "https://github.com/kirklasalle/.mcp/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["shared*", "goliath*", "ids*", "eds*", "ipa*", "vrgc*", "dpa*", "web-search*", "loc*", "tests*"]

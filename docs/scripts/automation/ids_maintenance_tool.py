@@ -18,15 +18,6 @@
 
 
 
-# !/usr/bin/env python3
-
-**Created:** 2024-10-15  
-**Updated:** 2025-07-26 10:27:00  
-**Author:** ImpressionCore Team  
-**Tags:** #attention_mechanism #docs\scripts\automation\ids_maintenance_tool.py #documentation #python #source_code  
-**Category:** Source Code  
-**Status:** Active
-
 """
 ImpressionCore IDS Documentation Maintenance Tool
 

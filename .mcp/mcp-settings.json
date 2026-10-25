@@ -1,84 +1,100 @@
 {
   "mcpServers": {
-    "ids-mcp": {
-      "command": "python",
+    "goliath": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
       "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\ids-mcp\\server_ai_enhanced.py"
+        "D:\\Projects\\.mcp\\goliath\\server.py"
       ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\ids-mcp",
+      "cwd": "D:\\Projects\\.mcp\\goliath",
       "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages;D:\\Projects\\impressioncore\\.mcp\\ids-mcp"
-      }
-    },
-    "impressioncore-eds": {
-      "command": "python",
-      "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\impressioncore-eds\\server_enhanced.py"
-      ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\impressioncore-eds",
-      "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
-      }
-    },
-    "impressioncore-ipa": {
-      "command": "python",
-      "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\impressioncore-ipa\\server_ultimate.py"
-      ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\impressioncore-ipa",
-      "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
-      }
-    },
-    "impressioncore-goliath": {
-      "command": "python",
-      "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\impressioncore-goliath\\server.py"
-      ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\impressioncore-goliath",
-      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
         "GOLIATH_DEBUG": "1",
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages;D:\\Projects\\impressioncore\\.mcp\\impressioncore-goliath"
+        "PYTHONPATH": "D:\\Projects\\.mcp\\goliath;D:\\Projects\\.mcp"
       }
     },
-    "impressioncore-vrgc": {
-      "command": "python",
+    "ids": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
       "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\impressioncore-vrgc\\server_enhanced.py"
+        "D:\\Projects\\.mcp\\ids\\server_ai_enhanced.py"
       ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\impressioncore-vrgc",
+      "cwd": "D:\\Projects\\.mcp\\ids",
       "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\ids;D:\\Projects\\.mcp"
       }
     },
-    "impressioncore-dpa": {
-      "command": "python",
+    "eds": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
       "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\impressioncore-dpa\\server.py"
+        "D:\\Projects\\.mcp\\eds\\server_enhanced.py"
       ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\impressioncore-dpa",
+      "cwd": "D:\\Projects\\.mcp\\eds",
       "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\eds;D:\\Projects\\.mcp"
       }
     },
-    "web-search-mcp": {
-      "command": "python",
+    "ipa": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
       "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\web-search-mcp\\server.py"
+        "D:\\Projects\\.mcp\\ipa\\server_ultimate.py"
       ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\web-search-mcp",
+      "cwd": "D:\\Projects\\.mcp\\ipa",
       "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\ipa;D:\\Projects\\.mcp"
       }
     },
-    "loc-mcp-server": {
-      "command": "python",
+    "vrgc": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
       "args": [
-        "D:\\Projects\\impressioncore\\.mcp\\loc-mcp-server\\server.py"
+        "D:\\Projects\\.mcp\\vrgc\\server_enhanced.py"
       ],
-      "cwd": "D:\\Projects\\impressioncore\\.mcp\\loc-mcp-server",
+      "cwd": "D:\\Projects\\.mcp\\vrgc",
       "env": {
-        "PYTHONPATH": "D:\\Projects\\impressioncore\\.venv310\\Lib\\site-packages"
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\vrgc;D:\\Projects\\.mcp"
+      }
+    },
+    "dpa": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\dpa\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\dpa",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\dpa;D:\\Projects\\.mcp"
+      }
+    },
+    "web-search": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\web-search\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\web-search",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\web-search;D:\\Projects\\.mcp"
+      }
+    },
+    "loc": {
+      "command": "G:\\Program Files\\Python314\\python.exe",
+      "args": [
+        "D:\\Projects\\.mcp\\loc\\server.py"
+      ],
+      "cwd": "D:\\Projects\\.mcp\\loc",
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONPATH": "D:\\Projects\\.mcp\\loc;D:\\Projects\\.mcp"
       }
     }
   }

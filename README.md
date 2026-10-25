@@ -12,7 +12,7 @@
 [![Sponsor Kirk LaSalle](https://img.shields.io/badge/Sponsor-%241%20Sovereign%20Pledge-ea4aaa.svg)](https://github.com/sponsors/kirklasalle)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![B-Series Models](https://img.shields.io/badge/Model%20Family-B1%20|%20B2%20|%20B3%20|%20B3%20Ultra-blueviolet.svg)](#-canonical-model-lineup--builder-workflow)
-[![MCP Servers](https://img.shields.io/badge/MCP%20Servers-7%20Active-brightgreen.svg)](#-7-server-mcp-ecosystem)
+[![MCP Servers](https://img.shields.io/badge/MCP%20Servers-8%20Active-brightgreen.svg)](#-8-server-mcp-ecosystem)
 [![GTX 1050 Ti Optimized](https://img.shields.io/badge/GTX%201050%20Ti-Optimized%20(<4GB)-orange.svg)](https://www.nvidia.com/en-us/geforce/graphics-cards/geforce-gtx-1050-ti/)
 
 ---
@@ -29,7 +29,7 @@ Transform AI from enterprise-exclusive technology to **universally accessible in
 
 - 🏆 **World-First GPU Knowledge Distillation**: First documented successful GPU-based knowledge distillation on consumer hardware (NVIDIA GTX 1050 Ti, 4GB VRAM), overcoming PyTorch 2.6+ security restrictions.
 - 🧠 **B-Series Multimodal Architecture**: Assembly of Experts (AoE), Multi-Head Latent Attention (MLA), TurboQuant KV cache compression, and Brain-Triad cognitive orchestration scaling from 39M to 3B+ parameters.
-- 🤖 **Agent0Core Agentic Layer**: Autonomous intelligence with Agent Zero framework, Guardian safety supervisor, and 7-server MCP ecosystem integration.
+- 🤖 **Agent0Core Agentic Layer**: Autonomous intelligence with Agent Zero framework, Guardian safety supervisor, and 8-server MCP ecosystem integration.
 - 🎨 **Unified Model Builder & Live Visualizer**: Interactive Glassmorphism UI suite with dynamic preset auto-population, real-time attention heatmaps, latent projections, and dynamic memory orrery.
 - 💾 **Consumer Hardware Training**: Complete AI training pipeline optimized for consumer GPUs with 40-second epochs and memory usage strictly bounded below 4GB.
 - 📊 **Market Validation**: $45.3B total addressable market (2024) → $163.6B (2030) with 150M+ addressable consumer GPUs worldwide.
@@ -276,20 +276,22 @@ python agent0core/run_ui.py
 
 ---
 
-## 🔌 **7-Server MCP Ecosystem**
+## 🔌 **8-Server MCP Ecosystem**
 
-ImpressionCore operates a **7-server MCP (Model Context Protocol) ecosystem** providing standardized, secure tool access:
+ImpressionCore operates an **8-microserver MCP (Model Context Protocol) fleet** (v2.0.0) providing standardized, secure tool access with protocol stream isolation (`shared/stdio_guard.py`):
 
 ```
 .mcp/
-├── impressioncore-goliath/   # Unified gateway with bridge pattern
-│   └── bridges/              # EDS, IPA, DPA, IDS bridge modules
-├── impressioncore-eds/       # Educational dataset discovery (40+ sources)
-├── impressioncore-ipa/       # Intelligent process automation & research
-├── impressioncore-dpa/       # Digital project assistant & UI accessibility
-├── impressioncore-vrgc/      # Autonomous runtime monitor & health telemetry
-├── ids-mcp/                  # Documentation system semantic search
-└── web-search-mcp/           # Web intelligence & URL ingestion
+├── goliath/                  # Unified master orchestrator, swarm memory & VRAM load balancer
+│   └── bridges/              # IDS, DPA, EDS, IPA, VRGC, WebSearch bridge modules
+├── ids/                      # Documentation system semantic tagging, indexing & system validator
+├── vrgc/                     # Autonomous runtime monitor, hardware optimizer & Sacred Covenant
+├── dpa/                      # Digital project assistant, NLU intent parsing & UI accessibility
+├── ipa/                      # Intelligent process automation & academic research operators
+├── eds/                      # Educational dataset scraper & compliance verification (40+ sources)
+├── loc/                      # Library of Congress microserver (catalogs, newspapers, legislation)
+├── web-search/               # Dual-engine (Google / DuckDuckGo) web intelligence & URL fetch
+└── shared/                   # Stdio stream protection & unified MCP SDK adapter
 ```
 
 ---
