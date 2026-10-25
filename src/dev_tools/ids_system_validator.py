@@ -67,8 +67,8 @@ class IDSSystemValidator:
         for ext in extensions:
             for file_path in self.project_root.rglob(f'*{ext}'):
                 # Skip system and protected files
-                skip_dirs = ['.git', '__pycache__', '.venv', 'node_modules']
-                if any(skip_dir in str(file_path) for skip_dir in skip_dirs):
+                skip_dirs = ['.git', '__pycache__', '.venv', '.venv310', 'node_modules', 'dist', 'build', '.cache']
+                if any(skip_dir in file_path.parts for skip_dir in skip_dirs):
                     continue
 
                 results['total_files'] += 1
@@ -114,9 +114,9 @@ class IDSSystemValidator:
         }
 
         protected_files = [
-            'COPILOT_PRIME_DIRECTIVE.md',
-            'COPILOT_SACRED_COVENANT.md',
-            'docs/logic_concept_cache.md'
+            'AGENTIC_PRIME_DIRECTIVE.md',
+            'AGENTIC_SACRED_COVENANT.md',
+            'Permanent_Active_Directives.txt'
         ]
 
         for file_path in protected_files:
@@ -168,9 +168,10 @@ class IDSSystemValidator:
 
                     # Count actual documentation files
                     actual_count = 0
+                    skip_dirs = ['.git', '__pycache__', '.venv', '.venv310', 'node_modules', 'dist', 'build', '.cache']
                     for ext in ['.md', '.rst', '.txt']:
                         for file_path in self.project_root.rglob(f'*{ext}'):
-                            if not any(skip in str(file_path) for skip in ['.git', '__pycache__', '.venv']):
+                            if not any(skip in file_path.parts for skip in skip_dirs):
                                 actual_count += 1
 
                     results['file_count_accuracy'] = abs(index_count - actual_count) < 50  # Allow some variance
