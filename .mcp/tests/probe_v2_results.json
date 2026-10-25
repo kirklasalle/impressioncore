@@ -2,7 +2,7 @@
   {
     "server": "goliath",
     "script": "goliath/server.py",
-    "init_s": 1.68,
+    "init_s": 2.15,
     "protocol": "2025-11-25",
     "server_name": "goliath",
     "tools": 50,
@@ -60,15 +60,15 @@
     ],
     "call": "goliath_get_swarm_state",
     "call_isError": false,
-    "call_excerpt": "{   \"memory\": {     \"active_context\": [],     \"finding_count\": 0,     \"dna_count\": 0,     \"last_updated\": \"2026-10-23T17:01:25.073237\"   },   \"hardware\": {     \"vram_usage_gb\": 0.5333175659179688,     \"target_limit_gb\": 4.0,     \"status\": \"",
+    "call_excerpt": "{   \"memory\": {     \"active_context\": [],     \"finding_count\": 0,     \"dna_count\": 0,     \"last_updated\": \"2026-10-24T21:36:32.848666\"   },   \"hardware\": {     \"vram_usage_gb\": 0.5622978210449219,     \"target_limit_gb\": 4.0,     \"status\": \"",
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 1.91
+    "elapsed_s": 2.89
   },
   {
     "server": "ids",
     "script": "ids/server_ai_enhanced.py",
-    "init_s": 8.06,
+    "init_s": 9.84,
     "protocol": "2025-11-25",
     "server_name": "ids",
     "tools": 6,
@@ -82,12 +82,12 @@
     ],
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 8.92
+    "elapsed_s": 10.78
   },
   {
     "server": "eds",
     "script": "eds/server_enhanced.py",
-    "init_s": 2.3,
+    "init_s": 2.57,
     "protocol": "2025-11-25",
     "server_name": "eds",
     "tools": 9,
@@ -104,12 +104,12 @@
     ],
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 2.51
+    "elapsed_s": 2.8
   },
   {
     "server": "ipa",
     "script": "ipa/server_ultimate.py",
-    "init_s": 2.12,
+    "init_s": 2.37,
     "protocol": "2025-11-25",
     "server_name": "ipa",
     "tools": 6,
@@ -126,12 +126,12 @@
     "call_excerpt": "{   \"server\": \"ipa\",   \"version\": \"3.0\",   \"research_methodologies\": [     \"deep_analysis\",     \"real_time\",     \"hybrid\",     \"conversational\",     \"systematic\",     \"investigative\",     \"competitive\",     \"synthesis_first\"   ],   \"search_",
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 2.36
+    "elapsed_s": 2.6
   },
   {
     "server": "vrgc",
     "script": "vrgc/server_enhanced.py",
-    "init_s": 11.92,
+    "init_s": 13.12,
     "protocol": "2025-11-25",
     "server_name": "vrgc",
     "tools": 28,
@@ -167,12 +167,12 @@
     ],
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 12.52
+    "elapsed_s": 13.78
   },
   {
     "server": "dpa",
     "script": "dpa/server.py",
-    "init_s": 4.43,
+    "init_s": 4.9,
     "protocol": "2025-11-25",
     "server_name": "dpa",
     "tools": 17,
@@ -200,12 +200,12 @@
     "call_excerpt": "{   \"text\": \"remind me to call mom tomorrow\",   \"intent\": \"unknown\" }",
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 5.04
+    "elapsed_s": 5.54
   },
   {
     "server": "web-search",
     "script": "web-search/server.py",
-    "init_s": 1.79,
+    "init_s": 2.14,
     "protocol": "2025-11-25",
     "server_name": "Web Search MCP Server",
     "tools": 8,
@@ -224,12 +224,12 @@
     "call_excerpt": "{   \"original_query\": \"mcp\",   \"suggestions\": [     \"\\\"mcp\\\"\",     \"mcp tutorial\",     \"mcp guide\",     \"mcp examples\"   ],   \"operators\": [],   \"tips\": [     \"Consider adding more specific terms to narrow results\"   ] }",
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 2.0
+    "elapsed_s": 2.35
   },
   {
     "server": "loc",
     "script": "loc/server.py",
-    "init_s": 1.58,
+    "init_s": 1.99,
     "protocol": "2025-11-25",
     "server_name": "loc",
     "tools": 4,
@@ -241,6 +241,6 @@
     ],
     "negative_isError": true,
     "status": "OK",
-    "elapsed_s": 1.75
+    "elapsed_s": 2.24
   }
 ]
