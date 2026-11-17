@@ -1,13 +1,67 @@
 # ImpressionCore User Guide
 
 **Created:** April 19, 2025  
-**Updated:** August 26, 2026  
+**Updated:** November 2, 2026
 **Author:** Kirk LaSalle; Antigravity  
 **Category:** User Documentation & Operator Manual  
 **Status:** Active Canonical 2026 Release  
 **IDS Integration:** This document is indexed and searchable via the ImpressionCore Documentation System (IDS).
 
 ---
+
+## Current operating status — November 2, 2026
+
+This notice takes precedence over older capability, hardware-guarantee, quality, deployment, and screenshot claims below. See the [current platform audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) for evidence and acceptance gates.
+
+**Keep the applications separate:** Builder is port 5000; Triad runtime is 8000; the React sensory UI is 5173. At the audit snapshot, 8000/5173 were live and 5000 was not listening. A stopped Builder listener is not evidence that Builder code failed. Triad InternVL2-1B is not the native Builder model.
+
+**Repair status:** a guarded loopback same-origin gateway now authenticates HTTP, media and WebSockets using a server-only credential. Direct protected API requests still require authentication; CORS covers actual errors. Initialization, real-model failures and disconnected runtime errors are visible rather than silently replaced by mock READY. The existing external InternVL2-1B answered a real browser chat turn; no Kinect driver or existing LLM weights were replaced. See the [repair addendum](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026).
+
+**Kinect:** explicit start produced sustained fresh color/depth/skeleton counters and a 480x360 rendered browser preview. Fixed missing SDK frame release that exhausted buffers after six frames. Kinect v1 RGB and IR share a sensor path, so IR can be unavailable while RGB is active. Four logical streams are not four physical cameras. Stop releases camera resources and cached frames. The SDK's legacy OS list is not modern Windows certification.
+
+**Builder evidence:** a B1-named live project executed a 4,567,641-parameter native B3 model on tiny synthetic 24/8 train/validation records; generation was incoherent and no quality gain was established. B1/B2/B3 names are offering references, not verified native executable identities. Keep the bounded text-only workflow and scientific limits documented below; a latent `MockBrainModel` reporting READY is not real-model readiness.
+
+**Validation and release gates:** focused runtime/native/sensor/auth regressions, gateway test, frontend lint/build and the isolated real Builder browser workflow pass. Native runs now carry measured identity, objective and hashed checkpoint/export provenance. Historical runs without these fields are labelled unverified, not retroactively certified. As of November 16, 2026, Builder binds `127.0.0.1` with `debug=False` by default (use `IMPRESSIONCORE_BUILDER_HOST` / `IMPRESSIONCORE_DEBUG=1` to override), enforces `IMPRESSIONCORE_API_KEY` or session auth on `/api/*`, confines Workbench file reads to allowed roots, enforces `weights_only=True` on active checkpoint loads, and fixes B3 causal isolation and TurboQuant non-power-of-2 rotation/passthrough. Certified native B1/B2/B3 dimensions, useful held-out quality, real visual/speech accuracy, measured peak-4GB workloads, and remaining security/Docker hardening remain open.
+
+Camera rollout must independently verify discovery, initialization, fresh frames, and browser rendering, with explicit start/stop consent and device-specific RGB/IR constraints. Never infer successful capture from discovery alone. Earlier world-first, 10/10 quality, zero-OOM, and market claims are unverified assertions or historical projections, not current guarantees.
+
+### Start the repaired local sensory runtime
+
+From the repository root in PowerShell:
+
+```powershell
+.\.venv310\Scripts\python.exe src\dev_tools\scripts\run_local_runtime.py
+```
+
+Open `http://127.0.0.1:5173`. Wait for real model readiness; camera-off warnings
+do not block text chat. Select **INITIALIZE SYSTEM** if the readiness overlay
+is open. Use **Start camera capture**, then select the Kinect feed in
+**Configuration** if necessary. Use **Stop camera capture** when finished.
+Microphone listening is controlled separately; starting the camera does not
+start Whisper listening. The initial import can delay the API socket before
+background model loading begins.
+
+The launcher binds only loopback, refuses occupied ports and supervises only
+its own children. Ctrl+C stops those children; it does not terminate unrelated
+Python/Node processes. It shares a memory-only random service credential
+(or an existing server environment key), never a `VITE_` browser key.
+Cached models are used by default. `--allow-downloads` opts into missing
+model downloads; `--monitor` also starts the existing monitor.
+This is a local development gateway, not public production hosting.
+
+Optional speech setup, if not already installed/cached:
+
+```powershell
+.\.venv310\Scripts\python.exe -m pip install -e ".[speech]"
+.\.venv310\Scripts\python.exe -c "from faster_whisper.utils import download_model; download_model('tiny.en')"
+```
+
+Restart the runtime after setup. `/v1/audio/status` should report
+`stt.available=true`, `model_loaded=true`, `running=false` before explicit
+microphone use. Readiness is not a transcription-quality test. The repair
+installed this optional dependency and cached this small speech model only;
+it did not replace the existing LLM. `/health/live` is liveness;
+`/health/ready` reports staged initialization, not native offering certification.
 
 ## 🌟 1. Overview & System Mission
 
@@ -75,6 +129,115 @@ python src/interfaces/web/server.py --port 5000
 Open your browser at **[http://127.0.0.1:5000](http://127.0.0.1:5000)** and log in with default development credentials (`admin` / `admin`).
 
 ![Live Unified Builder Interface](../assets/builder_live_unified_builder_top.png)
+
+#### Interactive Walkthrough: finish and choose an offering
+
+After completing the five lessons at `/walkthrough`, click **Finish**. The page
+confirms academy completion and focuses **Offering Selection**; this does not
+mark the separate Builder pipeline stages complete.
+
+1. Select **B1 Hope 39M**, **B2 Insight 50M**, or **B3 Apex 504M**.
+2. Wait for **Saved offering** with the model's name. If saving fails, select
+   the offering again to retry; an unconfirmed choice cannot continue.
+3. Click **Continue to Builder**. The saved choice survives a refresh.
+4. In the workbench, explicitly create a named project from the saved offering.
+   Offering names are references, not verified native architecture dimensions.
+5. Configure the project's native architecture, local data, tokenizer, and
+   experiment settings. Opening the workbench never replaces another project.
+
+Choosing an offering does **not** download weights, load a model, allocate GPU
+memory, or start training. A preset label is not proof of trained weights or
+hardware fit; review memory estimates and GPU setup before starting training
+explicitly. Opening `/unified_builder` directly lists local projects without
+silently applying another offering. Errors are displayed with a retry
+action rather than reported as a successful handoff.
+
+#### Unified Builder: the native engineering workbench
+
+`/unified_builder` is ImpressionCore's project-oriented workspace for scientists
+and engineers. It is a local, single-operator research platform, not the legacy
+inference dashboard. Architecture, Data, Tokenizer, Training, Runs, Checkpoints,
+Evaluation, Inference, Export, and Help tabs keep configuration, readiness checks, and
+execution results together, with measured hardware and storage in the runtime
+summary. Existing tools remain available as explicitly
+separate legacy tools.
+
+**Project workflow**
+
+1. Create a named project, or import an exported workbench configuration JSON.
+   The **Open / Create** selector always lists the registered default offerings
+   (B1 Hope, B2 Insight, B3 Apex, and B3 Ultra) separately from saved projects.
+   Select an offering to open the project creation form with its name and
+   reference preselected; cancel creates nothing. Confirming creates a separate
+   project with that offering's model reference and supported training defaults,
+   while retaining safe bounded native execution settings. New registered
+   offerings appear automatically. Templates do not represent loaded weights
+   or validated native architecture mappings.
+   Open existing projects from the project menu. Save edits before preflight.
+   Saves check revisions: a concurrent edit produces a conflict instead of
+   overwriting newer work. Configuration export contains settings, not weights
+   or copies of datasets.
+2. Select the native B3 research template explicitly and review its dimensions.
+   Its source is `src/training/scripts/train_b3_39m.py`; its filename and the
+   B1/B2/B3 offering labels are not measured parameter counts. Actual parameter
+   count is recorded when the native model is constructed for a run.
+3. Supply an existing local UTF-8 training file: nonempty lines for `text`, or
+   JSONL objects containing the configured text field. Each selected shard is
+   limited to 8 MiB and 4,096 records. Use a separate validation shard for
+   evaluation; identical files and overlapping text records are rejected.
+4. Supply an existing local `tokenizer.json` (up to 32 MiB). The backend verifies
+   vocabulary size and token IDs against the native architecture. It never
+   downloads a tokenizer or silently trains a replacement.
+5. Choose **fine-tuning** only with a compatible checkpoint from a previous run
+   in this project, with exactly matching native configuration and tokenizer
+   hash. If no such checkpoint exists, explicitly choose **scratch** to start a
+   bounded experiment from random weights.
+6. Run preflight. It checks files, tokenizer, native dimensions, memory budget,
+   device, checkpoint identity, and the shared execution slot. Memory estimates
+   are conservative screening, not a hardware-fit guarantee. GPU availability
+   and memory are measured rather than hardcoded.
+7. Start explicitly and confirm. The worker snapshots the saved project, records
+   hashes, trains the actual `ImpressionCoreB3Model`, and reports real optimizer
+   steps and loss. Stop is cooperative at safe boundaries; it is not pause.
+8. Select a completed or safely stopped checkpoint for held-out evaluation,
+   bounded local text generation, or artifact ZIP export. The bundle contains
+   native weights, exact tokenizer bytes, configuration, run metadata, hashes,
+   and the latest evaluation result when available. Model state is loaded
+   strictly; changed checkpoint/tokenizer hashes are rejected.
+
+**Scientific scope and limits**
+
+The current native adapter uses FP32, microbatch size one, and true gradient
+accumulation. It trains one prefix/next-token example per usable text record.
+The native expert router attends across the prefix, so this is deliberately
+**not all-position causal language-model training**. Reported evaluation
+cross-entropy/perplexity uses the same prefix-prediction objective, without
+expert regularization; it is not standard full-corpus perplexity. Training loss
+display is prediction cross-entropy; optimization also includes expert loss.
+
+Fine-tuning starts a **new optimizer**, not exact resume. Exact optimizer resume,
+pause, tokenizer training, multimodal training, arbitrary legacy checkpoint
+import, quantized deployment, and production-scale hardware certification are
+not implemented in this workbench. Unsupported capabilities are labelled rather
+than presented as working controls. Native multimodal modules remain in the
+architecture, but this experiment path supplies text inputs only. No generic
+GPT-2 model or dummy dataset is substituted.
+
+**Persistence and recovery**
+
+Projects default to `data/knowledge/workbench` under the repository. Run
+artifacts default to `CHECKPOINTS_ROOT/workbench` (normally
+`F:\models\checkpoints\workbench`). The Local storage summary shows resolved locations;
+Flask deployments can override `WORKBENCH_PROJECT_ROOT` and
+`WORKBENCH_ARTIFACT_ROOT`. Configuration exports include local paths and notes:
+review them before sharing.
+
+The execution slot excludes concurrent workbench operations and legacy Builder
+training within the server process. Use one local server worker; this is not a
+distributed scheduler. A server restart marks unfinished runs interrupted and
+never resumes training automatically. Refresh or reopen a project to recover
+saved state. Restart the Flask application after updating this version so the
+new workbench API blueprint is registered.
 
 ---
 

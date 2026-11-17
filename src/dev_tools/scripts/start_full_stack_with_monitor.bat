@@ -3,7 +3,17 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 set "SCRIPT_DIR=%~dp0"
 for %%I in ("%SCRIPT_DIR%\..\..\..") do set "REPO_ROOT=%%~fI"
-set "PY_EXE=%REPO_ROOT%\.venv310\Scripts\python.exe"
+set "PY_EXE="
+set "VENV_DIR="
+if exist "%REPO_ROOT%\.venv310\Scripts\python.exe" (
+    set "VENV_DIR=.venv310"
+    set "PY_EXE=%REPO_ROOT%\.venv310\Scripts\python.exe"
+) else if exist "%REPO_ROOT%\.venv\Scripts\python.exe" (
+    set "VENV_DIR=.venv"
+    set "PY_EXE=%REPO_ROOT%\.venv\Scripts\python.exe"
+) else (
+    for /f "delims=" %%p in ('where python 2^>nul') do if not defined PY_EXE set "PY_EXE=%%p"
+)
 cd /d "%REPO_ROOT%"
 
 set "CHECKS_ONLY=0"
@@ -27,8 +37,15 @@ echo.
 
 set "FAIL=0"
 
-call :check_file ".venv310\Scripts\activate.bat" "Python venv activation"
-call :check_file ".venv310\Scripts\python.exe" "Python interpreter"
+if defined VENV_DIR (
+    call :check_file "%VENV_DIR%\Scripts\activate.bat" "Python venv activation"
+    call :check_file "%VENV_DIR%\Scripts\python.exe" "Python interpreter"
+) else if defined PY_EXE (
+    echo [OK] Python interpreter fallback ^(%PY_EXE%^)
+) else (
+    echo [MISSING] Python interpreter ^(.venv310, .venv, or PATH^)
+    set "FAIL=1"
+)
 call :check_file "src\interfaces\triad_api.py" "Backend entrypoint"
 call :check_file "src\core\utils\vrgc_autonomous_monitor.py" "Monitor entrypoint"
 call :check_file "src\interfaces\web_client\package.json" "Frontend package"
@@ -49,6 +66,14 @@ if not "!FAIL!"=="0" (
 )
 
 echo.
+echo [STORAGE] Checking required model and data directories...
+"%PY_EXE%" -m src.core.config.data_paths
+if errorlevel 1 (
+    echo [ERROR] Storage check failed. No services were launched or stopped.
+    exit /b 1
+)
+
+echo.
 echo [OK] Startup checks passed.
 
 if "%CHECKS_ONLY%"=="1" (
@@ -56,65 +81,14 @@ if "%CHECKS_ONLY%"=="1" (
     exit /b 0
 )
 
-if "%NO_CLEANUP%"=="1" (
-    echo.
-    echo [INFO] No-cleanup mode enabled. Skipping process cleanup.
-) else (
-    echo.
-    echo [CLEANUP] Ensuring clean process state...
-    taskkill /FI "WINDOWTITLE eq ImpressionCore Backend*" /T /F >nul 2>&1
-    taskkill /FI "WINDOWTITLE eq ImpressionCore Frontend*" /T /F >nul 2>&1
-    taskkill /FI "WINDOWTITLE eq ImpressionCore Monitor*" /T /F >nul 2>&1
-
-    for %%P in (8000 5173) do (
-            for /f "tokens=5" %%K in ('netstat -ano ^| findstr /R /C:":%%P .*LISTENING"') do (
-                    taskkill /PID %%K /F >nul 2>&1
-            )
-    )
-
-    echo [OK] Clean process state prepared.
-)
-
 echo.
-echo [BACKEND] Launching Triad API on port 8000...
-start "ImpressionCore Backend" /D "%REPO_ROOT%" cmd /k ""%PY_EXE%" "%REPO_ROOT%\src\interfaces\triad_api.py""
-
-echo [FRONTEND] Launching Vite web client on port 5173...
-start "ImpressionCore Frontend" cmd /k "cd /d ""%REPO_ROOT%\src\interfaces\web_client"" && npm run dev -- --host 0.0.0.0 --port 5173"
-
-echo [MONITOR] Launching VRGC autonomous monitor...
-start "ImpressionCore Monitor" /D "%REPO_ROOT%" cmd /k ""%PY_EXE%" "%REPO_ROOT%\src\core\utils\vrgc_autonomous_monitor.py""
-
-echo.
-echo [WAIT] Waiting for backend API readiness (http://127.0.0.1:8000/v1/system/status)...
-set "API_READY=0"
-for /L %%I in (1,1,30) do (
-    powershell -NoProfile -Command "try { $r = Invoke-WebRequest -Uri 'http://127.0.0.1:8000/v1/system/status' -UseBasicParsing -TimeoutSec 2; if ($r.StatusCode -ge 200 -and $r.StatusCode -lt 500) { exit 0 } else { exit 1 } } catch { exit 1 }"
-    if not errorlevel 1 (
-        set "API_READY=1"
-        goto :api_ready
-    )
-    timeout /t 1 /nobreak >nul
-)
-
-:api_ready
-if "%API_READY%"=="1" (
-    echo [OK] Backend API is reachable.
-) else (
-    echo [WARN] Backend API not reachable yet. Opening URLs anyway.
-)
-
-echo [WEB] Opening frontend and system monitor URLs in browser...
-start "" "http://127.0.0.1:5173/"
-start "" "http://127.0.0.1:8000/system_monitor.html"
-
-echo.
-echo [DONE] Backend + Frontend + Monitor launch sequence initiated.
-echo        Backend:  http://127.0.0.1:8000
-echo        Frontend: http://127.0.0.1:5173
-echo        Monitor:  http://127.0.0.1:8000/system_monitor.html
-echo.
-exit /b 0
+echo [LOCAL RUNTIME] Starting supervised API, UI and monitor.
+echo Open http://127.0.0.1:5173/ after Vite reports ready.
+echo Models use the local cache. Camera capture starts only with explicit consent.
+echo Existing services are never terminated by this launcher.
+echo Press Ctrl+C to stop the services started by this window.
+"%PY_EXE%" "%REPO_ROOT%\src\dev_tools\scripts\run_local_runtime.py" --monitor
+exit /b %errorlevel%
 
 :check_file
 if exist "%~1" (

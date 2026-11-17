@@ -1,0 +1,115 @@
+{
+  "id": "c9af53851adf41dba966e2a560f66b8f",
+  "project_id": "d3c0663d86e342c986678975753e0308",
+  "state": "completed",
+  "step": 6,
+  "total_steps": 6,
+  "loss": 10.271772384643555,
+  "learning_rate": 5e-05,
+  "logs": [
+    "Training explicitly requested; loading selected native artifacts.",
+    "Native ImpressionCore B3: 4,567,641 parameters; 24 prefix/target examples; FP32; cpu.",
+    "Optimizer step 1/6: next-token cross-entropy=10.238396",
+    "Optimizer step 2/6: next-token cross-entropy=10.244630",
+    "Optimizer step 3/6: next-token cross-entropy=10.152745",
+    "Optimizer step 4/6: next-token cross-entropy=10.264450",
+    "Optimizer step 5/6: next-token cross-entropy=10.086599",
+    "Optimizer step 6/6: next-token cross-entropy=10.271772",
+    "Native weights and exact tokenizer saved. Fine-tuning is supported; exact optimizer resume is not."
+  ],
+  "error": null,
+  "checkpoint": true,
+  "created_at": "2026-11-02T23:45:05.299990+00:00",
+  "updated_at": "2026-11-02T23:45:21.211324+00:00",
+  "configuration": {
+    "id": "d3c0663d86e342c986678975753e0308",
+    "name": "B1 Hope 39M experiment - LIVE TESTING",
+    "revision": 2,
+    "created_at": "2026-11-02T23:31:51.040387+00:00",
+    "updated_at": "2026-11-02T23:44:49.487443+00:00",
+    "offering": "b1_39m",
+    "model": {
+      "activation": "gelu",
+      "architecture": "transformer",
+      "contextWindow": 4096,
+      "flashAttention": false,
+      "heads": 12,
+      "hiddenSize": 768,
+      "intermediateSize": 3072,
+      "layers": 8,
+      "precision": "fp16",
+      "preset": "b1_39m",
+      "rope": true,
+      "vocabSize": 50257
+    },
+    "native_config": {
+      "embed_dim": 64,
+      "num_heads": 4,
+      "num_layers": 2,
+      "vocab_size": 28000,
+      "num_experts": 4,
+      "expert_dim": 96,
+      "experts_per_token": 2,
+      "image_embed_dim": 64,
+      "audio_embed_dim": 64,
+      "phoneme_vocab_size": 256,
+      "dropout": 0.1,
+      "max_seq_length": 128,
+      "use_gradient_checkpointing": false,
+      "use_mhc": true,
+      "mhc_iterations": 20,
+      "b3_ultra": false
+    },
+    "dataset": {
+      "format": "text",
+      "path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\train.txt",
+      "text_field": "text",
+      "validation_path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\validation.txt"
+    },
+    "tokenizer": {
+      "path": "D:\\Projects\\impressioncore\\src\\training\\tokenizers\\b3_conversation_tokenizer_28k\\tokenizer.json"
+    },
+    "training": {
+      "batchSize": 1,
+      "checkpoint_run_id": "",
+      "device": "cpu",
+      "epochs": 1,
+      "gradAccumSteps": 4,
+      "learningRate": 5e-05,
+      "maxSteps": 6,
+      "mode": "scratch",
+      "seed": 42,
+      "sequenceLength": 32
+    },
+    "notes": "LIVE WORKFLOW ACCEPTANCE TEST \u2014 2026-11-02. B1 Hope remains a reference offering only. Execution is a SMALL native ImpressionCore B3 text research configuration, NOT a verified B1 architecture or a 39M-parameter certification. Original project revision 1 backed up in src/memlog/live_workbench_20261102_184402/original_project.json. Inputs: 24 original synthetic engineering sentences for training, 8 distinct held-out sentences; existing local 28,000-token tokenizer. CPU, FP32, microbatch 1, bounded optimizer steps. Objective: one prefix-next-token target per record, not full causal LM. Purpose: exercise save/preflight/train/checkpoint/evaluate/generate/export and compatible fine-tuning; not language-quality benchmarking."
+  },
+  "dataset": {
+    "samples": 24,
+    "bytes": 1766,
+    "preview": [
+      "The local experiment records its configuration before training begins.",
+      "A saved project keeps the model reference separate from executable dimensions.",
+      "The scientist checks the dataset before starting a bounded experiment."
+    ],
+    "sha256": "22b65847d1cc36d691de3f4de1cdb3241badafc4a79a730b495f82f18bf68495"
+  },
+  "tokenizer": {
+    "vocab_size": 28000,
+    "sha256": "1207a55e0c3a508bf9c64bfc1d0e41b3ef2611a2d03e00bb524b9c0b4a0120dd"
+  },
+  "fingerprint": "0281eb06670269eca89385e340d538d10c88da73b0e7d77d64236a21af28d466",
+  "objective": "prefix_next_token",
+  "parameter_count": 4567641,
+  "epoch": 1,
+  "checkpoint_sha256": "9d909c0b81107cfa6ddc6c2e158fb434cb9f126299491436ea2b4df1e810c2a4",
+  "metrics": {
+    "loss": 10.262543797492981,
+    "perplexity": 28639.546816208454,
+    "samples": 8,
+    "dataset_sha256": "68ffb73acda5bbdcd8a59034a2df4173a09e7ac1a28ce6f5fe96e7879e115bce",
+    "run_id": "c9af53851adf41dba966e2a560f66b8f",
+    "objective": "prefix_next_token",
+    "measured_at": "2026-11-02T23:45:21.004689+00:00",
+    "device": "cpu"
+  }
+}

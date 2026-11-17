@@ -31,17 +31,20 @@ import gc
 import weakref
 from contextlib import contextmanager
 
-# Cryptographic imports with fallbacks
+# Cryptographic imports (fail closed when unavailable)
 try:
     from cryptography.hazmat.primitives import hashes, serialization
     from cryptography.hazmat.primitives.asymmetric import rsa, padding, ed25519
     from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM, ChaCha20Poly1305
     from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
     from cryptography.hazmat.backends import default_backend
     CRYPTOGRAPHY_AVAILABLE = True
 except ImportError:
     CRYPTOGRAPHY_AVAILABLE = False
-    logging.warning("Cryptography library not available, using fallback implementations")
+    AESGCM = None
+    ChaCha20Poly1305 = None
+    logging.warning("Cryptography library not available; cryptographic operations will fail closed")
 
 # Rich enhancements
 try:
@@ -169,15 +172,17 @@ class CryptographicCore:
         # Cryptographic settings
         self.default_key_size = 4096
         self.default_algorithm = CryptoAlgorithm.ED25519
-        self.enable_quantum_resistant = True
+        # Post-quantum ML-KEM / ML-DSA bindings are not bundled; keep disabled unless explicitly simulated.
+        self.enable_quantum_resistant = False
+        self.allow_simulated_pqc = False
         self.hardware_acceleration = self._detect_hardware_acceleration()
-        
+
         # Initialize cryptographic backend
         self._backend = default_backend() if CRYPTOGRAPHY_AVAILABLE else None
-        
+
         self.logger.info("Cryptographic Core initialized successfully")
         if not CRYPTOGRAPHY_AVAILABLE:
-            self.logger.warning("Using fallback cryptographic implementations")
+            self.logger.warning("cryptography backend unavailable; encryption and keygen will fail closed")
     
     def _setup_logging(self) -> logging.Logger:
         """Set up logging with rich enhancements if available"""
@@ -434,24 +439,26 @@ class CryptographicCore:
         return key_pair
     
     async def _generate_kyber_key_pair(self, expires_in_days: Optional[int]) -> KeyPair:
-        """Generate Kyber post-quantum key pair (simulated)"""
-        # This is a simulation - real implementation would use actual Kyber
-        self.logger.warning("Using simulated Kyber key generation")
-        
-        # Generate simulated Kyber keys
+        """Generate Kyber post-quantum key pair (requires explicit opt-in if simulated)."""
+        if not self.allow_simulated_pqc:
+            raise QuantumResistantError(
+                "CRYSTALS-Kyber PQC library is not installed; simulated keys are disabled by default.",
+                "PQC_UNAVAILABLE",
+                CryptoAlgorithm.KYBER_1024,
+            )
+        self.logger.warning("Generating NON-PRODUCTION simulated Kyber key bytes (allow_simulated_pqc=True)")
+
         private_key_data = secrets.token_bytes(3168)  # Kyber-1024 private key size
         public_key_data = secrets.token_bytes(1568)   # Kyber-1024 public key size
-        
-        # Encode as base64 for storage
+
         import base64
         private_key_b64 = base64.b64encode(private_key_data).decode('utf-8')
         public_key_b64 = base64.b64encode(public_key_data).decode('utf-8')
-        
-        # Create key pair object
+
         expires_at = None
         if expires_in_days:
             expires_at = datetime.utcnow() + timedelta(days=expires_in_days)
-        
+
         key_pair = KeyPair(
             public_key=public_key_b64,
             private_key=private_key_b64,
@@ -461,37 +468,38 @@ class CryptographicCore:
             expires_at=expires_at,
             metadata={
                 'simulated': True,
-                'quantum_resistant': True,
+                'quantum_resistant': False,
                 'hardware_generated': self.hardware_acceleration
             }
         )
-        
-        # Cache the key pair
+
         with self._lock:
             self._key_cache[key_pair.key_id] = (key_pair, time.time())
-        
-        self.logger.info(f"Kyber key pair generated (simulated): {key_pair.key_id}")
+
+        self.logger.info(f"Simulated Kyber key pair generated: {key_pair.key_id}")
         return key_pair
-    
+
     async def _generate_dilithium_key_pair(self, expires_in_days: Optional[int]) -> KeyPair:
-        """Generate Dilithium post-quantum signature key pair (simulated)"""
-        # This is a simulation - real implementation would use actual Dilithium
-        self.logger.warning("Using simulated Dilithium key generation")
-        
-        # Generate simulated Dilithium keys
+        """Generate Dilithium post-quantum signature key pair (requires explicit opt-in if simulated)."""
+        if not self.allow_simulated_pqc:
+            raise QuantumResistantError(
+                "CRYSTALS-Dilithium PQC library is not installed; simulated keys are disabled by default.",
+                "PQC_UNAVAILABLE",
+                CryptoAlgorithm.DILITHIUM_5,
+            )
+        self.logger.warning("Generating NON-PRODUCTION simulated Dilithium key bytes (allow_simulated_pqc=True)")
+
         private_key_data = secrets.token_bytes(4896)  # Dilithium-5 private key size
         public_key_data = secrets.token_bytes(2592)   # Dilithium-5 public key size
-        
-        # Encode as base64 for storage
+
         import base64
         private_key_b64 = base64.b64encode(private_key_data).decode('utf-8')
         public_key_b64 = base64.b64encode(public_key_data).decode('utf-8')
-        
-        # Create key pair object
+
         expires_at = None
         if expires_in_days:
             expires_at = datetime.utcnow() + timedelta(days=expires_in_days)
-        
+
         key_pair = KeyPair(
             public_key=public_key_b64,
             private_key=private_key_b64,
@@ -501,45 +509,25 @@ class CryptographicCore:
             expires_at=expires_at,
             metadata={
                 'simulated': True,
-                'quantum_resistant': True,
+                'quantum_resistant': False,
                 'signature_algorithm': True,
                 'hardware_generated': self.hardware_acceleration
             }
         )
-        
-        # Cache the key pair
+
         with self._lock:
             self._key_cache[key_pair.key_id] = (key_pair, time.time())
-        
-        self.logger.info(f"Dilithium key pair generated (simulated): {key_pair.key_id}")
+
+        self.logger.info(f"Simulated Dilithium key pair generated: {key_pair.key_id}")
         return key_pair
-    
+
     async def _generate_fallback_key_pair(self, algorithm: CryptoAlgorithm) -> KeyPair:
-        """Generate fallback key pair when cryptography library is not available"""
-        self.logger.warning(f"Using fallback key generation for {algorithm.value}")
-        
-        # Generate random keys for fallback
-        private_key_data = secrets.token_bytes(64)
-        public_key_data = secrets.token_bytes(32)
-        
-        # Encode as base64
-        import base64
-        private_key_b64 = base64.b64encode(private_key_data).decode('utf-8')
-        public_key_b64 = base64.b64encode(public_key_data).decode('utf-8')
-        
-        key_pair = KeyPair(
-            public_key=public_key_b64,
-            private_key=private_key_b64,
-            algorithm=algorithm,
-            key_size=256,
-            created_at=datetime.utcnow(),
-            metadata={
-                'fallback': True,
-                'warning': 'Generated without cryptography library'
-            }
+        """Fail closed when the cryptography library is unavailable."""
+        raise QuantumResistantError(
+            f"cryptography library required for {algorithm.value} key generation.",
+            "CRYPTO_UNAVAILABLE",
+            algorithm,
         )
-        
-        return key_pair
     
     async def generate_symmetric_key(
         self,
@@ -621,40 +609,70 @@ class CryptographicCore:
                 self.logger.error(error_msg)
                 raise QuantumResistantError(error_msg, "ENCRYPTION_FAILED", algorithm)
     
-    async def _encrypt_aes_gcm(self, data: bytes, key: bytes) -> Tuple[bytes, bytes]:
-        """Encrypt data using AES-256-GCM"""
+    async def decrypt_data(
+        self,
+        encrypted_data: bytes,
+        nonce: bytes,
+        key: Union[str, bytes],
+        algorithm: CryptoAlgorithm = CryptoAlgorithm.AES_256_GCM
+    ) -> bytes:
+        """Decrypt AEAD ciphertext produced by encrypt_data()."""
         if not CRYPTOGRAPHY_AVAILABLE:
-            # Fallback encryption (simplified)
-            nonce = secrets.token_bytes(12)
-            # Simple XOR encryption for fallback
-            encrypted = bytes(a ^ b for a, b in zip(data, key * (len(data) // len(key) + 1)))
-            return encrypted, nonce
-        
-        # Generate random nonce
-        nonce = secrets.token_bytes(12)
-        
-        # Create cipher
-        cipher = Cipher(
-            algorithms.AES(key),
-            modes.GCM(nonce),
-            backend=self._backend
+            raise QuantumResistantError(
+                "cryptography library required for decryption",
+                "CRYPTO_UNAVAILABLE",
+                algorithm,
+            )
+        if isinstance(key, str):
+            import base64
+            key_bytes = base64.b64decode(key)
+        else:
+            key_bytes = key
+        if algorithm == CryptoAlgorithm.AES_256_GCM:
+            return AESGCM(key_bytes).decrypt(nonce, encrypted_data, None)
+        if algorithm == CryptoAlgorithm.CHACHA20_POLY1305:
+            return ChaCha20Poly1305(key_bytes).decrypt(nonce, encrypted_data, None)
+        raise QuantumResistantError(
+            f"Unsupported decryption algorithm: {algorithm}",
+            "UNSUPPORTED_DECRYPTION",
+            algorithm,
         )
-        
-        # Encrypt data
-        encryptor = cipher.encryptor()
-        ciphertext = encryptor.update(data) + encryptor.finalize()
-        
-        # Return encrypted data and authentication tag + nonce
-        auth_tag = encryptor.tag
-        return ciphertext + auth_tag, nonce
-    
-    async def _encrypt_chacha20_poly1305(self, data: bytes, key: bytes) -> Tuple[bytes, bytes]:
-        """Encrypt data using ChaCha20-Poly1305"""
-        # Simplified implementation - would use actual ChaCha20-Poly1305
+
+    async def _encrypt_aes_gcm(self, data: bytes, key: bytes) -> Tuple[bytes, bytes]:
+        """Encrypt data using authenticated AES-256-GCM (no insecure fallback)."""
+        if not CRYPTOGRAPHY_AVAILABLE or AESGCM is None:
+            raise QuantumResistantError(
+                "cryptography library required for AES-256-GCM",
+                "CRYPTO_UNAVAILABLE",
+                CryptoAlgorithm.AES_256_GCM,
+            )
+        if len(key) not in (16, 24, 32):
+            raise QuantumResistantError(
+                f"Invalid AES key length {len(key)} bytes (expected 16, 24, or 32).",
+                "INVALID_KEY_LENGTH",
+                CryptoAlgorithm.AES_256_GCM,
+            )
         nonce = secrets.token_bytes(12)
-        # Fallback to simple encryption
-        encrypted = bytes(a ^ b for a, b in zip(data, key * (len(data) // len(key) + 1)))
-        return encrypted, nonce
+        ciphertext_with_tag = AESGCM(key).encrypt(nonce, data, None)
+        return ciphertext_with_tag, nonce
+
+    async def _encrypt_chacha20_poly1305(self, data: bytes, key: bytes) -> Tuple[bytes, bytes]:
+        """Encrypt data using authenticated ChaCha20-Poly1305."""
+        if not CRYPTOGRAPHY_AVAILABLE or ChaCha20Poly1305 is None:
+            raise QuantumResistantError(
+                "cryptography library required for ChaCha20-Poly1305",
+                "CRYPTO_UNAVAILABLE",
+                CryptoAlgorithm.CHACHA20_POLY1305,
+            )
+        if len(key) != 32:
+            raise QuantumResistantError(
+                f"Invalid ChaCha20-Poly1305 key length {len(key)} bytes (expected 32).",
+                "INVALID_KEY_LENGTH",
+                CryptoAlgorithm.CHACHA20_POLY1305,
+            )
+        nonce = secrets.token_bytes(12)
+        ciphertext_with_tag = ChaCha20Poly1305(key).encrypt(nonce, data, None)
+        return ciphertext_with_tag, nonce
     
     def get_performance_metrics(self) -> Dict[str, Any]:
         """Get cryptographic core performance metrics"""

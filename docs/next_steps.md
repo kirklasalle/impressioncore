@@ -3,14 +3,14 @@
 ## Source of Truth Notice
 
 This file is a pointer-only mirror.
-Canonical next-steps document: docs/process/next_steps.md.
+Canonical next-steps document: [next steps](process/next_steps.md).
 Governance policy: docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md.
 Operational checklist: docs/process/MIRROR_SYNC_CHECKLIST_20260718.md.
 
 ## Mirror Metadata
 
 - Mirror mode: pointer-only
-- Last validated: 2026-07-18
+- Last validated: 2026-11-02 (canonical target and repair update; not IDS rebuild)
 - Owner: ImpressionCore Documentation Governance
 
 ## Quick Links

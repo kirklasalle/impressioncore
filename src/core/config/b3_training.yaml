@@ -1,0 +1,25 @@
+# B3 training config (scaffold)
+# Phases can be toggled here later.
+
+alignment:
+  lr: 0.0002
+  micro_batch: 1
+  accum_steps: 32
+  fp16: true
+  epochs: 1
+  temperature: 0.07
+
+kd_sft:
+  lr: 0.0002
+  micro_batch: 1
+  accum_steps: 32
+  epochs: 1
+  kl_temperature: 2.0
+  kl_final_weight: 0.3
+  warmup_steps: 1000
+
+pref_opt:
+  lr: 0.00005
+  micro_batch: 1
+  accum_steps: 32
+  epochs: 1

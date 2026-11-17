@@ -20,6 +20,7 @@ import os
 import json
 import hashlib
 import shutil
+import subprocess
 import time
 import threading
 import psutil
@@ -411,7 +412,7 @@ class CovenantGuardian:
                         # Set file permissions (if possible)
                         try:
                             if os.name == 'nt':  # Windows
-                                os.system(f'attrib +R "{full_path}"')
+                                subprocess.run(["attrib", "+R", str(full_path)], check=True, capture_output=True)
                             else:  # Unix-like
                                 os.chmod(full_path, 0o444)
                             protection_result["files_protected"] += 1

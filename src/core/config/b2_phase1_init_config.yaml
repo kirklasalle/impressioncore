@@ -1,0 +1,66 @@
+
+# ImpressionCore B2 Phase 1 Training Config (SOTA, AoE, DeepSeek Chimera, MoE, Multimodal LLM Best Practices)
+# Last updated: 2025-07-06 by GitHub Copilot
+#
+# This config is designed for robust, memory-optimized, and hardware-efficient training on GTX 1050 Ti (4GB VRAM).
+# All values are based on current state-of-the-art research and ImpressionCore documentation.
+
+embed_dim: 768
+vocab_size: 50257
+img_dim: 256
+audio_dim: 16000
+num_layers: 12
+num_heads: 12
+max_seq_len: 128000
+n_experts: 4  # MoE: 4 experts, 2 active per token
+vision_decoder_layers: 8
+vision_decoder_steps: 50
+audio_decoder_layers: 8
+audio_decoder_steps: 50
+sp_model_path: dummy.model
+vision_patch_dim: 768
+patch_size: 16
+num_sentiment_classes: 3
+num_intent_classes: 10
+audio_feat_dim: 768
+n_mels: 64
+sample_rate: 16000
+video_feat_dim: 768
+num_frames: 8
+video_mean: 0.5
+video_std: 0.5
+
+# === Best-practice hyperparameters ===
+dropout: 0.18  # Heads (MoE/Chimera: 0.15-0.25), core: 0.12
+core_dropout: 0.12
+lr: 2e-4  # Backbone
+head_lr_multiplier: 5.0  # Heads/expert routers
+batch_size: 2  # Dynamic, increase if VRAM allows
+epochs: 18  # With early stopping
+loss_weight_sentiment: 0.4
+loss_weight_intent: 0.4
+loss_weight_quality: 0.15
+curriculum_epochs: 4  # Backbone only, then unfreeze heads
+gradient_clip: 1.0
+early_stopping_patience: 6
+precision: amp  # autocast, GradScaler
+quantization: 8bit  # For deployment
+
+# Output/checkpoint/logging
+output_dir: F:/models/b2_checkpoints
+log_interval: 10
+val_interval: 1
+
+# Data/embedding/manifest paths
+embedding_dir: F:/b2_embeddings
+train_manifest: data/raw_multimodal/train_manifest.json
+val_manifest: data/raw_multimodal/val_manifest.json
+
+# Hardware/optimization
+num_workers: 4
+pin_memory: true
+mixed_precision: true
+gradient_checkpointing: true
+seed: 42
+
+# For full documentation, see docs/B2_NEXT_GENERATION_MULTIMODAL_ARCHITECTURE_DESIGN.md and docs/B2_DISTILLATION_PIPELINE.md

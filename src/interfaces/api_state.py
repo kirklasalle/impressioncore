@@ -12,6 +12,7 @@ logger = logging.getLogger("ImpressionCore.APIState")
 
 # Global instances and states
 triad_instance = None
+runtime_startup = {"phase": "NOT_STARTED", "error": None}
 stt_service = None
 tts_service = None
 telemetry_manager = None

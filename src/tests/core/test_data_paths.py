@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import os
+import subprocess
+import sys
 from pathlib import Path
 from unittest.mock import patch
 
@@ -16,29 +18,23 @@ class TestDataPaths:
 
     def test_verify_data_drive_present(self):
         """verify_data_drive returns True when data drive and required directories exist."""
-        with patch.object(Path, "exists", return_value=True):
+        with patch.object(Path, "is_dir", return_value=True):
             assert data_paths.verify_data_drive() is True
 
     def test_verify_data_drive_missing_drive(self):
         """verify_data_drive returns False when the data drive does not exist."""
-        def mock_exists(self_path: Path) -> bool:
-            # Simulate drive itself missing
-            if str(self_path).replace("\\", "/").startswith("F:/"):
-                return False
-            return True
-
-        with patch.object(Path, "exists", mock_exists):
+        with patch.object(Path, "is_dir", return_value=False):
             assert data_paths.verify_data_drive() is False
 
     def test_verify_data_drive_missing_subdir(self):
         """verify_data_drive returns False when required subdirs are missing."""
-        def mock_exists(self_path: Path) -> bool:
+        def mock_is_dir(self_path: Path) -> bool:
             # Simulate models folder missing
             if "models" in str(self_path):
                 return False
             return True
 
-        with patch.object(Path, "exists", mock_exists):
+        with patch.object(Path, "is_dir", mock_is_dir):
             assert data_paths.verify_data_drive() is False
 
     def test_enforce_data_drive_success(self):
@@ -54,6 +50,47 @@ class TestDataPaths:
                 data_paths.enforce_data_drive()
             assert "Critical Failure" in str(exc_info.value)
             assert "Boot aborted" in str(exc_info.value)
+            assert "IMPRESSIONCORE_DATA_DRIVE" in str(exc_info.value)
+            assert str(data_paths.MODELS_ROOT) in str(exc_info.value)
+            assert str(data_paths.DATA_ROOT) in str(exc_info.value)
+
+    @pytest.mark.parametrize("file_name", ["models", "data"])
+    def test_verify_data_drive_rejects_files(self, tmp_path, file_name):
+        """Files must not pass validation as required storage directories."""
+        for name in ("models", "data"):
+            path = tmp_path / name
+            if name == file_name:
+                path.touch()
+            else:
+                path.mkdir()
+        with patch.multiple(
+            data_paths,
+            DATA_DRIVE=tmp_path,
+            MODELS_ROOT=tmp_path / "models",
+            DATA_ROOT=tmp_path / "data",
+        ):
+            assert data_paths.verify_data_drive() is False
+
+    @pytest.mark.parametrize("storage_ready", [True, False])
+    def test_storage_preflight_command(self, tmp_path, storage_ready):
+        """The launcher command honors the override and reports storage failure."""
+        if storage_ready:
+            (tmp_path / "models").mkdir()
+            (tmp_path / "data").mkdir()
+        result = subprocess.run(
+            [sys.executable, "-m", "src.core.config.data_paths"],
+            cwd=Path(__file__).resolve().parents[3],
+            env={**os.environ, "IMPRESSIONCORE_DATA_DRIVE": str(tmp_path)},
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        assert result.returncode == (0 if storage_ready else 1)
+        assert str(tmp_path) in result.stderr
+        if not storage_ready:
+            assert "Reconnect the external drive" in result.stderr
+            assert "Traceback" not in result.stderr
+            assert list(tmp_path.iterdir()) == []
 
     def test_get_best_b3_checkpoint_found(self):
         """get_best_b3_checkpoint returns the path if it exists."""
@@ -110,5 +147,4 @@ class TestDataPaths:
                     assert summary["b3_hope_v1_available"] is True
 
 from unittest.mock import MagicMock, mock_open
-
 

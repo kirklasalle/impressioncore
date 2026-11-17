@@ -1,6 +1,5 @@
 import asyncio
 import base64
-import hmac
 import logging
 import os
 import sys
@@ -31,6 +30,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from src.interfaces import api_state
+from src.interfaces.runtime_access import RuntimeAccessMiddleware
 from src.orchestrator.system_logger import log_event
 
 # --- Console Redirection Logic ---
@@ -85,26 +85,24 @@ from src.orchestrator.session_manager import session_manager
 from src.orchestrator.runtime_mode_controller import RuntimeModeController
 from src.orchestrator.unified_triad import UnifiedBrainTriad
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Unified Lifecycle Manager for hardware and neural resources."""
+def initialize_runtime() -> None:
+    """Initialize heavyweight resources off the HTTP event loop."""
     # Enforce data drive availability on startup
     from src.core.config.data_paths import enforce_data_drive
     try:
         enforce_data_drive()
     except Exception as e:
         log_event("API", f"CRITICAL: Boot aborted due to missing data drive: {e}", level="CRITICAL")
-        raise e
+        api_state.runtime_startup.update(phase="FAILED", error=str(e))
+        return
 
     try:
         log_event("API", "Initializing Global Triad Instance...")
+        api_state.runtime_startup.update(phase="LOADING_MODEL", error=None)
         api_state.triad_instance = UnifiedBrainTriad()
 
-        # Auto-Start Vision Layer in Background
-        if api_state.triad_instance.vision:
-            log_event("API", "Triggering Vision Layer Auto-Start...")
-            threading.Thread(target=api_state.triad_instance.vision.open, daemon=True).start()
-
+        # Capture starts only through the explicit operator control.
+        api_state.triad_instance.vision_active = False
         log_event("API", "Triad Online.")
 
         # --- agent0core DI wiring (subsystems injection) ---
@@ -139,7 +137,10 @@ async def lifespan(app: FastAPI):
             log_event("API", "Initializing Audio Services...")
             api_state.stt_service = STTService(model_size="tiny.en", device="cpu")
             api_state.tts_service = TTSService()
-            log_event("API", "Audio Services Ready.")
+            if api_state.stt_service.model_loaded:
+                log_event("API", "Speech model ready; microphone listening remains off.")
+            else:
+                log_event("API", f"Speech transcription unavailable: {api_state.stt_service.last_error}", level="WARNING")
 
             # Init Telemetry
             api_state.telemetry_manager = get_telemetry_manager(api_state.triad_instance)
@@ -149,6 +150,8 @@ async def lifespan(app: FastAPI):
 
     except Exception as e:
         log_event("API", f"Failed to init Triad: {e}", level="CRITICAL")
+        api_state.runtime_startup.update(phase="FAILED", error=str(e))
+        return
 
     # New Vector Connector
     try:
@@ -158,8 +161,26 @@ async def lifespan(app: FastAPI):
         log_event("API", f"Vector Memory Init Failed: {e}", level="WARNING")
         api_state.vector_memory = None
 
+    api_state.runtime_startup.update(phase="READY", error=None)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Serve liveness immediately while model initialization runs in a worker."""
+    api_state.runtime_startup.update(phase="INITIALIZING", error=None)
+    async def initialize():
+        try:
+            await asyncio.to_thread(initialize_runtime)
+        except Exception as error:
+            api_state.runtime_startup.update(phase="FAILED", error=str(error))
+            logging.getLogger(__name__).exception("Runtime initialization failed")
+
+    initialization = asyncio.create_task(initialize())
+    app.state.initialization = initialization
     yield
 
+    # A worker cannot be cancelled safely while it owns native/GPU resources.
+    await initialization
     # --- SHUTDOWN ---
     log_event("API", "SHUTDOWN SIGNAL RECEIVED. Releasing resources...")
 
@@ -190,6 +211,10 @@ try:
 except ImportError:
     from src.core.config.cors_config import get_allowed_origins
 
+from agent0core.config import default_config as agent_config
+
+app.add_middleware(RuntimeAccessMiddleware, key_provider=lambda: agent_config.api_key)
+# Last added is outermost: even rejected requests get the configured CORS policy.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=get_allowed_origins(),
@@ -198,29 +223,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- SECURITY MIDDLEWARE ---
-from agent0core.config import default_config as agent_config
 
-@app.middleware("http")
-async def verify_api_key(request: Request, call_next):
-    public_paths = [
-        "/", "/docs", "/openapi.json", "/system_monitor.html",
-        "/favicon.ico", "/v1/telemetry/stream"
-    ]
-    if request.url.path in public_paths or request.url.path.startswith("/static") or request.method == "OPTIONS":
-        return await call_next(request)
+@app.get("/health/live")
+async def liveness():
+    return {"status": "ALIVE"}
 
-    api_key = request.headers.get("X-API-Key")
-    expected_key = agent_config.api_key
 
-    if not api_key or not hmac.compare_digest(api_key, expected_key):
-        return JSONResponse(
-            status_code=401,
-            content={"detail": "Invalid or missing X-API-Key header"}
-        )
-
-    response = await call_next(request)
-    return response
+@app.get("/health/ready")
+async def readiness():
+    state = api_state.runtime_startup
+    ready = state["phase"] == "READY" and bool(
+        api_state.triad_instance and api_state.triad_instance.get_model_status()["llm_loaded"]
+    )
+    return JSONResponse(
+        {"ready": ready, "phase": state["phase"]},
+        status_code=200 if ready else 503,
+    )
 
 # Serve static mounts
 app.mount("/audio", StaticFiles(directory="logs"), name="audio")
@@ -253,4 +271,4 @@ app.include_router(rlm.router)
 app.include_router(chat.router)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_config=None)
+    uvicorn.run(app, host="127.0.0.1", port=8000, log_config=None, access_log=False)

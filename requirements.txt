@@ -10,8 +10,8 @@ soundfile>=0.12.0
 sounddevice>=0.4.6
 audioread>=3.0.0
 
-numpy>=1.20.0
-matplotlib>=3.5.0
+numpy>=1.23.0
+matplotlib>=3.7.0
 pillow>=9.0.0
 opencv-python>=4.8.0
 transformers>=4.26.0
@@ -23,7 +23,7 @@ pandas>=1.5.0
 scikit-learn>=1.2.0
 
 # Knowledge visualization
-networkx>=2.8.0
+networkx>=3.0
 graphviz>=0.20.0  # Python interface to Graphviz
 
 # VRAM optimization (for GTX 1050 Ti)
@@ -33,11 +33,12 @@ accelerate>=0.18.0  # For efficient training
 # Web interface / backend API
 fastapi>=0.100.0
 uvicorn>=0.23.0
+websockets>=12.0
+cryptography>=42.0.0
 python-multipart>=0.0.9
 flask>=2.2.0
 flask-cors>=3.0.10
 flask-socketio>=5.3.0
-flask-socketio>=5.3.0  # Ensure the latest version is included
 
 # Development tools
 pytest>=7.0.0
@@ -54,26 +55,17 @@ dash>=2.9.0
 dash-core-components>=2.0.0
 dash-html-components>=2.0.0
 plotly>=5.14.0
-networkx>=3.0
-numpy>=1.23.0
-matplotlib>=3.7.0
 
 python-dotenv>=0.19.0
-#Flask-CORS>=4.0.0
 Flask-Sock>=0.6.0
-#pandas>=2.0.0
-#plotly>=5.18.0
 einops>=0.6.0
-clip>=0.2.0
 rich>=13.4.2
 timm>=1.0.0
 comtypes>=1.4.0; platform_system == "Windows"
 faiss-cpu
 
 # GPU monitoring and management
-nvidia-ml-py>=12.535.0  # Includes pynvml for GPU monitoring
-pynvml>=11.5.0  # Alternative direct pynvml package
-pynvml
+nvidia-ml-py>=12.535.0  # Includes pynvml-compatible API for GPU monitoring
 
 # Development and visualization enhancements
 tensorboard>=2.12.0  # For training visualization
@@ -92,13 +84,7 @@ gradio>=5.25.0
 
 # Memory optimization
 xformers>=0.0.20  # Efficient attention mechanisms
-# Replacing torch-ort with onnxruntime for better compatibility
 onnxruntime>=1.15.0  # ONNX Runtime for inference acceleration
 onnxruntime-gpu>=1.15.0  # GPU-accelerated version (optional, will be skipped if GPU incompatible)
 
-# npm>=0.1.1 # For Node.js package management (if needed)
-django>=0.1.0 # For web framework (if needed)
-django-cors-headers>=0.1.0 # For CORS support in Django (if needed)
-
-uv>=0.7.2 # For async web server (if needed)
 memory-profiler>=0.61.0 # For memory profiling (if needed)

@@ -1,0 +1,10 @@
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+Pillow>=9.0.0
+transformers>=4.30.0
+accelerate>=0.20.0
+xformers>=0.0.20  # Optional: for memory efficient attention
+tqdm>=4.65.0
+einops>=0.6.0  # For tensor operations
+safetensors>=0.3.1  # For efficient model loading

@@ -55,6 +55,17 @@ NUI_IMAGE_TYPE_DEPTH = 4
 NUI_IMAGE_TYPE_COLOR_INFRARED = 5
 S_OK = 0
 
+
+def _hresult_succeeded(result: Any) -> bool:
+    """Return whether a COM HRESULT indicates success."""
+    if result is None:
+        # comtypes removes successful HRESULTs from methods with no out parameters
+        # and raises COMError for failed HRESULTs.
+        return True
+    result = getattr(result, "value", result)
+    return (int(result) & 0x80000000) == 0
+
+
 # --- COM Interfaces ---
 class INuiSensor(IUnknown):
     _iid_ = GUID("{d3d9ab7b-31ba-44ca-8cc0-d42525bbea43}")
@@ -172,6 +183,18 @@ class KinectConnector:
         self.last_hr = 0
         self.color_mode = NUI_IMAGE_TYPE_COLOR
         self.skeleton_enabled = False
+        self.sensor_count: int | None = None
+        self.stream_states = {
+            name: {
+                "initialized": False,
+                "frame_count": 0,
+                "last_frame_at": None,
+                "last_frame_number": None,
+                "last_hresult": None,
+                "detail": None,
+            }
+            for name in ("color", "depth", "ir", "skeleton")
+        }
 
         # Native Face Tracking (K2VR-style)
         self.face_tracking_enabled = False
@@ -407,25 +430,126 @@ class KinectConnector:
             return True
         return False
 
+    def get_stream_health(self, stale_after_seconds: float = 1.0) -> dict[str, Any]:
+        """Report requested, initialized, and recently observed logical streams."""
+        now = time.monotonic()
+        streams = {}
+        for name, state in self.stream_states.items():
+            requested = bool(self.enabled_streams.get(name, False))
+            last_frame_at = state["last_frame_at"]
+            age = max(0.0, now - last_frame_at) if last_frame_at is not None else None
+            fresh = bool(
+                self.is_open and requested and state["initialized"]
+                and age is not None and age <= stale_after_seconds
+            )
+
+            if not requested:
+                status = "DISABLED"
+            elif not self.is_open:
+                status = "NOT_OPEN"
+            elif name == "ir" and self.stream_states["color"]["initialized"]:
+                status = "UNAVAILABLE"
+            elif not state["initialized"]:
+                status = "INITIALIZATION_FAILED" if state["detail"] else "NOT_INITIALIZED"
+            elif fresh:
+                status = "STREAMING"
+            elif state["frame_count"]:
+                status = "STALE"
+            else:
+                status = "WAITING_FOR_FRAME"
+
+            streams[name] = {
+                "requested": requested,
+                "enabled": requested,
+                "initialized": bool(state["initialized"]),
+                "fresh": fresh,
+                "status": status,
+                "frame_count": int(state["frame_count"]),
+                "last_frame_age_ms": round(age * 1000, 1) if age is not None else None,
+                "last_frame_number": state["last_frame_number"],
+                "last_hresult": state["last_hresult"],
+                "detail": state["detail"],
+            }
+
+        if not self.is_open:
+            overall = "STOPPED"
+        elif any(stream["status"] == "STREAMING" for stream in streams.values()):
+            overall = "HEALTHY"
+        else:
+            overall = "DEGRADED"
+
+        return {
+            "status": overall,
+            "capture_active": bool(self.is_open),
+            "physical_sensor_count": self.sensor_count,
+            "physical_sensor_identity": f"kinect-v1:{self.index}" if self.sensor else None,
+            "logical_stream_count": len(streams),
+            "streams": streams,
+        }
+
+    def _set_stream_initialized(
+        self,
+        stream_name: str,
+        initialized: bool,
+        hresult: Any = None,
+        detail: str | None = None,
+    ) -> None:
+        state = self.stream_states[stream_name]
+        state["initialized"] = bool(initialized)
+        state["last_hresult"] = (
+            f"0x{int(getattr(hresult, 'value', hresult)) & 0xFFFFFFFF:08X}"
+            if hresult is not None else None
+        )
+        state["detail"] = detail
+
+    def _record_stream_frame(self, stream_name: str, frame: Any) -> None:
+        state = self.stream_states[stream_name]
+        state["frame_count"] += 1
+        state["last_frame_at"] = time.monotonic()
+        state["last_frame_number"] = int(frame.dwFrameNumber)
+        state["last_hresult"] = "0x00000000"
+
     def open(self):
         with self.lock:
             try:
+                self.sensor_count = None
+                for name, state in self.stream_states.items():
+                    state.update(
+                        initialized=False,
+                        frame_count=0,
+                        last_frame_at=None,
+                        last_frame_number=None,
+                        last_hresult=None,
+                        detail=None,
+                    )
+                self.hColorStream = wintypes.HANDLE()
+                self.hDepthStream = wintypes.HANDLE()
+                self.hIRStream = wintypes.HANDLE()
+                self.skeleton_enabled = False
                 k10 = ctypes.WinDLL("Kinect10.dll")
                 # Check sensor count first
                 count = ctypes.c_int(0)
                 try:
-                    k10.NuiGetSensorCount(ctypes.byref(count))
-                    logger.info(f"Kinect SDK reports {count.value} sensor(s) available.")
+                    count_hr = k10.NuiGetSensorCount(ctypes.byref(count))
+                    if _hresult_succeeded(count_hr):
+                        self.sensor_count = count.value
+                        logger.info(f"Kinect SDK reports {count.value} sensor(s) available.")
+                    else:
+                        logger.warning(
+                            "NuiGetSensorCount failed with HRESULT: "
+                            f"0x{int(count_hr) & 0xFFFFFFFF:08X}"
+                        )
                 except Exception as e:
                     logger.debug(f"NuiGetSensorCount failed: {e}")
 
                 sensor_ptr = ctypes.POINTER(INuiSensor)()
                 hr = k10.NuiCreateSensorByIndex(self.index, ctypes.byref(sensor_ptr))
-                if hr != S_OK:
-                    masked_hr = hr & 0xFFFFFFFF
+                if not _hresult_succeeded(hr) or not sensor_ptr:
+                    masked_hr = int(getattr(hr, "value", hr)) & 0xFFFFFFFF
                     logger.error(f"NuiCreateSensorByIndex fail: {hex(masked_hr)}")
                     if masked_hr == 0x82AC0009:
                         logger.error("  -> E_NUI_NOTCONNECTED: Sensor found in inventory but not physically connected/powered.")
+                    self.last_hr = masked_hr
                     return False
 
                 self.sensor = sensor_ptr
@@ -441,19 +565,24 @@ class KinectConnector:
                 for flags, name in configs:
                     try:
                         hr = self.sensor.NuiInitialize(flags)
-                        if hr == S_OK:
+                        if _hresult_succeeded(hr):
                             logger.info(f"Kinect NuiInitialize Success: {name}")
                             init_success = True
                             break
                         else:
-                            masked_hr = hr & 0xFFFFFFFF
+                            masked_hr = int(getattr(hr, "value", hr)) & 0xFFFFFFFF
+                            self.last_hr = masked_hr
                             logger.warning(f"Kinect NuiInitialize {name} failed with HRESULT: {hex(masked_hr)}")
                             if masked_hr == 0x82AC0009:
                                 logger.error("  -> E_NUI_NOTCONNECTED: External 12V power likely missing (check circular plug).")
                     except Exception as e:
                         logger.warning(f"Kinect NuiInitialize {name} exception: {e}")
+                        self.last_hr = getattr(e, "hresult", 0) or 0
 
                 if not init_success:
+                    with contextlib.suppress(Exception):
+                        self.sensor.NuiShutdown()
+                    self.sensor = None
                     return False
 
                 if not self.hNextFrameEvent:
@@ -474,12 +603,25 @@ class KinectConnector:
                 color_locked = False
                 for res, res_name in resolutions:
                     for fmt, fmt_name in formats:
-                        hr = k10.NuiImageStreamOpen(fmt, res, 0, 4, None, ctypes.byref(self.hColorStream))
-                        if hr == S_OK:
-                            self.color_mode = fmt
-                            logger.info(f"Kinect Color Locked: {fmt_name} @ {res_name} (Buffer=4)")
-                            color_locked = True
-                            break
+                        try:
+                            self.hColorStream = wintypes.HANDLE()
+                            hr = k10.NuiImageStreamOpen(
+                                fmt, res, 0, 4, None, ctypes.byref(self.hColorStream)
+                            )
+                            if _hresult_succeeded(hr) and self.hColorStream.value:
+                                self.color_mode = fmt
+                                self._set_stream_initialized("color", True, hr)
+                                logger.info(f"Kinect Color Locked: {fmt_name} @ {res_name} (Buffer=4)")
+                                color_locked = True
+                                break
+                            self._set_stream_initialized(
+                                "color", False, hr, "Color stream open failed."
+                            )
+                        except Exception as e:
+                            self._set_stream_initialized(
+                                "color", False, getattr(e, "hresult", None), str(e)
+                            )
+                            logger.warning(f"Kinect Color Stream Open failed: {e}")
                     if color_locked:
                         break
 
@@ -487,28 +629,69 @@ class KinectConnector:
                 # [FIX] Face Tracking bridge (v1.8) hardcodes 320x240 for depth.
                 # We must match this if face tracking might be used.
                 depth_res = NUI_IMAGE_RESOLUTION_320x240
-                k10.NuiImageStreamOpen(NUI_IMAGE_TYPE_DEPTH, depth_res, 0, 4, None, ctypes.byref(self.hDepthStream))
-                logger.info("Kinect Depth Stream Opened: 320x240")
+                try:
+                    depth_hr = k10.NuiImageStreamOpen(
+                        NUI_IMAGE_TYPE_DEPTH, depth_res, 0, 4, None, ctypes.byref(self.hDepthStream)
+                    )
+                    depth_opened = _hresult_succeeded(depth_hr) and bool(self.hDepthStream.value)
+                    self._set_stream_initialized(
+                        "depth",
+                        depth_opened,
+                        depth_hr,
+                        None if depth_opened else "Depth stream open failed.",
+                    )
+                    if depth_opened:
+                        logger.info("Kinect Depth Stream Opened: 320x240")
+                    else:
+                        self.last_hr = int(getattr(depth_hr, "value", depth_hr) or 0)
+                        logger.warning(
+                            f"Kinect Depth Stream Open failed: 0x{self.last_hr & 0xFFFFFFFF:08X}"
+                        )
+                except Exception as e:
+                    self._set_stream_initialized(
+                        "depth", False, getattr(e, "hresult", None), str(e)
+                    )
+                    logger.warning(f"Kinect Depth Stream Open failed: {e}")
 
                 # 3. IR Stream (Attempt - Kinect v1 Color and IR share sensor, usually mutually exclusive)
                 # Only try IR if color failed, since they share the same sensor
                 if not color_locked:
                     try:
                         hr = k10.NuiImageStreamOpen(NUI_IMAGE_TYPE_COLOR_INFRARED, NUI_IMAGE_RESOLUTION_640x480, 0, 4, None, ctypes.byref(self.hIRStream))
-                        if hr == S_OK:
+                        if _hresult_succeeded(hr) and self.hIRStream.value:
+                            self._set_stream_initialized("ir", True, hr)
                             logger.info("Kinect IR Stream opened successfully (as fallback)")
+                        else:
+                            self._set_stream_initialized("ir", False, hr, "Infrared stream open failed.")
                     except Exception as e:
+                        self._set_stream_initialized(
+                            "ir", False, getattr(e, "hresult", None), str(e)
+                        )
                         logger.debug(f"Kinect IR Stream not available (expected if Color is active): {e}")
+                else:
+                    self._set_stream_initialized(
+                        "ir",
+                        False,
+                        detail="Kinect v1 color and infrared share a sensor path; RGB is open.",
+                    )
 
                 # 4. Skeleton
                 try:
                     hr = k10.NuiSkeletonTrackingEnable(None, 0)
-                    if hr == S_OK:
+                    if _hresult_succeeded(hr):
                         self.skeleton_enabled = True
+                        self._set_stream_initialized("skeleton", True, hr)
                         logger.info("Kinect Skeleton Tracking Enabled")
                     else:
-                        logger.warning(f"Kinect Skeleton Tracking Enable failed: 0x{hr & 0xFFFFFFFF:08X}")
+                        self.last_hr = int(getattr(hr, "value", hr)) & 0xFFFFFFFF
+                        self._set_stream_initialized(
+                            "skeleton", False, hr, "Skeleton tracking enable failed."
+                        )
+                        logger.warning(f"Kinect Skeleton Tracking Enable failed: 0x{self.last_hr:08X}")
                 except Exception as e:
+                    self._set_stream_initialized(
+                        "skeleton", False, getattr(e, "hresult", None), str(e)
+                    )
                     logger.warning(f"Kinect Skeleton Tracking Enable exception: {e}")
 
                 self.is_open = True
@@ -516,6 +699,14 @@ class KinectConnector:
 
             except Exception as e:
                 logger.error(f"Kinect Open Fatal: {e}")
+                if self.sensor:
+                    with contextlib.suppress(Exception):
+                        self.sensor.NuiShutdown()
+                    self.sensor = None
+                self.is_open = False
+                for name in self.stream_states:
+                    if not self.stream_states[name]["initialized"]:
+                        self.stream_states[name]["detail"] = str(e)
                 return False
 
     def _get_skeleton(self):
@@ -528,12 +719,22 @@ class KinectConnector:
 
             # 0 ms wait because we sync on the shared event in `read`
             hr = k10.NuiSkeletonGetNextFrame(0, ctypes.byref(frame))
-            if hr == S_OK:
+            if _hresult_succeeded(hr):
                 # Apply Native Smoothing (The 'Amethyst' Magic)
-                k10.NuiTransformSmooth(ctypes.byref(frame), ctypes.byref(self.smooth_params))
+                smooth_hr = k10.NuiTransformSmooth(ctypes.byref(frame), ctypes.byref(self.smooth_params))
+                if not _hresult_succeeded(smooth_hr):
+                    logger.debug(
+                        f"NuiTransformSmooth failed: 0x{int(smooth_hr) & 0xFFFFFFFF:08X}"
+                    )
+                self._record_stream_frame("skeleton", frame)
                 return frame
             return None
-        except Exception:
+        except Exception as e:
+            state = self.stream_states["skeleton"]
+            state["last_hresult"] = (
+                f"0x{int(getattr(e, 'hresult', 0)) & 0xFFFFFFFF:08X}"
+                if getattr(e, "hresult", None) is not None else None
+            )
             return None
 
     def diag_kinect(self) -> dict[str, Any]:
@@ -542,7 +743,7 @@ class KinectConnector:
             "status": "DISCONNECTED",
             "index": self.index,
             "detected": False,
-            "streams": {},
+            "streams": self.get_stream_health()["streams"],
             "face_tracking": "DISABLED",
             "last_error": hex(self.last_hr & 0xFFFFFFFF) if hasattr(self, 'last_hr') else "0x0"
         }
@@ -550,13 +751,14 @@ class KinectConnector:
         try:
             k10 = ctypes.WinDLL("Kinect10.dll")
             count = ctypes.c_int(0)
-            k10.NuiGetSensorCount(ctypes.byref(count))
-            report["sensor_count"] = count.value
+            count_hr = k10.NuiGetSensorCount(ctypes.byref(count))
+            if _hresult_succeeded(count_hr):
+                report["sensor_count"] = count.value
+                self.sensor_count = count.value
 
             if self.sensor:
                 report["status"] = "CONNECTED" if self.is_open else "INITIALIZING"
                 report["detected"] = True
-                report["streams"] = {k: v for k, v in self.enabled_streams.items()}
                 if self.face_tracking_initialized:
                     report["face_tracking"] = "ACTIVE"
                 elif self.face_tracking_failed:
@@ -590,9 +792,8 @@ class KinectConnector:
             hr = hr & 0xFFFFFFFF
         return error_codes.get(hr, f"Unknown error: {hex(hr)}")
 
-    def _get_frame_from_stream(self, hStream, mode):  # noqa: N803
+    def _get_frame_from_stream(self, hStream, mode, stream_name=None):  # noqa: N803
         """Get a single frame from a Kinect stream. Returns (image, raw_data) or (None, None)."""
-        from comtypes import COMError
         if not hStream or not hStream.value:
             return None, None
 
@@ -600,17 +801,31 @@ class KinectConnector:
         frame_acquired = False
 
         try:
-            self.sensor.NuiImageStreamGetNextFrame(hStream, 0, ctypes.byref(frame))
+            hr = self.sensor.NuiImageStreamGetNextFrame(hStream, 0, ctypes.byref(frame))
+            if not _hresult_succeeded(hr):
+                if stream_name:
+                    state = self.stream_states[stream_name]
+                    state["last_hresult"] = (
+                        f"0x{int(getattr(hr, 'value', hr)) & 0xFFFFFFFF:08X}"
+                    )
+                return None, None
             frame_acquired = True
-        except COMError:
+        except Exception as e:
+            if stream_name and getattr(e, "hresult", None) is not None:
+                self.stream_states[stream_name]["last_hresult"] = (
+                    f"0x{int(e.hresult) & 0xFFFFFFFF:08X}"
+                )
             return None, None
 
         image = None
         raw_data = None
         try:
             texture = frame.pFrameTexture
+            if not texture:
+                return None, None
             locked_rect = NUI_LOCKED_RECT()
-            if texture.LockRect(0, ctypes.byref(locked_rect), None, 0) == S_OK:
+            lock_hr = texture.LockRect(0, ctypes.byref(locked_rect), None, 0)
+            if _hresult_succeeded(lock_hr):
                 # Dynamic Resolution based on frame
                 if frame.eResolution == NUI_IMAGE_RESOLUTION_640x480:
                     h, w = 480, 640
@@ -661,12 +876,19 @@ class KinectConnector:
                     #    if avg_g > 200 and avg_r < 30 and avg_b < 30:
                     #        image = None
 
-                    texture.UnlockRect(0)
+                    unlock_hr = texture.UnlockRect(0)
+                    if not _hresult_succeeded(unlock_hr):
+                        logger.debug(
+                            "Kinect texture unlock failed: "
+                            f"0x{int(getattr(unlock_hr, 'value', unlock_hr)) & 0xFFFFFFFF:08X}"
+                        )
+                    elif image is not None and stream_name:
+                        self._record_stream_frame(stream_name, frame)
         except Exception as e:
             logger.error(f"Kinect Frame Internal Error: {e}")
         finally:
             if frame_acquired and self.sensor:
-                with contextlib.suppress(COMError):
+                with contextlib.suppress(Exception):
                     self.sensor.NuiImageStreamReleaseFrame(hStream, ctypes.byref(frame))
         return image, raw_data
 
@@ -703,35 +925,31 @@ class KinectConnector:
 
             # 1. Color (Note: Color and IR share same sensor - mutually exclusive)
             if self.enabled_streams.get('color', True):
-                img, _ = self._get_frame_from_stream(self.hColorStream, self.color_mode)
+                img, _ = self._get_frame_from_stream(
+                    self.hColorStream, self.color_mode, "color"
+                )
                 if img is not None:
                     frames["color"] = img
 
             # 2. Depth
             if self.enabled_streams.get('depth', True):
-                img, raw = self._get_frame_from_stream(self.hDepthStream, NUI_IMAGE_TYPE_DEPTH)
+                img, raw = self._get_frame_from_stream(
+                    self.hDepthStream, NUI_IMAGE_TYPE_DEPTH, "depth"
+                )
                 if img is not None:
                     frames["sub"] = img
                     frames["depth"] = img
                     frames["raw_depth"] = raw
 
-            # 3. IR Stream - Read from IR stream handle if available
-            # Note: On Kinect v1, IR mode often uses the color stream in IR mode
+            # 3. IR is a distinct logical stream and is never synthesized from depth.
+            # Kinect v1 RGB and IR share the color path and cannot be advertised together.
             if self.enabled_streams.get('ir', True):
-                # Try to read from IR stream (if opened separately)
                 if self.hIRStream and self.hIRStream.value:
-                    ir_img, _ = self._get_frame_from_stream(self.hIRStream, NUI_IMAGE_TYPE_COLOR_INFRARED)
+                    ir_img, _ = self._get_frame_from_stream(
+                        self.hIRStream, NUI_IMAGE_TYPE_COLOR_INFRARED, "ir"
+                    )
                     if ir_img is not None:
                         frames["ir"] = ir_img
-
-                # Fallback: if no dedicated IR stream, simulate IR from depth for visualization
-                if "ir" not in frames and "depth" in frames:
-                    # Convert depth to pseudo-IR visualization (grayscale normalized)
-                    depth_vis = frames["depth"].copy()
-                    if len(depth_vis.shape) == 2:
-                        # Normalize to 0-255 range for IR-like visualization
-                        depth_norm = cv2.normalize(depth_vis, None, 0, 255, cv2.NORM_MINMAX)
-                        frames["ir"] = depth_norm.astype(np.uint8)
 
             # 4. Skeleton
             if self.enabled_streams.get('skeleton', True):
@@ -797,10 +1015,26 @@ class KinectConnector:
             pass
 
     def release(self):
-        if self.sensor:
-            self.sensor.NuiShutdown()
-        self.is_open = False
-        self.sensor = None
+        with self.lock:
+            if self.sensor:
+                with contextlib.suppress(Exception):
+                    self.sensor.NuiShutdown()
+            self.is_open = False
+            self.sensor = None
+            self.hColorStream = wintypes.HANDLE()
+            self.hDepthStream = wintypes.HANDLE()
+            self.hIRStream = wintypes.HANDLE()
+            self.skeleton_enabled = False
+            self.sensor_count = None
+            for name, state in self.stream_states.items():
+                state.update(
+                    initialized=False,
+                    frame_count=0,
+                    last_frame_at=None,
+                    last_frame_number=None,
+                    last_hresult=None,
+                    detail=None,
+                )
 
     def close(self):
         """Compatibility alias for release()."""

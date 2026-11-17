@@ -1,0 +1,70 @@
+{
+    "model": {
+        "architecture": "transformer",
+        "hidden_size": 768,
+        "num_layers": 12,
+        "num_heads": 12,
+        "vocab_size": 50000,
+        "max_position_embeddings": 2048
+    },
+    "training": {
+        "batch_size": 8,
+        "learning_rate": 2e-4,
+        "epochs": 3,
+        "gradient_accumulation_steps": 4,
+        "max_grad_norm": 1.0,
+        "warmup_steps": 100,
+        "optimizer_type": "adamw",
+        "scheduler_type": "linear",
+        "mixed_precision": true,
+        "checkpoint_frequency": 500,
+        "eval_frequency": 100
+    },
+    "lora": {
+        "enabled": true,
+        "use_enhanced_lora": true,
+        "rank": 16,
+        "alpha": 32,
+        "target_modules": ["in_proj_weight", "out_proj", "output_proj"],
+        "lora_dropout": 0.1,
+        "enable_quantization": true,
+        "enable_hierarchical": false,
+        "enable_dynamic_rank": false,
+        "enable_composition": false,
+        "enable_sparsity": false
+    },
+    "qlora": {
+        "bits": 4,
+        "quantization_scheme": "nf4",
+        "double_quant": true,
+        "bnb_4bit_compute_dtype": "float16",
+        "bnb_4bit_quant_storage": "uint8",
+        "load_in_4bit": true,
+        "load_in_8bit": false
+    },
+    "memory_optimization": {
+        "gradient_checkpointing": true,
+        "use_cpu_offload": false,
+        "max_memory_mb": 3500,
+        "empty_cache_steps": 10
+    },
+    "hardware": {
+        "target_gpu": "GTX 1050 Ti",
+        "vram_limit_gb": 4,
+        "enable_auto_device_map": true,
+        "torch_compile": false
+    },
+    "data": {
+        "max_seq_length": 1024,
+        "pad_to_max_length": false,
+        "truncation": true,
+        "preprocessing_num_workers": 2
+    },
+    "logging": {
+        "log_level": "INFO",
+        "log_steps": 10,
+        "save_logs": true,
+        "use_wandb": false,
+        "use_rich_logging": true
+    }
+}

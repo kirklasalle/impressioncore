@@ -1,0 +1,35 @@
+{
+    "0": {
+        "brightness": 0.57,
+        "contrast": 0.5,
+        "saturation": 0.27,
+        "gain": 0.54
+    },
+    "100": {
+        "brightness": 0.57,
+        "contrast": 0.55,
+        "saturation": 0.5,
+        "gain": 0.56
+    },
+    "101": {
+        "brightness": 0.5,
+        "contrast": 0.5,
+        "saturation": 0.5,
+        "gain": 0.5,
+        "temperature": 0.5
+    },
+    "99": {
+        "brightness": 0.55,
+        "contrast": 0.54,
+        "saturation": 0.56,
+        "gain": 0.64,
+        "temperature": 0.58
+    },
+    "98": {
+        "brightness": 0.5,
+        "contrast": 0.5,
+        "saturation": 0.5,
+        "gain": 0.5,
+        "temperature": 0.5
+    }
+}

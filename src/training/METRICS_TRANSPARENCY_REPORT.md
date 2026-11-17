@@ -37,6 +37,8 @@ Copyright (c) 2025 ImpressionCore Team
 ## Complete Documentation of Real vs Simulated Metrics
 
 ### 🔍 EXECUTIVE SUMMARY
+> **Evidence qualification — November 2, 2026:** This historical mixed-metrics disclosure is preserved, not superseded by a claim that all results were real. Simulated/estimated metrics and historical trainer throughput/memory cannot certify current 10/10 conversation quality, native offering identity, universal 4GB fit, or production readiness. See the [current comprehensive audit](../../docs/analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) for current evidence and acceptance gates. A B1-named live project ran a 4,567,641-parameter native B3 model on synthetic 24/8 records with incoherent generation and no established quality gain; require objective-labelled held-out evaluation and configuration/tokenizer/checkpoint provenance before current quality claims.
+
 **The evaluation results shown were a combination of REAL metrics from the successful B1 trainer run and SIMULATED/ESTIMATED metrics for comprehensive evaluation. This report provides complete transparency.**
 
 ---

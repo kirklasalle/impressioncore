@@ -45,8 +45,8 @@ class AuthenticationType(Enum):
     FACIAL = "facial"
     MFA = "mfa"
     SESSION = "session"
-    PASSWORD = "password"
-    TOKEN = "token"
+    PASSWORD = "password"  # nosec B105
+    TOKEN = "token"  # nosec B105
 
 @dataclass
 class AuthenticationResult:

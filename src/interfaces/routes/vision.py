@@ -37,6 +37,9 @@ class KinectStreamUpdate(BaseModel):
     stream: str
     enabled: bool
 
+class CaptureControl(BaseModel):
+    enabled: bool
+
 class KinectParameterUpdate(BaseModel):
     smoothing: float = 0.5
     correction: float = 0.5
@@ -55,6 +58,159 @@ class FaceUpdateRequest(BaseModel):
 
 # WebSocket clients
 _skeleton_ws_clients: list[WebSocket] = []
+_capture_operation_lock = asyncio.Lock()
+_capture_status = {
+    "status": "stopped",
+    "active": False,
+    "detail": "Capture has not been started.",
+}
+_capture_vision = None
+
+
+def _capture_snapshot() -> dict[str, Any]:
+    return dict(_capture_status)
+
+
+def _find_kinect(vision):
+    if not vision:
+        return None
+    caps = getattr(vision, "caps", {}) or {}
+    kinect = caps.get(98) or caps.get("98")
+    if kinect:
+        return kinect
+    return next((cap for cap in caps.values() if hasattr(cap, "enabled_streams")), None)
+
+
+def _clear_capture_state(vision) -> None:
+    frames = getattr(vision, "_frames", None)
+    if hasattr(frames, "clear"):
+        frames.clear()
+    for attribute in ("visual_buffer", "last_known_detections"):
+        value = getattr(vision, attribute, None)
+        if hasattr(value, "clear"):
+            value.clear()
+    if hasattr(vision, "latest_skeleton"):
+        vision.latest_skeleton = None
+
+
+@router.get("/v1/vision/capture")
+async def get_capture_status():
+    """Return capture lifecycle state without probing or opening hardware."""
+    return _capture_snapshot()
+
+
+@router.post("/v1/vision/capture")
+async def set_capture_state(request: CaptureControl):
+    """Explicitly start or stop vision capture using the configured vision layer."""
+    global _capture_status, _capture_vision
+
+    async with _capture_operation_lock:
+        triad = api_state.triad_instance
+        vision = getattr(triad, "vision", None) if triad else None
+        if request.enabled:
+            if not vision:
+                if triad:
+                    triad.vision_active = False
+                _capture_status = {
+                    "status": "error",
+                    "active": False,
+                    "detail": "Vision layer is not initialized.",
+                }
+                return _capture_snapshot()
+            if _capture_status["status"] == "active" and _capture_vision is vision:
+                return _capture_snapshot()
+
+            _capture_status = {
+                "status": "starting",
+                "active": False,
+                "detail": "Opening configured camera devices.",
+            }
+            _capture_vision = vision
+            triad.vision_active = False
+            try:
+                caps = getattr(vision, "caps", {}) or {}
+                open_caps = [
+                    cap for cap in caps.values()
+                    if callable(getattr(cap, "isOpened", None)) and cap.isOpened()
+                ]
+                if open_caps:
+                    vision._is_running = True
+                    start_buffer = getattr(vision, "start_buffer_loop", None)
+                    if callable(start_buffer):
+                        start_buffer()
+                    opened = True
+                else:
+                    opened = await asyncio.to_thread(vision.open)
+
+                caps = getattr(vision, "caps", {}) or {}
+                if not opened or not caps:
+                    if callable(getattr(vision, "close", None)):
+                        await asyncio.to_thread(vision.close)
+                    _clear_capture_state(vision)
+                    _capture_status = {
+                        "status": "error",
+                        "active": False,
+                        "detail": "Capture could not start: no camera capabilities are available.",
+                    }
+                    _capture_vision = None
+                    return _capture_snapshot()
+
+                _capture_status = {
+                    "status": "active",
+                    "active": True,
+                    "detail": f"Capture active for {len(caps)} configured camera device(s).",
+                }
+                triad.vision_active = True
+                return _capture_snapshot()
+            except Exception as e:
+                if callable(getattr(vision, "close", None)):
+                    try:
+                        await asyncio.to_thread(vision.close)
+                    except Exception:
+                        pass
+                _clear_capture_state(vision)
+                _capture_status = {
+                    "status": "error",
+                    "active": False,
+                    "detail": f"Capture failed to start: {e}",
+                }
+                _capture_vision = None
+                return _capture_snapshot()
+
+        vision = vision or _capture_vision
+        if triad:
+            triad.vision_active = False
+        if not vision:
+            _capture_status = {
+                "status": "stopped",
+                "active": False,
+                "detail": "Capture is stopped.",
+            }
+            return _capture_snapshot()
+
+        _capture_status = {
+            "status": "starting",
+            "active": False,
+            "detail": "Stopping and releasing camera devices.",
+        }
+        try:
+            if callable(getattr(vision, "close", None)):
+                await asyncio.to_thread(vision.close)
+            _clear_capture_state(vision)
+            _capture_status = {
+                "status": "stopped",
+                "active": False,
+                "detail": "Capture stopped; camera resources and cached frames were released.",
+            }
+            _capture_vision = None
+        except Exception as e:
+            _clear_capture_state(vision)
+            _capture_status = {
+                "status": "error",
+                "active": False,
+                "detail": f"Capture stop failed: {e}",
+            }
+        return _capture_snapshot()
 
 def generate_mjpeg_stream(target_cam_id: int | None = None, quality: int = 60, max_fps: int = 30, scale: float = 1.0):
     """Generator for MJPEG stream from the active vision layer."""
@@ -175,17 +331,57 @@ async def get_kinect_streams():
     if not triad or not triad.vision:
         raise HTTPException(status_code=503, detail="Vision layer not ready")
 
-    kinect = triad.vision.caps.get(98)
-    if not kinect:
-         for cap in triad.vision.caps.values():
-             if hasattr(cap, "enabled_streams"):
-                 kinect = cap
-                 break
+    kinect = _find_kinect(triad.vision)
 
     if not kinect:
          raise HTTPException(status_code=404, detail="Kinect not connected")
 
     return kinect.enabled_streams
+
+
+@router.get("/v1/vision/kinect/stream-health")
+async def get_kinect_stream_health():
+    """Report Kinect stream initialization and observed-frame freshness without probing hardware."""
+    triad = api_state.triad_instance
+    if not triad or not triad.vision:
+        raise HTTPException(status_code=503, detail="Vision layer not ready")
+    kinect = _find_kinect(triad.vision)
+    if not kinect:
+        capture = _capture_snapshot()
+        if not capture["active"]:
+            return {
+                "status": "OK",
+                "capture": capture,
+                "health": {
+                    "status": "STOPPED" if capture["status"] == "stopped" else "NOT_OPEN",
+                    "capture_active": False,
+                    "physical_sensor_count": None,
+                    "physical_sensor_identity": None,
+                    "logical_stream_count": 4,
+                    "streams": {
+                        name: {
+                            "requested": None,
+                            "enabled": None,
+                            "initialized": False,
+                            "fresh": False,
+                            "status": "NOT_OPEN",
+                            "frame_count": 0,
+                            "last_frame_age_ms": None,
+                            "last_frame_number": None,
+                            "last_hresult": None,
+                            "detail": "Capture is not open; sensor presence has not been probed.",
+                        }
+                        for name in ("color", "depth", "ir", "skeleton")
+                    },
+                },
+            }
+        raise HTTPException(status_code=404, detail="Kinect not connected")
+    return {
+        "status": "OK",
+        "capture": _capture_snapshot(),
+        "health": kinect.get_stream_health(),
+    }
+
 
 @router.post("/v1/vision/kinect/streams")
 async def set_kinect_streams(update: KinectStreamUpdate):
@@ -194,12 +390,7 @@ async def set_kinect_streams(update: KinectStreamUpdate):
     if not triad or not triad.vision:
         raise HTTPException(status_code=503, detail="Vision layer not ready")
 
-    kinect = triad.vision.caps.get(98)
-    if not kinect:
-         for cap in triad.vision.caps.values():
-             if hasattr(cap, "enabled_streams"):
-                 kinect = cap
-                 break
+    kinect = _find_kinect(triad.vision)
 
     if not kinect:
          raise HTTPException(status_code=404, detail="Kinect not connected")

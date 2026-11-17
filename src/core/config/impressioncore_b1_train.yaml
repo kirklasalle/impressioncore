@@ -1,0 +1,50 @@
+# ImpressionCore-b1 Training Configuration
+# Last updated: 2025-05-20
+# Responsible: GitHub Copilot
+
+model_architecture_config: "configs/impressioncore_b1_arch.yaml" # Path to the model architecture
+
+# Dataset Configuration
+dataset:
+  type: "dummy_multimodal" # Placeholder, will need actual dataset handling
+  text_data_path: "data/dummy_text_corpus.txt" # Example
+  image_data_path: "data/dummy_images/"      # Example
+  # Add other dataset-specific params like preprocessing, sequence length for text, image size, etc.
+  # These might eventually be more complex, e.g. specifying different datasets for text/image
+  # and how they are paired or sampled.
+  text_sequence_length: 512 # Max sequence length for text during training
+  image_size: 224
+
+# Training Hyperparameters
+training_params:
+  optimizer: "AdamW"
+  learning_rate: 0.0001
+  batch_size: 1 # Keep very small for initial testing on limited VRAM
+  num_epochs: 1 # Start with a single epoch for testing
+  gradient_accumulation_steps: 4 # Accumulate gradients to simulate larger batch size
+  weight_decay: 0.01
+  lr_scheduler: "cosine" # Example: "linear", "cosine", "constant"
+  warmup_steps: 100    # Steps for learning rate warmup
+
+# Checkpointing and Logging
+checkpointing:
+  checkpoint_dir: "models/impressioncore-b1-checkpoints/"
+  save_frequency_epochs: 1 # Save checkpoint every N epochs
+  # save_frequency_steps: 1000 # Or save every N steps
+  keep_last_n_checkpoints: 3
+
+logging:
+  log_frequency_steps: 10 # Log training metrics every N steps
+  # tensorboard_log_dir: "runs/impressioncore-b1/" # Optional: for TensorBoard
+
+# Hardware and Performance
+device: "cuda" # "cuda" or "cpu" (auto-detect if possible, but allow override)
+# mixed_precision: "bf16" # This could also be here, or taken from model_arch.hooks
+
+# System Oversight (can be flags to enable/disable features during training)
+system_oversight:
+  enabled: true
+  # adaptive_memory_management_threshold_gb: 3.5 # Example: trigger if VRAM > 3.5GB
+
+# Other
+seed: 42 # For reproducibility

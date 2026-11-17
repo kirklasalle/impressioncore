@@ -1,0 +1,56 @@
+{
+  "model_name": "ImpressionCore-B3-Foundation",
+  "total_params": 39000000,
+  "parameter_breakdown": {
+    "total_params": 39000000,
+    "breakdown": {
+      "encoders": {
+        "text": 5400000,
+        "image": 4200000,
+        "audio": 3200000,
+        "video": 0,
+        "total": 12800000
+      },
+      "assembly_of_experts": {
+        "num_experts": 4,
+        "params_per_expert": 3500000,
+        "total": 14000000
+      },
+      "moe_router": 4200000,
+      "attention": 4000000,
+      "brainsim_adapter": 2000000,
+      "decoders": {
+        "text": 1100000,
+        "image": 900000,
+        "audio": 0,
+        "total": 2000000
+      }
+    }
+  },
+  "memory_estimates": {
+    "model_params_fp16_mb": 74.3865966796875,
+    "model_params_fp32_mb": 148.773193359375,
+    "inference_vram_mb": 274.3865966796875,
+    "training_vram_mb": 1020.7061767578125,
+    "training_vram_gb": 0.9967833757400513,
+    "gtx_1050_ti_compatible": true,
+    "optimization_techniques": [
+      "Gradient Checkpointing",
+      "Mixed Precision (FP16/FP32)",
+      "CPU Offloading",
+      "Attention Slicing",
+      "Gradient Accumulation (steps=8)"
+    ]
+  },
+  "training_config": {
+    "learning_rate": 1e-05,
+    "batch_size": 1,
+    "effective_batch_size": 8,
+    "use_mixed_precision": true,
+    "gradient_accumulation_steps": 8
+  },
+  "hardware_target": {
+    "device": "gtx_1050_ti",
+    "max_vram_gb": 3.5
+  }
+}

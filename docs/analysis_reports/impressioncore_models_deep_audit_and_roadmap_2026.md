@@ -7,6 +7,12 @@
 
 ---
 
+## Evidence qualification — November 2, 2026
+
+The August analysis below is preserved as a historical assessment/proposal, not a certified model inventory or current benchmark. Its dimensions/counts differ from offering presets; labels, estimated memory, latency, zero-OOM, and quantization assertions require reproducible configuration/checkpoint/tokenizer evidence and measured hardware tests. A B1-named live project constructed a 4,567,641-parameter native B3 model on synthetic 24/8 records and generated incoherent text, not proven B1 identity or quality improvement. Triad InternVL2-1B is separate from native Builder execution.
+
+Use the [current comprehensive audit](BUILDER_PLATFORM_AUDIT_20261102.md) for evidence and comparisons and the [canonical release gates](../process/EXECUTION_APPENDIX_2026_2027.md#current-status-delta-and-release-gates--november-2-2026) before production claims. The current native workbench is text-only research; earlier claims of working multimodal/quantized deployment are not established by this document.
+
 ## Executive Summary
 
 The ImpressionCore model suite is uniquely engineered to democratize advanced, brain-inspired, privacy-first artificial intelligence on accessible consumer edge hardware. Rather than relying on cloud monolithic servers, ImpressionCore executes a structured hierarchy of Small Language Models (SLMs) and Multimodal Mixture-of-Experts (MoE) architectures governed by Kirk LaSalle's 10 Permanent Active Directives.

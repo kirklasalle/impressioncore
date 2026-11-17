@@ -1,0 +1,414 @@
+# ImpressionCore Phase 3 Logging Configuration
+# Created: October 5, 2025
+# Purpose: Production monitoring and logging setup
+# Status: Production Ready
+
+# ============================================================
+# LOGGING CONFIGURATION
+# ============================================================
+
+version: 1
+disable_existing_loggers: false
+
+# ============================================================
+# FORMATTERS
+# ============================================================
+formatters:
+  # Standard format (timestamp, level, message)
+  standard:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  # Detailed format (includes module, function, line number)
+  detailed:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(module)s:%(funcName)s:%(lineno)d - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  # JSON format (structured logging for parsing)
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: "%(asctime)s %(name)s %(levelname)s %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  # Minimal format (production - concise)
+  minimal:
+    format: "%(asctime)s - %(levelname)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+# ============================================================
+# HANDLERS
+# ============================================================
+handlers:
+  # Console output (stdout)
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+    stream: ext://sys.stdout
+
+  # File handler - General application logs
+  file_general:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: standard
+    filename: logs/impressioncore_general.log
+    maxBytes: 10485760 # 10MB
+    backupCount: 7 # Keep 7 days
+    encoding: utf8
+
+  # File handler - Inference logs (queries, responses, performance)
+  file_inference:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/impressioncore_inference.log
+    maxBytes: 10485760 # 10MB
+    backupCount: 7
+    encoding: utf8
+
+  # File handler - Performance metrics
+  file_metrics:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/impressioncore_metrics.log
+    maxBytes: 10485760 # 10MB
+    backupCount: 7
+    encoding: utf8
+
+  # File handler - Errors only
+  file_errors:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/impressioncore_errors.log
+    maxBytes: 10485760 # 10MB
+    backupCount: 30 # Keep errors longer (30 days)
+    encoding: utf8
+
+  # File handler - Debug logs (development only)
+  file_debug:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/impressioncore_debug.log
+    maxBytes: 10485760 # 10MB
+    backupCount: 3 # Keep 3 days only
+    encoding: utf8
+
+# ============================================================
+# LOGGERS
+# ============================================================
+loggers:
+  # Root logger (catch-all)
+  root:
+    level: INFO
+    handlers: [console, file_general, file_errors]
+
+  # ImpressionCore inference logger
+  impressioncore.inference:
+    level: INFO
+    handlers: [file_inference, file_metrics]
+    propagate: false
+
+  # ImpressionCore RAG logger
+  impressioncore.rag:
+    level: INFO
+    handlers: [file_inference]
+    propagate: false
+
+  # ImpressionCore performance logger
+  impressioncore.performance:
+    level: INFO
+    handlers: [file_metrics]
+    propagate: false
+
+  # Third-party libraries (reduce noise)
+  transformers:
+    level: WARNING
+    handlers: [file_general]
+    propagate: false
+
+  torch:
+    level: WARNING
+    handlers: [file_general]
+    propagate: false
+
+  sentence_transformers:
+    level: WARNING
+    handlers: [file_general]
+    propagate: false
+
+# ============================================================
+# METRICS CONFIGURATION
+# ============================================================
+metrics:
+  # Enable metrics collection
+  enabled: true
+
+  # Metrics collection interval (seconds)
+  collection_interval: 60 # Every 1 minute
+
+  # Metrics to track
+  tracked_metrics:
+    # Performance metrics
+    - name: "response_time_ms"
+      type: "gauge"
+      description: "Total response time in milliseconds"
+      unit: "ms"
+      target: 2700 # Target average
+      alert_threshold: 5000 # Alert if >5s
+
+    - name: "rag_time_ms"
+      type: "gauge"
+      description: "RAG search time in milliseconds"
+      unit: "ms"
+      target: 300
+      alert_threshold: 1000
+
+    - name: "generation_time_ms"
+      type: "gauge"
+      description: "Model generation time in milliseconds"
+      unit: "ms"
+      target: 2400
+      alert_threshold: 4000
+
+    # Quality metrics
+    - name: "quality_score"
+      type: "gauge"
+      description: "Response quality score (1-5)"
+      unit: "score"
+      target: 4.43
+      alert_threshold: 4.0 # Alert if <4.0
+
+    - name: "generic_rate"
+      type: "gauge"
+      description: "Generic response rate (0-1)"
+      unit: "rate"
+      target: 0.077 # 7.7%
+      alert_threshold: 0.10 # Alert if >10%
+
+    - name: "success_rate"
+      type: "gauge"
+      description: "Success rate (0-1)"
+      unit: "rate"
+      target: 0.857 # 85.7%
+      alert_threshold: 0.80 # Alert if <80%
+
+    # System metrics
+    - name: "queries_per_minute"
+      type: "counter"
+      description: "Queries processed per minute"
+      unit: "queries/min"
+      target: 22
+
+    - name: "cuda_memory_allocated_mb"
+      type: "gauge"
+      description: "CUDA memory allocated in MB"
+      unit: "MB"
+      target: 1350
+      alert_threshold: 3500 # Alert if >3.5GB (near 4GB limit)
+
+    - name: "system_ram_mb"
+      type: "gauge"
+      description: "System RAM usage in MB"
+      unit: "MB"
+      target: 2000
+      alert_threshold: 6000
+
+    # Strategy distribution
+    - name: "strategy_natural_only_pct"
+      type: "gauge"
+      description: "Percentage using natural_only strategy"
+      unit: "percent"
+      target: 64.3
+
+    - name: "strategy_natural_low_confidence_pct"
+      type: "gauge"
+      description: "Percentage using natural_low_confidence strategy"
+      unit: "percent"
+      target: 35.7
+
+    - name: "strategy_rag_enhanced_pct"
+      type: "gauge"
+      description: "Percentage using rag_enhanced strategy"
+      unit: "percent"
+      target: 0.0
+
+# ============================================================
+# ALERTING CONFIGURATION
+# ============================================================
+alerting:
+  # Enable alerting
+  enabled: true
+
+  # Alert destinations
+  destinations:
+    # Console alerts (print to stdout)
+    - type: "console"
+      level: "WARNING"
+
+    # File alerts (write to alerts log)
+    - type: "file"
+      level: "ERROR"
+      path: "logs/impressioncore_alerts.log"
+
+    # Email alerts (optional - configure SMTP)
+    # - type: "email"
+    #   level: "CRITICAL"
+    #   smtp_host: "smtp.gmail.com"
+    #   smtp_port: 587
+    #   from_email: "alerts@impressioncore.ai"
+    #   to_emails: ["admin@impressioncore.ai"]
+
+  # Alert rules
+  rules:
+    # Performance alerts
+    - name: "slow_response"
+      metric: "response_time_ms"
+      condition: ">"
+      threshold: 5000
+      severity: "WARNING"
+      message: "Response time exceeded 5 seconds"
+
+    - name: "very_slow_response"
+      metric: "response_time_ms"
+      condition: ">"
+      threshold: 10000
+      severity: "ERROR"
+      message: "Response time exceeded 10 seconds (critical)"
+
+    # Quality alerts
+    - name: "quality_degradation"
+      metric: "quality_score"
+      condition: "<"
+      threshold: 4.0
+      severity: "WARNING"
+      message: "Quality score dropped below 4.0/5.0 target"
+
+    - name: "high_generic_rate"
+      metric: "generic_rate"
+      condition: ">"
+      threshold: 0.10
+      severity: "WARNING"
+      message: "Generic response rate exceeded 10% threshold"
+
+    - name: "low_success_rate"
+      metric: "success_rate"
+      condition: "<"
+      threshold: 0.80
+      severity: "ERROR"
+      message: "Success rate dropped below 80% target"
+
+    # System alerts
+    - name: "high_vram_usage"
+      metric: "cuda_memory_allocated_mb"
+      condition: ">"
+      threshold: 3500
+      severity: "WARNING"
+      message: "CUDA memory usage approaching 4GB limit"
+
+    - name: "cuda_oom"
+      metric: "cuda_memory_allocated_mb"
+      condition: ">"
+      threshold: 3800
+      severity: "ERROR"
+      message: "CUDA memory critically high, OOM risk"
+
+# ============================================================
+# RETENTION POLICY
+# ============================================================
+retention:
+  # Log file retention (days)
+  general_logs: 7
+  inference_logs: 7
+  metrics_logs: 14
+  error_logs: 30
+  debug_logs: 3
+  alert_logs: 30
+
+  # Automatic cleanup
+  auto_cleanup:
+    enabled: true
+    schedule: "daily" # Run cleanup daily at midnight
+    keep_compressed: false # Don't compress old logs
+
+# ============================================================
+# DEVELOPMENT MODE OVERRIDES
+# ============================================================
+development:
+  # Enable debug logging in development
+  log_level: "DEBUG"
+
+  # Console output more verbose
+  console_level: "DEBUG"
+
+  # Enable debug file handler
+  enable_debug_handler: true
+
+  # Log response content (for debugging)
+  log_responses: true
+
+  # Disable metrics collection (less noise)
+  metrics_enabled: false
+
+# ============================================================
+# PRODUCTION MODE SETTINGS
+# ============================================================
+production:
+  # Production log level
+  log_level: "INFO"
+
+  # Console output minimal
+  console_level: "WARNING"
+
+  # Disable debug file handler
+  enable_debug_handler: false
+
+  # Don't log response content (privacy)
+  log_responses: false
+
+  # Enable metrics collection
+  metrics_enabled: true
+
+  # Enable alerting
+  alerting_enabled: true
+# ============================================================
+# USAGE EXAMPLES
+# ============================================================
+#
+# Load configuration in Python:
+#
+#   import yaml
+#   import logging.config
+#
+#   # Load logging config
+#   with open("config/logging_config.yaml", "r") as f:
+#       log_config = yaml.safe_load(f)
+#
+#   # Apply configuration
+#   logging.config.dictConfig(log_config)
+#
+#   # Get logger
+#   logger = logging.getLogger("impressioncore.inference")
+#
+#   # Log inference
+#   logger.info(f"Query: {query}")
+#   logger.info(f"Strategy: {result['strategy']}")
+#   logger.info(f"Time: {result['timing']['total_ms']:.1f}ms")
+#
+# ============================================================
+
+# ============================================================
+# VALIDATION NOTES
+# ============================================================
+#
+# - All log files created in logs/ directory
+# - Automatic rotation at 10MB size
+# - JSON metrics logs for easy parsing
+# - Separate error log for debugging
+# - Alert system for performance monitoring
+# - Development/Production mode switching
+# - Retention policy for disk space management
+#
+# ============================================================

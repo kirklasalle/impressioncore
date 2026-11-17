@@ -500,9 +500,19 @@ class GuardianAgent:
 
     # 8. Endpoint Access Audit
     async def _task_endpoint_access_audit(self) -> Dict[str, str]:
-        # Perform endpoint check via http request or skip if offline
-        # Staggered port scan on self
-        return {"status": "success", "detail": "All critical localhost endpoints responsive"}
+        import socket
+
+        targets = [("127.0.0.1", 5000, "builder"), ("127.0.0.1", 8000, "runtime")]
+        open_ports, closed_ports = [], []
+        for host, port, label in targets:
+            try:
+                with socket.create_connection((host, port), timeout=0.25):
+                    open_ports.append(f"{label}:{port}")
+            except OSError:
+                closed_ports.append(f"{label}:{port}")
+        if not open_ports:
+            return {"status": "warning", "detail": f"No local API listeners active ({', '.join(closed_ports)} offline)"}
+        return {"status": "success", "detail": f"Active local listeners: {', '.join(open_ports)}; offline: {', '.join(closed_ports) or 'none'}"}
 
     # 9. Directive Integrity Check
     async def _task_directive_integrity(self) -> Dict[str, str]:
@@ -536,18 +546,25 @@ class GuardianAgent:
 
     # 10. Covenant Integrity Audit
     async def _task_covenant_audit(self) -> Dict[str, str]:
-        cov = Path("COPILOT_SACRED_COVENANT.md")
-        if not cov.exists():
-            return {"status": "warning", "detail": "COPILOT_SACRED_COVENANT.md missing"}
-        return {"status": "success", "detail": "Sacred Covenant integrity intact"}
+        candidates = [Path("AGENTIC_SACRED_COVENANT.md"), Path(".github/COPILOT_SACRED_COVENANT.md")]
+        present = [p for p in candidates if p.exists()]
+        if not present:
+            return {"status": "warning", "detail": "No Sacred Covenant document found in workspace"}
+        digest = hashlib.sha256(present[0].read_bytes()).hexdigest()[:16]
+        return {"status": "success", "detail": f"Covenant intact ({present[0]}, SHA-256: {digest}...)"}
 
     # 11. Initialization Certificate Verification
     async def _task_initialization_certificate_verify(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "Initialization Certificate verified successfully"}
+        cert_candidates = [Path("state/init_certificate.json"), Path("AGENTIC_PRIME_DIRECTIVE.md")]
+        existing = [p for p in cert_candidates if p.exists()]
+        if not existing:
+            return {"status": "warning", "detail": "No initialization certificate or Prime Directive found"}
+        if Path("state/init_certificate.json").exists():
+            return {"status": "success", "detail": "Signed initialization certificate present"}
+        return {"status": "warning", "detail": "Prime Directive present, but runtime init_certificate.json has not been generated"}
 
     # 12. Knowledge Graph Check
     async def _task_knowledge_graph_check(self) -> Dict[str, str]:
-        # Check if RAG library or knowledge directories exist
         rag_dir = Path("rag_library")
         if not rag_dir.exists():
             return {"status": "warning", "detail": "RAG knowledge library not initialized"}
@@ -555,20 +572,41 @@ class GuardianAgent:
 
     # 13. Tool Contract Audit
     async def _task_tool_contract_audit(self) -> Dict[str, str]:
-        # Dummy verification
-        return {"status": "success", "detail": "All 5 core tools verify signature contracts"}
+        try:
+            from agent0core.core.tools import AudioTool, KnowledgeTool, MCPBridge, TrainingTool, VisionTool
+            tools = [VisionTool, AudioTool, TrainingTool, KnowledgeTool, MCPBridge]
+            missing = [
+                cls.__name__ for cls in tools
+                if not (hasattr(cls, "execute") and getattr(cls, "name", None) and getattr(cls, "description", None))
+            ]
+            if missing:
+                return {"status": "failure", "detail": f"Tool contract violation in: {', '.join(missing)}"}
+            return {"status": "success", "detail": f"Verified execute/name/description contracts on {len(tools)} core tools"}
+        except Exception as e:
+            return {"status": "failure", "detail": f"Tool contract inspection failed: {e}"}
 
     # 14. Agent Health Check
     async def _task_agent_health_check(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "Primary agent (Agent0) state: nominal"}
+        status = self.supervisor.get_status() if hasattr(self.supervisor, "get_status") else {}
+        slots = status.get("slots", []) if isinstance(status, dict) else []
+        errored = [s for s in slots if isinstance(s, dict) and s.get("status") == "error"]
+        if errored:
+            return {"status": "warning", "detail": f"{len(errored)} supervisor slot(s) in error state"}
+        return {"status": "success", "detail": f"Guardian state={self._state}; {len(slots)} supervisor slot(s) healthy"}
 
     # 15. Self-Healing Check
     async def _task_self_heal_check(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "Self-healing checks nominal"}
+        unresolved = max(0, self.issues_detected - self.issues_resolved)
+        if unresolved > 0:
+            return {"status": "warning", "detail": f"{unresolved} unresolved issue(s) pending self-heal"}
+        return {"status": "success", "detail": f"Self-healing nominal ({self.issues_resolved} issue(s) resolved)"}
 
     # 16. Self-Improvement Check
     async def _task_self_improve_check(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "Self-improvement check nominal"}
+        eval_dir = Path("src/memlog")
+        if not eval_dir.exists():
+            return {"status": "warning", "detail": "No memlog directory found for self-improvement telemetry"}
+        return {"status": "success", "detail": f"Telemetry log root active ({len(list(eval_dir.iterdir()))} entries)"}
 
     # 17. System Resource Snapshot
     async def _task_system_snapshot(self) -> Dict[str, str]:
@@ -584,7 +622,9 @@ class GuardianAgent:
 
     # 18. Agent Census
     async def _task_agent_census(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "1 permanent active agent, 0 ephemeral agents"}
+        slots = getattr(self.supervisor, "slots", [])
+        active = sum(1 for s in slots if getattr(s, "status", "empty") not in ("empty", "stopped"))
+        return {"status": "success", "detail": f"{active} active supervisor slot(s) out of {len(slots)} configured"}
 
     # 19. Log Volume Analysis
     async def _task_log_volume_analysis(self) -> Dict[str, str]:
@@ -598,12 +638,22 @@ class GuardianAgent:
 
     # 20. MCP Health & Recovery
     async def _task_mcp_health_recovery(self) -> Dict[str, str]:
-        # Auditing registered mcp servers
-        return {"status": "success", "detail": "All registered MCP bridges active"}
+        cfg_path = Path(".mcp/mcp-settings.json")
+        if not cfg_path.exists():
+            return {"status": "warning", "detail": ".mcp/mcp-settings.json not found"}
+        try:
+            import json as _json
+            servers = _json.loads(cfg_path.read_text(encoding="utf-8")).get("mcpServers", {})
+            return {"status": "success", "detail": f"{len(servers)} MCP server(s) configured in mcp-settings.json"}
+        except Exception as e:
+            return {"status": "warning", "detail": f"Failed to parse .mcp/mcp-settings.json: {e}"}
 
     # 21. AAB Ledger Monitor
     async def _task_aab_ledger_monitor(self) -> Dict[str, str]:
-        return {"status": "success", "detail": "AAB ledger is stable"}
+        ledger_path = Path("state/aab_ledger.json")
+        if not ledger_path.exists():
+            return {"status": "warning", "detail": "AAB ledger file (state/aab_ledger.json) not initialized"}
+        return {"status": "success", "detail": f"AAB ledger present ({ledger_path.stat().st_size} bytes)"}
 
     # 22. Update Version Check
     async def _task_update_version_check(self) -> Dict[str, str]:

@@ -138,15 +138,17 @@ class RandomRotation(nn.Module):
         """Apply random rotation to the last dimension of x."""
         original_dtype = x.dtype
         x = x.float()
+        dim = x.shape[-1]
+        is_pow2 = dim > 0 and (dim & (dim - 1)) == 0
 
-        if self.rotation_type == "hadamard":
-            # Random sign flip + Hadamard = random orthogonal rotation
-            signs = self._generate_signs(seed, x.shape[-1], x.device)
+        if self.rotation_type == "hadamard" and is_pow2:
+            # Random sign flip + Hadamard = exact orthogonal rotation for power-of-2 dims
+            signs = self._generate_signs(seed, dim, x.device)
             x = x * signs
             x = self._hadamard_transform(x)
         else:
-            # Full random orthogonal matrix
-            rot = self._random_orthogonal(seed, x.shape[-1], x.device, x.dtype)
+            # Full random orthogonal matrix (exact inverse for non-power-of-2 dims)
+            rot = self._random_orthogonal(seed, dim, x.device, x.dtype)
             x = x @ rot
 
         return x.to(original_dtype)
@@ -155,14 +157,16 @@ class RandomRotation(nn.Module):
         """Apply inverse rotation (transpose of the rotation matrix)."""
         original_dtype = x.dtype
         x = x.float()
+        dim = x.shape[-1]
+        is_pow2 = dim > 0 and (dim & (dim - 1)) == 0
 
-        if self.rotation_type == "hadamard":
+        if self.rotation_type == "hadamard" and is_pow2:
             # Hadamard is self-inverse; signs are self-inverse
             x = self._hadamard_transform(x)
-            signs = self._generate_signs(seed, x.shape[-1], x.device)
+            signs = self._generate_signs(seed, dim, x.device)
             x = x * signs
         else:
-            rot = self._random_orthogonal(seed, x.shape[-1], x.device, x.dtype)
+            rot = self._random_orthogonal(seed, dim, x.device, x.dtype)
             x = x @ rot.T
 
         return x.to(original_dtype)
@@ -380,9 +384,9 @@ class TurboQuantCompressor(nn.Module):
             CompressedTensor with all data needed for decompression.
         """
         if not self.config.enabled:
-            # Passthrough: store as-is in a trivial CompressedTensor
+            # Passthrough: preserve original tensor values without integer truncation
             return CompressedTensor(
-                codes=x.to(torch.int8),
+                codes=x.clone(),
                 scales=torch.tensor([1.0], device=x.device),
                 offsets=torch.tensor([0.0], device=x.device),
                 rotation_seed=0,

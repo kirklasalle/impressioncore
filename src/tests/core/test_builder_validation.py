@@ -3,6 +3,7 @@
 Covers WS3 Task 4 and WS5 quality gate.
 """
 import pytest
+from copy import deepcopy
 from unittest.mock import MagicMock, patch
 from flask import Flask, json
 
@@ -10,8 +11,13 @@ from src.interfaces.web.routes.builder import builder_bp
 
 
 @pytest.fixture
-def app():
+def app(tmp_path, monkeypatch):
     app = Flask(__name__)
+    from src.interfaces.web.routes import builder
+    monkeypatch.setattr(builder, "_MODEL_CONFIG_FILE", str(tmp_path / "model.json"))
+    monkeypatch.setattr(builder, "_TRAINING_CONFIG_FILE", str(tmp_path / "training.json"))
+    monkeypatch.setattr(builder, "_model_definition", deepcopy(builder._model_definition))
+    monkeypatch.setattr(builder, "_training_config", deepcopy(builder._training_config))
     app.register_blueprint(builder_bp)
     app.config["TESTING"] = True
     return app

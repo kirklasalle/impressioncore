@@ -90,7 +90,7 @@ class AssemblyOfExperts:
         """
         Loads expert checkpoints from file paths and returns an AoE instance.
         """
-        state_dicts = [torch.load(p, map_location=map_location) for p in paths]
+        state_dicts = [torch.load(p, map_location=map_location, weights_only=True) for p in paths]
         return AssemblyOfExperts(state_dicts, weights)
 
 # Example usage (in model init):

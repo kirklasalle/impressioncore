@@ -6,32 +6,58 @@ import { twMerge } from 'tailwind-merge';
 
 // Fallback to Fuchsia as Magenta is not default Tailwind
 const cn = (...inputs) => twMerge(clsx(inputs));
-const API_HOST = window.location.hostname === "localhost" ? "127.0.0.1" : (window.location.hostname || "127.0.0.1");
-const API_BASE = `${window.location.protocol}//${API_HOST}:8000`;
-const API_WS_BASE = `ws://${API_HOST}:8000`;
+const API_BASE = '';
+const API_WS_BASE = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
 const API_URL = `${API_BASE}/v1/process`;
 const SESSIONS_API = `${API_BASE}/v1/sessions`;
 const HARDWARE_API = `${API_BASE}/v1/hardware`;
 const DIAG_API = `${API_BASE}/v1/vision/diagnostics`;
 const STREAM_URL = `${API_BASE}/v1/vision/stream`;
-const TELEMETRY_WS = `${API_BASE}/v1/telemetry/stream`.replace("http", "ws");
+const TELEMETRY_WS = `${API_WS_BASE}/v1/telemetry/stream`;
+
+function runtimeError(error) {
+    const status = error.response?.status;
+    if (status === 401 || status === 403) return 'Runtime authorization failed. Relaunch the API and UI together with the local stack launcher.';
+    const detail = error.response?.data?.detail;
+    return typeof detail === 'string' ? detail : (error.message || 'Runtime unavailable');
+}
+
+function CaptureControls({ state, busy, onToggle, unavailable }) {
+    return (
+        <div className="flex items-center gap-3 px-4 py-2 text-xs">
+            <button onClick={onToggle} disabled={busy || unavailable}
+                className="px-3 py-2 rounded border border-accent-cyan text-accent-cyan disabled:opacity-50">
+                {busy ? 'Updating capture...' : state.active ? 'Stop camera capture' : 'Start camera capture'}
+            </button>
+            <span role="status">Capture: {state.status}{state.detail ? ` — ${state.detail}` : ''}</span>
+            <span>Microphone listening is controlled separately.</span>
+        </div>
+    );
+}
 
 /* TELEMETRY HOOK */
 const useTelemetry = (url) => {
     const [telemetry, setTelemetry] = useState(null);
     useEffect(() => {
-        let ws = new WebSocket(url);
-        ws.onopen = () => console.log("Telemetry Connected");
-        ws.onmessage = (event) => {
-            try {
-                const data = JSON.parse(event.data);
-                setTelemetry(data);
-            } catch (e) {
-                console.error("Telemetry Parse Error", e);
-            }
+        let ws;
+        let retry;
+        let disposed = false;
+        const connect = () => {
+            ws = new WebSocket(url);
+            ws.onmessage = (event) => {
+                try {
+                    setTelemetry(JSON.parse(event.data));
+                } catch (e) {
+                    console.error("Telemetry Parse Error", e);
+                }
+            };
+            ws.onclose = () => {
+                setTelemetry(null);
+                if (!disposed) retry = setTimeout(connect, 3000);
+            };
         };
-        ws.onclose = () => console.log("Telemetry Disconnected");
-        return () => ws.close();
+        connect();
+        return () => { disposed = true; clearTimeout(retry); ws?.close(); };
     }, [url]);
     return [telemetry, setTelemetry];
 };
@@ -966,7 +992,7 @@ const VideoOverlay = memo(({ detections = {}, camLabel, color = "cyan", metadata
 
 /**
  * Custom hook for real-time skeleton data via WebSocket
- * Connects to ws://localhost:8000/ws/skeleton for 30fps updates
+ * Uses the same-origin authenticated gateway for skeleton updates.
  */
 const useSkeletonWebSocket = (enabled = true) => {
     const [skeleton, setSkeleton] = useState(null);
@@ -1250,29 +1276,53 @@ const SkeletonVisualizer = memo(({ skeleton, mode = 'overlay', showBadge = true 
 
 
 const KinectControls = () => {
-    const [streams, setStreams] = useState({ color: true, depth: true, ir: true, skeleton: true });
+    const [health, setHealth] = useState(null);
+    const [streamError, setStreamError] = useState("");
+    const [pendingStream, setPendingStream] = useState(null);
     const [isMinimized, setIsMinimized] = useState(false);
 
     useEffect(() => {
+        const controller = new AbortController();
+        let polling = false;
         const fetchStreams = async () => {
+            if (polling) return;
+            polling = true;
             try {
-                const res = await axios.get(`${API_BASE}/v1/vision/kinect/streams`);
-                if (res.data) setStreams(res.data);
-            } catch (e) { console.error("Failed to fetch kinect streams", e); }
+                const res = await axios.get(`${API_BASE}/v1/vision/kinect/stream-health`, { signal: controller.signal });
+                setHealth(res.data.health);
+                setStreamError("");
+            } catch (error) {
+                if (!controller.signal.aborted) {
+                    console.error("Failed to fetch Kinect stream health", error);
+                    setHealth(null);
+                    setStreamError("Kinect stream status is unavailable; check the runtime connection.");
+                }
+            } finally {
+                polling = false;
+            }
         };
         fetchStreams();
         const interval = setInterval(fetchStreams, 5000);
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            controller.abort();
+        };
     }, []);
 
     const toggleStream = async (stream) => {
-        const newState = !streams[stream];
-        setStreams(prev => ({ ...prev, [stream]: newState }));
+        if (pendingStream || !health?.capture_active) return;
+        const newState = !health.streams[stream].enabled;
+        setPendingStream(stream);
         try {
             await axios.post(`${API_BASE}/v1/vision/kinect/streams`, { stream, enabled: newState });
-        } catch (e) {
-            console.error(`Failed to toggle ${stream}`, e);
-            setStreams(prev => ({ ...prev, [stream]: !newState })); // Revert on fail
+            const res = await axios.get(`${API_BASE}/v1/vision/kinect/stream-health`);
+            setHealth(res.data.health);
+            setStreamError("");
+        } catch (error) {
+            console.error(`Failed to toggle ${stream}`, error);
+            setStreamError(`Could not change the ${stream} stream: ${error.response?.data?.detail || error.message}`);
+        } finally {
+            setPendingStream(null);
         }
     };
 
@@ -1284,21 +1334,27 @@ const KinectControls = () => {
                     {isMinimized ? <ChevronDown className="w-3 h-3 opacity-50" /> : <ChevronUp className="w-3 h-3 opacity-50" />}
                 </h3>
             </div>
+            {streamError && <p role="alert" className="text-xs text-accent-warning">{streamError}</p>}
+            {!streamError && <p role="status" className="text-[10px] text-txt-secondary">
+                {health ? (health.capture_active ? `${health.physical_sensor_count} physical sensor(s) - ${health.status}` : "Capture is stopped. Start camera capture to inspect live streams.") : "Checking Kinect stream health..."}
+            </p>}
             {!isMinimized && (
                 <div className="grid grid-cols-2 gap-2 animate-in slide-in-from-top-2 duration-300">
-                    {Object.entries(streams).map(([key, val]) => (
+                    {Object.entries(health?.streams || {}).map(([key, stream]) => (
                         <button
                             key={key}
+                            disabled={!health.capture_active || Boolean(pendingStream) || stream.status === "UNAVAILABLE"}
+                            title={stream.detail || `${stream.frame_count} frames; ${stream.last_frame_age_ms ?? "unknown"} ms since last frame`}
                             onClick={() => toggleStream(key)}
                             className={cn(
-                                "flex items-center justify-between px-2 py-1.5 rounded text-[10px] uppercase tracking-wide transition-all border",
-                                val
+                                "flex items-center justify-between px-2 py-1.5 rounded text-[10px] uppercase tracking-wide transition-all border disabled:opacity-50",
+                                stream.fresh
                                     ? "bg-accent-warning/20 border-accent-warning/50 text-yellow-300 hover:bg-accent-warning/30"
                                     : "bg-ic-card/50 border-ic-border text-txt-secondary hover:bg-ic-card"
                             )}
                         >
-                            <span>{key}</span>
-                            <div className={cn("w-1.5 h-1.5 rounded-full", val ? "bg-accent-warning shadow-[0_0_5px_rgba(250,204,21,0.8)]" : "bg-ic-hover")} />
+                            <span>{key}<span className="block text-[8px]">{stream.status}</span></span>
+                            <div className={cn("w-1.5 h-1.5 rounded-full", stream.fresh ? "bg-accent-warning shadow-[0_0_5px_rgba(250,204,21,0.8)]" : "bg-ic-hover")} />
                         </button>
                     ))}
                 </div>
@@ -1793,7 +1849,7 @@ const AudioPanel = memo(({ telemetry }) => {
     );
 });
 
-const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, telemetry, onOpenConfiguration }) => {
+const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, telemetry, onOpenConfiguration, captureState, captureBusy, onCaptureToggle }) => {
     const [debugConsole, setDebugConsole] = useState(null);
     const [issuesAcknowledged, setIssuesAcknowledged] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -1820,16 +1876,16 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
             id: 'triad',
             label: 'Triad Core Connection',
             // The API is alive if we received a valid status response (not ERROR)
-            status: statusData?.status && statusData.status !== 'ERROR' ? 'PASS' : 'FAIL',
-            value: statusData?.status && statusData.status !== 'ERROR' ? 'Connected' : 'Disconnected',
-            fix: 'Restart the backend API server (python src/interfaces/triad_api.py)'
+            status: statusData?.connection_error ? 'FAIL' : statusData?.status ? 'PASS' : 'LOADING',
+            value: statusData?.connection_error || (statusData?.status ? 'Connected' : 'Connecting'),
+            fix: 'Launch the API and UI together with the local stack launcher; do not disable authentication.'
         },
         {
             id: 'vision',
             label: 'Vision Subsystem',
-            status: statusData?.components?.vision?.health === 'HEALTHY' ? 'PASS' :
+            status: !captureState.active ? 'WARN' : statusData?.components?.vision?.health === 'HEALTHY' ? 'PASS' :
                 statusData?.components?.vision?.health === 'DEGRADED' ? 'WARN' : 'FAIL',
-            value: statusData?.components?.vision?.health || 'OFFLINE',
+            value: !captureState.active ? 'Capture stopped by operator' : statusData?.components?.vision?.health || 'UNKNOWN',
             fix: statusData?.components?.vision?.health === 'DEGRADED'
                 ? 'Hardware conflicts detected - check USB connections or reinstall camera drivers'
                 : 'Ensure cameras are connected and not in use by other apps'
@@ -1837,9 +1893,9 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
         {
             id: 'cameras',
             label: 'Camera Detection',
-            status: (statusData?.components?.vision?.cameras_detected || 0) >= 1 ? 'PASS' : 'FAIL',
-            value: `${statusData?.components?.vision?.cameras_detected || 0} camera(s)`,
-            fix: 'Connect PS Eye cameras or USB webcam. Check Device Manager for driver issues.'
+            status: !captureState.active ? 'WARN' : (statusData?.components?.vision?.cameras_detected || 0) >= 1 ? 'PASS' : 'FAIL',
+            value: statusData?.connection_error ? 'Unknown (runtime inaccessible)' : `${statusData?.components?.vision?.cameras_detected || 0} camera(s)`,
+            fix: 'Start capture explicitly, then select an SDK or browser camera in Configuration.'
         },
         {
             id: 'intelligence',
@@ -1876,7 +1932,7 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
     // --- Browser Tab Synchronization ---
     useEffect(() => {
         if (!isOpen) {
-            document.title = "ImpressionCore B3";
+            document.title = "ImpressionCore Sensory Runtime";
             return;
         }
 
@@ -1911,7 +1967,7 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
         // cleanup on unmount/close or status change
         return () => {
             if (intervalId) clearInterval(intervalId);
-            document.title = "ImpressionCore B3";
+            document.title = "ImpressionCore Sensory Runtime";
         };
     }, [isOpen, passCount, allPassed, auditChecks.length]);
 
@@ -2003,6 +2059,7 @@ const SystemStatusOverlay = memo(({ isOpen, onClose, statusData, onRefresh, tele
                 )}
 
                 <div className="p-6 overflow-y-auto max-h-[70vh] space-y-6 custom-scrollbar">
+                    <CaptureControls state={captureState} busy={captureBusy} onToggle={onCaptureToggle} unavailable={!!statusData?.connection_error} />
                     {/* Comprehensive Audit Checklist */}
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
@@ -2301,7 +2358,7 @@ const IntelligencePanel = memo(({ status }) => {
                 </h3>
                 {!isMinimized && (
                     <div className="flex items-center gap-1.5">
-                        <div className={cn("w-1.5 h-1.5 rounded-full", status.status === "ACTIVE" ? "bg-accent-indigo animate-pulse" : "bg-accent-warning")} />
+                        <div className={cn("w-1.5 h-1.5 rounded-full", status.llm_loaded ? "bg-accent-indigo animate-pulse" : "bg-accent-warning")} />
                         <span className="text-[9px] text-accent-indigo font-bold uppercase">
                             {status.loading_phase === "READY" ? status.status : (status.loading_phase || status.status)}
                         </span>
@@ -2315,8 +2372,12 @@ const IntelligencePanel = memo(({ status }) => {
                     <div>
                         <label className="text-[9px] text-txt-secondary uppercase block mb-0.5">Active Core</label>
                         <div className="text-[11px] text-indigo-100 font-medium truncate bg-black/40 p-1.5 rounded border border-accent-indigo/10">
-                            {status.model_name || status.model || "Unknown Model"}
+                            {status.error || status.model_name || status.model || "No verified model"}
                         </div>
+                        {status.llm_loaded && <p className="text-[9px] text-txt-secondary mt-1">
+                            {status.native_impressioncore ? "Native ImpressionCore" : "External pretrained model - not a native B-series offering"}
+                            {Number.isInteger(status.parameter_count) && ` - ${status.parameter_count.toLocaleString()} parameters`}
+                        </p>}
                     </div>
 
                     {/* Stats Grid */}
@@ -2348,7 +2409,7 @@ const IntelligencePanel = memo(({ status }) => {
                     </div>
 
                     <div className="text-[8px] text-txt-muted flex justify-between italic">
-                        <span>Precision: Half-Float (FP16)</span>
+                        <span>Precision: {status.dtype || "Unverified"}</span>
                         <span>Load: {status.simultaneous_load ? 'SIMUL' : 'SEQ'}</span>
                     </div>
                 </div>
@@ -2535,6 +2596,10 @@ function App() {
     const [trackingEnabled, setTrackingEnabled] = useState(true);
     const [zoomEnabled, setZoomEnabled] = useState(true);
     const [modelStatus, setModelStatus] = useState(null);
+    const [connectionError, setConnectionError] = useState(null);
+    const runtimeReadyRef = useRef(false);
+    const [captureState, setCaptureState] = useState({ status: 'stopped', active: false });
+    const [captureBusy, setCaptureBusy] = useState(false);
     const { skeleton: rtSkeleton, connected: skeletonWsConnected } = useSkeletonWebSocket(visionActive);
     const [skeletonMode, setSkeletonMode] = useState('overlay'); // 'overlay' or '3D'
     const [avatarActive, setAvatarActive] = useState(false);
@@ -2686,6 +2751,7 @@ function App() {
                 const res = await axios.get(`${API_BASE}/v1/model/status`);
                 setModelStatus(res.data);
             } catch (e) {
+                setModelStatus({ llm_loaded: false, status: 'UNAVAILABLE', loading_phase: 'UNAVAILABLE', error: runtimeError(e) });
                 console.error("Failed to fetch model status:", e);
             }
         };
@@ -2713,14 +2779,25 @@ function App() {
     // Polling for System Status
     const fetchSystemStatus = async (forceRefresh = false) => {
         try {
-            const res = await axios.get(`${API_BASE}/v1/system/status${forceRefresh ? '?refresh=true' : ''}`);
+            const refreshHardware = forceRefresh && captureState.active;
+            const res = await axios.get(`${API_BASE}/v1/system/status${refreshHardware ? '?refresh=true' : ''}`);
             setSystemStatus(res.data);
+            setConnectionError(null);
+            if (res.data.loading_phase === 'READY' && !runtimeReadyRef.current) {
+                runtimeReadyRef.current = true;
+                refreshDevices();
+                fetchSessions();
+            }
 
             // If we just finished a refresh, sync the device lists too
-            if (forceRefresh) {
+            if (refreshHardware) {
                 refreshDevices();
             }
         } catch (e) {
+            const detail = runtimeError(e);
+            setConnectionError(detail);
+            setSystemStatus({ status: 'UNREACHABLE', loading_phase: 'UNAVAILABLE', connection_error: detail });
+            runtimeReadyRef.current = false;
             console.error("Failed to fetch system status:", e);
         }
     };
@@ -2794,7 +2871,7 @@ function App() {
             // 1. Frontend Devices
             const devs = await navigator.mediaDevices.enumerateDevices();
             let videoDevs = devs.filter(d => d.kind === 'videoinput');
-            const audioDevs = devs.filter(d => d.kind === 'audioinput');
+            let audioDevs = devs.filter(d => d.kind === 'audioinput');
 
             // 2. Backend Devices (Vision Layer)
             try {
@@ -2819,7 +2896,7 @@ function App() {
                         label: `[System] ${d.name}`,
                         kind: 'audioinput'
                     }));
-                    setDevices(prev => ({ ...prev, video: videoDevs, audio: [...backendMics, ...prev.audio] }));
+                    audioDevs = [...backendMics, ...audioDevs];
                     addLog("SYSTEM", `Backend Audio: Found ${backendMics.length} system microphones.`);
                 }
             } catch (backendErr) {
@@ -2859,7 +2936,10 @@ function App() {
     const fetchSessions = async () => {
         try {
             const res = await axios.get(SESSIONS_API);
-            setSessions(res.data);
+            const valid = res.data.filter(session => typeof session.id === 'string' && session.id.length > 0);
+            setSessions(valid);
+            if (valid.length !== res.data.length)
+                addLog('SYSTEM', `${res.data.length - valid.length} historical session entries have invalid IDs and cannot be opened. Their files were preserved.`);
         } catch (e) {
             addLog("SYSTEM", "Failed to fetch sessions.");
         }
@@ -2869,6 +2949,36 @@ function App() {
         refreshDevices();
         fetchSessions();
     }, []);
+
+    useEffect(() => {
+        let disposed = false;
+        const update = async () => {
+            try {
+                const response = await axios.get(`${API_BASE}/v1/vision/capture`);
+                if (!disposed) setCaptureState(response.data);
+            } catch (error) {
+                if (!disposed) setCaptureState({ status: 'unavailable', active: false, detail: runtimeError(error) });
+            }
+        };
+        update();
+        const interval = setInterval(update, 3000);
+        return () => { disposed = true; clearInterval(interval); };
+    }, []);
+
+    const toggleCapture = async () => {
+        setCaptureBusy(true);
+        try {
+            const response = await axios.post(`${API_BASE}/v1/vision/capture`, { enabled: !captureState.active });
+            setCaptureState(response.data);
+            await refreshDevices();
+            await fetchSystemStatus();
+        } catch (error) {
+            setCaptureState({ status: 'error', active: false, detail: runtimeError(error) });
+            addLog('VISION', `Capture control failed: ${runtimeError(error)}`);
+        } finally {
+            setCaptureBusy(false);
+        }
+    };
 
     // Persist selections to localStorage
     useEffect(() => {
@@ -2886,7 +2996,7 @@ function App() {
     // Initialize Camera
     useEffect(() => {
         async function startCamera() {
-            if (!selectedCam) return;
+            if (!selectedCam || !captureState.active) { setVisionActive(false); return; }
             addLog("VISION", `Switching Camera ID: ${selectedCam.slice(0, 8)}...`);
             try {
                 if (videoRef.current && videoRef.current.srcObject) {
@@ -2896,15 +3006,10 @@ function App() {
 
                 if (selectedCam.startsWith("BRAIN_")) {
                     const brainId = selectedCam.replace("BRAIN_", "");
-                    setVisionActive(true);
-
                     // Sync backend context
-                    try {
-                        await axios.post(`${API_BASE}/v1/vision/active_camera`, { cam_id: brainId });
-                        addLog("VISION", `Backend context synced to camera ${brainId}`);
-                    } catch (e) {
-                        addLog("VISION", `Backend sync failed: ${e.message}`);
-                    }
+                    await axios.post(`${API_BASE}/v1/vision/active_camera`, { cam_id: brainId });
+                    setVisionActive(true);
+                    addLog("VISION", `Backend context synced to camera ${brainId}`);
 
                     addLog("VISION", "Neural Sense Active: AI is seeing directly via Backend.");
                     if (videoRef.current) videoRef.current.srcObject = null;
@@ -2935,12 +3040,16 @@ function App() {
             }
         }
         startCamera();
-    }, [selectedCam]);
+        return () => {
+            primaryStreamRef.current?.getTracks().forEach(track => track.stop());
+            primaryStreamRef.current = null;
+        };
+    }, [selectedCam, captureState.active]);
 
     // Initialize Camera 2
     useEffect(() => {
         async function startCamera2() {
-            if (!selectedCam2) return;
+            if (!selectedCam2 || !captureState.active) { setVisionActive2(false); return; }
             addLog("VISION", `Switching Secondary Camera ID: ${selectedCam2.slice(0, 8)}...`);
             try {
                 if (videoRef2.current && videoRef2.current.srcObject) {
@@ -2950,10 +3059,8 @@ function App() {
 
                 if (selectedCam2.startsWith("BRAIN_")) {
                     const brainId = selectedCam2.replace("BRAIN_", "");
+                    await axios.post(`${API_BASE}/v1/vision/active_camera2`, { cam_id: brainId });
                     setVisionActive2(true);
-                    try {
-                        await axios.post(`${API_BASE}/v1/vision/active_camera2`, { cam_id: brainId });
-                    } catch (e) { }
                     if (videoRef2.current) videoRef2.current.srcObject = null;
                     return;
                 }
@@ -2980,7 +3087,11 @@ function App() {
             }
         }
         startCamera2();
-    }, [selectedCam2]);
+        return () => {
+            secondaryStreamRef.current?.getTracks().forEach(track => track.stop());
+            secondaryStreamRef.current = null;
+        };
+    }, [selectedCam2, captureState.active]);
 
     // Ensure video streams stay attached across re-renders
     useEffect(() => {
@@ -3077,7 +3188,7 @@ function App() {
 
     const handleSend = async (textOverride = null) => {
         const text = textOverride || inputText;
-        if (!text.trim()) return;
+        if (!text.trim() || isProcessing) return;
 
         // Attach pending STT audio to user message if available
         const userAudio = pendingAudioUrl;
@@ -3102,8 +3213,12 @@ function App() {
                 setCurrentSessionId(sessionId);
                 addLog("SYSTEM", `New Session Created: ${sessionId.slice(0, 8)}`);
             } catch (err) {
-                console.error("Session creation failed, using temporary session", err);
-                sessionId = "temp-fallback-session";
+                const detail = `Session creation failed: ${runtimeError(err)}`;
+                addLog('SYSTEM', detail);
+                setMessages(prev => [...prev, { role: 'system', content: detail, timestamp: new Date() }]);
+                setInputText(text);
+                setIsProcessing(false);
+                return;
             }
         }
 
@@ -3116,7 +3231,10 @@ function App() {
             user_audio_url: userAudio  // Send STT audio URL for session persistence
         };
 
+        let fallbackStarted = false;
         const performFallbackPost = async (errorReason) => {
+            if (fallbackStarted) return;
+            fallbackStarted = true;
             addLog("SYSTEM", `WS Stream Unavailable (${errorReason}). Falling back to HTTP POST...`);
             try {
                 const response = await axios.post(API_URL, payload);
@@ -3194,6 +3312,7 @@ function App() {
         let ws = null;
         let wsTimeout = null;
         let wsConnected = false;
+        let streamFinished = false;
         let botTextAccumulated = '';
 
         try {
@@ -3238,6 +3357,7 @@ function App() {
                         ));
                     } 
                     else if (data.event === 'done') {
+                        streamFinished = true;
                         addLog("NEXUS", "Stream complete.");
                         const finalResponse = data.response;
                         const affective_state = data.affective_state;
@@ -3292,9 +3412,13 @@ function App() {
                         setIsProcessing(false);
                     } 
                     else if (data.event === 'error') {
-                        addLog("SYSTEM", `WebSocket Stream Error: ${data.text}`);
+                        streamFinished = true;
+                        const detail = data.message || data.text || 'Runtime generation failed';
+                        addLog("SYSTEM", `WebSocket Stream Error: ${detail}`);
+                        setMessages(prev => prev.map(message => message.id === placeholderId ?
+                            { ...message, content: `Generation failed: ${detail}`, streaming: false } : message));
+                        setIsProcessing(false);
                         try { ws.close(); } catch (_) {}
-                        performFallbackPost(data.text);
                     }
                 } catch (e) {
                     console.error("Error processing WebSocket message:", e);
@@ -3312,6 +3436,11 @@ function App() {
             ws.onclose = () => {
                 if (wsConnected) {
                     addLog("SYSTEM", "WebSocket stream connection closed.");
+                    if (!streamFinished)
+                        setMessages(prev => prev.map(message => message.id === placeholderId ? {
+                            ...message, streaming: false,
+                            content: 'Connection lost. The server may still finish this request; reopen the session before retrying.'
+                        } : message));
                     setIsProcessing(false);
                 }
             };
@@ -3460,6 +3589,8 @@ function App() {
                 {/* Agent0Core Command Center - Top of Page */}
                 <div className="w-full border-b border-accent-cyan/50 bg-ic-bg/90 backdrop-blur shrink-0">
                     <IntelligencePanel status={modelStatus} />
+                    {connectionError && <div role="alert" className="px-4 py-2 text-red-300 text-sm">{connectionError}</div>}
+                    <CaptureControls state={captureState} busy={captureBusy} onToggle={toggleCapture} unavailable={!!connectionError} />
                     <div className="flex justify-end px-4 pb-3">
                         <button
                             onClick={() => setActivePage(activePage === 'main' ? 'config' : 'main')}
@@ -4164,6 +4295,9 @@ function App() {
                         onRefresh={() => fetchSystemStatus(true)}
                         telemetry={telemetry}
                         onOpenConfiguration={() => setActivePage('config')}
+                        captureState={captureState}
+                        captureBusy={captureBusy}
+                        onCaptureToggle={toggleCapture}
                     />
 
                     {/* Lightbox Modal */}

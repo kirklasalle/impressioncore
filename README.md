@@ -2,8 +2,8 @@
 
 > **"Democratizing AI, One GPU at a Time™"**  
 > **Official Public Portal:** [https://kirklasalle.github.io/impressioncore/](https://kirklasalle.github.io/impressioncore/)  
-> **Grand Market Intelligence & Global Analysis:** [`docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md`](file:///d:/Projects/impressioncore/docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md)  
-> **Commercial & Dual-Tier Licensing:** [`docs/COMMERCIAL_LICENSING.md`](file:///d:/Projects/impressioncore/docs/COMMERCIAL_LICENSING.md)
+> **Grand Market Intelligence & Global Analysis:** [`docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md`](docs/strategic/GRAND_MARKET_AND_COMPETITIVE_LANDSCAPE_2026.md)  
+> **Commercial & Dual-Tier Licensing:** [`docs/COMMERCIAL_LICENSING.md`](docs/COMMERCIAL_LICENSING.md)
 
 [![Live Website](https://img.shields.io/badge/Live%20Portal-GitHub%20Pages-00f0ff.svg)](https://kirklasalle.github.io/impressioncore/)
 [![License: MIT](https://img.shields.io/badge/License-MIT%20(B--Series)-yellow.svg)](LICENSE)
@@ -15,7 +15,25 @@
 [![MCP Servers](https://img.shields.io/badge/MCP%20Servers-8%20Active-brightgreen.svg)](#-8-server-mcp-ecosystem)
 [![GTX 1050 Ti Optimized](https://img.shields.io/badge/GTX%201050%20Ti-Optimized%20(<4GB)-orange.svg)](https://www.nvidia.com/en-us/geforce/graphics-cards/geforce-gtx-1050-ti/)
 
+![ImpressionCore Architecture and Verified Engineering Overview](docs/assets/impressioncore_github_heroshot.png)
+
 ---
+
+## Current verified status — November 2, 2026
+
+This notice qualifies earlier achievement, screenshot, hardware, quality, and market claims below. They are not current production certifications. See the [comprehensive audit](docs/analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) and [operator guidance](docs/user/user_guide.md).
+
+- **Separate applications:** Builder uses port 5000; the Triad runtime uses 8000 and the React sensory interface uses 5173. At the audit snapshot, 8000/5173 were live and 5000 was not listening; that alone is not a Builder failure.
+- **React integration repaired:** the supervised loopback gateway authenticates HTTP, media and WebSockets with a server-only credential; protected direct API requests still require authentication. CORS applies to errors. The actual browser completed a real chat turn with the existing InternVL2-1B, without replacing its weights or the Kinect driver.
+- **Kinect and speech:** explicit Start/Stop camera capture, measured fresh color/depth/skeleton streams, and a rendered 480x360 browser preview were verified. A frame-release defect that exhausted SDK buffers after six frames was fixed. RGB/IR exclusion is reported, not presented as two independent cameras. Optional CPU Whisper `tiny.en` is installed/cached and ready but not listening; real speech accuracy and visual-language understanding are not certified.
+- **Builder is a research path:** B1/B2/B3 offerings are reference presets, not certified executable native mappings. A live B1-named project constructed a **4,567,641-parameter native B3** model on tiny synthetic 24/8 train/validation records and generated incoherent text; this does not demonstrate B1 identity or quality improvement. Triad InternVL2-1B is separate from native Builder execution.
+- **Validation:** focused Python regressions, gateway tests, frontend lint/build, native Builder JavaScript validation, and an isolated browser train/evaluate/generate/export/reopen workflow pass. Missing/mock real-model readiness now fails closed. Native runs include measured identity, objective and hashed checkpoint/export provenance; unsupported offering executions are explicitly uncertified.
+
+Launch the sensory application from the repository root with `.\.venv310\Scripts\python.exe src\dev_tools\scripts\run_local_runtime.py`, then open `http://127.0.0.1:5173`. Camera capture starts off. Existing cached LLM weights are used; downloads require explicit opt-in. See the [repair results and remaining gates](docs/analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026).
+
+Next gates: certified native B1/B2 execution and B3 reference dimensions, real held-out quality/provenance, visual/speech accuracy, measured peak-4GB mixed workloads, legacy CLI/archive deserialization cleanup, full CI `ruff`/`mypy` enforcement, and accessibility hardening. World-first, 10/10 quality, and market forecasts below remain unverified assertions or historical projections.
+
+> **Security & Correctness Update (November 16, 2026 — `v1.0.1`):** Completed Phase 1–3 engineering hardening: Flask Builder (`src/interfaces/web/server.py`) binds `127.0.0.1` with `debug=False` by default, uses `get_allowed_origins()` CORS, enforces `IMPRESSIONCORE_API_KEY` (`X-API-Key`) or session auth on `/api/*`, confines Workbench file reads (`bounded_file`), uses `weights_only=True` for active checkpoint loads, fixes B3 causal attention/FAISS retrieval and TurboQuant non-pow2/passthrough behavior, replaces XOR fallbacks with `AESGCM`/`ChaCha20Poly1305` AEAD, fixes `AESEncryption.decrypt_file` EOF loop, replaces `eval()`/`os.system()`, adds live `GuardianAgent` checks, and updates `Dockerfile.python`/dependencies. See [CHANGELOG.md](CHANGELOG.md) and [BUILDER_PLATFORM_AUDIT_20261102.md](docs/analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#immediate-blockers--phase-23-remediation-addendum--november-16-2026).
 
 ## 🌟 **Project Overview**
 
@@ -114,6 +132,8 @@ ImpressionCore standardizes on four canonical model tiers alongside the C1 Triad
 ![ImpressionCore Model Matrix and 10-Step Builder Workflow](docs/assets/model_lineup_and_builder_flow.png)
 
 ### **Canonical Model Matrix**
+
+> **Reference Preset Note:** The table below documents the canonical architectural target matrix. Currently registered UI offering defaults in [`src/core/config/presets.py`](src/core/config/presets.py) carry larger reference dimensions (`hiddenSize` 768 / 832 / 3072 / 4096) and are marked `unavailable` (`b1_39m`, `b2_50m`) or `reference_only` (`b3_504m`, `b3_3b`) in the Workbench until certified native adapters exist.
 
 | Model Tier | Parameters | Hidden Dim | Layers | Heads | Context Window | Max Seq Len | Target Hardware | Primary Use Case |
 |---|---|---|---|---|---|---|---|---|

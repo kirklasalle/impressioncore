@@ -183,7 +183,7 @@ class VRGCBridge:
                 "sacred_covenant": "PROTECTED"
             }
         
-        return [TextContent(type="text", text=json.dumps(result, indent=2))]
+        return [TextContent(type="text", text=json.dumps(result, indent=2, default=str))]
     
     def get_bridge_info(self) -> Dict[str, Any]:
         """Get bridge information."""

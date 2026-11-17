@@ -53,7 +53,9 @@ Notes:
 - Thread-safe implementation
 """
 
+import ast
 import logging
+import operator
 import re
 from pathlib import Path
 from typing import Dict, List, Tuple, Any, Callable, Optional, Set, Union
@@ -62,6 +64,67 @@ from dataclasses import dataclass, field
 from .uks import UniversalKnowledgeStore, KnowledgeNode
 
 logger = logging.getLogger(__name__)
+
+_SAFE_BIN_OPS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.FloorDiv: operator.floordiv,
+    ast.Mod: operator.mod,
+    ast.Pow: operator.pow,
+}
+_SAFE_UNARY_OPS = {ast.UAdd: operator.pos, ast.USub: operator.neg, ast.Not: operator.not_}
+_SAFE_CMP_OPS = {
+    ast.Eq: operator.eq,
+    ast.NotEq: operator.ne,
+    ast.Lt: operator.lt,
+    ast.LtE: operator.le,
+    ast.Gt: operator.gt,
+    ast.GtE: operator.ge,
+}
+_SAFE_FUNCS = {"min": min, "max": max, "abs": abs, "round": round}
+
+
+def _safe_eval_formula(formula: str, env: Dict[str, Any]) -> Any:
+    """Evaluate an arithmetic/boolean rule formula safely using an AST allowlist."""
+    if not isinstance(formula, str):
+        raise ValueError("Formula must be a string")
+    tree = ast.parse(formula, mode="eval")
+
+    def _eval_node(node: ast.AST) -> Any:
+        if isinstance(node, ast.Expression):
+            return _eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float, bool, str)):
+            return node.value
+        if isinstance(node, ast.Name):
+            if node.id not in env:
+                raise KeyError(f"Unknown symbol: {node.id}")
+            return env[node.id]
+        if isinstance(node, ast.BinOp) and type(node.op) in _SAFE_BIN_OPS:
+            return _SAFE_BIN_OPS[type(node.op)](_eval_node(node.left), _eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in _SAFE_UNARY_OPS:
+            return _SAFE_UNARY_OPS[type(node.op)](_eval_node(node.operand))
+        if isinstance(node, ast.BoolOp):
+            if isinstance(node.op, ast.And):
+                return all(_eval_node(v) for v in node.values)
+            if isinstance(node.op, ast.Or):
+                return any(_eval_node(v) for v in node.values)
+        if isinstance(node, ast.Compare):
+            left = _eval_node(node.left)
+            for op, comp in zip(node.ops, node.comparators):
+                if type(op) not in _SAFE_CMP_OPS:
+                    raise ValueError(f"Unsupported comparison operator: {type(op).__name__}")
+                right = _eval_node(comp)
+                if not _SAFE_CMP_OPS[type(op)](left, right):
+                    return False
+                left = right
+            return True
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in _SAFE_FUNCS and not node.keywords:
+            return _SAFE_FUNCS[node.func.id](*(_eval_node(a) for a in node.args))
+        raise ValueError(f"Disallowed AST expression node: {type(node).__name__}")
+
+    return _eval_node(tree)
 
 @dataclass
 class Rule:
@@ -611,15 +674,10 @@ class RuleEngine:
                 if not node:
                     return
                     
-                # Simple formula evaluation with node attributes
+                # Safe AST formula evaluation with node attributes (no eval)
                 try:
-                    # Create a local environment with node attributes
                     env = {**node.get_all_attributes(), **context}
-                    
-                    # Evaluate formula in the environment
-                    result = eval(formula, {"__builtins__": {}}, env)
-                    
-                    # Set the computed attribute
+                    result = _safe_eval_formula(formula, env)
                     node.add_attribute(attribute, result)
                 except Exception:
                     logger.error(f"Error computing attribute '{attribute}' for node '{node_label}'")

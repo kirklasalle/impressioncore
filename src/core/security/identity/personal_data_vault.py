@@ -66,7 +66,7 @@ class AccessLevel(Enum):
     PUBLIC = "public"
     RESTRICTED = "restricted"
     CONFIDENTIAL = "confidential"
-    SECRET = "secret"
+    SECRET = "secret"  # nosec B105
 
 class DataStatus(Enum):
     """Data entry status"""

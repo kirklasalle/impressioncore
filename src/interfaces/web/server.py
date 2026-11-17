@@ -7,6 +7,7 @@ blueprints and starts the server. Optimized for memory-constrained environments
 (e.g., GTX 1050 Ti 4GB VRAM).
 """
 
+import hmac
 import os
 import sys
 import warnings
@@ -26,9 +27,10 @@ src_path = os.path.join(project_root, 'src')
 if src_path not in sys.path:
     sys.path.insert(0, src_path)
 
-from flask import Flask, jsonify, render_template, request, send_from_directory, g
+from flask import Flask, jsonify, render_template, request, send_from_directory, g, session
 from flask_cors import CORS
 
+from src.core.config.cors_config import get_allowed_origins
 from src.core.utils.rich_logging import get_rich_logger
 from src.core.utils.tokenizer_utils import generate_text, load_generative_model_and_tokenizer
 
@@ -54,6 +56,7 @@ try:
     from interfaces.web.routes.metrics import metrics_bp
     from interfaces.web.routes.builder import builder_bp
     from interfaces.web.routes.builder_views import builder_views_bp
+    from interfaces.web.routes.workbench import workbench_bp
     WEB_BLUEPRINT_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Route blueprints not fully available: {e}")
@@ -72,14 +75,20 @@ def create_app() -> Flask:
     import secrets
     app.secret_key = os.environ.get('FLASK_SECRET_KEY') or secrets.token_hex(32)
     
-    # Enable CORS for API endpoints
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    # Enable CORS for API endpoints using centralized origin allowlist
+    CORS(app, resources={r"/api/*": {"origins": get_allowed_origins()}}, supports_credentials=True)
 
-    # Request Trace hooks
+    # Request Trace and API key enforcement hooks
     @app.before_request
     def before_request():
         g.start_time = time.time()
-        logger.info(f"Trace Request: {request.remote_addr} - {request.method} {request.url} - Query: {dict(request.args)}")
+        logger.info(f"Trace Request: {request.remote_addr} - {request.method} {request.path}")
+        api_key = os.environ.get("IMPRESSIONCORE_API_KEY", "").strip()
+        if api_key and request.path.startswith("/api/") and request.method != "OPTIONS":
+            supplied = request.headers.get("X-API-Key", "")
+            has_key = bool(supplied) and hmac.compare_digest(supplied.encode(), api_key.encode())
+            if not has_key and "user" not in session:
+                return jsonify({"success": False, "error": "Invalid or missing Builder API credentials"}), 401
 
     # Prevent stale HTML on hard refresh and log trace response
     @app.after_request
@@ -137,6 +146,7 @@ def create_app() -> Flask:
         app.register_blueprint(metrics_bp)
         app.register_blueprint(builder_bp)
         app.register_blueprint(builder_views_bp)
+        app.register_blueprint(workbench_bp)
 
         # Alias blueprint endpoints to unprefixed names for legacy templates.
         for rule in app.url_map.iter_rules():
@@ -165,5 +175,9 @@ if __name__ == "__main__":
     _logging.getLogger('werkzeug').addFilter(_FaviconFilter())
 
     app = create_app()
+    # Bind loopback-only by default and disable Werkzeug debugger unless explicitly enabled.
+    host = os.environ.get("IMPRESSIONCORE_BUILDER_HOST", "127.0.0.1")
+    port = int(os.environ.get("IMPRESSIONCORE_BUILDER_PORT", "5000"))
+    debug = os.environ.get("IMPRESSIONCORE_DEBUG", "0") == "1"
     # use_reloader=False prevents double startup (pipeline loads once)
-    app.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False)
+    app.run(host=host, port=port, debug=debug, use_reloader=False)

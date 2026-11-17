@@ -1,0 +1,100 @@
+{
+  "audit_date": "2026-11-02",
+  "scope": "Read-only local runtime diagnosis and bounded readiness audit; not a security or scientific certification.",
+  "repository_inventory": {
+    "tracked_files": 5578,
+    "tracked_python_files": 2066,
+    "tracked_docs_and_readme": 2148,
+    "tracked_src_tests_files": 123,
+    "inventory_is_not_line_by_line_audit_coverage": true
+  },
+  "service_observations": {
+    "tcp_listeners": [
+      {"port": 5173, "bind": "0.0.0.0", "role": "React sensory client"},
+      {"port": 8000, "bind": "0.0.0.0", "role": "Triad API"}
+    ],
+    "builder_port_5000_listening_during_probe": false,
+    "public_root": {"path": "/", "status": 200, "reported_status": "ONLINE"},
+    "openapi": {"path": "/openapi.json", "status": 200},
+    "unauthenticated_hardware": {"path": "/v1/hardware", "status": 401},
+    "unauthenticated_model": {
+      "path": "/v1/model/status",
+      "status": 401,
+      "access_control_allow_origin_present": false
+    },
+    "cors_preflight": {
+      "origin": "http://localhost:5173",
+      "method": "OPTIONS",
+      "path": "/v1/hardware",
+      "status": 200,
+      "access_control_allow_origin": "http://localhost:5173"
+    },
+    "browser_fetch": {
+      "origin": "http://localhost:5173",
+      "public_root_status": 200,
+      "hardware_result": "Failed to fetch",
+      "model_result": "Failed to fetch"
+    },
+    "diagnosis": "The React requests do not supply X-API-Key. The outer authentication middleware returns 401 before the inner CORS middleware, obscuring the authentication failure as a browser CORS/network error."
+  },
+  "supplied_log_observations": {
+    "api_session_start": "2026-11-02T18:53:10",
+    "api_startup_complete": "2026-11-02T18:56:15",
+    "model": "OpenGVLab/InternVL2-1B",
+    "model_weights_loaded_and_vram_allocation_logged": true,
+    "kinect_sdk_sensor_count": 1,
+    "color_stream_logged": "YUV 640x480",
+    "depth_stream_logged": "320x240",
+    "skeleton_enabled_logged": true,
+    "face_tracking": "Initial path failed with 0x80070002; NULL-path retry succeeded.",
+    "camera_brightness_samples_logged": true,
+    "microphone": "Kinect USB Audio four-channel device enumerated through multiple host APIs.",
+    "faster_whisper_missing": true,
+    "limits": "Logs support backend operation, not a new independent frame/audio capture, sustained stream validation, inference quality test, or proof of native B1 execution."
+  },
+  "machine_metadata": {
+    "os": "Windows 10 Pro",
+    "os_build": "19045",
+    "gpu": "NVIDIA GeForce GTX 1050 Ti",
+    "driver": "582.78",
+    "gpu_total_mib": 4096,
+    "gpu_used_mib_snapshot": 2556,
+    "gpu_snapshot_is_not_a_peak_or_capacity_benchmark": true,
+    "kinect_bridge_bytes": 16896,
+    "kinect_bridge_file_version_available": false
+  },
+  "validation": [
+    {
+      "command": ".\\.venv310\\Scripts\\python.exe -m pytest src\\tests\\core\\test_workbench.py src\\tests\\core\\test_walkthrough_handoff.py src\\tests\\core\\test_runtime_mode_config.py src\\tests\\core\\test_cors_config.py -q",
+      "result": "77 passed; 2 existing SWIG deprecation warnings"
+    },
+    {
+      "working_directory": "src\\interfaces\\web_client",
+      "command": "npm run build",
+      "result": "Passed; existing outdated Browserslist data warning"
+    },
+    {
+      "working_directory": "src\\interfaces\\web_client",
+      "command": "npm run lint",
+      "result": "Failed with exit code 2: ESLint configuration missing",
+      "pre_existing_gate_failure": true
+    }
+  ],
+  "documentation_validation": {
+    "existing_documents_updated": 19,
+    "comprehensive_audit_report_added": true,
+    "added_or_current_local_references_checked": 68,
+    "local_reference_check": "passed",
+    "report_whitespace_check": "passed",
+    "scoped_git_diff_check": "passed",
+    "historical_reports_and_pointer_redirects_preserved": true
+  },
+  "safety": {
+    "drivers_or_models_changed": false,
+    "dependencies_installed": false,
+    "shared_services_restarted_or_stopped": false,
+    "training_started": false,
+    "camera_or_audio_stream_requested_by_audit": false,
+    "credentials_recorded": false
+  }
+}

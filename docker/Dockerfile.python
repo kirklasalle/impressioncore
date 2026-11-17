@@ -38,8 +38,13 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy the full source tree.
 COPY src/ ./src/
 COPY agent0core/ ./agent0core/
-COPY main.py ./
+COPY run_server.py ./
 COPY .env.example ./
+
+RUN useradd --create-home --shell /bin/bash appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
 
 ENV PYTHONPATH=/app \
     PYTHONUNBUFFERED=1 \

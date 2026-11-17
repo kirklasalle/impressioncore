@@ -3,12 +3,38 @@ import sys
 import time
 import torch
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from src.interfaces import api_state
 from src.orchestrator.system_logger import log_event
 from src.orchestrator.sensory_intelligence import sensory_intel
 
 router = APIRouter()
+
+
+def _find_kinect(vision):
+    if not vision:
+        return None
+    caps = getattr(vision, "caps", {}) or {}
+    kinect = caps.get(98) or caps.get("98")
+    if kinect:
+        return kinect
+    return next((cap for cap in caps.values() if hasattr(cap, "get_stream_health")), None)
+
+
+def _kinect_stream_health(vision):
+    kinect = _find_kinect(vision)
+    if not kinect or not hasattr(kinect, "get_stream_health"):
+        return {
+            "status": "NOT_DETECTED",
+            "capture_active": False,
+            "physical_sensor_count": None,
+            "physical_sensor_identity": None,
+            "logical_stream_count": 0,
+            "streams": {},
+        }
+    return kinect.get_stream_health()
+
 
 class RuntimeModeRequest(BaseModel):
     avatar_mode_preference: str | None = None
@@ -38,6 +64,7 @@ async def get_hardware_status():
 
     cameras = []
     health = "HEALTHY"
+    kinect_health = _kinect_stream_health(getattr(triad, "vision", None))
 
     if triad.vision:
         try:
@@ -54,30 +81,39 @@ async def get_hardware_status():
 
                 cameras.append({
                     "id": idx,
-                    "active": is_active,
+                    "active": (
+                        any(s.get("fresh") for s in kinect_health["streams"].values())
+                        if str(idx) == "98" else is_active
+                    ),
                     "backend": meta.get("backend", "cv2"),
                     "model": label,
                     "vid_pid": meta.get("vid_pid"),
-                    "ptz_capabilities": meta.get("ptz_capabilities")
+                    "ptz_capabilities": meta.get("ptz_capabilities"),
+                    "physical_sensor": True,
+                    "stream_health": kinect_health if str(idx) == "98" else None,
                 })
                 log_event("API", f"HW Scan Cam {idx}: {label} | PTZ: {meta.get('ptz_capabilities')}")
 
-            if 98 in triad.vision.caps:
+            if 98 in triad.vision.caps or "98" in triad.vision.caps:
                 cameras.append({
                     "id": 105,
-                    "active": triad.vision.depth_active if hasattr(triad.vision, "depth_active") else True,
+                    "active": bool(kinect_health["streams"].get("depth", {}).get("fresh")),
                     "backend": "KINECT_DEPTH",
                     "model": "Xbox 360 Kinect [Depth Stream]",
                     "vid_pid": "045e_02ae",
-                    "ptz_capabilities": {"pan": False, "tilt": True, "motor_control": True}
+                    "ptz_capabilities": {"pan": False, "tilt": True, "motor_control": True},
+                    "logical_stream": True,
+                    "physical_sensor_identity": kinect_health.get("physical_sensor_identity"),
                 })
                 cameras.append({
                     "id": 106,
-                    "active": triad.vision.ir_active if hasattr(triad.vision, "ir_active") else True,
+                    "active": bool(kinect_health["streams"].get("ir", {}).get("fresh")),
                     "backend": "KINECT_IR",
                     "model": "Xbox 360 Kinect [Infrared Stream]",
                     "vid_pid": "045e_02ae",
-                    "ptz_capabilities": {"pan": False, "tilt": True, "motor_control": True}
+                    "ptz_capabilities": {"pan": False, "tilt": True, "motor_control": True},
+                    "logical_stream": True,
+                    "physical_sensor_identity": kinect_health.get("physical_sensor_identity"),
                 })
         except Exception as e:
             log_event("API", f"Hardware Probe Error: {e}", level="WARNING")
@@ -87,6 +123,9 @@ async def get_hardware_status():
         "vision_active": triad.vision_active,
         "vision_health": health,
         "detected_cameras": cameras,
+        "physical_sensor_count": len(getattr(getattr(triad, "vision", None), "caps", {}) or {}),
+        "kinect_physical_sensor_count": kinect_health["physical_sensor_count"],
+        "logical_streams": kinect_health["streams"],
         "vram_mode": triad.simultaneous_load,
         "hardware_telemetry": triad.get_hardware_status()
     })
@@ -96,7 +135,17 @@ async def get_model_status():
     """Returns detailed information about the active LLM."""
     triad = api_state.triad_instance
     if not triad:
-        raise HTTPException(status_code=503, detail="Triad not initialized")
+        startup = getattr(api_state, "runtime_startup", {}) or {}
+        phase = str(startup.get("phase", "INITIALIZING")).upper()
+        error = startup.get("error")
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "message": "Triad not initialized",
+                "phase": phase,
+                "error": error,
+            },
+        )
     return triad.get_model_status()
 
 @router.get("/v1/runtime/modes")
@@ -138,7 +187,20 @@ async def get_system_all_status(refresh: bool = False):
     kinect_adapter = api_state.kinect_fusion_adapter
     try:
         if not triad:
-            return {"status": "BUSY", "components": {"triad": "OFFLINE"}}
+            startup = getattr(api_state, "runtime_startup", {}) or {}
+            phase = str(startup.get("phase", "INITIALIZING")).upper()
+            error = startup.get("error")
+            status = "FAILED" if phase == "FAILED" or error else "INITIALIZING"
+            return JSONResponse(
+                status_code=503,
+                content=api_state.sanitize_numpy({
+                    "status": status,
+                    "loading_phase": phase,
+                    "initialization_error": error,
+                    "timestamp": time.time(),
+                    "components": {"triad": status},
+                }),
+            )
 
         if refresh and triad.vision:
             refresh_fn = getattr(triad.vision, "refresh_hardware", None)
@@ -171,33 +233,35 @@ async def get_system_all_status(refresh: bool = False):
         except Exception as me:
             log_event("API", f"Model check failed: {me}")
 
+        audio_inventory = []
         mic_count = 0
         try:
-            intel_source = triad.vision.sensory if (triad.vision and hasattr(triad.vision, 'sensory')) else sensory_intel
-            if intel_source and hasattr(intel_source, 'device_tree'):
-                audio_devs = intel_source.device_tree.get("Audio inputs and outputs", [])
-                processed_families = set()
-                for dev in audio_devs:
-                    name = dev.get("name", "").lower()
-                    family = None
-                    if "playstation" in name or "eye" in name or ("usb" in name and "camera" in name):
-                        family = "pseye"
-                    elif "kinect" in name:
-                        family = "kinect"
+            from src.orchestrator.audio_engine import audio_device_identity, summarize_audio_devices
 
-                    if family:
-                        if family not in processed_families:
-                            mic_count += 4
-                            processed_families.add(family)
-                    else:
-                        base_name = name.split('(')[0].strip()
-                        if base_name and base_name not in processed_families:
-                            mic_count += 1
-                            processed_families.add(base_name)
-
-            if mic_count == 0:
+            audio_engine = getattr(triad, "audio", None)
+            input_endpoints = list(getattr(audio_engine, "devices", None) or [])
+            if not input_endpoints:
                 import sounddevice as sd
-                mic_count = len(sd.query_devices())
+                for index, device in enumerate(sd.query_devices()):
+                    channels = int(device.get("max_input_channels") or 0)
+                    if channels <= 0:
+                        continue
+                    name = device.get("name", "")
+                    input_endpoints.append({
+                        "name": name,
+                        "channels": channels,
+                        "provider": device.get("hostapi", "unknown"),
+                        "index": index,
+                        "device_identity": audio_device_identity(name),
+                        "is_kinect": "kinect" in name.lower(),
+                        "is_eye": (
+                            "playstation" in name.lower()
+                            or "ps eye" in name.lower()
+                            or "eye toy" in name.lower()
+                        ),
+                    })
+            audio_inventory = summarize_audio_devices(input_endpoints)
+            mic_count = len(audio_inventory)
         except Exception as ae:
             log_event("API", f"Audio Scan Failed: {ae}", level="WARNING")
 
@@ -214,6 +278,7 @@ async def get_system_all_status(refresh: bool = False):
         if kinect_adapter:
             kinect_adapter.refresh(getattr(triad, "vision", None))
             kinect_fusion = kinect_adapter.get_status()
+        kinect_health = _kinect_stream_health(getattr(triad, "vision", None))
 
         return api_state.sanitize_numpy({
             "status": overall_status,
@@ -227,6 +292,9 @@ async def get_system_all_status(refresh: bool = False):
                     "active": triad.vision is not None,
                     "health": vision_diag.get("status", "UNKNOWN"),
                     "cameras_detected": camera_count,
+                    "physical_sensor_count": camera_count,
+                    "kinect_physical_sensor_count": kinect_health["physical_sensor_count"],
+                    "kinect_streams": kinect_health,
                     "conflicts": vision_diag.get("conflicts", [])
                 },
                 "intelligence": {
@@ -237,6 +305,8 @@ async def get_system_all_status(refresh: bool = False):
                 },
                 "sensory": {
                     "microphones": mic_count,
+                    "audio_input_devices": audio_inventory,
+                    "microphone_identity_basis": "normalized provider/name; endpoint aliases may share an identity",
                     "pnp_inventory_size": pnp_size
                 }
             },

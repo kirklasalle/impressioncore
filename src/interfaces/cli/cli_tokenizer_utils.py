@@ -81,6 +81,7 @@ Notes:
 - Thread-safe implementation
 """
 
+import ast
 import logging
 
 import numpy as np
@@ -133,10 +134,10 @@ except ImportError:
 
         """
         print(f"[DUMMY] Loading token_ids from {input_file}")
-        with open(input_file) as f:
-            # Attempt to eval, very unsafe for real use, placeholder for dummy
+        with open(input_file, encoding='utf-8') as f:
             try:
-                return eval(f.read())
+                parsed = ast.literal_eval(f.read())
+                return parsed if isinstance(parsed, list) else []
             except Exception:
                 return []
 

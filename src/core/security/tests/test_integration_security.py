@@ -15,6 +15,7 @@ import pytest
 import tempfile
 import shutil
 import os
+import secrets
 import sqlite3
 import threading
 import time
@@ -23,15 +24,16 @@ from unittest.mock import Mock, patch, AsyncMock
 from datetime import datetime, timedelta
 
 # Import security components
-from security.monitoring import SecurityMonitoringOrchestrator
-from security.dashboard import SecurityDashboardOrchestrator
-from security.authentication import AuthenticationManager
-from security.encryption import EncryptionManager
-from security.privacy import PrivacyControlsManager
-from security.identity import DigitalIdentityManager
+from src.core.security.monitoring import SecurityMonitoringOrchestrator
+from src.core.security.dashboard import SecurityDashboardOrchestrator
+from src.core.security.authentication import AuthenticationManager
+from src.core.security.encryption import EncryptionManager
+from src.core.security.privacy import PrivacyControlsManager
+from src.core.security.identity import DigitalIdentityManager
 
 # Import core utilities
 from src.core.utils.rich_logging import RichLogger
+from src.core.utils.temp_paths import get_temp_dir
 
 
 class SecurityIntegrationTestSuite:
@@ -73,7 +75,7 @@ class SecurityIntegrationTestSuite:
         """Set up the complete test environment."""
         try:
             # Create temporary directory
-            self.temp_dir = tempfile.mkdtemp(prefix="security_integration_test_")
+            self.temp_dir = tempfile.mkdtemp(prefix="security_integration_test_", dir=str(get_temp_dir()))
             self.logger.info(f"Created test environment: {self.temp_dir}")
             
             # Create test database
@@ -200,7 +202,7 @@ class SecurityIntegrationTestSuite:
         test_user = {
             'username': 'test_user_integration',
             'email': 'test@impressioncore.local',
-            'password': 'SecureTestPassword123!',
+            'password': os.getenv('IMPRESSIONCORE_TEST_PASSWORD', secrets.token_urlsafe(16)),
             'role': 'user'
         }
         

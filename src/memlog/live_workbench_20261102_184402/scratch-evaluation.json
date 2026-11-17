@@ -1,0 +1,10 @@
+{
+  "loss": 10.262543797492981,
+  "perplexity": 28639.546816208454,
+  "samples": 8,
+  "dataset_sha256": "68ffb73acda5bbdcd8a59034a2df4173a09e7ac1a28ce6f5fe96e7879e115bce",
+  "run_id": "c9af53851adf41dba966e2a560f66b8f",
+  "objective": "prefix_next_token",
+  "measured_at": "2026-11-02T23:45:21.004689+00:00",
+  "device": "cpu"
+}

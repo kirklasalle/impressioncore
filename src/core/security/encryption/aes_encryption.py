@@ -465,14 +465,14 @@ class AESEncryption:
                 # Read all encrypted chunks first to get the tag
                 chunks = []
                 while True:
-                    try:
-                        chunk_len = int.from_bytes(infile.read(4), 'big')
-                        chunk = infile.read(chunk_len)
-                        if len(chunk) != chunk_len:
-                            break
-                        chunks.append(chunk)
-                    except:
+                    len_bytes = infile.read(4)
+                    if len(len_bytes) < 4:
                         break
+                    chunk_len = int.from_bytes(len_bytes, 'big')
+                    chunk = infile.read(chunk_len)
+                    if len(chunk) != chunk_len:
+                        break
+                    chunks.append(chunk)
                 
                 # Last chunk should be the authentication tag
                 if not chunks:

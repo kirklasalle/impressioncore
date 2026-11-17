@@ -53,6 +53,16 @@ Note: These items are mirrored within their respective categories below. This se
 
 ## 2026-2027 Active Execution Documentation Control
 
+### Current evidence and navigation — November 2, 2026
+
+- [Builder platform audit and repair addendum](analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md): historical blockers, verified implementation results, remaining model/hardware limits, and qualified market comparison.
+- [Canonical operator guide](user/user_guide.md#current-operating-status--november-2-2026): Builder 5000 versus runtime 8000/React 5173, authenticated API/CORS troubleshooting, and hardware evidence limits.
+- [Local startup instructions](user/user_guide.md#start-the-repaired-local-sensory-runtime) and [repair verification](../src/memlog/runtime_repair_20261102_195218/REPAIR-REPORT.md): guarded loopback services, explicit capture, real browser inference and optional speech readiness.
+- [Canonical next steps](process/next_steps.md#current-execution-priorities--november-2-2026) and [release gates](process/EXECUTION_APPENDIX_2026_2027.md#current-status-delta-and-release-gates--november-2-2026): delivered local P0/P1 foundations versus remaining offering certification, scientific, accuracy, peak-memory and public deployment work.
+- [Documentation entry point](README.md) and [mirror synchronization record](process/MIRROR_SYNC_CHECKLIST_20260718.md#november-2-2026-status-notice-cycle): maintained navigation and update scope.
+
+Earlier file counts, completion labels, screenshots, market forecasts, and quality/hardware claims in this index and linked historical documents are not current readiness evidence. Preserve archives; use dated current-status notices to qualify active entry points.
+
 Canonical execution backlog:
 
 - docs/process/EXECUTION_APPENDIX_2026_2027.md

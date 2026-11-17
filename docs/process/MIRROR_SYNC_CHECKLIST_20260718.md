@@ -55,3 +55,28 @@ Provide a single operational checklist to keep canonical and mirror documentatio
 - Changelog mirror mode: transitional
 - User guide mirror mode (docs/user_guide.md): transitional
 - User guide mirror mode (docs/user_guide/user_guide.md): pointer-only
+
+## November 2, 2026 status-notice cycle
+
+### Subsequent implementation synchronization
+
+- Updated canonical operator guide and full-body maintained mirror with the
+  repaired supervisor/gateway, explicit Kinect lifecycle, optional speech
+  setup and exact remaining limits. Refreshed pointer-only canonical links and
+  target-validation metadata; no historical bodies were purged.
+- Updated root/documentation entries, index, administration, PRD, roadmap,
+  next steps, execution appendix and four public HTML status notices.
+- Appended a repair addendum to the audit rather than rewriting the original
+  pre-repair evidence. Added the dated repair report and sanitized runtime
+  counters/status evidence; no service keys, camera frames or recordings.
+- Added canonical changelog entry. Existing historical model/market/training
+  qualifications still apply; their linked audit now opens with current repairs.
+- IDS rebuild/search validation remains unperformed, not implicitly certified.
+
+### Original audit-only update
+
+- Canonical current-evidence notices added to `docs/user/user_guide.md`, `docs/process/next_steps.md`, `docs/process/development_roadmap.md`, `docs/process/EXECUTION_APPENDIX_2026_2027.md`, and `docs/reference/prd.md`.
+- Maintained full-body user-guide mirror `docs/user_guide.md` received the same notice with location-correct links. Existing pointer-only guides, PRD, roadmap, and next-step mirrors remain unchanged; the historical July metadata above is not a new validation claim.
+- Root README, docs README, documentation index, administration troubleshooting, four public HTML entry pages, and the active 2026 model/market documents received scoped evidence qualifications. Historical bodies and archives were preserved.
+- Current evidence and acceptance gates: [platform audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md). No runtime fixes, driver/model/capture changes, or production certification are implied by this documentation cycle.
+- IDS rebuild/search validation and canonical changelog synchronization are not performed by this bounded documentation update; do not interpret this record as completion of those operational checks.

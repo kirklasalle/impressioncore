@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "d3c0663d86e342c986678975753e0308",
+    "name": "B1 Hope 39M experiment - LIVE TESTING",
+    "revision": 4,
+    "created_at": "2026-11-02T23:31:51.040387+00:00",
+    "updated_at": "2026-11-02T23:47:44.062070+00:00",
+    "offering": "b1_39m",
+    "model": {
+      "activation": "gelu",
+      "architecture": "transformer",
+      "contextWindow": 4096,
+      "flashAttention": false,
+      "heads": 12,
+      "hiddenSize": 768,
+      "intermediateSize": 3072,
+      "layers": 8,
+      "precision": "fp16",
+      "preset": "b1_39m",
+      "rope": true,
+      "vocabSize": 50257
+    },
+    "native_config": {
+      "audio_embed_dim": 64,
+      "b3_ultra": false,
+      "dropout": 0.1,
+      "embed_dim": 64,
+      "expert_dim": 96,
+      "experts_per_token": 2,
+      "image_embed_dim": 64,
+      "max_seq_length": 128,
+      "mhc_iterations": 20,
+      "num_experts": 4,
+      "num_heads": 4,
+      "num_layers": 2,
+      "phoneme_vocab_size": 256,
+      "use_gradient_checkpointing": false,
+      "use_mhc": true,
+      "vocab_size": 28000
+    },
+    "dataset": {
+      "format": "text",
+      "path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\train.txt",
+      "text_field": "text",
+      "validation_path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\validation.txt"
+    },
+    "tokenizer": {
+      "path": "D:\\Projects\\impressioncore\\src\\training\\tokenizers\\b3_conversation_tokenizer_28k\\tokenizer.json"
+    },
+    "training": {
+      "batchSize": 1,
+      "checkpoint_run_id": "c9af53851adf41dba966e2a560f66b8f",
+      "device": "cpu",
+      "epochs": 1,
+      "gradAccumSteps": 4,
+      "learningRate": 5e-05,
+      "maxSteps": 2,
+      "mode": "finetune",
+      "seed": 42,
+      "sequenceLength": 32
+    },
+    "notes": "LIVE WORKFLOW ACCEPTANCE TEST \u2014 2026-11-02. B1 Hope remains a reference offering only. Execution is a SMALL native ImpressionCore B3 text research configuration, NOT a verified B1 architecture or a 39M-parameter certification. Original project revision 1 backed up in src/memlog/live_workbench_20261102_184402/original_project.json. Inputs: 24 original synthetic engineering sentences for training, 8 distinct held-out sentences; existing local 28,000-token tokenizer. CPU, FP32, microbatch 1, bounded optimizer steps. Objective: one prefix-next-token target per record, not full causal LM. Purpose: exercise save/preflight/train/checkpoint/evaluate/generate/export and compatible fine-tuning; not language-quality benchmarking.\n\nLIVE OUTCOME: scratch run c9af53851adf41dba966e2a560f66b8f completed 6/6 steps; compatible fine-tune run 71a68a5f9ccc460ba8e8d77880a03638 completed 2/2 steps. Measured parameter count: 4,567,641. Held-out prefix-target CE: scratch 10.262544 (PPL 28639.55), fine-tune 10.263847 (PPL 28676.90), 8 records each; no quality improvement demonstrated. Both checkpoints generated 16 new tokens; output incoherent as expected from this tiny scratch test. Native ZIP bundles and hashes independently verified; 104 state tensors changed after fine-tuning. Screenshots, inputs, original settings, exported configuration and report: src/memlog/live_workbench_20261102_184402. Browser download events were unavailable in the integrated tool; UI export fetched data and authenticated localhost downloads were saved separately."
+  }
+}

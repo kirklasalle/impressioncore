@@ -1,0 +1,28 @@
+# ImpressionCore B2 Enhanced/Optimized Training Config (Phase 1 Step 2)
+# Date: 2025-07-06
+# Author: GitHub Copilot
+#
+# This config is designed for full-scale, enhanced, and optimized B2 training.
+# Adjust epochs, steps, and curriculum as needed for your hardware and dataset size.
+
+output_dir: F:/models/b2_enhanced_checkpoints
+embed_dir: F:/b2_embeddings
+manifest_dir: F:/b2_datasets
+batch_size: 4  # Increase if VRAM allows
+lr: 1.5e-4
+head_lr_multiplier: 6.0
+loss_weight_sentiment: 0.5
+loss_weight_intent: 0.5
+loss_weight_quality: 0.2
+dropout: 0.22
+core_dropout: 0.13
+epochs: 24
+max_steps: 1200
+curriculum_epochs: 6
+gradient_clip: 1.0
+early_stopping_patience: 8
+precision: amp
+quantization: 8bit
+log_interval: 20
+val_interval: 1
+# Add any additional advanced options as needed

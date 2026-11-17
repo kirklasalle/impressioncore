@@ -1,0 +1,32 @@
+# ImpressionCore-b1 Evaluation Configuration
+# Last updated: 2025-05-21
+# Responsible: GitHub Copilot
+
+model_architecture_config: "configs/impressioncore_b1_arch.yaml" # Path to the model architecture
+checkpoint_path: "models/impressioncore-b1-checkpoints/latest/checkpoint.pth" # Path to the model checkpoint to evaluate, or "latest"
+
+# Evaluation Dataset Configuration
+dataset:
+  type: "dummy_multimodal"
+  text_data_path: "data/dummy_eval_text_corpus.txt" # Example path for evaluation text data
+  image_data_path: "data/dummy_eval_images/"      # Example path for evaluation image data
+  text_sequence_length: 512
+  image_size: 224
+  num_samples: 50 # Number of samples for evaluation dataset
+
+# Evaluation Parameters
+evaluation_params:
+  batch_size: 4 # Batch size for evaluation
+  metrics: ["loss", "accuracy_placeholder"] # List of metrics to compute
+
+# Output
+results:
+  output_dir: "results/impressioncore-b1-evaluation/"
+  results_filename: "evaluation_summary.json"
+
+# Hardware
+device: "cuda" # "cuda" or "cpu"
+
+# System Oversight (can be flags to enable/disable features during evaluation)
+system_oversight:
+  enabled: true

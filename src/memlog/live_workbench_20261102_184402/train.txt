@@ -1,0 +1,24 @@
+The local experiment records its configuration before training begins.
+A saved project keeps the model reference separate from executable dimensions.
+The scientist checks the dataset before starting a bounded experiment.
+The engineer saves the tokenizer path with the project configuration.
+Every experiment should record the source and hash of its training data.
+A checkpoint contains the native weights from a specific training run.
+The workspace reports measured loss rather than a simulated success score.
+The operator reviews memory requirements before allocating a model.
+Training from scratch starts with randomly initialized model weights.
+Fine tuning begins from compatible weights and starts a new optimizer.
+The training worker reports each completed optimizer step in its log.
+Gradient accumulation combines several small examples before an update.
+A held out dataset contains records that are absent from training.
+Evaluation measures prediction loss using the selected native checkpoint.
+The tokenizer converts each input sentence into a sequence of token identifiers.
+A prefix prediction experiment predicts one token after an input prefix.
+The native expert router attends across the available input prefix.
+This small test checks software behavior and does not establish language quality.
+The project records explicit limits on sequence length and optimizer steps.
+A configuration export contains settings but does not include dataset files.
+The artifact bundle preserves the checkpoint and exact tokenizer bytes.
+An interrupted run must not be reported as successfully completed.
+The operator starts generation only after selecting a durable checkpoint.
+Clear provenance helps another engineer reproduce the local workflow.

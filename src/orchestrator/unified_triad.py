@@ -121,9 +121,23 @@ class UnifiedBrainTriad(nn.Module):
             or "OpenGVLab/InternVL2-1B"
         )
         tokenizer_source = self.config.get("tokenizer_path", model_id)
+        model_revision = self.config.get("model_revision") or os.environ.get("IMPRESSIONCORE_MODEL_REVISION") or None
+        trusted_remote_models = {"OpenGVLab/InternVL2-1B"}
+        trust_remote_code = bool(
+            self.config.get("trust_remote_code")
+            if "trust_remote_code" in self.config
+            else (
+                os.environ.get("IMPRESSIONCORE_TRUST_REMOTE_CODE") == "1"
+                or model_id in trusted_remote_models
+                or os.path.isdir(str(model_id))
+            )
+        )
+        load_kwargs: dict[str, Any] = {"trust_remote_code": trust_remote_code}
+        if model_revision:
+            load_kwargs["revision"] = model_revision
         try:
             from transformers import AutoProcessor
-            self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+            self.processor = AutoProcessor.from_pretrained(model_id, **load_kwargs)
             if hasattr(self.processor, 'tokenizer'):
                 self.tokenizer = self.processor.tokenizer
             else:
@@ -187,14 +201,15 @@ class UnifiedBrainTriad(nn.Module):
                                 model_id,
                                 quantization_config=bnb_config,
                                 torch_dtype=torch.float16,
-                                trust_remote_code=True,
                                 device_map=None,
-                                low_cpu_mem_usage=False
+                                low_cpu_mem_usage=False,
+                                **load_kwargs,
                             )
                         return model.to(self.device).eval()
                     except Exception as e:
-                        log_event("TRIAD", f"Failed to load model {model_id} ({e}). Falling back to MockBrainModel.", level="WARNING")
-                        return MockBrainModel(self.tokenizer).to(self.device).eval()
+                        self.loading_phase = "FAILED"
+                        log_event("TRIAD", f"Failed to load real model {model_id}: {e}", level="ERROR")
+                        raise RuntimeError(f"Unable to load real model {model_id}: {e}") from e
                 finally:
                     torch.linspace = orig_linspace
 
@@ -306,6 +321,8 @@ class UnifiedBrainTriad(nn.Module):
         Broadcasts input to L/R/C simultaneously via ThreadPoolExecutor.
         Aggregates outputs solely via Colossus.
         """
+        if not self.get_model_status()["llm_loaded"]:
+            raise RuntimeError("Real model is not ready; generation is unavailable")
         log_event("TRIAD", f"Broadcasting input: {prompt} (Context: {len(history) if history else 0} msgs)")
 
         # 0. Swarm Context Injection
@@ -531,7 +548,7 @@ class UnifiedBrainTriad(nn.Module):
 
                     # Fallback for empty responses
                     if not txt or len(txt) < 1:
-                        txt = "...(Observing)..."
+                        raise RuntimeError(f"{name} produced an empty response")
 
                     self.nexus.execute(f"(LOG \"{name} Outcome: {txt[:50]}...\")")
                     return txt
@@ -540,7 +557,7 @@ class UnifiedBrainTriad(nn.Module):
                 import traceback
                 error_trace = traceback.format_exc()
                 log_event("TRIAD", f"{name} Generation Failed: {e}\n{error_trace}", level="ERROR")
-                return f"[Error in {name}]"
+                raise RuntimeError(f"{name} generation failed: {e}") from e
             finally:
                 if not self.simultaneous_load:
                     module.cpu()
@@ -834,6 +851,11 @@ class UnifiedBrainTriad(nn.Module):
         import torch
         model_id = self.config.get("model_id") or self.config.get("model_path") or "OpenGVLab/InternVL2-1B"
         quantization = self.config.get("quantization", "None")
+        modules = [getattr(self, name, None) for name in ("left", "right", "colossus")]
+        real_model = all(module is not None and not isinstance(module, MockBrainModel) for module in modules)
+        first_parameter = next(modules[0].parameters(), None) if real_model else None
+        ready = self.loading_phase == "READY" and real_model
+        phase = self.loading_phase if real_model else "UNAVAILABLE"
 
         # Calculate VRAM in GB
         vram_alloc = torch.cuda.memory_allocated() / 1e9 if torch.cuda.is_available() else 0
@@ -844,17 +866,17 @@ class UnifiedBrainTriad(nn.Module):
             "left_hemisphere": {
                 "role": "Logic/Analysis",
                 "model": "Shared (InternVL2)" if self.simultaneous_load else "Swapped",
-                "status": "ACTIVE" if self.loading_phase == "READY" else "LOADING"
+                "status": "ACTIVE" if ready else phase
             },
             "right_hemisphere": {
                 "role": "Creative/Visual",
                 "model": "Shared (InternVL2)" if self.simultaneous_load else "Swapped",
-                "status": "ACTIVE" if self.loading_phase == "READY" else "LOADING"
+                "status": "ACTIVE" if ready else phase
             },
             "colossus_cortex": {
                 "role": "Executive/Synthesis",
                 "model": "Shared (InternVL2)" if self.simultaneous_load else "Swapped",
-                "status": "ACTIVE" if self.loading_phase == "READY" else "LOADING"
+                "status": "ACTIVE" if ready else phase
             }
         }
 
@@ -871,9 +893,14 @@ class UnifiedBrainTriad(nn.Module):
                 "right": 0.95,
                 "colossus": 0.5
             },
-            "status": "NOMINAL",
-            "llm_loaded": self.loading_phase == "READY",
-            "loading_phase": self.loading_phase
+            "status": "NOMINAL" if ready else "UNAVAILABLE",
+            "llm_loaded": ready,
+            "model_kind": "external_pretrained" if real_model else "unavailable",
+            "implementation": type(modules[0]).__name__ if real_model else None,
+            "parameter_count": sum(parameter.numel() for parameter in modules[0].parameters()) if real_model else None,
+            "dtype": str(first_parameter.dtype) if first_parameter is not None else None,
+            "native_impressioncore": False,
+            "loading_phase": phase
         }
         return status
 

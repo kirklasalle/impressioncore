@@ -1,0 +1,419 @@
+{
+  "started_at": "2026-11-02T19:57:40.429248-05:00",
+  "camera_frames_saved": false,
+  "microphone_recordings_created": false,
+  "/health/live": {
+    "status": "ALIVE"
+  },
+  "/health/ready": {
+    "ready": true,
+    "phase": "READY"
+  },
+  "/v1/model/status": {
+    "model_name": "OpenGVLab/InternVL2-1B",
+    "quantization": null,
+    "device": "cuda (NVIDIA GeForce GTX 1050 Ti)",
+    "simultaneous_load": true,
+    "vram_allocated_gb": 2.069407744,
+    "vram_reserved_gb": 2.11812352,
+    "agents": {
+      "left_hemisphere": {
+        "role": "Logic/Analysis",
+        "model": "Shared (InternVL2)",
+        "status": "ACTIVE"
+      },
+      "right_hemisphere": {
+        "role": "Creative/Visual",
+        "model": "Shared (InternVL2)",
+        "status": "ACTIVE"
+      },
+      "colossus_cortex": {
+        "role": "Executive/Synthesis",
+        "model": "Shared (InternVL2)",
+        "status": "ACTIVE"
+      }
+    },
+    "temperatures": {
+      "left": 0.7,
+      "right": 0.95,
+      "colossus": 0.5
+    },
+    "status": "NOMINAL",
+    "llm_loaded": true,
+    "model_kind": "external_pretrained",
+    "implementation": "InternVLChatModel",
+    "parameter_count": 938158976,
+    "dtype": "torch.float16",
+    "native_impressioncore": false,
+    "loading_phase": "READY"
+  },
+  "unauthenticated_direct_api_status": 401,
+  "allowed_origin_401_is_cors_readable": true,
+  "foreign_origin_gateway_status": 403,
+  "speech": {
+    "available": true,
+    "model_loaded": true,
+    "running": false,
+    "last_error": null
+  },
+  "capture_start": {
+    "status": "active",
+    "active": true,
+    "detail": "Capture active for 1 configured camera device(s)."
+  },
+  "sustained_stream_samples": [
+    {
+      "timestamp": "2026-11-02T19:58:00.103730-05:00",
+      "status": "HEALTHY",
+      "capture_active": true,
+      "physical_sensor_count": 1,
+      "physical_sensor_identity": "kinect-v1:0",
+      "logical_stream_count": 4,
+      "streams": {
+        "color": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 16,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7040,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "depth": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 16,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 6993,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "ir": {
+          "requested": true,
+          "enabled": true,
+          "initialized": false,
+          "fresh": false,
+          "status": "UNAVAILABLE",
+          "frame_count": 0,
+          "last_frame_age_ms": null,
+          "last_frame_number": null,
+          "last_hresult": null,
+          "detail": "Kinect v1 color and infrared share a sensor path; RGB is open."
+        },
+        "skeleton": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 15,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 6998,
+          "last_hresult": "0x00000000",
+          "detail": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-11-02T19:58:04.195466-05:00",
+      "status": "HEALTHY",
+      "capture_active": true,
+      "physical_sensor_count": 1,
+      "physical_sensor_identity": "kinect-v1:0",
+      "logical_stream_count": 4,
+      "streams": {
+        "color": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 94,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7163,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "depth": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 94,
+          "last_frame_age_ms": 0.0,
+          "last_frame_number": 7116,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "ir": {
+          "requested": true,
+          "enabled": true,
+          "initialized": false,
+          "fresh": false,
+          "status": "UNAVAILABLE",
+          "frame_count": 0,
+          "last_frame_age_ms": null,
+          "last_frame_number": null,
+          "last_hresult": null,
+          "detail": "Kinect v1 color and infrared share a sensor path; RGB is open."
+        },
+        "skeleton": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 89,
+          "last_frame_age_ms": 0.0,
+          "last_frame_number": 7122,
+          "last_hresult": "0x00000000",
+          "detail": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-11-02T19:58:08.068130-05:00",
+      "status": "HEALTHY",
+      "capture_active": true,
+      "physical_sensor_count": 1,
+      "physical_sensor_identity": "kinect-v1:0",
+      "logical_stream_count": 4,
+      "streams": {
+        "color": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 173,
+          "last_frame_age_ms": 31.0,
+          "last_frame_number": 7279,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "depth": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 173,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7232,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "ir": {
+          "requested": true,
+          "enabled": true,
+          "initialized": false,
+          "fresh": false,
+          "status": "UNAVAILABLE",
+          "frame_count": 0,
+          "last_frame_age_ms": null,
+          "last_frame_number": null,
+          "last_hresult": null,
+          "detail": "Kinect v1 color and infrared share a sensor path; RGB is open."
+        },
+        "skeleton": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 166,
+          "last_frame_age_ms": 0.0,
+          "last_frame_number": 7237,
+          "last_hresult": "0x00000000",
+          "detail": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-11-02T19:58:11.315415-05:00",
+      "status": "HEALTHY",
+      "capture_active": true,
+      "physical_sensor_count": 1,
+      "physical_sensor_identity": "kinect-v1:0",
+      "logical_stream_count": 4,
+      "streams": {
+        "color": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 239,
+          "last_frame_age_ms": 31.0,
+          "last_frame_number": 7377,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "depth": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 239,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7330,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "ir": {
+          "requested": true,
+          "enabled": true,
+          "initialized": false,
+          "fresh": false,
+          "status": "UNAVAILABLE",
+          "frame_count": 0,
+          "last_frame_age_ms": null,
+          "last_frame_number": null,
+          "last_hresult": null,
+          "detail": "Kinect v1 color and infrared share a sensor path; RGB is open."
+        },
+        "skeleton": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 229,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7335,
+          "last_hresult": "0x00000000",
+          "detail": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-11-02T19:58:14.324897-05:00",
+      "status": "HEALTHY",
+      "capture_active": true,
+      "physical_sensor_count": 1,
+      "physical_sensor_identity": "kinect-v1:0",
+      "logical_stream_count": 4,
+      "streams": {
+        "color": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 300,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7467,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "depth": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 300,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7420,
+          "last_hresult": "0x00000000",
+          "detail": null
+        },
+        "ir": {
+          "requested": true,
+          "enabled": true,
+          "initialized": false,
+          "fresh": false,
+          "status": "UNAVAILABLE",
+          "frame_count": 0,
+          "last_frame_age_ms": null,
+          "last_frame_number": null,
+          "last_hresult": null,
+          "detail": "Kinect v1 color and infrared share a sensor path; RGB is open."
+        },
+        "skeleton": {
+          "requested": true,
+          "enabled": true,
+          "initialized": true,
+          "fresh": true,
+          "status": "STREAMING",
+          "frame_count": 286,
+          "last_frame_age_ms": 16.0,
+          "last_frame_number": 7425,
+          "last_hresult": "0x00000000",
+          "detail": null
+        }
+      }
+    }
+  ],
+  "capture_stop": {
+    "status": "stopped",
+    "active": false,
+    "detail": "Capture stopped; camera resources and cached frames were released."
+  },
+  "stopped_health": {
+    "status": "STOPPED",
+    "capture_active": false,
+    "physical_sensor_count": null,
+    "physical_sensor_identity": null,
+    "logical_stream_count": 4,
+    "streams": {
+      "color": {
+        "requested": null,
+        "enabled": null,
+        "initialized": false,
+        "fresh": false,
+        "status": "NOT_OPEN",
+        "frame_count": 0,
+        "last_frame_age_ms": null,
+        "last_frame_number": null,
+        "last_hresult": null,
+        "detail": "Capture is not open; sensor presence has not been probed."
+      },
+      "depth": {
+        "requested": null,
+        "enabled": null,
+        "initialized": false,
+        "fresh": false,
+        "status": "NOT_OPEN",
+        "frame_count": 0,
+        "last_frame_age_ms": null,
+        "last_frame_number": null,
+        "last_hresult": null,
+        "detail": "Capture is not open; sensor presence has not been probed."
+      },
+      "ir": {
+        "requested": null,
+        "enabled": null,
+        "initialized": false,
+        "fresh": false,
+        "status": "NOT_OPEN",
+        "frame_count": 0,
+        "last_frame_age_ms": null,
+        "last_frame_number": null,
+        "last_hresult": null,
+        "detail": "Capture is not open; sensor presence has not been probed."
+      },
+      "skeleton": {
+        "requested": null,
+        "enabled": null,
+        "initialized": false,
+        "fresh": false,
+        "status": "NOT_OPEN",
+        "frame_count": 0,
+        "last_frame_age_ms": null,
+        "last_frame_number": null,
+        "last_hresult": null,
+        "detail": "Capture is not open; sensor presence has not been probed."
+      }
+    }
+  },
+  "completed_at": "2026-11-02T19:58:17.820482-05:00"
+}

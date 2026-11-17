@@ -1,0 +1,8 @@
+The validation report identifies the checkpoint used for measurement.
+A separate evaluation shard supports an honest test of prediction behavior.
+An explicit confirmation precedes every resource consuming operation.
+The project history preserves the identity of each native experiment.
+Small smoke tests verify the workflow without proving model capability.
+The generation panel displays output from the selected local weights.
+The researcher compares measurements only when their objectives are compatible.
+A downloaded bundle should retain its configuration and provenance metadata.

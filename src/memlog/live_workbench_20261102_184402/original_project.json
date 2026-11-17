@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-02T23:31:51.040387+00:00",
+  "dataset": {"format": "text", "path": "", "text_field": "text", "validation_path": ""},
+  "id": "d3c0663d86e342c986678975753e0308",
+  "model": {"activation": "gelu", "architecture": "transformer", "contextWindow": 4096, "flashAttention": false, "heads": 12, "hiddenSize": 768, "intermediateSize": 3072, "layers": 8, "precision": "fp16", "preset": "b1_39m", "rope": true, "vocabSize": 50257},
+  "name": "B1 Hope 39M experiment - LIVE TESTING",
+  "native_config": null,
+  "notes": "",
+  "offering": "b1_39m",
+  "revision": 1,
+  "tokenizer": {"path": ""},
+  "training": {"batchSize": 1, "checkpoint_run_id": "", "device": "cpu", "epochs": 3, "gradAccumSteps": 8, "learningRate": 0.00005, "maxSteps": 100, "mode": "finetune", "seed": 42, "sequenceLength": 64},
+  "updated_at": "2026-11-02T23:31:51.040387+00:00"
+}

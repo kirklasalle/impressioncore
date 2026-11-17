@@ -1,4 +1,20 @@
-# Impression Core: Text and Image Tokenization Library
+# ImpressionCore Documentation
+
+## Current documentation entry point — November 2, 2026
+
+Implementation has followed the audit: the authenticated local runtime,
+real browser chat, explicit fresh Kinect capture, optional CPU Whisper
+readiness, native run/export identity and scoped lint/build are repaired.
+See the [repair results](analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026)
+and [local startup instructions](user/user_guide.md#start-the-repaired-local-sensory-runtime).
+The original audit snapshot is retained; model quality, native offering
+certification and peak-4GB mixed-workload gates remain open.
+
+The retained tokenization overview below is historical, not the current product-readiness statement. Start with the [canonical user guide](user/user_guide.md), [current platform audit](analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md), [canonical next steps](process/next_steps.md), [execution backlog](process/EXECUTION_APPENDIX_2026_2027.md), and [documentation index](DOCUMENTATION_INDEX.md).
+
+Builder (5000), runtime (8000), and React sensory UI (5173) are separate surfaces. The current React blocker is authenticated API/CORS error handling, not proof of disconnected cameras or absent weights. Native Builder execution remains a bounded text-only research workflow; preset names, screenshots, historical benchmarks, and market forecasts are not production certification. The obsolete `next_steps_roadmap.md` references and port-8000 demo instructions below are retained historical context; use the canonical links above instead.
+
+## Historical tokenization overview
 
 A Python library for efficient tokenization of both text and images using BPE (Byte-Pair Encoding) and learned patch-based tokenization.
 

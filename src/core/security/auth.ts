@@ -56,9 +56,13 @@ export const AuthService = {
             };
         }
 
+        if (!isProduction && (!userPass || !adminPass)) {
+            logger.warn('AUTH_DEFAULT_USER_PASSWORD or AUTH_DEFAULT_ADMIN_PASSWORD is not set; simulated login disabled for unconfigured accounts');
+        }
+
         const simulatedUsers: Record<string, { id: string; password?: string; name: string; roles: string[] }> = {
-            'user@example.com': { id: 'user-1', password: userPass || 'DevOnlyUser_ChangeInEnv!', name: 'Test User', roles: ['user'] },
-            'admin@example.com': { id: 'admin-1', password: adminPass || 'DevOnlyAdmin_ChangeInEnv!', name: 'Admin User', roles: ['user', 'admin'] },
+            'user@example.com': { id: 'user-1', password: userPass, name: 'Test User', roles: ['user'] },
+            'admin@example.com': { id: 'admin-1', password: adminPass, name: 'Admin User', roles: ['user', 'admin'] },
         };
 
         const userRecord = simulatedUsers[email];

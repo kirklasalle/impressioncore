@@ -35,6 +35,51 @@
 - [Disaster Recovery](#disaster-recovery)
 - [Best Practices](#best-practices)
 
+## Repaired local runtime operation - November 2, 2026
+
+The [repair addendum](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026)
+supersedes the pre-repair observations in the appendix below.
+
+- From the repository root run
+  `.\.venv310\Scripts\python.exe src\dev_tools\scripts\run_local_runtime.py`,
+  or use `start_full_stack_with_monitor.bat`. Open `http://127.0.0.1:5173`.
+  The batch launcher retains its prerequisite checks and uses the same supervisor.
+- Both services bind loopback. A memory-only service credential is shared
+  server-side by API and Vite, including media/WebSocket requests; it is not
+  published as browser configuration. Existing environment keys remain supported.
+  Occupied ports fail explicitly; the launcher never kills another service.
+- Default startup is cache-only. `--allow-downloads` permits missing model
+  downloads; `--monitor` includes the existing monitor. Stop the supervising
+  terminal with Ctrl+C to stop only its own children. This is a local development
+  boundary; a public deployment needs its own hardened authenticated gateway.
+- `/health/live` is public liveness. `/health/ready` returns 503 while initializing
+  or failed, and 200 only for real readiness. Heavy imports can delay socket
+  binding before background initialization. Protected direct requests still
+  require a key; a root 200 is not authorization.
+- Capture is off until **Start camera capture**. **Stop camera capture**
+  releases SDK resources/cache. Health polling must describe stopped capture
+  without opening hardware or claiming a missing sensor. RGB/IR share the
+  Kinect v1 path; fresh frame counts/ages, not initialized flags, prove streaming.
+- The existing external InternVL2-1B produced a real browser reply; no LLM
+  weights or Kinect drivers were replaced. Optional CPU Whisper `tiny.en`
+  is installed/cached, available but not listening. Optional installation/cache
+  instructions are in the [operator guide](../user/user_guide.md#start-the-repaired-local-sensory-runtime).
+- Treat current native run hashes/identity as provenance, not offering or
+  quality certification. B1/B2 execution and named B3 reference sizes remain
+  uncertified. Preserve historical checkpoints; do not load untrusted legacy
+  pickle-based artifacts as a workaround.
+
+## Pre-repair troubleshooting appendix — November 2, 2026
+
+This appendix qualifies older production-readiness and platform-support statements without replacing the existing operational procedures or local changes. See the [current audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) and [canonical operating guide](../user/user_guide.md#current-operating-status--november-2-2026).
+
+1. **Identify the service:** Builder 5000, Triad API 8000, React sensory UI 5173. At the audit snapshot only 8000/5173 were live. Port 5000 not listening is a service-state observation, not proof of a Builder code failure.
+2. **Separate reachability from authorization/CORS:** root returned 200; protected hardware/model status returned 401; correct-origin OPTIONS returned 200, but actual 401 responses lacked CORS headers. Browser “Failed to fetch” reproduces this boundary failure because frontend API-key integration is missing. Verify actual authenticated and rejected browser responses, not preflight alone. Implement an authenticated session/same-origin boundary and origin-appropriate CORS on errors; never disable authentication, use wildcard CORS as a workaround, or embed server secrets in JavaScript.
+3. **Do not reset working hardware to fix a web boundary:** supplied SDK logs show one sensor linked, YUV color 640×480, depth 320×240, skeleton initialization, successful face-tracking fallback, and brightness samples; model weights loaded. No drivers, models, or capture configuration were changed. These observations are not fresh-frame/browser-render or model-response acceptance tests. The legacy OS list on the Kinect SDK 1.8 page does not certify modern Windows support.
+4. **Verify capture in stages and with consent:** discovery → initialization → fresh timestamped frames → browser rendering, with explicit start/stop controls and device-specific RGB/IR constraints. Report missing STT dependency `faster_whisper` separately from camera or model state.
+5. **Require truthful model readiness:** distinguish mock/real/loading/unavailable/failed states; latent `MockBrainModel` READY must fail closed. Runtime InternVL2-1B is separate from native Builder training. The B1-named live test executed native B3 (4,567,641 parameters) on synthetic 24/8 records with incoherent output, not established quality gain or B1 identity.
+6. **Gate release claims:** 77 focused tests and sensory build passed; lint failed because ESLint configuration is missing. Require authenticated browser regressions, native configuration/count/tokenizer/checkpoint-hash provenance, causal-leakage/objective tests, disjoint held-out quality, and measured peak-4GB hardware benchmarks before production claims.
+
 ## Overview
 
 ImpressionCore is a brain-inspired multimodal AI framework designed for deployment on consumer hardware. This guide provides comprehensive system administration procedures for installing, configuring, and maintaining ImpressionCore in production environments.
@@ -232,6 +277,42 @@ IMPRESSIONCORE_FORCE_CPU=0
 ```
 
 ## Configuration Management
+
+### Windows launcher storage preflight
+
+Both `launch_impressioncore.bat` and `launch_builder.bat` validate the external
+storage before starting services. The default root is `F:\`, with required
+directories `F:\models` and `F:\data`. A missing drive stops startup; the frontend
+running on port 5173 alone does not mean the backend is available.
+
+If startup reports "Data drive not found":
+
+1. Reconnect/power on the external drive and check its cable and Windows Disk
+   Management. Restore the expected drive letter only after confirming the volume
+   is the correct one. Do not initialize or format the drive.
+2. Verify that both `F:\models` and `F:\data` are accessible. Do not replace missing
+   storage with empty directories or switch to incomplete local copies.
+3. Run the shared check from the repository root:
+   ```powershell
+   .\.venv310\Scripts\python.exe -m src.core.config.data_paths
+   .\launch_impressioncore.bat --checks-only
+   ```
+4. Once checks pass, rerun the appropriate launcher. The full-stack launcher opens
+   browser URLs only after the backend serves the public system monitor page.
+   The Builder preserves a failing server exit code instead of reporting success.
+
+Only when storage has **intentionally moved**, set the root containing **both**
+`models` and `data` before launching (not the `data` subdirectory itself):
+
+```powershell
+$env:IMPRESSIONCORE_DATA_DRIVE = 'X:\ImpressionCoreStorage'
+.\launch_builder.bat
+```
+
+Native launchers inherit environment variables from their parent shell; the
+Docker `.env` example above is not automatically loaded by these batch files.
+Warnings about missing `faster_whisper`, emotion detection, or face recognition
+refer to optional capabilities and are separate from the fatal storage check.
 
 ### Core Configuration
 

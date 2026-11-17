@@ -71,6 +71,15 @@ htmlcov/
 
 # Ghost directories (recreated by VS Code / tooling)
 config/
+!src/core/config/
+!src/core/config/**
+src/core/config/*.pointer
+src/core/config/requirements - Copy.txt
+src/core/config/training_launch_status.json
+src/core/config/training_system_test_results.json
+src/core/config/f_drive_config.json
+src/core/config/phase4_production_*.json
+src/core/config/__pycache__/
 history/
 
 # Tool / agent caches
@@ -78,6 +87,7 @@ history/
 .cache/
 .goliath_backups/
 .goliath_logs/
+.mypy_cache/
 .pytest_cache/
 .ruff_cache/
 

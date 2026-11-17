@@ -81,8 +81,8 @@ def _quantize_state_dict(
         if mode == "fp16":
             quantized[name] = tensor.half()
         elif mode == "int8":
-            scale = tensor.abs().max() / 127.0
-            quantized[name] = (tensor / scale).round().to(torch.int8)
+            scale = (tensor.abs().max() / 127.0).clamp(min=1e-8)
+            quantized[name] = (tensor / scale).round().clamp(-127, 127).to(torch.int8)
             quantized[f"{name}.__scale__"] = scale.float()
         else:  # fp32
             quantized[name] = tensor.float()

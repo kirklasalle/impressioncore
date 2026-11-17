@@ -5,6 +5,24 @@
 This file is a mirror. Canonical changelog: docs/reference/CHANGELOG.md.
 Sync policy: docs/process/DOCUMENTATION_CANONICALIZATION_PLAN_20260718.md.
 
+## [1.0.1] - 2026-11-16
+
+See the [canonical changelog](reference/CHANGELOG.md#101---2026-11-16) and
+[remediation addendum](analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#immediate-blockers-remediation-addendum--november-16-2026)
+for Builder server hardening (`SEC-01`), safe checkpoint loading (`SEC-02`),
+Workbench path confinement (`SEC-03`), B3 causal attention fixes (`CRIT-01`),
+TurboQuant/export quantization fixes (`CRIT-02`, `CRIT-03`), and Phase 2/3
+cryptographic, AST evaluator, Guardian, FAISS, Docker, and portability hardening
+(`SEC-04`..`SEC-06`, `ARCH-01`..`ARCH-03`, `CRIT-05`, `NOV-01`, `DOC-01`).
+
+## [Unreleased] - 2026-11-02
+
+See the [canonical repair changelog](reference/CHANGELOG.md#unreleased---2026-11-02)
+for local authentication/readiness, real browser chat, explicit Kinect lifecycle,
+optional speech readiness, native experiment provenance and verification.
+This transitional mirror retains older entries below; current results and
+remaining limits are in the [repair addendum](analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026).
+
 ## [Unreleased] - 2026-08-26
 
 ### Added & Governance

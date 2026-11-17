@@ -10,6 +10,24 @@
 
 ---
 
+## Current evidence qualification — November 2, 2026
+
+**Repair delta:** the local authenticated browser boundary, fail-closed real
+readiness, existing-LLM browser chat, fresh rendered Kinect capture with explicit
+Start/Stop, optional CPU Whisper readiness, measured native experiment/export
+identity and passing scoped lint/build are now implemented and exercised.
+The [repair addendum](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026)
+supersedes the pre-repair integration observations below. These are bounded local
+acceptance results, not full production/quality/native-offering certification.
+
+This notice supersedes achievement/readiness interpretations of the historical summary and requirements below. Requirements and forecasts are not measured results. World-first, 10/10 conversation quality, zero-OOM, universal sub-4GB, and market claims are not established current facts. See the [current platform audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) and [execution acceptance gates](../process/EXECUTION_APPENDIX_2026_2027.md#current-status-delta-and-release-gates--november-2-2026).
+
+The native Builder is a bounded text-only research workflow; B1/B2/B3 offerings are references rather than certified executable identities. A live B1-named project ran a 4,567,641-parameter native B3 model with synthetic 24/8 records and incoherent generation, without demonstrated quality gain. Runtime Triad InternVL2-1B is distinct.
+
+React/runtime integration remains blocked: root/preflight 200 does not override protected hardware/model 401, missing frontend API-key integration, and missing CORS on actual errors. Supplied logs establish Kinect linkage/stream initialization, successful face-tracking fallback, brightness samples, and model-weight loading—not authenticated browser rendering/inference. STT lacks `faster_whisper`. Builder 5000 was not listening while runtime 8000/React 5173 were live; this alone is not a Builder failure.
+
+Production acceptance requires an authenticated session/same-origin boundary, CORS-correct error handling and browser regressions, fail-closed real/mock readiness, native configuration/count/tokenizer/checkpoint-hash identity, causal-leakage/objective tests, consent-based fresh-frame Kinect rendering with RGB/IR constraints, provenance/held-out quality, measured peak-4GB benchmarks, and passing lint. Do not disable authentication, use wildcard CORS as a workaround, or expose credentials in browser JavaScript. Seventy-seven focused tests and the sensory build passed; missing ESLint configuration prevented lint success, so no production certification follows.
+
 ## Executive Summary
 
 ImpressionCore is a brain-inspired multimodal AI framework delivering enterprise capabilities on consumer hardware through the 39M Parameter Foundation and protection-first design. It achieves 10/10 conversation quality with <1GB VRAM on GTX 1050 Ti and preserves complete B3 architecture within constitutional constraints.

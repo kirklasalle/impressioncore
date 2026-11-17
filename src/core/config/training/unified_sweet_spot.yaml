@@ -1,0 +1,27 @@
+# Unified Sweet Spot External Training Configuration
+# Override fields selectively. Any unspecified keys fall back to internal defaults.
+training:
+  batch_size: 2
+  learning_rate: 5e-5
+  weight_decay: 0.01
+  warmup_steps: 100
+  max_steps: 10000
+  save_every: 500
+  log_every: 10
+  gradient_accumulation_steps: 4
+  max_grad_norm: 1.0
+  fp16: true
+  validate_every: 500
+  validation_batches: 8
+  prefetch: 2
+  use_prefetch: true
+  metrics:
+    rolling_window: 100
+    tensorboard: true
+    tensorboard_logdir: runs/unified_sweet_spot
+  early_stopping:
+    enabled: false
+    patience: 5
+    min_delta: 0.0001
+  safety:
+    checkpoint_temp_write: true

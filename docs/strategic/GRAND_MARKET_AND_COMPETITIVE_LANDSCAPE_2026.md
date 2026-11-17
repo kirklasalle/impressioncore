@@ -9,6 +9,12 @@
 
 ---
 
+## Evidence qualification — November 2, 2026
+
+The August strategy below is retained as historical positioning and scenario modelling, not verified current market data, revenue, adoption, valuation, competitive superiority, or product certification. TAM/SAM/SOM, CAGR and revenue forecasts require cited sources, dates, segment definitions, overlap controls, and explicit assumptions. World-first, 10/10 quality, complete multimodal operation, and universal sub-4GB assertions are not established current facts.
+
+Read the [current audit and sourced market comparison](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) before relying on these claims. Current priorities are authenticated browser/API integration, truthful real/mock readiness, native model identity/provenance, scientific and Kinect acceptance tests, measured hardware/held-out quality evidence, and a passing lint release gate—not treating projected differentiation as delivered capability.
+
 ## Executive Strategic Brief: The Sovereign Edge Revolution
 
 The global artificial intelligence landscape in 2026 has reached a decisive historical inflection point. The initial era of unconstrained, parameter-chasing hyperscaler computing—characterized by massive multi-hundred-billion parameter monolithic models confined to centralized cloud server farms—is colliding with severe economic, thermodynamic, and regulatory ceilings. High inference latency, recurring token subscription overheads, escalating data sovereignty concerns under the EU AI Act, and catastrophic cloud privacy risks have triggered a worldwide paradigm shift toward **Sovereign, Local-First, Edge Computing**.

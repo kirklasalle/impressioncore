@@ -16,6 +16,32 @@ This appendix is the canonical execution backlog for the next delivery cycle. It
 - docs/architecture/IMPRESSIONCORE_C_BRAIN_TRIAD_ARCHITECTURE.md
 - docs/analysis_reports/B_SERIES_BUILDER_DASHBOARD_SECOND_DRAFT_20260718_191233.md
 
+## Current status delta and release gates — November 2, 2026
+
+This update qualifies prior checked tasks below; completion of route contracts or mocked low-VRAM tests is not real GPU, camera, model-quality, or React integration certification. See the [current audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) and [prioritized next steps](next_steps.md#current-execution-priorities--november-2-2026).
+
+**Implementation delta:** local authenticated gateway/readiness, real browser chat,
+native measured experiment/checkpoint/export identity, explicit prefix objective,
+fresh rendered Kinect capture with Start/Stop, optional CPU Whisper readiness,
+and scoped lint/build have been delivered. The requirements table below remains
+the release gate, not a declaration of full completion. Native offering
+certification, model-forward causal isolation, useful held-out quality, actual
+visual/speech accuracy, measured peak-4GB concurrent workloads and production
+hardening remain open. See [verified repairs](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026).
+
+| Priority | Deliverable | Required acceptance evidence |
+|---|---|---|
+| P0 | Authenticated session/same-origin browser/API boundary and CORS error handling | Authorized hardware/model/inference success; readable 401 failures; allowed/disallowed-origin browser regressions; no disabled authentication, wildcard workaround, or browser-embedded secrets |
+| P0 | Truthful real/mock readiness | Mock/unavailable/failed states cannot assert real READY; authenticated real-model response |
+| P1 | Native offering identity registry | Executable configuration, measured count, tokenizer identity, checkpoint hashes, and offering ID agree |
+| P1 | Scientific training/evaluation objective | Causal-leakage regression tests; objective-labelled metrics and disjoint held-out evaluation |
+| P1 | Kinect lifecycle | Discovery, initialization, fresh frames, rendering, consent-based start/stop, and RGB/IR constraints independently verified |
+| P1 | Quality/hardware/release evidence | Dataset/checkpoint provenance, held-out quality, measured peak-4GB benchmarks, and passing lint |
+
+Original audit observation (before repair): root and correct-origin OPTIONS returned 200; protected hardware/model returned 401 without actual-response CORS headers, reproducing browser fetch failure. SDK logs show one linked Kinect, initialized streams, successful face-tracking fallback and brightness; model weights loaded, but STT lacks `faster_whisper`. No driver/model/capture changes were made. Ports 8000/5173 were live; 5000 was not listening, not itself a Builder failure.
+
+Validation: 77 focused tests and sensory frontend build passed; lint failed because ESLint configuration is missing. A B1-named project executed native B3 with 4,567,641 parameters on synthetic 24/8 records and incoherent output: neither native B1 identity nor quality gain was established. Triad InternVL2-1B is separate; latent mock READY must fail closed.
+
 ## Workstreams and Deliverables
 
 ## WS1 - B-Series Productization (B1 39M, B2 50M, B3 504M)

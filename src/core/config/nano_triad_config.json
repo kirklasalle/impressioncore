@@ -1,0 +1,10 @@
+{
+    "tokenizer_path": "OpenGVLab/InternVL2-1B",
+    "left_model_path": "OpenGVLab/InternVL2-1B",
+    "right_model_path": "OpenGVLab/InternVL2-1B",
+    "colossus_path": "OpenGVLab/InternVL2-1B",
+    "simultaneous_load": true,
+    "quantization": "4bit",
+    "vector_dim": 2048,
+    "max_context": 8192
+}

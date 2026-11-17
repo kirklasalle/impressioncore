@@ -14,7 +14,20 @@
 
 _Last Updated: 2026-07-18 by @GitHubCopilot_
 
-## 2026-07-18 Immediate Execution Window (Now -> 14 Days)
+## Current execution priorities — November 2, 2026
+
+This dated update supersedes the older immediate windows below; retain them as history. Evidence and comparisons: [current platform audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md).
+
+1. **Delivered - local authenticated boundary and truthful readiness:** guarded same-origin gateway, server-only credentials for HTTP/media/WebSockets, CORS on errors, fail-closed actual model loading and explicit startup/generation errors. Real browser chat with the existing external InternVL2-1B succeeded. Public production hosting and comprehensive hardening remain separate.
+2. **Delivered - native experiment provenance:** measured implementation/configuration/count/tokenizer/objective and checkpoint/export hashes. B1/B2 execution is unavailable and B3 reference sizes uncertified; next implement and independently certify actual adapters without silently changing reference dimensions.
+3. **Delivered - explicit prefix objective; next scientific validation:** `prefix_next_token` construction excludes the chosen target/future suffix. Add real model-forward causal-isolation regressions and disjoint representative held-out quality before broader language-model/perplexity claims.
+4. **Delivered - local Kinect and speech readiness:** explicit capture, fresh increasing color/depth/skeleton counters, rendered browser preview, stop/resource release, truthful RGB/IR exclusion and physical/logical inventory. Fixed SDK buffer starvation. Optional CPU Whisper is installed/cached and ready but not listening. Next verify actual transcription accuracy and camera-to-model visual understanding with explicit recording/retention controls.
+5. **Next - hardware and quality gates:** reproducible dataset/checkpoint provenance, representative quality baselines, measured peak-memory/latency under concurrent 4GB workloads and sustained restart/capture testing. Tiny synthetic 24/8 records and incoherent native generation still prove no quality gain.
+6. **Next - production/release readiness:** lint/build now pass under a scoped correctness configuration. Expand accessibility and browser failure coverage, harden public hosting separately from local Vite, and address unsafe untrusted legacy checkpoint loading before wider distribution.
+
+The [repair addendum and verification report](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026) supersede the earlier 401/missing-STT/lint-blocked audit snapshot. Builder 5000 remains a separate service. Passing checks do not certify native offering identities, hardware fit, model quality or production readiness.
+
+## Historical: 2026-07-18 Immediate Execution Window (Now -> 14 Days)
 
 Execution owner: ImpressionCore Core Team  
 Tracking baseline: docs/process/EXECUTION_APPENDIX_2026_2027.md

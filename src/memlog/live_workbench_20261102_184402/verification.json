@@ -1,0 +1,61 @@
+{
+  "project_id": "d3c0663d86e342c986678975753e0308",
+  "project_name": "B1 Hope 39M experiment - LIVE TESTING",
+  "saved_revision": 4,
+  "scope": "Native B3 4.57M-parameter workflow acceptance test, NOT B1 Hope 39M certification.",
+  "runs": [
+    {
+      "mode": "scratch",
+      "run_id": "c9af53851adf41dba966e2a560f66b8f",
+      "state": "completed",
+      "steps": 6,
+      "actual_parameters": 4567641,
+      "final_training_loss": 10.271772384643555,
+      "evaluation": {
+        "loss": 10.262543797492981,
+        "perplexity": 28639.546816208454,
+        "samples": 8,
+        "dataset_sha256": "68ffb73acda5bbdcd8a59034a2df4173a09e7ac1a28ce6f5fe96e7879e115bce",
+        "run_id": "c9af53851adf41dba966e2a560f66b8f",
+        "objective": "prefix_next_token",
+        "measured_at": "2026-11-02T23:45:21.004689+00:00",
+        "device": "cpu"
+      },
+      "checkpoint_sha256": "9d909c0b81107cfa6ddc6c2e158fb434cb9f126299491436ea2b4df1e810c2a4",
+      "tokenizer_sha256": "1207a55e0c3a508bf9c64bfc1d0e41b3ef2611a2d03e00bb524b9c0b4a0120dd",
+      "training_sha256": "22b65847d1cc36d691de3f4de1cdb3241badafc4a79a730b495f82f18bf68495",
+      "zip": "scratch-artifacts.zip",
+      "zip_bytes": 20309718,
+      "zip_sha256": "f9c340a2a1b61a4259ae9364cd4d1f08740fd6d8a3393cab00f1799b37743752"
+    },
+    {
+      "mode": "finetune",
+      "run_id": "71a68a5f9ccc460ba8e8d77880a03638",
+      "state": "completed",
+      "steps": 2,
+      "actual_parameters": 4567641,
+      "final_training_loss": 10.087340593338013,
+      "evaluation": {
+        "loss": 10.263847351074219,
+        "perplexity": 28676.904343505008,
+        "samples": 8,
+        "dataset_sha256": "68ffb73acda5bbdcd8a59034a2df4173a09e7ac1a28ce6f5fe96e7879e115bce",
+        "run_id": "71a68a5f9ccc460ba8e8d77880a03638",
+        "objective": "prefix_next_token",
+        "measured_at": "2026-11-02T23:46:33.077035+00:00",
+        "device": "cpu"
+      },
+      "checkpoint_sha256": "f8556cb8c2a3c8668748e33e91e3f59c12ffa83daf06e71cf2a965a19fcbde63",
+      "tokenizer_sha256": "1207a55e0c3a508bf9c64bfc1d0e41b3ef2611a2d03e00bb524b9c0b4a0120dd",
+      "training_sha256": "22b65847d1cc36d691de3f4de1cdb3241badafc4a79a730b495f82f18bf68495",
+      "zip": "finetune-artifacts.zip",
+      "zip_bytes": 20309499,
+      "zip_sha256": "ee00317c06fe3a0041c664ebe92b4bf63a5e4d17e2ac7078428e36d07424fb61"
+    }
+  ],
+  "changed_state_tensors_after_finetune": 104,
+  "training_records": 24,
+  "heldout_records": 8,
+  "device": "cpu",
+  "downloads": "UI export fetched the bundle; integrated browser download event unavailable. Authenticated localhost API downloads independently saved and verified."
+}

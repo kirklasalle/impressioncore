@@ -1,0 +1,247 @@
+# B3 Training Configuration for GTX 1050 Ti
+# ==========================================
+#
+# Optimized configuration for ImpressionCore B3 training on GTX 1050 Ti (4GB VRAM)
+# This configuration balances performance with memory constraints while targeting 10/10 quality
+
+# Training Configuration
+training:
+  # Memory Optimization
+  batch_size: 8 # Optimal for 4GB VRAM
+  gradient_accumulation_steps: 4 # Effective batch size of 32
+  mixed_precision: true # Essential for memory efficiency
+  gradient_checkpointing: true # Reduce memory at cost of computation
+  max_sequence_length: 1024 # Conservative length for stability
+
+  # Training Dynamics
+  learning_rate: 5.0e-5 # Conservative for stability
+  warmup_steps: 500 # Gradual learning rate increase
+  max_epochs: 20 # Allow sufficient training time
+  evaluation_frequency: 100 # Regular quality monitoring
+  save_frequency: 500 # Checkpoint management
+  quality_target: 10.0 # Target conversation quality
+  early_stopping_patience: 3 # Stop if no improvement for 3 evaluations
+
+  # Hardware Constraints
+  max_vram_gb: 3.5 # Reserve 0.5GB for system overhead
+  device: "cuda" # GPU acceleration
+  num_workers: 2 # Limited CPU cores for data loading
+
+# Model Architecture (GTX 1050 Ti Optimized)
+model:
+  # Core Architecture
+  embed_dim: 768 # Standard transformer dimension
+  num_heads: 12 # Attention heads
+  num_layers: 6 # Reduced from 8 for memory
+  vocab_size: 50257 # GPT-2 vocabulary size
+  dropout: 0.1 # Regularization
+
+  # Mixture of Experts (Memory Optimized)
+  num_experts: 6 # Reduced from 8
+  expert_dim: 1536 # Reduced from 2048
+  experts_per_token: 2 # Active experts per token
+
+  # Memory Features
+  use_gradient_checkpointing: true
+  use_mixed_precision: true
+  use_flash_attention: false # May not be available on GTX 1050 Ti
+
+# Unified Tokenizer Configuration
+tokenizer:
+  use_unified_tokenizer: true # Enable DialoGPT + GPT-2 hybrid
+  conversation_focus: true # Optimize for conversation understanding
+  multimodal_integration: true # Support for all modalities
+  cache_embeddings: true # Speed up repeated tokenization
+  max_cache_size: 10000 # Limit cache for memory
+
+# Dataset Configuration
+data:
+  # F: Drive Paths
+  f_drive_datasets: "F:/data/datasets"
+  f_drive_models: "F:/models"
+  f_drive_cache: "F:/data/training/cache"
+
+  # Data Loading
+  max_samples_per_modality: 5000 # GTX 1050 Ti memory limit
+  prefetch_factor: 2 # Data loading optimization
+  pin_memory: true # Faster GPU transfer
+
+  # Preprocessing
+  preprocess_images: true # Resize to 224x224
+  preprocess_audio: true # Convert to mel-spectrograms
+  preprocess_text: true # Tokenize and cache
+
+# Training Phases
+phases:
+  # Phase 1: Single Modal Training
+  single_modal:
+    text:
+      epochs: 5
+      focus: "conversation_understanding"
+      datasets: ["text/conversational", "text/qa", "text/dialogue"]
+
+    image:
+      epochs: 3
+      focus: "visual_understanding"
+      datasets: ["vision/classification", "vision/captioning"]
+
+    audio:
+      epochs: 3
+      focus: "speech_understanding"
+      datasets: ["audio/speech", "audio/transcription"]
+
+  # Phase 2: Cross-Modal Training
+  cross_modal:
+    text_image:
+      epochs: 4
+      focus: "visual_question_answering"
+      datasets: ["multimodal/vqa", "multimodal/captioning"]
+
+    text_audio:
+      epochs: 4
+      focus: "speech_dialogue"
+      datasets: ["multimodal/speech_qa", "multimodal/audio_description"]
+
+    image_audio:
+      epochs: 3
+      focus: "audiovisual_understanding"
+      datasets: ["multimodal/video", "multimodal/audio_visual"]
+
+  # Phase 3: Full Multimodal Training
+  multimodal:
+    all_modalities:
+      epochs: 8
+      focus: "comprehensive_understanding"
+      datasets: ["multimodal/complete", "multimodal/conversation"]
+
+# Optimization Settings
+optimization:
+  # Optimizer
+  optimizer: "adamw"
+  weight_decay: 0.01
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_epsilon: 1.0e-8
+
+  # Learning Rate Schedule
+  lr_scheduler: "linear_warmup"
+  warmup_ratio: 0.1
+  min_lr: 1.0e-6
+
+  # Gradient Clipping
+  max_grad_norm: 1.0
+
+  # Memory Management
+  empty_cache_frequency: 100 # Clear CUDA cache regularly
+  gc_frequency: 1000 # Python garbage collection
+
+# Quality Monitoring
+quality:
+  # Target Metrics
+  target_quality_score: 10.0 # Conversation quality target
+  target_loss_threshold: 0.5 # Loss convergence target
+  target_perplexity: 20.0 # Language modeling quality
+
+  # Evaluation
+  eval_batch_size: 4 # Smaller batch for evaluation
+  eval_frequency: 100 # Steps between evaluations
+  save_best_model: true # Save best performing checkpoint
+
+  # Quality Assessment
+  conversation_quality_check: true
+  multimodal_coherence_check: true
+  response_relevance_check: true
+
+# Logging and Monitoring
+logging:
+  # Output Paths
+  log_dir: "F:/models/training/logs"
+  checkpoint_dir: "F:/models/checkpoints/b3"
+  tensorboard_dir: "F:/models/training/tensorboard"
+
+  # Logging Frequency
+  log_frequency: 50 # Steps between log outputs
+  checkpoint_frequency: 500 # Steps between checkpoints
+
+  # Metrics
+  log_loss: true
+  log_quality_score: true
+  log_vram_usage: true
+  log_processing_time: true
+  log_learning_rate: true
+
+  # Rich Formatting
+  use_rich_progress: true
+  use_rich_logging: true
+  progress_bar_style: "blue"
+
+# Safety and Recovery
+safety:
+  # Backup Management
+  max_checkpoints: 10 # Keep last 10 checkpoints
+  backup_frequency: 1000 # Backup every 1000 steps
+  backup_location: "F:/models/backups"
+
+  # Error Recovery
+  auto_resume: true # Resume from latest checkpoint
+  error_tolerance: 3 # Max errors before stopping
+  memory_error_handling: true # Handle OOM gracefully
+
+  # File Integrity (Sacred Covenant)
+  verify_file_integrity: true
+  create_backup_before_save: true
+  validate_checkpoint_after_save: true
+
+# Hardware Monitoring
+hardware:
+  # GPU Monitoring
+  monitor_vram: true
+  vram_warning_threshold: 3.0 # GB
+  vram_error_threshold: 3.5 # GB
+
+  # Performance Monitoring
+  monitor_temperature: true
+  temperature_warning: 80 # Celsius
+  temperature_throttle: 85 # Celsius
+
+  # System Resources
+  monitor_cpu_usage: true
+  monitor_ram_usage: true
+  disk_space_warning: 10 # GB free space
+
+# Experimental Features
+experimental:
+  # Advanced Optimizations
+  use_torch_compile: false # May not work on GTX 1050 Ti
+  use_xformers: false # Alternative attention implementation
+  use_deepspeed: false # Distributed training (not needed)
+
+  # Model Enhancements
+  dynamic_expert_routing: true # Adaptive expert selection
+  attention_head_pruning: false # Reduce attention heads dynamically
+  layer_wise_learning_rates: false # Different LR per layer
+
+# Version Information
+version:
+  config_version: "1.0.0"
+  impressioncore_version: "B3"
+  created_date: "2025-08-04"
+  optimized_for: "GTX 1050 Ti 4GB"
+  target_quality: "10/10 conversation"
+
+# Notes
+notes: |
+  This configuration is specifically optimized for the GTX 1050 Ti with 4GB VRAM.
+  Key optimizations include:
+  - Reduced model layers (6 instead of 8)
+  - Smaller expert dimensions (1536 instead of 2048) 
+  - Fewer experts (6 instead of 8)
+  - Mixed precision training
+  - Gradient checkpointing
+  - Conservative batch sizes
+  - Aggressive memory management
+
+  The goal is to achieve 10/10 conversation quality while maintaining stable
+  training within the 4GB VRAM constraint. All paths are configured for the
+  F: drive infrastructure with proper checkpoint management and Sacred Covenant
+  file integrity protection.

@@ -1239,11 +1239,13 @@ def builder_training_start():
     """Start a real training run in a background thread."""
     global _training_thread
     with _training_lock:
-        if _training_state['running']:
+        if _training_state['running'] or globals().get('_workbench_busy', False):
             return jsonify({'success': False, 'error': 'Training already in progress'}), 409
     data = request.get_json(silent=True) or {}
     logger.info(f"Training start requested: {data}")
     with _training_lock:
+        if _training_state['running'] or globals().get('_workbench_busy', False):
+            return jsonify({'success': False, 'error': 'Training or a workbench operation already in progress'}), 409
         _training_state.update({
             'running': True, 'epoch': 0, 'total_epochs': int(data.get('epochs', 10)),
             'step': 0, 'total_steps': 0, 'loss': 0.0,
@@ -1348,7 +1350,11 @@ def _get_checkpoint_dir():
 def builder_training_checkpoints():
     """List saved training checkpoints with offering labels and integrity hashes."""
     ckpt_dir = _get_checkpoint_dir()
-    os.makedirs(ckpt_dir, exist_ok=True)
+    try:
+        os.makedirs(ckpt_dir, exist_ok=True)
+    except OSError:
+        ckpt_dir = os.path.join(project_root, 'checkpoints')
+        os.makedirs(ckpt_dir, exist_ok=True)
     items = []
     meta = _load_checkpoint_meta()
     for name in sorted(os.listdir(ckpt_dir)):
@@ -1722,9 +1728,9 @@ def builder_deployment_package():
     try:
         import torch as _torch
 
-        # Load state dict
+        # Load state dict safely
         if src_weights is not None:
-            ckpt = _torch.load(str(src_weights), map_location='cpu')
+            ckpt = _torch.load(str(src_weights), map_location='cpu', weights_only=True)
             if isinstance(ckpt, dict):
                 state_dict = ckpt.get('model_state_dict',
                                       ckpt.get('state_dict', ckpt))
@@ -1734,18 +1740,27 @@ def builder_deployment_package():
         else:
             state_dict = pipeline.model.state_dict()
 
-        # Apply optimization
+        # Apply symmetric per-tensor quantization with stored scale factors
         if optimization == 'quantize_int8':
-            state_dict = {
-                k: v.to(_torch.int8) if v.is_floating_point() else v
-                for k, v in state_dict.items()
-            }
+            quantized_sd = {}
+            for k, v in state_dict.items():
+                if v.is_floating_point():
+                    scale = (v.abs().max() / 127.0).clamp(min=1e-8)
+                    quantized_sd[k] = (v / scale).round().clamp(-127, 127).to(_torch.int8)
+                    quantized_sd[f"{k}.__scale__"] = scale.float()
+                else:
+                    quantized_sd[k] = v
+            state_dict = quantized_sd
         elif optimization == 'quantize_int4':
-            state_dict = {
-                k: ((v * 7.0).clamp(-8, 7).to(_torch.int8)
-                    if v.is_floating_point() else v)
-                for k, v in state_dict.items()
-            }
+            quantized_sd = {}
+            for k, v in state_dict.items():
+                if v.is_floating_point():
+                    scale = (v.abs().max() / 7.0).clamp(min=1e-8)
+                    quantized_sd[k] = (v / scale).round().clamp(-8, 7).to(_torch.int8)
+                    quantized_sd[f"{k}.__scale__"] = scale.float()
+                else:
+                    quantized_sd[k] = v
+            state_dict = quantized_sd
 
         param_count = sum(v.numel() for v in state_dict.values())
         output_files = []
@@ -2101,45 +2116,79 @@ def builder_knowledge_query():
 
 # ── Walkthrough Progress (JSON-backed) ───────────────────────────
 _WALKTHROUGH_FILE = os.path.join(os.path.dirname(__file__), '../../../data/knowledge/builder_walkthrough_progress.json')
+_WALKTHROUGH_LOCK = threading.RLock()
 
 def _load_walkthrough_progress():
     """Load walkthrough progress from disk."""
+    progress = {
+        'current_step': 0, 'completed': [], 'updated_at': None,
+        'selected_offering': None, 'academy_step': 0, 'academy_completed': False,
+    }
     try:
-        if os.path.exists(_WALKTHROUGH_FILE):
-            with open(_WALKTHROUGH_FILE, 'r', encoding='utf-8') as fh:
-                return json.load(fh)
-    except Exception:
-        pass
-    return {'current_step': 0, 'completed': [], 'updated_at': None}
+        with open(_WALKTHROUGH_FILE, 'r', encoding='utf-8') as fh:
+            saved = json.load(fh)
+    except FileNotFoundError:
+        return progress
+    if not isinstance(saved, dict):
+        raise ValueError('Walkthrough progress must be a JSON object')
+    progress.update(saved)
+    return progress
 
 def _save_walkthrough_progress(progress):
-    """Persist walkthrough progress to disk."""
+    """Atomically persist progress without exposing a partially written file."""
     os.makedirs(os.path.dirname(_WALKTHROUGH_FILE), exist_ok=True)
-    with open(_WALKTHROUGH_FILE, 'w', encoding='utf-8') as fh:
-        json.dump(progress, fh, indent=2)
+    temporary_path = f'{_WALKTHROUGH_FILE}.{uuid.uuid4().hex}.tmp'
+    try:
+        with open(temporary_path, 'w', encoding='utf-8') as fh:
+            json.dump(progress, fh, indent=2)
+        os.replace(temporary_path, _WALKTHROUGH_FILE)
+    finally:
+        if os.path.exists(temporary_path):
+            os.remove(temporary_path)
 
 @builder_bp.route('/api/v1/builder/walkthrough/progress', methods=['GET'])
 def builder_walkthrough_get_progress():
     """Return saved walkthrough progress."""
-    return jsonify({'success': True, 'progress': _load_walkthrough_progress()})
+    try:
+        with _WALKTHROUGH_LOCK:
+            progress = _load_walkthrough_progress()
+    except (OSError, ValueError):
+        logger.exception('Unable to load walkthrough progress')
+        return jsonify({'success': False, 'error': 'Unable to load walkthrough progress. Please retry.'}), 500
+    return jsonify({'success': True, 'progress': progress})
 
 @builder_bp.route('/api/v1/builder/walkthrough/progress', methods=['PUT'])
 def builder_walkthrough_save_progress():
-    """Save walkthrough progress to disk."""
-    data = request.get_json(silent=True) or {}
-    current_step = data.get('current_step', 0)
-    completed = data.get('completed', [])
+    """Merge supplied progress fields, preserving other clients' saved state."""
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({'success': False, 'error': 'Progress must be a JSON object'}), 400
     max_step = 8  # 0-indexed, 9 steps total
-    if not isinstance(current_step, int) or current_step < 0 or current_step > max_step:
+    if 'current_step' in data and (type(data['current_step']) is not int or not 0 <= data['current_step'] <= max_step):
         return jsonify({'success': False, 'error': f'current_step must be an integer 0-{max_step}'}), 400
-    if not isinstance(completed, list) or not all(isinstance(c, int) and 0 <= c <= max_step for c in completed):
+    if 'completed' in data and (not isinstance(data['completed'], list) or not all(type(c) is int and 0 <= c <= max_step for c in data['completed'])):
         return jsonify({'success': False, 'error': f'completed must be a list of integers 0-{max_step}'}), 400
-    progress = {
-        'current_step': current_step,
-        'completed': sorted(set(completed)),
-        'updated_at': __import__('datetime').datetime.now().isoformat(),
-    }
-    _save_walkthrough_progress(progress)
+    if 'selected_offering' in data and (
+        not isinstance(data['selected_offering'], str)
+        or data['selected_offering'] not in ('b1_39m', 'b2_50m', 'b3_504m')
+        or data['selected_offering'] not in _OFFERING_PRESETS
+    ):
+        return jsonify({'success': False, 'error': 'selected_offering must be a supported B-series offering'}), 400
+    if 'academy_step' in data and (type(data['academy_step']) is not int or not 0 <= data['academy_step'] <= 4):
+        return jsonify({'success': False, 'error': 'academy_step must be an integer 0-4'}), 400
+    if 'academy_completed' in data and type(data['academy_completed']) is not bool:
+        return jsonify({'success': False, 'error': 'academy_completed must be a boolean'}), 400
+    try:
+        with _WALKTHROUGH_LOCK:
+            progress = _load_walkthrough_progress()
+            for key in ('current_step', 'completed', 'selected_offering', 'academy_step', 'academy_completed'):
+                if key in data:
+                    progress[key] = sorted(set(data[key])) if key == 'completed' else data[key]
+            progress['updated_at'] = _dp_datetime.datetime.now().isoformat()
+            _save_walkthrough_progress(progress)
+    except (OSError, ValueError):
+        logger.exception('Unable to save walkthrough progress')
+        return jsonify({'success': False, 'error': 'Unable to save walkthrough progress. Please retry.'}), 500
     return jsonify({'success': True, 'progress': progress})
 
 # ── Rule Engine (JSON-backed) ────────────────────────────────────
@@ -2691,10 +2740,15 @@ def get_model_tokenizer(model_id=None):
         # Load new model
         _module_logger.info(f"Loading model: {model_id}")
         try:
-            # Check if model_id is a .pt file path (checkpoint)
+            # Check if model_id is a .pt file path (checkpoint) within allowed roots
             if model_id.endswith('.pt') and os.path.isfile(model_id):
+                from src.core.config.data_paths import CHECKPOINTS_ROOT, DATA_DRIVE, PROJECT_ROOT
+                resolved_ckpt = Path(model_id).expanduser().resolve()
+                allowed_roots = (PROJECT_ROOT.resolve(), DATA_DRIVE.resolve(), CHECKPOINTS_ROOT.resolve())
+                if not any(resolved_ckpt.is_relative_to(r) for r in allowed_roots):
+                    raise ValueError(f"Refusing to load checkpoint outside allowed roots: {resolved_ckpt}")
                 import torch
-                ckpt = torch.load(model_id, map_location='cpu', weights_only=False)
+                ckpt = torch.load(str(resolved_ckpt), map_location='cpu', weights_only=True)
                 # Extract state_dict from wrapper dict if needed
                 sd = ckpt
                 if isinstance(ckpt, dict) and 'model_state_dict' in ckpt:
@@ -2943,6 +2997,4 @@ def _run_training(config):
             _training_state['running'] = False
             if not _training_state.get('error'):
                 _training_state['logs'].append('[system] Training complete')
-
-
 

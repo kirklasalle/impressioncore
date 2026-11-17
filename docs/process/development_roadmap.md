@@ -202,6 +202,16 @@ To contribute to ImpressionCore-b1 development:
 
 ## 2026-2027 Execution Extension
 
+### Current milestone correction — November 2, 2026
+
+The July window and older completion claims below are historical, not current release certification. Follow the [current execution priorities](next_steps.md#current-execution-priorities--november-2-2026), [canonical backlog](EXECUTION_APPENDIX_2026_2027.md), and [evidence audit](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md).
+
+- **Delivered local P0:** guarded authenticated same-origin gateway with server-only credentials, HTTP/media/WebSocket coverage, CORS-correct errors and fail-closed real-model readiness. The existing external InternVL2-1B answered a real browser chat turn.
+- **Delivered bounded P1:** measured native run/checkpoint/export identity, explicit prefix objective, consent-based Kinect Start/Stop, fresh sustained frames and browser preview, corrected RGB/IR and physical/logical reporting, optional CPU Whisper ready but not listening, and passing scoped lint/build.
+- **Next P1:** certified native offering adapters/dimensions, real model-forward causal isolation, representative disjoint held-out quality, visual/speech accuracy, sustained capture/restart and measured peak-4GB mixed-workload benchmarks. Untrusted legacy checkpoint safety and public deployment hardening remain open.
+- **Evidence limits:** a B1-named project executed a 4,567,641-parameter native B3 model on synthetic 24/8 records with incoherent generation, not proven B1 quality. Runtime InternVL2-1B is separate. Current exact validation is in the [repair report](../../src/memlog/runtime_repair_20261102_195218/REPAIR-REPORT.md).
+- **Release acceptance:** no production, universal hardware-fit, 10/10 quality, or world-first claims without reproducible evidence for the exact configuration and runtime. Builder 5000 was not listening while 8000/5173 were live; this observation does not establish a Builder defect.
+
 ## 2026-07-18 Immediate Execution Window (Now -> 14 Days)
 
 Execution owner: ImpressionCore Core Team  

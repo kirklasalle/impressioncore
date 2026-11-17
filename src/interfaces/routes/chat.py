@@ -159,7 +159,10 @@ async def process_multimodal(request: GenerateRequest):
 
         # 3. LLM Generation
         t0 = time.time()
-        result = api_state.triad_instance.generate(request.prompt, sensory_data=sensory_data, history=history)
+        result = await asyncio.to_thread(
+            api_state.triad_instance.generate, request.prompt,
+            sensory_data=sensory_data, history=history,
+        )
         t_checkpoints['llm'] = float(f"{time.time() - t0:.3f}")
 
         snapshot_url = result.get('snapshot_url')

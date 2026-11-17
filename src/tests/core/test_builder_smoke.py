@@ -3,6 +3,7 @@
 Covers WS3 Task 5 and WS5 quality gate.
 """
 import pytest
+from copy import deepcopy
 from unittest.mock import MagicMock, patch
 from flask import Flask, json
 
@@ -24,10 +25,15 @@ def mock_cuda():
 
 
 @pytest.fixture
-def app():
+def app(tmp_path, monkeypatch):
     app = Flask(__name__)
-    from src.interfaces.web.routes.builder import builder_bp
-    app.register_blueprint(builder_bp)
+    from src.interfaces.web.routes import builder
+    monkeypatch.setattr(builder, "_WALKTHROUGH_FILE", str(tmp_path / "progress.json"))
+    monkeypatch.setattr(builder, "_MODEL_CONFIG_FILE", str(tmp_path / "model.json"))
+    monkeypatch.setattr(builder, "_TRAINING_CONFIG_FILE", str(tmp_path / "training.json"))
+    monkeypatch.setattr(builder, "_model_definition", deepcopy(builder._model_definition))
+    monkeypatch.setattr(builder, "_training_config", deepcopy(builder._training_config))
+    app.register_blueprint(builder.builder_bp)
     app.config["TESTING"] = True
     return app
 
@@ -45,7 +51,7 @@ def test_walkthrough_progress_smoke(client):
     assert data["success"] is True
 
     # PUT walkthrough progress
-    payload = {"step": 2, "selected_offering": "b1_39m"}
+    payload = {"current_step": 2, "selected_offering": "b1_39m"}
     resp = client.put(
         "/api/v1/builder/walkthrough/progress",
         data=json.dumps(payload),
@@ -54,6 +60,8 @@ def test_walkthrough_progress_smoke(client):
     assert resp.status_code == 200
     data = json.loads(resp.data)
     assert data["success"] is True
+    assert data["progress"]["selected_offering"] == "b1_39m"
+    assert client.get("/api/v1/builder/walkthrough/progress").json["progress"]["current_step"] == 2
 
 
 def test_model_presets_smoke(client):

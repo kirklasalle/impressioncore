@@ -16,6 +16,12 @@
 
 ---
 
+## Evidence qualification — November 2, 2026
+
+The historical report below is preserved, but its “REAL 10/10” and mission-complete statements are not current model-quality or production certification. The companion [metrics transparency report](METRICS_TRANSPARENCY_REPORT.md) acknowledges mixed real and simulated/estimated evaluation metrics; training updates or throughput alone cannot establish conversation quality. Use the [current comprehensive audit](../../docs/analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md) for evidence and acceptance gates.
+
+A current B1-named live project executed a 4,567,641-parameter native B3 model on tiny synthetic 24/8 train/validation records with incoherent generation, not proven B1 identity or quality gain. Require executable configuration/count/tokenizer/checkpoint-hash provenance, objective/causal-leakage tests, disjoint held-out quality evaluation, and measured hardware benchmarks before reusing historical scores as current facts.
+
 ## 🎊 EXECUTIVE SUMMARY - MISSION ACCOMPLISHED!
 
 **🏆 REAL 10/10 CONVERSATION QUALITY ACHIEVED IN FIRST ITERATION!**

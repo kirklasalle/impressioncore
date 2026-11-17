@@ -1,9 +1,14 @@
-import os
 import json
-import time
+import os
 import subprocess
+import sys
+import time
+from pathlib import Path
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+
+from src.core.config.data_paths import PROJECT_ROOT
 from src.interfaces import api_state
 from src.orchestrator.system_logger import log_event
 
@@ -101,17 +106,20 @@ async def start_rlm_training(request_data: dict | None = None):
     if api_state._rlm_training_state["status"] == "training":
         return {"status": "error", "detail": "Training already in progress"}
 
-    config_path = request_data.get("config", "src/core/src/core/config/rlm_training_config.yaml")
+    config_path = request_data.get("config", "src/core/config/rlm_training_config.yaml")
+    resolved_cfg = (PROJECT_ROOT / config_path).resolve() if not Path(config_path).is_absolute() else Path(config_path).resolve()
+    if not resolved_cfg.is_relative_to(PROJECT_ROOT.resolve()):
+        raise HTTPException(status_code=400, detail="Config path must reside inside the project root")
 
     try:
         api_state._rlm_training_state["status"] = "training"
         api_state._rlm_training_state["started_at"] = time.time()
         api_state._rlm_training_state["current_epoch"] = 0
 
-        # Start training in background process
+        # Start training in background process using portable interpreter & project root
         api_state._rlm_training_process = subprocess.Popen(
-            [".venv310/Scripts/python.exe", "-m", "src.training.rlm.rlm_trainer", "--config", config_path],
-            cwd="d:/Projects/impressioncore",
+            [sys.executable, "-m", "src.training.rlm.rlm_trainer", "--config", str(resolved_cfg)],
+            cwd=str(PROJECT_ROOT),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT
         )
@@ -163,6 +171,7 @@ async def get_rlm_action(request_data: dict):
             }
 
         import torch
+
         from src.training.rlm.policy_network import RLMPolicyNetwork
 
         policy = RLMPolicyNetwork.load(checkpoint_path)

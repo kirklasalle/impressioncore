@@ -1,0 +1,75 @@
+# ImpressionCore B3 Multimodal Pretraining Configuration
+# Target Model: 858M Parameters (Base) / 3B (Extended)
+# Data Source: F:/data (Verified Jan 23, 2026)
+
+model:
+  name: "impressioncore-b3-mini"
+  embed_dim: 384 # Reduced from 768 (Fits better on 4GB)
+  num_heads: 6 # Reduced from 12
+  num_layers: 6 # Reduced from 12 (Critical for memory)
+  vocab_size: 50257
+  max_seq_length: 512 # Reduced from 4096 (Activations take most RAM)
+  dropout: 0.1
+
+  # Multimodal Dimensions (Aligned with embed_dim)
+  image_embed_dim: 384
+  audio_embed_dim: 384
+  phoneme_vocab_size: 256
+
+  # MoE Settings
+  num_experts: 2 # Reduced to absolute minimum
+  expert_dim: 1536 # 4x embed_dim
+  experts_per_token: 1 # Faster and less RAM
+
+  # Advanced Features
+  use_mhc: true
+  mhc_iterations: 1 # Reduced from 3 (Initial test)
+  use_gradient_checkpointing: true
+
+training:
+  learning_rate: 3.0e-4
+  min_lr: 3.0e-5
+  weight_decay: 0.1
+  batch_size: 1 # Reduced from 8
+  gradient_accumulation_steps: 32 # Keep effective batch = 32
+  max_steps: 100000
+  warmup_steps: 2000
+
+  optimizer: "adamw"
+  scheduler: "cosine"
+
+  mixed_precision: "fp16" # More compatible with 4GB cards
+  grad_clip: 1.0
+
+  seed: 42
+  num_workers: 2 # Reduced from 4 to save system RAM
+
+data:
+  root_dir: "F:/data"
+
+  # Modality Paths (Verified)
+  text_path: "F:/data/raw/text"
+  audio_path: "F:/data/raw/audio"
+  video_path: "F:/data/raw/video"
+  face_path: "F:/data/raw/vision/faces/lfw"
+  vision_path: "F:/data/raw/vision"
+  phoneme_path: "F:/data/processed/phonemes"
+
+  # Sampling Weights
+  weights:
+    text: 0.5
+    audio: 0.2
+    image: 0.1
+    video: 0.1
+    face: 0.05
+    phoneme: 0.05
+
+directories:
+  output_dir: "F:/models/checkpoints/b3_pretraining"
+  logging_dir: "F:/models/training/logs/b3_pretraining"
+  cache_dir: "F:/data/embeddings/cache"
+
+checkpointing:
+  save_steps: 1000
+  eval_steps: 1000
+  save_total_limit: 5

@@ -2,6 +2,26 @@
 
 All notable changes to the ImpressionCore project are documented in this file.
 
+## [1.0.1] - 2026-11-16
+
+### Security & Immediate Blockers Fixed
+- **Builder Server Hardening (`SEC-01`):** Updated `src/interfaces/web/server.py` to bind `127.0.0.1` by default (`IMPRESSIONCORE_BUILDER_HOST`), disable Flask/Werkzeug debug mode unless `IMPRESSIONCORE_DEBUG=1`, replace wildcard CORS with `src.core.config.cors_config.get_allowed_origins()`, omit raw query parameters from request trace logs, and enforce constant-time `X-API-Key` (`IMPRESSIONCORE_API_KEY`) or authenticated session checks on `/api/*` routes.
+- **Safe Checkpoint Loading (`SEC-02`):** Enforced `weights_only=True` on active `torch.load` calls in `src/interfaces/web/routes/builder.py`, `src/core/assembly_of_experts.py`, and `src/core/models/impressioncore_b3_architecture.py` (`MemoryOptimizedCheckpointing`), and confined `builder.get_model_tokenizer()` `.pt` file loading to allowed project/data/checkpoint roots.
+- **Workbench File-Read Confinement (`SEC-03`):** Added `_allowed_local_roots()` path confinement (`Path.resolve().is_relative_to(...)`) in `src/interfaces/web/routes/workbench.py` (`bounded_file`) to block arbitrary local file reads via dataset/tokenizer preflight paths.
+- **B3 Causal Attention & Sliding-Window Fixes (`CRIT-01`):** Updated `EfficientMultiHeadLatentAttention` and `AssemblyOfExperts` in `src/core/models/impressioncore_b3_architecture.py` to apply upper-triangular causal masks across standard, cached, sliding-window, and prefix-cumsum linear attention paths, fixed per-sample 2D batch padding masks (eliminating `mask[0]` batch broadcast), and fixed `recombine_windows()` overlap-add broadcasting and span tracking.
+- **TurboQuant Invertibility & Passthrough (`CRIT-02`):** Updated `RandomRotation` in `src/core/quantization/turboquant.py` to use exact QR random orthogonal matrices for non-power-of-2 dimensions (preventing truncated Hadamard inversion error) and fixed `TurboQuantCompressor.compress()` when `enabled=False` to preserve original tensors without `int8` truncation.
+- **Quantization Scale & Zero-Tensor Safety (`CRIT-03`):** Replaced unscaled `int8`/`int4` casts in `src/interfaces/web/routes/builder.py` with symmetric per-tensor quantization storing `.__scale__` tensors, and clamped `scale >= 1e-8` in `src/core/export/export_production_model.py` to prevent `NaN` division on all-zero tensors.
+- **Regression Tests:** Added `src/tests/core/test_immediate_blockers.py` covering `SEC-01`, `SEC-02`, `SEC-03`, `CRIT-01`, `CRIT-02`, and `CRIT-03`.
+- **Phase 2 & 3 Security, Governance & Portability Hardening:**
+  - `SEC-04`: Removed repeating-key XOR fallbacks from `src/core/security/identity/cryptographic_core.py`, implemented real `ChaCha20Poly1305` and `AESGCM` encrypt/decrypt, disabled simulated Kyber/Dilithium keygen unless `allow_simulated_pqc=True` (with `quantum_resistant=False`), and fixed an EOF infinite-loop/unbounded-memory DoS in `src/core/security/encryption/aes_encryption.py` (`decrypt_file`).
+  - `SEC-05`: Replaced `eval()` in `src/core/knowledge/rule_engine.py` with an AST allowlist evaluator (`_safe_eval_formula`), replaced `eval()` in `src/interfaces/cli/cli_tokenizer_utils.py` with `ast.literal_eval()`, and replaced `os.system()` in `.mcp/vrgc/tools/covenant_guardian.py` with `subprocess.run(..., shell=False)`.
+  - `SEC-06`: Gated `trust_remote_code` and added optional `model_revision` pinning in `src/orchestrator/unified_triad.py`.
+  - `ARCH-01`: Replaced hardcoded `"status": "success"` stubs in `agent0core/core/guardian_agent.py` with live socket, covenant hash, tool contract, supervisor slot, MCP config, and telemetry inspections.
+  - `CRIT-05`: Fixed FAISS memory reconstruction in `src/core/models/impressioncore_b3_architecture.py` (`BrainInspiredTransformerLayer.forward`) to reconstruct retrieved `mem_indices` rather than index `0`.
+  - `ARCH-02 / ARCH-03`: Fixed `docker/Dockerfile.python` (`COPY run_server.py ./` + non-root `appuser`), cleaned duplicate/invalid entries and added `websockets>=12.0` + `cryptography>=42.0.0` in `requirements.txt` and `pyproject.toml`, fixed `src/core/security/tests/test_integration_security.py` imports, fixed `src/interfaces/routes/rlm.py` path/interpreter portability, and added local checkpoint directory fallback in `src/interfaces/web/routes/builder.py`.
+  - `NOV-01 / DOC-01`: Restricted `MHCProjection` Sinkhorn-Knopp projection in `src/models/layers/mhc.py` to square matrices, and documented preset dimension variance in `README.md`.
+  - **Regression Tests:** Added `src/tests/core/test_phase2_phase3_hardening.py`.
+
 ## [Unreleased] - 2026-08-26
 
 ### Added & Governance

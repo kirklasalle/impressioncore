@@ -1,5 +1,6 @@
 import threading
 import time
+import re
 from typing import Any
 
 import numpy as np
@@ -10,6 +11,55 @@ except ImportError:
     sd = None
 
 from src.orchestrator.system_logger import log_event
+
+
+def audio_device_identity(name: str) -> str:
+    """Create a provider-independent, name-based identity for duplicate endpoints."""
+    normalized = (name or "").strip().lower()
+    # MME truncates device names at 31 characters, including the input wrapper.
+    # Only collapse the known Kinect USB Audio spelling, not all Kinect devices.
+    if re.fullmatch(
+        r"(?:microphone(?: array)?\s*\()?kinect usb au(?:dio)?\)?", normalized
+    ):
+        return "audio:kinect usb audio"
+    wrapped_name = re.match(r"^(?:microphone(?: array)?|input)\s*\((.+)\)$", normalized)
+    if wrapped_name:
+        normalized = wrapped_name.group(1).strip()
+    normalized = re.sub(r"\s+\[(?:wasapi|directsound|mme|wdm-ks|asio)\]$", "", normalized)
+    normalized = re.sub(r"\s+", " ", normalized)
+    return f"audio:{normalized}" if normalized else "audio:unknown"
+
+
+def summarize_audio_devices(devices: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Group provider endpoints by normalized device name without losing endpoint indices."""
+    grouped = {}
+    for device in devices:
+        name = device.get("name", "")
+        identity = device.get("device_identity")
+        if not identity:
+            identity = audio_device_identity(name)
+            if identity == "audio:unknown":
+                identity = f"{identity}:{device.get('provider', 'unknown')}:{device.get('index', 'unknown')}"
+        entry = grouped.setdefault(identity, {
+            "device_identity": identity,
+            "name": name or "Unknown audio input",
+            "channels": 0,
+            "providers": [],
+            "endpoint_indices": [],
+            "identity_confidence": "normalized_name",
+            "is_kinect": False,
+            "is_eye": False,
+        })
+        entry["channels"] = max(entry["channels"], int(device.get("channels", 0)))
+        provider = device.get("provider")
+        if provider and provider not in entry["providers"]:
+            entry["providers"].append(provider)
+        index = device.get("index")
+        if index is not None and index not in entry["endpoint_indices"]:
+            entry["endpoint_indices"].append(index)
+        entry["is_kinect"] = entry["is_kinect"] or bool(device.get("is_kinect"))
+        entry["is_eye"] = entry["is_eye"] or bool(device.get("is_eye"))
+    return list(grouped.values())
 
 
 def gcc_phat(sig, refsig, fs=48000, max_tau=None, interp=1):
@@ -48,6 +98,7 @@ class AudioEngine:
         self.active = False
         self.sensitivity = 0.5 # Default 50%
         self.last_angle = 0.0
+        self.current_is_eye = False
 
         # Spatial Configuration for PS Eye
         self.MIC_DISTANCE_4CH = 0.06
@@ -101,23 +152,39 @@ class AudioEngine:
         except Exception:
             return []
 
+        try:
+            hostapis = sd.query_hostapis()
+        except Exception:
+            hostapis = []
+        providers = {
+            index: hostapi.get("name", f"hostapi-{index}")
+            for index, hostapi in enumerate(hostapis)
+        }
+
         for i, d in enumerate(raw):
-            name = d.get('name')
-            channels = d.get('max_input_channels')
+            name = d.get('name') or f"Audio input {i}"
+            channels = int(d.get('max_input_channels') or 0)
 
             if channels <= 0:
                 continue
 
-            is_ps_eye = False
-            if channels == 4 or "camera" in name.lower() or "microphone (usb camera" in name.lower():
-                is_ps_eye = True
+            lowered_name = name.lower()
+            is_kinect = "kinect" in lowered_name
+            is_ps_eye = (
+                "playstation" in lowered_name
+                or "ps eye" in lowered_name
+                or "eye toy" in lowered_name
+            )
 
             devs.append({
                 "index": i,
                 "name": name,
                 "channels": channels,
-                "rate": int(d.get('default_samplerate')),
-                "is_eye": is_ps_eye
+                "rate": int(d.get('default_samplerate') or 48000),
+                "provider": providers.get(d.get("hostapi"), "unknown"),
+                "device_identity": audio_device_identity(name),
+                "is_eye": is_ps_eye,
+                "is_kinect": is_kinect,
             })
 
             if is_ps_eye:
@@ -143,7 +210,7 @@ class AudioEngine:
 
                     # 2. DoA
                     angle = 0
-                    if is_speech and self.current_channels == 4:
+                    if is_speech and self.current_channels == 4 and self.current_is_eye:
                         try:
                             sig1 = data[:, 0]
                             sig2 = data[:, 3]
@@ -193,6 +260,7 @@ class AudioEngine:
 
             self.current_rate = device['rate']
             self.current_channels = device['channels']
+            self.current_is_eye = bool(device.get("is_eye"))
             self.latest_chunk = None
 
             print(f"[AudioEngine] Opening {device['channels']}ch stream on {device['name']}...")

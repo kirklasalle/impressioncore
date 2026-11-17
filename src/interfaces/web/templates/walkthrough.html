@@ -2,6 +2,12 @@
 
 {% block title %}ImpressionCore Walkthrough{% endblock %}
 
+{% block styles %}
+<style>
+    #continueToBuilder[hidden] { display: none !important; }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="section-title">Interactive Walkthrough</div>
 
@@ -29,11 +35,12 @@
             <i class="fas fa-arrow-left"></i>
             Previous
         </button>
-        <button class="btn btn-primary" id="nextStep">
+        <button class="btn btn-primary" id="nextStep" disabled>
             Next
             <i class="fas fa-arrow-right"></i>
         </button>
     </div>
+    <div id="academyStatus" role="status" aria-live="polite"></div>
 </div>
 
 <div class="card">
@@ -54,15 +61,17 @@
     </div>
 </div>
 
-<div class="card" id="offeringSelectionCard">
+<div class="card" id="offeringSelectionCard" tabindex="-1">
     <div class="section-subtitle">Offering Selection</div>
-    <p>Select a B-series offering to carry forward into Builder defaults.</p>
+    <p>Select a B-series offering, then continue to Builder to review its defaults.
+        This does not download, load, or train a model.</p>
     <div class="quick-actions">
-        <button class="btn btn-outline-primary offering-btn" data-offering="b1_39m">B1 Hope 39M</button>
-        <button class="btn btn-outline-primary offering-btn" data-offering="b2_50m">B2 Insight 50M</button>
-        <button class="btn btn-outline-primary offering-btn" data-offering="b3_504m">B3 Apex 504M</button>
+        <button class="btn btn-outline-primary offering-btn" data-offering="b1_39m" aria-pressed="false" disabled>B1 Hope 39M</button>
+        <button class="btn btn-outline-primary offering-btn" data-offering="b2_50m" aria-pressed="false" disabled>B2 Insight 50M</button>
+        <button class="btn btn-outline-primary offering-btn" data-offering="b3_504m" aria-pressed="false" disabled>B3 Apex 504M</button>
     </div>
-    <div id="offeringStatus" style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.9rem;"></div>
+    <div id="offeringStatus" role="status" aria-live="polite" style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.9rem;"></div>
+    <a class="btn btn-primary" id="continueToBuilder" href="/unified_builder?from=walkthrough" hidden>Continue to Builder</a>
 </div>
 
 <div class="card" id="resourcesLinksCard">
@@ -266,14 +275,26 @@
         return 0;
     }
 
-    function saveStep(idx) {
-        try { localStorage.setItem(LS_KEY, String(idx)); } catch { /* ignore */ }
-        // Also persist to backend (fire-and-forget)
-        fetch('/api/v1/builder/walkthrough/progress', {
+    async function saveProgress(fields) {
+        const response = await fetch('/api/v1/builder/walkthrough/progress', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ current_step: idx, completed: [] }),
-        }).catch(() => { });
+            body: JSON.stringify(fields),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success || !result.progress) {
+            throw new Error(result.error || 'Unable to save walkthrough progress. Please retry.');
+        }
+        return result.progress;
+    }
+
+    async function saveStep(idx) {
+        try {
+            localStorage.setItem(LS_KEY, String(idx));
+        } catch (error) {
+            console.warn('Local lesson progress unavailable', error);
+        }
+        await saveProgress({ academy_step: idx });
     }
 
     let currentStep = loadStep();
@@ -283,6 +304,8 @@
     }
 
     async function updateStep() {
+        document.getElementById('prevStep').disabled = true;
+        document.getElementById('nextStep').disabled = true;
         const step = walkthrough.steps[currentStep];
         document.getElementById('stepTitle').textContent = step.title;
         document.getElementById('stepContent').innerHTML = `<p>${step.content}</p>`;
@@ -291,9 +314,16 @@
 
         await executeActions(step);
 
-        document.getElementById('prevStep').disabled = currentStep === 0;
         document.getElementById('nextStep').textContent = currentStep === walkthrough.steps.length - 1 ? 'Finish' : 'Next';
-        saveStep(currentStep);
+        try {
+            await saveStep(currentStep);
+        } catch (error) {
+            document.getElementById('academyStatus').textContent = `Lesson progress was not saved: ${error.message}`;
+            console.error('Unable to save lesson progress', error);
+        } finally {
+            document.getElementById('prevStep').disabled = currentStep === 0;
+            document.getElementById('nextStep').disabled = false;
+        }
     }
 
     document.getElementById('prevStep').addEventListener('click', () => {
@@ -303,12 +333,25 @@
         }
     });
 
-    document.getElementById('nextStep').addEventListener('click', () => {
+    document.getElementById('nextStep').addEventListener('click', async () => {
         if (currentStep < walkthrough.steps.length - 1) {
             currentStep++;
             updateStep().catch(console.error);
         } else {
-            window.location.href = '/home';
+            const finishButton = document.getElementById('nextStep');
+            finishButton.disabled = true;
+            try {
+                await saveProgress({ academy_step: currentStep, academy_completed: true });
+                document.getElementById('academyStatus').textContent = 'All 5 lessons completed. Choose an offering below, then Continue to Builder. Completing lessons does not train a model.';
+                const offeringCard = document.getElementById('offeringSelectionCard');
+                offeringCard.focus();
+                offeringCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (error) {
+                document.getElementById('academyStatus').textContent = `Could not save completion: ${error.message} Click Finish to retry.`;
+                console.error('Unable to save academy completion', error);
+            } finally {
+                finishButton.disabled = false;
+            }
         }
     });
 
@@ -364,33 +407,74 @@
             });
     });
 
-    document.querySelectorAll('.offering-btn').forEach((btn) => {
+    const offeringButtons = [...document.querySelectorAll('.offering-btn')];
+    const offeringStatus = document.getElementById('offeringStatus');
+    const continueLink = document.getElementById('continueToBuilder');
+
+    function showSelectedOffering(offeringId) {
+        const selectedButton = offeringButtons.find((button) => button.dataset.offering === offeringId);
+        offeringButtons.forEach((button) => {
+            const selected = button === selectedButton;
+            button.classList.toggle('btn-primary', selected);
+            button.classList.toggle('btn-outline-primary', !selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+        continueLink.hidden = !selectedButton;
+        offeringStatus.textContent = selectedButton
+            ? `Saved offering: ${selectedButton.textContent}. Continue to Builder to review the defaults.`
+            : 'Choose an offering to continue.';
+    }
+
+    offeringButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
             const selectedOffering = btn.getAttribute('data-offering');
-            const statusEl = document.getElementById('offeringStatus');
-            document.querySelectorAll('.offering-btn').forEach((b) => b.classList.remove('btn-primary'));
-            document.querySelectorAll('.offering-btn').forEach((b) => b.classList.add('btn-outline-primary'));
-            btn.classList.remove('btn-outline-primary');
-            btn.classList.add('btn-primary');
-            statusEl.textContent = 'Saving selection...';
+            offeringButtons.forEach((button) => { button.disabled = true; });
+            continueLink.hidden = true;
+            offeringStatus.textContent = 'Saving selection...';
             try {
-                const response = await fetch('/api/v1/builder/walkthrough/progress', {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ selected_offering: selectedOffering }),
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to save selection');
+                const progress = await saveProgress({ selected_offering: selectedOffering });
+                if (progress.selected_offering !== selectedOffering) {
+                    throw new Error('The server did not confirm the requested offering.');
                 }
-                statusEl.textContent = `Selected offering: ${selectedOffering}`;
+                showSelectedOffering(selectedOffering);
             } catch (error) {
-                statusEl.textContent = `Could not save offering selection: ${error.message}`;
+                offeringStatus.textContent = `Could not save offering selection: ${error.message} Select the offering again to retry.`;
+                console.error('Unable to save offering selection', error);
+            } finally {
+                offeringButtons.forEach((button) => { button.disabled = false; });
             }
         });
     });
 
-    // Initialize first step
-    updateStep().catch(console.error);
+    async function initializeWalkthrough() {
+        offeringStatus.textContent = 'Loading saved offering...';
+        try {
+            const response = await fetch('/api/v1/builder/walkthrough/progress');
+            const result = await response.json();
+            if (!response.ok || !result.success || !result.progress) {
+                throw new Error(result.error || 'Unable to load saved progress.');
+            }
+            const progress = result.progress;
+            if (Number.isInteger(progress.academy_step) && progress.academy_step >= 0 && progress.academy_step < walkthrough.steps.length) {
+                currentStep = progress.academy_step;
+            }
+            if (progress.selected_offering && !offeringButtons.some((button) => button.dataset.offering === progress.selected_offering)) {
+                throw new Error('The saved offering is not supported. Please choose another offering.');
+            }
+            showSelectedOffering(progress.selected_offering);
+            if (progress.academy_completed) {
+                document.getElementById('academyStatus').textContent = 'All 5 lessons completed. Choose an offering below, then Continue to Builder.';
+            }
+        } catch (error) {
+            offeringStatus.textContent = `Could not restore saved selection: ${error.message} Select an offering to retry saving.`;
+            console.error('Unable to restore walkthrough progress', error);
+        } finally {
+            offeringButtons.forEach((button) => { button.disabled = false; });
+        }
+        await updateStep();
+    }
+
+    initializeWalkthrough().catch(console.error);
 
     // Add terminal styles
     const styleSheet = document.createElement("style");

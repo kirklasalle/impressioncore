@@ -1,0 +1,161 @@
+# RLM Training Configuration
+# config/rlm_training_config.yaml
+
+rlm_training:
+  # Base Model Configuration
+  base_model:
+    path: "F:/models/checkpoints/diverse_curriculum_mhc_ultra/step_1000.pt"
+    load_weights: true
+    freeze_base: true  # Freeze B3, train only LoRA adapters
+  
+  # Policy Network with PEFT/LoRA (VRAM Optimization)
+  policy:
+    hidden_dim: 768
+    num_actions: 12
+    num_heads: 8
+    num_layers: 2
+    dropout: 0.1
+    learning_rate: 1.0e-4
+    weight_decay: 0.01
+    
+    # PEFT/LoRA Settings (GTX 1050 Ti Compatible)
+    peft:
+      enabled: true
+      method: "lora"
+      r: 16
+      alpha: 32
+      target_modules: ["q_proj", "v_proj", "k_proj"]
+      dropout: 0.05
+  
+  # RL Algorithm (PPO with Adaptive KL Control)
+  algorithm:
+    name: "PPO"
+    clip_ratio: 0.2
+    value_coef: 0.5
+    entropy_coef: 0.01
+    max_grad_norm: 0.5
+    gae_lambda: 0.95
+    gamma: 0.99
+    
+    # Adaptive KL Control (prevents training instability)
+    kl_control:
+      adaptive: true
+      target_kl: 0.01
+      beta_init: 0.1
+      beta_range: [0.01, 10.0]
+    
+    # PPO Update Settings
+    ppo_epochs: 4
+    num_mini_batches: 4
+  
+  # Training Configuration
+  training:
+    batch_size: 16
+    buffer_size: 2048
+    num_epochs: 100
+    steps_per_epoch: 1000
+    max_episode_length: 20  # Max NEXUS commands per query
+    
+    # Checkpointing
+    checkpoint_frequency: 500
+    checkpoint_dir: "F:/models/checkpoints/rlm/"
+    save_best_only: true
+    
+    # Early Stopping
+    early_stopping:
+      enabled: true
+      patience: 10
+      min_delta: 0.001
+      monitor: "mean_reward"
+    
+    # Logging
+    log_frequency: 100
+    tensorboard_dir: "F:/models/logs/rlm_training/"
+  
+  # Reward Function Configuration
+  rewards:
+    answer_weight: 1.0
+    
+    # Intermediate Bonuses
+    chunk_quality_bonus: 0.05
+    delegation_bonus: 0.02
+    progressive_bonus_rate: 0.01
+    
+    # Efficiency Penalties
+    token_penalty_rate: 0.001
+    depth_penalty_rate: 0.1
+    depth_threshold: 5
+    time_penalty_rate: 0.01
+    time_threshold: 5.0
+    
+    # Anti-Hacking (Seventh Law Compliance)
+    repetition_penalty: 0.2
+    shortcut_penalty: 0.3
+    min_answer_length: 10
+  
+  # Dataset Configuration
+  dataset:
+    train_path: "F:/data/datasets/text/long_context_qa"
+    eval_path: "F:/data/datasets/text/babilong_benchmark"
+    
+    # Domain-Specific Datasets (ImpressionCore Focus)
+    domain_specific:
+      - "F:/data/datasets/text/guitar_lesson_qa"
+      - "F:/data/datasets/text/music_theory_context"
+      - "F:/data/datasets/text/impressioncore_codebase"
+    
+    # Data Processing
+    max_context_length: 100000
+    min_context_length: 1000
+    shuffle: true
+    num_workers: 2
+  
+  # Hardware Configuration (GTX 1050 Ti Compliant)
+  hardware:
+    device: "cuda"
+    vram_limit_gb: 3.5
+    gradient_checkpointing: true
+    mixed_precision: true
+    cpu_offload: false  # Enable if VRAM exceeded
+    pin_memory: true
+  
+  # Rollback Strategy (Risk Mitigation)
+  rollback:
+    enabled: true
+    min_reward_threshold: 0.3
+    restore_on_degradation: true
+    keep_last_n_checkpoints: 5
+
+# Evaluation Configuration
+evaluation:
+  benchmarks:
+    - name: "babilong"
+      path: "F:/data/datasets/text/babilong_benchmark"
+      samples: 500
+    - name: "ruler"
+      path: "F:/data/datasets/text/ruler_benchmark"
+      samples: 500
+    - name: "longbench"
+      path: "F:/data/datasets/text/longbench"
+      samples: 500
+    - name: "impressioncore_qa"
+      path: "F:/data/datasets/text/impressioncore_codebase_qa"
+      samples: 200
+  
+  # Evaluation Frequency
+  eval_frequency: 1000  # Steps
+  eval_episodes: 50
+  
+  # Success Metrics (from RLM Training Plan)
+  targets:
+    long_context_accuracy: 0.85
+    context_compression_ratio: 10.0
+    max_recursion_depth: 5
+    max_vram_gb: 4.0
+    max_inference_latency_s: 5.0
+
+# Prime Directive Compliance
+governance:
+  prime_directive_compliant: true
+  seventh_law_enforced: true  # Anti-deception
+  immutable_after_approval: true

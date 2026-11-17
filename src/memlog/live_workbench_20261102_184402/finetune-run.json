@@ -1,0 +1,111 @@
+{
+  "id": "71a68a5f9ccc460ba8e8d77880a03638",
+  "project_id": "d3c0663d86e342c986678975753e0308",
+  "state": "completed",
+  "step": 2,
+  "total_steps": 2,
+  "loss": 10.087340593338013,
+  "learning_rate": 5e-05,
+  "logs": [
+    "Training explicitly requested; loading selected native artifacts.",
+    "Native ImpressionCore B3: 4,567,641 parameters; 24 prefix/target examples; FP32; cpu.",
+    "Optimizer step 1/2: next-token cross-entropy=10.037885",
+    "Optimizer step 2/2: next-token cross-entropy=10.087341",
+    "Native weights and exact tokenizer saved. Fine-tuning is supported; exact optimizer resume is not."
+  ],
+  "error": null,
+  "checkpoint": true,
+  "created_at": "2026-11-02T23:46:21.999997+00:00",
+  "updated_at": "2026-11-02T23:46:33.280696+00:00",
+  "configuration": {
+    "id": "d3c0663d86e342c986678975753e0308",
+    "name": "B1 Hope 39M experiment - LIVE TESTING",
+    "revision": 3,
+    "created_at": "2026-11-02T23:31:51.040387+00:00",
+    "updated_at": "2026-11-02T23:46:15.228086+00:00",
+    "offering": "b1_39m",
+    "model": {
+      "activation": "gelu",
+      "architecture": "transformer",
+      "contextWindow": 4096,
+      "flashAttention": false,
+      "heads": 12,
+      "hiddenSize": 768,
+      "intermediateSize": 3072,
+      "layers": 8,
+      "precision": "fp16",
+      "preset": "b1_39m",
+      "rope": true,
+      "vocabSize": 50257
+    },
+    "native_config": {
+      "audio_embed_dim": 64,
+      "b3_ultra": false,
+      "dropout": 0.1,
+      "embed_dim": 64,
+      "expert_dim": 96,
+      "experts_per_token": 2,
+      "image_embed_dim": 64,
+      "max_seq_length": 128,
+      "mhc_iterations": 20,
+      "num_experts": 4,
+      "num_heads": 4,
+      "num_layers": 2,
+      "phoneme_vocab_size": 256,
+      "use_gradient_checkpointing": false,
+      "use_mhc": true,
+      "vocab_size": 28000
+    },
+    "dataset": {
+      "format": "text",
+      "path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\train.txt",
+      "text_field": "text",
+      "validation_path": "D:\\Projects\\impressioncore\\src\\memlog\\live_workbench_20261102_184402\\validation.txt"
+    },
+    "tokenizer": {
+      "path": "D:\\Projects\\impressioncore\\src\\training\\tokenizers\\b3_conversation_tokenizer_28k\\tokenizer.json"
+    },
+    "training": {
+      "batchSize": 1,
+      "checkpoint_run_id": "c9af53851adf41dba966e2a560f66b8f",
+      "device": "cpu",
+      "epochs": 1,
+      "gradAccumSteps": 4,
+      "learningRate": 5e-05,
+      "maxSteps": 2,
+      "mode": "finetune",
+      "seed": 42,
+      "sequenceLength": 32
+    },
+    "notes": "LIVE WORKFLOW ACCEPTANCE TEST \u2014 2026-11-02. B1 Hope remains a reference offering only. Execution is a SMALL native ImpressionCore B3 text research configuration, NOT a verified B1 architecture or a 39M-parameter certification. Original project revision 1 backed up in src/memlog/live_workbench_20261102_184402/original_project.json. Inputs: 24 original synthetic engineering sentences for training, 8 distinct held-out sentences; existing local 28,000-token tokenizer. CPU, FP32, microbatch 1, bounded optimizer steps. Objective: one prefix-next-token target per record, not full causal LM. Purpose: exercise save/preflight/train/checkpoint/evaluate/generate/export and compatible fine-tuning; not language-quality benchmarking."
+  },
+  "dataset": {
+    "samples": 24,
+    "bytes": 1766,
+    "preview": [
+      "The local experiment records its configuration before training begins.",
+      "A saved project keeps the model reference separate from executable dimensions.",
+      "The scientist checks the dataset before starting a bounded experiment."
+    ],
+    "sha256": "22b65847d1cc36d691de3f4de1cdb3241badafc4a79a730b495f82f18bf68495"
+  },
+  "tokenizer": {
+    "vocab_size": 28000,
+    "sha256": "1207a55e0c3a508bf9c64bfc1d0e41b3ef2611a2d03e00bb524b9c0b4a0120dd"
+  },
+  "fingerprint": "cb7438a4796542fb67c5bc869492f6da36755c3116c08c331ac4a7ec57e35f50",
+  "objective": "prefix_next_token",
+  "parameter_count": 4567641,
+  "epoch": 1,
+  "checkpoint_sha256": "f8556cb8c2a3c8668748e33e91e3f59c12ffa83daf06e71cf2a965a19fcbde63",
+  "metrics": {
+    "loss": 10.263847351074219,
+    "perplexity": 28676.904343505008,
+    "samples": 8,
+    "dataset_sha256": "68ffb73acda5bbdcd8a59034a2df4173a09e7ac1a28ce6f5fe96e7879e115bce",
+    "run_id": "71a68a5f9ccc460ba8e8d77880a03638",
+    "objective": "prefix_next_token",
+    "measured_at": "2026-11-02T23:46:33.077035+00:00",
+    "device": "cpu"
+  }
+}

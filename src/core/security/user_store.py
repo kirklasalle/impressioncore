@@ -195,7 +195,7 @@ class UserStore:
             raise ValueError(f"User not found: {username}")
 
         if password:
-            user.password = password
+            user.password_hash = user._hash_password(password)
         if email:
             user.email = email
         if personal_data:

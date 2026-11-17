@@ -1,0 +1,59 @@
+# ImpressionCore-b1 Architecture Configuration
+# Based on docs/developer/impressioncore_b1_architecture.md
+# Last updated: 2025-05-20
+# Responsible: GitHub Copilot
+
+model_name: impressioncore-b1
+version: 1.0
+
+# Input Encoders
+text_encoder:
+  type: "transformer" # Example type
+  context_length: 131072 # 128k
+  vocab_size: 50257 # Example vocab size (GPT-2)
+  embed_dim: 768
+  num_layers: 12
+  num_heads: 12
+  # ... other relevant parameters for the text encoder
+
+image_encoder:
+  type: "vit" # Example type (Vision Transformer)
+  image_size: 224
+  patch_size: 16
+  embed_dim: 768
+  num_layers: 12
+  num_heads: 12
+  # ... other relevant parameters for the image encoder
+
+# Core Components
+multimodal_fusion:
+  type: "cross_attention" # Example fusion mechanism
+  embed_dim: 768
+  num_heads: 8
+  # ... parameters for fusion layer
+
+moe_router:
+  num_experts: 4
+  top_k: 2 # Number of experts to route to for each token
+  # ... other router parameters (e.g., gating network type)
+
+experts:
+  type: "transformer_feedforward" # Example expert type
+  count: 4 # Should match moe_router.num_experts
+  hidden_dim_multiplier: 4 # e.g., expert hidden_dim = embed_dim * multiplier
+  # ... parameters common to all experts or specific expert configs if they vary
+
+output_head:
+  type: "linear" # Example, could be more complex for different tasks
+  vocab_size: 50257 # For text generation, or num_classes for classification
+  # ... other output head parameters
+
+# Hooks & Training-related configurations (can influence model structure or how it's used)
+hooks:
+  memory_efficient_attention: true # Use F.scaled_dot_product_attention or similar
+  mixed_precision: "bf16" # "fp16", "bf16", or false
+  gradient_checkpointing: ["text_encoder", "experts"] # List of modules to apply grad checkpointing
+  shadow_model_sync: false # Placeholder, actual sync logic is in training loop
+  brain_inspired_hooks: # Placeholder for future specific hooks
+    enabled: false
+    # ... specific brain-inspired hook configurations

@@ -12,6 +12,45 @@
 
 # Changelog
 
+## [1.0.1] - 2026-11-16
+
+### Security & Immediate Blockers Fixed
+
+- **Builder Server Hardening (`SEC-01`):** `src/interfaces/web/server.py` now binds `127.0.0.1` by default (`IMPRESSIONCORE_BUILDER_HOST`), disables Werkzeug debug mode unless `IMPRESSIONCORE_DEBUG=1`, replaces wildcard CORS with `get_allowed_origins()`, strips query parameter dumps from trace logs, and enforces `X-API-Key` (`IMPRESSIONCORE_API_KEY`) or session authentication on `/api/*`.
+- **Safe Checkpoint Loading (`SEC-02`):** Enforced `weights_only=True` on active checkpoint loads in `src/interfaces/web/routes/builder.py`, `src/core/assembly_of_experts.py`, and `src/core/models/impressioncore_b3_architecture.py`, with allowed-root path confinement in `builder.get_model_tokenizer()`.
+- **Workbench File-Read Confinement (`SEC-03`):** Confined `workbench.bounded_file()` in `src/interfaces/web/routes/workbench.py` to resolved project/data/checkpoint/configured roots.
+- **B3 Causal Attention & Sliding-Window Fixes (`CRIT-01`):** Enforced causal masking and per-sample 2D padding masks across `EfficientMultiHeadLatentAttention` (standard, cached, sliding-window, and prefix-cumsum linear attention) and `AssemblyOfExperts.routing_attention`, and fixed `recombine_windows()` span tracking and `(1, seq_len, 1)` normalization.
+- **TurboQuant Invertibility & Passthrough (`CRIT-02`):** Fixed `RandomRotation` in `src/core/quantization/turboquant.py` to use exact QR orthogonal matrices on non-power-of-2 dimensions and preserved float tensors when `enabled=False`.
+- **Quantization Scale & Zero-Tensor Safety (`CRIT-03`):** Replaced destructive `int8`/`int4` casts in `builder.py` with scale-preserving symmetric quantization (`__scale__`) and clamped `scale >= 1e-8` in `src/core/export/export_production_model.py`.
+- **Verification:** Added `src/tests/core/test_immediate_blockers.py`.
+- **Phase 2 & 3 Security, Governance & Portability Hardening:** Hardened `cryptographic_core.py` (real `ChaCha20Poly1305` / `AESGCM`, removed XOR fallback, gated simulated PQC `SEC-04`), replaced `eval()`/`os.system()` (`SEC-05`), gated `trust_remote_code` in `unified_triad.py` (`SEC-06`), replaced `GuardianAgent` stubs with real runtime checks (`ARCH-01`), fixed FAISS index reconstruction (`CRIT-05`), repaired `Dockerfile.python` / `requirements.txt` / `pyproject.toml` / `test_integration_security.py` / `rlm.py` / `builder.py` checkpoint fallback (`ARCH-02`, `ARCH-03`), restricted `MHCProjection` Sinkhorn-Knopp to square matrices (`NOV-01`), and added `README.md` preset matrix alignment note (`DOC-01`) with regression tests in `src/tests/core/test_phase2_phase3_hardening.py`.
+
+## [Unreleased] - 2026-11-02
+
+### Fixed
+
+- Repaired local sensory browser/API authentication with a guarded loopback
+  same-origin gateway, server-only credentials, HTTP/media/WebSocket coverage,
+  CORS-correct errors and owned-child supervision.
+- Real model failures, missing/mock readiness and empty/failed generation now
+  fail explicitly. Existing InternVL2-1B produced a real browser reply; external
+  pretrained identity is distinguished from native B-series execution.
+- Added explicit camera Start/Stop and stream health. Fixed SDK frame-release
+  buffer starvation, truthful RGB/IR and physical/logical identity, and normal
+  stopped-state health polling.
+- Added optional `speech` dependency setup and verified cached CPU Whisper
+  readiness without enabling microphone listening.
+
+### Added
+
+- Native measured run identity, explicit prefix objective, schema-2 checkpoint
+  identity and hashed export manifest; unsupported offering executions remain
+  unavailable/uncertified rather than silently relabelled.
+- Focused runtime/auth/sensor/native regressions, local gateway boundary tests,
+  scoped frontend lint configuration and successful real browser checks.
+- [Repair evidence and remaining release gates](../analysis_reports/BUILDER_PLATFORM_AUDIT_20261102.md#repair-addendum--november-2-2026),
+  synchronized operator guidance, status notices and prioritized backlog.
+
 ## [Unreleased] - 2026-08-26
 
 ### Added & Governance

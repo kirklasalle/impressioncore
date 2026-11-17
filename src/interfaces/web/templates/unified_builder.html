@@ -1,796 +1,203 @@
 {% extends "base.html" %}
-
+{% block title %}Model Workbench · ImpressionCore{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/unified_builder.css') }}">
+{% endblock %}
 {% block content %}
-<div class="container-fluid p-0">
-    <div class="row mb-4">
-        <div class="col">
-            <h1><i class="bi bi-diagram-3"></i> Model Builder</h1>
-            <p class="lead">Configure, train, and monitor your models in a unified interface</p>
+<div class="ic-workbench" id="ic-workbench" aria-busy="true">
+    <header class="ic-wb-header">
+        <div>
+            <p class="ic-wb-eyebrow">IMPRESSIONCORE / LOCAL DEVELOPMENT</p>
+            <h1>Project workspace</h1>
+            <p class="ic-wb-muted">Configure deliberately. Inspect locally. Train explicitly.</p>
         </div>
+        <span class="ic-wb-chip">Model Workbench</span>
+    </header>
+
+    <div class="ic-wb-toolbar" aria-label="Project actions">
+        <button type="button" id="wb-new" disabled>+ New project</button>
+        <label class="ic-wb-open" for="wb-project-select">Open / Create
+            <select id="wb-project-select" disabled><option value="">Select a project or offering…</option></select>
+        </label>
+        <button type="button" id="wb-save" class="ic-wb-primary" disabled>Save project</button>
+        <button type="button" id="wb-export-config" disabled>Export config</button>
+        <button type="button" id="wb-import" disabled>Import config</button>
+        <input type="file" id="wb-import-file" accept=".json,application/json" hidden aria-label="Import project JSON">
+        <span id="wb-save-state" class="ic-wb-save-state" role="status">Connecting…</span>
+    </div>
+    <div id="wb-error" class="ic-wb-notice ic-wb-error" role="alert" tabindex="-1" hidden></div>
+    <div class="ic-wb-message-row">
+        <p id="wb-message" role="status" aria-live="polite">Loading local workspace and runtime capabilities…</p>
+        <button type="button" id="wb-retry" hidden>Retry connection</button>
+    </div>
+    <section id="wb-handoff" class="ic-wb-notice ic-wb-handoff" aria-labelledby="wb-handoff-title" hidden>
+        <div><h2 id="wb-handoff-title">Continue from your walkthrough</h2>
+            <p id="wb-handoff-detail"></p>
+            <p class="ic-wb-muted">Your saved offering is a proposal, not a loaded model. Creating a project does not change global configuration.</p>
+        </div>
+        <button type="button" id="wb-create-offering">Create project from offering</button>
+    </section>
+
+    <div class="ic-wb-layout">
+        <nav class="ic-wb-navigation" aria-label="Workspace tasks">
+            <p class="ic-wb-eyebrow">WORKSPACE</p>
+            <div role="tablist" aria-label="Project sections" aria-orientation="vertical" id="wb-tabs">
+                {% for id, label, number in [
+                    ('overview', 'Overview', '01'), ('architecture', 'Architecture', '02'),
+                    ('data', 'Data', '03'), ('tokenizer', 'Tokenizer', '04'),
+                    ('training', 'Training', '05'), ('runs', 'Runs', '06'),
+                    ('checkpoints', 'Checkpoints', '07'), ('evaluation', 'Evaluation', '08'),
+                    ('inference', 'Inference', '09'), ('export', 'Export', '10'),
+                    ('extensions', 'Extensions / Help', '11')] %}
+                <button type="button" role="tab" id="wb-tab-{{ id }}" aria-controls="wb-panel-{{ id }}"
+                    aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}"
+                    data-tab="{{ id }}"><span aria-hidden="true">{{ number }}</span>{{ label }}</button>
+                {% endfor %}
+            </div>
+            <div class="ic-wb-nav-foot"><span class="ic-wb-dot"></span> Local files · single operator</div>
+        </nav>
+
+        <div class="ic-wb-editor">
+            <section role="tabpanel" id="wb-panel-overview" aria-labelledby="wb-tab-overview" tabindex="0">
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">01 / PROJECT</p><h2>Build with a traceable configuration</h2></div><span class="ic-wb-chip" id="wb-project-revision">No project open</span></div>
+                <div id="wb-empty" class="ic-wb-empty">
+                    <span class="ic-wb-empty-mark" aria-hidden="true">[ + ]</span>
+                    <h3>Your experiments start here</h3>
+                    <p>Create a local project or open a saved one. No model is loaded and no dataset is scanned on opening this page.</p>
+                    <button type="button" id="wb-empty-new" class="ic-wb-primary" disabled>Create your first project</button>
+                </div>
+                <div class="ic-wb-card">
+                    <h3>Project identity</h3>
+                    <div class="ic-wb-fields">
+                        <label for="wb-name">Project name<input id="wb-name" data-edit data-path="name" maxlength="100" disabled></label>
+                        <label for="wb-offering">Reference offering<select id="wb-offering" disabled><option value="">No offering</option></select></label>
+                    </div>
+                    <div class="ic-wb-inline"><button type="button" id="wb-apply-offering" disabled>Apply offering defaults</button><p class="ic-wb-muted">Replaces this draft’s model and training defaults only, after confirmation.</p></div>
+                    <label for="wb-notes">Experiment notes<textarea id="wb-notes" data-edit data-path="notes" rows="3" maxlength="20000" disabled placeholder="Hypothesis, dataset provenance, and what you want to measure."></textarea></label>
+                </div>
+                <div class="ic-wb-card ic-wb-accent-card">
+                    <h3>A small, real research loop</h3>
+                    <ol class="ic-wb-workflow"><li><strong>Configure</strong><span>Choose a native configuration, local text dataset, and tokenizer.</span></li><li><strong>Inspect</strong><span>Save and run bounded preflight. It does not load or train a model.</span></li><li><strong>Run</strong><span>Confirm a local training operation and inspect durable artifacts.</span></li></ol>
+                </div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-architecture" aria-labelledby="wb-tab-architecture" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">02 / MODEL DEFINITION</p><h2>Architecture</h2></div><span class="ic-wb-chip">Native research path</span></div>
+                <div class="ic-wb-card"><h3 id="wb-architecture-name">ImpressionCore B3</h3><p id="wb-architecture-detail">Runtime source is reported by the local backend.</p><code id="wb-architecture-source">Source not yet available</code><p class="ic-wb-muted">Objective: prefix-to-next-token. Each record supplies one prefix and one next-token target, not all-position causal language-model training. The native router attends across the entire prefix. This runner trains text only; multimodal training is not implemented here.</p></div>
+                <div class="ic-wb-notice ic-wb-warning"><strong>Offering identity is not a parameter count.</strong><p>B-series offerings retain their official dimensions as references. Legacy B3 values estimate far larger than the 504M name implies; they are not silently mapped to a native model. A run reports the actual instantiated parameter count.</p></div>
+                <div class="ic-wb-card">
+                    <div class="ic-wb-card-heading"><h3>Native configuration</h3><button type="button" id="wb-native-template" disabled>Use native research template</button></div>
+                    <p class="ic-wb-muted">Explicitly adopt the backend’s B3Config template, then review every dimension. This does not load a model or replace the offering reference.</p>
+                    <label for="wb-native">Advanced B3Config JSON<textarea id="wb-native" class="ic-wb-code-input" rows="14" spellcheck="false" disabled aria-describedby="wb-native-help"></textarea></label>
+                    <p id="wb-native-help" class="ic-wb-muted">A JSON object containing exactly the documented src.core.models.impressioncore_b3_architecture.B3Config fields is required for training. The server validates dimensions and resource limits. Use null to remove the native configuration.</p>
+                    <p id="wb-native-error" role="status" class="ic-wb-danger"></p>
+                </div>
+                <details class="ic-wb-card"><summary>Official / legacy model reference</summary><pre id="wb-model-reference">No project open.</pre></details>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-data" aria-labelledby="wb-tab-data" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">03 / INPUTS</p><h2>Local text data</h2></div><span class="ic-wb-chip">No automatic scanning</span></div>
+                <div class="ic-wb-card"><h3>Dataset source</h3><p class="ic-wb-muted">Paths refer to files on the machine running Flask, not your browser’s filesystem. UTF-8 text / JSONL only, at most 8 MiB and 4,096 records. Records need at least two tokens to participate in training. Only select files you intend this local application to read.</p>
+                    <label for="wb-data-path">Training dataset path<input id="wb-data-path" data-edit data-path="dataset.path" disabled placeholder="D:\datasets\train.txt" spellcheck="false"></label>
+                    <div class="ic-wb-fields">
+                        <label for="wb-data-format">File format<select id="wb-data-format" data-edit data-path="dataset.format" disabled><option value="text">Plain text</option><option value="jsonl">JSON Lines</option></select></label>
+                        <label for="wb-text-field">JSONL text field<input id="wb-text-field" data-edit data-path="dataset.text_field" disabled placeholder="text"></label>
+                    </div>
+                    <label for="wb-validation-path">Held-out validation dataset path<input id="wb-validation-path" data-edit data-path="dataset.validation_path" disabled placeholder="D:\datasets\validation.txt" spellcheck="false"></label>
+                    <p class="ic-wb-muted">A distinct held-out path is required for evaluation. Never report training loss as a benchmark score.</p>
+                </div>
+                <div class="ic-wb-card"><h3>Bounded inspection</h3><p id="wb-data-inspection">Save this project and run preflight to inspect samples, file size, and configuration compatibility.</p><div id="wb-data-preview" class="ic-wb-preview"></div></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-tokenizer" aria-labelledby="wb-tab-tokenizer" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">04 / VOCABULARY</p><h2>Tokenizer artifact</h2></div></div>
+                <div class="ic-wb-card"><h3>Use a local tokenizer</h3><label for="wb-tokenizer-path">Tokenizer file path<input id="wb-tokenizer-path" data-edit data-path="tokenizer.path" disabled placeholder="D:\artifacts\tokenizer.json" spellcheck="false"></label><p class="ic-wb-muted">An existing tokenizer.json is required, at most 32 MiB. Its vocabulary must exactly match native vocab_size. Fine-tuning also requires the checkpoint’s exact tokenizer hash. No download or automatic vocabulary resizing.</p><p id="wb-tokenizer-inspection">Vocabulary and artifact hash are available after preflight.</p></div>
+                <div class="ic-wb-card"><h3>Tokenizer preparation is separate</h3><p>Bring a real local tokenizer.json artifact. The legacy tokenizer page contains simulated training; it is not a verified preparation path and this workspace does not invoke it.</p><a href="/documentation">Read tokenizer documentation →</a></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-training" aria-labelledby="wb-tab-training" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">05 / EXECUTION PLAN</p><h2>Training configuration</h2></div><span class="ic-wb-chip">Text · prefix-next-token</span></div>
+                <div class="ic-wb-card"><h3>Initialization</h3><div class="ic-wb-fields">
+                    <label for="wb-mode">Training mode<select id="wb-mode" data-edit data-path="training.mode" disabled><option value="finetune">Fine-tune local checkpoint</option><option value="scratch">Train from scratch</option></select></label>
+                    <label for="wb-checkpoint-source">Source checkpoint run<select id="wb-checkpoint-source" data-edit data-path="training.checkpoint_run_id" disabled><option value="">Select a durable checkpoint…</option></select></label>
+                </div><p class="ic-wb-muted">Fine-tuning starts a new optimizer from a same-project native checkpoint with matching configuration and tokenizer hash; it is not exact resume. For a first run, explicitly choose Train from scratch.</p></div>
+                <div class="ic-wb-card"><h3>Optimization &amp; limits</h3><p class="ic-wb-muted">Native execution uses FP32 and micro-batch 1. Legacy precision, scheduler, warmup, and checkpoint-directory settings are reference metadata, not controls for this runner.</p><div class="ic-wb-fields">
+                    {% for id, label, path, min, max, step in [
+                        ('epochs', 'Epochs', 'epochs', '1', '100', '1'),
+                        ('batch', 'Micro-batch size (native: 1)', 'batchSize', '1', '1', '1'),
+                        ('lr', 'Learning rate', 'learningRate', '0.00000001', '0.01', 'any'),
+                        ('accum', 'Gradient accumulation steps', 'gradAccumSteps', '1', '128', '1'),
+                        ('steps', 'Maximum steps', 'maxSteps', '1', '100000', '1'),
+                        ('sequence', 'Sequence length', 'sequenceLength', '2', '2048', '1'),
+                        ('seed', 'Random seed', 'seed', '0', '2147483647', '1')] %}
+                    <label for="wb-{{ id }}">{{ label }}<input type="number" id="wb-{{ id }}" data-edit data-path="training.{{ path }}" min="{{ min }}" max="{{ max }}" step="{{ step }}" disabled></label>
+                    {% endfor %}
+                    <label for="wb-device">Execution device<select id="wb-device" data-edit data-path="training.device" disabled><option value="cpu">CPU</option><option value="cuda">CUDA GPU</option></select></label>
+                </div></div>
+                <div class="ic-wb-card"><h3>Preflight report</h3><p class="ic-wb-muted">Inspects bounded local files and tokenizer; estimates are conservative, not a guarantee of available memory. Starting revalidates the saved configuration.</p><div id="wb-checks" class="ic-wb-checks"><p>No preflight performed for this saved revision.</p></div><pre id="wb-estimate" hidden></pre></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-runs" aria-labelledby="wb-tab-runs" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">06 / EXECUTION HISTORY</p><h2>Runs</h2></div><button type="button" id="wb-refresh-runs" disabled>Refresh runs</button></div>
+                <div class="ic-wb-card"><label for="wb-run-select">Inspect a run<select id="wb-run-select" disabled><option value="">No run selected</option></select></label><p class="ic-wb-muted">Only the selected active run is polled, every three seconds while this page is visible. Logs and artifacts come from the local runner.</p></div>
+                <div class="ic-wb-card"><div class="ic-wb-card-heading"><h3>Selected run</h3><span id="wb-run-state" class="ic-wb-chip">None selected</span></div><div id="wb-run-metrics" class="ic-wb-metrics"></div><label for="wb-progress" class="ic-wb-progress-label">Training steps<span id="wb-progress-label">Not started</span></label><progress id="wb-progress" max="1" value="0"></progress><p id="wb-run-error" class="ic-wb-danger"></p><h3 class="ic-wb-log-heading">Runner output</h3><pre id="wb-run-logs" class="ic-wb-log" tabindex="0" aria-label="Selected run logs">No run selected.</pre></div>
+                <details class="ic-wb-card"><summary>Immutable run configuration</summary><pre id="wb-run-config">No run selected.</pre></details>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-checkpoints" aria-labelledby="wb-tab-checkpoints" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">07 / ARTIFACTS</p><h2>Durable checkpoints</h2></div></div>
+                <div class="ic-wb-card"><p>Completed and cooperatively stopped runs can write checkpoints. This list comes from project run records; it does not scan your drives.</p><div id="wb-checkpoints" class="ic-wb-artifacts"><p>No checkpoint records loaded.</p></div></div>
+                <div class="ic-wb-notice"><strong>No pause, resume, or save-now controls.</strong><p>Stop is cooperative and finishes the current safe boundary. Interrupted or failed runs are not represented as resumable unless a durable checkpoint is actually recorded.</p></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-evaluation" aria-labelledby="wb-tab-evaluation" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">08 / VALIDATION</p><h2>Held-out evaluation</h2></div></div>
+                <div class="ic-wb-card"><h3>Measure a local checkpoint</h3><p>Uses the saved project’s held-out dataset and the selected durable run artifact. Loss and perplexity measure the native prefix-next-token objective, not general reasoning or multimodal quality.</p><label for="wb-eval-run">Checkpoint run<select id="wb-eval-run" data-artifact-select disabled><option value="">Select a checkpoint…</option></select></label><p id="wb-eval-path" class="ic-wb-muted">Save a validation dataset path in Data first.</p><button type="button" id="wb-evaluate" class="ic-wb-primary" disabled>Evaluate checkpoint…</button><p class="ic-wb-muted">Explicit confirmation required; evaluation occupies the shared local runtime.</p></div>
+                <div class="ic-wb-card"><h3>Measured result</h3><pre id="wb-evaluation-result">No evaluation performed in this session.</pre></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-inference" aria-labelledby="wb-tab-inference" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">09 / LOCAL GENERATION</p><h2>Test your checkpoint</h2></div></div>
+                <div class="ic-wb-card"><label for="wb-infer-run">Checkpoint run<select id="wb-infer-run" data-artifact-select disabled><option value="">Select a checkpoint…</option></select></label><label for="wb-prompt">Prompt (up to 4,000 characters)<textarea id="wb-prompt" rows="4" maxlength="4000" placeholder="Enter a short text prompt…" disabled></textarea></label><div class="ic-wb-fields"><label for="wb-new-tokens">Maximum new tokens<input id="wb-new-tokens" type="number" min="1" max="128" step="1" value="32" disabled></label><label for="wb-temperature">Temperature<input id="wb-temperature" type="number" min="0.05" max="2" step="any" value="0.7" disabled></label></div><button type="button" id="wb-generate" class="ic-wb-primary" disabled>Generate locally…</button><p class="ic-wb-muted">Loads only this run’s local artifact after confirmation. No hosted model, download, or simulated response.</p></div>
+                <div class="ic-wb-card"><h3>Generated text</h3><pre id="wb-generation-result">No generation performed in this session.</pre></div>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-export" aria-labelledby="wb-tab-export" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">10 / REPRODUCIBILITY</p><h2>Export &amp; inspect</h2></div></div>
+                <div class="ic-wb-card"><h3>Checkpoint package</h3><p>Download the selected durable checkpoint, tokenizer, and metadata as a ZIP. This is a native local artifact package, not ONNX, TensorRT, or a deployment service.</p><label for="wb-export-run">Checkpoint run<select id="wb-export-run" data-artifact-select disabled><option value="">Select a checkpoint…</option></select></label><button type="button" id="wb-export-artifact" disabled>Download checkpoint ZIP</button></div>
+                <details class="ic-wb-card" open><summary>Full draft configuration inspector</summary><p class="ic-wb-muted">Read-only view of this draft. Export config in the project toolbar downloads the saved revision; save first to include your edits. Import accepts configuration JSON, never executable code.</p><pre id="wb-config-inspector">No project open.</pre></details>
+            </section>
+
+            <section role="tabpanel" id="wb-panel-extensions" aria-labelledby="wb-tab-extensions" tabindex="0" hidden>
+                <div class="ic-wb-panel-heading"><div><p class="ic-wb-eyebrow">11 / CAPABILITY MAP</p><h2>Extensions &amp; help</h2></div></div>
+                <div class="ic-wb-card"><h3>Runtime capabilities</h3><p class="ic-wb-muted">Reported by this backend. A linked legacy tool is a separate workflow, not an enabled feature of the native runner.</p><div id="wb-capabilities" class="ic-wb-capabilities"><p>Waiting for capability information.</p></div></div>
+                <div class="ic-wb-card"><h3>Operator notes</h3><ul class="ic-wb-help-list"><li>One resource operation at a time: training, evaluation, or generation.</li><li>Unsaved drafts stay in this page. Save before changing projects or closing it.</li><li>Preflight readiness expires when your draft changes. The server checks again before starting.</li><li>Conflicts preserve your draft; copy the draft configuration inspector before reopening the latest saved revision.</li><li>Resource estimates are not actual model counts or promised GPU fit.</li></ul><a href="/documentation">Read project documentation →</a></div>
+            </section>
+        </div>
+
+        <aside class="ic-wb-summary" aria-label="Workspace summary">
+            <section class="ic-wb-card"><p class="ic-wb-eyebrow">CURRENT PROJECT</p><h2 id="wb-summary-name">No project open</h2><dl class="ic-wb-definition"><dt>Offering</dt><dd id="wb-summary-offering">None</dd><dt>Native config</dt><dd id="wb-summary-native">Not configured</dd><dt>Preflight</dt><dd id="wb-summary-preflight">Not checked</dd><dt>Selected run</dt><dd id="wb-summary-run">None</dd></dl></section>
+            <section class="ic-wb-card"><div class="ic-wb-card-heading"><h2>Local runtime</h2><button type="button" id="wb-refresh-telemetry" class="ic-wb-small" disabled aria-label="Refresh local runtime readings">Refresh</button></div><dl class="ic-wb-definition" id="wb-telemetry"><dt>Device</dt><dd>Unknown</dd><dt>GPU memory</dt><dd>Not sampled</dd><dt>CPU / RAM</dt><dd>Not sampled</dd></dl><p id="wb-telemetry-time" class="ic-wb-muted">Readings are never inferred.</p><p id="wb-runtime-lock" class="ic-wb-muted">Runtime state unavailable.</p></section>
+            <section class="ic-wb-card"><h2>Local storage</h2><p class="ic-wb-muted">Project records</p><code id="wb-project-storage">Not reported</code><p class="ic-wb-muted">Run artifacts</p><code id="wb-artifact-storage">Not reported</code></section>
+        </aside>
     </div>
 
-    <div class="unified-container">
-        <!-- Configuration Panel -->
-        <div class="config-panel">
-            <div class="mb-4">
-                <h3>Model Templates</h3>
-                <p>Select a template to get started with pre-configured model architecture</p>
-
-                <div class="template-gallery">
-                    <div class="template-card" data-template-id="b1_39m">
-                        <div class="template-card-header">
-                            <i class="bi bi-stars"></i>
-                            <h4>B1 Hope 39M</h4>
-                        </div>
-                        <div class="template-card-body">
-                            <p>Foundational offering tuned for low-VRAM iteration and baseline conversational
-                                reliability.</p>
-                        </div>
-                        <div class="template-card-footer">
-                            <span><i class="bi bi-gpu-card"></i> Target: 39M params</span>
-                        </div>
-                    </div>
-
-                    <div class="template-card" data-template-id="b2_50m">
-                        <div class="template-card-header">
-                            <i class="bi bi-lightning-charge"></i>
-                            <h4>B2 Insight 50M</h4>
-                        </div>
-                        <div class="template-card-body">
-                            <p>Intermediate offering for stronger reasoning and alignment experiments.</p>
-                        </div>
-                        <div class="template-card-footer">
-                            <span><i class="bi bi-gpu-card"></i> Target: 50M params</span>
-                        </div>
-                    </div>
-
-                    <div class="template-card" data-template-id="b3_504m">
-                        <div class="template-card-header">
-                            <i class="bi bi-diagram-3"></i>
-                            <h4>B3 Apex 504M</h4>
-                        </div>
-                        <div class="template-card-body">
-                            <p>Large-scale offering mapped to the B3/phase-2 checkpoint family for advanced runs.</p>
-                        </div>
-                        <div class="template-card-footer">
-                            <span><i class="bi bi-gpu-card"></i> Target: 504M params</span>
-                        </div>
-                    </div>
-
-                    <!-- Template cards will be dynamically populated -->
-                    <div class="template-card" data-template-id="transformer-base">
-                        <div class="template-card-header">
-                            <i class="bi bi-cpu"></i>
-                            <h4>Transformer Base</h4>
-                        </div>
-                        <div class="template-card-body">
-                            <p>Standard transformer model suitable for text generation tasks</p>
-                        </div>
-                        <div class="template-card-footer">
-                            <span><i class="bi bi-gpu-card"></i> Min: 4GB VRAM</span>
-                        </div>
-                    </div>
-
-                    <div class="template-card" data-template-id="diffusion-basic">
-                        <div class="template-card-header">
-                            <i class="bi bi-images"></i>
-                            <h4>Basic Diffusion</h4>
-                        </div>
-                        <div class="template-card-body">
-                            <p>Standard diffusion model for image generation</p>
-                        </div>
-                        <div class="template-card-footer">
-                            <span><i class="bi bi-gpu-card"></i> Min: 4GB VRAM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="parameter-configuration">
-                <h3>Model Configuration</h3>
-                <p>Adjust parameters to customize your model</p>
-
-                <!-- Model Parameters -->
-                <div class="parameter-group">
-                    <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#modelParams">
-                        <h3>Model Architecture</h3>
-                        <i class="bi bi-chevron-down"></i>
-                    </div>
-                    <div class="parameter-group-body collapse show" id="modelParams">
-                        <!-- Hidden Size parameter -->
-                        <div class="parameter-item">
-                            <div class="parameter-label">
-                                <label for="hidden_size">Hidden Size</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
-                                    title="Larger values increase model capacity but require more memory"></i>
-                            </div>
-                            <div class="description">Hidden dimension size of the transformer model</div>
-                            <div class="parameter-controls">
-                                <input type="range" class="form-range" id="hidden_size_range" min="128" max="4096"
-                                    step="128" value="768">
-                                <input type="number" class="form-control" id="hidden_size" min="128" max="4096"
-                                    step="128" value="768">
-                            </div>
-                            <div class="parameter-impact">
-                                <span class="impact-indicator impact-high">High Training Impact</span>
-                                <span class="impact-indicator impact-high">High Hardware Impact</span>
-                            </div>
-                        </div>
-
-                        <!-- Num Layers parameter -->
-                        <div class="parameter-item">
-                            <div class="parameter-label">
-                                <label for="num_layers">Number of Layers</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
-                                    title="More layers allow for processing more complex patterns"></i>
-                            </div>
-                            <div class="description">Number of transformer layers (encoder/decoder blocks)</div>
-                            <div class="parameter-controls">
-                                <input type="range" class="form-range" id="num_layers_range" min="1" max="24" step="1"
-                                    value="12">
-                                <input type="number" class="form-control" id="num_layers" min="1" max="24" step="1"
-                                    value="12">
-                            </div>
-                            <div class="parameter-impact">
-                                <span class="impact-indicator impact-high">High Training Impact</span>
-                                <span class="impact-indicator impact-high">High Hardware Impact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Training Parameters -->
-                <div class="parameter-group">
-                    <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#trainingParams">
-                        <h3>Training Settings</h3>
-                        <i class="bi bi-chevron-down"></i>
-                    </div>
-                    <div class="parameter-group-body collapse show" id="trainingParams">
-                        <!-- Learning Rate parameter -->
-                        <div class="parameter-item">
-                            <div class="parameter-label">
-                                <label for="learning_rate">Learning Rate</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
-                                    title="Controls how quickly the model adapts to the training data"></i>
-                            </div>
-                            <div class="description">Learning rate for optimizer</div>
-                            <div class="parameter-controls">
-                                <input type="range" class="form-range" id="learning_rate_range" min="-6" max="-3"
-                                    step="0.1" value="-4.3">
-                                <input type="number" class="form-control" id="learning_rate" min="0.000001" max="0.001"
-                                    step="0.00001" value="0.00005">
-                            </div>
-                            <div class="parameter-impact">
-                                <span class="impact-indicator impact-high">High Training Impact</span>
-                            </div>
-                        </div>
-
-                        <!-- Batch Size parameter -->
-                        <div class="parameter-item">
-                            <div class="parameter-label">
-                                <label for="batch_size">Batch Size</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
-                                    title="Larger batch sizes can speed up training but require more memory"></i>
-                            </div>
-                            <div class="description">Number of examples processed together</div>
-                            <div class="parameter-controls">
-                                <input type="range" class="form-range" id="batch_size_range" min="1" max="128" step="1"
-                                    value="16">
-                                <input type="number" class="form-control" id="batch_size" min="1" max="128" step="1"
-                                    value="16">
-                            </div>
-                            <div class="parameter-impact">
-                                <span class="impact-indicator impact-high">High Training Impact</span>
-                                <span class="impact-indicator impact-high">High Hardware Impact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Advanced Parameters -->
-                <div class="parameter-group">
-                    <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#advancedParams">
-                        <h3>Advanced Settings</h3>
-                        <i class="bi bi-chevron-down"></i>
-                    </div>
-                    <div class="parameter-group-body collapse" id="advancedParams">
-                        <!-- Dropout parameters -->
-                        <div class="parameter-item">
-                            <div class="parameter-label">
-                                <label for="attention_dropout">Attention Dropout</label>
-                                <i class="bi bi-info-circle tooltip-icon" data-bs-toggle="tooltip"
-                                    title="Helps prevent overfitting in attention mechanism"></i>
-                            </div>
-                            <div class="description">Dropout probability for attention weights</div>
-                            <div class="parameter-controls">
-                                <input type="range" class="form-range" id="attention_dropout_range" min="0" max="0.5"
-                                    step="0.05" value="0.1">
-                                <input type="number" class="form-control" id="attention_dropout" min="0" max="0.5"
-                                    step="0.05" value="0.1">
-                            </div>
-                            <div class="parameter-impact">
-                                <span class="impact-indicator impact-low">Low Training Impact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ImpressionCore Enhancements -->
-            <div class="parameter-group">
-                <div class="parameter-group-header" data-bs-toggle="collapse" data-bs-target="#impressionEnhancements">
-                    <h3>ImpressionCore Enhancements</h3>
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-                <div class="parameter-group-body collapse" id="impressionCoreEnhancements">
-                    <!-- Logic Module -->
-                    <div class="parameter-item">
-                        <div class="parameter-label">
-                            <label for="impressioncore_logic_module">Logic Module</label>
-                        </div>
-                        <div class="parameter-controls">
-                            <input type="checkbox" class="form-check-input" id="impressioncore_logic_module">
-                        </div>
-                        <div class="description">Enables logical reasoning capabilities</div>
-                    </div>
-                    <!-- Creativity Module -->
-                    <div class="parameter-item">
-                        <div class="parameter-label">
-                            <label for="impressioncore_creativity_module">Creativity Module</label>
-                        </div>
-                        <div class="parameter-controls">
-                            <input type="checkbox" class="form-check-input" id="impressioncore_creativity_module">
-                        </div>
-                    </div>
-                    <!-- Subconscious Reasoning Module -->
-                    <div class="parameter-item">
-                        <div class="parameter-label">
-                            <label for="impressioncore_subconscious_module">Subconscious Reasoning Module</label>
-                        </div>
-                        <div class="parameter-controls">
-                            <input type="checkbox" class="form-check-input" id="impressioncore_subconscious_module">
-                        </div>
-                    </div>
-                    <!-- System Oversight Module -->
-                    <div class="parameter-item">
-                        <div class="parameter-label">
-                            <label for="impressioncore_oversight_module">System Oversight Module</label>
-                        </div>
-                        <div class="parameter-controls">
-                            <input type="checkbox" class="form-check-input" id="impressioncore_oversight_module">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Configuration Preview -->
-            <div class="config-preview">
-                <h4>Configuration Preview</h4>
-                <pre id="config-json">
-{
-  "model": {
-    "hidden_size": 768,
-    "num_layers": 12,
-    "num_heads": 12,
-    "intermediate_size": 3072
-  },
-  "training": {
-    "learning_rate": 5e-5,
-    "batch_size": 16,
-    "epochs": 3
-  }
-}
-                    </pre>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="btn btn-outline-secondary" id="reset-config">
-                    <i class="bi bi-arrow-counterclockwise"></i> Reset to Defaults
-                </button>
-                <button class="btn btn-primary" id="start-training">
-                    <i class="bi bi-play-fill"></i> Start Training
-                </button>
-            </div>
-        </div>
-
-        <!-- Training Panel -->
-        <div class="training-panel">
-            <div class="training-controls">
-                <div>
-                    <button class="btn btn-primary" id="start-training-btn">
-                        <i class="bi bi-play-fill"></i> Start
-                    </button>
-                    <button class="btn btn-warning" id="pause-training-btn" disabled>
-                        <i class="bi bi-pause-fill"></i> Pause
-                    </button>
-                    <button class="btn btn-danger" id="stop-training-btn" disabled>
-                        <i class="bi bi-stop-fill"></i> Stop
-                    </button>
-                </div>
-                <div>
-                    <button class="btn btn-outline-secondary" id="save-checkpoint-btn" disabled>
-                        <i class="bi bi-save"></i> Save Checkpoint
-                    </button>
-                </div>
-            </div>
-
-            <div class="training-status">
-                <h3>Training Progress</h3>
-
-                <div class="progress-container">
-                    <div class="d-flex justify-content-between mb-1">
-                        <span>Progress:</span>
-                        <span id="progress-percentage">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-1">
-                        <span id="progress-step">Step 0/0</span>
-                        <span id="progress-eta">ETA: --:--:--</span>
-                    </div>
-                </div>
-
-                <div class="metrics-container">
-                    <div class="metric-card">
-                        <h4>Loss</h4>
-                        <div class="value" id="metric-loss">-</div>
-                    </div>
-                    <div class="metric-card">
-                        <h4>Learning Rate</h4>
-                        <div class="value" id="metric-lr">-</div>
-                    </div>
-                    <div class="metric-card">
-                        <h4>Time/Step</h4>
-                        <div class="value" id="metric-time-per-step">-</div>
-                    </div>
-                    <div class="metric-card">
-                        <h4>VRAM Usage</h4>
-                        <div class="value" id="metric-vram">-</div>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="loss-chart"></canvas>
-                </div>
-
-                <div class="log-viewer">
-                    <div class="log-entry info">[System] Training logs will appear here</div>
-                </div>
-
-                <div class="hardware-info">
-                    <div class="hardware-metric">
-                        <i class="bi bi-gpu-card"></i>
-                        <span id="gpu-info">GPU: NVIDIA GeForce GTX 1050 Ti (4GB)</span>
-                    </div>
-                    <div class="hardware-metric">
-                        <i class="bi bi-memory"></i>
-                        <span id="vram-usage">VRAM: 0.0GB / 4.0GB</span>
-                    </div>
-                    <div class="hardware-metric">
-                        <i class="bi bi-cpu"></i>
-                        <span id="cpu-usage">CPU: 0%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer class="ic-wb-actionbar" aria-label="Training actions">
+        <div><strong id="wb-action-title">Ready when you are</strong><p id="wb-action-detail">Open a project to configure a real local run.</p></div>
+        <div class="ic-wb-action-buttons"><button type="button" id="wb-preflight" disabled>Run preflight</button><button type="button" id="wb-start" class="ic-wb-primary" disabled>Start training…</button><button type="button" id="wb-stop" class="ic-wb-destructive" disabled>Stop run…</button></div>
+    </footer>
+    <dialog id="wb-new-dialog" class="ic-wb-dialog" aria-labelledby="wb-new-title">
+        <form id="wb-new-form">
+            <p class="ic-wb-eyebrow">LOCAL PROJECT</p><h2 id="wb-new-title">Create an experiment</h2><p>This writes a project record only. It does not load or train a model.</p>
+            <p id="wb-new-error" class="ic-wb-danger" role="alert" hidden></p>
+            <label for="wb-new-name">Project name<input id="wb-new-name" required maxlength="100" placeholder="My first experiment"></label>
+            <label for="wb-new-offering">Reference offering<select id="wb-new-offering"><option value="">No offering · configure manually</option></select></label>
+            <div class="ic-wb-dialog-actions"><button type="button" id="wb-new-cancel">Cancel</button><button type="submit" id="wb-new-submit" class="ic-wb-primary">Create project</button></div>
+        </form>
+    </dialog>
+    <noscript><p class="ic-wb-notice">JavaScript is required for local project operations. No training action is available without it.</p></noscript>
 </div>
-
-<!-- JavaScript for Unified Builder Interface -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let selectedPresetId = 'custom';
-        const OFFERING_PRESETS = {
-            b1_39m: {
-                model: { hidden_size: 768, num_layers: 8, learning_rate: 0.00005, batch_size: 1, attention_dropout: 0.1 },
-                backend: { preset: 'b1_39m', architecture: 'transformer', layers: 8, hiddenSize: 768, heads: 12, intermediateSize: 3072, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
-                training: { epochs: 3, batchSize: 1, learningRate: 0.00005, warmupSteps: 100, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 8, maxSteps: 0 }
-            },
-            b2_50m: {
-                model: { hidden_size: 832, num_layers: 10, learning_rate: 0.00004, batch_size: 1, attention_dropout: 0.1 },
-                backend: { preset: 'b2_50m', architecture: 'transformer', layers: 10, hiddenSize: 832, heads: 13, intermediateSize: 3328, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: false, rope: true },
-                training: { epochs: 3, batchSize: 1, learningRate: 0.00004, warmupSteps: 150, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 10, maxSteps: 0 }
-            },
-            b3_504m: {
-                model: { hidden_size: 3072, num_layers: 24, learning_rate: 0.00002, batch_size: 1, attention_dropout: 0.1 },
-                backend: { preset: 'b3_504m', architecture: 'transformer', layers: 24, hiddenSize: 3072, heads: 24, intermediateSize: 12288, contextWindow: 4096, vocabSize: 50257, precision: 'fp16', activation: 'gelu', flashAttention: true, rope: true },
-                training: { epochs: 2, batchSize: 1, learningRate: 0.00002, warmupSteps: 300, scheduler: 'cosine', precision: 'fp16', gradCheckpoint: true, gradAccumSteps: 16, maxSteps: 0 }
-            }
-        };
-
-        // Initialize tooltips
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-
-        // Template selection
-        const templateCards = document.querySelectorAll('.template-card');
-        templateCards.forEach(card => {
-            card.addEventListener('click', function () {
-                templateCards.forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-
-                // Load template configuration
-                const templateId = this.getAttribute('data-template-id');
-                loadTemplateConfig(templateId);
-            });
-        });
-
-        // Connect range inputs with number inputs
-        const rangeInputs = document.querySelectorAll('input[type="range"]');
-        rangeInputs.forEach(range => {
-            const paramId = range.id.replace('_range', '');
-            const numberInput = document.getElementById(paramId);
-
-            range.addEventListener('input', function () {
-                if (this.id === 'learning_rate_range') {
-                    // Handle log scale for learning rate
-                    numberInput.value = Math.pow(10, parseFloat(this.value)).toFixed(8);
-                } else {
-                    numberInput.value = this.value;
-                }
-                updateConfigPreview();
-            });
-
-            if (numberInput) {
-                numberInput.addEventListener('change', function () {
-                    if (range.id === 'learning_rate_range') {
-                        // Handle log scale for learning rate
-                        const logValue = Math.log10(parseFloat(this.value));
-                        range.value = logValue;
-                    } else {
-                        range.value = this.value;
-                    }
-                    updateConfigPreview();
-                });
-            }
-        });
-
-        // Form-side validation locking parity helper (WS3 Task 4)
-        function toggleInputsLock(isLocked) {
-            const inputs = [
-                'hidden_size', 'hidden_size_range',
-                'num_layers', 'num_layers_range',
-                'learning_rate', 'learning_rate_range',
-                'batch_size', 'batch_size_range',
-                'attention_dropout', 'attention_dropout_range'
-            ];
-            inputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.disabled = isLocked;
-            });
-
-            const configHeader = document.querySelector('#parameter-configuration h3');
-            if (configHeader) {
-                let badge = document.getElementById('preset-lock-badge');
-                if (isLocked) {
-                    if (!badge) {
-                        badge = document.createElement('span');
-                        badge.id = 'preset-lock-badge';
-                        badge.className = 'badge bg-warning ms-2 fs-6';
-                        badge.style.verticalAlign = 'middle';
-                        badge.innerHTML = '<i class="bi bi-lock-fill"></i> Preset Locked';
-                        configHeader.appendChild(badge);
-                    }
-                } else {
-                    if (badge) badge.remove();
-                }
-            }
-        }
-
-        // Function to load template configuration
-        function loadTemplateConfig(templateId) {
-            console.log(`Loading template: ${templateId}`);
-
-            const offering = OFFERING_PRESETS[templateId];
-            if (offering) {
-                selectedPresetId = templateId;
-                document.getElementById('hidden_size').value = offering.model.hidden_size;
-                document.getElementById('hidden_size_range').value = offering.model.hidden_size;
-                document.getElementById('num_layers').value = offering.model.num_layers;
-                document.getElementById('num_layers_range').value = offering.model.num_layers;
-                document.getElementById('learning_rate').value = offering.model.learning_rate;
-                document.getElementById('learning_rate_range').value = Math.log10(offering.model.learning_rate);
-                document.getElementById('batch_size').value = offering.model.batch_size;
-                document.getElementById('batch_size_range').value = offering.model.batch_size;
-                document.getElementById('attention_dropout').value = offering.model.attention_dropout;
-                document.getElementById('attention_dropout_range').value = offering.model.attention_dropout;
-                persistOfferingSelection(templateId);
-                syncPresetToBackend(offering.backend, offering.training);
-                updateConfigPreview();
-                toggleInputsLock(true);
-                return;
-            }
-
-            selectedPresetId = 'custom';
-            toggleInputsLock(false);
-
-            if (templateId === 'transformer-base') {
-                document.getElementById('hidden_size').value = 768;
-                document.getElementById('hidden_size_range').value = 768;
-                document.getElementById('num_layers').value = 12;
-                document.getElementById('num_layers_range').value = 12;
-                document.getElementById('learning_rate').value = 0.00005;
-                document.getElementById('learning_rate_range').value = -4.3;
-                document.getElementById('batch_size').value = 16;
-                document.getElementById('batch_size_range').value = 16;
-                document.getElementById('attention_dropout').value = 0.1;
-                document.getElementById('attention_dropout_range').value = 0.1;
-            } else if (templateId === 'diffusion-basic') {
-                document.getElementById('hidden_size').value = 512;
-                document.getElementById('hidden_size_range').value = 512;
-                document.getElementById('num_layers').value = 8;
-                document.getElementById('num_layers_range').value = 8;
-                document.getElementById('learning_rate').value = 0.0001;
-                document.getElementById('learning_rate_range').value = -4.0;
-                document.getElementById('batch_size').value = 8;
-                document.getElementById('batch_size_range').value = 8;
-                document.getElementById('attention_dropout').value = 0.1;
-                document.getElementById('attention_dropout_range').value = 0.1;
-            }
-
-            updateConfigPreview();
-        }
-
-        function persistOfferingSelection(presetId) {
-            fetch('/api/v1/builder/walkthrough/progress', {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ selected_offering: presetId }),
-            }).catch((error) => {
-                console.warn('Unable to persist offering selection', error);
-            });
-        }
-
-        async function syncPresetToBackend(modelConfig, trainingConfig) {
-            try {
-                await fetch('/api/v1/builder/model/configure', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(modelConfig),
-                });
-                await fetch('/api/v1/builder/training/configure', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(trainingConfig),
-                });
-            } catch (error) {
-                console.warn('Unable to sync preset to backend', error);
-            }
-        }
-
-        // Function to update configuration preview
-        function updateConfigPreview() {
-            const isOfferingPreset = Object.prototype.hasOwnProperty.call(OFFERING_PRESETS, selectedPresetId);
-            const presetHeads = isOfferingPreset ? OFFERING_PRESETS[selectedPresetId].backend.heads : null;
-            const config = {
-                model: {
-                    preset: selectedPresetId,
-                    hidden_size: parseInt(document.getElementById('hidden_size').value),
-                    num_layers: parseInt(document.getElementById('num_layers').value),
-                    num_heads: presetHeads || parseInt(document.getElementById('hidden_size').value / 64),
-                    intermediate_size: parseInt(document.getElementById('hidden_size').value * 4) // Typically 4 * hidden_size
-                },
-                training: {
-                    learning_rate: parseFloat(document.getElementById('learning_rate').value),
-                    batch_size: parseInt(document.getElementById('batch_size').value),
-                    epochs: 3
-                },
-                advanced: {
-                    attention_dropout: parseFloat(document.getElementById('attention_dropout').value)
-                }
-            };
-
-            document.getElementById('config-json').textContent = JSON.stringify(config, null, 2);
-        }
-
-        // Initialize loss chart
-        const ctx = document.getElementById('loss-chart').getContext('2d');
-        const lossChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Training Loss',
-                    data: [],
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Training Loss'
-                    },
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
-
-        // Training control buttons
-        document.getElementById('start-training-btn').addEventListener('click', function () {
-            console.log('Starting training...');
-
-            // Update UI
-            this.disabled = true;
-            document.getElementById('pause-training-btn').disabled = false;
-            document.getElementById('stop-training-btn').disabled = false;
-            document.getElementById('save-checkpoint-btn').disabled = false;
-
-            // Start API-backed training
-            startTraining();
-        });
-
-        // API-backed training flow (WS3: replaces simulation path)
-        let _trainingPollInterval = null;
-
-        async function startTraining() {
-            const progressFill = document.querySelector('.progress-fill');
-            const progressPercentage = document.getElementById('progress-percentage');
-            const progressStep = document.getElementById('progress-step');
-            const progressEta = document.getElementById('progress-eta');
-            const metricLoss = document.getElementById('metric-loss');
-            const metricLr = document.getElementById('metric-lr');
-            const metricTimePerStep = document.getElementById('metric-time-per-step');
-            const metricVram = document.getElementById('metric-vram');
-            const logViewer = document.querySelector('.log-viewer');
-
-            function addLog(msg, level = 'info') {
-                const entry = document.createElement('div');
-                entry.className = `log-entry ${level}`;
-                entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-                logViewer.appendChild(entry);
-                logViewer.scrollTop = logViewer.scrollHeight;
-            }
-
-            // Collect current config
-            const config = JSON.parse(document.getElementById('config-json').textContent);
-            addLog(`Starting training with preset: ${config.model.preset || 'custom'}...`);
-
-            // Attempt to start via API
-            try {
-                const startResp = await fetch('/api/v1/pipeline/process', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'start_training', config }),
-                });
-                const startData = await startResp.json();
-
-                if (!startResp.ok || startData.error) {
-                    addLog(`Pipeline unavailable: ${startData.error || startData.message || 'Unknown error'}. Configure and initialize the training pipeline first.`, 'warning');
-                    document.getElementById('start-training-btn').disabled = false;
-                    document.getElementById('pause-training-btn').disabled = true;
-                    document.getElementById('stop-training-btn').disabled = true;
-                    return;
-                }
-
-                addLog('Training started — polling for progress...');
-            } catch (err) {
-                addLog(`Cannot reach training API: ${err.message}. Ensure the Builder server is running.`, 'warning');
-                document.getElementById('start-training-btn').disabled = false;
-                document.getElementById('pause-training-btn').disabled = true;
-                document.getElementById('stop-training-btn').disabled = true;
-                return;
-            }
-
-            // Poll training status
-            _trainingPollInterval = setInterval(async () => {
-                try {
-                    const resp = await fetch('/api/v1/pipeline/status');
-                    const data = await resp.json();
-
-                    if (data.status === 'error' || data.status === 'unavailable') {
-                        addLog(`Training status: ${data.message || data.status}`, 'warning');
-                        clearInterval(_trainingPollInterval);
-                        document.getElementById('start-training-btn').disabled = false;
-                        document.getElementById('pause-training-btn').disabled = true;
-                        document.getElementById('stop-training-btn').disabled = true;
-                        return;
-                    }
-
-                    const stats = data.stats || {};
-                    const progress = stats.progress || 0;
-                    const step = stats.step || 0;
-                    const totalSteps = stats.total_steps || 0;
-                    const loss = stats.loss;
-                    const lr = stats.learning_rate;
-                    const timePerStep = stats.time_per_step;
-                    const vramUsage = stats.vram_usage;
-
-                    progressFill.style.width = `${progress}%`;
-                    progressPercentage.textContent = `${progress.toFixed(1)}%`;
-                    progressStep.textContent = `Step ${step}/${totalSteps}`;
-
-                    if (loss !== undefined) metricLoss.textContent = parseFloat(loss).toFixed(4);
-                    if (lr !== undefined) metricLr.textContent = parseFloat(lr).toExponential(1);
-                    if (timePerStep !== undefined) metricTimePerStep.textContent = `${parseFloat(timePerStep).toFixed(2)}s`;
-                    if (vramUsage !== undefined) metricVram.textContent = vramUsage;
-
-                    // Update chart
-                    if (loss !== undefined) {
-                        lossChart.data.labels.push(step);
-                        lossChart.data.datasets[0].data.push(parseFloat(loss));
-                        if (lossChart.data.labels.length > 50) {
-                            lossChart.data.labels.shift();
-                            lossChart.data.datasets[0].data.shift();
-                        }
-                        lossChart.update();
-                    }
-
-                    // ETA
-                    if (totalSteps > 0 && timePerStep) {
-                        const remaining = (totalSteps - step) * parseFloat(timePerStep);
-                        const h = Math.floor(remaining / 3600);
-                        const m = Math.floor((remaining % 3600) / 60);
-                        const s = Math.floor(remaining % 60);
-                        progressEta.textContent = `ETA: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-                    }
-
-                    // Log periodic updates
-                    if (step > 0 && step % 10 === 0) {
-                        addLog(`Step ${step}: loss=${loss !== undefined ? parseFloat(loss).toFixed(4) : '?'}`);
-                    }
-
-                    // Completed
-                    if (progress >= 100 || stats.completed) {
-                        clearInterval(_trainingPollInterval);
-                        addLog('Training completed successfully!');
-                        document.getElementById('start-training-btn').disabled = false;
-                        document.getElementById('pause-training-btn').disabled = true;
-                        document.getElementById('stop-training-btn').disabled = true;
-                    }
-                } catch (pollErr) {
-                    addLog(`Status poll error: ${pollErr.message}`, 'warning');
-                }
-            }, 2000);
-
-            // Handle pause button
-            document.getElementById('pause-training-btn').addEventListener('click', async function () {
-                clearInterval(_trainingPollInterval);
-                this.disabled = true;
-                document.getElementById('start-training-btn').disabled = false;
-                try {
-                    await fetch('/api/v1/pipeline/process', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'pause_training' }),
-                    });
-                } catch (_) {}
-                addLog('Training paused');
-            });
-
-            // Handle stop button
-            document.getElementById('stop-training-btn').addEventListener('click', async function () {
-                clearInterval(_trainingPollInterval);
-                document.getElementById('start-training-btn').disabled = false;
-                document.getElementById('pause-training-btn').disabled = true;
-                this.disabled = true;
-                document.getElementById('save-checkpoint-btn').disabled = true;
-                try {
-                    await fetch('/api/v1/pipeline/process', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'stop_training' }),
-                    });
-                } catch (_) {}
-                addLog('Training stopped', 'warning');
-            });
-        }
-
-        // Select the first template by default
-        if (templateCards.length > 0) {
-            templateCards[0].click();
-        }
-    });
-</script>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/workbench.js') }}" defer></script>
 {% endblock %}

@@ -7,8 +7,8 @@ Main package initialization for the ImpressionCore framework.
 File: __init__.py
 Project: ImpressionCore - Brain-Inspired Multimodal AI Framework
 Created: 2025-05-24
-Modified: 2025-06-06
-Version: 1.0.0
+Modified: 2026-11-16
+Version: 1.0.1
 
 Authors:
 - Kirk LaSalle <kirk@impressioncore.ai>
@@ -74,7 +74,7 @@ try:
 except ImportError as e:
     print(f"Warning: Could not import data module: {e}")
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __all__ = [
     'core',
     'training', 
